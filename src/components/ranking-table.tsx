@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
@@ -27,6 +27,54 @@ const HEADERS: { key: ScoreKey; labelKey: string; icon: React.ComponentType<any>
   { key: "tokens", labelKey: "models.colTokens", icon: TrendingUp, mobile: false, desktop: true },
 ];
 
+// 颜色由列在当前榜单中的相对分位决定,而非绝对分数
+// AA Intelligence Index 国内模型集中在 30-55,绝对阈值会让全表挤进同一档
+type Percentiles = { p25: number; p50: number; p75: number };
+type ColoredKey = "intelligence" | "coding" | "agentic" | "speed" | "cost";
+
+const COLOR_BY_BUCKET = {
+  emerald: "text-emerald-500 dark:text-emerald-400",
+  blue: "text-blue-500 dark:text-blue-300",
+  amber: "text-amber-500 dark:text-amber-300",
+  red: "text-red-500 dark:text-red-400",
+  dim: "text-text-dim",
+} as const;
+
+// cost 是反向(数字越小越好),其他正向
+const ASCENDING: Record<ColoredKey, boolean> = {
+  intelligence: true, coding: true, agentic: true, speed: true, cost: false,
+};
+
+function quantile(sorted: number[], q: number): number {
+  const pos = (sorted.length - 1) * q;
+  const base = Math.floor(pos);
+  const rest = pos - base;
+  return sorted[base + 1] !== undefined
+    ? sorted[base] + rest * (sorted[base + 1] - sorted[base])
+    : sorted[base];
+}
+
+function computePercentiles(values: (number | null | undefined)[]): Percentiles | null {
+  const valid = values
+    .filter((v): v is number => typeof v === "number" && Number.isFinite(v))
+    .sort((a, b) => a - b);
+  if (valid.length < 2) return null;
+  return { p25: quantile(valid, 0.25), p50: quantile(valid, 0.5), p75: quantile(valid, 0.75) };
+}
+
+function bucketByPercentile(val: number, p: Percentiles, ascending: boolean): keyof typeof COLOR_BY_BUCKET {
+  if (ascending) {
+    if (val >= p.p75) return "emerald";
+    if (val >= p.p50) return "blue";
+    if (val >= p.p25) return "amber";
+    return "red";
+  }
+  if (val <= p.p25) return "emerald";
+  if (val <= p.p50) return "blue";
+  if (val <= p.p75) return "amber";
+  return "red";
+}
+
 export function RankingTable({ models }: RankingTableProps) {
   const [sortKey, setSortKey] = useState<SortKey | null>(null);
   const [sortDesc, setSortDesc] = useState(true);
@@ -38,15 +86,15 @@ export function RankingTable({ models }: RankingTableProps) {
     else { setSortKey(key); setSortDesc(true); }
   };
 
-  const getRawValue = (model: ModelWithScores, key: SortKey): number => {
+  const getRawValue = (model: ModelWithScores, key: SortKey): number | null => {
     switch (key) {
       case "intelligence": return model.raw.intelligence;
-      case "coding": return model.raw.coding ?? -1;
-      case "agentic": return model.raw.agentic ?? -1;
-      case "speed": return model.raw.median_tps ?? -1;
-      case "cost": return model.raw.openrouter_pricing?.prompt ?? model.raw.cn_input ?? model.raw.blended ?? -1;
-      case "tokens": return model.raw.openrouter_weekly_tokens ?? -1;
-      case "date": return -1; // handled in sortedModels
+      case "coding": return model.raw.coding ?? null;
+      case "agentic": return model.raw.agentic ?? null;
+      case "speed": return model.raw.median_tps ?? null;
+      case "cost": return model.raw.openrouter_pricing?.prompt ?? null;
+      case "tokens": return model.raw.openrouter_weekly_tokens ?? null;
+      case "date": return null; // handled in sortedModels
     }
   };
 
@@ -54,44 +102,41 @@ export function RankingTable({ models }: RankingTableProps) {
     if (sortKey === null || sortKey === "date") {
       const aDate = a.raw.release_date ?? "";
       const bDate = b.raw.release_date ?? "";
+      // 空日期始终排到最后
+      if (!aDate && !bDate) return 0;
+      if (!aDate) return 1;
+      if (!bDate) return -1;
       return sortDesc ? bDate.localeCompare(aDate) : aDate.localeCompare(bDate);
     }
     const aVal = getRawValue(a, sortKey);
     const bVal = getRawValue(b, sortKey);
+    // 缺数据的行不参与排序,统一沉底
+    if (aVal == null && bVal == null) return 0;
+    if (aVal == null) return 1;
+    if (bVal == null) return -1;
     return sortDesc ? bVal - aVal : aVal - bVal;
   });
 
+  const percentiles = useMemo<Record<ColoredKey, Percentiles | null>>(() => ({
+    intelligence: computePercentiles(models.map((m) => m.raw.intelligence)),
+    coding: computePercentiles(models.map((m) => m.raw.coding)),
+    agentic: computePercentiles(models.map((m) => m.raw.agentic)),
+    speed: computePercentiles(models.map((m) => m.raw.median_tps)),
+    // cost 仅用 OR 价,与 getCostDisplay 一致(无 OR 价的行展示 `—`,不染色)
+    cost: computePercentiles(models.map((m) => m.raw.openrouter_pricing?.prompt ?? null)),
+  }), [models]);
+
   const formatScore = (val: number | null | undefined) => {
-    if (val === null || val === undefined || val === -1) return <span className="text-text-dim text-xs">—</span>;
+    if (val == null) return <span className="text-text-dim text-xs">—</span>;
     return val % 1 === 0 ? val : val.toFixed(1);
   };
 
-  const getScoreColor = (val: number | null | undefined, key: SortKey) => {
-    if (val === null || val === undefined || val === -1) return "text-text-dim";
-    // Speed (TPS) - higher is better
-    if (key === "speed") {
-      if (val >= 150) return "text-emerald-500 dark:text-emerald-400";
-      if (val >= 80) return "text-blue-500 dark:text-blue-300";
-      if (val >= 40) return "text-amber-500 dark:text-amber-300";
-      return "text-red-500 dark:text-red-400";
-    }
-    // Cost - lower is better (blended price)
-    if (key === "cost") {
-      if (val <= 0.5) return "text-emerald-500 dark:text-emerald-400";
-      if (val <= 2) return "text-blue-500 dark:text-blue-300";
-      if (val <= 5) return "text-amber-500 dark:text-amber-300";
-      return "text-red-500 dark:text-red-400";
-    }
-    // Intelligence/coding/agentic - higher is better
-    if (val >= 85) return "text-emerald-500 dark:text-emerald-400";
-    if (val >= 70) return "text-blue-500 dark:text-blue-300";
-    if (val >= 50) return "text-amber-500 dark:text-amber-300";
-    return "text-red-500 dark:text-red-400";
-  };
-
-  const getDisplayValue = (model: ModelWithScores, key: SortKey): number | null => {
-    const val = getRawValue(model, key);
-    return val === -1 ? null : val;
+  const getScoreColor = (val: number | null | undefined, key: SortKey): string => {
+    if (val == null) return COLOR_BY_BUCKET.dim;
+    if (key === "date" || key === "tokens") return "";
+    const p = percentiles[key];
+    if (!p) return COLOR_BY_BUCKET.dim;
+    return COLOR_BY_BUCKET[bucketByPercentile(val, p, ASCENDING[key])];
   };
 
   const getSpeedDisplay = (model: ModelWithScores): React.ReactNode => {
@@ -196,9 +241,9 @@ export function RankingTable({ models }: RankingTableProps) {
                         !h.desktop && "hidden md:table-cell",
                         !h.mobile && !h.desktop && "hidden lg:table-cell",
                         h.key === sortKey ? "font-semibold" : "",
-                        h.key !== "cost" && h.key !== "tokens" && getScoreColor(getDisplayValue(model, h.key), h.key)
+                        h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
                       )}>
-                      {h.key === "cost" ? getCostDisplay(model) : h.key === "speed" ? getSpeedDisplay(model) : h.key === "tokens" ? getTokensDisplay(model) : formatScore(getDisplayValue(model, h.key))}
+                      {h.key === "cost" ? getCostDisplay(model) : h.key === "speed" ? getSpeedDisplay(model) : h.key === "tokens" ? getTokensDisplay(model) : formatScore(getRawValue(model, h.key))}
                     </TableCell>
                   ))}
                 </TableRow>

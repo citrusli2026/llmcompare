@@ -191,6 +191,7 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                     <p className="text-lg font-semibold text-text-primary">{r.e2e_seconds != null ? `${r.e2e_seconds.toFixed(1)}s` : "—"}</p>
                   </div>
                 </div>
+                <p className="mt-3 text-xs text-text-muted">{t("product.sourceAa")}</p>
               </div>
             </div>
 

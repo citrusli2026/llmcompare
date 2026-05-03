@@ -1,0 +1,31 @@
+# 模型图鉴 (LLMField)
+
+国内大语言模型公开数据汇总站，整理国内主流厂商发布的大模型在智能、速度、价格三个维度的公开数据。
+
+## 数据维度
+
+- **智能评分** — 来自 Artificial Analysis 的 Intelligence Index、Coding Index、Agentic Index、Omniscience Index
+- **API 速度** — 中位输出速度（TPS）、首 Token 延迟（TTFT）、端到端延迟
+- **价格** — 三层定价：国内官价（¥/M Tokens）、Artificial Analysis API 定价（$）、OpenRouter 市场定价（$）
+- **OpenRouter 周 Token 消耗量** — 反映模型在真实使用场景中的热度
+
+## 主要页面
+
+- [首页](https://llmcompare.cc/) — 综合榜单 + 前沿模型卡片
+- [模型目录](https://llmcompare.cc/models) — 全量可排序筛选的模型表
+- [关于本站](https://llmcompare.cc/about) — 数据来源与方法论
+- [模型详情](https://llmcompare.cc/product/{id}) — 单个模型的完整指标
+
+## 数据来源
+
+- Artificial Analysis (artificialanalysis.ai) — 性能评测
+- 各厂商官网 — 国内官方定价
+- OpenRouter (openrouter.ai) — 全球市场定价与 Token 消耗量
+
+## 收录范围
+
+国内厂商的大参数量模型（Large 级别），包括 Alibaba (Qwen)、DeepSeek、Z AI (GLM)、Kimi/Moonshot、ByteDance Seed、Baidu (ERNIE)、Tencent、Xiaomi、MiniMax、StepFun、InclusionAI 等 19 家。默认展示发布日期 180 天内的活跃模型。
+
+## License
+
+MIT — 数据采集脚本与展示代码完全开源，见 https://github.com/citrusli2026/llmcompare

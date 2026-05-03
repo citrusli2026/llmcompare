@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { ProductDetailClient } from "@/components/product-detail-client";
 import { getModelById, getAllModelsUnfiltered } from "@/lib/scoring";
 
+const BASE_URL = "https://llmcompare.cc";
+
 interface ProductPageProps {
   params: Promise<{ id: string }>;
 }
@@ -14,6 +16,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   return {
     title: `${model.name} - ${model.company}`,
     description: `${model.company} ${model.name} 的智能评分、速度性能与定价详情。${model.type === "开源" ? "开源" : "闭源"}模型。`,
+    alternates: { canonical: `${BASE_URL}/product/${model.id}` },
   };
 }
 
@@ -31,5 +34,62 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
-  return <ProductDetailClient model={model} />;
+  const url = `${BASE_URL}/product/${model.id}`;
+
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: model.name,
+    applicationCategory: "AIApplication",
+    operatingSystem: "Web",
+    url,
+    ...(model.company && { manufacturer: { "@type": "Organization", name: model.company } }),
+    ...(model.raw.release_date && { datePublished: model.raw.release_date }),
+    ...(model.raw.intelligence != null && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: model.raw.intelligence,
+        bestRating: 100,
+        worstRating: 0,
+        ratingCount: 1,
+      },
+    }),
+    ...(model.raw.cn_input != null && {
+      offers: {
+        "@type": "Offer",
+        price: model.raw.cn_input,
+        priceCurrency: "CNY",
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: model.raw.cn_input,
+          priceCurrency: "CNY",
+          unitText: "per 1M input tokens",
+        },
+      },
+    }),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "首页", item: `${BASE_URL}/` },
+      { "@type": "ListItem", position: 2, name: "模型目录", item: `${BASE_URL}/models` },
+      { "@type": "ListItem", position: 3, name: model.name, item: url },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <ProductDetailClient model={model} />
+    </>
+  );
 }

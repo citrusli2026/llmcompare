@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "rm -rf dist",
     "build": "node scripts/generate-sitemap.mjs && next build",
     "start": "next start",
     "lint": "eslint"
