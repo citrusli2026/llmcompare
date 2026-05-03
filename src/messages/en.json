@@ -10,7 +10,7 @@
     "heroDesc": "Curated intelligence, speed, and pricing data for major Chinese LLM providers",
     "rankingTitle": "Model Directory",
     "rankingViewAll": "View all",
-    "cardsTitle": "Active Models",
+    "cardsTitle": "Frontier Models",
     "cardsViewAll": "View all",
     "footer": "LLMField — China AI model data, curated in one place",
     "footerDisclaimer": "For reference only. Data based on publicly available information."
@@ -69,7 +69,7 @@
     "medianTps": "Median TPS",
     "ttft": "Time to First Token",
     "e2e": "End-to-End Latency",
-    "sourceAiping": "Source: AI Ping (aiping.cn)",
+
     "basicTitle": "Basic Info",
     "company": "Company",
     "level": "Level",

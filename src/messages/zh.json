@@ -10,7 +10,7 @@
     "heroDesc": "收集整理了国内大模型的智能、速度、成本数据",
     "rankingTitle": "模型目录",
     "rankingViewAll": "查看全部",
-    "cardsTitle": "活跃模型",
+    "cardsTitle": "前沿模型",
     "cardsViewAll": "查看全部",
     "footer": "模型图鉴 - 国内大模型数据，整理在一起",
     "footerDisclaimer": "数据仅供参考，基于公开信息整理"
@@ -69,7 +69,7 @@
     "medianTps": "中位 TPS",
     "ttft": "首 Token 延迟",
     "e2e": "端到端延迟",
-    "sourceAiping": "数据来源：AI Ping (aiping.cn)",
+
     "basicTitle": "基本信息",
     "company": "公司",
     "level": "级别",

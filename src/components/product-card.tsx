@@ -56,7 +56,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
           <div className="flex justify-between">
             <span className="text-text-muted">{t("models.colSpeed")}</span>
-            <span className="font-medium text-text-primary">{r.median_tps != null ? r.median_tps.toFixed(1) : "—"}</span>
+            <span className="font-medium text-text-primary">{r.median_tps != null ? <>{r.median_tps.toFixed(1)} <span className="text-text-dim text-[10px]">TPS</span></> : "—"}</span>
           </div>
         </div>
 

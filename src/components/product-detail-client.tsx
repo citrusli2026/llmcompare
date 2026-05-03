@@ -182,7 +182,7 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                 <div className="grid grid-cols-3 gap-4">
                   <div className="rounded-lg bg-surface-hover p-3">
                     <p className="text-xs text-text-muted">{t("product.medianTps")}</p>
-                    <p className="text-lg font-semibold text-text-primary">{r.median_tps != null ? r.median_tps.toFixed(1) : "—"}</p>
+                    <p className="text-lg font-semibold text-text-primary">{r.median_tps != null ? <>{r.median_tps.toFixed(1)} <span className="text-xs text-text-muted">TPS</span></> : "—"}</p>
                   </div>
                   <div className="rounded-lg bg-surface-hover p-3">
                     <p className="text-xs text-text-muted">{t("product.ttft")}</p>
@@ -193,7 +193,6 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                     <p className="text-lg font-semibold text-text-primary">{r.e2e_seconds != null ? `${r.e2e_seconds.toFixed(1)}s` : "—"}</p>
                   </div>
                 </div>
-                <p className="mt-2 text-xs text-text-muted">{t("product.sourceAiping")}</p>
               </div>
             </div>
 

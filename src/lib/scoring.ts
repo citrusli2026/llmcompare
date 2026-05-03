@@ -93,7 +93,7 @@ export const DATA_SOURCES = {
   speed: {
     labelKey: "source.speedLabel",
     sourceKey: "source.speedSource",
-    url: "https://aiping.cn",
+    url: "https://artificialanalysis.ai",
   },
   cost: {
     labelKey: "source.costLabel",

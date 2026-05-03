@@ -13,7 +13,7 @@ import { useTranslation } from "@/lib/i18n";
 export default function HomePage() {
   const { t } = useTranslation();
   const allModels = useMemo(() => getAllModels("balanced"), []);
-  const topModels = allModels.slice(0, 6);
+  const frontierModels = useMemo(() => allModels.filter(m => m.flags.frontier).slice(0, 6), [allModels]);
 
   return (
     <div className="min-h-screen bg-surface-base">
@@ -61,7 +61,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Active Models Cards */}
+      {/* Frontier Models Cards */}
       <section className="px-4 pt-6 pb-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-center justify-between mb-6">
@@ -79,7 +79,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {topModels.map((model) => (
+            {frontierModels.map((model) => (
               <ProductCard key={model.id} product={model} />
             ))}
           </div>

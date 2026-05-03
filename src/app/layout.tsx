@@ -16,11 +16,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LLMCompare - 国内 AI 大模型对比",
-  description: "面向国内 AI 爱好者的 LLM 大模型综合对比平台",
+  title: {
+    default: "模型图鉴 - 国内大模型数据一览",
+    template: "%s - 模型图鉴",
+  },
+  description: "收集整理了国内大模型的智能评分、API 速度与官方定价数据，为开发者和研究者提供参考。",
+  openGraph: {
+    title: "模型图鉴 - 国内大模型数据一览",
+    description: "收集整理了国内大模型的智能评分、API 速度与官方定价数据。",
+    type: "website",
+    locale: "zh_CN",
+  },
 };
 
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");var c=t==="light"?"light":"dark";document.documentElement.classList.remove("light","dark");document.documentElement.classList.add(c);}catch(e){document.documentElement.classList.add("dark");}})();`;
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");var c=t==="dark"?"dark":"light";document.documentElement.classList.remove("light","dark");document.documentElement.classList.add(c);}catch(e){document.documentElement.classList.add("light");}})();`;
 
 const localeScript = `(function(){try{var l=localStorage.getItem("llmcompare-locale");if(l&&l!=="zh"){document.documentElement.style.visibility="hidden";}}catch(e){}})();`;
 

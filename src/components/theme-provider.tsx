@@ -16,7 +16,7 @@ type ThemeContextValue = {
 };
 
 const STORAGE_KEY = "theme";
-const DEFAULT_THEME: Theme = "dark";
+const DEFAULT_THEME: Theme = "light";
 
 function readStoredTheme(): Theme {
   if (typeof window === "undefined") return DEFAULT_THEME;
