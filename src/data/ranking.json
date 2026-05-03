@@ -1,0 +1,1514 @@
+[
+  {
+    "id": "kimi-k2-6",
+    "name": "Kimi K2.6",
+    "company": "Kimi",
+    "type": "开源",
+    "logo": "/logos/kimi.svg",
+    "scores": {
+      "intelligence": 53.9,
+      "coding": 47.12,
+      "agentic": 65.97,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 33.5677228816736,
+      "ttft_seconds": 135.63908269424635,
+      "e2e_seconds": 150.53434388793835
+    },
+    "pricing": {
+      "input": 0.95,
+      "output": 4,
+      "blended": null,
+      "display": "¥6.5/¥27.0 (缓存命中¥1.1)",
+      "cn_source": "platform.kimi.com"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "release_date": "2026-04-20",
+      "omniscience": 6.417
+    },
+    "url": "https://artificialanalysis.ai/models/kimi-k2-6",
+    "rank": 1,
+    "vendor_links": {
+      "homepage": "https://www.moonshot.cn",
+      "api_docs": "https://platform.moonshot.cn",
+      "console": "https://platform.moonshot.cn",
+      "huggingface": "https://huggingface.co/moonshotai",
+      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
+    },
+    "cn_pricing": {
+      "input": 6.5,
+      "output": 27.0,
+      "cache_hit": 1.1,
+      "source": "platform.kimi.com"
+    }
+  },
+  {
+    "id": "mimo-v2-5-pro",
+    "name": "MiMo-V2.5-Pro",
+    "company": "Xiaomi",
+    "type": "开源",
+    "logo": "/logos/xiaomi.svg",
+    "scores": {
+      "intelligence": 53.83,
+      "coding": 45.53,
+      "agentic": 67.44,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 60.8038187459396,
+      "ttft_seconds": 35.86365573616,
+      "e2e_seconds": 44.08682346332499
+    },
+    "pricing": {
+      "input": 1,
+      "output": 3,
+      "blended": null,
+      "display": "¥7.0/¥21.0 (缓存命中¥1.4) (≤256K)",
+      "cn_source": "小米开放平台控制台"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "release_date": "2026-04-22",
+      "omniscience": 3.6
+    },
+    "url": "https://artificialanalysis.ai/models/mimo-v2-5-pro",
+    "rank": 2,
+    "vendor_links": {
+      "homepage": "https://huggingface.co/XiaomiMiMo",
+      "huggingface": "https://huggingface.co/XiaomiMiMo",
+      "pricing_doc": "小米开放平台控制台（需登录）",
+      "pricing_note": "2026-05-02 登录实测"
+    },
+    "cn_pricing": {
+      "input": 7.0,
+      "output": 21.0,
+      "cache_hit": 1.4,
+      "condition": "≤256K",
+      "source": "小米开放平台控制台"
+    }
+  },
+  {
+    "id": "qwen3-6-max-preview",
+    "name": "Qwen3.6 Max Preview",
+    "company": "Alibaba",
+    "type": "闭源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 51.81,
+      "coding": 44.92,
+      "agentic": 64.83,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 34.0392669047956,
+      "ttft_seconds": 62.350097349499045,
+      "e2e_seconds": 77.03901533937379
+    },
+    "pricing": {
+      "input": 1.3,
+      "output": 7.8,
+      "blended": null,
+      "display": "¥9/¥54 (≤128K)",
+      "cn_source": "bailian.console.aliyun.com"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "release_date": "2026-04-20",
+      "omniscience": 10.2
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-6-max",
+    "rank": 3,
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "cn_pricing": {
+      "input": 9,
+      "output": 54,
+      "condition": "≤128K",
+      "source": "bailian.console.aliyun.com"
+    }
+  },
+  {
+    "id": "deepseek-v4-pro-max",
+    "name": "DeepSeek V4 Pro (Max)",
+    "company": "DeepSeek",
+    "type": "开源",
+    "logo": "/logos/deepseek.svg",
+    "scores": {
+      "intelligence": 51.51,
+      "coding": 47.47,
+      "agentic": 67.19,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 33.2820934171704,
+      "ttft_seconds": 133.3717595714869,
+      "e2e_seconds": 148.39485303297113
+    },
+    "pricing": {
+      "input": 1.74,
+      "output": 3.48,
+      "blended": null,
+      "display": "¥12/¥24",
+      "cn_source": "bailian.console.aliyun.com (百炼)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "release_date": "2026-04-24",
+      "omniscience": -10.017
+    },
+    "url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+    "rank": 4,
+    "vendor_links": {
+      "homepage": "https://www.deepseek.com",
+      "api_docs": "https://api-docs.deepseek.com",
+      "console": "https://platform.deepseek.com",
+      "github": "https://github.com/deepseek-ai",
+      "huggingface": "https://huggingface.co/deepseek-ai",
+      "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    "cn_pricing": {
+      "input": 12,
+      "output": 24,
+      "source": "bailian.console.aliyun.com (百炼)"
+    }
+  },
+  {
+    "id": "glm-5-1",
+    "name": "GLM-5.1",
+    "company": "Z AI",
+    "type": "开源",
+    "logo": "/logos/z-ai.svg",
+    "scores": {
+      "intelligence": 51.41,
+      "coding": 43.37,
+      "agentic": 67.05,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 53.6898340399007,
+      "ttft_seconds": 72.03895862490573,
+      "e2e_seconds": 81.35170858849129
+    },
+    "pricing": {
+      "input": 1.4,
+      "output": 4.4,
+      "blended": null,
+      "display": "¥6/¥24 (缓存命中¥1.3) (<32K)",
+      "cn_source": "open.bigmodel.cn/pricing"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 200000,
+      "size_class": "Large",
+      "release_date": "2026-04-07",
+      "omniscience": 1.933
+    },
+    "url": "https://artificialanalysis.ai/models/glm-5-1",
+    "rank": 5,
+    "vendor_links": {
+      "homepage": "https://z.ai",
+      "api_docs": "https://open.bigmodel.cn",
+      "github": "https://github.com/zai-org",
+      "huggingface": "https://huggingface.co/zai-org",
+      "pricing_doc": "https://open.bigmodel.cn/pricing"
+    },
+    "cn_pricing": {
+      "input": 6,
+      "output": 24,
+      "cache_hit": 1.3,
+      "condition": "<32K",
+      "source": "open.bigmodel.cn/pricing"
+    }
+  },
+  {
+    "id": "qwen3-6-plus",
+    "name": "Qwen3.6 Plus",
+    "company": "Alibaba",
+    "type": "闭源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 49.98,
+      "coding": 42.87,
+      "agentic": 61.67,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 52.6255012513322,
+      "ttft_seconds": 108.2700022882074,
+      "e2e_seconds": 117.77109943903676
+    },
+    "pricing": {
+      "input": 0.5,
+      "output": 3,
+      "blended": null,
+      "display": "¥2/¥12 (≤256K)",
+      "cn_source": "bailian.console.aliyun.com"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "release_date": "2026-04-02",
+      "omniscience": 2.65
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-6-plus",
+    "rank": 6,
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "cn_pricing": {
+      "input": 2,
+      "output": 12,
+      "condition": "≤256K",
+      "source": "bailian.console.aliyun.com"
+    }
+  },
+  {
+    "id": "deepseek-v4-pro-high",
+    "name": "DeepSeek V4 Pro (High)",
+    "company": "DeepSeek",
+    "type": "开源",
+    "logo": "/logos/deepseek.svg",
+    "scores": {
+      "intelligence": 49.79,
+      "coding": 43.25,
+      "agentic": 66.65,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 34.0776239380681,
+      "ttft_seconds": 60.27322288902313,
+      "e2e_seconds": 74.9456073518803
+    },
+    "pricing": {
+      "input": 1.74,
+      "output": 3.48,
+      "blended": null,
+      "display": "¥12/¥24",
+      "cn_source": "bailian.console.aliyun.com (百炼)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "release_date": "2026-04-24",
+      "omniscience": -9.7
+    },
+    "url": "https://artificialanalysis.ai/models/deepseek-v4-pro-high",
+    "rank": 7,
+    "vendor_links": {
+      "homepage": "https://www.deepseek.com",
+      "api_docs": "https://api-docs.deepseek.com",
+      "console": "https://platform.deepseek.com",
+      "github": "https://github.com/deepseek-ai",
+      "huggingface": "https://huggingface.co/deepseek-ai",
+      "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    "cn_pricing": {
+      "input": 12,
+      "output": 24,
+      "source": "bailian.console.aliyun.com (百炼)"
+    }
+  },
+  {
+    "id": "glm-5",
+    "name": "GLM-5",
+    "company": "Z AI",
+    "type": "开源",
+    "logo": "/logos/z-ai.svg",
+    "scores": {
+      "intelligence": 49.77,
+      "coding": 44.18,
+      "agentic": 63.14,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 64.9263854159361,
+      "ttft_seconds": 49.598657667842794,
+      "e2e_seconds": 57.29968702280941
+    },
+    "pricing": {
+      "input": 1,
+      "output": 3.2,
+      "blended": null,
+      "display": "¥4/¥18 (缓存命中¥1) (<32K)",
+      "cn_source": "open.bigmodel.cn/pricing"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 200000,
+      "size_class": "Large",
+      "release_date": "2026-02-11",
+      "omniscience": 2
+    },
+    "url": "https://artificialanalysis.ai/models/glm-5",
+    "rank": 8,
+    "vendor_links": {
+      "homepage": "https://z.ai",
+      "api_docs": "https://open.bigmodel.cn",
+      "github": "https://github.com/zai-org",
+      "huggingface": "https://huggingface.co/zai-org",
+      "pricing_doc": "https://open.bigmodel.cn/pricing"
+    },
+    "cn_pricing": {
+      "input": 4,
+      "output": 18,
+      "cache_hit": 1,
+      "condition": "<32K",
+      "source": "open.bigmodel.cn/pricing"
+    }
+  },
+  {
+    "id": "minimax-m2-7",
+    "name": "MiniMax-M2.7",
+    "company": "MiniMax",
+    "type": "开源",
+    "logo": "/logos/minimax.svg",
+    "scores": {
+      "intelligence": 49.62,
+      "coding": 41.93,
+      "agentic": 61.49,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 55.1706566082129,
+      "ttft_seconds": 46.632354796014965,
+      "e2e_seconds": 55.69514343655415
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 1.2,
+      "blended": null,
+      "display": "¥2.1/¥8.4 (缓存命中¥0.42)",
+      "cn_source": "platform.minimaxi.com"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 204800,
+      "size_class": "Large",
+      "release_date": "2026-03-18",
+      "omniscience": 0.683
+    },
+    "url": "https://artificialanalysis.ai/models/minimax-m2-7",
+    "rank": 9,
+    "vendor_links": {
+      "homepage": "https://www.minimaxi.com",
+      "api_docs": "https://platform.minimaxi.com",
+      "huggingface": "https://huggingface.co/MiniMaxAI",
+      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing"
+    },
+    "cn_pricing": {
+      "input": 2.1,
+      "output": 8.4,
+      "cache_hit": 0.42,
+      "source": "platform.minimaxi.com"
+    }
+  },
+  {
+    "id": "mimo-v2-pro",
+    "name": "MiMo-V2-Pro",
+    "company": "Xiaomi",
+    "type": "闭源",
+    "logo": "/logos/xiaomi.svg",
+    "scores": {
+      "intelligence": 49.2,
+      "coding": 41.43,
+      "agentic": 62.8,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 61.3661774699611,
+      "ttft_seconds": 51.496182665092704,
+      "e2e_seconds": 59.64399340733343
+    },
+    "pricing": {
+      "input": 1,
+      "output": 3,
+      "blended": null,
+      "display": "¥7.0/¥21.0 (缓存命中¥1.4) (≤256K)",
+      "cn_source": "小米开放平台控制台"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "release_date": "2026-03-18",
+      "omniscience": 4.917
+    },
+    "url": "https://artificialanalysis.ai/models/mimo-v2-pro",
+    "rank": 10,
+    "vendor_links": {
+      "homepage": "https://huggingface.co/XiaomiMiMo",
+      "huggingface": "https://huggingface.co/XiaomiMiMo",
+      "pricing_doc": "小米开放平台控制台（需登录）",
+      "pricing_note": "2026-05-02 登录实测"
+    },
+    "cn_pricing": {
+      "input": 7.0,
+      "output": 21.0,
+      "cache_hit": 1.4,
+      "condition": "≤256K",
+      "source": "小米开放平台控制台"
+    }
+  },
+  {
+    "id": "kimi-k2-5",
+    "name": "Kimi K2.5",
+    "company": "Kimi",
+    "type": "开源",
+    "logo": "/logos/kimi.svg",
+    "scores": {
+      "intelligence": 46.81,
+      "coding": 39.55,
+      "agentic": 58.94,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 40.0011905797006,
+      "ttft_seconds": 77.04033208988916,
+      "e2e_seconds": 89.53996004480646
+    },
+    "pricing": {
+      "input": 0.5,
+      "output": 2.85,
+      "blended": null,
+      "display": "¥4.0/¥21.0 (缓存命中¥0.7)",
+      "cn_source": "platform.kimi.com"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "release_date": "2026-01-27",
+      "omniscience": -8.117
+    },
+    "url": "https://artificialanalysis.ai/models/kimi-k2-5",
+    "rank": 11,
+    "vendor_links": {
+      "homepage": "https://www.moonshot.cn",
+      "api_docs": "https://platform.moonshot.cn",
+      "console": "https://platform.moonshot.cn",
+      "huggingface": "https://huggingface.co/moonshotai",
+      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
+    },
+    "cn_pricing": {
+      "input": 4.0,
+      "output": 21.0,
+      "cache_hit": 0.7,
+      "source": "platform.kimi.com"
+    }
+  },
+  {
+    "id": "deepseek-v4-flash-max",
+    "name": "DeepSeek V4 Flash (Max)",
+    "company": "DeepSeek",
+    "type": "开源",
+    "logo": "/logos/deepseek.svg",
+    "scores": {
+      "intelligence": 46.52,
+      "coding": 38.71,
+      "agentic": 61.28,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 83.5858399740538,
+      "ttft_seconds": 68.31639808501504,
+      "e2e_seconds": 74.29827252876301
+    },
+    "pricing": {
+      "input": 0.14,
+      "output": 0.28,
+      "blended": null,
+      "display": "¥1/¥2",
+      "cn_source": "bailian.console.aliyun.com (百炼)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "release_date": "2026-04-24",
+      "omniscience": -22.9
+    },
+    "url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+    "rank": 12,
+    "vendor_links": {
+      "homepage": "https://www.deepseek.com",
+      "api_docs": "https://api-docs.deepseek.com",
+      "console": "https://platform.deepseek.com",
+      "github": "https://github.com/deepseek-ai",
+      "huggingface": "https://huggingface.co/deepseek-ai",
+      "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    "cn_pricing": {
+      "input": 1,
+      "output": 2,
+      "source": "bailian.console.aliyun.com (百炼)"
+    }
+  },
+  {
+    "id": "qwen3-5-397b-a17b",
+    "name": "Qwen3.5 397B A17B",
+    "company": "Alibaba",
+    "type": "开源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 45.05,
+      "coding": 41.28,
+      "agentic": 55.83,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 51.9196256367552,
+      "ttft_seconds": 63.829817177335535,
+      "e2e_seconds": 73.46008692346479
+    },
+    "pricing": {
+      "input": 0.6,
+      "output": 3.6,
+      "blended": null,
+      "display": "¥1.2/¥7.2 (≤128K)",
+      "cn_source": "bailian.console.aliyun.com"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": "Large",
+      "release_date": "2026-02-16",
+      "omniscience": -29.783
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-5-397b-a17b",
+    "rank": 13,
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "cn_pricing": {
+      "input": 1.2,
+      "output": 7.2,
+      "condition": "≤128K",
+      "source": "bailian.console.aliyun.com"
+    }
+  },
+  {
+    "id": "deepseek-v4-flash-high",
+    "name": "DeepSeek V4 Flash (High)",
+    "company": "DeepSeek",
+    "type": "开源",
+    "logo": "/logos/deepseek.svg",
+    "scores": {
+      "intelligence": 44.87,
+      "coding": 39.76,
+      "agentic": 57.82,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0
+    },
+    "pricing": {
+      "input": 0.14,
+      "output": 0.28,
+      "blended": null,
+      "display": "¥1/¥2",
+      "cn_source": "bailian.console.aliyun.com (百炼)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": false
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "release_date": "2026-04-24",
+      "omniscience": -22.283
+    },
+    "url": "https://artificialanalysis.ai/models/deepseek-v4-flash-high",
+    "rank": 14,
+    "vendor_links": {
+      "homepage": "https://www.deepseek.com",
+      "api_docs": "https://api-docs.deepseek.com",
+      "console": "https://platform.deepseek.com",
+      "github": "https://github.com/deepseek-ai",
+      "huggingface": "https://huggingface.co/deepseek-ai",
+      "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    "cn_pricing": {
+      "input": 1,
+      "output": 2,
+      "source": "bailian.console.aliyun.com (百炼)"
+    }
+  },
+  {
+    "id": "glm-4-7",
+    "name": "GLM-4.7",
+    "company": "Z AI",
+    "type": "开源",
+    "logo": "/logos/z-ai.svg",
+    "scores": {
+      "intelligence": 42.11,
+      "coding": 36.26,
+      "agentic": 55.01,
+      "math": 95
+    },
+    "speed": {
+      "median_tps": 102.831665973874,
+      "ttft_seconds": 20.75334263847244,
+      "e2e_seconds": 25.615658105840563
+    },
+    "pricing": {
+      "input": 0.6,
+      "output": 2.2,
+      "blended": null,
+      "display": "¥2/¥8 (缓存命中¥0.4) (<32K)",
+      "cn_source": "open.bigmodel.cn/pricing"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 200000,
+      "size_class": "Large",
+      "release_date": "2025-12-22",
+      "omniscience": -34.6
+    },
+    "url": "https://artificialanalysis.ai/models/glm-4-7",
+    "rank": 15,
+    "vendor_links": {
+      "homepage": "https://z.ai",
+      "api_docs": "https://open.bigmodel.cn",
+      "github": "https://github.com/zai-org",
+      "huggingface": "https://huggingface.co/zai-org",
+      "pricing_doc": "https://open.bigmodel.cn/pricing"
+    },
+    "cn_pricing": {
+      "input": 2,
+      "output": 8,
+      "cache_hit": 0.4,
+      "condition": "<32K",
+      "source": "open.bigmodel.cn/pricing"
+    }
+  },
+  {
+    "id": "minimax-m2-5",
+    "name": "MiniMax-M2.5",
+    "company": "MiniMax",
+    "type": "开源",
+    "logo": "/logos/minimax.svg",
+    "scores": {
+      "intelligence": 41.93,
+      "coding": 37.43,
+      "agentic": 55.6,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 93.4563440914177,
+      "ttft_seconds": 23.207333489218158,
+      "e2e_seconds": 28.557425073272707
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 1.2,
+      "blended": null,
+      "display": "¥2.1/¥8.4 (缓存命中¥0.21)",
+      "cn_source": "platform.minimaxi.com"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 204800,
+      "size_class": "Large",
+      "release_date": "2026-02-12",
+      "omniscience": -39.7
+    },
+    "url": "https://artificialanalysis.ai/models/minimax-m2-5",
+    "rank": 16,
+    "vendor_links": {
+      "homepage": "https://www.minimaxi.com",
+      "api_docs": "https://platform.minimaxi.com",
+      "huggingface": "https://huggingface.co/MiniMaxAI",
+      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing"
+    },
+    "cn_pricing": {
+      "input": 2.1,
+      "output": 8.4,
+      "cache_hit": 0.21,
+      "source": "platform.minimaxi.com"
+    }
+  },
+  {
+    "id": "hy3-preview",
+    "name": "Hy3-preview",
+    "company": "Tencent",
+    "type": "开源",
+    "logo": "/logos/tencent.svg",
+    "scores": {
+      "intelligence": 41.85,
+      "coding": 36.46,
+      "agentic": 55.67,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 82.3048070035426,
+      "ttft_seconds": 27.882947352020835,
+      "e2e_seconds": 33.95792666615104
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": null,
+      "display": "¥3.975/¥15.9 (≤32K)",
+      "cn_source": "cloud.tencent.com/doc/1729/97731"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "release_date": "2026-04-23",
+      "omniscience": -34.633
+    },
+    "url": "https://artificialanalysis.ai/models/hy3",
+    "rank": 17,
+    "vendor_links": {
+      "homepage": "https://hunyuan.tencent.com",
+      "api_docs": "https://cloud.tencent.com/document/product/1729",
+      "pricing_doc": "https://cloud.tencent.com/document/product/1729/97731"
+    },
+    "cn_pricing": {
+      "input": 3.975,
+      "output": 15.9,
+      "condition": "≤32K",
+      "source": "cloud.tencent.com/doc/1729/97731"
+    }
+  },
+  {
+    "id": "deepseek-v3-2",
+    "name": "DeepSeek V3.2",
+    "company": "DeepSeek",
+    "type": "开源",
+    "logo": "/logos/deepseek.svg",
+    "scores": {
+      "intelligence": 41.71,
+      "coding": 36.7,
+      "agentic": 52.92,
+      "math": 92
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 0.45,
+      "blended": null,
+      "display": "¥2/¥3 (≤32K)",
+      "cn_source": "bailian.console.aliyun.com (百炼)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": false
+    },
+    "meta": {
+      "context_window": 128000,
+      "size_class": "Large",
+      "release_date": "2025-12-01",
+      "omniscience": -20.883
+    },
+    "url": "https://artificialanalysis.ai/models/deepseek-v3-2-reasoning",
+    "rank": 18,
+    "vendor_links": {
+      "homepage": "https://www.deepseek.com",
+      "api_docs": "https://api-docs.deepseek.com",
+      "console": "https://platform.deepseek.com",
+      "github": "https://github.com/deepseek-ai",
+      "huggingface": "https://huggingface.co/deepseek-ai",
+      "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    "cn_pricing": {
+      "input": 2,
+      "output": 3,
+      "condition": "≤32K",
+      "source": "bailian.console.aliyun.com (百炼)"
+    }
+  },
+  {
+    "id": "mimo-v2-flash-feb-2026",
+    "name": "MiMo-V2-Flash (Feb 2026)",
+    "company": "Xiaomi",
+    "type": "开源",
+    "logo": "/logos/xiaomi.svg",
+    "scores": {
+      "intelligence": 41.46,
+      "coding": 33.48,
+      "agentic": 48.76,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 125.859726059557,
+      "ttft_seconds": 18.492414395833197,
+      "e2e_seconds": 22.465091086416486
+    },
+    "pricing": {
+      "input": 0.1,
+      "output": 0.3,
+      "blended": null,
+      "display": "¥0.7/¥2.1 (缓存命中¥0.07) (≤256K)",
+      "cn_source": "小米开放平台控制台"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "release_date": "2025-12-16",
+      "omniscience": -18.467
+    },
+    "url": "https://artificialanalysis.ai/models/mimo-v2-0206",
+    "rank": 19,
+    "vendor_links": {
+      "homepage": "https://huggingface.co/XiaomiMiMo",
+      "huggingface": "https://huggingface.co/XiaomiMiMo",
+      "pricing_doc": "小米开放平台控制台（需登录）",
+      "pricing_note": "2026-05-02 登录实测"
+    },
+    "cn_pricing": {
+      "input": 0.7,
+      "output": 2.1,
+      "cache_hit": 0.07,
+      "condition": "≤256K",
+      "source": "小米开放平台控制台"
+    }
+  },
+  {
+    "id": "kimi-k2-thinking",
+    "name": "Kimi K2 Thinking",
+    "company": "Kimi",
+    "type": "开源",
+    "logo": "/logos/kimi.svg",
+    "scores": {
+      "intelligence": 40.89,
+      "coding": 34.83,
+      "agentic": 47.9,
+      "math": 94.67
+    },
+    "speed": {
+      "median_tps": 106.244153421674,
+      "ttft_seconds": 20.56461450595552,
+      "e2e_seconds": 25.27075582194439
+    },
+    "pricing": {
+      "input": 0.6,
+      "output": 2.5,
+      "blended": null,
+      "display": "¥4.0/¥16.0 (缓存命中¥1.0)",
+      "cn_source": "platform.kimi.com"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "release_date": "2025-11-06",
+      "omniscience": -20.483
+    },
+    "url": "https://artificialanalysis.ai/models/kimi-k2-thinking",
+    "rank": 20,
+    "vendor_links": {
+      "homepage": "https://www.moonshot.cn",
+      "api_docs": "https://platform.moonshot.cn",
+      "console": "https://platform.moonshot.cn",
+      "huggingface": "https://huggingface.co/moonshotai",
+      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
+    },
+    "cn_pricing": {
+      "input": 4.0,
+      "output": 16.0,
+      "cache_hit": 1.0,
+      "source": "platform.kimi.com"
+    }
+  },
+  {
+    "id": "qwen3-max-thinking",
+    "name": "Qwen3 Max Thinking",
+    "company": "Alibaba",
+    "type": "闭源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 39.85,
+      "coding": 30.51,
+      "agentic": 50.13,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 39.9647541776345,
+      "ttft_seconds": 53.7858092955687,
+      "e2e_seconds": 66.29683332883587
+    },
+    "pricing": {
+      "input": 1.2,
+      "output": 6,
+      "blended": null,
+      "display": "¥2.5/¥10 (≤32K)",
+      "cn_source": "bailian.console.aliyun.com"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "release_date": "2026-01-26",
+      "omniscience": -34.417
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-max-thinking",
+    "rank": 21,
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "cn_pricing": {
+      "input": 2.5,
+      "output": 10,
+      "condition": "≤32K",
+      "source": "bailian.console.aliyun.com"
+    }
+  },
+  {
+    "id": "minimax-m2-1",
+    "name": "MiniMax-M2.1",
+    "company": "MiniMax",
+    "type": "开源",
+    "logo": "/logos/minimax.svg",
+    "scores": {
+      "intelligence": 39.42,
+      "coding": 32.77,
+      "agentic": 47.4,
+      "math": 82.67
+    },
+    "speed": {
+      "median_tps": 100.955536581537,
+      "ttft_seconds": 21.479606416107345,
+      "e2e_seconds": 26.432281791134187
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 1.2,
+      "blended": null,
+      "display": "¥2.1/¥8.4",
+      "cn_source": "platform.minimaxi.com"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 204800,
+      "size_class": "Large",
+      "release_date": "2025-12-23",
+      "omniscience": -32.833
+    },
+    "url": "https://artificialanalysis.ai/models/minimax-m2-1",
+    "rank": 22,
+    "vendor_links": {
+      "homepage": "https://www.minimaxi.com",
+      "api_docs": "https://platform.minimaxi.com",
+      "huggingface": "https://huggingface.co/MiniMaxAI",
+      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing"
+    },
+    "cn_pricing": {
+      "input": 2.1,
+      "output": 8.4,
+      "source": "platform.minimaxi.com"
+    }
+  },
+  {
+    "id": "deepseek-v4-pro",
+    "name": "DeepSeek V4 Pro",
+    "company": "DeepSeek",
+    "type": "开源",
+    "logo": "/logos/deepseek.svg",
+    "scores": {
+      "intelligence": 39.27,
+      "coding": 38.36,
+      "agentic": 63.27,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 33.8495676166932,
+      "ttft_seconds": 2.04495224400012,
+      "e2e_seconds": 16.816189669007013
+    },
+    "pricing": {
+      "input": 1.74,
+      "output": 3.48,
+      "blended": null,
+      "display": "¥12/¥24",
+      "cn_source": "bailian.console.aliyun.com (百炼)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "release_date": "2026-04-24",
+      "omniscience": -30.083
+    },
+    "url": "https://artificialanalysis.ai/models/deepseek-v4-pro-non-reasoning",
+    "rank": 23,
+    "vendor_links": {
+      "homepage": "https://www.deepseek.com",
+      "api_docs": "https://api-docs.deepseek.com",
+      "console": "https://platform.deepseek.com",
+      "github": "https://github.com/deepseek-ai",
+      "huggingface": "https://huggingface.co/deepseek-ai",
+      "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    "cn_pricing": {
+      "input": 12,
+      "output": 24,
+      "source": "bailian.console.aliyun.com (百炼)"
+    }
+  },
+  {
+    "id": "mimo-v2-flash",
+    "name": "MiMo-V2-Flash",
+    "company": "Xiaomi",
+    "type": "开源",
+    "logo": "/logos/xiaomi.svg",
+    "scores": {
+      "intelligence": 39.24,
+      "coding": 31.8,
+      "agentic": 52.1,
+      "math": 96.33
+    },
+    "speed": {
+      "median_tps": 133.182003283976,
+      "ttft_seconds": 17.271489908044526,
+      "e2e_seconds": 21.025750901805672
+    },
+    "pricing": {
+      "input": 0.1,
+      "output": 0.3,
+      "blended": null,
+      "display": "¥0.7/¥2.1 (缓存命中¥0.07) (≤256K)",
+      "cn_source": "小米开放平台控制台"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "release_date": "2025-12-16",
+      "omniscience": -43.45
+    },
+    "url": "https://artificialanalysis.ai/models/mimo-v2-flash-reasoning",
+    "rank": 24,
+    "vendor_links": {
+      "homepage": "https://huggingface.co/XiaomiMiMo",
+      "huggingface": "https://huggingface.co/XiaomiMiMo",
+      "pricing_doc": "小米开放平台控制台（需登录）",
+      "pricing_note": "2026-05-02 登录实测"
+    },
+    "cn_pricing": {
+      "input": 0.7,
+      "output": 2.1,
+      "cache_hit": 0.07,
+      "condition": "≤256K",
+      "source": "小米开放平台控制台"
+    }
+  },
+  {
+    "id": "qwen3-5-omni-plus",
+    "name": "Qwen3.5 Omni Plus",
+    "company": "Alibaba",
+    "type": "闭源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 38.63,
+      "coding": 27.64,
+      "agentic": 52.83,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 54.5470299612266,
+      "ttft_seconds": 2.47657605600025,
+      "e2e_seconds": 11.642977972940779
+    },
+    "pricing": {
+      "input": 0.4,
+      "output": 4.8,
+      "blended": null,
+      "display": "¥7/¥40 (文本)",
+      "cn_source": "bailian.console.aliyun.com"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "release_date": "2026-03-30",
+      "omniscience": -12.3
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-5-omni-plus",
+    "rank": 25,
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "cn_pricing": {
+      "input": 7,
+      "output": 40,
+      "condition": "文本",
+      "source": "bailian.console.aliyun.com"
+    }
+  },
+  {
+    "id": "step-3-5-flash",
+    "name": "Step 3.5 Flash",
+    "company": "StepFun",
+    "type": "开源",
+    "logo": "/logos/stepfun.svg",
+    "scores": {
+      "intelligence": 37.8,
+      "coding": 31.64,
+      "agentic": 52,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 144.485340133224,
+      "ttft_seconds": 15.139609637285458,
+      "e2e_seconds": 18.600168331606767
+    },
+    "pricing": {
+      "input": 0.1,
+      "output": 0.3,
+      "blended": null,
+      "display": "¥0.7/¥2.1 (缓存命中¥0.14)",
+      "cn_source": "platform.stepfun.com/docs"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "release_date": "2026-02-02",
+      "omniscience": -40.9
+    },
+    "url": "https://artificialanalysis.ai/models/step-3-5-flash-0202",
+    "rank": 26,
+    "vendor_links": {
+      "homepage": "https://www.stepfun.com",
+      "api_docs": "https://platform.stepfun.com/docs",
+      "console": "https://platform.stepfun.com",
+      "huggingface": "https://huggingface.co/stepfun-ai",
+      "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details"
+    },
+    "cn_pricing": {
+      "input": 0.7,
+      "output": 2.1,
+      "cache_hit": 0.14,
+      "source": "platform.stepfun.com/docs"
+    }
+  },
+  {
+    "id": "ling-2-6-1t",
+    "name": "Ling-2.6-1T",
+    "company": "InclusionAI",
+    "type": "开源",
+    "logo": "/logos/inclusionai.svg",
+    "scores": {
+      "intelligence": 33.61,
+      "coding": 33.05,
+      "agentic": 48.21,
+      "math": null
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 2.5,
+      "blended": null,
+      "display": "¥2.16/¥18.0",
+      "cn_source": "AA (无国内官价, ¥按$×7.2折算)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": false
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": "Large",
+      "release_date": "2026-04-23",
+      "omniscience": -51
+    },
+    "url": "https://artificialanalysis.ai/models/ling-2-6-1t",
+    "rank": 27,
+    "vendor_links": {
+      "homepage": "https://www.inclusion-ai.org",
+      "huggingface": "https://huggingface.co/inclusionAI"
+    },
+    "cn_pricing": {
+      "input": 2.16,
+      "output": 18.0,
+      "source": "AA (无国内官价, ¥按$×7.2折算)",
+      "aa_only": true
+    }
+  }
+]

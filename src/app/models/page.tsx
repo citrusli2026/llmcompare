@@ -1,0 +1,86 @@
+"use client";
+
+import { useState, useMemo, useEffect } from "react";
+import { Navbar } from "@/components/navbar";
+import { RankingTable } from "@/components/ranking-table";
+import { FilterBar, type FilterOption } from "@/components/filter-bar";
+import { SearchInput } from "@/components/search-input";
+
+import { Bot } from "lucide-react";
+import { getAllModelsUnfiltered } from "@/lib/scoring";
+import { useTranslation } from "@/lib/i18n";
+
+const FILTER_KEYS = ["全部", "开源", "闭源"] as const;
+
+function getQueryParam(): string {
+  if (typeof window === "undefined") return "";
+  const params = new URLSearchParams(window.location.search);
+  return params.get("q") ?? "";
+}
+
+export default function ModelsPage() {
+  const [activeFilter, setActiveFilter] = useState("全部");
+  const [searchQuery, setSearchQuery] = useState("");
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    setSearchQuery(getQueryParam());
+  }, []);
+
+  const filterOptions: FilterOption[] = useMemo(() => [
+    { key: "全部", label: t("models.filterAll") },
+    { key: "开源", label: t("models.filterOpen") },
+    { key: "闭源", label: t("models.filterClosed") },
+  ], [t]);
+
+  const allModels = useMemo(() => getAllModelsUnfiltered(), []);
+  const filteredModels = allModels.filter((m) => {
+    const matchesFilter =
+      activeFilter === "全部" ? true : m.type === activeFilter;
+    const matchesSearch =
+      searchQuery === ""
+        ? true
+        : m.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          m.company.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesFilter && matchesSearch;
+  });
+
+  return (
+    <div className="min-h-screen bg-surface-base">
+      <Navbar />
+
+      <div className="px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-4">
+              <Bot className="h-8 w-8 text-accent-violet" />
+              <h1 className="text-3xl font-bold text-text-primary">{t("models.title")}</h1>
+            </div>
+            <p className="text-text-secondary">
+              {t("models.desc")}
+            </p>
+          </div>
+
+          <div className="mb-6 flex flex-col sm:flex-row gap-4">
+            <FilterBar
+              options={filterOptions}
+              activeKey={activeFilter}
+              onFilterChange={setActiveFilter}
+            />
+            <SearchInput
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder={t("models.searchPlaceholder")}
+            />
+          </div>
+
+          <RankingTable models={filteredModels} />
+
+          <div className="mt-8 text-center text-sm text-text-muted">
+            {t("models.count", { count: String(filteredModels.length) })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
