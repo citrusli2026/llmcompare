@@ -12,7 +12,7 @@ import { useTranslation } from "@/lib/i18n";
 
 export default function HomePage() {
   const { t } = useTranslation();
-  const allModels = useMemo(() => getAllModels("balanced"), []);
+  const allModels = useMemo(() => getAllModels(), []);
   const frontierModels = useMemo(() => allModels.filter(m => m.flags.frontier).slice(0, 6), [allModels]);
 
   return (

@@ -210,7 +210,7 @@ function initCache(): void {
 // ── Public API ──
 
 /** 返回 data_complete 的模型，供排名页使用 */
-export function getAllModels(_mode: PriorityMode = "balanced"): ModelWithScores[] {
+export function getAllModels(): ModelWithScores[] {
   initCache();
   return _cache!.models.filter((m) => m.flags.data_complete);
 }

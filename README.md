@@ -4,7 +4,9 @@
 
 [在线浏览](https://llmcompare.cc) · [GitHub](https://github.com/citrusli2026/llmcompare)
 
-![首页截图](public/screenshot.png)
+<img src="docs/screenshots/screenshot_home.png" alt="首页截图" width="50%" />
+
+<img src="docs/screenshots/screenshot_detail.png" alt="详情截图" width="50%" />
 
 ## 关于项目
 

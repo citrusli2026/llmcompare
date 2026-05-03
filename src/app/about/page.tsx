@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
-import { ArrowLeft, Brain, DollarSign, TrendingUp, Database, Filter, ExternalLink } from "lucide-react";
+import { ArrowLeft, Brain, DollarSign, TrendingUp, Database, ExternalLink } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
 export default function AboutPage() {
@@ -31,41 +31,18 @@ export default function AboutPage() {
                 <ExternalLink className="h-5 w-5 text-text-primary" />
                 {t("about.backgroundTitle")}
               </h2>
-              <div className="text-sm text-text-secondary space-y-3">
-                <p>{t("about.backgroundDesc")}</p>
-                <p>{t("about.backgroundContribute")}{" "}
-                  <a
-                    href="https://github.com/citrusli/llmcompare/issues"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-accent-violet hover:underline"
-                  >
-                    GitHub Issues
-                  </a>
-                </p>
-              </div>
-            </section>
-
-            {/* Scoring Methodology */}
-            <section className="rounded-xl border border-surface-border bg-surface-card p-6">
-              <h2 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
-                <Brain className="h-5 w-5 text-accent-violet" />
-                {t("about.scoringTitle")}
-              </h2>
-
-              <div className="space-y-4 text-text-secondary text-sm">
-                <p>{t("about.scoringDesc")}</p>
-
-                <div className="rounded-lg bg-surface-hover p-4">
-                  <h3 className="font-medium text-text-primary mb-2">{t("product.intelligence")}</h3>
-                  <p>{t("about.scoringDetail")}</p>
-                </div>
-
-                <div className="rounded-lg bg-surface-hover p-4">
-                  <h3 className="font-medium text-text-primary mb-2">{t("models.colCost")}</h3>
-                  <p>{t("about.costDetail")}</p>
-                </div>
-              </div>
+              <p className="text-sm text-text-secondary">
+                {t("about.backgroundDesc")}{" "}
+                {t("about.backgroundContribute")}{" "}
+                <a
+                  href="https://github.com/citrusli2026/llmcompare/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent-violet hover:underline"
+                >
+                  GitHub Issues
+                </a>。
+              </p>
             </section>
 
             {/* Data Sources */}
@@ -76,64 +53,32 @@ export default function AboutPage() {
               </h2>
 
               <div className="space-y-4 text-sm">
+                <p className="text-text-secondary">{t("about.filterDesc")}</p>
                 <div className="rounded-lg bg-surface-hover p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <Brain className="h-4 w-4 text-accent-violet" />
                     <p className="text-text-primary font-medium">Artificial Analysis</p>
                   </div>
-                  <p className="text-text-secondary mb-2">{t("about.sourceDesc")}</p>
-                  <p className="text-text-secondary">{t("about.sourceAaDetail")}</p>
-                </div>
-                <div className="rounded-lg bg-surface-hover p-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <DollarSign className="h-4 w-4 text-accent-amber" />
-                    <p className="text-text-primary font-medium">{t("product.priceTitle")}</p>
-                  </div>
-                  <p className="text-text-secondary mb-2">{t("about.priceSourceDesc")}</p>
-                  <p className="text-text-secondary">{t("about.priceDetail")}</p>
+                  <p className="text-text-secondary">{t("about.sourceDesc")}</p>
                 </div>
                 <div className="rounded-lg bg-surface-hover p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <TrendingUp className="h-4 w-4 text-accent-emerald" />
                     <p className="text-text-primary font-medium">OpenRouter</p>
                   </div>
-                  <p className="text-text-secondary mb-2">{t("about.orDesc")}</p>
-                  <p className="text-text-secondary">{t("about.orDetail")}</p>
+                  <p className="text-text-secondary">{t("about.orDesc")}</p>
+                </div>
+                <div className="rounded-lg bg-surface-hover p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <DollarSign className="h-4 w-4 text-accent-amber" />
+                    <p className="text-text-primary font-medium">{t("about.sourcePriceTitle")}</p>
+                  </div>
+                  <p className="text-text-secondary">{t("about.priceDetail")}</p>
                 </div>
               </div>
             </section>
 
-            {/* Ranking Filter Pipeline */}
-            <section className="rounded-xl border border-surface-border bg-surface-card p-6">
-              <h2 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
-                <Filter className="h-5 w-5 text-accent-amber" />
-                {t("about.filterTitle")}
-              </h2>
-
-              <div className="text-sm text-text-secondary">
-                <p>{t("about.filterDesc")}</p>
-              </div>
-            </section>
-
-            {/* Update Frequency */}
-            <section className="rounded-xl border border-surface-border bg-surface-card p-6">
-              <h2 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
-                <TrendingUp className="h-5 w-5 text-accent-emerald" />
-                {t("about.updateTitle")}
-              </h2>
-
-              <div className="text-sm text-text-secondary space-y-2">
-                <p>{t("about.updateDesc")}</p>
-              </div>
-            </section>
-
-            {/* Disclaimer */}
-            <section className="rounded-xl border border-surface-border bg-surface-card p-6">
-              <h2 className="text-xl font-semibold text-text-primary mb-4">{t("about.disclaimerTitle")}</h2>
-              <div className="text-sm text-text-secondary space-y-2">
-                <p>{t("about.disclaimerDesc")}</p>
-              </div>
-            </section>
+            <p className="text-xs text-text-muted text-center">{t("about.disclaimerDesc")}</p>
           </div>
         </div>
       </div>

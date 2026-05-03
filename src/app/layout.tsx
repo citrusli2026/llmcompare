@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://llmcompare.cc"),
   title: {
     default: "模型图鉴 - 国内大模型数据一览",
     template: "%s - 模型图鉴",
@@ -48,6 +49,18 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: localeScript + themeScript }} />
       </head>
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "模型图鉴",
+              description: "收集整理了国内大模型的智能评分、API 速度与官方定价数据，为开发者和研究者提供参考。",
+              url: "https://llmcompare.cc",
+            }),
+          }}
+        />
         <LanguageProvider>
           <ThemeProvider>
             {children}

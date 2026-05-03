@@ -7,7 +7,7 @@ import {
   ArrowLeft, ExternalLink, Calendar, Building2, Layers,
   DollarSign, Zap, BookOpen, Target, TrendingUp,
 } from "lucide-react";
-import { calculateMonthlyCost, type ModelWithScores } from "@/lib/scoring";
+import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 
 interface ProductDetailClientProps {
@@ -19,8 +19,6 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
 
   const r = model.raw;
   const f = model.flags;
-
-  const quickCost = calculateMonthlyCost(1, 0.2, r.cn_input ?? r.input, r.cn_output ?? r.output);
 
   return (
     <div className="min-h-screen bg-surface-base">
@@ -203,30 +201,33 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                   <DollarSign className="h-5 w-5 text-text-muted" /> {t("product.priceTitle")}
                 </h2>
                 {r.cn_display && (
-                  <div className="mb-3 rounded-lg bg-accent-violet/5 p-3">
-                    <p className="text-xs text-text-muted mb-1">{t("product.cnPriceLabel")}</p>
+                  <div className="mb-3">
+                    <p className="text-xs text-text-muted mb-2">{t("product.cnPriceLabel")}</p>
                     <div className="space-y-1 text-sm">
-                      <div className="flex justify-between"><span className="text-text-muted">{t("product.input")}</span><span className="text-text-primary font-semibold">¥{r.cn_input}/M</span></div>
-                      <div className="flex justify-between"><span className="text-text-muted">{t("product.output")}</span><span className="text-text-primary font-semibold">¥{r.cn_output}/M</span></div>
+                      <div className="flex justify-between"><span className="text-text-muted">{t("product.input")}</span><span className="text-text-primary">¥{r.cn_input}/M</span></div>
+                      <div className="flex justify-between"><span className="text-text-muted">{t("product.output")}</span><span className="text-text-primary">¥{r.cn_output}/M</span></div>
                     </div>
                   </div>
                 )}
-                <div className="space-y-3 text-sm">
+                {r.cn_display && <div className="border-t border-surface-border mb-3" />}
+                <div className="mb-3">
                   <p className="text-xs text-text-muted mb-2">Artificial Analysis</p>
-                  <div className="flex justify-between"><span className="text-text-muted">{t("product.inputAa")}</span><span className="text-text-primary">${r.input}/M</span></div>
-                  <div className="flex justify-between"><span className="text-text-muted">{t("product.outputAa")}</span><span className="text-text-primary">${r.output}/M</span></div>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex justify-between"><span className="text-text-muted">{t("product.inputAa")}</span><span className="text-text-primary">${r.input}/M</span></div>
+                    <div className="flex justify-between"><span className="text-text-muted">{t("product.outputAa")}</span><span className="text-text-primary">${r.output}/M</span></div>
+                  </div>
                 </div>
                 {r.openrouter_pricing != null && (
-                  <div className="mt-3 pt-3 border-t border-surface-border">
-                    <p className="text-xs text-text-muted mb-2">{t("product.orPricing")}</p>
-                    <div className="flex justify-between"><span className="text-text-muted">{t("product.input")}</span><span className="text-text-primary">${r.openrouter_pricing.prompt}/M</span></div>
-                    <div className="flex justify-between"><span className="text-text-muted">{t("product.output")}</span><span className="text-text-primary">${r.openrouter_pricing.completion}/M</span></div>
-                  </div>
-                )}
-                {quickCost != null && (
-                  <p className="text-xs text-text-muted mt-4 pt-3 border-t border-surface-border">
-                    {t("product.monthlyEstimate", { cost: quickCost.toLocaleString() })}
-                  </p>
+                  <>
+                    <div className="border-t border-surface-border mb-3" />
+                    <div className="mb-3">
+                      <p className="text-xs text-text-muted mb-2">{t("product.orPricing")}</p>
+                      <div className="space-y-1 text-sm">
+                        <div className="flex justify-between"><span className="text-text-muted">{t("product.input")}</span><span className="text-text-primary">${r.openrouter_pricing.prompt}/M</span></div>
+                        <div className="flex justify-between"><span className="text-text-muted">{t("product.output")}</span><span className="text-text-primary">${r.openrouter_pricing.completion}/M</span></div>
+                      </div>
+                    </div>
+                  </>
                 )}
               </div>
 
