@@ -102,27 +102,8 @@ export default function AboutPage() {
                 {t("about.filterTitle")}
               </h2>
 
-              <div className="text-sm text-text-secondary mb-5">
+              <div className="text-sm text-text-secondary">
                 <p>{t("about.filterDesc")}</p>
-              </div>
-
-              <div className="space-y-3">
-                <div className="rounded-lg bg-surface-hover p-4">
-                  <h3 className="font-medium text-text-primary mb-1">{t("about.filterStep1Title")}</h3>
-                  <p className="text-text-secondary">{t("about.filterStep1Desc")}</p>
-                </div>
-                <div className="rounded-lg bg-surface-hover p-4">
-                  <h3 className="font-medium text-text-primary mb-1">{t("about.filterStep2Title")}</h3>
-                  <p className="text-text-secondary">{t("about.filterStep2Desc")}</p>
-                </div>
-                <div className="rounded-lg bg-surface-hover p-4">
-                  <h3 className="font-medium text-text-primary mb-1">{t("about.filterStep3Title")}</h3>
-                  <p className="text-text-secondary">{t("about.filterStep3Desc")}</p>
-                </div>
-                <div className="rounded-lg bg-surface-hover p-4">
-                  <h3 className="font-medium text-text-primary mb-1">{t("about.filterStep4Title")}</h3>
-                  <p className="text-text-secondary">{t("about.filterStep4Desc")}</p>
-                </div>
               </div>
             </section>
 
