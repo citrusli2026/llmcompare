@@ -50,6 +50,8 @@ interface RawModel {
     has_pricing: boolean;
     data_complete: boolean;
   };
+  openrouter_weekly_tokens?: number | null;
+  openrouter_pricing?: { prompt: number; completion: number } | null;
   meta?: {
     context_window: number | null;
     size_class: string | null;
@@ -139,6 +141,8 @@ export interface ModelWithScores {
     size_class: string | null;
     release_date: string | null;
     omniscience: number | null;
+    openrouter_weekly_tokens: number | null;
+    openrouter_pricing: { prompt: number; completion: number } | null;
   };
 
   flags: {
@@ -193,6 +197,8 @@ function initCache(): void {
         size_class: m.meta?.size_class ?? null,
         release_date: m.meta?.release_date ?? null,
         omniscience: m.meta?.omniscience ?? null,
+        openrouter_weekly_tokens: m.openrouter_weekly_tokens ?? null,
+        openrouter_pricing: m.openrouter_pricing ?? null,
       },
       flags: m.flags,
     };

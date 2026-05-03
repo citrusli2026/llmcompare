@@ -12,9 +12,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 33.5677228816736,
-      "ttft_seconds": 135.63908269424635,
-      "e2e_seconds": 150.53434388793835
+      "median_tps": 31.7853403934836,
+      "ttft_seconds": 143.0395941043315,
+      "e2e_seconds": 158.77011621956757
     },
     "pricing": {
       "input": 0.95,
@@ -53,7 +53,13 @@
       "output": 27.0,
       "cache_hit": 1.1,
       "source": "platform.kimi.com"
-    }
+    },
+    "openrouter_weekly_requests": 3077203,
+    "openrouter_pricing": {
+      "prompt": 0.74,
+      "completion": 3.49
+    },
+    "openrouter_weekly_tokens": 1882598843619
   },
   {
     "id": "mimo-v2-5-pro",
@@ -68,9 +74,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 60.8038187459396,
-      "ttft_seconds": 35.86365573616,
-      "e2e_seconds": 44.08682346332499
+      "median_tps": 63.6367029146702,
+      "ttft_seconds": 34.39938869502567,
+      "e2e_seconds": 42.256489661907075
     },
     "pricing": {
       "input": 1,
@@ -109,7 +115,13 @@
       "cache_hit": 1.4,
       "condition": "≤256K",
       "source": "小米开放平台控制台"
-    }
+    },
+    "openrouter_weekly_requests": 361924,
+    "openrouter_pricing": {
+      "prompt": 1.0,
+      "completion": 3.0
+    },
+    "openrouter_weekly_tokens": 58865626407
   },
   {
     "id": "qwen3-6-max-preview",
@@ -124,9 +136,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 34.0392669047956,
-      "ttft_seconds": 62.350097349499045,
-      "e2e_seconds": 77.03901533937379
+      "median_tps": 35.5338511454262,
+      "ttft_seconds": 59.96917663448322,
+      "e2e_seconds": 74.04026614160405
     },
     "pricing": {
       "input": 1.3,
@@ -166,7 +178,13 @@
       "output": 54,
       "condition": "≤128K",
       "source": "bailian.console.aliyun.com"
-    }
+    },
+    "openrouter_weekly_requests": null,
+    "openrouter_pricing": {
+      "prompt": 1.04,
+      "completion": 6.24
+    },
+    "openrouter_weekly_tokens": 4205972
   },
   {
     "id": "deepseek-v4-pro-max",
@@ -181,9 +199,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 33.2820934171704,
-      "ttft_seconds": 133.3717595714869,
-      "e2e_seconds": 148.39485303297113
+      "median_tps": 34.224201259827,
+      "ttft_seconds": 129.72508791780328,
+      "e2e_seconds": 144.33463267252367
     },
     "pricing": {
       "input": 1.74,
@@ -222,7 +240,13 @@
       "input": 12,
       "output": 24,
       "source": "bailian.console.aliyun.com (百炼)"
-    }
+    },
+    "openrouter_weekly_requests": 1774521,
+    "openrouter_pricing": {
+      "prompt": 0.43,
+      "completion": 0.87
+    },
+    "openrouter_weekly_tokens": 360291809357
   },
   {
     "id": "glm-5-1",
@@ -237,9 +261,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 53.6898340399007,
-      "ttft_seconds": 72.03895862490573,
-      "e2e_seconds": 81.35170858849129
+      "median_tps": 54.3762203518461,
+      "ttft_seconds": 71.1325898652674,
+      "e2e_seconds": 80.32778579401541
     },
     "pricing": {
       "input": 1.4,
@@ -279,7 +303,13 @@
       "cache_hit": 1.3,
       "condition": "<32K",
       "source": "open.bigmodel.cn/pricing"
-    }
+    },
+    "openrouter_weekly_requests": null,
+    "openrouter_pricing": {
+      "prompt": 1.05,
+      "completion": 3.5
+    },
+    "openrouter_weekly_tokens": 393654258589
   },
   {
     "id": "qwen3-6-plus",
@@ -294,9 +324,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 52.6255012513322,
-      "ttft_seconds": 108.2700022882074,
-      "e2e_seconds": 117.77109943903676
+      "median_tps": 52.353526128851,
+      "ttft_seconds": 108.69656896399061,
+      "e2e_seconds": 118.24702405214293
     },
     "pricing": {
       "input": 0.5,
@@ -336,7 +366,13 @@
       "output": 12,
       "condition": "≤256K",
       "source": "bailian.console.aliyun.com"
-    }
+    },
+    "openrouter_weekly_requests": 792786,
+    "openrouter_pricing": {
+      "prompt": 0.33,
+      "completion": 1.95
+    },
+    "openrouter_weekly_tokens": 233618976808
   },
   {
     "id": "deepseek-v4-pro-high",
@@ -351,9 +387,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 34.0776239380681,
-      "ttft_seconds": 60.27322288902313,
-      "e2e_seconds": 74.9456073518803
+      "median_tps": 34.011259805387,
+      "ttft_seconds": 60.37169882097147,
+      "e2e_seconds": 75.0727126281932
     },
     "pricing": {
       "input": 1.74,
@@ -392,7 +428,13 @@
       "input": 12,
       "output": 24,
       "source": "bailian.console.aliyun.com (百炼)"
-    }
+    },
+    "openrouter_weekly_requests": 1774521,
+    "openrouter_pricing": {
+      "prompt": 0.43,
+      "completion": 0.87
+    },
+    "openrouter_weekly_tokens": 360291809357
   },
   {
     "id": "glm-5",
@@ -407,9 +449,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 64.9263854159361,
-      "ttft_seconds": 49.598657667842794,
-      "e2e_seconds": 57.29968702280941
+      "median_tps": 65.1980413503454,
+      "ttft_seconds": 49.35941152329546,
+      "e2e_seconds": 57.028353559655436
     },
     "pricing": {
       "input": 1,
@@ -449,7 +491,13 @@
       "cache_hit": 1,
       "condition": "<32K",
       "source": "open.bigmodel.cn/pricing"
-    }
+    },
+    "openrouter_weekly_requests": null,
+    "openrouter_pricing": {
+      "prompt": 1.05,
+      "completion": 3.5
+    },
+    "openrouter_weekly_tokens": 393654258589
   },
   {
     "id": "minimax-m2-7",
@@ -464,9 +512,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 55.1706566082129,
-      "ttft_seconds": 46.632354796014965,
-      "e2e_seconds": 55.69514343655415
+      "median_tps": 56.1566848161878,
+      "ttft_seconds": 45.85273368488996,
+      "e2e_seconds": 54.75639318039973
     },
     "pricing": {
       "input": 0.3,
@@ -504,7 +552,13 @@
       "output": 8.4,
       "cache_hit": 0.42,
       "source": "platform.minimaxi.com"
-    }
+    },
+    "openrouter_weekly_requests": null,
+    "openrouter_pricing": {
+      "prompt": 0.3,
+      "completion": 1.2
+    },
+    "openrouter_weekly_tokens": 753296601424
   },
   {
     "id": "mimo-v2-pro",
@@ -519,9 +573,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 61.3661774699611,
-      "ttft_seconds": 51.496182665092704,
-      "e2e_seconds": 59.64399340733343
+      "median_tps": 61.7324262551459,
+      "ttft_seconds": 51.27148259097495,
+      "e2e_seconds": 59.37095365231722
     },
     "pricing": {
       "input": 1,
@@ -560,7 +614,13 @@
       "cache_hit": 1.4,
       "condition": "≤256K",
       "source": "小米开放平台控制台"
-    }
+    },
+    "openrouter_weekly_requests": 190529,
+    "openrouter_pricing": {
+      "prompt": 1.0,
+      "completion": 3.0
+    },
+    "openrouter_weekly_tokens": 58865626407
   },
   {
     "id": "kimi-k2-5",
@@ -575,9 +635,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 40.0011905797006,
-      "ttft_seconds": 77.04033208988916,
-      "e2e_seconds": 89.53996004480646
+      "median_tps": 40.3132165888939,
+      "ttft_seconds": 76.54000891041098,
+      "e2e_seconds": 88.94288921388315
     },
     "pricing": {
       "input": 0.5,
@@ -616,7 +676,13 @@
       "output": 21.0,
       "cache_hit": 0.7,
       "source": "platform.kimi.com"
-    }
+    },
+    "openrouter_weekly_requests": 2247956,
+    "openrouter_pricing": {
+      "prompt": 0.74,
+      "completion": 3.49
+    },
+    "openrouter_weekly_tokens": 1882598843619
   },
   {
     "id": "deepseek-v4-flash-max",
@@ -631,9 +697,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 83.5858399740538,
-      "ttft_seconds": 68.31639808501504,
-      "e2e_seconds": 74.29827252876301
+      "median_tps": 82.9578674705814,
+      "ttft_seconds": 68.82064795892019,
+      "e2e_seconds": 74.84780385437894
     },
     "pricing": {
       "input": 0.14,
@@ -672,7 +738,13 @@
       "input": 1,
       "output": 2,
       "source": "bailian.console.aliyun.com (百炼)"
-    }
+    },
+    "openrouter_weekly_requests": 6632163,
+    "openrouter_pricing": {
+      "prompt": 0.14,
+      "completion": 0.28
+    },
+    "openrouter_weekly_tokens": 706612499390
   },
   {
     "id": "qwen3-5-397b-a17b",
@@ -687,9 +759,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 51.9196256367552,
-      "ttft_seconds": 63.829817177335535,
-      "e2e_seconds": 73.46008692346479
+      "median_tps": 51.8897944178619,
+      "ttft_seconds": 63.857935039449124,
+      "e2e_seconds": 73.49374118609838
     },
     "pricing": {
       "input": 0.6,
@@ -729,7 +801,13 @@
       "output": 7.2,
       "condition": "≤128K",
       "source": "bailian.console.aliyun.com"
-    }
+    },
+    "openrouter_weekly_requests": 1297806,
+    "openrouter_pricing": {
+      "prompt": 0.39,
+      "completion": 2.34
+    },
+    "openrouter_weekly_tokens": 109032185752
   },
   {
     "id": "deepseek-v4-flash-high",
@@ -785,7 +863,13 @@
       "input": 1,
       "output": 2,
       "source": "bailian.console.aliyun.com (百炼)"
-    }
+    },
+    "openrouter_weekly_requests": 6632163,
+    "openrouter_pricing": {
+      "prompt": 0.14,
+      "completion": 0.28
+    },
+    "openrouter_weekly_tokens": 706612499390
   },
   {
     "id": "glm-4-7",
@@ -800,9 +884,9 @@
       "math": 95
     },
     "speed": {
-      "median_tps": 102.831665973874,
-      "ttft_seconds": 20.75334263847244,
-      "e2e_seconds": 25.615658105840563
+      "median_tps": 103.184397438755,
+      "ttft_seconds": 20.699495684707767,
+      "e2e_seconds": 25.545189533884667
     },
     "pricing": {
       "input": 0.6,
@@ -842,7 +926,13 @@
       "cache_hit": 0.4,
       "condition": "<32K",
       "source": "open.bigmodel.cn/pricing"
-    }
+    },
+    "openrouter_weekly_requests": null,
+    "openrouter_pricing": {
+      "prompt": 0.06,
+      "completion": 0.4
+    },
+    "openrouter_weekly_tokens": 89081779837
   },
   {
     "id": "minimax-m2-5",
@@ -857,9 +947,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 93.4563440914177,
-      "ttft_seconds": 23.207333489218158,
-      "e2e_seconds": 28.557425073272707
+      "median_tps": 105.813353379891,
+      "ttft_seconds": 20.667636131046375,
+      "e2e_seconds": 25.39293765518294
     },
     "pricing": {
       "input": 0.3,
@@ -897,7 +987,13 @@
       "output": 8.4,
       "cache_hit": 0.21,
       "source": "platform.minimaxi.com"
-    }
+    },
+    "openrouter_weekly_requests": null,
+    "openrouter_pricing": {
+      "prompt": 0.3,
+      "completion": 1.2
+    },
+    "openrouter_weekly_tokens": 753296601424
   },
   {
     "id": "hy3-preview",
@@ -912,9 +1008,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 82.3048070035426,
-      "ttft_seconds": 27.882947352020835,
-      "e2e_seconds": 33.95792666615104
+      "median_tps": 84.1106375128455,
+      "ttft_seconds": 27.264092490410555,
+      "e2e_seconds": 33.20864379551318
     },
     "pricing": {
       "input": 0,
@@ -951,7 +1047,10 @@
       "output": 15.9,
       "condition": "≤32K",
       "source": "cloud.tencent.com/doc/1729/97731"
-    }
+    },
+    "openrouter_weekly_requests": null,
+    "openrouter_pricing": null,
+    "openrouter_weekly_tokens": 45439
   },
   {
     "id": "deepseek-v3-2",
@@ -1008,7 +1107,13 @@
       "output": 3,
       "condition": "≤32K",
       "source": "bailian.console.aliyun.com (百炼)"
-    }
+    },
+    "openrouter_weekly_requests": 16564563,
+    "openrouter_pricing": {
+      "prompt": 0.4,
+      "completion": 1.2
+    },
+    "openrouter_weekly_tokens": 20300937747
   },
   {
     "id": "mimo-v2-flash-feb-2026",
@@ -1023,9 +1128,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 125.859726059557,
-      "ttft_seconds": 18.492414395833197,
-      "e2e_seconds": 22.465091086416486
+      "median_tps": 129.697061961721,
+      "ttft_seconds": 17.883947564183316,
+      "e2e_seconds": 21.739085008604153
     },
     "pricing": {
       "input": 0.1,
@@ -1064,7 +1169,13 @@
       "cache_hit": 0.07,
       "condition": "≤256K",
       "source": "小米开放平台控制台"
-    }
+    },
+    "openrouter_weekly_requests": null,
+    "openrouter_pricing": {
+      "prompt": 0.4,
+      "completion": 2.0
+    },
+    "openrouter_weekly_tokens": 58865626407
   },
   {
     "id": "kimi-k2-thinking",
@@ -1080,8 +1191,8 @@
     },
     "speed": {
       "median_tps": 106.244153421674,
-      "ttft_seconds": 20.56461450595552,
-      "e2e_seconds": 25.27075582194439
+      "ttft_seconds": 20.67304716695548,
+      "e2e_seconds": 25.37918848294435
     },
     "pricing": {
       "input": 0.6,
@@ -1120,7 +1231,13 @@
       "output": 16.0,
       "cache_hit": 1.0,
       "source": "platform.kimi.com"
-    }
+    },
+    "openrouter_weekly_requests": null,
+    "openrouter_pricing": {
+      "prompt": 0.74,
+      "completion": 3.49
+    },
+    "openrouter_weekly_tokens": 5326292247
   },
   {
     "id": "qwen3-max-thinking",
@@ -1135,9 +1252,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 39.9647541776345,
-      "ttft_seconds": 53.7858092955687,
-      "e2e_seconds": 66.29683332883587
+      "median_tps": 42.9548816624544,
+      "ttft_seconds": 50.2428014155462,
+      "e2e_seconds": 61.88292194780773
     },
     "pricing": {
       "input": 1.2,
@@ -1177,7 +1294,13 @@
       "output": 10,
       "condition": "≤32K",
       "source": "bailian.console.aliyun.com"
-    }
+    },
+    "openrouter_weekly_requests": null,
+    "openrouter_pricing": {
+      "prompt": 0.78,
+      "completion": 3.9
+    },
+    "openrouter_weekly_tokens": 621973756
   },
   {
     "id": "minimax-m2-1",
@@ -1192,9 +1315,9 @@
       "math": 82.67
     },
     "speed": {
-      "median_tps": 100.955536581537,
-      "ttft_seconds": 21.479606416107345,
-      "e2e_seconds": 26.432281791134187
+      "median_tps": 102.173957050582,
+      "ttft_seconds": 21.3018877167334,
+      "e2e_seconds": 26.195502630291767
     },
     "pricing": {
       "input": 0.3,
@@ -1231,7 +1354,13 @@
       "input": 2.1,
       "output": 8.4,
       "source": "platform.minimaxi.com"
-    }
+    },
+    "openrouter_weekly_requests": null,
+    "openrouter_pricing": {
+      "prompt": 0.3,
+      "completion": 1.2
+    },
+    "openrouter_weekly_tokens": 753296601424
   },
   {
     "id": "deepseek-v4-pro",
@@ -1246,9 +1375,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 33.8495676166932,
-      "ttft_seconds": 2.04495224400012,
-      "e2e_seconds": 16.816189669007013
+      "median_tps": 34.2803717823709,
+      "ttft_seconds": 2.00413401300011,
+      "e2e_seconds": 16.58974011944062
     },
     "pricing": {
       "input": 1.74,
@@ -1287,7 +1416,13 @@
       "input": 12,
       "output": 24,
       "source": "bailian.console.aliyun.com (百炼)"
-    }
+    },
+    "openrouter_weekly_requests": 1774521,
+    "openrouter_pricing": {
+      "prompt": 0.43,
+      "completion": 0.87
+    },
+    "openrouter_weekly_tokens": 360291809357
   },
   {
     "id": "mimo-v2-flash",
@@ -1302,9 +1437,9 @@
       "math": 96.33
     },
     "speed": {
-      "median_tps": 133.182003283976,
-      "ttft_seconds": 17.271489908044526,
-      "e2e_seconds": 21.025750901805672
+      "median_tps": 133.645995456243,
+      "ttft_seconds": 17.255312414183198,
+      "e2e_seconds": 20.99653936447895
     },
     "pricing": {
       "input": 0.1,
@@ -1343,7 +1478,13 @@
       "cache_hit": 0.07,
       "condition": "≤256K",
       "source": "小米开放平台控制台"
-    }
+    },
+    "openrouter_weekly_requests": 2061684,
+    "openrouter_pricing": {
+      "prompt": 0.4,
+      "completion": 2.0
+    },
+    "openrouter_weekly_tokens": 58865626407
   },
   {
     "id": "qwen3-5-omni-plus",
@@ -1358,9 +1499,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 54.5470299612266,
-      "ttft_seconds": 2.47657605600025,
-      "e2e_seconds": 11.642977972940779
+      "median_tps": 54.448863258425,
+      "ttft_seconds": 2.44297572300025,
+      "e2e_seconds": 11.625903888587507
     },
     "pricing": {
       "input": 0.4,
@@ -1400,7 +1541,10 @@
       "output": 40,
       "condition": "文本",
       "source": "bailian.console.aliyun.com"
-    }
+    },
+    "openrouter_weekly_requests": null,
+    "openrouter_pricing": null,
+    "openrouter_weekly_tokens": null
   },
   {
     "id": "step-3-5-flash",
@@ -1415,9 +1559,9 @@
       "math": null
     },
     "speed": {
-      "median_tps": 144.485340133224,
-      "ttft_seconds": 15.139609637285458,
-      "e2e_seconds": 18.600168331606767
+      "median_tps": 155.758651746766,
+      "ttft_seconds": 14.123189814429987,
+      "e2e_seconds": 17.3332843702875
     },
     "pricing": {
       "input": 0.1,
@@ -1456,7 +1600,13 @@
       "output": 2.1,
       "cache_hit": 0.14,
       "source": "platform.stepfun.com/docs"
-    }
+    },
+    "openrouter_weekly_requests": 1523302,
+    "openrouter_pricing": {
+      "prompt": 0.1,
+      "completion": 0.3
+    },
+    "openrouter_weekly_tokens": 816038498197
   },
   {
     "id": "ling-2-6-1t",
@@ -1509,6 +1659,9 @@
       "output": 18.0,
       "source": "AA (无国内官价, ¥按$×7.2折算)",
       "aa_only": true
-    }
+    },
+    "openrouter_weekly_requests": 1113318,
+    "openrouter_pricing": null,
+    "openrouter_weekly_tokens": 25694
   }
 ]

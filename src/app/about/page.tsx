@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
-import { ArrowLeft, Brain, Zap, DollarSign, TrendingUp, Database, Filter, ExternalLink } from "lucide-react";
+import { ArrowLeft, Brain, DollarSign, TrendingUp, Database, Filter, ExternalLink } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
 export default function AboutPage() {
@@ -91,6 +91,14 @@ export default function AboutPage() {
                   </div>
                   <p className="text-text-secondary mb-2">{t("about.priceSourceDesc")}</p>
                   <p className="text-text-secondary">{t("about.priceDetail")}</p>
+                </div>
+                <div className="rounded-lg bg-surface-hover p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <TrendingUp className="h-4 w-4 text-accent-emerald" />
+                    <p className="text-text-primary font-medium">OpenRouter</p>
+                  </div>
+                  <p className="text-text-secondary mb-2">{t("about.orDesc")}</p>
+                  <p className="text-text-secondary">{t("about.orDetail")}</p>
                 </div>
               </div>
             </section>

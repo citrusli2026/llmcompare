@@ -5,7 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import {
   ArrowLeft, ExternalLink, Calendar, Building2, Layers,
-  DollarSign, Zap, BookOpen, Target,
+  DollarSign, Zap, BookOpen, Target, TrendingUp,
 } from "lucide-react";
 import { calculateMonthlyCost, type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
@@ -215,14 +215,43 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                   <p className="text-xs text-text-muted mb-2">Artificial Analysis</p>
                   <div className="flex justify-between"><span className="text-text-muted">{t("product.inputAa")}</span><span className="text-text-primary">${r.input}/M</span></div>
                   <div className="flex justify-between"><span className="text-text-muted">{t("product.outputAa")}</span><span className="text-text-primary">${r.output}/M</span></div>
-                  <div className="flex justify-between"><span className="text-text-muted">{t("product.blended")}</span><span className="text-text-primary font-semibold">${r.blended}/M</span></div>
                 </div>
+                {r.openrouter_pricing != null && (
+                  <div className="mt-3 pt-3 border-t border-surface-border">
+                    <p className="text-xs text-text-muted mb-2">{t("product.orPricing")}</p>
+                    <div className="flex justify-between"><span className="text-text-muted">{t("product.input")}</span><span className="text-text-primary">${r.openrouter_pricing.prompt}/M</span></div>
+                    <div className="flex justify-between"><span className="text-text-muted">{t("product.output")}</span><span className="text-text-primary">${r.openrouter_pricing.completion}/M</span></div>
+                  </div>
+                )}
                 {quickCost != null && (
                   <p className="text-xs text-text-muted mt-4 pt-3 border-t border-surface-border">
                     {t("product.monthlyEstimate", { cost: quickCost.toLocaleString() })}
                   </p>
                 )}
               </div>
+
+              {r.openrouter_weekly_tokens != null && (
+                <div className="rounded-xl border border-surface-border bg-surface-card p-6">
+                  <h2 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
+                    <TrendingUp className="h-5 w-5 text-accent-emerald" /> {t("product.orTokens")}
+                  </h2>
+                  <p className="text-2xl font-bold text-text-primary">
+                    {r.openrouter_weekly_tokens >= 1e12
+                      ? <>{((r.openrouter_weekly_tokens / 1e12).toFixed(2))}<span className="text-sm text-text-muted ml-1">T</span></>
+                      : <>{((r.openrouter_weekly_tokens / 1e9).toFixed(1))}<span className="text-sm text-text-muted ml-1">B</span></>
+                    }
+                    <span className="text-sm text-text-muted ml-1">Tokens/周</span>
+                  </p>
+                  <a
+                    href="https://openrouter.ai/rankings"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 mt-2 text-xs text-text-muted hover:text-accent-violet transition-colors"
+                  >
+                    <ExternalLink className="h-3 w-3" /> {t("product.orSource")}
+                  </a>
+                </div>
+              )}
 
             </div>
           </div>
