@@ -4,14 +4,15 @@
 
 ## 项目概览
 
-LLMCompare 是一个静态 Next.js 站点，用于排名国内中文 AI 大语言模型。它展示各家厂商（百度、阿里、腾讯、字节跳动、DeepSeek 等）大模型的基准测试分数、API 性能指标以及 Arena AI ELO 排名。
+LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内中文 AI 大语言模型。它展示各家厂商（百度、阿里、腾讯、字节跳动、DeepSeek 等）大模型的基准测试分数、API 性能指标以及 Arena AI ELO 排名。
 
 ## 常用命令
 
 | 命令 | 说明 |
 |---------|-------------|
 | `npm run dev` | 在 `localhost:3000` 启动开发服务器 |
-| `npm run build` | 构建静态导出到 `dist/` 目录（通过 `output: 'export'` 配置） |
+| `npm run build` | 先运行 `scripts/generate-sitemap.mjs` 生成 sitemap，再构建静态导出到 `dist/` 目录 |
+| `npm run prebuild` | 自动在 build 前执行，删除 `dist/` 目录 |
 | `npm run lint` | 运行 ESLint（扁平化配置，Next.js 预设） |
 
 本项目未配置测试运行器。
@@ -24,6 +25,7 @@ LLMCompare 是一个静态 Next.js 站点，用于排名国内中文 AI 大语�
 - **shadcn/ui** 使用 `@base-ui/react` 底层组件（`style: "base-nova"`）
 - **next-themes** 实现暗色/亮色切换（默认暗色，`enableSystem: false`）
 - **Geist / Geist Mono** 字体，通过 `next/font/google` 加载
+- **@vercel/analytics** 网站分析
 
 ## 重要提示：Next.js 破坏性变更
 
@@ -36,10 +38,23 @@ LLMCompare 是一个静态 Next.js 站点，用于排名国内中文 AI 大语�
 | 路由 | 文件 | 类型 |
 |-------|------|------|
 | `/` | `src/app/page.tsx` | 服务端组件 — 首页 Hero 区域 + 前6名模型卡片网格 |
-| `/models` | `src/app/models/page.tsx` | 客户端组件 — 完整的可排序/可筛选排名表格 |
-| `/product/[id]` | `src/app/product/[id]/page.tsx` | 服务端组件 — 模型详情页，使用 `generateStaticParams()` |
+| `/models` | `src/app/models/page.tsx` | 服务端组件包装器 → `models-page-client.tsx` 客户端组件 — 完整的可排序/可筛选排名表格 |
+| `/about` | `src/app/about/page.tsx` | 服务端组件包装器 → `about-page-client.tsx` 客户端组件 — 关于页面 |
+| `/product/[id]` | `src/app/product/[id]/page.tsx` | 服务端组件 — 模型详情页，使用 `generateStaticParams()` 和 `generateMetadata()` |
 
 所有数据均来自静态 JSON 文件；没有 API 路由。
+
+**页面模式差异：**
+- `/models` 和 `/about` 使用「服务端组件包装器 + 客户端组件」模式，因为页面包含交互状态（筛选、排序、标签切换）
+- `/product/[id]` 是纯服务端组件，在 `generateStaticParams()` 中为所有模型预生成静态路径，并通过 `generateMetadata()` 动态生成 SEO 元数据
+
+### 布局与 Hydration 策略
+
+`src/app/layout.tsx` 包含两个内联脚本（`localeScript` + `themeScript`），在 HTML `<head>` 中早于 React hydration 执行：
+- **主题**：读取 `localStorage` 的 `theme` 键，在页面渲染前就给 `<html>` 加上 `light`/`dark` 类，防止主题闪烁
+- **语言**：读取 `localStorage` 的 `llmcompare-locale` 键，非中文用户 SSR 输出时先将 `<html>` 设为 `visibility: hidden`，hydration 完成后由 `i18n.tsx` 中的 `useEffect` 恢复可见，避免中文内容闪烁
+
+产品详情页（`/product/[id]`）还注入 JSON-LD 结构化数据（SoftwareApplication + BreadcrumbList）用于 SEO。
 
 ### 数据层
 
@@ -80,7 +95,7 @@ LLMCompare 是一个静态 Next.js 站点，用于排名国内中文 AI 大语�
 ### 组件约定
 
 - `src/components/ui/*` — shadcn/ui 组件（Button、Badge、Input、Table、Tabs、Card）。使用 `npx shadcn add <组件名>` 添加新组件。
-- `src/components/*` — 应用专属组件：`Navbar`、`ProductCard`、`RankingTable`、`ScoreBar`、`FilterBar`、`ThemeToggle`、`ThemeProvider`、`LanguageProvider`。
+- `src/components/*` — 应用专属组件：`Navbar`、`ProductCard`、`RankingTable`、`FilterBar`、`ThemeToggle`、`ThemeProvider`、`LanguageProvider`。
 - 所有 UI 组件均为 `@base-ui/react` 底层组件的薄封装，使用 `cva` + `cn()` 进行样式处理。
 - `src/lib/utils.ts` 导出 `cn()`（clsx + tailwind-merge）。
 
@@ -103,4 +118,6 @@ LLMCompare 是一个静态 Next.js 站点，用于排名国内中文 AI 大语�
 
 - 静态导出（`output: 'export'`）输出到 `dist/` 目录。
 - 图片未优化（`images.unoptimized: true`），因为静态导出不支持 Next.js 图片优化。
+- 构建时自动生成 `public/sitemap.xml`（`scripts/generate-sitemap.mjs`），包含静态页面 + 所有产品页 URL。
 - 站点预期部署到 Vercel 或任意静态托管服务。
+- `vercel.json` 配置了静态资源长期缓存（`max-age=31536000`）和 sitemap/robots 的 24 小时缓存。

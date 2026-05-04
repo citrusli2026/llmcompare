@@ -4,10 +4,11 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import {
-  ArrowLeft, ExternalLink, Calendar, Building2, Layers,
+  ArrowLeft, ExternalLink, Calendar, Building2, Cpu,
   DollarSign, Zap, BookOpen, Target, TrendingUp,
 } from "lucide-react";
 import { type ModelWithScores } from "@/lib/scoring";
+import { formatTokenCount } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 
 interface ProductDetailClientProps {
@@ -62,7 +63,6 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
           {/* Vendor Links - compact row at top */}
           {model.vendor_links && Object.values(model.vendor_links).some(Boolean) && (
             <div className="flex flex-wrap items-center gap-1.5 mb-6">
-              <span className="text-xs text-text-muted mr-1">{t("product.vendorLinks")}:</span>
               {([
                 [model.vendor_links.homepage, t("product.homepage")],
                 [model.vendor_links.api_docs, t("product.apiDocs")],
@@ -87,7 +87,7 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
           )}
 
           {/* Quick Facts */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 rounded-xl border border-surface-border bg-surface-card p-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-6 rounded-xl border border-surface-border bg-surface-card p-4">
             <div className="flex items-center gap-3">
               <Building2 className="h-4 w-4 text-text-muted shrink-0" />
               <div className="min-w-0">
@@ -96,10 +96,10 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Layers className="h-4 w-4 text-text-muted shrink-0" />
+              <Cpu className="h-4 w-4 text-text-muted shrink-0" />
               <div className="min-w-0">
-                <p className="text-[10px] uppercase tracking-wider text-text-muted">{t("product.level")}</p>
-                <p className="text-sm font-medium text-text-primary truncate">{r.size_class ?? "—"}</p>
+                <p className="text-[10px] uppercase tracking-wider text-text-muted">{t("product.parameters")}</p>
+                <p className="text-sm font-medium text-text-primary truncate">{r.parameters != null ? `${r.parameters}B` : "—"}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -107,6 +107,13 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
               <div className="min-w-0">
                 <p className="text-[10px] uppercase tracking-wider text-text-muted">{t("product.contextWindow")}</p>
                 <p className="text-sm font-medium text-text-primary truncate">{r.context_window != null ? `${(r.context_window / 1000).toFixed(0)}K` : "—"}</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <BookOpen className="h-4 w-4 text-text-muted shrink-0" />
+              <div className="min-w-0">
+                <p className="text-[10px] uppercase tracking-wider text-text-muted">{t("product.outputTokens")}</p>
+                <p className="text-sm font-medium text-text-primary truncate">{r.output_tokens != null ? `${(r.output_tokens / 1000).toFixed(0)}K` : "—"}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -177,7 +184,7 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                 <h2 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
                   <Zap className="h-5 w-5 text-accent-cyan" /> {t("product.speedTitle")}
                 </h2>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div className="rounded-lg bg-surface-hover p-3">
                     <p className="text-xs text-text-muted">{t("product.medianTps")}</p>
                     <p className="text-lg font-semibold text-text-primary">{r.median_tps != null ? <>{r.median_tps.toFixed(1)} <span className="text-xs text-text-muted">TPS</span></> : "—"}</p>
@@ -208,9 +215,9 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                       <div className="flex justify-between"><span className="text-text-muted">{t("product.input")}</span><span className="text-text-primary">¥{r.cn_input}/M</span></div>
                       <div className="flex justify-between"><span className="text-text-muted">{t("product.output")}</span><span className="text-text-primary">¥{r.cn_output}/M</span></div>
                     </div>
+                    <div className="border-t border-surface-border mt-3" />
                   </div>
                 )}
-                {r.cn_display && <div className="border-t border-surface-border mb-3" />}
                 <div className="mb-3">
                   <p className="text-xs text-text-muted mb-2">Artificial Analysis</p>
                   <div className="space-y-1 text-sm">
@@ -238,10 +245,10 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                     <TrendingUp className="h-5 w-5 text-accent-emerald" /> {t("product.orTokens")}
                   </h2>
                   <p className="text-2xl font-bold text-text-primary">
-                    {r.openrouter_weekly_tokens >= 1e12
-                      ? <>{((r.openrouter_weekly_tokens / 1e12).toFixed(2))}<span className="text-sm text-text-muted ml-1">T</span></>
-                      : <>{((r.openrouter_weekly_tokens / 1e9).toFixed(1))}<span className="text-sm text-text-muted ml-1">B</span></>
-                    }
+                    {(() => {
+                      const { value, unit } = formatTokenCount(r.openrouter_weekly_tokens);
+                      return <>{value}<span className="text-sm text-text-muted ml-1">{unit}</span></>;
+                    })()}
                     <span className="text-sm text-text-muted ml-1">Tokens/周</span>
                   </p>
                   <a

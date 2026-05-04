@@ -3,7 +3,6 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
-import { ProductCard } from "@/components/product-card";
 import { Badge } from "@/components/ui/badge";
 import { Bot, ArrowRight, TrendingUp } from "lucide-react";
 import { getAllModels } from "@/lib/scoring";
@@ -13,7 +12,6 @@ import { useTranslation } from "@/lib/i18n";
 export default function HomePage() {
   const { t } = useTranslation();
   const allModels = useMemo(() => getAllModels(), []);
-  const frontierModels = useMemo(() => allModels.filter(m => m.flags.frontier).slice(0, 6), [allModels]);
 
   return (
     <div className="min-h-screen bg-surface-base">
@@ -37,6 +35,9 @@ export default function HomePage() {
           <p className="mt-3 text-base text-text-secondary">
             {t("home.heroDesc")}
           </p>
+          <p className="mt-4 max-w-2xl mx-auto text-sm text-text-muted">
+            {t("home.seoDesc")}
+          </p>
         </div>
       </section>
 
@@ -58,31 +59,6 @@ export default function HomePage() {
           </div>
 
           <RankingTable models={allModels.slice(0, 10)} />
-        </div>
-      </section>
-
-      {/* Frontier Models Cards */}
-      <section className="px-4 pt-6 pb-10 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <Bot className="h-6 w-6 text-accent-violet" />
-              <h2 className="text-2xl font-bold text-text-primary">{t("home.cardsTitle")}</h2>
-            </div>
-            <Link
-              href="/models"
-              className="flex items-center gap-1 text-sm text-accent-violet hover:text-violet-500 transition-colors"
-            >
-              {t("home.cardsViewAll")}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {frontierModels.map((model) => (
-              <ProductCard key={model.id} product={model} />
-            ))}
-          </div>
         </div>
       </section>
 

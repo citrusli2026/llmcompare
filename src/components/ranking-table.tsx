@@ -6,8 +6,8 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpDown, Zap, DollarSign, Brain, Code, Bot, ArrowUpRight, Calendar, TrendingUp } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { ArrowUpDown, ArrowUp, ArrowDown, Zap, DollarSign, Brain, Code, Bot, ArrowUpRight, Calendar, TrendingUp } from "lucide-react";
+import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 
@@ -18,7 +18,7 @@ interface RankingTableProps {
 type ScoreKey = "intelligence" | "coding" | "agentic" | "speed" | "cost" | "tokens";
 type SortKey = ScoreKey | "date";
 
-const HEADERS: { key: ScoreKey; labelKey: string; icon: React.ComponentType<any>; mobile: boolean; desktop: boolean }[] = [
+const HEADERS: { key: ScoreKey; labelKey: string; icon: React.ComponentType<{ className?: string }>; mobile: boolean; desktop: boolean }[] = [
   { key: "intelligence", labelKey: "models.colIntelligence", icon: Brain, mobile: true, desktop: true },
   { key: "coding", labelKey: "models.colCoding", icon: Code, mobile: false, desktop: true },
   { key: "agentic", labelKey: "models.colAgentic", icon: Bot, mobile: false, desktop: true },
@@ -81,9 +81,13 @@ export function RankingTable({ models }: RankingTableProps) {
   const { t } = useTranslation();
 
   const handleSort = (key: SortKey) => {
-    if (sortKey === key) { setSortDesc(!sortDesc); }
-    else if (sortKey === null && key === "date") { setSortKey(key); setSortDesc(false); }
-    else { setSortKey(key); setSortDesc(true); }
+    if (sortKey === key) {
+      setSortDesc(!sortDesc);
+      return;
+    }
+    setSortKey(key);
+    // 首次点 date 列默认升序(从旧到新),其他列默认降序
+    setSortDesc(!(sortKey === null && key === "date"));
   };
 
   const getRawValue = (model: ModelWithScores, key: SortKey): number | null => {
@@ -149,10 +153,8 @@ export function RankingTable({ models }: RankingTableProps) {
   const getTokensDisplay = (model: ModelWithScores): React.ReactNode => {
     const val = model.raw.openrouter_weekly_tokens;
     if (val == null) return <span className="text-text-dim text-xs">—</span>;
-    if (val >= 1e12) return <span>{(val / 1e12).toFixed(2)}<span className="text-text-secondary text-[10px]">T</span></span>;
-    if (val >= 1e9) return <span>{(val / 1e9).toFixed(1)}<span className="text-text-secondary text-[10px]">B</span></span>;
-    if (val >= 1e6) return <span>{(val / 1e6).toFixed(1)}<span className="text-text-secondary text-[10px]">M</span></span>;
-    return <span>{val.toLocaleString()}</span>;
+    const { value, unit } = formatTokenCount(val);
+    return <span>{value}{unit && <span className="text-text-secondary text-[10px]">{unit}</span>}</span>;
   };
 
   const getCostDisplay = (model: ModelWithScores): React.ReactNode => {
@@ -163,94 +165,234 @@ export function RankingTable({ models }: RankingTableProps) {
     return <span className="text-text-dim text-xs">—</span>;
   };
 
-  return (
-    <div className="rounded-xl border border-surface-border bg-surface-card overflow-hidden">
-      <div className="overflow-x-auto">
-        <Table>
-          <TableHeader>
-            <TableRow className="border-surface-border hover:bg-transparent">
-              <TableHead className="text-text-muted">{t("table.model")}</TableHead>
-              <TableHead className="text-text-muted hidden sm:table-cell">{t("table.company")}</TableHead>
+  const renderers: Record<ScoreKey, (m: ModelWithScores) => React.ReactNode> = {
+    intelligence: (m) => formatScore(m.raw.intelligence),
+    coding: (m) => formatScore(m.raw.coding),
+    agentic: (m) => formatScore(m.raw.agentic),
+    speed: getSpeedDisplay,
+    cost: getCostDisplay,
+    tokens: getTokensDisplay,
+  };
 
-              <TableHead
-                className={cn(
-                  "cursor-pointer text-text-muted hover:text-text-primary hidden lg:table-cell",
-                  sortKey === "date" && "font-semibold text-text-primary"
-                )}
-                onClick={() => handleSort("date")}
-              >
-                <div className="flex items-center gap-1">
-                  <Calendar className="h-3 w-3" />
-                  {t("table.date")}
-                  <ArrowUpDown className="h-3 w-3" />
-                </div>
-              </TableHead>
-              {HEADERS.map(h => (
+  // 移动端排序处理
+  const handleMobileSortChange = (value: string) => {
+    if (value === "") {
+      setSortKey(null);
+      setSortDesc(true);
+    } else if (value === "date") {
+      setSortKey("date");
+      setSortDesc(false);
+    } else {
+      setSortKey(value as ScoreKey);
+      setSortDesc(true);
+    }
+  };
+
+  // 移动端渲染单个指标
+  const renderMetric = (model: ModelWithScores, key: ScoreKey) => {
+    if (key === "cost") {
+      if (model.raw.openrouter_pricing != null) {
+        return <span>${model.raw.openrouter_pricing.prompt}<span className="text-text-secondary text-[10px]">/M</span></span>;
+      }
+      return <span className="text-text-dim text-xs">—</span>;
+    }
+    return renderers[key](model);
+  };
+
+  const SORT_OPTIONS: { key: SortKey | ""; labelKey: string }[] = [
+    { key: "", labelKey: "models.sortBy" },
+    { key: "intelligence", labelKey: "models.colIntelligence" },
+    { key: "coding", labelKey: "models.colCoding" },
+    { key: "agentic", labelKey: "models.colAgentic" },
+    { key: "speed", labelKey: "models.colSpeed" },
+    { key: "cost", labelKey: "models.colCost" },
+    { key: "tokens", labelKey: "models.colTokens" },
+    { key: "date", labelKey: "table.date" },
+  ];
+
+  // 移动端按重要性排序展示指标（价格不在移动端卡片展示）
+  const MOBILE_METRIC_ORDER: ScoreKey[] = ["intelligence", "coding", "agentic", "tokens"];
+
+  const colVisibilityClass = (h: typeof HEADERS[number]) => cn(
+    !h.mobile && "hidden sm:table-cell",
+    !h.desktop && "hidden md:table-cell",
+    !h.mobile && !h.desktop && "hidden lg:table-cell",
+  );
+
+  return (
+    <div className="space-y-4">
+      {/* 移动端排序控制 */}
+      <div className="block sm:hidden">
+        <div className="flex items-center gap-2">
+          <div className="relative flex-1">
+            <select
+              value={sortKey ?? ""}
+              onChange={(e) => handleMobileSortChange(e.target.value)}
+              className="w-full appearance-none rounded-lg border border-surface-border bg-surface-card px-3 py-2 pr-8 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-violet/30"
+            >
+              {SORT_OPTIONS.map((opt) => (
+                <option key={opt.key} value={opt.key}>{t(opt.labelKey)}</option>
+              ))}
+            </select>
+            <ArrowUpDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+          </div>
+          {sortKey && (
+            <button
+              onClick={() => setSortDesc(!sortDesc)}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-surface-border bg-surface-card text-text-secondary hover:bg-surface-hover hover:text-text-primary transition-colors"
+              aria-label={sortDesc ? t("models.sortDesc") : t("models.sortAsc")}
+            >
+              {sortDesc ? <ArrowDown className="h-4 w-4" /> : <ArrowUp className="h-4 w-4" />}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* 桌面端表格 */}
+      <div className="rounded-xl border border-surface-border bg-surface-card overflow-hidden hidden sm:block">
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow className="border-surface-border hover:bg-transparent">
+                <TableHead className="text-text-muted">{t("table.model")}</TableHead>
+                <TableHead className="text-text-muted hidden sm:table-cell">{t("table.company")}</TableHead>
+
                 <TableHead
-                  key={h.key}
                   className={cn(
-                    "cursor-pointer text-text-muted hover:text-text-primary",
-                    !h.mobile && "hidden sm:table-cell",
-                    !h.desktop && "hidden md:table-cell",
-                    !h.mobile && !h.desktop && "hidden lg:table-cell"
+                    "cursor-pointer text-text-muted hover:text-text-primary hidden lg:table-cell",
+                    sortKey === "date" && "font-semibold text-text-primary"
                   )}
-                  onClick={() => handleSort(h.key)}
+                  onClick={() => handleSort("date")}
                 >
                   <div className="flex items-center gap-1">
-                    <h.icon className="h-3 w-3" />
-                    {t(h.labelKey)}
+                    <Calendar className="h-3 w-3" />
+                    {t("table.date")}
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {sortedModels.map((model) => {
-              return (
-                <TableRow key={model.id} className="border-gray-300 dark:border-white/25 hover:bg-surface-hover transition-colors">
-                  <TableCell className="max-w-[240px]">
-                    <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
-                      {model.name}
-                      <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
-                    </Link>
-                    <div className="flex gap-1 mt-1">
-                      {model.flags.frontier && (
-                        <Badge variant="secondary" className="text-[10px] bg-violet-500/10 text-violet-400 py-0 px-1.5">{t("common.frontier")}</Badge>
-                      )}
-                      {!model.flags.frontier && (
-                        <Badge variant="secondary" className="text-[10px] bg-blue-500/10 text-blue-400 py-0 px-1.5">{t("common.mainstream")}</Badge>
-                      )}
-                      <Badge variant="secondary"
-                        className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
-                          ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
-                          : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
-                        {t(model.type === "开源" ? "common.open" : "common.closed")}
-                      </Badge>
+                {HEADERS.map(h => (
+                  <TableHead
+                    key={h.key}
+                    className={cn("cursor-pointer text-text-muted hover:text-text-primary", colVisibilityClass(h))}
+                    onClick={() => handleSort(h.key)}
+                  >
+                    <div className="flex items-center gap-1">
+                      <h.icon className="h-3 w-3" />
+                      {t(h.labelKey)}
+                      <ArrowUpDown className="h-3 w-3" />
                     </div>
-                  </TableCell>
-                  <TableCell className="text-text-secondary hidden sm:table-cell">{model.company}</TableCell>
-                  <TableCell className={cn("hidden lg:table-cell text-sm", sortKey === "date" ? "font-semibold text-text-primary" : "text-text-secondary")}>
-                    {model.raw.release_date ?? "—"}
-                  </TableCell>
-                  {HEADERS.map(h => (
-                    <TableCell key={h.key}
-                      className={cn(
-                        "text-sm",
-                        !h.mobile && "hidden sm:table-cell",
-                        !h.desktop && "hidden md:table-cell",
-                        !h.mobile && !h.desktop && "hidden lg:table-cell",
-                        h.key === sortKey ? "font-semibold" : "",
-                        h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
-                      )}>
-                      {h.key === "cost" ? getCostDisplay(model) : h.key === "speed" ? getSpeedDisplay(model) : h.key === "tokens" ? getTokensDisplay(model) : formatScore(getRawValue(model, h.key))}
+                  </TableHead>
+                ))}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {sortedModels.map((model) => {
+                return (
+                  <TableRow key={model.id} className="border-gray-300 dark:border-white/25 hover:bg-surface-hover transition-colors">
+                    <TableCell className="max-w-[240px]">
+                      <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
+                        {model.name}
+                        <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+                      </Link>
+                      <div className="flex gap-1 mt-1">
+                        {model.flags.frontier && (
+                          <Badge variant="secondary" className="text-[10px] bg-violet-500/10 text-violet-400 py-0 px-1.5">{t("common.frontier")}</Badge>
+                        )}
+                        {!model.flags.frontier && (
+                          <Badge variant="secondary" className="text-[10px] bg-blue-500/10 text-blue-400 py-0 px-1.5">{t("common.mainstream")}</Badge>
+                        )}
+                        <Badge variant="secondary"
+                          className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
+                            ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
+                            : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
+                          {t(model.type === "开源" ? "common.open" : "common.closed")}
+                        </Badge>
+                      </div>
                     </TableCell>
-                  ))}
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
+                    <TableCell className="text-text-secondary hidden sm:table-cell">{model.company}</TableCell>
+                    <TableCell className={cn("hidden lg:table-cell text-sm", sortKey === "date" ? "font-semibold text-text-primary" : "text-text-secondary")}>
+                      {model.raw.release_date ?? "—"}
+                    </TableCell>
+                    {HEADERS.map(h => (
+                      <TableCell key={h.key}
+                        className={cn(
+                          "text-sm",
+                          colVisibilityClass(h),
+                          h.key === sortKey ? "font-semibold" : "",
+                          h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
+                        )}>
+                        {renderers[h.key](model)}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+
+      {/* 移动端卡片列表 */}
+      <div className="block sm:hidden space-y-3">
+        {sortedModels.map((model) => (
+          <div
+            key={model.id}
+            className="rounded-xl border border-surface-border bg-surface-card p-4"
+          >
+            {/* 模型名、公司和日期 */}
+            <div className="mb-3">
+              <Link
+                href={`/product/${model.id}`}
+                className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group max-w-full"
+              >
+                <span className="truncate">{model.name}</span>
+                <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+              </Link>
+              <div className="flex items-center gap-2 mt-0.5">
+                <p className="text-sm text-text-secondary">{model.company}</p>
+                {model.raw.release_date && (
+                  <span className="text-xs text-text-muted">· {model.raw.release_date}</span>
+                )}
+              </div>
+            </div>
+
+            {/* 指标网格 — 按重要性排序，紧凑布局 */}
+            <div className="grid grid-cols-2 gap-1.5 mb-3">
+              {MOBILE_METRIC_ORDER.map((key) => {
+                const h = HEADERS.find((x) => x.key === key)!;
+                return (
+                  <div key={h.key} className="rounded-lg bg-surface-hover p-2">
+                    <div className="flex items-center gap-1 mb-0.5">
+                      <h.icon className="h-3 w-3 text-text-muted" />
+                      <span className="text-[10px] text-text-muted truncate">{t(h.labelKey)}</span>
+                    </div>
+                    <div className={cn(
+                      "text-xs font-medium tabular-nums leading-tight",
+                      h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
+                    )}>
+                      {renderMetric(model, h.key)}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* 标签 */}
+            <div className="flex flex-wrap gap-1">
+              {model.flags.frontier ? (
+                <Badge variant="secondary" className="text-[10px] bg-violet-500/10 text-violet-400 py-0 px-1.5">{t("common.frontier")}</Badge>
+              ) : (
+                <Badge variant="secondary" className="text-[10px] bg-blue-500/10 text-blue-400 py-0 px-1.5">{t("common.mainstream")}</Badge>
+              )}
+              <Badge variant="secondary"
+                className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
+                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
+                  : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
+                {t(model.type === "开源" ? "common.open" : "common.closed")}
+              </Badge>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

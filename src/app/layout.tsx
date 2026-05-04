@@ -28,11 +28,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "zh_CN",
   },
+  verification: {
+    google: "Wf7Oa2cKQLQZ6rZkQnzemhakueMXBQtENt5vI6rofa8",
+  },
 };
 
 const themeScript = `(function(){try{var t=localStorage.getItem("theme");var c=t==="dark"?"dark":"light";document.documentElement.classList.remove("light","dark");document.documentElement.classList.add(c);}catch(e){document.documentElement.classList.add("light");}})();`;
 
-const localeScript = `(function(){try{var l=localStorage.getItem("llmcompare-locale");if(l&&l!=="zh"){document.documentElement.style.visibility="hidden";}}catch(e){}})();`;
+const localeScript = `(function(){try{var l=localStorage.getItem("llmcompare-locale");document.documentElement.lang=l==="en"?"en":"zh-CN";if(l&&l!=="zh"){document.documentElement.style.visibility="hidden";}}catch(e){}})();`;
 
 export default function RootLayout({
   children,

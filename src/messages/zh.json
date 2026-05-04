@@ -2,7 +2,8 @@
   "nav": {
     "home": "首页",
     "models": "模型目录",
-    "about": "关于"
+    "about": "关于",
+    "brand": "模型图鉴"
   },
   "home": {
     "badge": "2026年5月最新数据",
@@ -13,7 +14,8 @@
     "cardsTitle": "前沿模型",
     "cardsViewAll": "查看全部",
     "footer": "模型图鉴 - 国内大模型数据，整理在一起",
-    "footerDisclaimer": "数据仅供参考，基于公开信息整理"
+    "footerDisclaimer": "数据仅供参考，基于公开信息整理",
+    "seoDesc": "模型图鉴收录了 DeepSeek、Kimi、Qwen、通义千问、GLM、MiniMax 等国内主流大语言模型的基准测试分数、API 性能与定价数据，帮助开发者和研究者快速对比选型。"
   },
   "models": {
     "title": "模型目录",
@@ -32,13 +34,16 @@
     "colTokens": "周Token",
     "colModel": "模型",
     "colCompany": "公司",
-    "colType": "类型"
+    "colType": "类型",
+    "sortBy": "排序方式",
+    "sortAsc": "升序",
+    "sortDesc": "降序"
   },
   "about": {
     "title": "关于模型图鉴",
     "backLink": "返回首页",
     "backgroundTitle": "项目背景",
-    "backgroundDesc": "由 AI 爱好者维护，收集整理国内大模型公开数据，所有数据均来自公开渠道。持续跟踪各模型最新版本和定价变化，定期更新（上次更新：2026.05.03）。",
+    "backgroundDesc": "由 AI 爱好者维护，收集整理国内大模型公开数据，所有数据均来自公开渠道。持续跟踪各模型最新版本和定价变化，定期更新（上次更新：2026.05.04）。",
     "backgroundContribute": "发现错误或想补充模型？欢迎提交",
     "filterDesc": "从 Artificial Analysis 全球模型中筛选国内厂商大参数量模型，补充厂商链接和 OpenRouter 数据，保留近 180 天活跃模型。",
     "sourceTitle": "数据来源",
@@ -54,7 +59,6 @@
     "intelligence": "智能",
     "coding": "编程",
     "agentic": "Agent",
-    "math": "数学",
     "hallucinationControl": "全知指数",
     "hallucinationNote": "正负分数，越正越好",
     "sourceAa": "数据来源：Artificial Analysis",
@@ -65,16 +69,16 @@
 
     "basicTitle": "基本信息",
     "company": "公司",
-    "level": "级别",
+    "parameters": "参数量",
     "contextWindow": "上下文窗口",
     "releaseDate": "发布日期",
+    "outputTokens": "最大输出",
     "priceTitle": "价格",
     "cnPriceLabel": "国内官价",
     "input": "输入",
     "output": "输出",
     "inputAa": "输入 (AA)",
     "outputAa": "输出 (AA)",
-    "blended": "混合 (3:1)",
     "vendorLinks": "厂商链接",
     "homepage": "官网",
     "apiDocs": "API 文档",

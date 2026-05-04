@@ -8,20 +8,17 @@
     "scores": {
       "intelligence": 53.9,
       "coding": 47.12,
-      "agentic": 65.97,
-      "math": null
+      "agentic": 65.97
     },
     "speed": {
-      "median_tps": 31.7853403934836,
-      "ttft_seconds": 143.0395941043315,
-      "e2e_seconds": 158.77011621956757
+      "median_tps": 34.381740286094,
+      "ttft_seconds": 132.5019061421414,
+      "e2e_seconds": 147.0445091587266
     },
     "pricing": {
       "input": 0.95,
       "output": 4,
-      "blended": null,
-      "display": "¥6.5/¥27.0 (缓存命中¥1.1)",
-      "cn_source": "platform.kimi.com"
+      "display": "¥6.5/¥27.0"
     },
     "flags": {
       "frontier": true,
@@ -30,17 +27,17 @@
       "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 256000,
       "size_class": "Large",
+      "parameters": 1000,
+      "output_tokens": 256000,
       "release_date": "2026-04-20",
       "omniscience": 6.417
     },
     "url": "https://artificialanalysis.ai/models/kimi-k2-6",
-    "rank": 1,
     "vendor_links": {
       "homepage": "https://www.moonshot.cn",
       "api_docs": "https://platform.moonshot.cn",
@@ -51,15 +48,25 @@
     "cn_pricing": {
       "input": 6.5,
       "output": 27.0,
-      "cache_hit": 1.1,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_requests": 3077203,
+    "openrouter_weekly_tokens": 1882598843619,
     "openrouter_pricing": {
       "prompt": 0.74,
       "completion": 3.49
     },
-    "openrouter_weekly_tokens": 1882598843619
+    "arena_rankings": {
+      "code": {
+        "rank": 7,
+        "score": 1526,
+        "votes": 2130
+      },
+      "vision": {
+        "rank": 13,
+        "score": 1261,
+        "votes": 3420
+      }
+    }
   },
   {
     "id": "mimo-v2-5-pro",
@@ -70,20 +77,17 @@
     "scores": {
       "intelligence": 53.83,
       "coding": 45.53,
-      "agentic": 67.44,
-      "math": null
+      "agentic": 67.44
     },
     "speed": {
-      "median_tps": 63.6367029146702,
-      "ttft_seconds": 34.39938869502567,
-      "e2e_seconds": 42.256489661907075
+      "median_tps": 67.7133683771895,
+      "ttft_seconds": 32.20615653477593,
+      "e2e_seconds": 39.59022281271986
     },
     "pricing": {
       "input": 1,
       "output": 3,
-      "blended": null,
-      "display": "¥7.0/¥21.0 (缓存命中¥1.4) (≤256K)",
-      "cn_source": "小米开放平台控制台"
+      "display": "¥7.0/¥21.0 (≤256K)"
     },
     "flags": {
       "frontier": true,
@@ -92,17 +96,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 1000000,
       "size_class": "Large",
+      "parameters": 1000,
+      "output_tokens": 131072,
       "release_date": "2026-04-22",
       "omniscience": 3.6
     },
     "url": "https://artificialanalysis.ai/models/mimo-v2-5-pro",
-    "rank": 2,
     "vendor_links": {
       "homepage": "https://huggingface.co/XiaomiMiMo",
       "huggingface": "https://huggingface.co/XiaomiMiMo",
@@ -112,16 +116,25 @@
     "cn_pricing": {
       "input": 7.0,
       "output": 21.0,
-      "cache_hit": 1.4,
-      "condition": "≤256K",
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_requests": 361924,
+    "openrouter_weekly_tokens": 58865626407,
     "openrouter_pricing": {
       "prompt": 1.0,
       "completion": 3.0
     },
-    "openrouter_weekly_tokens": 58865626407
+    "arena_rankings": {
+      "code": {
+        "rank": 11,
+        "score": 1475,
+        "votes": 2681
+      },
+      "vision": {
+        "rank": 36,
+        "score": 1218,
+        "votes": 4305
+      }
+    }
   },
   {
     "id": "qwen3-6-max-preview",
@@ -132,20 +145,17 @@
     "scores": {
       "intelligence": 51.81,
       "coding": 44.92,
-      "agentic": 64.83,
-      "math": null
+      "agentic": 64.83
     },
     "speed": {
-      "median_tps": 35.5338511454262,
-      "ttft_seconds": 59.96917663448322,
-      "e2e_seconds": 74.04026614160405
+      "median_tps": 35.8573610120398,
+      "ttft_seconds": 59.29565702266806,
+      "e2e_seconds": 73.23979529408506
     },
     "pricing": {
       "input": 1.3,
       "output": 7.8,
-      "blended": null,
-      "display": "¥9/¥54 (≤128K)",
-      "cn_source": "bailian.console.aliyun.com"
+      "display": "¥9/¥54 (≤128K)"
     },
     "flags": {
       "frontier": true,
@@ -154,17 +164,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 256000,
       "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 65536,
       "release_date": "2026-04-20",
       "omniscience": 10.2
     },
     "url": "https://artificialanalysis.ai/models/qwen3-6-max",
-    "rank": 3,
     "vendor_links": {
       "homepage": "https://tongyi.aliyun.com",
       "api_docs": "https://dashscope.aliyun.com",
@@ -176,15 +186,14 @@
     "cn_pricing": {
       "input": 9,
       "output": 54,
-      "condition": "≤128K",
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_requests": null,
+    "openrouter_weekly_tokens": 4205972,
     "openrouter_pricing": {
       "prompt": 1.04,
       "completion": 6.24
     },
-    "openrouter_weekly_tokens": 4205972
+    "arena_rankings": {}
   },
   {
     "id": "deepseek-v4-pro-max",
@@ -195,20 +204,17 @@
     "scores": {
       "intelligence": 51.51,
       "coding": 47.47,
-      "agentic": 67.19,
-      "math": null
+      "agentic": 67.19
     },
     "speed": {
-      "median_tps": 34.224201259827,
-      "ttft_seconds": 129.72508791780328,
-      "e2e_seconds": 144.33463267252367
+      "median_tps": 34.053456053124,
+      "ttft_seconds": 130.29375178135533,
+      "e2e_seconds": 144.97654929888162
     },
     "pricing": {
       "input": 1.74,
       "output": 3.48,
-      "blended": null,
-      "display": "¥12/¥24",
-      "cn_source": "bailian.console.aliyun.com (百炼)"
+      "display": "¥12/¥24"
     },
     "flags": {
       "frontier": true,
@@ -217,17 +223,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 1000000,
       "size_class": "Large",
+      "parameters": 1600,
+      "output_tokens": 393216,
       "release_date": "2026-04-24",
       "omniscience": -10.017
     },
     "url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
-    "rank": 4,
     "vendor_links": {
       "homepage": "https://www.deepseek.com",
       "api_docs": "https://api-docs.deepseek.com",
@@ -241,12 +247,12 @@
       "output": 24,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_requests": 1774521,
+    "openrouter_weekly_tokens": 360291809357,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
     },
-    "openrouter_weekly_tokens": 360291809357
+    "arena_rankings": {}
   },
   {
     "id": "glm-5-1",
@@ -257,20 +263,17 @@
     "scores": {
       "intelligence": 51.41,
       "coding": 43.37,
-      "agentic": 67.05,
-      "math": null
+      "agentic": 67.05
     },
     "speed": {
-      "median_tps": 54.3762203518461,
-      "ttft_seconds": 71.1325898652674,
-      "e2e_seconds": 80.32778579401541
+      "median_tps": 58.6695883112731,
+      "ttft_seconds": 65.92771047889569,
+      "e2e_seconds": 74.45001333446093
     },
     "pricing": {
       "input": 1.4,
       "output": 4.4,
-      "blended": null,
-      "display": "¥6/¥24 (缓存命中¥1.3) (<32K)",
-      "cn_source": "open.bigmodel.cn/pricing"
+      "display": "¥6/¥24 (<32K)"
     },
     "flags": {
       "frontier": true,
@@ -279,17 +282,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 200000,
       "size_class": "Large",
+      "parameters": 744,
+      "output_tokens": 131000,
       "release_date": "2026-04-07",
       "omniscience": 1.933
     },
     "url": "https://artificialanalysis.ai/models/glm-5-1",
-    "rank": 5,
     "vendor_links": {
       "homepage": "https://z.ai",
       "api_docs": "https://open.bigmodel.cn",
@@ -300,16 +303,25 @@
     "cn_pricing": {
       "input": 6,
       "output": 24,
-      "cache_hit": 1.3,
-      "condition": "<32K",
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_requests": null,
+    "openrouter_weekly_tokens": 393654258589,
     "openrouter_pricing": {
       "prompt": 1.05,
       "completion": 3.5
     },
-    "openrouter_weekly_tokens": 393654258589
+    "arena_rankings": {
+      "text": {
+        "rank": 18,
+        "score": 1471,
+        "votes": 11071
+      },
+      "code": {
+        "rank": 5,
+        "score": 1534,
+        "votes": 3412
+      }
+    }
   },
   {
     "id": "qwen3-6-plus",
@@ -320,20 +332,17 @@
     "scores": {
       "intelligence": 49.98,
       "coding": 42.87,
-      "agentic": 61.67,
-      "math": null
+      "agentic": 61.67
     },
     "speed": {
-      "median_tps": 52.353526128851,
-      "ttft_seconds": 108.69656896399061,
-      "e2e_seconds": 118.24702405214293
+      "median_tps": 52.8696572594682,
+      "ttft_seconds": 107.75371700375578,
+      "e2e_seconds": 117.21093738152658
     },
     "pricing": {
       "input": 0.5,
       "output": 3,
-      "blended": null,
-      "display": "¥2/¥12 (≤256K)",
-      "cn_source": "bailian.console.aliyun.com"
+      "display": "¥2/¥12 (≤256K)"
     },
     "flags": {
       "frontier": false,
@@ -342,17 +351,17 @@
       "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 1000000,
       "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 65536,
       "release_date": "2026-04-02",
       "omniscience": 2.65
     },
     "url": "https://artificialanalysis.ai/models/qwen3-6-plus",
-    "rank": 6,
     "vendor_links": {
       "homepage": "https://tongyi.aliyun.com",
       "api_docs": "https://dashscope.aliyun.com",
@@ -364,15 +373,20 @@
     "cn_pricing": {
       "input": 2,
       "output": 12,
-      "condition": "≤256K",
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_requests": 792786,
+    "openrouter_weekly_tokens": 233618976808,
     "openrouter_pricing": {
       "prompt": 0.33,
       "completion": 1.95
     },
-    "openrouter_weekly_tokens": 233618976808
+    "arena_rankings": {
+      "code": {
+        "rank": 12,
+        "score": 1467,
+        "votes": 3716
+      }
+    }
   },
   {
     "id": "deepseek-v4-pro-high",
@@ -383,20 +397,17 @@
     "scores": {
       "intelligence": 49.79,
       "coding": 43.25,
-      "agentic": 66.65,
-      "math": null
+      "agentic": 66.65
     },
     "speed": {
-      "median_tps": 34.011259805387,
-      "ttft_seconds": 60.37169882097147,
-      "e2e_seconds": 75.0727126281932
+      "median_tps": 33.8696894058474,
+      "ttft_seconds": 60.71964965348188,
+      "e2e_seconds": 75.48211157064603
     },
     "pricing": {
       "input": 1.74,
       "output": 3.48,
-      "blended": null,
-      "display": "¥12/¥24",
-      "cn_source": "bailian.console.aliyun.com (百炼)"
+      "display": "¥12/¥24"
     },
     "flags": {
       "frontier": false,
@@ -405,17 +416,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 1000000,
       "size_class": "Large",
+      "parameters": 1600,
+      "output_tokens": 393216,
       "release_date": "2026-04-24",
       "omniscience": -9.7
     },
     "url": "https://artificialanalysis.ai/models/deepseek-v4-pro-high",
-    "rank": 7,
     "vendor_links": {
       "homepage": "https://www.deepseek.com",
       "api_docs": "https://api-docs.deepseek.com",
@@ -429,12 +440,12 @@
       "output": 24,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_requests": 1774521,
+    "openrouter_weekly_tokens": 360291809357,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
     },
-    "openrouter_weekly_tokens": 360291809357
+    "arena_rankings": {}
   },
   {
     "id": "glm-5",
@@ -445,20 +456,17 @@
     "scores": {
       "intelligence": 49.77,
       "coding": 44.18,
-      "agentic": 63.14,
-      "math": null
+      "agentic": 63.14
     },
     "speed": {
-      "median_tps": 65.1980413503454,
-      "ttft_seconds": 49.35941152329546,
-      "e2e_seconds": 57.028353559655436
+      "median_tps": 63.9929445569389,
+      "ttft_seconds": 50.171073371147386,
+      "e2e_seconds": 57.984434726243585
     },
     "pricing": {
       "input": 1,
       "output": 3.2,
-      "blended": null,
-      "display": "¥4/¥18 (缓存命中¥1) (<32K)",
-      "cn_source": "open.bigmodel.cn/pricing"
+      "display": "¥4/¥18 (<32K)"
     },
     "flags": {
       "frontier": false,
@@ -467,17 +475,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 200000,
       "size_class": "Large",
+      "parameters": 744,
+      "output_tokens": 131000,
       "release_date": "2026-02-11",
       "omniscience": 2
     },
     "url": "https://artificialanalysis.ai/models/glm-5",
-    "rank": 8,
     "vendor_links": {
       "homepage": "https://z.ai",
       "api_docs": "https://open.bigmodel.cn",
@@ -488,16 +496,20 @@
     "cn_pricing": {
       "input": 4,
       "output": 18,
-      "cache_hit": 1,
-      "condition": "<32K",
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_requests": null,
+    "openrouter_weekly_tokens": 393654258589,
     "openrouter_pricing": {
       "prompt": 1.05,
       "completion": 3.5
     },
-    "openrouter_weekly_tokens": 393654258589
+    "arena_rankings": {
+      "code": {
+        "rank": 21,
+        "score": 1437,
+        "votes": 6393
+      }
+    }
   },
   {
     "id": "minimax-m2-7",
@@ -508,20 +520,17 @@
     "scores": {
       "intelligence": 49.62,
       "coding": 41.93,
-      "agentic": 61.49,
-      "math": null
+      "agentic": 61.49
     },
     "speed": {
-      "median_tps": 56.1566848161878,
-      "ttft_seconds": 45.85273368488996,
-      "e2e_seconds": 54.75639318039973
+      "median_tps": 57.7444162572992,
+      "ttft_seconds": 44.643340574687265,
+      "e2e_seconds": 53.30218644078947
     },
     "pricing": {
       "input": 0.3,
       "output": 1.2,
-      "blended": null,
-      "display": "¥2.1/¥8.4 (缓存命中¥0.42)",
-      "cn_source": "platform.minimaxi.com"
+      "display": "¥2.1/¥8.4"
     },
     "flags": {
       "frontier": false,
@@ -530,17 +539,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 204800,
       "size_class": "Large",
+      "parameters": 230,
+      "output_tokens": 196608,
       "release_date": "2026-03-18",
       "omniscience": 0.683
     },
     "url": "https://artificialanalysis.ai/models/minimax-m2-7",
-    "rank": 9,
     "vendor_links": {
       "homepage": "https://www.minimaxi.com",
       "api_docs": "https://platform.minimaxi.com",
@@ -550,15 +559,20 @@
     "cn_pricing": {
       "input": 2.1,
       "output": 8.4,
-      "cache_hit": 0.42,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_requests": null,
+    "openrouter_weekly_tokens": 753296601424,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
     },
-    "openrouter_weekly_tokens": 753296601424
+    "arena_rankings": {
+      "code": {
+        "rank": 26,
+        "score": 1411,
+        "votes": 4502
+      }
+    }
   },
   {
     "id": "mimo-v2-pro",
@@ -569,20 +583,17 @@
     "scores": {
       "intelligence": 49.2,
       "coding": 41.43,
-      "agentic": 62.8,
-      "math": null
+      "agentic": 62.8
     },
     "speed": {
-      "median_tps": 61.7324262551459,
-      "ttft_seconds": 51.27148259097495,
-      "e2e_seconds": 59.37095365231722
+      "median_tps": 69.2007222047302,
+      "ttft_seconds": 45.34215016147566,
+      "e2e_seconds": 52.567508280148914
     },
     "pricing": {
       "input": 1,
       "output": 3,
-      "blended": null,
-      "display": "¥7.0/¥21.0 (缓存命中¥1.4) (≤256K)",
-      "cn_source": "小米开放平台控制台"
+      "display": "¥7.0/¥21.0 (≤256K)"
     },
     "flags": {
       "frontier": false,
@@ -591,17 +602,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 1000000,
       "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 131072,
       "release_date": "2026-03-18",
       "omniscience": 4.917
     },
     "url": "https://artificialanalysis.ai/models/mimo-v2-pro",
-    "rank": 10,
     "vendor_links": {
       "homepage": "https://huggingface.co/XiaomiMiMo",
       "huggingface": "https://huggingface.co/XiaomiMiMo",
@@ -611,16 +622,25 @@
     "cn_pricing": {
       "input": 7.0,
       "output": 21.0,
-      "cache_hit": 1.4,
-      "condition": "≤256K",
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_requests": 190529,
+    "openrouter_weekly_tokens": 58865626407,
     "openrouter_pricing": {
       "prompt": 1.0,
       "completion": 3.0
     },
-    "openrouter_weekly_tokens": 58865626407
+    "arena_rankings": {
+      "code": {
+        "rank": 11,
+        "score": 1475,
+        "votes": 2681
+      },
+      "vision": {
+        "rank": 36,
+        "score": 1218,
+        "votes": 4305
+      }
+    }
   },
   {
     "id": "kimi-k2-5",
@@ -631,20 +651,17 @@
     "scores": {
       "intelligence": 46.81,
       "coding": 39.55,
-      "agentic": 58.94,
-      "math": null
+      "agentic": 58.94
     },
     "speed": {
-      "median_tps": 40.3132165888939,
-      "ttft_seconds": 76.54000891041098,
-      "e2e_seconds": 88.94288921388315
+      "median_tps": 40.9576022295471,
+      "ttft_seconds": 75.42319719216896,
+      "e2e_seconds": 87.63094307528358
     },
     "pricing": {
       "input": 0.5,
       "output": 2.85,
-      "blended": null,
-      "display": "¥4.0/¥21.0 (缓存命中¥0.7)",
-      "cn_source": "platform.kimi.com"
+      "display": "¥4.0/¥21.0"
     },
     "flags": {
       "frontier": false,
@@ -653,17 +670,17 @@
       "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 256000,
       "size_class": "Large",
+      "parameters": 1000,
+      "output_tokens": 256000,
       "release_date": "2026-01-27",
       "omniscience": -8.117
     },
     "url": "https://artificialanalysis.ai/models/kimi-k2-5",
-    "rank": 11,
     "vendor_links": {
       "homepage": "https://www.moonshot.cn",
       "api_docs": "https://platform.moonshot.cn",
@@ -674,15 +691,25 @@
     "cn_pricing": {
       "input": 4.0,
       "output": 21.0,
-      "cache_hit": 0.7,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_requests": 2247956,
+    "openrouter_weekly_tokens": 1882598843619,
     "openrouter_pricing": {
       "prompt": 0.74,
       "completion": 3.49
     },
-    "openrouter_weekly_tokens": 1882598843619
+    "arena_rankings": {
+      "code": {
+        "rank": 7,
+        "score": 1526,
+        "votes": 2130
+      },
+      "vision": {
+        "rank": 13,
+        "score": 1261,
+        "votes": 3420
+      }
+    }
   },
   {
     "id": "deepseek-v4-flash-max",
@@ -693,20 +720,17 @@
     "scores": {
       "intelligence": 46.52,
       "coding": 38.71,
-      "agentic": 61.28,
-      "math": null
+      "agentic": 61.28
     },
     "speed": {
-      "median_tps": 82.9578674705814,
-      "ttft_seconds": 68.82064795892019,
-      "e2e_seconds": 74.84780385437894
+      "median_tps": 82.1304728209273,
+      "ttft_seconds": 69.50580741566941,
+      "e2e_seconds": 75.59368177979455
     },
     "pricing": {
       "input": 0.14,
       "output": 0.28,
-      "blended": null,
-      "display": "¥1/¥2",
-      "cn_source": "bailian.console.aliyun.com (百炼)"
+      "display": "¥1/¥2"
     },
     "flags": {
       "frontier": false,
@@ -715,17 +739,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 1000000,
       "size_class": "Large",
+      "parameters": 284,
+      "output_tokens": 64000,
       "release_date": "2026-04-24",
       "omniscience": -22.9
     },
     "url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
-    "rank": 12,
     "vendor_links": {
       "homepage": "https://www.deepseek.com",
       "api_docs": "https://api-docs.deepseek.com",
@@ -739,12 +763,12 @@
       "output": 2,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_requests": 6632163,
+    "openrouter_weekly_tokens": 706612499390,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
     },
-    "openrouter_weekly_tokens": 706612499390
+    "arena_rankings": {}
   },
   {
     "id": "qwen3-5-397b-a17b",
@@ -755,20 +779,17 @@
     "scores": {
       "intelligence": 45.05,
       "coding": 41.28,
-      "agentic": 55.83,
-      "math": null
+      "agentic": 55.83
     },
     "speed": {
-      "median_tps": 51.8897944178619,
-      "ttft_seconds": 63.857935039449124,
-      "e2e_seconds": 73.49374118609838
+      "median_tps": 52.7994908949217,
+      "ttft_seconds": 62.84216787511083,
+      "e2e_seconds": 72.31195615384763
     },
     "pricing": {
       "input": 0.6,
       "output": 3.6,
-      "blended": null,
-      "display": "¥1.2/¥7.2 (≤128K)",
-      "cn_source": "bailian.console.aliyun.com"
+      "display": "¥1.2/¥7.2 (≤128K)"
     },
     "flags": {
       "frontier": false,
@@ -777,17 +798,17 @@
       "image_input": true,
       "chinese_eval": true,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 262144,
       "size_class": "Large",
+      "parameters": 397,
+      "output_tokens": 65000,
       "release_date": "2026-02-16",
       "omniscience": -29.783
     },
     "url": "https://artificialanalysis.ai/models/qwen3-5-397b-a17b",
-    "rank": 13,
     "vendor_links": {
       "homepage": "https://tongyi.aliyun.com",
       "api_docs": "https://dashscope.aliyun.com",
@@ -799,15 +820,25 @@
     "cn_pricing": {
       "input": 1.2,
       "output": 7.2,
-      "condition": "≤128K",
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_requests": 1297806,
+    "openrouter_weekly_tokens": 109032185752,
     "openrouter_pricing": {
       "prompt": 0.39,
       "completion": 2.34
     },
-    "openrouter_weekly_tokens": 109032185752
+    "arena_rankings": {
+      "code": {
+        "rank": 38,
+        "score": 1387,
+        "votes": 7601
+      },
+      "vision": {
+        "rank": 24,
+        "score": 1242,
+        "votes": 9629
+      }
+    }
   },
   {
     "id": "deepseek-v4-flash-high",
@@ -818,8 +849,7 @@
     "scores": {
       "intelligence": 44.87,
       "coding": 39.76,
-      "agentic": 57.82,
-      "math": null
+      "agentic": 57.82
     },
     "speed": {
       "median_tps": 0,
@@ -829,9 +859,7 @@
     "pricing": {
       "input": 0.14,
       "output": 0.28,
-      "blended": null,
-      "display": "¥1/¥2",
-      "cn_source": "bailian.console.aliyun.com (百炼)"
+      "display": "¥1/¥2"
     },
     "flags": {
       "frontier": false,
@@ -840,17 +868,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": false,
-      "has_pricing": true,
       "data_complete": false
     },
     "meta": {
       "context_window": 1000000,
       "size_class": "Large",
+      "parameters": 284,
+      "output_tokens": 64000,
       "release_date": "2026-04-24",
       "omniscience": -22.283
     },
     "url": "https://artificialanalysis.ai/models/deepseek-v4-flash-high",
-    "rank": 14,
     "vendor_links": {
       "homepage": "https://www.deepseek.com",
       "api_docs": "https://api-docs.deepseek.com",
@@ -864,12 +892,12 @@
       "output": 2,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_requests": 6632163,
+    "openrouter_weekly_tokens": 706612499390,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
     },
-    "openrouter_weekly_tokens": 706612499390
+    "arena_rankings": {}
   },
   {
     "id": "glm-4-7",
@@ -880,20 +908,17 @@
     "scores": {
       "intelligence": 42.11,
       "coding": 36.26,
-      "agentic": 55.01,
-      "math": 95
+      "agentic": 55.01
     },
     "speed": {
-      "median_tps": 103.184397438755,
-      "ttft_seconds": 20.699495684707767,
-      "e2e_seconds": 25.545189533884667
+      "median_tps": 97.9943541385644,
+      "ttft_seconds": 21.772818151289368,
+      "e2e_seconds": 26.87515291736169
     },
     "pricing": {
       "input": 0.6,
       "output": 2.2,
-      "blended": null,
-      "display": "¥2/¥8 (缓存命中¥0.4) (<32K)",
-      "cn_source": "open.bigmodel.cn/pricing"
+      "display": "¥2/¥8 (<32K)"
     },
     "flags": {
       "frontier": false,
@@ -902,17 +927,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 200000,
       "size_class": "Large",
+      "parameters": 357,
+      "output_tokens": 128000,
       "release_date": "2025-12-22",
       "omniscience": -34.6
     },
     "url": "https://artificialanalysis.ai/models/glm-4-7",
-    "rank": 15,
     "vendor_links": {
       "homepage": "https://z.ai",
       "api_docs": "https://open.bigmodel.cn",
@@ -923,16 +948,20 @@
     "cn_pricing": {
       "input": 2,
       "output": 8,
-      "cache_hit": 0.4,
-      "condition": "<32K",
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_requests": null,
+    "openrouter_weekly_tokens": 89081779837,
     "openrouter_pricing": {
       "prompt": 0.06,
       "completion": 0.4
     },
-    "openrouter_weekly_tokens": 89081779837
+    "arena_rankings": {
+      "code": {
+        "rank": 19,
+        "score": 1440,
+        "votes": 4883
+      }
+    }
   },
   {
     "id": "minimax-m2-5",
@@ -943,20 +972,17 @@
     "scores": {
       "intelligence": 41.93,
       "coding": 37.43,
-      "agentic": 55.6,
-      "math": null
+      "agentic": 55.6
     },
     "speed": {
-      "median_tps": 105.813353379891,
-      "ttft_seconds": 20.667636131046375,
-      "e2e_seconds": 25.39293765518294
+      "median_tps": 109.434416546934,
+      "ttft_seconds": 19.945647830435213,
+      "e2e_seconds": 24.514594381044006
     },
     "pricing": {
       "input": 0.3,
       "output": 1.2,
-      "blended": null,
-      "display": "¥2.1/¥8.4 (缓存命中¥0.21)",
-      "cn_source": "platform.minimaxi.com"
+      "display": "¥2.1/¥8.4"
     },
     "flags": {
       "frontier": false,
@@ -965,17 +991,17 @@
       "image_input": false,
       "chinese_eval": true,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 204800,
       "size_class": "Large",
+      "parameters": 230,
+      "output_tokens": 131072,
       "release_date": "2026-02-12",
       "omniscience": -39.7
     },
     "url": "https://artificialanalysis.ai/models/minimax-m2-5",
-    "rank": 16,
     "vendor_links": {
       "homepage": "https://www.minimaxi.com",
       "api_docs": "https://platform.minimaxi.com",
@@ -985,15 +1011,20 @@
     "cn_pricing": {
       "input": 2.1,
       "output": 8.4,
-      "cache_hit": 0.21,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_requests": null,
+    "openrouter_weekly_tokens": 753296601424,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
     },
-    "openrouter_weekly_tokens": 753296601424
+    "arena_rankings": {
+      "code": {
+        "rank": 26,
+        "score": 1411,
+        "votes": 4502
+      }
+    }
   },
   {
     "id": "hy3-preview",
@@ -1004,20 +1035,17 @@
     "scores": {
       "intelligence": 41.85,
       "coding": 36.46,
-      "agentic": 55.67,
-      "math": null
+      "agentic": 55.67
     },
     "speed": {
-      "median_tps": 84.1106375128455,
-      "ttft_seconds": 27.264092490410555,
-      "e2e_seconds": 33.20864379551318
+      "median_tps": 71.4537142841525,
+      "ttft_seconds": 31.53354890170312,
+      "e2e_seconds": 38.531085768878874
     },
     "pricing": {
       "input": 0,
       "output": 0,
-      "blended": null,
-      "display": "¥3.975/¥15.9 (≤32K)",
-      "cn_source": "cloud.tencent.com/doc/1729/97731"
+      "display": "¥3.975/¥15.9 (≤32K)"
     },
     "flags": {
       "frontier": false,
@@ -1026,17 +1054,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 256000,
       "size_class": "Large",
+      "parameters": 295,
+      "output_tokens": 256000,
       "release_date": "2026-04-23",
       "omniscience": -34.633
     },
     "url": "https://artificialanalysis.ai/models/hy3",
-    "rank": 17,
     "vendor_links": {
       "homepage": "https://hunyuan.tencent.com",
       "api_docs": "https://cloud.tencent.com/document/product/1729",
@@ -1045,12 +1073,11 @@
     "cn_pricing": {
       "input": 3.975,
       "output": 15.9,
-      "condition": "≤32K",
       "source": "cloud.tencent.com/doc/1729/97731"
     },
-    "openrouter_weekly_requests": null,
+    "openrouter_weekly_tokens": 45439,
     "openrouter_pricing": null,
-    "openrouter_weekly_tokens": 45439
+    "arena_rankings": {}
   },
   {
     "id": "deepseek-v3-2",
@@ -1061,8 +1088,7 @@
     "scores": {
       "intelligence": 41.71,
       "coding": 36.7,
-      "agentic": 52.92,
-      "math": 92
+      "agentic": 52.92
     },
     "speed": {
       "median_tps": 0,
@@ -1072,9 +1098,7 @@
     "pricing": {
       "input": 0.3,
       "output": 0.45,
-      "blended": null,
-      "display": "¥2/¥3 (≤32K)",
-      "cn_source": "bailian.console.aliyun.com (百炼)"
+      "display": "¥2/¥3 (≤32K)"
     },
     "flags": {
       "frontier": false,
@@ -1083,17 +1107,17 @@
       "image_input": false,
       "chinese_eval": true,
       "has_speed": false,
-      "has_pricing": true,
       "data_complete": false
     },
     "meta": {
       "context_window": 128000,
       "size_class": "Large",
+      "parameters": 685,
+      "output_tokens": 64000,
       "release_date": "2025-12-01",
       "omniscience": -20.883
     },
     "url": "https://artificialanalysis.ai/models/deepseek-v3-2-reasoning",
-    "rank": 18,
     "vendor_links": {
       "homepage": "https://www.deepseek.com",
       "api_docs": "https://api-docs.deepseek.com",
@@ -1105,15 +1129,20 @@
     "cn_pricing": {
       "input": 2,
       "output": 3,
-      "condition": "≤32K",
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_requests": 16564563,
+    "openrouter_weekly_tokens": 20300937747,
     "openrouter_pricing": {
       "prompt": 0.4,
       "completion": 1.2
     },
-    "openrouter_weekly_tokens": 20300937747
+    "arena_rankings": {
+      "code": {
+        "rank": 49,
+        "score": 1332,
+        "votes": 10480
+      }
+    }
   },
   {
     "id": "mimo-v2-flash-feb-2026",
@@ -1124,20 +1153,17 @@
     "scores": {
       "intelligence": 41.46,
       "coding": 33.48,
-      "agentic": 48.76,
-      "math": null
+      "agentic": 48.76
     },
     "speed": {
-      "median_tps": 129.697061961721,
-      "ttft_seconds": 17.883947564183316,
-      "e2e_seconds": 21.739085008604153
+      "median_tps": 150.898380622686,
+      "ttft_seconds": 15.473422392773685,
+      "e2e_seconds": 18.786910568967077
     },
     "pricing": {
       "input": 0.1,
       "output": 0.3,
-      "blended": null,
-      "display": "¥0.7/¥2.1 (缓存命中¥0.07) (≤256K)",
-      "cn_source": "小米开放平台控制台"
+      "display": "¥0.7/¥2.1 (≤256K)"
     },
     "flags": {
       "frontier": false,
@@ -1146,17 +1172,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 256000,
       "size_class": "Large",
+      "parameters": 309,
+      "output_tokens": 131072,
       "release_date": "2025-12-16",
       "omniscience": -18.467
     },
     "url": "https://artificialanalysis.ai/models/mimo-v2-0206",
-    "rank": 19,
     "vendor_links": {
       "homepage": "https://huggingface.co/XiaomiMiMo",
       "huggingface": "https://huggingface.co/XiaomiMiMo",
@@ -1166,16 +1192,25 @@
     "cn_pricing": {
       "input": 0.7,
       "output": 2.1,
-      "cache_hit": 0.07,
-      "condition": "≤256K",
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_requests": null,
+    "openrouter_weekly_tokens": 58865626407,
     "openrouter_pricing": {
       "prompt": 0.4,
       "completion": 2.0
     },
-    "openrouter_weekly_tokens": 58865626407
+    "arena_rankings": {
+      "code": {
+        "rank": 18,
+        "score": 1444,
+        "votes": 1570
+      },
+      "vision": {
+        "rank": 36,
+        "score": 1218,
+        "votes": 4305
+      }
+    }
   },
   {
     "id": "kimi-k2-thinking",
@@ -1186,20 +1221,17 @@
     "scores": {
       "intelligence": 40.89,
       "coding": 34.83,
-      "agentic": 47.9,
-      "math": 94.67
+      "agentic": 47.9
     },
     "speed": {
-      "median_tps": 106.244153421674,
-      "ttft_seconds": 20.67304716695548,
-      "e2e_seconds": 25.37918848294435
+      "median_tps": 106.604694703161,
+      "ttft_seconds": 21.303422053378156,
+      "e2e_seconds": 25.993647013847692
     },
     "pricing": {
       "input": 0.6,
       "output": 2.5,
-      "blended": null,
-      "display": "¥4.0/¥16.0 (缓存命中¥1.0)",
-      "cn_source": "platform.kimi.com"
+      "display": "¥4.0/¥16.0"
     },
     "flags": {
       "frontier": false,
@@ -1208,17 +1240,17 @@
       "image_input": false,
       "chinese_eval": true,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 256000,
       "size_class": "Large",
+      "parameters": 1000,
+      "output_tokens": 96000,
       "release_date": "2025-11-06",
       "omniscience": -20.483
     },
     "url": "https://artificialanalysis.ai/models/kimi-k2-thinking",
-    "rank": 20,
     "vendor_links": {
       "homepage": "https://www.moonshot.cn",
       "api_docs": "https://platform.moonshot.cn",
@@ -1229,15 +1261,25 @@
     "cn_pricing": {
       "input": 4.0,
       "output": 16.0,
-      "cache_hit": 1.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_requests": null,
+    "openrouter_weekly_tokens": 5326292247,
     "openrouter_pricing": {
       "prompt": 0.74,
       "completion": 3.49
     },
-    "openrouter_weekly_tokens": 5326292247
+    "arena_rankings": {
+      "code": {
+        "rank": 7,
+        "score": 1526,
+        "votes": 2130
+      },
+      "vision": {
+        "rank": 13,
+        "score": 1261,
+        "votes": 3420
+      }
+    }
   },
   {
     "id": "qwen3-max-thinking",
@@ -1248,20 +1290,17 @@
     "scores": {
       "intelligence": 39.85,
       "coding": 30.51,
-      "agentic": 50.13,
-      "math": null
+      "agentic": 50.13
     },
     "speed": {
-      "median_tps": 42.9548816624544,
-      "ttft_seconds": 50.2428014155462,
-      "e2e_seconds": 61.88292194780773
+      "median_tps": 45.0433188506454,
+      "ttft_seconds": 48.13689985850136,
+      "e2e_seconds": 59.23732524362672
     },
     "pricing": {
       "input": 1.2,
       "output": 6,
-      "blended": null,
-      "display": "¥2.5/¥10 (≤32K)",
-      "cn_source": "bailian.console.aliyun.com"
+      "display": "¥2.5/¥10 (≤32K)"
     },
     "flags": {
       "frontier": false,
@@ -1270,17 +1309,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 256000,
       "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 32000,
       "release_date": "2026-01-26",
       "omniscience": -34.417
     },
     "url": "https://artificialanalysis.ai/models/qwen3-max-thinking",
-    "rank": 21,
     "vendor_links": {
       "homepage": "https://tongyi.aliyun.com",
       "api_docs": "https://dashscope.aliyun.com",
@@ -1292,15 +1331,14 @@
     "cn_pricing": {
       "input": 2.5,
       "output": 10,
-      "condition": "≤32K",
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_requests": null,
+    "openrouter_weekly_tokens": 621973756,
     "openrouter_pricing": {
       "prompt": 0.78,
       "completion": 3.9
     },
-    "openrouter_weekly_tokens": 621973756
+    "arena_rankings": {}
   },
   {
     "id": "minimax-m2-1",
@@ -1311,20 +1349,17 @@
     "scores": {
       "intelligence": 39.42,
       "coding": 32.77,
-      "agentic": 47.4,
-      "math": 82.67
+      "agentic": 47.4
     },
     "speed": {
-      "median_tps": 102.173957050582,
-      "ttft_seconds": 21.3018877167334,
-      "e2e_seconds": 26.195502630291767
+      "median_tps": 107.058688009792,
+      "ttft_seconds": 20.433173081957587,
+      "e2e_seconds": 25.103508664197005
     },
     "pricing": {
       "input": 0.3,
       "output": 1.2,
-      "blended": null,
-      "display": "¥2.1/¥8.4",
-      "cn_source": "platform.minimaxi.com"
+      "display": "¥2.1/¥8.4"
     },
     "flags": {
       "frontier": false,
@@ -1333,17 +1368,17 @@
       "image_input": false,
       "chinese_eval": true,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 204800,
       "size_class": "Large",
+      "parameters": 230,
+      "output_tokens": 200000,
       "release_date": "2025-12-23",
       "omniscience": -32.833
     },
     "url": "https://artificialanalysis.ai/models/minimax-m2-1",
-    "rank": 22,
     "vendor_links": {
       "homepage": "https://www.minimaxi.com",
       "api_docs": "https://platform.minimaxi.com",
@@ -1355,12 +1390,18 @@
       "output": 8.4,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_requests": null,
+    "openrouter_weekly_tokens": 753296601424,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
     },
-    "openrouter_weekly_tokens": 753296601424
+    "arena_rankings": {
+      "code": {
+        "rank": 26,
+        "score": 1411,
+        "votes": 4502
+      }
+    }
   },
   {
     "id": "deepseek-v4-pro",
@@ -1371,20 +1412,17 @@
     "scores": {
       "intelligence": 39.27,
       "coding": 38.36,
-      "agentic": 63.27,
-      "math": null
+      "agentic": 63.27
     },
     "speed": {
-      "median_tps": 34.2803717823709,
-      "ttft_seconds": 2.00413401300011,
-      "e2e_seconds": 16.58974011944062
+      "median_tps": 34.1302210513062,
+      "ttft_seconds": 1.86862808599995,
+      "e2e_seconds": 16.5184013543411
     },
     "pricing": {
       "input": 1.74,
       "output": 3.48,
-      "blended": null,
-      "display": "¥12/¥24",
-      "cn_source": "bailian.console.aliyun.com (百炼)"
+      "display": "¥12/¥24"
     },
     "flags": {
       "frontier": false,
@@ -1393,17 +1431,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 1000000,
       "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 393216,
       "release_date": "2026-04-24",
       "omniscience": -30.083
     },
     "url": "https://artificialanalysis.ai/models/deepseek-v4-pro-non-reasoning",
-    "rank": 23,
     "vendor_links": {
       "homepage": "https://www.deepseek.com",
       "api_docs": "https://api-docs.deepseek.com",
@@ -1417,12 +1455,12 @@
       "output": 24,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_requests": 1774521,
+    "openrouter_weekly_tokens": 360291809357,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
     },
-    "openrouter_weekly_tokens": 360291809357
+    "arena_rankings": {}
   },
   {
     "id": "mimo-v2-flash",
@@ -1433,20 +1471,17 @@
     "scores": {
       "intelligence": 39.24,
       "coding": 31.8,
-      "agentic": 52.1,
-      "math": 96.33
+      "agentic": 52.1
     },
     "speed": {
-      "median_tps": 133.645995456243,
-      "ttft_seconds": 17.255312414183198,
-      "e2e_seconds": 20.99653936447895
+      "median_tps": 152.538625588724,
+      "ttft_seconds": 15.35255929063816,
+      "e2e_seconds": 18.630417590922736
     },
     "pricing": {
       "input": 0.1,
       "output": 0.3,
-      "blended": null,
-      "display": "¥0.7/¥2.1 (缓存命中¥0.07) (≤256K)",
-      "cn_source": "小米开放平台控制台"
+      "display": "¥0.7/¥2.1 (≤256K)"
     },
     "flags": {
       "frontier": false,
@@ -1455,17 +1490,17 @@
       "image_input": false,
       "chinese_eval": true,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 256000,
       "size_class": "Large",
+      "parameters": 309,
+      "output_tokens": 131072,
       "release_date": "2025-12-16",
       "omniscience": -43.45
     },
     "url": "https://artificialanalysis.ai/models/mimo-v2-flash-reasoning",
-    "rank": 24,
     "vendor_links": {
       "homepage": "https://huggingface.co/XiaomiMiMo",
       "huggingface": "https://huggingface.co/XiaomiMiMo",
@@ -1475,16 +1510,25 @@
     "cn_pricing": {
       "input": 0.7,
       "output": 2.1,
-      "cache_hit": 0.07,
-      "condition": "≤256K",
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_requests": 2061684,
+    "openrouter_weekly_tokens": 58865626407,
     "openrouter_pricing": {
       "prompt": 0.4,
       "completion": 2.0
     },
-    "openrouter_weekly_tokens": 58865626407
+    "arena_rankings": {
+      "code": {
+        "rank": 18,
+        "score": 1444,
+        "votes": 1570
+      },
+      "vision": {
+        "rank": 36,
+        "score": 1218,
+        "votes": 4305
+      }
+    }
   },
   {
     "id": "qwen3-5-omni-plus",
@@ -1495,20 +1539,17 @@
     "scores": {
       "intelligence": 38.63,
       "coding": 27.64,
-      "agentic": 52.83,
-      "math": null
+      "agentic": 52.83
     },
     "speed": {
-      "median_tps": 54.448863258425,
-      "ttft_seconds": 2.44297572300025,
-      "e2e_seconds": 11.625903888587507
+      "median_tps": 54.9469091712688,
+      "ttft_seconds": 2.46313232700049,
+      "e2e_seconds": 11.562825240418178
     },
     "pricing": {
       "input": 0.4,
       "output": 4.8,
-      "blended": null,
-      "display": "¥7/¥40 (文本)",
-      "cn_source": "bailian.console.aliyun.com"
+      "display": "¥7/¥40 (文本)"
     },
     "flags": {
       "frontier": false,
@@ -1517,17 +1558,17 @@
       "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 256000,
       "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 65536,
       "release_date": "2026-03-30",
       "omniscience": -12.3
     },
     "url": "https://artificialanalysis.ai/models/qwen3-5-omni-plus",
-    "rank": 25,
     "vendor_links": {
       "homepage": "https://tongyi.aliyun.com",
       "api_docs": "https://dashscope.aliyun.com",
@@ -1539,12 +1580,11 @@
     "cn_pricing": {
       "input": 7,
       "output": 40,
-      "condition": "文本",
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_requests": null,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
-    "openrouter_weekly_tokens": null
+    "arena_rankings": {}
   },
   {
     "id": "step-3-5-flash",
@@ -1555,20 +1595,17 @@
     "scores": {
       "intelligence": 37.8,
       "coding": 31.64,
-      "agentic": 52,
-      "math": null
+      "agentic": 52
     },
     "speed": {
-      "median_tps": 155.758651746766,
-      "ttft_seconds": 14.123189814429987,
-      "e2e_seconds": 17.3332843702875
+      "median_tps": 178.371571671653,
+      "ttft_seconds": 12.34474623565557,
+      "e2e_seconds": 15.14788350306947
     },
     "pricing": {
       "input": 0.1,
       "output": 0.3,
-      "blended": null,
-      "display": "¥0.7/¥2.1 (缓存命中¥0.14)",
-      "cn_source": "platform.stepfun.com/docs"
+      "display": "¥0.7/¥2.1"
     },
     "flags": {
       "frontier": false,
@@ -1577,17 +1614,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": true,
-      "has_pricing": true,
       "data_complete": true
     },
     "meta": {
       "context_window": 256000,
       "size_class": "Large",
+      "parameters": 196,
+      "output_tokens": 250000,
       "release_date": "2026-02-02",
       "omniscience": -40.9
     },
     "url": "https://artificialanalysis.ai/models/step-3-5-flash-0202",
-    "rank": 26,
     "vendor_links": {
       "homepage": "https://www.stepfun.com",
       "api_docs": "https://platform.stepfun.com/docs",
@@ -1598,15 +1635,14 @@
     "cn_pricing": {
       "input": 0.7,
       "output": 2.1,
-      "cache_hit": 0.14,
       "source": "platform.stepfun.com/docs"
     },
-    "openrouter_weekly_requests": 1523302,
+    "openrouter_weekly_tokens": 816038498197,
     "openrouter_pricing": {
       "prompt": 0.1,
       "completion": 0.3
     },
-    "openrouter_weekly_tokens": 816038498197
+    "arena_rankings": {}
   },
   {
     "id": "ling-2-6-1t",
@@ -1617,8 +1653,7 @@
     "scores": {
       "intelligence": 33.61,
       "coding": 33.05,
-      "agentic": 48.21,
-      "math": null
+      "agentic": 48.21
     },
     "speed": {
       "median_tps": 0,
@@ -1628,9 +1663,7 @@
     "pricing": {
       "input": 0.3,
       "output": 2.5,
-      "blended": null,
-      "display": "¥2.16/¥18.0",
-      "cn_source": "AA (无国内官价, ¥按$×7.2折算)"
+      "display": "¥2.16/¥18.0"
     },
     "flags": {
       "frontier": false,
@@ -1639,17 +1672,17 @@
       "image_input": false,
       "chinese_eval": false,
       "has_speed": false,
-      "has_pricing": true,
       "data_complete": false
     },
     "meta": {
       "context_window": 262144,
       "size_class": "Large",
+      "parameters": 1026,
+      "output_tokens": 32768,
       "release_date": "2026-04-23",
       "omniscience": -51
     },
     "url": "https://artificialanalysis.ai/models/ling-2-6-1t",
-    "rank": 27,
     "vendor_links": {
       "homepage": "https://www.inclusion-ai.org",
       "huggingface": "https://huggingface.co/inclusionAI"
@@ -1657,11 +1690,129 @@
     "cn_pricing": {
       "input": 2.16,
       "output": 18.0,
-      "source": "AA (无国内官价, ¥按$×7.2折算)",
-      "aa_only": true
+      "source": "AA (无国内官价, ¥按$×7.2折算)"
     },
-    "openrouter_weekly_requests": 1113318,
+    "openrouter_weekly_tokens": 25694,
     "openrouter_pricing": null,
-    "openrouter_weekly_tokens": 25694
+    "arena_rankings": {}
+  },
+  {
+    "id": "deepseek-v3-2-speciale",
+    "name": "DeepSeek V3.2 Speciale",
+    "company": "DeepSeek",
+    "type": "开源",
+    "logo": "/logos/deepseek.svg",
+    "scores": {
+      "intelligence": 29.43,
+      "coding": 37.89,
+      "agentic": 0
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "display": "¥0/¥0"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": false,
+      "data_complete": false
+    },
+    "meta": {
+      "context_window": 128000,
+      "size_class": "Large",
+      "parameters": 685,
+      "output_tokens": 128000,
+      "release_date": "2025-12-01",
+      "omniscience": -16.483
+    },
+    "url": "https://artificialanalysis.ai/models/deepseek-v3-2-speciale",
+    "vendor_links": {
+      "homepage": "https://www.deepseek.com",
+      "api_docs": "https://api-docs.deepseek.com",
+      "console": "https://platform.deepseek.com",
+      "github": "https://github.com/deepseek-ai",
+      "huggingface": "https://huggingface.co/deepseek-ai",
+      "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    "cn_pricing": {
+      "input": 0,
+      "output": 0,
+      "source": "开源"
+    },
+    "openrouter_weekly_tokens": 20300937747,
+    "openrouter_pricing": {
+      "prompt": 0.4,
+      "completion": 1.2
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 49,
+        "score": 1332,
+        "votes": 10480
+      }
+    }
+  },
+  {
+    "id": "ernie-5-0-thinking-preview",
+    "name": "ERNIE 5.0 Thinking Preview",
+    "company": "Baidu",
+    "type": "闭源",
+    "logo": "/logos/baidu.svg",
+    "scores": {
+      "intelligence": 29.09,
+      "coding": 29.17,
+      "agentic": 39.74
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "display": "¥6/¥24 (≤32K)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": false,
+      "data_complete": false
+    },
+    "meta": {
+      "context_window": 128000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 64000,
+      "release_date": "2025-11-13",
+      "omniscience": -44.133
+    },
+    "url": "https://artificialanalysis.ai/models/ernie-5-0-thinking-preview",
+    "vendor_links": {
+      "homepage": "https://yiyan.baidu.com",
+      "api_docs": "https://cloud.baidu.com/doc/WENXINWORKSHOP",
+      "console": "https://cloud.baidu.com/product/wenxinworkshop",
+      "pricing_doc": "https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya"
+    },
+    "cn_pricing": {
+      "input": 6,
+      "output": 24,
+      "source": "cloud.baidu.com/doc/qianfan"
+    },
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": null,
+    "arena_rankings": {}
   }
 ]

@@ -44,8 +44,14 @@ export const I18nContext = createContext<I18nContextValue>({
   t: (key: string) => key,
 });
 
-function getNestedValue(obj: any, path: string): string | undefined {
-  return path.split(".").reduce((acc, part) => acc?.[part], obj);
+function getNestedValue(obj: Record<string, unknown>, path: string): string | undefined {
+  const result = path.split(".").reduce<unknown>((acc, part) => {
+    if (acc && typeof acc === "object" && !Array.isArray(acc)) {
+      return (acc as Record<string, unknown>)[part];
+    }
+    return undefined;
+  }, obj);
+  return typeof result === "string" ? result : undefined;
 }
 
 function formatTemplate(template: string, params: Record<string, string | number>): string {
@@ -55,6 +61,8 @@ function formatTemplate(template: string, params: Record<string, string | number
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const locale = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
 
+  // layout.tsx 的 localeScript 在 SSR 渲染前把非 zh 用户的 <html> 设为 hidden,
+  // 避免中文 SSR 内容闪烁; 这里在 hydration 完成后恢复可见
   useEffect(() => {
     document.documentElement.style.visibility = "";
   }, []);

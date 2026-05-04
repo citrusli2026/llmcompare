@@ -2,7 +2,8 @@
   "nav": {
     "home": "Home",
     "models": "Model Directory",
-    "about": "About"
+    "about": "About",
+    "brand": "LLMCompare"
   },
   "home": {
     "badge": "Latest data May 2026",
@@ -13,7 +14,8 @@
     "cardsTitle": "Frontier Models",
     "cardsViewAll": "View all",
     "footer": "LLMCompare — China AI model data, curated in one place",
-    "footerDisclaimer": "For reference only. Data based on publicly available information."
+    "footerDisclaimer": "For reference only. Data based on publicly available information.",
+    "seoDesc": "LLMCompare curates benchmark scores, API performance, and pricing data for major Chinese LLMs including DeepSeek, Kimi, Qwen, Tongyi Qianwen, GLM, and MiniMax — helping developers and researchers compare and choose models efficiently."
   },
   "models": {
     "title": "Model Directory",
@@ -32,13 +34,16 @@
     "colTokens": "Tokens/Wk",
     "colModel": "Model",
     "colCompany": "Company",
-    "colType": "Type"
+    "colType": "Type",
+    "sortBy": "Sort by",
+    "sortAsc": "Ascending",
+    "sortDesc": "Descending"
   },
   "about": {
     "title": "About LLMCompare",
     "backLink": "Back to Home",
     "backgroundTitle": "Project Background",
-    "backgroundDesc": "Maintained by AI enthusiasts, curating public data on Chinese LLMs — all from public sources. Data is continuously tracked for new model versions and pricing changes (last updated: 2026.05.03).",
+    "backgroundDesc": "Maintained by AI enthusiasts, curating public data on Chinese LLMs — all from public sources. Data is continuously tracked for new model versions and pricing changes (last updated: 2026.05.04).",
     "backgroundContribute": "Spot an error or want to add a model? Submit an issue on",
     "filterDesc": "From Artificial Analysis' global index, we filter Chinese vendors' large-scale models, enrich with vendor links and OpenRouter data, retaining models active within 180 days.",
     "sourceTitle": "Data Sources",
@@ -54,7 +59,6 @@
     "intelligence": "Intelligence",
     "coding": "Coding",
     "agentic": "Agent",
-    "math": "Math",
     "hallucinationControl": "Omniscience Index",
     "hallucinationNote": "Range −100 to +100, higher is better",
     "sourceAa": "Source: Artificial Analysis",
@@ -65,16 +69,16 @@
 
     "basicTitle": "Basic Info",
     "company": "Company",
-    "level": "Level",
+    "parameters": "Parameters",
     "contextWindow": "Context Window",
     "releaseDate": "Release Date",
+    "outputTokens": "Max Output",
     "priceTitle": "Pricing",
     "cnPriceLabel": "CN Official",
     "input": "Input",
     "output": "Output",
     "inputAa": "Input (AA)",
     "outputAa": "Output (AA)",
-    "blended": "Blended (3:1)",
     "vendorLinks": "Vendor Links",
     "homepage": "Homepage",
     "apiDocs": "API Docs",
