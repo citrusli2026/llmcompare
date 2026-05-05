@@ -6,7 +6,8 @@ import { RankingTable } from "@/components/ranking-table";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
 import { SearchInput } from "@/components/search-input";
 
-import { Bot } from "lucide-react";
+import Link from "next/link";
+import { Bot, Globe } from "lucide-react";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 
@@ -70,6 +71,22 @@ export default function ModelsPageClient() {
             <p className="text-text-secondary">
               {t("models.desc")}
             </p>
+          </div>
+
+          <div className="mb-6 rounded-lg border border-surface-border bg-surface-card p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-text-primary">{t("models.comparePrompt")}</p>
+                <p className="text-xs text-text-secondary">{t("models.comparePromptDesc")}</p>
+              </div>
+              <Link
+                href="/compare"
+                className="inline-flex items-center gap-1 rounded-lg bg-accent-violet px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-violet/90 transition-colors"
+              >
+                <Globe className="h-3.5 w-3.5" />
+                {t("models.compareBtn")}
+              </Link>
+            </div>
           </div>
 
           <div className="mb-6 flex flex-col sm:flex-row gap-4">
