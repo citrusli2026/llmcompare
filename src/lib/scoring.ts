@@ -35,6 +35,11 @@ interface RawModel {
     output: number;
     source: string;
   } | null;
+  siliconflow_pricing?: {
+    input: number;
+    output: number;
+    source: string;
+  } | null;
   flags: {
     frontier: boolean;
     open_weights: boolean;
@@ -85,6 +90,10 @@ export interface ModelWithScores {
     cn_input: number | null;
     cn_output: number | null;
     cn_display: string | null;
+    sf_input: number | null;
+    sf_output: number | null;
+    sf_display: string | null;
+    isInternational: boolean;
     context_window: number | null;
     parameters: number | null;
     output_tokens: number | null;
@@ -114,7 +123,7 @@ let _cache: {
 function initCache(): void {
   if (_cache) return;
 
-  const models: ModelWithScores[] = modelsRaw.map((m: RawModel) => {
+  const models: ModelWithScores[] = (modelsRaw as RawModel[]).map((m) => {
     const cn = m.cn_pricing;
     // 上游 ranking.json 用 median_tps === 0 表示无 speed 数据
     const speedMissing = !m.speed || m.speed.median_tps === 0;
@@ -139,6 +148,10 @@ function initCache(): void {
         cn_input: cn?.input ?? null,
         cn_output: cn?.output ?? null,
         cn_display: cn ? `¥${cn.input}/¥${cn.output}` : null,
+        sf_input: m.siliconflow_pricing?.input ?? null,
+        sf_output: m.siliconflow_pricing?.output ?? null,
+        sf_display: m.siliconflow_pricing ? `¥${m.siliconflow_pricing.input}/¥${m.siliconflow_pricing.output}` : null,
+        isInternational: !m.flags.chinese_eval,
         context_window: m.meta?.context_window ?? null,
         parameters: m.meta?.parameters ?? null,
         output_tokens: m.meta?.output_tokens ?? null,
