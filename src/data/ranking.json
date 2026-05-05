@@ -1,7 +1,7 @@
 [
   {
-    "id": "gpt-5-5-xhigh",
-    "name": "GPT-5.5 (xhigh)",
+    "id": "gpt-5-5",
+    "name": "GPT-5.5",
     "company": "OpenAI",
     "type": "闭源",
     "logo": "/logos/openai.svg",
@@ -46,17 +46,23 @@
       "github": "https://github.com/openai",
       "pricing_doc": "https://openai.com/api/pricing"
     },
-    "openrouter_weekly_tokens": 250896700678,
+    "openrouter_weekly_tokens": 2619632487,
     "openrouter_pricing": {
-      "prompt": 5.0,
-      "completion": 30.0
+      "prompt": 30.0,
+      "completion": 180.0
     },
-    "arena_rankings": {},
-    "siliconflow_pricing": null
+    "siliconflow_pricing": null,
+    "arena_rankings": {
+      "vision": {
+        "rank": 5,
+        "score": 1293,
+        "votes": 2100
+      }
+    }
   },
   {
-    "id": "claude-opus-4-7-max",
-    "name": "Claude Opus 4.7 (max)",
+    "id": "claude-opus-4-7",
+    "name": "Claude Opus 4.7",
     "company": "Anthropic",
     "type": "闭源",
     "logo": "/logos/anthropic.svg",
@@ -106,6 +112,7 @@
       "prompt": 5.0,
       "completion": 25.0
     },
+    "siliconflow_pricing": null,
     "arena_rankings": {
       "code": {
         "rank": 2,
@@ -117,8 +124,7 @@
         "score": 1299,
         "votes": 4139
       }
-    },
-    "siliconflow_pricing": null
+    }
   },
   {
     "id": "gemini-3-1-pro-preview",
@@ -172,6 +178,7 @@
       "prompt": 2.0,
       "completion": 12.0
     },
+    "siliconflow_pricing": null,
     "arena_rankings": {
       "code": {
         "rank": 16,
@@ -183,8 +190,7 @@
         "score": 1277,
         "votes": 13343
       }
-    },
-    "siliconflow_pricing": null
+    }
   },
   {
     "id": "kimi-k2-6",
@@ -243,6 +249,11 @@
       "prompt": 0.74,
       "completion": 3.49
     },
+    "siliconflow_pricing": {
+      "input": 0.5,
+      "output": 2.0,
+      "source": "siliconflow"
+    },
     "arena_rankings": {
       "code": {
         "rank": 7,
@@ -254,11 +265,6 @@
         "score": 1261,
         "votes": 3420
       }
-    },
-    "siliconflow_pricing": {
-      "input": 0.5,
-      "output": 2.0,
-      "source": "siliconflow"
     }
   },
   {
@@ -317,6 +323,11 @@
       "prompt": 1.0,
       "completion": 3.0
     },
+    "siliconflow_pricing": {
+      "input": 0.5,
+      "output": 1.5,
+      "source": "siliconflow"
+    },
     "arena_rankings": {
       "code": {
         "rank": 11,
@@ -328,11 +339,6 @@
         "score": 1218,
         "votes": 4305
       }
-    },
-    "siliconflow_pricing": {
-      "input": 0.5,
-      "output": 1.5,
-      "source": "siliconflow"
     }
   },
   {
@@ -393,16 +399,16 @@
       "prompt": 1.04,
       "completion": 6.24
     },
-    "arena_rankings": {},
     "siliconflow_pricing": {
       "input": 0.5,
       "output": 2.0,
       "source": "siliconflow"
-    }
+    },
+    "arena_rankings": {}
   },
   {
-    "id": "deepseek-v4-pro-max",
-    "name": "DeepSeek V4 Pro (Max)",
+    "id": "deepseek-v4-pro",
+    "name": "DeepSeek V4 Pro",
     "company": "DeepSeek",
     "type": "开源",
     "logo": "/logos/deepseek.svg",
@@ -458,17 +464,17 @@
       "prompt": 0.43,
       "completion": 0.87
     },
+    "siliconflow_pricing": {
+      "input": 1.0,
+      "output": 2.0,
+      "source": "siliconflow"
+    },
     "arena_rankings": {
       "code": {
         "rank": 15,
         "score": 1455,
         "votes": 1469
       }
-    },
-    "siliconflow_pricing": {
-      "input": 1.0,
-      "output": 2.0,
-      "source": "siliconflow"
     }
   },
   {
@@ -528,17 +534,17 @@
       "prompt": 1.05,
       "completion": 3.5
     },
+    "siliconflow_pricing": {
+      "input": 0.5,
+      "output": 2.0,
+      "source": "siliconflow"
+    },
     "arena_rankings": {
       "code": {
         "rank": 5,
         "score": 1534,
         "votes": 3412
       }
-    },
-    "siliconflow_pricing": {
-      "input": 0.5,
-      "output": 2.0,
-      "source": "siliconflow"
     }
   },
   {
@@ -597,17 +603,17 @@
       "prompt": 0.3,
       "completion": 1.2
     },
+    "siliconflow_pricing": {
+      "input": 0.2,
+      "output": 0.5,
+      "source": "siliconflow"
+    },
     "arena_rankings": {
       "code": {
         "rank": 26,
         "score": 1411,
         "votes": 4502
       }
-    },
-    "siliconflow_pricing": {
-      "input": 0.2,
-      "output": 0.5,
-      "source": "siliconflow"
     }
   },
   {
@@ -667,6 +673,11 @@
       "prompt": 0.74,
       "completion": 3.49
     },
+    "siliconflow_pricing": {
+      "input": 0.3,
+      "output": 1.0,
+      "source": "siliconflow"
+    },
     "arena_rankings": {
       "code": {
         "rank": 24,
@@ -678,16 +689,11 @@
         "score": 1247,
         "votes": 12127
       }
-    },
-    "siliconflow_pricing": {
-      "input": 0.3,
-      "output": 1.0,
-      "source": "siliconflow"
     }
   },
   {
-    "id": "deepseek-v4-flash-max",
-    "name": "DeepSeek V4 Flash (Max)",
+    "id": "deepseek-v4-flash",
+    "name": "DeepSeek V4 Flash",
     "company": "DeepSeek",
     "type": "开源",
     "logo": "/logos/deepseek.svg",
@@ -743,12 +749,12 @@
       "prompt": 0.14,
       "completion": 0.28
     },
-    "arena_rankings": {},
     "siliconflow_pricing": {
       "input": 0.1,
       "output": 0.2,
       "source": "siliconflow"
-    }
+    },
+    "arena_rankings": {}
   },
   {
     "id": "qwen3-5-397b-a17b",
@@ -808,6 +814,11 @@
       "prompt": 0.39,
       "completion": 2.34
     },
+    "siliconflow_pricing": {
+      "input": 0.3,
+      "output": 1.0,
+      "source": "siliconflow"
+    },
     "arena_rankings": {
       "code": {
         "rank": 38,
@@ -819,11 +830,6 @@
         "score": 1242,
         "votes": 9629
       }
-    },
-    "siliconflow_pricing": {
-      "input": 0.3,
-      "output": 1.0,
-      "source": "siliconflow"
     }
   },
   {
@@ -883,17 +889,17 @@
       "prompt": 0.06,
       "completion": 0.4
     },
+    "siliconflow_pricing": {
+      "input": 0.2,
+      "output": 0.5,
+      "source": "siliconflow"
+    },
     "arena_rankings": {
       "code": {
         "rank": 19,
         "score": 1440,
         "votes": 4883
       }
-    },
-    "siliconflow_pricing": {
-      "input": 0.2,
-      "output": 0.5,
-      "source": "siliconflow"
     }
   },
   {
@@ -949,12 +955,12 @@
     },
     "openrouter_weekly_tokens": 45439,
     "openrouter_pricing": null,
-    "arena_rankings": {},
     "siliconflow_pricing": {
       "input": 0.2,
       "output": 0.5,
       "source": "siliconflow"
-    }
+    },
+    "arena_rankings": {}
   },
   {
     "id": "deepseek-v3-2",
@@ -1014,22 +1020,22 @@
       "prompt": 0.4,
       "completion": 1.2
     },
+    "siliconflow_pricing": {
+      "input": 0.3,
+      "output": 0.6,
+      "source": "siliconflow"
+    },
     "arena_rankings": {
       "code": {
         "rank": 42,
         "score": 1368,
         "votes": 7918
       }
-    },
-    "siliconflow_pricing": {
-      "input": 0.3,
-      "output": 0.6,
-      "source": "siliconflow"
     }
   },
   {
-    "id": "mimo-v2-flash-feb-2026",
-    "name": "MiMo-V2-Flash (Feb 2026)",
+    "id": "mimo-v2-flash",
+    "name": "MiMo-V2-Flash",
     "company": "Xiaomi",
     "type": "开源",
     "logo": "/logos/xiaomi.svg",
@@ -1083,6 +1089,11 @@
       "prompt": 0.4,
       "completion": 2.0
     },
+    "siliconflow_pricing": {
+      "input": 0.05,
+      "output": 0.15,
+      "source": "siliconflow"
+    },
     "arena_rankings": {
       "code": {
         "rank": 18,
@@ -1094,11 +1105,6 @@
         "score": 1218,
         "votes": 4305
       }
-    },
-    "siliconflow_pricing": {
-      "input": 0.05,
-      "output": 0.15,
-      "source": "siliconflow"
     }
   },
   {
@@ -1120,7 +1126,7 @@
     "pricing": {
       "input": 1.2,
       "output": 6,
-      "display": "¥2.5/¥10 (≤32K)"
+      "display": "¥6/¥24 (≤32K)"
     },
     "flags": {
       "frontier": false,
@@ -1150,8 +1156,8 @@
       "pricing_doc": "https://bailian.console.aliyun.com"
     },
     "cn_pricing": {
-      "input": 2.5,
-      "output": 10,
+      "input": 6,
+      "output": 24,
       "source": "bailian.console.aliyun.com"
     },
     "openrouter_weekly_tokens": 621973756,
@@ -1159,12 +1165,12 @@
       "prompt": 0.78,
       "completion": 3.9
     },
-    "arena_rankings": {},
     "siliconflow_pricing": {
       "input": 0.5,
       "output": 2.0,
       "source": "siliconflow"
-    }
+    },
+    "arena_rankings": {}
   },
   {
     "id": "qwen3-5-omni-plus",
@@ -1221,12 +1227,12 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
-    "arena_rankings": {},
     "siliconflow_pricing": {
       "input": 0.2,
       "output": 0.5,
       "source": "siliconflow"
-    }
+    },
+    "arena_rankings": {}
   },
   {
     "id": "step-3-5-flash",
@@ -1285,12 +1291,12 @@
       "prompt": 0.1,
       "completion": 0.3
     },
-    "arena_rankings": {},
     "siliconflow_pricing": {
       "input": 0.05,
       "output": 0.2,
       "source": "siliconflow"
-    }
+    },
+    "arena_rankings": {}
   },
   {
     "id": "ling-2-6-1t",
@@ -1343,12 +1349,12 @@
     },
     "openrouter_weekly_tokens": 25694,
     "openrouter_pricing": null,
-    "arena_rankings": {},
     "siliconflow_pricing": {
       "input": 0.1,
       "output": 0.3,
       "source": "siliconflow"
-    }
+    },
+    "arena_rankings": {}
   },
   {
     "id": "ernie-5-0-thinking-preview",
@@ -1403,17 +1409,17 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
+    "siliconflow_pricing": {
+      "input": 0.5,
+      "output": 2.0,
+      "source": "siliconflow"
+    },
     "arena_rankings": {
       "vision": {
         "rank": 37,
         "score": 1218,
         "votes": 3210
       }
-    },
-    "siliconflow_pricing": {
-      "input": 0.5,
-      "output": 2.0,
-      "source": "siliconflow"
     }
   }
 ]

@@ -87,10 +87,19 @@
     "console": "Console",
     "huggingface": "HuggingFace",
     "pricingDoc": "Pricing Docs",
+    "sfPriceLabel": "SiliconFlow",
     "orTokens": "OpenRouter Requests",
+    "orTokensUnit": "Tokens/Wk",
     "orPricing": "OpenRouter",
     "orSource": "Source: openrouter.ai",
-    "dataSource": "Artificial Analysis Data Source"
+    "dataSource": "Artificial Analysis Data Source",
+    "arenaRankings": "Arena Rankings",
+    "arenaCode": "Coding",
+    "arenaVision": "Vision",
+    "arenaRank": "Rank",
+    "arenaScore": "ELO Score",
+    "arenaVotes": "Votes",
+    "arenaSource": "Source: lmarena.ai"
   },
   "table": {
     "model": "Model",

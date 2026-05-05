@@ -87,10 +87,19 @@
     "console": "控制台",
     "huggingface": "HuggingFace",
     "pricingDoc": "定价文档",
+    "sfPriceLabel": "硅基流动",
     "orTokens": "OpenRouter 请求量",
+    "orTokensUnit": "Tokens/周",
     "orPricing": "OpenRouter",
     "orSource": "数据来源：openrouter.ai",
-    "dataSource": "Artificial Analysis 数据源"
+    "dataSource": "Artificial Analysis 数据源",
+    "arenaRankings": "Arena 排名",
+    "arenaCode": "编程",
+    "arenaVision": "视觉",
+    "arenaRank": "排名",
+    "arenaScore": "ELO 分数",
+    "arenaVotes": "投票数",
+    "arenaSource": "数据来源：lmarena.ai"
   },
   "table": {
     "model": "模型",
