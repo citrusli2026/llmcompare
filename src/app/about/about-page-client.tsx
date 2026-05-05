@@ -75,6 +75,13 @@ export default function AboutPageClient() {
                   </div>
                   <p className="text-text-secondary">{t("about.priceDetail")}</p>
                 </div>
+                <div className="rounded-lg bg-surface-hover p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <TrendingUp className="h-4 w-4 text-accent-rose" />
+                    <p className="text-text-primary font-medium">{t("about.sourceSftTitle")}</p>
+                  </div>
+                  <p className="text-text-secondary">{t("about.sftDesc")}</p>
+                </div>
               </div>
             </section>
 

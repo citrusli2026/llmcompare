@@ -48,8 +48,10 @@
     "filterDesc": "From Artificial Analysis' global index, we filter Chinese vendors' large-scale models, enrich with vendor links and OpenRouter data, retaining models active within 180 days.",
     "sourceTitle": "Data Sources",
     "sourcePriceTitle": "Official Sites",
+    "sourceSftTitle": "SiliconFlow",
     "sourceDesc": "Artificial Analysis is an authoritative LLM evaluation org providing standardized benchmarks. Its Intelligence Index combines MMLU, HumanEval, MATH, and other benchmarks to assess reasoning, coding, and math capabilities.",
     "priceDetail": "Official pricing sourced from model vendor websites and shown on detail pages, alongside Artificial Analysis and OpenRouter pricing. The table uses OpenRouter pricing for consistent comparison. Updated weekly.",
+    "sftDesc": "A leading AI cloud service platform in China, providing model inference, fine-tuning, and deployment services. We collect their public domestic model pricing data as a complement to OpenRouter's international pricing, helping users understand the real price level in the domestic market.",
     "orDesc": "The world's largest LLM API routing platform, providing unified API access and weekly token consumption rankings. We collect its public weekly rankings and API pricing — volume reflects real-world usage, pricing reflects market rates.",
     "disclaimerDesc": "This field guide is for reference only. Model performance varies by use case and may differ from the data presented."
   },
