@@ -40,7 +40,7 @@ export default function HomePage() {
           <p className="mt-3 text-base text-text-secondary">
             {t("home.heroDesc")}
           </p>
-          <p className="mt-4 max-w-2xl mx-auto text-sm text-text-muted">
+          <p className="hidden sm:block mt-4 max-w-2xl mx-auto text-sm text-text-muted">
             {t("home.seoDesc")}
           </p>
         </div>
