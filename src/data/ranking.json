@@ -51,7 +51,6 @@
       "prompt": 30.0,
       "completion": 180.0
     },
-    "siliconflow_pricing": null,
     "arena_rankings": {
       "vision": {
         "rank": 5,
@@ -112,7 +111,6 @@
       "prompt": 5.0,
       "completion": 25.0
     },
-    "siliconflow_pricing": null,
     "arena_rankings": {
       "code": {
         "rank": 2,
@@ -178,7 +176,6 @@
       "prompt": 2.0,
       "completion": 12.0
     },
-    "siliconflow_pricing": null,
     "arena_rankings": {
       "code": {
         "rank": 16,
@@ -249,11 +246,6 @@
       "prompt": 0.74,
       "completion": 3.49
     },
-    "siliconflow_pricing": {
-      "input": 0.5,
-      "output": 2.0,
-      "source": "siliconflow"
-    },
     "arena_rankings": {
       "code": {
         "rank": 7,
@@ -322,11 +314,6 @@
     "openrouter_pricing": {
       "prompt": 1.0,
       "completion": 3.0
-    },
-    "siliconflow_pricing": {
-      "input": 0.5,
-      "output": 1.5,
-      "source": "siliconflow"
     },
     "arena_rankings": {
       "code": {
@@ -399,11 +386,6 @@
       "prompt": 1.04,
       "completion": 6.24
     },
-    "siliconflow_pricing": {
-      "input": 0.5,
-      "output": 2.0,
-      "source": "siliconflow"
-    },
     "arena_rankings": {}
   },
   {
@@ -463,11 +445,6 @@
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
-    },
-    "siliconflow_pricing": {
-      "input": 1.0,
-      "output": 2.0,
-      "source": "siliconflow"
     },
     "arena_rankings": {
       "code": {
@@ -534,11 +511,6 @@
       "prompt": 1.05,
       "completion": 3.5
     },
-    "siliconflow_pricing": {
-      "input": 0.5,
-      "output": 2.0,
-      "source": "siliconflow"
-    },
     "arena_rankings": {
       "code": {
         "rank": 5,
@@ -602,11 +574,6 @@
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
-    },
-    "siliconflow_pricing": {
-      "input": 0.2,
-      "output": 0.5,
-      "source": "siliconflow"
     },
     "arena_rankings": {
       "code": {
@@ -672,11 +639,6 @@
     "openrouter_pricing": {
       "prompt": 0.74,
       "completion": 3.49
-    },
-    "siliconflow_pricing": {
-      "input": 0.3,
-      "output": 1.0,
-      "source": "siliconflow"
     },
     "arena_rankings": {
       "code": {
@@ -749,11 +711,6 @@
       "prompt": 0.14,
       "completion": 0.28
     },
-    "siliconflow_pricing": {
-      "input": 0.1,
-      "output": 0.2,
-      "source": "siliconflow"
-    },
     "arena_rankings": {}
   },
   {
@@ -813,11 +770,6 @@
     "openrouter_pricing": {
       "prompt": 0.39,
       "completion": 2.34
-    },
-    "siliconflow_pricing": {
-      "input": 0.3,
-      "output": 1.0,
-      "source": "siliconflow"
     },
     "arena_rankings": {
       "code": {
@@ -889,11 +841,6 @@
       "prompt": 0.06,
       "completion": 0.4
     },
-    "siliconflow_pricing": {
-      "input": 0.2,
-      "output": 0.5,
-      "source": "siliconflow"
-    },
     "arena_rankings": {
       "code": {
         "rank": 19,
@@ -955,11 +902,6 @@
     },
     "openrouter_weekly_tokens": 45439,
     "openrouter_pricing": null,
-    "siliconflow_pricing": {
-      "input": 0.2,
-      "output": 0.5,
-      "source": "siliconflow"
-    },
     "arena_rankings": {}
   },
   {
@@ -1019,11 +961,6 @@
     "openrouter_pricing": {
       "prompt": 0.4,
       "completion": 1.2
-    },
-    "siliconflow_pricing": {
-      "input": 0.3,
-      "output": 0.6,
-      "source": "siliconflow"
     },
     "arena_rankings": {
       "code": {
@@ -1088,11 +1025,6 @@
     "openrouter_pricing": {
       "prompt": 0.4,
       "completion": 2.0
-    },
-    "siliconflow_pricing": {
-      "input": 0.05,
-      "output": 0.15,
-      "source": "siliconflow"
     },
     "arena_rankings": {
       "code": {
@@ -1165,11 +1097,6 @@
       "prompt": 0.78,
       "completion": 3.9
     },
-    "siliconflow_pricing": {
-      "input": 0.5,
-      "output": 2.0,
-      "source": "siliconflow"
-    },
     "arena_rankings": {}
   },
   {
@@ -1227,11 +1154,6 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
-    "siliconflow_pricing": {
-      "input": 0.2,
-      "output": 0.5,
-      "source": "siliconflow"
-    },
     "arena_rankings": {}
   },
   {
@@ -1291,11 +1213,6 @@
       "prompt": 0.1,
       "completion": 0.3
     },
-    "siliconflow_pricing": {
-      "input": 0.05,
-      "output": 0.2,
-      "source": "siliconflow"
-    },
     "arena_rankings": {}
   },
   {
@@ -1349,11 +1266,6 @@
     },
     "openrouter_weekly_tokens": 25694,
     "openrouter_pricing": null,
-    "siliconflow_pricing": {
-      "input": 0.1,
-      "output": 0.3,
-      "source": "siliconflow"
-    },
     "arena_rankings": {}
   },
   {
@@ -1409,11 +1321,6 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
-    "siliconflow_pricing": {
-      "input": 0.5,
-      "output": 2.0,
-      "source": "siliconflow"
-    },
     "arena_rankings": {
       "vision": {
         "rank": 37,

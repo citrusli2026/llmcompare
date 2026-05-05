@@ -36,11 +36,6 @@ interface RawModel {
     output: number;
     source: string;
   } | null;
-  siliconflow_pricing?: {
-    input: number;
-    output: number;
-    source: string;
-  } | null;
   flags: {
     frontier: boolean;
     open_weights: boolean;
@@ -93,9 +88,6 @@ export interface ModelWithScores {
     cn_input: number | null;
     cn_output: number | null;
     cn_display: string | null;
-    sf_input: number | null;
-    sf_output: number | null;
-    sf_display: string | null;
     isInternational: boolean;
     context_window: number | null;
     parameters: number | null;
@@ -152,9 +144,6 @@ function initCache(): void {
         cn_input: cn?.input ?? null,
         cn_output: cn?.output ?? null,
         cn_display: cn ? `¥${cn.input}/¥${cn.output}` : null,
-        sf_input: m.siliconflow_pricing?.input ?? null,
-        sf_output: m.siliconflow_pricing?.output ?? null,
-        sf_display: m.siliconflow_pricing ? `¥${m.siliconflow_pricing.input}/¥${m.siliconflow_pricing.output}` : null,
         isInternational: !m.flags.chinese_eval,
         context_window: m.meta?.context_window ?? null,
         parameters: m.meta?.parameters ?? null,

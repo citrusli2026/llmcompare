@@ -88,7 +88,6 @@
     "huggingface": "HuggingFace",
     "github": "GitHub",
     "pricingDoc": "Pricing Docs",
-    "sfPriceLabel": "SiliconFlow",
     "orTokens": "OpenRouter Requests",
     "orTokensUnit": "Tokens/Wk",
     "orPricing": "OpenRouter",

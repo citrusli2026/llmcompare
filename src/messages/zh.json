@@ -88,7 +88,6 @@
     "huggingface": "HuggingFace",
     "github": "GitHub",
     "pricingDoc": "定价文档",
-    "sfPriceLabel": "硅基流动",
     "orTokens": "OpenRouter 请求量",
     "orTokensUnit": "Tokens/周",
     "orPricing": "OpenRouter",

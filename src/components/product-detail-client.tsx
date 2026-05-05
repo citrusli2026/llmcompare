@@ -219,16 +219,6 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                     <div className="border-t border-surface-border mt-3" />
                   </div>
                 )}
-                {r.sf_display && (
-                  <div className="mb-3">
-                    <p className="text-xs text-text-muted mb-2">{t("product.sfPriceLabel")}</p>
-                    <div className="space-y-1 text-sm">
-                      <div className="flex justify-between"><span className="text-text-muted">{t("product.input")}</span><span className="text-text-primary">¥{r.sf_input}/M</span></div>
-                      <div className="flex justify-between"><span className="text-text-muted">{t("product.output")}</span><span className="text-text-primary">¥{r.sf_output}/M</span></div>
-                    </div>
-                    <div className="border-t border-surface-border mt-3" />
-                  </div>
-                )}
                 <div className="mb-3">
                   <p className="text-xs text-text-muted mb-2">Artificial Analysis</p>
                   <div className="space-y-1 text-sm">
