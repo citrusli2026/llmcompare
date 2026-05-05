@@ -72,8 +72,30 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* Mobile: Hamburger + Actions */}
+        {/* Mobile Navigation */}
         <div className="flex sm:hidden items-center gap-1">
+          <nav className="flex items-center gap-0.5">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "flex items-center justify-center h-8 w-8 rounded-lg transition-all",
+                    isActive
+                      ? "bg-surface-hover text-text-primary"
+                      : "text-text-secondary hover:bg-surface-card hover:text-text-primary"
+                  )}
+                  aria-label={t(item.labelKey)}
+                >
+                  <Icon className="h-4 w-4" />
+                </Link>
+              );
+            })}
+          </nav>
+          <div className="w-px h-5 bg-surface-border" />
           <LanguageToggle />
           <ThemeToggle />
           <button
