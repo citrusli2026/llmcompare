@@ -97,6 +97,7 @@ export interface ModelWithScores {
     openrouter_weekly_tokens: number | null;
     openrouter_pricing: { prompt: number; completion: number } | null;
     arena_rankings: Record<string, { rank: number; score: number; votes?: number }> | null;
+    arena_code: number | null;
   };
 
   flags: {
@@ -153,6 +154,7 @@ function initCache(): void {
         openrouter_weekly_tokens: m.openrouter_weekly_tokens ?? null,
         openrouter_pricing: m.openrouter_pricing ?? null,
         arena_rankings: m.arena_rankings && Object.keys(m.arena_rankings).length > 0 ? m.arena_rankings : null,
+        arena_code: m.arena_rankings?.code?.score ?? null,
       },
       flags: m.flags,
     };

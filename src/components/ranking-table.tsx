@@ -6,7 +6,7 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpDown, ArrowUp, ArrowDown, Zap, DollarSign, Brain, Code, Bot, ArrowUpRight, Calendar, TrendingUp } from "lucide-react";
+import { ArrowUpDown, ArrowUp, ArrowDown, Trophy, DollarSign, Brain, Code, Bot, ArrowUpRight, Calendar, TrendingUp } from "lucide-react";
 import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
@@ -15,14 +15,14 @@ interface RankingTableProps {
   models: ModelWithScores[];
 }
 
-type ScoreKey = "intelligence" | "coding" | "agentic" | "speed" | "cost" | "tokens";
+type ScoreKey = "intelligence" | "coding" | "agentic" | "arenaCode" | "cost" | "tokens";
 type SortKey = ScoreKey | "date";
 
 const HEADERS: { key: ScoreKey; labelKey: string; icon: React.ComponentType<{ className?: string }>; mobile: boolean; desktop: boolean }[] = [
   { key: "intelligence", labelKey: "models.colIntelligence", icon: Brain, mobile: true, desktop: true },
   { key: "coding", labelKey: "models.colCoding", icon: Code, mobile: false, desktop: true },
   { key: "agentic", labelKey: "models.colAgentic", icon: Bot, mobile: false, desktop: true },
-  { key: "speed", labelKey: "models.colSpeed", icon: Zap, mobile: false, desktop: true },
+  { key: "arenaCode", labelKey: "models.colArenaCode", icon: Trophy, mobile: false, desktop: true },
   { key: "cost", labelKey: "models.colCost", icon: DollarSign, mobile: false, desktop: true },
   { key: "tokens", labelKey: "models.colTokens", icon: TrendingUp, mobile: false, desktop: true },
 ];
@@ -30,7 +30,7 @@ const HEADERS: { key: ScoreKey; labelKey: string; icon: React.ComponentType<{ cl
 // 颜色由列在当前榜单中的相对分位决定,而非绝对分数
 // AA Intelligence Index 国内模型集中在 30-55,绝对阈值会让全表挤进同一档
 type Percentiles = { p25: number; p50: number; p75: number };
-type ColoredKey = "intelligence" | "coding" | "agentic" | "speed" | "cost";
+type ColoredKey = "intelligence" | "coding" | "agentic" | "arenaCode" | "cost";
 
 const COLOR_BY_BUCKET = {
   emerald: "text-emerald-500 dark:text-emerald-400",
@@ -42,7 +42,7 @@ const COLOR_BY_BUCKET = {
 
 // cost 是反向(数字越小越好),其他正向
 const ASCENDING: Record<ColoredKey, boolean> = {
-  intelligence: true, coding: true, agentic: true, speed: true, cost: false,
+  intelligence: true, coding: true, agentic: true, arenaCode: true, cost: false,
 };
 
 function quantile(sorted: number[], q: number): number {
@@ -95,7 +95,7 @@ export function RankingTable({ models }: RankingTableProps) {
       case "intelligence": return model.raw.intelligence;
       case "coding": return model.raw.coding ?? null;
       case "agentic": return model.raw.agentic ?? null;
-      case "speed": return model.raw.median_tps ?? null;
+      case "arenaCode": return model.raw.arena_code ?? null;
       case "cost": return model.raw.openrouter_pricing?.prompt ?? null;
       case "tokens": return model.raw.openrouter_weekly_tokens ?? null;
       case "date": return null; // handled in sortedModels
@@ -132,7 +132,7 @@ export function RankingTable({ models }: RankingTableProps) {
     intelligence: computePercentiles(models.map((m) => m.raw.intelligence)),
     coding: computePercentiles(models.map((m) => m.raw.coding)),
     agentic: computePercentiles(models.map((m) => m.raw.agentic)),
-    speed: computePercentiles(models.map((m) => m.raw.median_tps)),
+    arenaCode: computePercentiles(models.map((m) => m.raw.arena_code)),
     // cost 仅用 OR 价,与 getCostDisplay 一致(无 OR 价的行展示 `—`,不染色)
     cost: computePercentiles(models.map((m) => m.raw.openrouter_pricing?.prompt ?? null)),
   }), [models]);
@@ -150,9 +150,9 @@ export function RankingTable({ models }: RankingTableProps) {
     return COLOR_BY_BUCKET[bucketByPercentile(val, p, ASCENDING[key])];
   };
 
-  const getSpeedDisplay = (model: ModelWithScores): React.ReactNode => {
-    if (model.raw.median_tps != null) {
-      return <span>{model.raw.median_tps.toFixed(1)} <span className="text-text-secondary text-[10px]">TPS</span></span>;
+  const getArenaCodeDisplay = (model: ModelWithScores): React.ReactNode => {
+    if (model.raw.arena_code != null) {
+      return <span>{model.raw.arena_code} <span className="text-text-secondary text-[10px]">ELO</span></span>;
     }
     return <span className="text-text-dim text-xs">—</span>;
   };
@@ -176,7 +176,7 @@ export function RankingTable({ models }: RankingTableProps) {
     intelligence: (m) => formatScore(m.raw.intelligence),
     coding: (m) => formatScore(m.raw.coding),
     agentic: (m) => formatScore(m.raw.agentic),
-    speed: getSpeedDisplay,
+    arenaCode: getArenaCodeDisplay,
     cost: getCostDisplay,
     tokens: getTokensDisplay,
   };
@@ -211,7 +211,7 @@ export function RankingTable({ models }: RankingTableProps) {
     { key: "intelligence", labelKey: "models.colIntelligence" },
     { key: "coding", labelKey: "models.colCoding" },
     { key: "agentic", labelKey: "models.colAgentic" },
-    { key: "speed", labelKey: "models.colSpeed" },
+    { key: "arenaCode", labelKey: "models.colArenaCode" },
     { key: "cost", labelKey: "models.colCost" },
     { key: "tokens", labelKey: "models.colTokens" },
     { key: "date", labelKey: "table.date" },
@@ -295,7 +295,7 @@ export function RankingTable({ models }: RankingTableProps) {
             <TableBody>
               {/* 国际标杆 - 固定顶部，不参与排序 */}
               {intlModels.map((model) => (
-                <TableRow key={model.id} className="border-gray-300 dark:border-white/25 opacity-60 bg-surface-hover/30">
+                <TableRow key={model.id} className="border-gray-300 dark:border-white/25 border-t-2 border-t-amber-400/40 bg-amber-500/[0.03] dark:bg-amber-500/[0.04]">
                   <TableCell className="max-w-[240px]">
                     <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
                       {model.name}
@@ -380,7 +380,7 @@ export function RankingTable({ models }: RankingTableProps) {
         {intlModels.map((model) => (
           <div
             key={model.id}
-            className="rounded-xl border border-surface-border bg-surface-card p-4 opacity-60"
+            className="rounded-xl border border-surface-border bg-surface-card p-4 border-t-2 border-t-amber-400/40 bg-amber-500/[0.03] dark:bg-amber-500/[0.04]"
           >
             {/* 模型名、公司和日期 */}
             <div className="mb-3">

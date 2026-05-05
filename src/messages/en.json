@@ -30,6 +30,7 @@
     "colCoding": "Coding",
     "colAgentic": "Agent",
     "colSpeed": "Speed",
+    "colArenaCode": "Coding",
     "colCost": "Price",
     "colTokens": "Tokens/Wk",
     "colModel": "Model",
