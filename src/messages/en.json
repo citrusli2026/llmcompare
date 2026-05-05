@@ -127,8 +127,8 @@
   "common": {
     "open": "Open",
     "closed": "Closed",
-    "frontier": "Frontier",
-    "mainstream": "Mainstream",
+    "frontier": "CN Frontier",
+    "mainstream": "CN Mainstream",
     "reasoning": "Reasoning",
     "openWeights": "Open Weights",
     "imageInput": "Vision",
