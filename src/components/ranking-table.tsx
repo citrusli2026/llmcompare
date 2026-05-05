@@ -199,26 +199,24 @@ export function RankingTable({ models }: RankingTableProps) {
   const renderMetric = (model: ModelWithScores, key: ScoreKey) => {
     if (key === "cost") {
       if (model.raw.openrouter_pricing != null) {
-        return <span>${model.raw.openrouter_pricing.prompt}<span className="text-text-secondary text-[10px]">/M</span></span>;
+        return <span>${model.raw.openrouter_pricing.completion}<span className="text-text-secondary text-[10px]">/M</span></span>;
       }
       return <span className="text-text-dim text-xs">—</span>;
     }
     return renderers[key](model);
   };
 
-  const SORT_OPTIONS: { key: SortKey | ""; labelKey: string }[] = [
+  // 移动端排序选项 — 与卡片实际展示字段对齐,避免选了排序看不到对应数值
+  const MOBILE_SORT_OPTIONS: { key: SortKey | ""; labelKey: string }[] = [
     { key: "", labelKey: "models.sortBy" },
     { key: "intelligence", labelKey: "models.colIntelligence" },
-    { key: "coding", labelKey: "models.colCoding" },
-    { key: "agentic", labelKey: "models.colAgentic" },
-    { key: "arenaCode", labelKey: "models.colArenaCode" },
     { key: "cost", labelKey: "models.colCost" },
     { key: "tokens", labelKey: "models.colTokens" },
     { key: "date", labelKey: "table.date" },
   ];
 
-  // 移动端按重要性排序展示指标（价格不在移动端卡片展示）
-  const MOBILE_METRIC_ORDER: ScoreKey[] = ["intelligence", "coding", "agentic", "tokens"];
+  // 移动端卡片展示的 3 个指标(单行) — 与排序选项对齐
+  const MOBILE_METRIC_ORDER: ScoreKey[] = ["intelligence", "cost", "tokens"];
 
   const colVisibilityClass = (h: typeof HEADERS[number]) => cn(
     !h.mobile && "hidden sm:table-cell",
@@ -237,7 +235,7 @@ export function RankingTable({ models }: RankingTableProps) {
               onChange={(e) => handleMobileSortChange(e.target.value)}
               className="w-full appearance-none rounded-lg border border-surface-border bg-surface-card px-3 py-2 pr-8 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-violet/30"
             >
-              {SORT_OPTIONS.map((opt) => (
+              {MOBILE_SORT_OPTIONS.map((opt) => (
                 <option key={opt.key} value={opt.key}>{t(opt.labelKey)}</option>
               ))}
             </select>
@@ -409,15 +407,15 @@ export function RankingTable({ models }: RankingTableProps) {
       </div>
 
       {/* 移动端卡片列表 */}
-      <div className="block sm:hidden space-y-3">
-        {/* 国际标杆 */}
-        {sortedIntl.map((model) => (
+      <div className="block sm:hidden space-y-2">
+        {/* 国际标杆 — 移动端只展示 1 个 */}
+        {sortedIntl.slice(0, 1).map((model) => (
           <div
             key={model.id}
-            className="rounded-xl border border-surface-border p-4 border-t-2 border-t-amber-400/40 bg-amber-500/[0.03] dark:bg-amber-500/[0.04]"
+            className="rounded-xl border border-surface-border p-3 border-t-2 border-t-amber-400/40 bg-amber-500/[0.03] dark:bg-amber-500/[0.04]"
           >
             {/* 模型名、公司和日期 */}
-            <div className="mb-3">
+            <div className="mb-2">
               <Link
                 href={`/product/${model.id}`}
                 className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group max-w-full"
@@ -425,16 +423,13 @@ export function RankingTable({ models }: RankingTableProps) {
                 <span className="truncate">{model.name}</span>
                 <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
               </Link>
-              <div className="flex items-center gap-2 mt-0.5">
-                <p className="text-sm text-text-secondary">{model.company}</p>
-                {model.raw.release_date && (
-                  <span className="text-xs text-text-muted">· {model.raw.release_date}</span>
-                )}
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <p className="text-xs text-text-secondary">{model.company}</p>
               </div>
             </div>
 
-            {/* 指标网格 — 按重要性排序，紧凑布局 */}
-            <div className="grid grid-cols-2 gap-1.5 mb-3">
+            {/* 指标网格 — 单行 3 列，紧凑布局 */}
+            <div className="grid grid-cols-3 gap-1 mb-2">
               {MOBILE_METRIC_ORDER.map((key) => {
                 const h = HEADERS.find((x) => x.key === key)!;
                 return (
@@ -455,8 +450,11 @@ export function RankingTable({ models }: RankingTableProps) {
             </div>
 
             {/* 标签 */}
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap items-center gap-1">
               <Badge variant="secondary" className="text-[10px] bg-amber-500/10 text-amber-600 dark:text-amber-300 py-0 px-1.5">{t("common.intlBaseline")}</Badge>
+              {model.raw.release_date && (
+                <span className="text-[10px] text-text-muted">· {model.raw.release_date}</span>
+              )}
               <Badge variant="secondary"
                 className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
                   ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
@@ -470,10 +468,10 @@ export function RankingTable({ models }: RankingTableProps) {
         {sortedFrontier.map((model, idx) => (
           <div
             key={model.id}
-            className="rounded-xl border border-surface-border p-4 bg-violet-500/[0.03] dark:bg-violet-500/[0.04]"
+            className="rounded-xl border border-surface-border p-3 bg-violet-500/[0.03] dark:bg-violet-500/[0.04]"
           >
             {/* 模型名、公司和日期 */}
-            <div className="mb-3">
+            <div className="mb-2">
               <Link
                 href={`/product/${model.id}`}
                 className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group max-w-full"
@@ -482,26 +480,23 @@ export function RankingTable({ models }: RankingTableProps) {
                 <span className="truncate">{model.name}</span>
                 <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
               </Link>
-              <div className="flex items-center gap-2 mt-0.5">
-                <p className="text-sm text-text-secondary">{model.company}</p>
-                {model.raw.release_date && (
-                  <span className="text-xs text-text-muted">· {model.raw.release_date}</span>
-                )}
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <p className="text-xs text-text-secondary">{model.company}</p>
               </div>
             </div>
 
-            {/* 指标网格 — 按重要性排序，紧凑布局 */}
-            <div className="grid grid-cols-2 gap-1.5 mb-3">
+            {/* 指标网格 — 单行 3 列，紧凑布局 */}
+            <div className="grid grid-cols-3 gap-1 mb-2">
               {MOBILE_METRIC_ORDER.map((key) => {
                 const h = HEADERS.find((x) => x.key === key)!;
                 return (
-                  <div key={h.key} className="rounded-lg bg-surface-hover p-2">
-                    <div className="flex items-center gap-1 mb-0.5">
-                      <h.icon className="h-3 w-3 text-text-muted" />
-                      <span className="text-[10px] text-text-muted truncate">{t(h.labelKey)}</span>
+                  <div key={h.key} className="rounded-md bg-surface-hover px-1.5 py-1">
+                    <div className="flex items-center gap-0.5 mb-0.5">
+                      <h.icon className="h-2.5 w-2.5 text-text-muted" />
+                      <span className="text-[9px] text-text-muted truncate">{t(h.labelKey)}</span>
                     </div>
                     <div className={cn(
-                      "text-xs font-medium tabular-nums leading-tight",
+                      "text-[11px] font-medium tabular-nums leading-tight",
                       h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
                     )}>
                       {renderMetric(model, h.key)}
@@ -512,8 +507,11 @@ export function RankingTable({ models }: RankingTableProps) {
             </div>
 
             {/* 标签 */}
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap items-center gap-1">
               <Badge variant="secondary" className="text-[10px] bg-violet-500/10 text-violet-400 py-0 px-1.5">{t("common.frontier")}</Badge>
+              {model.raw.release_date && (
+                <span className="text-[10px] text-text-muted">· {model.raw.release_date}</span>
+              )}
               <Badge variant="secondary"
                 className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
                   ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
@@ -527,10 +525,10 @@ export function RankingTable({ models }: RankingTableProps) {
         {sortedMainstream.map((model, idx) => (
           <div
             key={model.id}
-            className="rounded-xl border border-surface-border bg-surface-card p-4"
+            className="rounded-xl border border-surface-border bg-surface-card p-3"
           >
             {/* 模型名、公司和日期 */}
-            <div className="mb-3">
+            <div className="mb-2">
               <Link
                 href={`/product/${model.id}`}
                 className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group max-w-full"
@@ -539,26 +537,23 @@ export function RankingTable({ models }: RankingTableProps) {
                 <span className="truncate">{model.name}</span>
                 <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
               </Link>
-              <div className="flex items-center gap-2 mt-0.5">
-                <p className="text-sm text-text-secondary">{model.company}</p>
-                {model.raw.release_date && (
-                  <span className="text-xs text-text-muted">· {model.raw.release_date}</span>
-                )}
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <p className="text-xs text-text-secondary">{model.company}</p>
               </div>
             </div>
 
-            {/* 指标网格 — 按重要性排序，紧凑布局 */}
-            <div className="grid grid-cols-2 gap-1.5 mb-3">
+            {/* 指标网格 — 单行 3 列，紧凑布局 */}
+            <div className="grid grid-cols-3 gap-1 mb-2">
               {MOBILE_METRIC_ORDER.map((key) => {
                 const h = HEADERS.find((x) => x.key === key)!;
                 return (
-                  <div key={h.key} className="rounded-lg bg-surface-hover p-2">
-                    <div className="flex items-center gap-1 mb-0.5">
-                      <h.icon className="h-3 w-3 text-text-muted" />
-                      <span className="text-[10px] text-text-muted truncate">{t(h.labelKey)}</span>
+                  <div key={h.key} className="rounded-md bg-surface-hover px-1.5 py-1">
+                    <div className="flex items-center gap-0.5 mb-0.5">
+                      <h.icon className="h-2.5 w-2.5 text-text-muted" />
+                      <span className="text-[9px] text-text-muted truncate">{t(h.labelKey)}</span>
                     </div>
                     <div className={cn(
-                      "text-xs font-medium tabular-nums leading-tight",
+                      "text-[11px] font-medium tabular-nums leading-tight",
                       h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
                     )}>
                       {renderMetric(model, h.key)}
@@ -569,8 +564,11 @@ export function RankingTable({ models }: RankingTableProps) {
             </div>
 
             {/* 标签 */}
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap items-center gap-1">
               <Badge variant="secondary" className="text-[10px] bg-blue-500/10 text-blue-400 py-0 px-1.5">{t("common.mainstream")}</Badge>
+              {model.raw.release_date && (
+                <span className="text-[10px] text-text-muted">· {model.raw.release_date}</span>
+              )}
               <Badge variant="secondary"
                 className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
                   ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
