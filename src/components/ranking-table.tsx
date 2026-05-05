@@ -102,17 +102,15 @@ export function RankingTable({ models }: RankingTableProps) {
     }
   };
 
-  // 分离国际/国内模型，国际标杆固定顶部不参与排序
+  // 分离国际/国内模型，各自分组排序，国际组始终置顶
   const intlModels = useMemo(() => models.filter((m) => m.raw.isInternational), [models]);
   const domesticModels = useMemo(() => models.filter((m) => !m.raw.isInternational), [models]);
 
-  // 只对国内模型排序
-  const sortedDomestic = useMemo(() => {
-    return [...domesticModels].sort((a, b) => {
+  const sortedIntl = useMemo(() => {
+    return [...intlModels].sort((a, b) => {
       if (sortKey === "date") {
         const aDate = a.raw.release_date ?? "";
         const bDate = b.raw.release_date ?? "";
-        // 空日期始终排到最后
         if (!aDate && !bDate) return 0;
         if (!aDate) return 1;
         if (!bDate) return -1;
@@ -120,7 +118,25 @@ export function RankingTable({ models }: RankingTableProps) {
       }
       const aVal = getRawValue(a, sortKey);
       const bVal = getRawValue(b, sortKey);
-      // 缺数据的行不参与排序,统一沉底
+      if (aVal == null && bVal == null) return 0;
+      if (aVal == null) return 1;
+      if (bVal == null) return -1;
+      return sortDesc ? bVal - aVal : aVal - bVal;
+    });
+  }, [intlModels, sortKey, sortDesc]);
+
+  const sortedDomestic = useMemo(() => {
+    return [...domesticModels].sort((a, b) => {
+      if (sortKey === "date") {
+        const aDate = a.raw.release_date ?? "";
+        const bDate = b.raw.release_date ?? "";
+        if (!aDate && !bDate) return 0;
+        if (!aDate) return 1;
+        if (!bDate) return -1;
+        return sortDesc ? bDate.localeCompare(aDate) : aDate.localeCompare(bDate);
+      }
+      const aVal = getRawValue(a, sortKey);
+      const bVal = getRawValue(b, sortKey);
       if (aVal == null && bVal == null) return 0;
       if (aVal == null) return 1;
       if (bVal == null) return -1;
@@ -294,7 +310,7 @@ export function RankingTable({ models }: RankingTableProps) {
             </TableHeader>
             <TableBody>
               {/* 国际标杆 - 固定顶部，不参与排序 */}
-              {intlModels.map((model) => (
+              {sortedIntl.map((model) => (
                 <TableRow key={model.id} className="border-gray-300 dark:border-white/25 border-t-2 border-t-amber-400/50 bg-amber-500/[0.06] dark:bg-amber-500/[0.08]">
                   <TableCell className="max-w-[240px]">
                     <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
