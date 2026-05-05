@@ -2,7 +2,7 @@
 
 国内大模型数据，整理在一起。
 
-[在线浏览](https://llmcompare.cc) · [GitHub](https://github.com/citrusli2026/llmcompare)
+[在线浏览](https://www.llmcompare.cc) · [GitHub](https://github.com/citrusli2026/llmcompare)
 
 <img src="docs/screenshots/screenshot_home.png" alt="首页截图" width="80%" />
 
