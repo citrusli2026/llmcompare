@@ -346,7 +346,10 @@ export function RankingTable({ models }: RankingTableProps) {
               ))}
               {/* 国内排名 */}
               {sortedDomestic.map((model, idx) => (
-                <TableRow key={model.id} className="border-gray-300 dark:border-white/25 hover:bg-surface-hover transition-colors">
+                <TableRow key={model.id} className={cn(
+                  "border-gray-300 dark:border-white/25 hover:bg-surface-hover transition-colors",
+                  model.flags.frontier && "bg-violet-500/[0.03] dark:bg-violet-500/[0.04]"
+                )}>
                   <TableCell className="max-w-[240px]">
                     <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
                       <span className="text-text-muted text-xs mr-1">#{idx + 1}</span>
@@ -452,7 +455,10 @@ export function RankingTable({ models }: RankingTableProps) {
         {sortedDomestic.map((model, idx) => (
           <div
             key={model.id}
-            className="rounded-xl border border-surface-border bg-surface-card p-4"
+            className={cn(
+              "rounded-xl border border-surface-border bg-surface-card p-4",
+              model.flags.frontier && "bg-violet-500/[0.03] dark:bg-violet-500/[0.04]"
+            )}
           >
             {/* 模型名、公司和日期 */}
             <div className="mb-3">
