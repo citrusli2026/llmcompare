@@ -48,8 +48,8 @@
     },
     "openrouter_weekly_tokens": 262962243645,
     "openrouter_pricing": {
-      "prompt": 30.0,
-      "completion": 180.0
+      "prompt": 5.0,
+      "completion": 30.0
     },
     "arena_rankings": {
       "vision": {
@@ -106,7 +106,7 @@
       "github": "https://github.com/anthropics",
       "pricing_doc": "https://www.anthropic.com/pricing"
     },
-    "openrouter_weekly_tokens": 554476262,
+    "openrouter_weekly_tokens": 925538318244,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 25.0
@@ -171,7 +171,7 @@
       "github": "https://github.com/google-gemini",
       "pricing_doc": "https://ai.google.dev/pricing"
     },
-    "openrouter_weekly_tokens": 17485996,
+    "openrouter_weekly_tokens": 320100937763,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 12.0
@@ -310,7 +310,7 @@
       "output": 21.0,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": 60529694963,
+    "openrouter_weekly_tokens": 137139461212,
     "openrouter_pricing": {
       "prompt": 1.0,
       "completion": 3.0
@@ -570,7 +570,7 @@
       "output": 8.4,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": 4738381019,
+    "openrouter_weekly_tokens": 730737996671,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
@@ -635,10 +635,10 @@
       "output": 21.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_tokens": 1794293694621,
+    "openrouter_weekly_tokens": 274091374357,
     "openrouter_pricing": {
-      "prompt": 0.74,
-      "completion": 3.49
+      "prompt": 0.44,
+      "completion": 2.0
     },
     "arena_rankings": {
       "code": {
@@ -838,8 +838,8 @@
     },
     "openrouter_weekly_tokens": 87745230206,
     "openrouter_pricing": {
-      "prompt": 0.06,
-      "completion": 0.4
+      "prompt": 0.38,
+      "completion": 1.74
     },
     "arena_rankings": {
       "code": {
@@ -957,10 +957,10 @@
       "output": 3,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 19775728260,
+    "openrouter_weekly_tokens": 856075763783,
     "openrouter_pricing": {
-      "prompt": 0.4,
-      "completion": 1.2
+      "prompt": 0.25,
+      "completion": 0.38
     },
     "arena_rankings": {
       "code": {
@@ -1021,10 +1021,10 @@
       "output": 2.1,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": 60529694963,
+    "openrouter_weekly_tokens": 130559260548,
     "openrouter_pricing": {
-      "prompt": 0.4,
-      "completion": 2.0
+      "prompt": 0.09,
+      "completion": 0.29
     },
     "arena_rankings": {
       "code": {
@@ -1092,7 +1092,7 @@
       "output": 24,
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_tokens": 1625040806,
+    "openrouter_weekly_tokens": 434143283,
     "openrouter_pricing": {
       "prompt": 0.78,
       "completion": 3.9

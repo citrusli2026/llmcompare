@@ -76,7 +76,7 @@ function bucketByPercentile(val: number, p: Percentiles, ascending: boolean): ke
 }
 
 export function RankingTable({ models }: RankingTableProps) {
-  const [sortKey, setSortKey] = useState<SortKey | null>(null);
+  const [sortKey, setSortKey] = useState<SortKey>("date");
   const [sortDesc, setSortDesc] = useState(true);
   const { t } = useTranslation();
 
@@ -86,8 +86,8 @@ export function RankingTable({ models }: RankingTableProps) {
       return;
     }
     setSortKey(key);
-    // 首次点 date 列默认升序(从旧到新),其他列默认降序
-    setSortDesc(!(sortKey === null && key === "date"));
+    // 切换到新列默认降序
+    setSortDesc(true);
   };
 
   const getRawValue = (model: ModelWithScores, key: SortKey): number | null => {
@@ -109,7 +109,7 @@ export function RankingTable({ models }: RankingTableProps) {
   // 只对国内模型排序
   const sortedDomestic = useMemo(() => {
     return [...domesticModels].sort((a, b) => {
-      if (sortKey === null || sortKey === "date") {
+      if (sortKey === "date") {
         const aDate = a.raw.release_date ?? "";
         const bDate = b.raw.release_date ?? "";
         // 空日期始终排到最后
@@ -184,11 +184,11 @@ export function RankingTable({ models }: RankingTableProps) {
   // 移动端排序处理
   const handleMobileSortChange = (value: string) => {
     if (value === "") {
-      setSortKey(null);
+      setSortKey("date");
       setSortDesc(true);
     } else if (value === "date") {
       setSortKey("date");
-      setSortDesc(false);
+      setSortDesc(true);
     } else {
       setSortKey(value as ScoreKey);
       setSortDesc(true);
