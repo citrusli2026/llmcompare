@@ -102,24 +102,31 @@ export function RankingTable({ models }: RankingTableProps) {
     }
   };
 
-  const sortedModels = [...models].sort((a, b) => {
-    if (sortKey === null || sortKey === "date") {
-      const aDate = a.raw.release_date ?? "";
-      const bDate = b.raw.release_date ?? "";
-      // 空日期始终排到最后
-      if (!aDate && !bDate) return 0;
-      if (!aDate) return 1;
-      if (!bDate) return -1;
-      return sortDesc ? bDate.localeCompare(aDate) : aDate.localeCompare(bDate);
-    }
-    const aVal = getRawValue(a, sortKey);
-    const bVal = getRawValue(b, sortKey);
-    // 缺数据的行不参与排序,统一沉底
-    if (aVal == null && bVal == null) return 0;
-    if (aVal == null) return 1;
-    if (bVal == null) return -1;
-    return sortDesc ? bVal - aVal : aVal - bVal;
-  });
+  // 分离国际/国内模型，国际标杆固定顶部不参与排序
+  const intlModels = useMemo(() => models.filter((m) => m.raw.isInternational), [models]);
+  const domesticModels = useMemo(() => models.filter((m) => !m.raw.isInternational), [models]);
+
+  // 只对国内模型排序
+  const sortedDomestic = useMemo(() => {
+    return [...domesticModels].sort((a, b) => {
+      if (sortKey === null || sortKey === "date") {
+        const aDate = a.raw.release_date ?? "";
+        const bDate = b.raw.release_date ?? "";
+        // 空日期始终排到最后
+        if (!aDate && !bDate) return 0;
+        if (!aDate) return 1;
+        if (!bDate) return -1;
+        return sortDesc ? bDate.localeCompare(aDate) : aDate.localeCompare(bDate);
+      }
+      const aVal = getRawValue(a, sortKey);
+      const bVal = getRawValue(b, sortKey);
+      // 缺数据的行不参与排序,统一沉底
+      if (aVal == null && bVal == null) return 0;
+      if (aVal == null) return 1;
+      if (bVal == null) return -1;
+      return sortDesc ? bVal - aVal : aVal - bVal;
+    });
+  }, [domesticModels, sortKey, sortDesc]);
 
   const percentiles = useMemo<Record<ColoredKey, Percentiles | null>>(() => ({
     intelligence: computePercentiles(models.map((m) => m.raw.intelligence)),
@@ -286,47 +293,82 @@ export function RankingTable({ models }: RankingTableProps) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {sortedModels.map((model) => {
-                return (
-                  <TableRow key={model.id} className="border-gray-300 dark:border-white/25 hover:bg-surface-hover transition-colors">
-                    <TableCell className="max-w-[240px]">
-                      <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
-                        {model.name}
-                        <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
-                      </Link>
-                      <div className="flex gap-1 mt-1">
-                        {model.flags.frontier && (
-                          <Badge variant="secondary" className="text-[10px] bg-violet-500/10 text-violet-400 py-0 px-1.5">{t("common.frontier")}</Badge>
-                        )}
-                        {!model.flags.frontier && (
-                          <Badge variant="secondary" className="text-[10px] bg-blue-500/10 text-blue-400 py-0 px-1.5">{t("common.mainstream")}</Badge>
-                        )}
-                        <Badge variant="secondary"
-                          className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
-                            ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
-                            : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
-                          {t(model.type === "开源" ? "common.open" : "common.closed")}
-                        </Badge>
-                      </div>
+              {/* 国际标杆 - 固定顶部，不参与排序 */}
+              {intlModels.map((model) => (
+                <TableRow key={model.id} className="border-gray-300 dark:border-white/25 opacity-60 bg-surface-hover/30">
+                  <TableCell className="max-w-[240px]">
+                    <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
+                      {model.name}
+                      <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+                    </Link>
+                    <div className="flex gap-1 mt-1">
+                      <Badge variant="secondary" className="text-[10px] bg-slate-500/10 text-slate-400 py-0 px-1.5">{t("common.intlBaseline")}</Badge>
+                      <Badge variant="secondary"
+                        className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
+                          ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
+                          : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
+                        {t(model.type === "开源" ? "common.open" : "common.closed")}
+                      </Badge>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-text-secondary hidden sm:table-cell">{model.company}</TableCell>
+                  <TableCell className={cn("hidden lg:table-cell text-sm", sortKey === "date" ? "font-semibold text-text-primary" : "text-text-secondary")}>
+                    {model.raw.release_date ?? "—"}
+                  </TableCell>
+                  {HEADERS.map(h => (
+                    <TableCell key={h.key}
+                      className={cn(
+                        "text-sm",
+                        colVisibilityClass(h),
+                        h.key === sortKey ? "font-semibold" : "",
+                        h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
+                      )}>
+                      {renderers[h.key](model)}
                     </TableCell>
-                    <TableCell className="text-text-secondary hidden sm:table-cell">{model.company}</TableCell>
-                    <TableCell className={cn("hidden lg:table-cell text-sm", sortKey === "date" ? "font-semibold text-text-primary" : "text-text-secondary")}>
-                      {model.raw.release_date ?? "—"}
+                  ))}
+                </TableRow>
+              ))}
+              {/* 国内排名 */}
+              {sortedDomestic.map((model, idx) => (
+                <TableRow key={model.id} className="border-gray-300 dark:border-white/25 hover:bg-surface-hover transition-colors">
+                  <TableCell className="max-w-[240px]">
+                    <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
+                      <span className="text-text-muted text-xs mr-1">#{idx + 1}</span>
+                      {model.name}
+                      <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+                    </Link>
+                    <div className="flex gap-1 mt-1">
+                      {model.flags.frontier && (
+                        <Badge variant="secondary" className="text-[10px] bg-violet-500/10 text-violet-400 py-0 px-1.5">{t("common.frontier")}</Badge>
+                      )}
+                      {!model.flags.frontier && (
+                        <Badge variant="secondary" className="text-[10px] bg-blue-500/10 text-blue-400 py-0 px-1.5">{t("common.mainstream")}</Badge>
+                      )}
+                      <Badge variant="secondary"
+                        className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
+                          ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
+                          : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
+                        {t(model.type === "开源" ? "common.open" : "common.closed")}
+                      </Badge>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-text-secondary hidden sm:table-cell">{model.company}</TableCell>
+                  <TableCell className={cn("hidden lg:table-cell text-sm", sortKey === "date" ? "font-semibold text-text-primary" : "text-text-secondary")}>
+                    {model.raw.release_date ?? "—"}
+                  </TableCell>
+                  {HEADERS.map(h => (
+                    <TableCell key={h.key}
+                      className={cn(
+                        "text-sm",
+                        colVisibilityClass(h),
+                        h.key === sortKey ? "font-semibold" : "",
+                        h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
+                      )}>
+                      {renderers[h.key](model)}
                     </TableCell>
-                    {HEADERS.map(h => (
-                      <TableCell key={h.key}
-                        className={cn(
-                          "text-sm",
-                          colVisibilityClass(h),
-                          h.key === sortKey ? "font-semibold" : "",
-                          h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
-                        )}>
-                        {renderers[h.key](model)}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                );
-              })}
+                  ))}
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </div>
@@ -334,7 +376,64 @@ export function RankingTable({ models }: RankingTableProps) {
 
       {/* 移动端卡片列表 */}
       <div className="block sm:hidden space-y-3">
-        {sortedModels.map((model) => (
+        {/* 国际标杆 */}
+        {intlModels.map((model) => (
+          <div
+            key={model.id}
+            className="rounded-xl border border-surface-border bg-surface-card p-4 opacity-60"
+          >
+            {/* 模型名、公司和日期 */}
+            <div className="mb-3">
+              <Link
+                href={`/product/${model.id}`}
+                className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group max-w-full"
+              >
+                <span className="truncate">{model.name}</span>
+                <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+              </Link>
+              <div className="flex items-center gap-2 mt-0.5">
+                <p className="text-sm text-text-secondary">{model.company}</p>
+                {model.raw.release_date && (
+                  <span className="text-xs text-text-muted">· {model.raw.release_date}</span>
+                )}
+              </div>
+            </div>
+
+            {/* 指标网格 — 按重要性排序，紧凑布局 */}
+            <div className="grid grid-cols-2 gap-1.5 mb-3">
+              {MOBILE_METRIC_ORDER.map((key) => {
+                const h = HEADERS.find((x) => x.key === key)!;
+                return (
+                  <div key={h.key} className="rounded-lg bg-surface-hover p-2">
+                    <div className="flex items-center gap-1 mb-0.5">
+                      <h.icon className="h-3 w-3 text-text-muted" />
+                      <span className="text-[10px] text-text-muted truncate">{t(h.labelKey)}</span>
+                    </div>
+                    <div className={cn(
+                      "text-xs font-medium tabular-nums leading-tight",
+                      h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
+                    )}>
+                      {renderMetric(model, h.key)}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* 标签 */}
+            <div className="flex flex-wrap gap-1">
+              <Badge variant="secondary" className="text-[10px] bg-slate-500/10 text-slate-400 py-0 px-1.5">{t("common.intlBaseline")}</Badge>
+              <Badge variant="secondary"
+                className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
+                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
+                  : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
+                {t(model.type === "开源" ? "common.open" : "common.closed")}
+              </Badge>
+            </div>
+          </div>
+        ))}
+        {/* 国内排名 */}
+        {sortedDomestic.map((model, idx) => (
           <div
             key={model.id}
             className="rounded-xl border border-surface-border bg-surface-card p-4"
@@ -345,6 +444,7 @@ export function RankingTable({ models }: RankingTableProps) {
                 href={`/product/${model.id}`}
                 className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group max-w-full"
               >
+                <span className="text-text-muted text-xs mr-1">#{idx + 1}</span>
                 <span className="truncate">{model.name}</span>
                 <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
               </Link>

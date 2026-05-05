@@ -11,7 +11,12 @@ import { useTranslation } from "@/lib/i18n";
 
 export default function HomePage() {
   const { t } = useTranslation();
-  const allModels = useMemo(() => getAllModels(), []);
+  const displayModels = useMemo(() => {
+    const all = getAllModels();
+    const intl = all.filter((m) => m.raw.isInternational);
+    const domestic = all.filter((m) => !m.raw.isInternational).slice(0, 10);
+    return [...intl, ...domestic];
+  }, []);
 
   return (
     <div className="min-h-screen bg-surface-base">
@@ -58,7 +63,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <RankingTable models={allModels.slice(0, 10)} />
+          <RankingTable models={displayModels} />
         </div>
       </section>
 

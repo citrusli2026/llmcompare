@@ -123,6 +123,7 @@
     "openWeights": "Open Weights",
     "imageInput": "Vision",
     "chineseEval": "Chinese Eval",
+    "intlBaseline": "Global Benchmark",
     "unknown": "Unknown"
   }
 }

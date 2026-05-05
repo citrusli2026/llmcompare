@@ -46,7 +46,6 @@
       "github": "https://github.com/openai",
       "pricing_doc": "https://openai.com/api/pricing"
     },
-    "cn_pricing": null,
     "openrouter_weekly_tokens": 250896700678,
     "openrouter_pricing": {
       "prompt": 5.0,
@@ -102,7 +101,6 @@
       "github": "https://github.com/anthropics",
       "pricing_doc": "https://www.anthropic.com/pricing"
     },
-    "cn_pricing": null,
     "openrouter_weekly_tokens": 606105976,
     "openrouter_pricing": {
       "prompt": 5.0,
@@ -169,7 +167,6 @@
       "github": "https://github.com/google-gemini",
       "pricing_doc": "https://ai.google.dev/pricing"
     },
-    "cn_pricing": null,
     "openrouter_weekly_tokens": 13527666990,
     "openrouter_pricing": {
       "prompt": 2.0,
@@ -208,14 +205,14 @@
     "pricing": {
       "input": 0.95,
       "output": 4,
-      "display": "$0.95/$4 (USD/百万token)"
+      "display": "¥6.5/¥27.0"
     },
     "flags": {
       "frontier": true,
       "open_weights": true,
       "reasoning": true,
       "image_input": true,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -236,7 +233,11 @@
       "huggingface": "https://huggingface.co/moonshotai",
       "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 6.5,
+      "output": 27.0,
+      "source": "platform.kimi.com"
+    },
     "openrouter_weekly_tokens": 1882598843619,
     "openrouter_pricing": {
       "prompt": 0.74,
@@ -254,7 +255,11 @@
         "votes": 3420
       }
     },
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.5,
+      "output": 2.0,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "mimo-v2-5-pro",
@@ -275,14 +280,14 @@
     "pricing": {
       "input": 1,
       "output": 3,
-      "display": "$1/$3 (USD/百万token)"
+      "display": "¥7.0/¥21.0 (≤256K)"
     },
     "flags": {
       "frontier": true,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -302,7 +307,11 @@
       "pricing_doc": "小米开放平台控制台（需登录）",
       "pricing_note": "2026-05-02 登录实测"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 7.0,
+      "output": 21.0,
+      "source": "小米开放平台控制台"
+    },
     "openrouter_weekly_tokens": 58865626407,
     "openrouter_pricing": {
       "prompt": 1.0,
@@ -320,7 +329,11 @@
         "votes": 4305
       }
     },
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.5,
+      "output": 1.5,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "qwen3-6-max-preview",
@@ -341,14 +354,14 @@
     "pricing": {
       "input": 1.3,
       "output": 7.8,
-      "display": "$1.3/$7.8 (USD/百万token)"
+      "display": "¥9/¥54 (≤128K)"
     },
     "flags": {
       "frontier": true,
       "open_weights": false,
       "reasoning": true,
       "image_input": false,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -370,14 +383,22 @@
       "huggingface": "https://huggingface.co/Qwen",
       "pricing_doc": "https://bailian.console.aliyun.com"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 9,
+      "output": 54,
+      "source": "bailian.console.aliyun.com"
+    },
     "openrouter_weekly_tokens": 4205972,
     "openrouter_pricing": {
       "prompt": 1.04,
       "completion": 6.24
     },
     "arena_rankings": {},
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.5,
+      "output": 2.0,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "deepseek-v4-pro-max",
@@ -398,14 +419,14 @@
     "pricing": {
       "input": 1.74,
       "output": 3.48,
-      "display": "$1.74/$3.48 (USD/百万token)"
+      "display": "¥12/¥24"
     },
     "flags": {
       "frontier": true,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -427,7 +448,11 @@
       "huggingface": "https://huggingface.co/deepseek-ai",
       "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 12,
+      "output": 24,
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
     "openrouter_weekly_tokens": 360291809357,
     "openrouter_pricing": {
       "prompt": 0.43,
@@ -440,7 +465,11 @@
         "votes": 1469
       }
     },
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 1.0,
+      "output": 2.0,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "glm-5-1",
@@ -461,14 +490,14 @@
     "pricing": {
       "input": 1.4,
       "output": 4.4,
-      "display": "$1.4/$4.4 (USD/百万token)"
+      "display": "¥6/¥24 (<32K)"
     },
     "flags": {
       "frontier": true,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -489,7 +518,11 @@
       "huggingface": "https://huggingface.co/zai-org",
       "pricing_doc": "https://open.bigmodel.cn/pricing"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 6,
+      "output": 24,
+      "source": "open.bigmodel.cn/pricing"
+    },
     "openrouter_weekly_tokens": 393654258589,
     "openrouter_pricing": {
       "prompt": 1.05,
@@ -502,7 +535,11 @@
         "votes": 3412
       }
     },
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.5,
+      "output": 2.0,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "minimax-m2-7",
@@ -523,14 +560,14 @@
     "pricing": {
       "input": 0.3,
       "output": 1.2,
-      "display": "$0.3/$1.2 (USD/百万token)"
+      "display": "¥2.1/¥8.4"
     },
     "flags": {
       "frontier": false,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -550,7 +587,11 @@
       "huggingface": "https://huggingface.co/MiniMaxAI",
       "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 2.1,
+      "output": 8.4,
+      "source": "platform.minimaxi.com"
+    },
     "openrouter_weekly_tokens": 753296601424,
     "openrouter_pricing": {
       "prompt": 0.3,
@@ -563,7 +604,11 @@
         "votes": 4502
       }
     },
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.2,
+      "output": 0.5,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "kimi-k2-5",
@@ -584,14 +629,14 @@
     "pricing": {
       "input": 0.5,
       "output": 2.85,
-      "display": "$0.5/$2.85 (USD/百万token)"
+      "display": "¥4.0/¥21.0"
     },
     "flags": {
       "frontier": false,
       "open_weights": true,
       "reasoning": true,
       "image_input": true,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -612,7 +657,11 @@
       "huggingface": "https://huggingface.co/moonshotai",
       "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 4.0,
+      "output": 21.0,
+      "source": "platform.kimi.com"
+    },
     "openrouter_weekly_tokens": 1882598843619,
     "openrouter_pricing": {
       "prompt": 0.74,
@@ -630,7 +679,11 @@
         "votes": 12127
       }
     },
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.3,
+      "output": 1.0,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "deepseek-v4-flash-max",
@@ -651,14 +704,14 @@
     "pricing": {
       "input": 0.14,
       "output": 0.28,
-      "display": "$0.14/$0.28 (USD/百万token)"
+      "display": "¥1/¥2"
     },
     "flags": {
       "frontier": false,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -680,14 +733,22 @@
       "huggingface": "https://huggingface.co/deepseek-ai",
       "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 1,
+      "output": 2,
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
     "openrouter_weekly_tokens": 706612499390,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
     },
     "arena_rankings": {},
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.1,
+      "output": 0.2,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "qwen3-5-397b-a17b",
@@ -784,14 +845,14 @@
     "pricing": {
       "input": 0.6,
       "output": 2.2,
-      "display": "$0.6/$2.2 (USD/百万token)"
+      "display": "¥2/¥8 (<32K)"
     },
     "flags": {
       "frontier": false,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -812,7 +873,11 @@
       "huggingface": "https://huggingface.co/zai-org",
       "pricing_doc": "https://open.bigmodel.cn/pricing"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 2,
+      "output": 8,
+      "source": "open.bigmodel.cn/pricing"
+    },
     "openrouter_weekly_tokens": 89081779837,
     "openrouter_pricing": {
       "prompt": 0.06,
@@ -825,7 +890,11 @@
         "votes": 4883
       }
     },
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.2,
+      "output": 0.5,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "hy3-preview",
@@ -846,14 +915,14 @@
     "pricing": {
       "input": 0,
       "output": 0,
-      "display": "$?/$? (USD/百万token)"
+      "display": "¥3.975/¥15.9 (≤32K)"
     },
     "flags": {
       "frontier": false,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -873,11 +942,19 @@
       "console": "https://console.cloud.tencent.com",
       "pricing_doc": "https://cloud.tencent.com/document/product/1772/115963"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 3.975,
+      "output": 15.9,
+      "source": "cloud.tencent.com/doc/1729/97731"
+    },
     "openrouter_weekly_tokens": 45439,
     "openrouter_pricing": null,
     "arena_rankings": {},
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.2,
+      "output": 0.5,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "deepseek-v3-2",
@@ -969,14 +1046,14 @@
     "pricing": {
       "input": 0.1,
       "output": 0.3,
-      "display": "$0.1/$0.3 (USD/百万token)"
+      "display": "¥0.7/¥2.1 (≤256K)"
     },
     "flags": {
       "frontier": false,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -996,7 +1073,11 @@
       "pricing_doc": "小米开放平台控制台（需登录）",
       "pricing_note": "2026-05-02 登录实测"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 0.7,
+      "output": 2.1,
+      "source": "小米开放平台控制台"
+    },
     "openrouter_weekly_tokens": 58865626407,
     "openrouter_pricing": {
       "prompt": 0.4,
@@ -1014,7 +1095,11 @@
         "votes": 4305
       }
     },
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.05,
+      "output": 0.15,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "qwen3-max-thinking",
@@ -1035,14 +1120,14 @@
     "pricing": {
       "input": 1.2,
       "output": 6,
-      "display": "$1.2/$6 (USD/百万token)"
+      "display": "¥2.5/¥10 (≤32K)"
     },
     "flags": {
       "frontier": false,
       "open_weights": false,
       "reasoning": true,
       "image_input": false,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -1064,14 +1149,22 @@
       "huggingface": "https://huggingface.co/Qwen",
       "pricing_doc": "https://bailian.console.aliyun.com"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 2.5,
+      "output": 10,
+      "source": "bailian.console.aliyun.com"
+    },
     "openrouter_weekly_tokens": 621973756,
     "openrouter_pricing": {
       "prompt": 0.78,
       "completion": 3.9
     },
     "arena_rankings": {},
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.5,
+      "output": 2.0,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "qwen3-5-omni-plus",
@@ -1092,14 +1185,14 @@
     "pricing": {
       "input": 0.4,
       "output": 4.8,
-      "display": "$0.4/$4.8 (USD/百万token)"
+      "display": "¥7/¥40 (文本)"
     },
     "flags": {
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
       "image_input": true,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -1121,11 +1214,19 @@
       "huggingface": "https://huggingface.co/Qwen",
       "pricing_doc": "https://bailian.console.aliyun.com"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 7,
+      "output": 40,
+      "source": "bailian.console.aliyun.com"
+    },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
     "arena_rankings": {},
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.2,
+      "output": 0.5,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "step-3-5-flash",
@@ -1146,14 +1247,14 @@
     "pricing": {
       "input": 0.1,
       "output": 0.3,
-      "display": "$0.1/$0.3 (USD/百万token)"
+      "display": "¥0.7/¥2.1"
     },
     "flags": {
       "frontier": false,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
       "data_complete": true
@@ -1174,14 +1275,22 @@
       "huggingface": "https://huggingface.co/stepfun-ai",
       "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 0.7,
+      "output": 2.1,
+      "source": "platform.stepfun.com/docs"
+    },
     "openrouter_weekly_tokens": 816038498197,
     "openrouter_pricing": {
       "prompt": 0.1,
       "completion": 0.3
     },
     "arena_rankings": {},
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.05,
+      "output": 0.2,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "ling-2-6-1t",
@@ -1202,14 +1311,14 @@
     "pricing": {
       "input": 0.3,
       "output": 2.5,
-      "display": "$0.3/$2.5 (USD/百万token)"
+      "display": "¥2.16/¥18.0"
     },
     "flags": {
       "frontier": false,
       "open_weights": true,
       "reasoning": false,
       "image_input": false,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
       "data_complete": false
@@ -1227,11 +1336,19 @@
       "homepage": "https://www.inclusion-ai.org",
       "huggingface": "https://huggingface.co/inclusionAI"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 2.16,
+      "output": 18.0,
+      "source": "AA (无国内官价, ¥按$×7.2折算)"
+    },
     "openrouter_weekly_tokens": 25694,
     "openrouter_pricing": null,
     "arena_rankings": {},
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.1,
+      "output": 0.3,
+      "source": "siliconflow"
+    }
   },
   {
     "id": "ernie-5-0-thinking-preview",
@@ -1252,14 +1369,14 @@
     "pricing": {
       "input": 0,
       "output": 0,
-      "display": "$?/$? (USD/百万token)"
+      "display": "¥6/¥24 (≤32K)"
     },
     "flags": {
       "frontier": false,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
-      "chinese_eval": false,
+      "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
       "data_complete": false
@@ -1279,7 +1396,11 @@
       "console": "https://cloud.baidu.com/product/wenxinworkshop",
       "pricing_doc": "https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 6,
+      "output": 24,
+      "source": "cloud.baidu.com/doc/qianfan"
+    },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
     "arena_rankings": {
@@ -1289,6 +1410,10 @@
         "votes": 3210
       }
     },
-    "siliconflow_pricing": null
+    "siliconflow_pricing": {
+      "input": 0.5,
+      "output": 2.0,
+      "source": "siliconflow"
+    }
   }
 ]
