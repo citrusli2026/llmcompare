@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { BarChart3, Bot, Info, Globe } from "lucide-react";
+import { BarChart3, Bot, Info } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { LanguageToggle } from "./language-toggle";
 import { useTranslation } from "@/lib/i18n";
@@ -11,7 +11,6 @@ import { useTranslation } from "@/lib/i18n";
 const navItems = [
   { href: "/", labelKey: "nav.home", icon: BarChart3 },
   { href: "/models", labelKey: "nav.models", icon: Bot },
-  { href: "/compare", labelKey: "nav.compare", icon: Globe },
   { href: "/about", labelKey: "nav.about", icon: Info },
 ];
 
