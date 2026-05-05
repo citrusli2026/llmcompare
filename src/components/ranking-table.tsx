@@ -302,7 +302,7 @@ export function RankingTable({ models }: RankingTableProps) {
                       <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
                     </Link>
                     <div className="flex gap-1 mt-1">
-                      <Badge variant="secondary" className="text-[10px] bg-slate-500/10 text-slate-400 py-0 px-1.5">{t("common.intlBaseline")}</Badge>
+                      <Badge variant="secondary" className="text-[10px] bg-amber-500/10 text-amber-600 dark:text-amber-300 py-0 px-1.5">{t("common.intlBaseline")}</Badge>
                       <Badge variant="secondary"
                         className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
                           ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"

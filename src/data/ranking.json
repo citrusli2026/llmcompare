@@ -46,7 +46,7 @@
       "github": "https://github.com/openai",
       "pricing_doc": "https://openai.com/api/pricing"
     },
-    "openrouter_weekly_tokens": 2619632487,
+    "openrouter_weekly_tokens": 262962243645,
     "openrouter_pricing": {
       "prompt": 30.0,
       "completion": 180.0
@@ -106,7 +106,7 @@
       "github": "https://github.com/anthropics",
       "pricing_doc": "https://www.anthropic.com/pricing"
     },
-    "openrouter_weekly_tokens": 606105976,
+    "openrouter_weekly_tokens": 554476262,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 25.0
@@ -171,7 +171,7 @@
       "github": "https://github.com/google-gemini",
       "pricing_doc": "https://ai.google.dev/pricing"
     },
-    "openrouter_weekly_tokens": 13527666990,
+    "openrouter_weekly_tokens": 17485996,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 12.0
@@ -241,7 +241,7 @@
       "output": 27.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_tokens": 1882598843619,
+    "openrouter_weekly_tokens": 1794293694621,
     "openrouter_pricing": {
       "prompt": 0.74,
       "completion": 3.49
@@ -310,7 +310,7 @@
       "output": 21.0,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": 58865626407,
+    "openrouter_weekly_tokens": 60529694963,
     "openrouter_pricing": {
       "prompt": 1.0,
       "completion": 3.0
@@ -381,7 +381,7 @@
       "output": 54,
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_tokens": 4205972,
+    "openrouter_weekly_tokens": 15305148534,
     "openrouter_pricing": {
       "prompt": 1.04,
       "completion": 6.24
@@ -441,7 +441,7 @@
       "output": 24,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 360291809357,
+    "openrouter_weekly_tokens": 495858204641,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
@@ -506,7 +506,7 @@
       "output": 24,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 393654258589,
+    "openrouter_weekly_tokens": 367881872255,
     "openrouter_pricing": {
       "prompt": 1.05,
       "completion": 3.5
@@ -570,7 +570,7 @@
       "output": 8.4,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": 753296601424,
+    "openrouter_weekly_tokens": 4738381019,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
@@ -635,7 +635,7 @@
       "output": 21.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_tokens": 1882598843619,
+    "openrouter_weekly_tokens": 1794293694621,
     "openrouter_pricing": {
       "prompt": 0.74,
       "completion": 3.49
@@ -706,7 +706,7 @@
       "output": 2,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 706612499390,
+    "openrouter_weekly_tokens": 763397577558,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -766,7 +766,7 @@
       "output": 7.2,
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_tokens": 109032185752,
+    "openrouter_weekly_tokens": 119688924232,
     "openrouter_pricing": {
       "prompt": 0.39,
       "completion": 2.34
@@ -836,7 +836,7 @@
       "output": 8,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 89081779837,
+    "openrouter_weekly_tokens": 87745230206,
     "openrouter_pricing": {
       "prompt": 0.06,
       "completion": 0.4
@@ -900,7 +900,7 @@
       "output": 15.9,
       "source": "cloud.tencent.com/doc/1729/97731"
     },
-    "openrouter_weekly_tokens": 45439,
+    "openrouter_weekly_tokens": 3429523573162,
     "openrouter_pricing": null,
     "arena_rankings": {}
   },
@@ -957,7 +957,7 @@
       "output": 3,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 20300937747,
+    "openrouter_weekly_tokens": 19775728260,
     "openrouter_pricing": {
       "prompt": 0.4,
       "completion": 1.2
@@ -1021,7 +1021,7 @@
       "output": 2.1,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": 58865626407,
+    "openrouter_weekly_tokens": 60529694963,
     "openrouter_pricing": {
       "prompt": 0.4,
       "completion": 2.0
@@ -1092,7 +1092,7 @@
       "output": 24,
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_tokens": 621973756,
+    "openrouter_weekly_tokens": 1625040806,
     "openrouter_pricing": {
       "prompt": 0.78,
       "completion": 3.9
@@ -1208,7 +1208,7 @@
       "output": 2.1,
       "source": "platform.stepfun.com/docs"
     },
-    "openrouter_weekly_tokens": 816038498197,
+    "openrouter_weekly_tokens": 708072643328,
     "openrouter_pricing": {
       "prompt": 0.1,
       "completion": 0.3
@@ -1264,7 +1264,7 @@
       "output": 18.0,
       "source": "AA (无国内官价, ¥按$×7.2折算)"
     },
-    "openrouter_weekly_tokens": 25694,
+    "openrouter_weekly_tokens": 471099779716,
     "openrouter_pricing": null,
     "arena_rankings": {}
   },
