@@ -68,6 +68,7 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                 [model.vendor_links.api_docs, t("product.apiDocs")],
                 [model.vendor_links.console, t("product.console")],
                 [model.vendor_links.huggingface, t("product.huggingface")],
+                [model.vendor_links.github, t("product.github")],
                 [model.vendor_links.pricing_doc, t("product.pricingDoc")],
               ] as const).filter(([url]) => url).map(([url, label]) => (
                 <a key={label} href={url} target="_blank" rel="noopener noreferrer"

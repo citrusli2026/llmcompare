@@ -28,6 +28,7 @@ interface RawModel {
     api_docs?: string;
     console?: string;
     huggingface?: string;
+    github?: string;
     pricing_doc?: string;
   };
   cn_pricing?: {
@@ -74,6 +75,7 @@ export interface ModelWithScores {
     api_docs?: string;
     console?: string;
     huggingface?: string;
+    github?: string;
     pricing_doc?: string;
   };
 

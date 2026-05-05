@@ -86,6 +86,7 @@
     "apiDocs": "API Docs",
     "console": "Console",
     "huggingface": "HuggingFace",
+    "github": "GitHub",
     "pricingDoc": "Pricing Docs",
     "sfPriceLabel": "SiliconFlow",
     "orTokens": "OpenRouter Requests",

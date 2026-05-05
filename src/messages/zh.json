@@ -86,6 +86,7 @@
     "apiDocs": "API 文档",
     "console": "控制台",
     "huggingface": "HuggingFace",
+    "github": "GitHub",
     "pricingDoc": "定价文档",
     "sfPriceLabel": "硅基流动",
     "orTokens": "OpenRouter 请求量",
