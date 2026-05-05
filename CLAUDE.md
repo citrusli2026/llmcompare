@@ -38,7 +38,7 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内�
 | 路由 | 文件 | 类型 |
 |-------|------|------|
 | `/` | `src/app/page.tsx` | 服务端组件 — 首页 Hero 区域 + 前6名模型卡片网格 |
-| `/models` | `src/app/models/page.tsx` | 服务端组件包装器 → `models-page-client.tsx` 客户端组件 — 完整的可排序/可筛选排名表格 |
+| `/models` | `src/app/models/page.tsx` | 服务端组件包装器 → `models-page-client.tsx` 客户端组件 — 完整的可排序/可筛选排名表格。国际模型固定置顶，国内模型参与排序 |
 | `/about` | `src/app/about/page.tsx` | 服务端组件包装器 → `about-page-client.tsx` 客户端组件 — 关于页面 |
 | `/product/[id]` | `src/app/product/[id]/page.tsx` | 服务端组件 — 模型详情页，使用 `generateStaticParams()` 和 `generateMetadata()` |
 
@@ -60,12 +60,13 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内�
 
 模型数据全部存放在 `src/data/` 目录：
 
-- **`src/data/ranking.json`** — 唯一事实来源。模型对象数组，包含 `id`、`name`、`company`、`type`（开源/闭源）、`scores`、`speed`、`pricing`、`flags`、`meta` 等字段。直接展示原始分数，无归一化处理。
+- **`src/data/ranking.json`** — 唯一事实来源。模型对象数组，包含 `id`、`name`、`company`、`type`（开源/闭源）、`scores`、`pricing`、`flags`、`meta`、`arena_rankings` 等字段。直接展示原始分数，无归一化处理。
 
 **数据展示原则：**
-- 所有分数直接使用原始数据（如 intelligence 原始分、median_tps 原始值）
+- 所有分数直接使用原始数据（如 intelligence 原始分、Arena ELO 分数）
 - 成本优先显示国内定价（¥/M），无国内价则显示 AA 混合价（$/M）
 - 缺失数据显示 `—`，不参与计算
+- 国际模型（GPT-5.5 / Claude / Gemini）固定置顶，不参与排序，作为对比标杆
 
 ### 数据管线（上游 `../data/` 目录）
 
@@ -83,8 +84,13 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内�
 
 1. **国内模型筛选** (`filter_cn_models.py`) — 按公司名 + 模型名关键词双重匹配，从 ~512 个模型中筛选出约 134 个国内模型
 2. **Large 模型筛选** (`build_frontend_models.py`) — 只保留 `size_class == "Large"` 的模型，去重后约 50 个
-3. **富化 + 日期筛选** (`enrich_models.py`) — 注入厂商链接和国内官价；按发布时间 ≤180 天筛选活跃模型，最终约 27-30 个
+3. **富化 + 日期筛选** (`enrich_models.py`) — 注入厂商链接、国内官价、OpenRouter 消耗/定价、Arena 排行榜数据；按发布时间 ≤180 天筛选活跃模型，最终约 21 个
 4. **数据完整标记** (`build_frontend_models.py`) — 每模型计算 `flags.data_complete`（需同时具备 intelligence 分数 + speed 数据 + pricing 数据）
+
+**国际模型呈现：**
+- 国外旗舰（GPT-5.5 / Claude Opus / Gemini）作为对比标杆，在排名表中固定置顶
+- 国际行使用琥珀色顶部边框 + 轻微背景 tint + "国际标杆" badge 进行视觉区分
+- 国际模型不参与任何排序，始终可见
 
 **评分职责边界：**
 - 管线（Python）只做数据清洗和格式转换，不做评分计算
@@ -96,6 +102,7 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内�
 
 - `src/components/ui/*` — shadcn/ui 组件（Button、Badge、Input、Table、Tabs、Card）。使用 `npx shadcn add <组件名>` 添加新组件。
 - `src/components/*` — 应用专属组件：`Navbar`、`ProductCard`、`RankingTable`、`FilterBar`、`ThemeToggle`、`ThemeProvider`、`LanguageProvider`。
+  - `RankingTable` 内部分离国际/国内模型：国际模型固定置顶（琥珀色边框 + "国际标杆" badge），国内模型参与排序并显示 `#N` 排名编号。列表列：intelligence / coding / agentic / arena code (Arena ELO) / cost (OpenRouter) / tokens。
 - 所有 UI 组件均为 `@base-ui/react` 底层组件的薄封装，使用 `cva` + `cn()` 进行样式处理。
 - `src/lib/utils.ts` 导出 `cn()`（clsx + tailwind-merge）。
 
