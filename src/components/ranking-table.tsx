@@ -295,7 +295,7 @@ export function RankingTable({ models }: RankingTableProps) {
             <TableBody>
               {/* 国际标杆 - 固定顶部，不参与排序 */}
               {intlModels.map((model) => (
-                <TableRow key={model.id} className="border-gray-300 dark:border-white/25 border-t-2 border-t-amber-400/40 bg-amber-500/[0.03] dark:bg-amber-500/[0.04]">
+                <TableRow key={model.id} className="border-gray-300 dark:border-white/25 border-t-2 border-t-amber-400/50 bg-amber-500/[0.06] dark:bg-amber-500/[0.08]">
                   <TableCell className="max-w-[240px]">
                     <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
                       {model.name}
@@ -422,7 +422,7 @@ export function RankingTable({ models }: RankingTableProps) {
 
             {/* 标签 */}
             <div className="flex flex-wrap gap-1">
-              <Badge variant="secondary" className="text-[10px] bg-slate-500/10 text-slate-400 py-0 px-1.5">{t("common.intlBaseline")}</Badge>
+              <Badge variant="secondary" className="text-[10px] bg-amber-500/10 text-amber-600 dark:text-amber-300 py-0 px-1.5">{t("common.intlBaseline")}</Badge>
               <Badge variant="secondary"
                 className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
                   ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
