@@ -5,7 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import {
   ArrowLeft, ExternalLink, Calendar, Building2, Cpu,
-  DollarSign, Zap, BookOpen, Target, TrendingUp,
+  DollarSign, Zap, BookOpen, Target, TrendingUp, Trophy,
 } from "lucide-react";
 import { type ModelWithScores } from "@/lib/scoring";
 import { formatTokenCount } from "@/lib/utils";
@@ -68,6 +68,7 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                 [model.vendor_links.api_docs, t("product.apiDocs")],
                 [model.vendor_links.console, t("product.console")],
                 [model.vendor_links.huggingface, t("product.huggingface")],
+                [model.vendor_links.github, t("product.github")],
                 [model.vendor_links.pricing_doc, t("product.pricingDoc")],
               ] as const).filter(([url]) => url).map(([url, label]) => (
                 <a key={label} href={url} target="_blank" rel="noopener noreferrer"
@@ -239,6 +240,38 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                 )}
               </div>
 
+              {r.arena_rankings != null && Object.keys(r.arena_rankings).length > 0 && (
+                <div className="rounded-xl border border-surface-border bg-surface-card p-6">
+                  <h2 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
+                    <Trophy className="h-5 w-5 text-accent-amber" /> {t("product.arenaRankings")}
+                  </h2>
+                  <div className="space-y-3">
+                    {Object.entries(r.arena_rankings).map(([key, data]) => (
+                      <div key={key} className="rounded-lg bg-surface-hover p-3">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-sm font-medium text-text-primary">
+                            {t(`product.arena${key.charAt(0).toUpperCase() + key.slice(1)}` as const)}
+                          </span>
+                          <span className="text-xs text-text-muted">#{data.rank}</span>
+                        </div>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-2xl font-bold text-text-primary tabular-nums">{data.score}</span>
+                          <span className="text-xs text-text-muted">ELO</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <a
+                    href="https://lmarena.ai/?leaderboard"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 mt-3 text-xs text-text-muted hover:text-accent-violet transition-colors"
+                  >
+                    <ExternalLink className="h-3 w-3" /> {t("product.arenaSource")}
+                  </a>
+                </div>
+              )}
+
               {r.openrouter_weekly_tokens != null && (
                 <div className="rounded-xl border border-surface-border bg-surface-card p-6">
                   <h2 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
@@ -249,7 +282,7 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
                       const { value, unit } = formatTokenCount(r.openrouter_weekly_tokens);
                       return <>{value}<span className="text-sm text-text-muted ml-1">{unit}</span></>;
                     })()}
-                    <span className="text-sm text-text-muted ml-1">Tokens/周</span>
+                    <span className="text-sm text-text-muted ml-1">{t("product.orTokensUnit")}</span>
                   </p>
                   <a
                     href="https://openrouter.ai/rankings"

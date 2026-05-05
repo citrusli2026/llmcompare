@@ -6,7 +6,7 @@ import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpDown, ArrowUp, ArrowDown, Zap, DollarSign, Brain, Code, Bot, ArrowUpRight, Calendar, TrendingUp } from "lucide-react";
+import { ArrowUpDown, ArrowUp, ArrowDown, Trophy, DollarSign, Brain, Code, Bot, ArrowUpRight, Calendar, TrendingUp } from "lucide-react";
 import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
@@ -15,14 +15,14 @@ interface RankingTableProps {
   models: ModelWithScores[];
 }
 
-type ScoreKey = "intelligence" | "coding" | "agentic" | "speed" | "cost" | "tokens";
+type ScoreKey = "intelligence" | "coding" | "agentic" | "arenaCode" | "cost" | "tokens";
 type SortKey = ScoreKey | "date";
 
 const HEADERS: { key: ScoreKey; labelKey: string; icon: React.ComponentType<{ className?: string }>; mobile: boolean; desktop: boolean }[] = [
   { key: "intelligence", labelKey: "models.colIntelligence", icon: Brain, mobile: true, desktop: true },
   { key: "coding", labelKey: "models.colCoding", icon: Code, mobile: false, desktop: true },
   { key: "agentic", labelKey: "models.colAgentic", icon: Bot, mobile: false, desktop: true },
-  { key: "speed", labelKey: "models.colSpeed", icon: Zap, mobile: false, desktop: true },
+  { key: "arenaCode", labelKey: "models.colArenaCode", icon: Trophy, mobile: false, desktop: true },
   { key: "cost", labelKey: "models.colCost", icon: DollarSign, mobile: false, desktop: true },
   { key: "tokens", labelKey: "models.colTokens", icon: TrendingUp, mobile: false, desktop: true },
 ];
@@ -30,7 +30,7 @@ const HEADERS: { key: ScoreKey; labelKey: string; icon: React.ComponentType<{ cl
 // 颜色由列在当前榜单中的相对分位决定,而非绝对分数
 // AA Intelligence Index 国内模型集中在 30-55,绝对阈值会让全表挤进同一档
 type Percentiles = { p25: number; p50: number; p75: number };
-type ColoredKey = "intelligence" | "coding" | "agentic" | "speed" | "cost";
+type ColoredKey = "intelligence" | "coding" | "agentic" | "arenaCode" | "cost";
 
 const COLOR_BY_BUCKET = {
   emerald: "text-emerald-500 dark:text-emerald-400",
@@ -42,7 +42,7 @@ const COLOR_BY_BUCKET = {
 
 // cost 是反向(数字越小越好),其他正向
 const ASCENDING: Record<ColoredKey, boolean> = {
-  intelligence: true, coding: true, agentic: true, speed: true, cost: false,
+  intelligence: true, coding: true, agentic: true, arenaCode: true, cost: false,
 };
 
 function quantile(sorted: number[], q: number): number {
@@ -76,7 +76,7 @@ function bucketByPercentile(val: number, p: Percentiles, ascending: boolean): ke
 }
 
 export function RankingTable({ models }: RankingTableProps) {
-  const [sortKey, setSortKey] = useState<SortKey | null>(null);
+  const [sortKey, setSortKey] = useState<SortKey>("date");
   const [sortDesc, setSortDesc] = useState(true);
   const { t } = useTranslation();
 
@@ -86,8 +86,8 @@ export function RankingTable({ models }: RankingTableProps) {
       return;
     }
     setSortKey(key);
-    // 首次点 date 列默认升序(从旧到新),其他列默认降序
-    setSortDesc(!(sortKey === null && key === "date"));
+    // 切换到新列默认降序
+    setSortDesc(true);
   };
 
   const getRawValue = (model: ModelWithScores, key: SortKey): number | null => {
@@ -95,18 +95,22 @@ export function RankingTable({ models }: RankingTableProps) {
       case "intelligence": return model.raw.intelligence;
       case "coding": return model.raw.coding ?? null;
       case "agentic": return model.raw.agentic ?? null;
-      case "speed": return model.raw.median_tps ?? null;
+      case "arenaCode": return model.raw.arena_code ?? null;
       case "cost": return model.raw.openrouter_pricing?.prompt ?? null;
       case "tokens": return model.raw.openrouter_weekly_tokens ?? null;
       case "date": return null; // handled in sortedModels
     }
   };
 
-  const sortedModels = [...models].sort((a, b) => {
-    if (sortKey === null || sortKey === "date") {
+  // 分离三组模型：国际标杆、国内前沿、国内主力，各自内部排序，组间不混排
+  const intlModels = useMemo(() => models.filter((m) => m.raw.isInternational), [models]);
+  const frontierModels = useMemo(() => models.filter((m) => !m.raw.isInternational && m.flags.frontier), [models]);
+  const mainstreamModels = useMemo(() => models.filter((m) => !m.raw.isInternational && !m.flags.frontier), [models]);
+
+  const sortFn = (a: ModelWithScores, b: ModelWithScores) => {
+    if (sortKey === "date") {
       const aDate = a.raw.release_date ?? "";
       const bDate = b.raw.release_date ?? "";
-      // 空日期始终排到最后
       if (!aDate && !bDate) return 0;
       if (!aDate) return 1;
       if (!bDate) return -1;
@@ -114,18 +118,21 @@ export function RankingTable({ models }: RankingTableProps) {
     }
     const aVal = getRawValue(a, sortKey);
     const bVal = getRawValue(b, sortKey);
-    // 缺数据的行不参与排序,统一沉底
     if (aVal == null && bVal == null) return 0;
     if (aVal == null) return 1;
     if (bVal == null) return -1;
     return sortDesc ? bVal - aVal : aVal - bVal;
-  });
+  };
+
+  const sortedIntl = useMemo(() => [...intlModels].sort(sortFn), [intlModels, sortKey, sortDesc]);
+  const sortedFrontier = useMemo(() => [...frontierModels].sort(sortFn), [frontierModels, sortKey, sortDesc]);
+  const sortedMainstream = useMemo(() => [...mainstreamModels].sort(sortFn), [mainstreamModels, sortKey, sortDesc]);
 
   const percentiles = useMemo<Record<ColoredKey, Percentiles | null>>(() => ({
     intelligence: computePercentiles(models.map((m) => m.raw.intelligence)),
     coding: computePercentiles(models.map((m) => m.raw.coding)),
     agentic: computePercentiles(models.map((m) => m.raw.agentic)),
-    speed: computePercentiles(models.map((m) => m.raw.median_tps)),
+    arenaCode: computePercentiles(models.map((m) => m.raw.arena_code)),
     // cost 仅用 OR 价,与 getCostDisplay 一致(无 OR 价的行展示 `—`,不染色)
     cost: computePercentiles(models.map((m) => m.raw.openrouter_pricing?.prompt ?? null)),
   }), [models]);
@@ -143,9 +150,9 @@ export function RankingTable({ models }: RankingTableProps) {
     return COLOR_BY_BUCKET[bucketByPercentile(val, p, ASCENDING[key])];
   };
 
-  const getSpeedDisplay = (model: ModelWithScores): React.ReactNode => {
-    if (model.raw.median_tps != null) {
-      return <span>{model.raw.median_tps.toFixed(1)} <span className="text-text-secondary text-[10px]">TPS</span></span>;
+  const getArenaCodeDisplay = (model: ModelWithScores): React.ReactNode => {
+    if (model.raw.arena_code != null) {
+      return <span>{model.raw.arena_code} <span className="text-text-secondary text-[10px]">ELO</span></span>;
     }
     return <span className="text-text-dim text-xs">—</span>;
   };
@@ -169,7 +176,7 @@ export function RankingTable({ models }: RankingTableProps) {
     intelligence: (m) => formatScore(m.raw.intelligence),
     coding: (m) => formatScore(m.raw.coding),
     agentic: (m) => formatScore(m.raw.agentic),
-    speed: getSpeedDisplay,
+    arenaCode: getArenaCodeDisplay,
     cost: getCostDisplay,
     tokens: getTokensDisplay,
   };
@@ -177,11 +184,11 @@ export function RankingTable({ models }: RankingTableProps) {
   // 移动端排序处理
   const handleMobileSortChange = (value: string) => {
     if (value === "") {
-      setSortKey(null);
+      setSortKey("date");
       setSortDesc(true);
     } else if (value === "date") {
       setSortKey("date");
-      setSortDesc(false);
+      setSortDesc(true);
     } else {
       setSortKey(value as ScoreKey);
       setSortDesc(true);
@@ -204,7 +211,7 @@ export function RankingTable({ models }: RankingTableProps) {
     { key: "intelligence", labelKey: "models.colIntelligence" },
     { key: "coding", labelKey: "models.colCoding" },
     { key: "agentic", labelKey: "models.colAgentic" },
-    { key: "speed", labelKey: "models.colSpeed" },
+    { key: "arenaCode", labelKey: "models.colArenaCode" },
     { key: "cost", labelKey: "models.colCost" },
     { key: "tokens", labelKey: "models.colTokens" },
     { key: "date", labelKey: "table.date" },
@@ -286,47 +293,116 @@ export function RankingTable({ models }: RankingTableProps) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {sortedModels.map((model) => {
-                return (
-                  <TableRow key={model.id} className="border-gray-300 dark:border-white/25 hover:bg-surface-hover transition-colors">
-                    <TableCell className="max-w-[240px]">
-                      <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
-                        {model.name}
-                        <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
-                      </Link>
-                      <div className="flex gap-1 mt-1">
-                        {model.flags.frontier && (
-                          <Badge variant="secondary" className="text-[10px] bg-violet-500/10 text-violet-400 py-0 px-1.5">{t("common.frontier")}</Badge>
-                        )}
-                        {!model.flags.frontier && (
-                          <Badge variant="secondary" className="text-[10px] bg-blue-500/10 text-blue-400 py-0 px-1.5">{t("common.mainstream")}</Badge>
-                        )}
-                        <Badge variant="secondary"
-                          className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
-                            ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
-                            : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
-                          {t(model.type === "开源" ? "common.open" : "common.closed")}
-                        </Badge>
-                      </div>
+              {/* 国际标杆 - 固定顶部，不参与排序 */}
+              {sortedIntl.map((model) => (
+                <TableRow key={model.id} className="border-gray-300 dark:border-white/25 border-t-2 border-t-amber-400/50 bg-amber-500/[0.06] dark:bg-amber-500/[0.08]">
+                  <TableCell className="max-w-[240px]">
+                    <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
+                      {model.name}
+                      <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+                    </Link>
+                    <div className="flex gap-1 mt-1">
+                      <Badge variant="secondary" className="text-[10px] bg-amber-500/10 text-amber-600 dark:text-amber-300 py-0 px-1.5">{t("common.intlBaseline")}</Badge>
+                      <Badge variant="secondary"
+                        className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
+                          ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
+                          : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
+                        {t(model.type === "开源" ? "common.open" : "common.closed")}
+                      </Badge>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-text-secondary hidden sm:table-cell">{model.company}</TableCell>
+                  <TableCell className={cn("hidden lg:table-cell text-sm", sortKey === "date" ? "font-semibold text-text-primary" : "text-text-secondary")}>
+                    {model.raw.release_date ?? "—"}
+                  </TableCell>
+                  {HEADERS.map(h => (
+                    <TableCell key={h.key}
+                      className={cn(
+                        "text-sm",
+                        colVisibilityClass(h),
+                        h.key === sortKey ? "font-semibold" : "",
+                        h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
+                      )}>
+                      {renderers[h.key](model)}
                     </TableCell>
-                    <TableCell className="text-text-secondary hidden sm:table-cell">{model.company}</TableCell>
-                    <TableCell className={cn("hidden lg:table-cell text-sm", sortKey === "date" ? "font-semibold text-text-primary" : "text-text-secondary")}>
-                      {model.raw.release_date ?? "—"}
+                  ))}
+                </TableRow>
+              ))}
+              {/* 国内前沿 */}
+              {sortedFrontier.map((model, idx) => (
+                <TableRow key={model.id} className={cn(
+                  "border-gray-300 dark:border-white/25 hover:bg-surface-hover transition-colors",
+                  "bg-violet-500/[0.03] dark:bg-violet-500/[0.04]"
+                )}>
+                  <TableCell className="max-w-[240px]">
+                    <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
+                      <span className="text-text-muted text-xs mr-1">#{idx + 1}</span>
+                      {model.name}
+                      <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+                    </Link>
+                    <div className="flex gap-1 mt-1">
+                      <Badge variant="secondary" className="text-[10px] bg-violet-500/10 text-violet-400 py-0 px-1.5">{t("common.frontier")}</Badge>
+                      <Badge variant="secondary"
+                        className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
+                          ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
+                          : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
+                        {t(model.type === "开源" ? "common.open" : "common.closed")}
+                      </Badge>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-text-secondary hidden sm:table-cell">{model.company}</TableCell>
+                  <TableCell className={cn("hidden lg:table-cell text-sm", sortKey === "date" ? "font-semibold text-text-primary" : "text-text-secondary")}>
+                    {model.raw.release_date ?? "—"}
+                  </TableCell>
+                  {HEADERS.map(h => (
+                    <TableCell key={h.key}
+                      className={cn(
+                        "text-sm",
+                        colVisibilityClass(h),
+                        h.key === sortKey ? "font-semibold" : "",
+                        h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
+                      )}>
+                      {renderers[h.key](model)}
                     </TableCell>
-                    {HEADERS.map(h => (
-                      <TableCell key={h.key}
-                        className={cn(
-                          "text-sm",
-                          colVisibilityClass(h),
-                          h.key === sortKey ? "font-semibold" : "",
-                          h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
-                        )}>
-                        {renderers[h.key](model)}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                );
-              })}
+                  ))}
+                </TableRow>
+              ))}
+              {/* 国内主力 */}
+              {sortedMainstream.map((model, idx) => (
+                <TableRow key={model.id} className="border-gray-300 dark:border-white/25 hover:bg-surface-hover transition-colors">
+                  <TableCell className="max-w-[240px]">
+                    <Link href={`/product/${model.id}`} className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate">
+                      <span className="text-text-muted text-xs mr-1">#{sortedFrontier.length + idx + 1}</span>
+                      {model.name}
+                      <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+                    </Link>
+                    <div className="flex gap-1 mt-1">
+                      <Badge variant="secondary" className="text-[10px] bg-blue-500/10 text-blue-400 py-0 px-1.5">{t("common.mainstream")}</Badge>
+                      <Badge variant="secondary"
+                        className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
+                          ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
+                          : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
+                        {t(model.type === "开源" ? "common.open" : "common.closed")}
+                      </Badge>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-text-secondary hidden sm:table-cell">{model.company}</TableCell>
+                  <TableCell className={cn("hidden lg:table-cell text-sm", sortKey === "date" ? "font-semibold text-text-primary" : "text-text-secondary")}>
+                    {model.raw.release_date ?? "—"}
+                  </TableCell>
+                  {HEADERS.map(h => (
+                    <TableCell key={h.key}
+                      className={cn(
+                        "text-sm",
+                        colVisibilityClass(h),
+                        h.key === sortKey ? "font-semibold" : "",
+                        h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
+                      )}>
+                      {renderers[h.key](model)}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </div>
@@ -334,10 +410,11 @@ export function RankingTable({ models }: RankingTableProps) {
 
       {/* 移动端卡片列表 */}
       <div className="block sm:hidden space-y-3">
-        {sortedModels.map((model) => (
+        {/* 国际标杆 */}
+        {sortedIntl.map((model) => (
           <div
             key={model.id}
-            className="rounded-xl border border-surface-border bg-surface-card p-4"
+            className="rounded-xl border border-surface-border p-4 border-t-2 border-t-amber-400/40 bg-amber-500/[0.03] dark:bg-amber-500/[0.04]"
           >
             {/* 模型名、公司和日期 */}
             <div className="mb-3">
@@ -379,11 +456,121 @@ export function RankingTable({ models }: RankingTableProps) {
 
             {/* 标签 */}
             <div className="flex flex-wrap gap-1">
-              {model.flags.frontier ? (
-                <Badge variant="secondary" className="text-[10px] bg-violet-500/10 text-violet-400 py-0 px-1.5">{t("common.frontier")}</Badge>
-              ) : (
-                <Badge variant="secondary" className="text-[10px] bg-blue-500/10 text-blue-400 py-0 px-1.5">{t("common.mainstream")}</Badge>
-              )}
+              <Badge variant="secondary" className="text-[10px] bg-amber-500/10 text-amber-600 dark:text-amber-300 py-0 px-1.5">{t("common.intlBaseline")}</Badge>
+              <Badge variant="secondary"
+                className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
+                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
+                  : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
+                {t(model.type === "开源" ? "common.open" : "common.closed")}
+              </Badge>
+            </div>
+          </div>
+        ))}
+        {/* 国内前沿 */}
+        {sortedFrontier.map((model, idx) => (
+          <div
+            key={model.id}
+            className="rounded-xl border border-surface-border p-4 bg-violet-500/[0.03] dark:bg-violet-500/[0.04]"
+          >
+            {/* 模型名、公司和日期 */}
+            <div className="mb-3">
+              <Link
+                href={`/product/${model.id}`}
+                className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group max-w-full"
+              >
+                <span className="text-text-muted text-xs mr-1">#{idx + 1}</span>
+                <span className="truncate">{model.name}</span>
+                <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+              </Link>
+              <div className="flex items-center gap-2 mt-0.5">
+                <p className="text-sm text-text-secondary">{model.company}</p>
+                {model.raw.release_date && (
+                  <span className="text-xs text-text-muted">· {model.raw.release_date}</span>
+                )}
+              </div>
+            </div>
+
+            {/* 指标网格 — 按重要性排序，紧凑布局 */}
+            <div className="grid grid-cols-2 gap-1.5 mb-3">
+              {MOBILE_METRIC_ORDER.map((key) => {
+                const h = HEADERS.find((x) => x.key === key)!;
+                return (
+                  <div key={h.key} className="rounded-lg bg-surface-hover p-2">
+                    <div className="flex items-center gap-1 mb-0.5">
+                      <h.icon className="h-3 w-3 text-text-muted" />
+                      <span className="text-[10px] text-text-muted truncate">{t(h.labelKey)}</span>
+                    </div>
+                    <div className={cn(
+                      "text-xs font-medium tabular-nums leading-tight",
+                      h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
+                    )}>
+                      {renderMetric(model, h.key)}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* 标签 */}
+            <div className="flex flex-wrap gap-1">
+              <Badge variant="secondary" className="text-[10px] bg-violet-500/10 text-violet-400 py-0 px-1.5">{t("common.frontier")}</Badge>
+              <Badge variant="secondary"
+                className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
+                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
+                  : "bg-blue-500/10 text-blue-600 dark:text-blue-300")}>
+                {t(model.type === "开源" ? "common.open" : "common.closed")}
+              </Badge>
+            </div>
+          </div>
+        ))}
+        {/* 国内主力 */}
+        {sortedMainstream.map((model, idx) => (
+          <div
+            key={model.id}
+            className="rounded-xl border border-surface-border bg-surface-card p-4"
+          >
+            {/* 模型名、公司和日期 */}
+            <div className="mb-3">
+              <Link
+                href={`/product/${model.id}`}
+                className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group max-w-full"
+              >
+                <span className="text-text-muted text-xs mr-1">#{sortedFrontier.length + idx + 1}</span>
+                <span className="truncate">{model.name}</span>
+                <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+              </Link>
+              <div className="flex items-center gap-2 mt-0.5">
+                <p className="text-sm text-text-secondary">{model.company}</p>
+                {model.raw.release_date && (
+                  <span className="text-xs text-text-muted">· {model.raw.release_date}</span>
+                )}
+              </div>
+            </div>
+
+            {/* 指标网格 — 按重要性排序，紧凑布局 */}
+            <div className="grid grid-cols-2 gap-1.5 mb-3">
+              {MOBILE_METRIC_ORDER.map((key) => {
+                const h = HEADERS.find((x) => x.key === key)!;
+                return (
+                  <div key={h.key} className="rounded-lg bg-surface-hover p-2">
+                    <div className="flex items-center gap-1 mb-0.5">
+                      <h.icon className="h-3 w-3 text-text-muted" />
+                      <span className="text-[10px] text-text-muted truncate">{t(h.labelKey)}</span>
+                    </div>
+                    <div className={cn(
+                      "text-xs font-medium tabular-nums leading-tight",
+                      h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key)
+                    )}>
+                      {renderMetric(model, h.key)}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* 标签 */}
+            <div className="flex flex-wrap gap-1">
+              <Badge variant="secondary" className="text-[10px] bg-blue-500/10 text-blue-400 py-0 px-1.5">{t("common.mainstream")}</Badge>
               <Badge variant="secondary"
                 className={cn("text-[10px] py-0 px-1.5", model.type === "开源"
                   ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"

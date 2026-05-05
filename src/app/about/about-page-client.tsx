@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
-import { ArrowLeft, Brain, DollarSign, TrendingUp, Database, ExternalLink } from "lucide-react";
+import { ArrowLeft, Brain, DollarSign, TrendingUp, Trophy, Database, ExternalLink } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
 export default function AboutPageClient() {
@@ -74,6 +74,13 @@ export default function AboutPageClient() {
                     <p className="text-text-primary font-medium">{t("about.sourcePriceTitle")}</p>
                   </div>
                   <p className="text-text-secondary">{t("about.priceDetail")}</p>
+                </div>
+                <div className="rounded-lg bg-surface-hover p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Trophy className="h-4 w-4 text-accent-amber" />
+                    <p className="text-text-primary font-medium">Arena</p>
+                  </div>
+                  <p className="text-text-secondary">{t("about.arenaDesc")}</p>
                 </div>
               </div>
             </section>

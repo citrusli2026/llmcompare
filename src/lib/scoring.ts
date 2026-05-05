@@ -28,6 +28,7 @@ interface RawModel {
     api_docs?: string;
     console?: string;
     huggingface?: string;
+    github?: string;
     pricing_doc?: string;
   };
   cn_pricing?: {
@@ -46,6 +47,7 @@ interface RawModel {
   };
   openrouter_weekly_tokens?: number | null;
   openrouter_pricing?: { prompt: number; completion: number } | null;
+  arena_rankings?: Record<string, { rank: number; score: number; votes?: number }> | null;
   meta?: {
     context_window: number | null;
     parameters: number | null;
@@ -68,6 +70,7 @@ export interface ModelWithScores {
     api_docs?: string;
     console?: string;
     huggingface?: string;
+    github?: string;
     pricing_doc?: string;
   };
 
@@ -85,6 +88,7 @@ export interface ModelWithScores {
     cn_input: number | null;
     cn_output: number | null;
     cn_display: string | null;
+    isInternational: boolean;
     context_window: number | null;
     parameters: number | null;
     output_tokens: number | null;
@@ -92,6 +96,8 @@ export interface ModelWithScores {
     omniscience: number | null;
     openrouter_weekly_tokens: number | null;
     openrouter_pricing: { prompt: number; completion: number } | null;
+    arena_rankings: Record<string, { rank: number; score: number; votes?: number }> | null;
+    arena_code: number | null;
   };
 
   flags: {
@@ -114,7 +120,7 @@ let _cache: {
 function initCache(): void {
   if (_cache) return;
 
-  const models: ModelWithScores[] = modelsRaw.map((m: RawModel) => {
+  const models: ModelWithScores[] = (modelsRaw as RawModel[]).map((m) => {
     const cn = m.cn_pricing;
     // 上游 ranking.json 用 median_tps === 0 表示无 speed 数据
     const speedMissing = !m.speed || m.speed.median_tps === 0;
@@ -139,6 +145,7 @@ function initCache(): void {
         cn_input: cn?.input ?? null,
         cn_output: cn?.output ?? null,
         cn_display: cn ? `¥${cn.input}/¥${cn.output}` : null,
+        isInternational: !m.flags.chinese_eval,
         context_window: m.meta?.context_window ?? null,
         parameters: m.meta?.parameters ?? null,
         output_tokens: m.meta?.output_tokens ?? null,
@@ -146,6 +153,8 @@ function initCache(): void {
         omniscience: m.meta?.omniscience ?? null,
         openrouter_weekly_tokens: m.openrouter_weekly_tokens ?? null,
         openrouter_pricing: m.openrouter_pricing ?? null,
+        arena_rankings: m.arena_rankings && Object.keys(m.arena_rankings).length > 0 ? m.arena_rankings : null,
+        arena_code: m.arena_rankings?.code?.score ?? null,
       },
       flags: m.flags,
     };
