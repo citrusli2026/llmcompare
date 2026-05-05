@@ -399,7 +399,7 @@ export function RankingTable({ models }: RankingTableProps) {
         {intlModels.map((model) => (
           <div
             key={model.id}
-            className="rounded-xl border border-surface-border bg-surface-card p-4 border-t-2 border-t-amber-400/40 bg-amber-500/[0.03] dark:bg-amber-500/[0.04]"
+            className="rounded-xl border border-surface-border p-4 border-t-2 border-t-amber-400/40 bg-amber-500/[0.03] dark:bg-amber-500/[0.04]"
           >
             {/* 模型名、公司和日期 */}
             <div className="mb-3">
