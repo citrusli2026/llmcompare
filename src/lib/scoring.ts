@@ -1,6 +1,58 @@
 import modelsRaw from "@/data/ranking.json";
 
-// ── Types ──
+// ── Shared Types ──
+interface VendorLinks {
+  homepage?: string;
+  api_docs?: string;
+  console?: string;
+  huggingface?: string;
+  github?: string;
+  pricing_doc?: string;
+}
+
+interface ModelFlags {
+  frontier: boolean;
+  open_weights: boolean;
+  reasoning: boolean;
+  image_input: boolean;
+  chinese_eval: boolean;
+  has_speed: boolean;
+  data_complete: boolean;
+}
+
+interface ArenaRanking {
+  rank: number;
+  score: number;
+  votes?: number;
+}
+
+interface RawScores {
+  intelligence: number;
+  coding: number | null;
+  agentic: number | null;
+}
+
+interface RawSpeed {
+  median_tps: number | null;
+  ttft_seconds: number | null;
+  e2e_seconds: number | null;
+}
+
+interface RawPricing {
+  input: number | null;
+  output: number | null;
+  display: string;
+}
+
+interface RawMeta {
+  context_window: number | null;
+  parameters: number | null;
+  output_tokens: number | null;
+  release_date: string | null;
+  omniscience: number | null;
+}
+
+// ── RawModel (from JSON) ──
 interface RawModel {
   id: string;
   name: string;
@@ -8,55 +60,23 @@ interface RawModel {
   type: string;
   logo: string;
   url: string;
-  scores: {
-    intelligence: number;
-    coding: number | null;
-    agentic: number | null;
-  };
-  speed?: {
-    median_tps: number | null;
-    ttft_seconds: number | null;
-    e2e_seconds: number | null;
-  };
-  pricing?: {
-    input: number | null;
-    output: number | null;
-    display: string;
-  };
-  vendor_links?: {
-    homepage?: string;
-    api_docs?: string;
-    console?: string;
-    huggingface?: string;
-    github?: string;
-    pricing_doc?: string;
-  };
+  scores: RawScores;
+  speed?: RawSpeed;
+  pricing?: RawPricing;
+  vendor_links?: VendorLinks;
   cn_pricing?: {
     input: number;
     output: number;
     source: string;
   } | null;
-  flags: {
-    frontier: boolean;
-    open_weights: boolean;
-    reasoning: boolean;
-    image_input: boolean;
-    chinese_eval: boolean;
-    has_speed: boolean;
-    data_complete: boolean;
-  };
+  flags: ModelFlags;
   openrouter_weekly_tokens?: number | null;
   openrouter_pricing?: { prompt: number; completion: number } | null;
-  arena_rankings?: Record<string, { rank: number; score: number; votes?: number }> | null;
-  meta?: {
-    context_window: number | null;
-    parameters: number | null;
-    output_tokens: number | null;
-    release_date: string | null;
-    omniscience: number | null;
-  };
+  arena_rankings?: Record<string, ArenaRanking> | null;
+  meta?: RawMeta;
 }
 
+// ── Public Types ──
 export interface ModelWithScores {
   id: string;
   name: string;
@@ -64,17 +84,8 @@ export interface ModelWithScores {
   type: "开源" | "闭源";
   logo: string;
   url: string;
+  vendor_links?: VendorLinks;
 
-  vendor_links?: {
-    homepage?: string;
-    api_docs?: string;
-    console?: string;
-    huggingface?: string;
-    github?: string;
-    pricing_doc?: string;
-  };
-
-  // Raw values directly from data sources
   raw: {
     intelligence: number;
     coding: number | null;
@@ -96,19 +107,11 @@ export interface ModelWithScores {
     omniscience: number | null;
     openrouter_weekly_tokens: number | null;
     openrouter_pricing: { prompt: number; completion: number } | null;
-    arena_rankings: Record<string, { rank: number; score: number; votes?: number }> | null;
+    arena_rankings: Record<string, ArenaRanking> | null;
     arena_code: number | null;
   };
 
-  flags: {
-    frontier: boolean;
-    open_weights: boolean;
-    reasoning: boolean;
-    image_input: boolean;
-    chinese_eval: boolean;
-    has_speed: boolean;
-    data_complete: boolean;
-  };
+  flags: ModelFlags;
 }
 
 // ── Cache ──

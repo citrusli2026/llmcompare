@@ -107,7 +107,7 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
               <BookOpen className="h-4 w-4 text-text-muted shrink-0" />
               <div className="min-w-0">
                 <p className="text-[10px] uppercase tracking-wider text-text-muted">{t("product.contextWindow")}</p>
-                <p className="text-sm font-medium text-text-primary truncate">{r.context_window != null ? `${(r.context_window / 1000).toFixed(0)}K` : "—"}</p>
+                <p className="text-sm font-medium text-text-primary truncate">{r.context_window != null ? (typeof r.context_window === "number" ? `${(r.context_window / 1000).toFixed(0)}K` : String(r.context_window)) : "—"}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">

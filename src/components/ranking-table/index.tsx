@@ -1,0 +1,222 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import Link from "next/link";
+import {
+  Table, TableBody, TableHead, TableHeader, TableRow,
+} from "@/components/ui/table";
+import { ArrowUpDown, ArrowUp, ArrowDown, Trophy, DollarSign, Brain, Code, Bot, Calendar, TrendingUp } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { type ModelWithScores } from "@/lib/scoring";
+import { useTranslation } from "@/lib/i18n";
+import { type ScoreKey, type SortKey, type HeaderDef } from "./types";
+import { computePercentiles, formatScore, getRawValue, getScoreColor } from "./utils";
+import { useModelGroups } from "./use-model-groups";
+import { ModelRow } from "./model-row";
+import { MobileCard } from "./mobile-card";
+
+interface RankingTableProps {
+  models: ModelWithScores[];
+}
+
+const HEADERS: HeaderDef[] = [
+  { key: "intelligence", labelKey: "models.colIntelligence", icon: Brain, mobile: true, desktop: true },
+  { key: "coding", labelKey: "models.colCoding", icon: Code, mobile: false, desktop: true },
+  { key: "agentic", labelKey: "models.colAgentic", icon: Bot, mobile: false, desktop: true },
+  { key: "arenaCode", labelKey: "models.colArenaCode", icon: Trophy, mobile: false, desktop: true },
+  { key: "cost", labelKey: "models.colCost", icon: DollarSign, mobile: false, desktop: true },
+  { key: "tokens", labelKey: "models.colTokens", icon: TrendingUp, mobile: false, desktop: true },
+];
+
+const MOBILE_METRIC_ORDER: ScoreKey[] = ["intelligence", "cost", "tokens"];
+
+const MOBILE_SORT_OPTIONS: { key: SortKey | ""; labelKey: string }[] = [
+  { key: "", labelKey: "models.sortBy" },
+  { key: "intelligence", labelKey: "models.colIntelligence" },
+  { key: "cost", labelKey: "models.colCost" },
+  { key: "tokens", labelKey: "models.colTokens" },
+  { key: "date", labelKey: "table.date" },
+];
+
+export function RankingTable({ models }: RankingTableProps) {
+  const [sortKey, setSortKey] = useState<SortKey>("date");
+  const [sortDesc, setSortDesc] = useState(true);
+  const { t } = useTranslation();
+
+  const handleSort = (key: SortKey) => {
+    if (sortKey === key) {
+      setSortDesc(!sortDesc);
+      return;
+    }
+    setSortKey(key);
+    setSortDesc(true);
+  };
+
+  const groups = useModelGroups(models, sortKey, sortDesc);
+
+  const percentiles = useMemo(() => ({
+    intelligence: computePercentiles(models.map((m) => m.raw.intelligence)),
+    coding: computePercentiles(models.map((m) => m.raw.coding)),
+    agentic: computePercentiles(models.map((m) => m.raw.agentic)),
+    arenaCode: computePercentiles(models.map((m) => m.raw.arena_code)),
+    cost: computePercentiles(models.map((m) => m.raw.openrouter_pricing?.completion ?? null)),
+  }), [models]);
+
+  const colVisibilityClass = (h: HeaderDef) => cn(
+    !h.mobile && "hidden sm:table-cell",
+    !h.desktop && "hidden md:table-cell",
+    !h.mobile && !h.desktop && "hidden lg:table-cell",
+  );
+
+  const renderers: Record<ScoreKey, (m: ModelWithScores) => React.ReactNode> = {
+    intelligence: (m) => formatScore(m.raw.intelligence),
+    coding: (m) => formatScore(m.raw.coding),
+    agentic: (m) => formatScore(m.raw.agentic),
+    arenaCode: (m) =>
+      m.raw.arena_code != null ? (
+        <span>{m.raw.arena_code} <span className="text-text-secondary text-[10px]">ELO</span></span>
+      ) : (
+        <span className="text-text-dim text-xs">—</span>
+      ),
+    cost: (m) =>
+      m.raw.openrouter_pricing != null ? (
+        <span>${m.raw.openrouter_pricing.prompt}<span className="text-text-secondary text-[10px]">/</span>${m.raw.openrouter_pricing.completion}<span className="text-text-secondary text-[10px]">/M</span></span>
+      ) : (
+        <span className="text-text-dim text-xs">—</span>
+      ),
+    tokens: (m) => {
+      const val = m.raw.openrouter_weekly_tokens;
+      if (val == null) return <span className="text-text-dim text-xs">—</span>;
+      return <span>{val}</span>;
+    },
+  };
+
+  const renderMetric = (model: ModelWithScores, key: string) => {
+    if (key === "cost") {
+      if (model.raw.openrouter_pricing != null) {
+        return <span>${model.raw.openrouter_pricing.completion}<span className="text-text-secondary text-[10px]">/M</span></span>;
+      }
+      return <span className="text-text-dim text-xs">—</span>;
+    }
+    return renderers[key as ScoreKey](model);
+  };
+
+  const handleMobileSortChange = (value: string) => {
+    if (value === "" || value === "date") {
+      setSortKey("date");
+      setSortDesc(true);
+    } else {
+      setSortKey(value as ScoreKey);
+      setSortDesc(true);
+    }
+  };
+
+  return (
+    <div className="space-y-4">
+      {/* 移动端排序控制 */}
+      <div className="block sm:hidden">
+        <div className="flex items-center gap-2">
+          <div className="relative flex-1">
+            <select
+              value={sortKey}
+              onChange={(e) => handleMobileSortChange(e.target.value)}
+              className="w-full appearance-none rounded-lg border border-surface-border bg-surface-card px-3 py-2 pr-8 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-violet/30"
+            >
+              {MOBILE_SORT_OPTIONS.map((opt) => (
+                <option key={opt.key} value={opt.key}>{t(opt.labelKey)}</option>
+              ))}
+            </select>
+            <ArrowUpDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+          </div>
+          {sortKey && (
+            <button
+              onClick={() => setSortDesc(!sortDesc)}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-surface-border bg-surface-card text-text-secondary hover:bg-surface-hover hover:text-text-primary transition-colors"
+              aria-label={sortDesc ? t("models.sortDesc") : t("models.sortAsc")}
+            >
+              {sortDesc ? <ArrowDown className="h-4 w-4" /> : <ArrowUp className="h-4 w-4" />}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* 桌面端表格 */}
+      <div className="rounded-xl border border-surface-border bg-surface-card overflow-hidden hidden sm:block">
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow className="border-surface-border hover:bg-transparent">
+                <TableHead className="text-text-muted">{t("table.model")}</TableHead>
+                <TableHead className="text-text-muted hidden sm:table-cell">{t("table.company")}</TableHead>
+                <TableHead
+                  className={cn(
+                    "cursor-pointer text-text-muted hover:text-text-primary hidden lg:table-cell",
+                    sortKey === "date" && "font-semibold text-text-primary"
+                  )}
+                  onClick={() => handleSort("date")}
+                >
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    {t("table.date")}
+                    <ArrowUpDown className="h-3 w-3" />
+                  </div>
+                </TableHead>
+                {HEADERS.map((h) => (
+                  <TableHead
+                    key={h.key}
+                    className={cn("cursor-pointer text-text-muted hover:text-text-primary", colVisibilityClass(h))}
+                    onClick={() => handleSort(h.key)}
+                  >
+                    <div className="flex items-center gap-1">
+                      <h.icon className="h-3 w-3" />
+                      {t(h.labelKey)}
+                      <ArrowUpDown className="h-3 w-3" />
+                    </div>
+                  </TableHead>
+                ))}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {groups.map((group) =>
+                group.items.map((model, idx) => (
+                  <ModelRow
+                    key={model.id}
+                    model={model}
+                    group={group}
+                    idx={idx}
+                    sortKey={sortKey}
+                    headers={HEADERS}
+                    renderers={renderers}
+                    colVisibilityClass={colVisibilityClass}
+                    percentiles={percentiles}
+                  />
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+
+      {/* 移动端卡片列表 */}
+      <div className="block sm:hidden space-y-2">
+        {groups.map((group) =>
+          group.items
+            .slice(group.key === "intl" ? 0 : undefined, group.key === "intl" ? 1 : undefined)
+            .map((model, idx) => (
+              <MobileCard
+                key={model.id}
+                model={model}
+                group={group}
+                idx={idx}
+                sortKey={sortKey}
+                headers={HEADERS}
+                metricOrder={MOBILE_METRIC_ORDER}
+                renderMetric={renderMetric}
+                percentiles={percentiles}
+              />
+            ))
+        )}
+      </div>
+    </div>
+  );
+}
