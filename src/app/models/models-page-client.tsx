@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { RankingTable } from "@/components/ranking-table";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
@@ -11,23 +12,56 @@ import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 
 const FILTER_KEYS = ["全部", "开源", "闭源"] as const;
-type Filter = typeof FILTER_KEYS[number];
-
-function getQueryParam(): string {
-  if (typeof window === "undefined") return "";
-  return new URLSearchParams(window.location.search).get("q") ?? "";
-}
+type Filter = (typeof FILTER_KEYS)[number];
 
 export default function ModelsPageClient() {
-  const [activeFilter, setActiveFilter] = useState<Filter>("全部");
-  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { t } = useTranslation();
 
-  // 从 URL 恢复搜索词；SSR 阶段无 window，只能在 mount 后读取
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setSearchQuery(getQueryParam());
-  }, []);
+  const initialQuery = searchParams.get("q") ?? "";
+  const initialFilter = (searchParams.get("filter") as Filter) ?? "全部";
+
+  const [activeFilter, setActiveFilter] = useState<Filter>(
+    FILTER_KEYS.includes(initialFilter) ? initialFilter : "全部"
+  );
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
+
+  const updateUrl = useCallback(
+    (query: string, filter: Filter) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (query) {
+        params.set("q", query);
+      } else {
+        params.delete("q");
+      }
+      if (filter !== "全部") {
+        params.set("filter", filter);
+      } else {
+        params.delete("filter");
+      }
+      const newUrl = params.toString() ? `?${params.toString()}` : "";
+      router.replace(`/models${newUrl}`, { scroll: false });
+    },
+    [router, searchParams]
+  );
+
+  const handleSearchChange = useCallback(
+    (value: string) => {
+      setSearchQuery(value);
+      updateUrl(value, activeFilter);
+    },
+    [activeFilter, updateUrl]
+  );
+
+  const handleFilterChange = useCallback(
+    (key: string) => {
+      const newFilter = key as Filter;
+      setActiveFilter(newFilter);
+      updateUrl(searchQuery, newFilter);
+    },
+    [searchQuery, updateUrl]
+  );
 
   const filterOptions: FilterOption[] = useMemo(
     () =>
@@ -65,22 +99,22 @@ export default function ModelsPageClient() {
           <div className="mb-4 sm:mb-8">
             <div className="flex items-center gap-3 mb-2 sm:mb-4">
               <Bot className="h-7 w-7 sm:h-8 sm:w-8 text-accent-violet" />
-              <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">{t("models.title")}</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">
+                {t("models.title")}
+              </h1>
             </div>
-            <p className="hidden sm:block text-text-secondary">
-              {t("models.desc")}
-            </p>
+            <p className="hidden sm:block text-text-secondary">{t("models.desc")}</p>
           </div>
 
           <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <FilterBar
               options={filterOptions}
               activeKey={activeFilter}
-              onFilterChange={(key) => setActiveFilter(key as Filter)}
+              onFilterChange={handleFilterChange}
             />
             <SearchInput
               value={searchQuery}
-              onChange={setSearchQuery}
+              onChange={handleSearchChange}
               placeholder={t("models.searchPlaceholder")}
             />
           </div>
