@@ -14,8 +14,9 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内�
 | `npm run build` | 先运行 `scripts/generate-sitemap.mjs` 生成 sitemap，再构建静态导出到 `dist/` 目录 |
 | `npm run prebuild` | 自动在 build 前执行，删除 `dist/` 目录 |
 | `npm run lint` | 运行 ESLint（扁平化配置，Next.js 预设） |
-
-本项目未配置测试运行器。
+| `npm test` | 运行 Vitest 单元/集成测试（watch 模式） |
+| `npm run test:coverage` | 运行测试并生成覆盖率报告 |
+| `npx playwright test` | 运行 Playwright E2E 测试 |
 
 ## 技术栈
 
@@ -26,6 +27,8 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内�
 - **next-themes** 实现暗色/亮色切换（默认暗色，`enableSystem: false`）
 - **Geist / Geist Mono** 字体，通过 `next/font/google` 加载
 - **@vercel/analytics** 网站分析
+- **Vitest** + **@testing-library/react** + **jsdom** — 单元/集成测试
+- **Playwright** — E2E 测试（桌面端 + 移动端双配置）
 
 ## 重要提示：Next.js 破坏性变更
 
@@ -101,10 +104,11 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内�
 ### 组件约定
 
 - `src/components/ui/*` — shadcn/ui 组件（Button、Badge、Input、Table、Tabs、Card）。使用 `npx shadcn add <组件名>` 添加新组件。
-- `src/components/*` — 应用专属组件：`Navbar`、`ProductCard`、`RankingTable`、`FilterBar`、`ThemeToggle`、`ThemeProvider`、`LanguageProvider`。
-  - `RankingTable` 内部分离国际/国内模型：国际模型固定置顶（琥珀色边框 + "国际标杆" badge），国内模型参与排序并显示 `#N` 排名编号。列表列：intelligence / coding / agentic / arena code (Arena ELO) / cost (OpenRouter) / tokens。
+- `src/components/*` — 应用专属组件：`Navbar`、`ProductCard`、`FilterBar`、`SearchInput`、`ThemeToggle`、`ThemeProvider`、`LanguageProvider`。
+  - `RankingTable/` — 已拆分为子模块：`index.tsx`（主组件）、`model-row.tsx`（桌面行）、`mobile-card.tsx`（移动端卡片）、`use-model-groups.ts`（分组逻辑）、`utils.tsx`（分位/颜色计算）、`types.ts`。国际模型固定置顶，国内模型分前沿/主力两组排序。
+  - `product-detail/` — 已拆分为子组件：`index.tsx`（组合层）、`model-header.tsx`、`quick-facts.tsx`、`benchmark-section.tsx`、`speed-section.tsx`、`pricing-section.tsx`、`arena-rankings.tsx`、`token-usage.tsx`、`vendor-links.tsx`。
 - 所有 UI 组件均为 `@base-ui/react` 底层组件的薄封装，使用 `cva` + `cn()` 进行样式处理。
-- `src/lib/utils.ts` 导出 `cn()`（clsx + tailwind-merge）。
+- `src/lib/utils.ts` 导出 `cn()`（clsx + tailwind-merge）和共享工具函数（`formatTokenCount`、`getTypeBadgeClasses` 等）。
 
 ### 国际化（i18n）
 

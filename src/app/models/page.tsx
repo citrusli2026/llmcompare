@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import ModelsPageClient from "./models-page-client";
 
 export const metadata: Metadata = {
@@ -9,5 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default function ModelsPage() {
-  return <ModelsPageClient />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-surface-base" />}>
+      <ModelsPageClient />
+    </Suspense>
+  );
 }
