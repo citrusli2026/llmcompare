@@ -48,7 +48,8 @@ export function RankingTable({ models }: RankingTableProps) {
       return;
     }
     setSortKey(key);
-    setSortDesc(true);
+    // cost 越低越好，默认升序；其他指标越高越好，默认降序
+    setSortDesc(key !== "cost");
   };
 
   const groups = useModelGroups(models, sortKey, sortDesc);
@@ -107,8 +108,10 @@ export function RankingTable({ models }: RankingTableProps) {
       setSortKey("date");
       setSortDesc(true);
     } else {
-      setSortKey(value as ScoreKey);
-      setSortDesc(true);
+      const key = value as ScoreKey;
+      setSortKey(key);
+      // cost 越低越好，默认升序；其他指标越高越好，默认降序
+      setSortDesc(key !== "cost");
     }
   };
 
