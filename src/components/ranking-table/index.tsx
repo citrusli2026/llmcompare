@@ -58,6 +58,7 @@ export function RankingTable({ models }: RankingTableProps) {
     coding: computePercentiles(models.map((m) => m.raw.coding)),
     agentic: computePercentiles(models.map((m) => m.raw.agentic)),
     arenaCode: computePercentiles(models.map((m) => m.raw.arena_code)),
+    // cost 用 OR completion 价，与移动端展示一致；桌面双值列 prompt/completion 高度相关，排序结果近似
     cost: computePercentiles(models.map((m) => m.raw.openrouter_pricing?.completion ?? null)),
   }), [models]);
 

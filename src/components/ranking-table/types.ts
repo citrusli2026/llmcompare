@@ -24,4 +24,5 @@ export interface ModelGroup {
   filter: (m: ModelWithScores) => boolean;
   showRank: boolean;
   rankOffset: number;
+  items: ModelWithScores[];
 }

@@ -12,6 +12,7 @@ export const COLOR_BY_BUCKET = {
   dim: "text-text-dim",
 } as const;
 
+// cost 是反向（数字越小越好），其他正向
 export const ASCENDING: Record<ColoredKey, boolean> = {
   intelligence: true, coding: true, agentic: true, arenaCode: true, cost: false,
 };
@@ -25,6 +26,8 @@ export function quantile(sorted: number[], q: number): number {
     : sorted[base];
 }
 
+// 颜色由列在当前榜单中的相对分位决定，而非绝对分数。
+// AA Intelligence Index 国内模型集中在 30–55，绝对阈值会让全表挤进同一档。
 export function computePercentiles(values: (number | null | undefined)[]): Percentiles | null {
   const valid = values
     .filter((v): v is number => typeof v === "number" && Number.isFinite(v))

@@ -5,6 +5,7 @@ import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type ModelGroup } from "./types";
 import { getRawValue } from "./utils";
 
+// 分离三组模型：国际标杆、国内前沿、国内主力，各自内部排序，组间不混排
 const GROUPS: Omit<ModelGroup, "rankOffset" | "items">[] = [
   {
     key: "intl",
