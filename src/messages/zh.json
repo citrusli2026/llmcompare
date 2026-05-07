@@ -44,7 +44,7 @@
     "title": "关于模型图鉴",
     "backLink": "返回首页",
     "backgroundTitle": "项目背景",
-    "backgroundDesc": "由 AI 爱好者维护，收集整理国内大模型公开数据，所有数据均来自公开渠道。持续跟踪各模型最新版本和定价变化，定期更新（上次更新：2026.05.05）。",
+    "backgroundDesc": "由 AI 爱好者维护，收集整理国内大模型公开数据，所有数据均来自公开渠道。持续跟踪各模型最新版本和定价变化，定期更新（上次更新：2026.05.07）。",
     "backgroundContribute": "发现错误或想补充模型？欢迎提交",
     "filterDesc": "从 Artificial Analysis 全球模型中筛选国内厂商大参数量模型，注入 OpenRouter 周度消耗和 Arena 排行榜数据，保留近 180 天活跃模型。国际标杆模型（GPT、Claude、Gemini）固定置顶，不参与排序，供横向对比。",
     "sourceTitle": "数据来源",
