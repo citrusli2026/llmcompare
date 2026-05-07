@@ -54,13 +54,15 @@ export function useModelGroups(models: ModelWithScores[], sortKey: SortKey, sort
       return sortDesc ? bVal - aVal : aVal - bVal;
     };
 
-    let rankOffset = 0;
-    return GROUPS.map((g) => {
-      const items = models.filter(g.filter).sort(sortFn);
-      const group = { ...g, items, rankOffset };
-      if (g.showRank) rankOffset += items.length;
-      return group;
-    });
+    return GROUPS.reduce<{ groups: ModelGroup[]; rankOffset: number }>(
+      (acc, g) => {
+        const items = models.filter(g.filter).sort(sortFn);
+        acc.groups.push({ ...g, items, rankOffset: acc.rankOffset });
+        if (g.showRank) acc.rankOffset += items.length;
+        return acc;
+      },
+      { groups: [], rankOffset: 0 }
+    ).groups;
   }, [models, sortKey, sortDesc]);
 
   return groups;

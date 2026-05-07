@@ -11,3 +11,9 @@ export function formatTokenCount(val: number): { value: string; unit: "T" | "B" 
   if (val >= 1e6) return { value: (val / 1e6).toFixed(1), unit: "M" };
   return { value: val.toLocaleString(), unit: "" };
 }
+
+export function getTypeBadgeClasses(type: "开源" | "闭源"): string {
+  return type === "开源"
+    ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
+    : "bg-blue-500/10 text-blue-600 dark:text-blue-300";
+}

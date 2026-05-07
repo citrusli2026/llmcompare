@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { type ModelWithScores } from "@/lib/scoring";
+import { getTypeBadgeClasses } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 
 interface ModelHeaderProps {
@@ -23,11 +24,7 @@ export function ModelHeader({ model }: ModelHeaderProps) {
             <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">{model.name}</h1>
             <Badge
               variant={model.type === "开源" ? "default" : "secondary"}
-              className={
-                model.type === "开源"
-                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
-                  : "bg-blue-500/10 text-blue-600 dark:text-blue-300"
-              }
+              className={getTypeBadgeClasses(model.type)}
             >
               {t(model.type === "开源" ? "common.open" : "common.closed")}
             </Badge>

@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getTypeBadgeClasses } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
-import { type SortKey, type HeaderDef, type ModelGroup } from "./types";
+import { type SortKey, type HeaderDef, type ModelGroup, type ScoreKey } from "./types";
 import { getRawValue, getScoreColor } from "./utils";
+import { useMemo } from "react";
 import { useTranslation } from "@/lib/i18n";
 
 interface MobileCardProps {
@@ -15,13 +16,21 @@ interface MobileCardProps {
   idx: number;
   sortKey: SortKey;
   headers: HeaderDef[];
-  metricOrder: string[];
-  renderMetric: (model: ModelWithScores, key: string) => React.ReactNode;
+  metricOrder: ScoreKey[];
+  renderMetric: (model: ModelWithScores, key: ScoreKey) => React.ReactNode;
   percentiles: Record<string, { p25: number; p50: number; p75: number } | null>;
 }
 
 export function MobileCard({ model, group, idx, sortKey, headers, metricOrder, renderMetric, percentiles }: MobileCardProps) {
   const { t } = useTranslation();
+
+  const headerMap = useMemo(() => {
+    const map = new Map<string, HeaderDef>();
+    for (const h of headers) {
+      map.set(h.key, h);
+    }
+    return map;
+  }, [headers]);
 
   return (
     <div
@@ -59,12 +68,7 @@ export function MobileCard({ model, group, idx, sortKey, headers, metricOrder, r
         </Badge>
         <Badge
           variant="secondary"
-          className={cn(
-            "text-[10px] py-0 px-1.5",
-            model.type === "开源"
-              ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
-              : "bg-blue-500/10 text-blue-600 dark:text-blue-300"
-          )}
+          className={cn("text-[10px] py-0 px-1.5", getTypeBadgeClasses(model.type))}
         >
           {t(model.type === "开源" ? "common.open" : "common.closed")}
         </Badge>
@@ -73,7 +77,7 @@ export function MobileCard({ model, group, idx, sortKey, headers, metricOrder, r
       {/* 指标网格 */}
       <div className="grid grid-cols-3 gap-1 mb-2">
         {metricOrder.map((key) => {
-          const h = headers.find((x) => x.key === key)!;
+          const h = headerMap.get(key)!;
           return (
             <div key={h.key} className="rounded-md bg-surface-hover px-1.5 py-1">
               <div className="flex items-center gap-0.5 mb-0.5">

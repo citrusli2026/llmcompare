@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { RankingTable } from "@/components/ranking-table";
@@ -27,6 +27,8 @@ export default function ModelsPageClient() {
   );
   const [searchQuery, setSearchQuery] = useState(initialQuery);
 
+  const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const updateUrl = useCallback(
     (query: string, filter: Filter) => {
       const params = new URLSearchParams(searchParams.toString());
@@ -48,7 +50,12 @@ export default function ModelsPageClient() {
   const handleSearchChange = useCallback(
     (value: string) => {
       setSearchQuery(value);
-      updateUrl(value, activeFilter);
+      if (searchDebounceRef.current) {
+        clearTimeout(searchDebounceRef.current);
+      }
+      searchDebounceRef.current = setTimeout(() => {
+        updateUrl(value, activeFilter);
+      }, 300);
     },
     [activeFilter, updateUrl]
   );
@@ -78,16 +85,18 @@ export default function ModelsPageClient() {
   );
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
-  const filteredModels = allModels.filter((m) => {
-    const matchesFilter =
-      activeFilter === "全部" ? true : m.type === activeFilter;
-    const matchesSearch =
-      searchQuery === ""
-        ? true
-        : m.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          m.company.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesFilter && matchesSearch;
-  });
+  const filteredModels = useMemo(() => {
+    return allModels.filter((m) => {
+      const matchesFilter =
+        activeFilter === "全部" ? true : m.type === activeFilter;
+      const matchesSearch =
+        searchQuery === ""
+          ? true
+          : m.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            m.company.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesFilter && matchesSearch;
+    });
+  }, [allModels, activeFilter, searchQuery]);
 
   return (
     <div className="min-h-screen bg-surface-base">

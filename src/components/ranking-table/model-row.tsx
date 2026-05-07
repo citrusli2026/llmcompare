@@ -4,7 +4,7 @@ import Link from "next/link";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getTypeBadgeClasses } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup } from "./types";
 import { getRawValue, getScoreColor } from "./utils";
@@ -52,12 +52,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
           </Badge>
           <Badge
             variant="secondary"
-            className={cn(
-              "text-[10px] py-0 px-1.5",
-              model.type === "开源"
-                ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
-                : "bg-blue-500/10 text-blue-600 dark:text-blue-300"
-            )}
+            className={cn("text-[10px] py-0 px-1.5", getTypeBadgeClasses(model.type))}
           >
             {t(model.type === "开源" ? "common.open" : "common.closed")}
           </Badge>

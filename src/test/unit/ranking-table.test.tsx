@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { RankingTable } from "@/components/ranking-table";
 import { type ModelWithScores } from "@/lib/scoring";
+import { makeModel } from "../fixtures";
 
 // Mock i18n
 vi.mock("@/lib/i18n", () => ({
@@ -9,56 +10,6 @@ vi.mock("@/lib/i18n", () => ({
     t: (key: string) => key,
   }),
 }));
-
-const makeModel = (
-  id: string,
-  overrides: Partial<ModelWithScores["raw"]> & { flags?: Partial<ModelWithScores["flags"]> } & { type?: "开源" | "闭源" } = {}
-): ModelWithScores => {
-  const { flags: flagOverrides, type, ...rawOverrides } = overrides;
-  return {
-    id,
-    name: id,
-    company: "TestCo",
-    type: type ?? "开源",
-    logo: "",
-    url: "",
-    flags: {
-      frontier: false,
-      open_weights: true,
-      reasoning: false,
-      image_input: false,
-      chinese_eval: true,
-      has_speed: false,
-      data_complete: true,
-      ...flagOverrides,
-    },
-    raw: {
-      intelligence: 50,
-      coding: 50,
-      agentic: 50,
-      median_tps: null,
-      ttft_seconds: null,
-      e2e_seconds: null,
-      input: null,
-      output: null,
-      display: "",
-      cn_input: null,
-      cn_output: null,
-      cn_display: null,
-      isInternational: false,
-      context_window: null,
-      parameters: null,
-      output_tokens: null,
-      release_date: "2024-01-01",
-      omniscience: null,
-      openrouter_weekly_tokens: null,
-      openrouter_pricing: null,
-      arena_rankings: null,
-      arena_code: null,
-      ...rawOverrides,
-    },
-  };
-};
 
 describe("RankingTable", () => {
   it("renders desktop table with model names", () => {

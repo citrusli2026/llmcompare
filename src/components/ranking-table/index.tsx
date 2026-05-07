@@ -1,16 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import {
   Table, TableBody, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
 import { ArrowUpDown, ArrowUp, ArrowDown, Trophy, DollarSign, Brain, Code, Bot, Calendar, TrendingUp } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { type ScoreKey, type SortKey, type HeaderDef } from "./types";
-import { computePercentiles, formatScore, getRawValue, getScoreColor } from "./utils";
+import { computePercentiles, formatScore } from "./utils";
 import { useModelGroups } from "./use-model-groups";
 import { ModelRow } from "./model-row";
 import { MobileCard } from "./mobile-card";
@@ -87,18 +86,19 @@ export function RankingTable({ models }: RankingTableProps) {
     tokens: (m) => {
       const val = m.raw.openrouter_weekly_tokens;
       if (val == null) return <span className="text-text-dim text-xs">—</span>;
-      return <span>{val}</span>;
+      const { value, unit } = formatTokenCount(val);
+      return <span>{value}{unit && <span className="text-text-secondary text-[10px]">{unit}</span>}</span>;
     },
   };
 
-  const renderMetric = (model: ModelWithScores, key: string) => {
+  const renderMetric = (model: ModelWithScores, key: ScoreKey) => {
     if (key === "cost") {
       if (model.raw.openrouter_pricing != null) {
         return <span>${model.raw.openrouter_pricing.completion}<span className="text-text-secondary text-[10px]">/M</span></span>;
       }
       return <span className="text-text-dim text-xs">—</span>;
     }
-    return renderers[key as ScoreKey](model);
+    return renderers[key](model);
   };
 
   const handleMobileSortChange = (value: string) => {

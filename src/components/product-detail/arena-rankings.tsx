@@ -16,6 +16,11 @@ export function ArenaRankings({ model }: ArenaRankingsProps) {
     return null;
   }
 
+  const ARENA_KEY_MAP: Record<string, string> = {
+    code: "product.arenaCode",
+    vision: "product.arenaVision",
+  };
+
   return (
     <div className="rounded-xl border border-surface-border bg-surface-card p-6">
       <h2 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
@@ -26,7 +31,7 @@ export function ArenaRankings({ model }: ArenaRankingsProps) {
           <div key={key} className="rounded-lg bg-surface-hover p-3">
             <div className="flex items-center justify-between mb-1">
               <span className="text-sm font-medium text-text-primary">
-                {t(`product.arena${key.charAt(0).toUpperCase() + key.slice(1)}` as const)}
+                {t(ARENA_KEY_MAP[key] ?? key)}
               </span>
               <span className="text-xs text-text-muted">#{data.rank}</span>
             </div>

@@ -3,7 +3,6 @@ import { getAllModels, getAllModelsUnfiltered, getModelById } from "@/lib/scorin
 
 describe("scoring cache", () => {
   beforeEach(() => {
-    // Reset module state by re-importing (simulate fresh cache)
     vi.resetModules();
   });
 
