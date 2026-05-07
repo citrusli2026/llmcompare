@@ -33,7 +33,7 @@ npm install && npm run dev
 
 ## 技术栈
 
-Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · shadcn/ui
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · shadcn/ui · Vitest · Playwright
 
 支持暗色/亮色主题切换、中英文双语。
 
