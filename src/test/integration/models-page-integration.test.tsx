@@ -22,6 +22,19 @@ vi.mock("next/link", () => ({
   ),
 }));
 
+// Mock next/navigation
+let mockSearchParams = new URLSearchParams();
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    refresh: vi.fn(),
+    back: vi.fn(),
+  }),
+  useSearchParams: () => mockSearchParams,
+  usePathname: () => "/models",
+}));
+
 // Mock scoring.ts getAllModelsUnfiltered
 vi.mock("@/lib/scoring", async () => {
   const actual = await vi.importActual<typeof import("@/lib/scoring")>("@/lib/scoring");
@@ -90,11 +103,8 @@ const makeModel = (
 describe("ModelsPage Integration — 筛选+搜索+表格联动", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Mock window.location.search
-    Object.defineProperty(window, "location", {
-      writable: true,
-      value: { search: "" },
-    });
+    // 重置 mockSearchParams
+    mockSearchParams = new URLSearchParams();
   });
 
   it("初始状态显示全部模型", () => {
@@ -179,10 +189,8 @@ describe("ModelsPage Integration — 筛选+搜索+表格联动", () => {
   });
 
   it("从 URL query 参数恢复搜索词", () => {
-    Object.defineProperty(window, "location", {
-      writable: true,
-      value: { search: "?q=deepseek" },
-    });
+    // 设置 mock URL 参数
+    mockSearchParams = new URLSearchParams("?q=deepseek");
 
     const mockModels: ModelWithScores[] = [
       makeModel("deepseek-v4", { company: "DeepSeek" }),
