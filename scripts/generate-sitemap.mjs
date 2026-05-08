@@ -6,7 +6,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const dataPath = resolve(__dirname, "../src/data/ranking.json");
 const outputPath = resolve(__dirname, "../public/sitemap.xml");
 
-const BASE = "https://llmcompare.cc";
+const BASE = "https://www.llmcompare.cc";
 const today = new Date().toISOString().slice(0, 10);
 
 const models = JSON.parse(readFileSync(dataPath, "utf-8"));

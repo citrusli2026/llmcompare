@@ -11,10 +11,10 @@
 
 ## 主要页面
 
-- [首页](https://llmcompare.cc/) — 综合榜单 + 前沿模型卡片
-- [模型目录](https://llmcompare.cc/models) — 全量可排序筛选的模型表
-- [关于本站](https://llmcompare.cc/about) — 数据来源与方法论
-- [模型详情](https://llmcompare.cc/product/{id}) — 单个模型的完整指标
+- [首页](https://www.llmcompare.cc/) — 综合榜单 + 前沿模型卡片
+- [模型目录](https://www.llmcompare.cc/models) — 全量可排序筛选的模型表
+- [关于本站](https://www.llmcompare.cc/about) — 数据来源与方法论
+- [模型详情](https://www.llmcompare.cc/product/{id}) — 单个模型的完整指标
 
 ## 数据来源
 

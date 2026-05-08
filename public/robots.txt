@@ -22,4 +22,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://llmcompare.cc/sitemap.xml
+Sitemap: https://www.llmcompare.cc/sitemap.xml
