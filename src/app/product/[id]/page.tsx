@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ProductDetailClient } from "@/components/product-detail-client";
 import { getModelById, getAllModelsUnfiltered } from "@/lib/scoring";
 
-const BASE_URL = "https://llmcompare.cc";
+const BASE_URL = "https://www.llmcompare.cc";
 
 interface ProductPageProps {
   params: Promise<{ id: string }>;

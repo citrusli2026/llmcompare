@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://llmcompare.cc"),
+  metadataBase: new URL("https://www.llmcompare.cc"),
   title: {
     default: "模型图鉴 - 国内大模型数据一览",
     template: "%s - 模型图鉴",
@@ -60,7 +60,7 @@ export default function RootLayout({
               "@type": "WebSite",
               name: "模型图鉴",
               description: "收集整理了国内大模型的智能评分、API 速度与官方定价数据，为开发者和研究者提供参考。",
-              url: "https://llmcompare.cc",
+              url: "https://www.llmcompare.cc",
             }),
           }}
         />
