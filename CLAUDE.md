@@ -101,6 +101,41 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内�
 
 **注意：** 修改 About 页面"榜单筛选"文案时，需与 `data/CLAUDE.md` 中的管线描述保持一致。
 
+### 数据更新操作流程
+
+当上游数据需要刷新时，按以下步骤执行：
+
+1. **跑完整管线**（在 `../data/` 目录）：
+   ```bash
+   cd ../data/1-fetch && python3 fetch_aa_data.py --output ../2-raw/
+   cd ../data && python3 1-fetch/fetch_or_models.py
+   cd ../data && python3 1-fetch/fetch_arena_leaderboards.py
+   cd ../data/3-process && python3.11 filter_cn_models.py
+   cd ../data/3-process && python3.11 build_frontend_models.py
+   cd ../data/3-process && python3.11 enrich_models.py
+   cd ../data/3-process && python3.11 build_report.py
+   ```
+
+2. **同步到前端**：
+   ```bash
+   cp ../data/4-final/ranking.json src/data/ranking.json
+   ```
+
+3. **更新日期文案**：修改 `src/messages/zh.json` 和 `src/messages/en.json` 中 `about.backgroundDesc` 的日期。
+
+4. **完整验证**：
+   ```bash
+   npm test -- --run      # Vitest
+   npm run build           # 静态构建
+   npm run lint            # ESLint
+   npx playwright test     # E2E
+   ```
+
+5. **提交规范**：
+   ```
+   data: 刷新模型排名数据（YYYY-MM-DD）
+   ```
+
 ### 组件约定
 
 - `src/components/ui/*` — shadcn/ui 组件（Button、Badge、Input、Table、Tabs、Card）。使用 `npx shadcn add <组件名>` 添加新组件。
