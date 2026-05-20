@@ -46,16 +46,16 @@
       "github": "https://github.com/openai",
       "pricing_doc": "https://openai.com/api/pricing"
     },
-    "openrouter_weekly_tokens": 413174573337,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
     },
     "arena_rankings": {
       "text": {
-        "rank": 13,
-        "score": 1475,
-        "votes": 6653
+        "rank": 11,
+        "score": 1478,
+        "votes": 10294
       }
     }
   },
@@ -106,21 +106,21 @@
       "github": "https://github.com/anthropics",
       "pricing_doc": "https://www.anthropic.com/pricing"
     },
-    "openrouter_weekly_tokens": 1329818798080,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 5.0,
-      "completion": 25.0
+      "prompt": 30.0,
+      "completion": 150.0
     },
     "arena_rankings": {
       "text": {
         "rank": 3,
         "score": 1498,
-        "votes": 25089
+        "votes": 29240
       },
       "code": {
         "rank": 2,
         "score": 1560,
-        "votes": 3333
+        "votes": 4186
       }
     }
   },
@@ -171,23 +171,76 @@
       "github": "https://github.com/google-gemini",
       "pricing_doc": "https://ai.google.dev/pricing"
     },
-    "openrouter_weekly_tokens": 271255028065,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 12.0
     },
     "arena_rankings": {
       "text": {
-        "rank": 4,
-        "score": 1492,
-        "votes": 29468
+        "rank": 6,
+        "score": 1488,
+        "votes": 34189
       },
       "code": {
-        "rank": 17,
-        "score": 1452,
-        "votes": 8551
+        "rank": 19,
+        "score": 1450,
+        "votes": 9555
       }
     }
+  },
+  {
+    "id": "qwen3-7-max",
+    "name": "Qwen3.7 Max",
+    "company": "Alibaba",
+    "type": "闭源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 56.5844517545098,
+      "coding": 50.1192480359147,
+      "agentic": 66.5557245964551
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "display": "免费"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": false
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 65536,
+      "release_date": "2026-05-19",
+      "omniscience": 14.0833333333333
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-7-max",
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": null,
+    "arena_rankings": {}
   },
   {
     "id": "kimi-k2-6",
@@ -196,14 +249,14 @@
     "type": "开源",
     "logo": "/logos/kimi.svg",
     "scores": {
-      "intelligence": 53.9,
-      "coding": 47.12,
-      "agentic": 65.97
+      "intelligence": 53.904517585423,
+      "coding": 47.1170033670034,
+      "agentic": 65.9688109161793
     },
     "speed": {
-      "median_tps": 49.2692931683364,
-      "ttft_seconds": 93.05512952122561,
-      "e2e_seconds": 103.20343829220128
+      "median_tps": 96.9401947186626,
+      "ttft_seconds": 48.76259535589448,
+      "e2e_seconds": 53.920414580944396
     },
     "pricing": {
       "input": 0.95,
@@ -226,7 +279,7 @@
       "parameters": 1000,
       "output_tokens": 256000,
       "release_date": "2026-04-20",
-      "omniscience": 6.417
+      "omniscience": 6.41666666666667
     },
     "url": "https://artificialanalysis.ai/models/kimi-k2-6",
     "vendor_links": {
@@ -241,21 +294,16 @@
       "output": 27.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_tokens": 1533752403485,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.74,
-      "completion": 3.5
+      "prompt": 0.73,
+      "completion": 3.49
     },
     "arena_rankings": {
-      "text": {
-        "rank": 28,
-        "score": 1462,
-        "votes": 7108
-      },
       "code": {
         "rank": 7,
-        "score": 1523,
-        "votes": 2651
+        "score": 1519,
+        "votes": 3437
       }
     }
   },
@@ -266,14 +314,14 @@
     "type": "开源",
     "logo": "/logos/xiaomi.svg",
     "scores": {
-      "intelligence": 53.83,
-      "coding": 45.53,
-      "agentic": 67.44
+      "intelligence": 53.828651261937,
+      "coding": 45.5317059483726,
+      "agentic": 67.4384766534619
     },
     "speed": {
-      "median_tps": 57.4060953801901,
-      "ttft_seconds": 37.86298273474843,
-      "e2e_seconds": 46.57285921543556
+      "median_tps": 56.6991794728598,
+      "ttft_seconds": 37.9540722533442,
+      "e2e_seconds": 46.77254202043025
     },
     "pricing": {
       "input": 1,
@@ -310,21 +358,16 @@
       "output": 21.0,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": 143539601280,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 1.0,
       "completion": 3.0
     },
     "arena_rankings": {
-      "text": {
-        "rank": 24,
-        "score": 1464,
-        "votes": 6238
-      },
       "code": {
-        "rank": 12,
-        "score": 1472,
-        "votes": 3278
+        "rank": 14,
+        "score": 1471,
+        "votes": 4087
       }
     }
   },
@@ -335,14 +378,14 @@
     "type": "闭源",
     "logo": "/logos/alibaba.svg",
     "scores": {
-      "intelligence": 51.81,
-      "coding": 44.92,
-      "agentic": 64.83
+      "intelligence": 51.8140335251184,
+      "coding": 44.9179292929293,
+      "agentic": 64.8295054241687
     },
     "speed": {
-      "median_tps": 37.8543555206318,
-      "ttft_seconds": 57.07403828995015,
-      "e2e_seconds": 70.28255797343769
+      "median_tps": 36.6874633633006,
+      "ttft_seconds": 59.806558659908056,
+      "e2e_seconds": 73.43519237188507
     },
     "pricing": {
       "input": 1.3,
@@ -381,21 +424,21 @@
       "output": 54,
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_tokens": 16705746106,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 1.04,
       "completion": 6.24
     },
     "arena_rankings": {
       "text": {
-        "rank": 25,
-        "score": 1464,
-        "votes": 14558
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
       },
       "code": {
         "rank": 11,
-        "score": 1478,
-        "votes": 1343
+        "score": 1491,
+        "votes": 2117
       }
     }
   },
@@ -406,14 +449,14 @@
     "type": "开源",
     "logo": "/logos/deepseek.svg",
     "scores": {
-      "intelligence": 51.51,
-      "coding": 47.47,
-      "agentic": 67.19
+      "intelligence": 51.5094430539975,
+      "coding": 47.4747474747475,
+      "agentic": 67.1926607607022
     },
     "speed": {
-      "median_tps": 30.1330407649883,
-      "ttft_seconds": 146.97488006620472,
-      "e2e_seconds": 163.56796152451383
+      "median_tps": 29.5902054770117,
+      "ttft_seconds": 149.94381904900345,
+      "e2e_seconds": 166.84130225128956
     },
     "pricing": {
       "input": 1.74,
@@ -436,7 +479,7 @@
       "parameters": 1600,
       "output_tokens": 393216,
       "release_date": "2026-04-24",
-      "omniscience": -10.017
+      "omniscience": -10.0166666666667
     },
     "url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
     "vendor_links": {
@@ -452,21 +495,16 @@
       "output": 24,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 844819940443,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
     },
     "arena_rankings": {
-      "text": {
-        "rank": 29,
-        "score": 1462,
-        "votes": 3808
-      },
       "code": {
-        "rank": 16,
-        "score": 1454,
-        "votes": 1471
+        "rank": 17,
+        "score": 1459,
+        "votes": 3320
       }
     }
   },
@@ -477,14 +515,14 @@
     "type": "开源",
     "logo": "/logos/z-ai.svg",
     "scores": {
-      "intelligence": 51.41,
-      "coding": 43.37,
-      "agentic": 67.05
+      "intelligence": 51.4080747547317,
+      "coding": 43.3712121212121,
+      "agentic": 67.054629905181
     },
     "speed": {
-      "median_tps": 56.8351169616429,
-      "ttft_seconds": 68.08401684203034,
-      "e2e_seconds": 76.88139470856032
+      "median_tps": 53.9071689018372,
+      "ttft_seconds": 71.85864392860421,
+      "e2e_seconds": 81.13384813957808
     },
     "pricing": {
       "input": 1.4,
@@ -507,7 +545,7 @@
       "parameters": 744,
       "output_tokens": 131000,
       "release_date": "2026-04-07",
-      "omniscience": 1.933
+      "omniscience": 1.93333333333333
     },
     "url": "https://artificialanalysis.ai/models/glm-5-1",
     "vendor_links": {
@@ -522,21 +560,21 @@
       "output": 24,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 359707690142,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.98,
-      "completion": 3.08
+      "prompt": 0.6,
+      "completion": 1.92
     },
     "arena_rankings": {
       "text": {
-        "rank": 19,
-        "score": 1471,
-        "votes": 11349
+        "rank": 20,
+        "score": 1472,
+        "votes": 12295
       },
       "code": {
         "rank": 5,
-        "score": 1531,
-        "votes": 3609
+        "score": 1532,
+        "votes": 3611
       }
     }
   },
@@ -547,14 +585,14 @@
     "type": "开源",
     "logo": "/logos/minimax.svg",
     "scores": {
-      "intelligence": 49.62,
-      "coding": 41.93,
-      "agentic": 61.49
+      "intelligence": 49.6153164886184,
+      "coding": 41.9262065095398,
+      "agentic": 61.489494916941
     },
     "speed": {
-      "median_tps": 56.8491173595407,
-      "ttft_seconds": 45.2223222795452,
-      "e2e_seconds": 54.01753359017582
+      "median_tps": 46.4114464724546,
+      "ttft_seconds": 54.99106969733614,
+      "e2e_seconds": 65.76427411139706
     },
     "pricing": {
       "input": 0.3,
@@ -577,7 +615,7 @@
       "parameters": 230,
       "output_tokens": 196608,
       "release_date": "2026-03-18",
-      "omniscience": 0.683
+      "omniscience": 0.683333333333333
     },
     "url": "https://artificialanalysis.ai/models/minimax-m2-7",
     "vendor_links": {
@@ -591,18 +629,12 @@
       "output": 8.4,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": 754079401010,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.2,
+      "prompt": 0.28,
       "completion": 1.2
     },
-    "arena_rankings": {
-      "code": {
-        "rank": 28,
-        "score": 1407,
-        "votes": 4998
-      }
-    }
+    "arena_rankings": {}
   },
   {
     "id": "mimo-v2-5",
@@ -611,14 +643,14 @@
     "type": "开源",
     "logo": "/logos/xiaomi.svg",
     "scores": {
-      "intelligence": 49.03,
-      "coding": 42.13,
-      "agentic": 65.53
+      "intelligence": 49.0344393285729,
+      "coding": 42.1296296296296,
+      "agentic": 65.5299139777991
     },
     "speed": {
-      "median_tps": 98.8959670799726,
-      "ttft_seconds": 22.761228435702414,
-      "e2e_seconds": 27.81704632962799
+      "median_tps": 91.1973063243632,
+      "ttft_seconds": 25.181872689014682,
+      "e2e_seconds": 30.664490763518337
     },
     "pricing": {
       "input": 0.36,
@@ -641,7 +673,7 @@
       "parameters": 310,
       "output_tokens": 131072,
       "release_date": "2026-04-22",
-      "omniscience": -9.333
+      "omniscience": -9.33333333333333
     },
     "url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
     "vendor_links": {
@@ -651,18 +683,12 @@
       "pricing_note": "2026-05-02 登录实测"
     },
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 65291630931,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.4,
       "completion": 2.0
     },
-    "arena_rankings": {
-      "code": {
-        "rank": 18,
-        "score": 1443,
-        "votes": 2198
-      }
-    }
+    "arena_rankings": {}
   },
   {
     "id": "kimi-k2-5",
@@ -671,14 +697,14 @@
     "type": "开源",
     "logo": "/logos/kimi.svg",
     "scores": {
-      "intelligence": 46.81,
-      "coding": 39.55,
-      "agentic": 58.94
+      "intelligence": 46.8125298030348,
+      "coding": 39.5517676767677,
+      "agentic": 58.9406156983764
     },
     "speed": {
-      "median_tps": 53.0001802617984,
-      "ttft_seconds": 58.921516141851654,
-      "e2e_seconds": 68.35544631963995
+      "median_tps": 41.2869101003792,
+      "ttft_seconds": 74.91594366076613,
+      "e2e_seconds": 87.02631953496864
     },
     "pricing": {
       "input": 0.54,
@@ -701,7 +727,7 @@
       "parameters": 1000,
       "output_tokens": 256000,
       "release_date": "2026-01-27",
-      "omniscience": -8.117
+      "omniscience": -8.11666666666667
     },
     "url": "https://artificialanalysis.ai/models/kimi-k2-5",
     "vendor_links": {
@@ -716,21 +742,16 @@
       "output": 21.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_tokens": 267628775915,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.4,
-      "completion": 1.98
+      "completion": 1.9
     },
     "arena_rankings": {
-      "text": {
-        "rank": 28,
-        "score": 1462,
-        "votes": 7108
-      },
       "code": {
-        "rank": 26,
-        "score": 1430,
-        "votes": 9307
+        "rank": 7,
+        "score": 1519,
+        "votes": 3437
       }
     }
   },
@@ -741,14 +762,14 @@
     "type": "开源",
     "logo": "/logos/deepseek.svg",
     "scores": {
-      "intelligence": 46.52,
-      "coding": 38.71,
-      "agentic": 61.28
+      "intelligence": 46.5166221321441,
+      "coding": 38.7065095398429,
+      "agentic": 61.280477661017
     },
     "speed": {
-      "median_tps": 66.8144132792201,
-      "ttft_seconds": 85.22949895742236,
-      "e2e_seconds": 92.71291421859483
+      "median_tps": 104.894040476279,
+      "ttft_seconds": 54.637677486655264,
+      "e2e_seconds": 59.40439252336959
     },
     "pricing": {
       "input": 0.14,
@@ -787,10 +808,10 @@
       "output": 2,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 1193658628595,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.14,
-      "completion": 0.28
+      "prompt": 0.11,
+      "completion": 0.22
     },
     "arena_rankings": {}
   },
@@ -801,14 +822,14 @@
     "type": "开源",
     "logo": "/logos/alibaba.svg",
     "scores": {
-      "intelligence": 45.05,
-      "coding": 41.28,
-      "agentic": 55.83
+      "intelligence": 45.0466381495413,
+      "coding": 41.2773569023569,
+      "agentic": 55.8271783869895
     },
     "speed": {
-      "median_tps": 52.36475229228,
-      "ttft_seconds": 63.37025271012299,
-      "e2e_seconds": 72.91866033380832
+      "median_tps": 52.3323184908657,
+      "ttft_seconds": 63.60727019687505,
+      "e2e_seconds": 73.16159560073179
     },
     "pricing": {
       "input": 0.6,
@@ -831,7 +852,7 @@
       "parameters": 397,
       "output_tokens": 65000,
       "release_date": "2026-02-16",
-      "omniscience": -29.783
+      "omniscience": -29.7833333333333
     },
     "url": "https://artificialanalysis.ai/models/qwen3-5-397b-a17b",
     "vendor_links": {
@@ -847,18 +868,12 @@
       "output": 7.2,
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_tokens": 189667401580,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.39,
       "completion": 2.34
     },
-    "arena_rankings": {
-      "code": {
-        "rank": 39,
-        "score": 1388,
-        "votes": 8189
-      }
-    }
+    "arena_rankings": {}
   },
   {
     "id": "glm-4-7",
@@ -867,14 +882,14 @@
     "type": "开源",
     "logo": "/logos/z-ai.svg",
     "scores": {
-      "intelligence": 42.11,
-      "coding": 36.26,
-      "agentic": 55.01
+      "intelligence": 42.1079898832385,
+      "coding": 36.2584175084175,
+      "agentic": 55.007009051294
     },
     "speed": {
-      "median_tps": 103.884537629161,
-      "ttft_seconds": 20.517080740495313,
-      "e2e_seconds": 25.330116553244093
+      "median_tps": 81.0322716660478,
+      "ttft_seconds": 25.963695221545088,
+      "e2e_seconds": 32.13407635143137
     },
     "pricing": {
       "input": 0.6,
@@ -912,21 +927,21 @@
       "output": 8,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 93722394409,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.4,
       "completion": 1.75
     },
     "arena_rankings": {
       "text": {
-        "rank": 19,
-        "score": 1471,
-        "votes": 11349
+        "rank": 20,
+        "score": 1472,
+        "votes": 12295
       },
       "code": {
-        "rank": 20,
-        "score": 1440,
-        "votes": 4885
+        "rank": 5,
+        "score": 1532,
+        "votes": 3611
       }
     }
   },
@@ -937,18 +952,18 @@
     "type": "开源",
     "logo": "/logos/tencent.svg",
     "scores": {
-      "intelligence": 41.85,
-      "coding": 36.46,
-      "agentic": 55.67
+      "intelligence": 41.852792771908,
+      "coding": 36.4618406285073,
+      "agentic": 55.6654097734737
     },
     "speed": {
-      "median_tps": 142.692653209378,
-      "ttft_seconds": 17.48951638137243,
-      "e2e_seconds": 20.993551023340522
+      "median_tps": 112.307470181808,
+      "ttft_seconds": 21.78797155483927,
+      "e2e_seconds": 26.240035154799088
     },
     "pricing": {
-      "input": 0,
-      "output": 0,
+      "input": 0.123,
+      "output": 0.43,
       "display": "¥3.975/¥15.9 (≤32K)"
     },
     "flags": {
@@ -967,7 +982,7 @@
       "parameters": 295,
       "output_tokens": 256000,
       "release_date": "2026-04-23",
-      "omniscience": -34.633
+      "omniscience": -34.6333333333333
     },
     "url": "https://artificialanalysis.ai/models/hy3",
     "vendor_links": {
@@ -981,21 +996,21 @@
       "output": 15.9,
       "source": "cloud.tencent.com/doc/1729/97731"
     },
-    "openrouter_weekly_tokens": 2071999265315,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.07,
       "completion": 0.26
     },
     "arena_rankings": {
       "text": {
-        "rank": 25,
-        "score": 1464,
-        "votes": 14558
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
       },
       "code": {
         "rank": 11,
-        "score": 1478,
-        "votes": 1343
+        "score": 1491,
+        "votes": 2117
       }
     }
   },
@@ -1006,9 +1021,9 @@
     "type": "开源",
     "logo": "/logos/deepseek.svg",
     "scores": {
-      "intelligence": 41.71,
-      "coding": 36.7,
-      "agentic": 52.92
+      "intelligence": 41.7077627498336,
+      "coding": 36.7003367003367,
+      "agentic": 52.92027835734
     },
     "speed": {
       "median_tps": 0,
@@ -1036,7 +1051,7 @@
       "parameters": 685,
       "output_tokens": 64000,
       "release_date": "2025-12-01",
-      "omniscience": -20.883
+      "omniscience": -20.8833333333333
     },
     "url": "https://artificialanalysis.ai/models/deepseek-v3-2-reasoning",
     "vendor_links": {
@@ -1052,18 +1067,12 @@
       "output": 3,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 886766235124,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.25,
       "completion": 0.38
     },
-    "arena_rankings": {
-      "code": {
-        "rank": 46,
-        "score": 1368,
-        "votes": 7917
-      }
-    }
+    "arena_rankings": {}
   },
   {
     "id": "mimo-v2-flash",
@@ -1072,14 +1081,14 @@
     "type": "开源",
     "logo": "/logos/xiaomi.svg",
     "scores": {
-      "intelligence": 41.46,
-      "coding": 33.48,
-      "agentic": 48.76
+      "intelligence": 41.4588364033058,
+      "coding": 33.4771324354658,
+      "agentic": 48.7647586511657
     },
     "speed": {
-      "median_tps": 147.663521729067,
-      "ttft_seconds": 16.002300632179498,
-      "e2e_seconds": 19.388377261974362
+      "median_tps": 147.178372661115,
+      "ttft_seconds": 15.806792892220711,
+      "e2e_seconds": 19.204031161400877
     },
     "pricing": {
       "input": 0.1,
@@ -1102,7 +1111,7 @@
       "parameters": 309,
       "output_tokens": 131072,
       "release_date": "2025-12-16",
-      "omniscience": -18.467
+      "omniscience": -18.4666666666667
     },
     "url": "https://artificialanalysis.ai/models/mimo-v2-0206",
     "vendor_links": {
@@ -1116,18 +1125,12 @@
       "output": 2.1,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": 91281168007,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.1,
       "completion": 0.3
     },
-    "arena_rankings": {
-      "code": {
-        "rank": 18,
-        "score": 1443,
-        "votes": 2198
-      }
-    }
+    "arena_rankings": {}
   },
   {
     "id": "qwen3-max-thinking",
@@ -1136,14 +1139,14 @@
     "type": "闭源",
     "logo": "/logos/alibaba.svg",
     "scores": {
-      "intelligence": 39.85,
-      "coding": 30.51,
-      "agentic": 50.13
+      "intelligence": 39.8487564946217,
+      "coding": 30.513468013468,
+      "agentic": 50.1296390792743
     },
     "speed": {
-      "median_tps": 49.7812582428056,
-      "ttft_seconds": 43.86859297900441,
-      "e2e_seconds": 53.912533563255515
+      "median_tps": 48.0460512090104,
+      "ttft_seconds": 45.46194523611549,
+      "e2e_seconds": 55.86862772964436
     },
     "pricing": {
       "input": 1.2,
@@ -1166,7 +1169,7 @@
       "parameters": null,
       "output_tokens": 32000,
       "release_date": "2026-01-26",
-      "omniscience": -34.417
+      "omniscience": -34.4166666666667
     },
     "url": "https://artificialanalysis.ai/models/qwen3-max-thinking",
     "vendor_links": {
@@ -1182,21 +1185,21 @@
       "output": 24,
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_tokens": 444829069,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.78,
       "completion": 3.9
     },
     "arena_rankings": {
       "text": {
-        "rank": 25,
-        "score": 1464,
-        "votes": 14558
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
       },
       "code": {
         "rank": 11,
-        "score": 1478,
-        "votes": 1343
+        "score": 1491,
+        "votes": 2117
       }
     }
   },
@@ -1207,14 +1210,14 @@
     "type": "闭源",
     "logo": "/logos/alibaba.svg",
     "scores": {
-      "intelligence": 38.63,
-      "coding": 27.64,
-      "agentic": 52.83
+      "intelligence": 38.6333183791893,
+      "coding": 27.6445005611672,
+      "agentic": 52.8265252211028
     },
     "speed": {
-      "median_tps": 55.4008222650195,
-      "ttft_seconds": 2.44920744600002,
-      "e2e_seconds": 11.474344250074205
+      "median_tps": 55.4797044218921,
+      "ttft_seconds": 2.45393182050003,
+      "e2e_seconds": 11.466236503988965
     },
     "pricing": {
       "input": 0.4,
@@ -1257,16 +1260,68 @@
     "openrouter_pricing": null,
     "arena_rankings": {
       "text": {
-        "rank": 25,
-        "score": 1464,
-        "votes": 14558
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
       },
       "code": {
         "rank": 11,
-        "score": 1478,
-        "votes": 1343
+        "score": 1491,
+        "votes": 2117
       }
     }
+  },
+  {
+    "id": "ring-2-6-1t",
+    "name": "Ring-2.6-1T",
+    "company": "InclusionAI",
+    "type": "开源",
+    "logo": "/logos/inclusionai.svg",
+    "scores": {
+      "intelligence": 38.4564474323578,
+      "coding": 33.3122895622896,
+      "agentic": 51.5100263514655
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "display": "免费"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": false
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": "Large",
+      "parameters": 1000,
+      "output_tokens": 65536,
+      "release_date": "2026-05-08",
+      "omniscience": -37.75
+    },
+    "url": "https://artificialanalysis.ai/models/ring-2-6-1t",
+    "vendor_links": {
+      "homepage": "https://www.inclusion-ai.org",
+      "huggingface": "https://huggingface.co/inclusionAI"
+    },
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.07,
+      "completion": 0.62
+    },
+    "arena_rankings": {}
   },
   {
     "id": "step-3-5-flash",
@@ -1275,14 +1330,14 @@
     "type": "开源",
     "logo": "/logos/stepfun.svg",
     "scores": {
-      "intelligence": 37.8,
-      "coding": 31.64,
-      "agentic": 52
+      "intelligence": 37.7974590379104,
+      "coding": 31.6400604031293,
+      "agentic": 52.0038785700216
     },
     "speed": {
-      "median_tps": 166.807457947625,
-      "ttft_seconds": 13.076834671726926,
-      "e2e_seconds": 16.074302567658727
+      "median_tps": 193.676224329653,
+      "ttft_seconds": 11.447346628454124,
+      "e2e_seconds": 14.028974816067688
     },
     "pricing": {
       "input": 0.1,
@@ -1320,21 +1375,21 @@
       "output": 2.1,
       "source": "platform.stepfun.com/docs"
     },
-    "openrouter_weekly_tokens": 515395172001,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.1,
       "completion": 0.3
     },
     "arena_rankings": {
       "text": {
-        "rank": 25,
-        "score": 1464,
-        "votes": 14558
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
       },
       "code": {
         "rank": 11,
-        "score": 1478,
-        "votes": 1343
+        "score": 1491,
+        "votes": 2117
       }
     }
   },
@@ -1345,9 +1400,9 @@
     "type": "开源",
     "logo": "/logos/inclusionai.svg",
     "scores": {
-      "intelligence": 33.61,
-      "coding": 33.05,
-      "agentic": 48.21
+      "intelligence": 33.6085463122221,
+      "coding": 33.0527497194164,
+      "agentic": 48.2096467905633
     },
     "speed": {
       "median_tps": 0,
@@ -1387,21 +1442,21 @@
       "output": 18.0,
       "source": "AA (无国内官价, ¥按$×7.2折算)"
     },
-    "openrouter_weekly_tokens": 176403025629,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 2.5
     },
     "arena_rankings": {
       "text": {
-        "rank": 25,
-        "score": 1464,
-        "votes": 14558
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
       },
       "code": {
         "rank": 11,
-        "score": 1478,
-        "votes": 1343
+        "score": 1491,
+        "votes": 2117
       }
     }
   }
