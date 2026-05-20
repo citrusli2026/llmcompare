@@ -5,14 +5,14 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import { Bot, ArrowRight, TrendingUp } from "lucide-react";
-import { getAllModels } from "@/lib/scoring";
+import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
 import { useTranslation } from "@/lib/i18n";
 
 export default function HomePage() {
   const { t } = useTranslation();
   const displayModels = useMemo(() => {
-    const all = getAllModels();
+    const all = getAllModelsUnfiltered();
     const intl = all.filter((m) => m.raw.isInternational);
     const domestic = all.filter((m) => !m.raw.isInternational).slice(0, 10);
     return [...intl, ...domestic];
