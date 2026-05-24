@@ -18,12 +18,25 @@
 - **编程能力** — Artificial Analysis 编程专项评分
 - **Agent 能力** — Artificial Analysis Agent 专项评分
 - **Arena 排名** — lmarena.ai 编程/视觉排行榜 ELO 分数
+- **Arena 投票** — lmarena.ai 人类评测投票数（反映模型受欢迎程度）
 - **官方定价** — 各厂商标准 API 定价 + OpenRouter 市场行情定价
-- **Token 消耗** — 周度 API 调用量排名（来源：OpenRouter）
 
 国际标杆模型（GPT-5.5 / Claude / Gemini）固定置顶，不参与排序，供横向对比。国内模型按前沿/主力分组，各组内部独立排序。
 
-目前收录 21 个活跃大模型（含 3 个国际标杆），数据每周更新。
+目前收录 23 个活跃大模型（含 3 个国际标杆），数据每周更新。
+
+## 数据管线
+
+```
+1-fetch/     → 抓取 Artificial Analysis、OpenRouter、Arena 数据
+3-process/   → 筛选国内模型、注入 Arena 排名和投票数、计算 data_complete
+4-final/     → 生成 ranking.json（活跃模型）+ ranking_all.json（全量）
+app/src/data/ → 同步 ranking.json 到前端
+```
+
+- **data_complete**: 仅标记数据完整度（intelligence 是否存在），不做筛选
+- **Arena votes**: 替代原 OpenRouter weekly_tokens（OR 数据已无法获取）
+- **验证脚本**: `scripts/validate-data.py` 确保数据质量
 
 ## 本地运行
 
@@ -36,6 +49,15 @@ npm install && npm run dev
 Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · shadcn/ui · Vitest · Playwright
 
 支持暗色/亮色主题切换、中英文双语。
+
+## 测试
+
+```bash
+npm test              # 单元测试 + 集成测试 (Vitest)
+npm run test:e2e      # E2E 测试 (Playwright)
+npm run build         # 构建 + 静态导出验证
+python3 scripts/validate-data.py  # 数据质量验证
+```
 
 ## 贡献
 
