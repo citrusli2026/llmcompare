@@ -307,7 +307,7 @@
         "votes": 3437
       }
     },
-    "arena_votes": 3437
+    "arena_votes": 5612
   },
   {
     "id": "mimo-v2-5-pro",
@@ -762,7 +762,7 @@
         "votes": 3437
       }
     },
-    "arena_votes": null
+    "arena_votes": 14366
   },
   {
     "id": "deepseek-v4-flash",
@@ -884,7 +884,7 @@
       "completion": 2.34
     },
     "arena_rankings": {},
-    "arena_votes": null
+    "arena_votes": 11789
   },
   {
     "id": "glm-4-7",
