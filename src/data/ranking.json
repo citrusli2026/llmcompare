@@ -195,7 +195,7 @@
     "pricing": {
       "input": 2.5,
       "output": 7.5,
-      "display": "¥2.5/¥7.5 (输入/输出 每百万token)"
+      "display": "¥2.5/¥10.0 (≤32K)"
     },
     "flags": {
       "frontier": true,
@@ -224,7 +224,11 @@
       "huggingface": "https://huggingface.co/Qwen",
       "pricing_doc": "https://bailian.console.aliyun.com"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 2.5,
+      "output": 10.0,
+      "source": "bailian.console.aliyun.com (参考 Qwen3 Max 定价)"
+    },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 2.5,
@@ -648,7 +652,7 @@
     "pricing": {
       "input": 0.36,
       "output": 1.8,
-      "display": "¥0.36/¥1.8 (输入/输出 每百万token)"
+      "display": "¥7.0/¥21.0 (≤256K)"
     },
     "flags": {
       "frontier": false,
@@ -675,7 +679,11 @@
       "pricing_doc": "小米开放平台控制台（需登录）",
       "pricing_note": "2026-05-02 登录实测"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 7.0,
+      "output": 21.0,
+      "source": "小米开放平台控制台 (参考 MiMo-V2.5-Pro 定价)"
+    },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.4,
@@ -1285,7 +1293,7 @@
     "pricing": {
       "input": 0,
       "output": 0,
-      "display": "免费"
+      "display": "¥0/¥0"
     },
     "flags": {
       "frontier": false,
@@ -1310,7 +1318,11 @@
       "homepage": "https://www.inclusion-ai.org",
       "huggingface": "https://huggingface.co/inclusionAI"
     },
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 0,
+      "output": 0,
+      "source": "开源可自部署"
+    },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.07,
