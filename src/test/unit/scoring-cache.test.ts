@@ -16,10 +16,11 @@ describe("scoring cache", () => {
     expect(models1).toStrictEqual(models2); // same content due to cache
   });
 
-  it("getAllModelsUnfiltered returns more or equal models than filtered", () => {
+  it("getAllModelsUnfiltered returns same models as getAllModels", () => {
     const all = getAllModelsUnfiltered();
     const filtered = getAllModels();
-    expect(all.length).toBeGreaterThanOrEqual(filtered.length);
+    // data_complete 仅标记不做筛选，两者应返回相同数量
+    expect(all.length).toBe(filtered.length);
   });
 
   it("getModelById returns same reference for same id", () => {
@@ -58,11 +59,11 @@ describe("scoring cache", () => {
     }
   });
 
-  it("flags.data_complete filters correctly", () => {
+  it("flags.data_complete is a marker, not a filter", () => {
     const all = getAllModelsUnfiltered();
     const filtered = getAllModels();
-    const completeCount = all.filter((m) => m.flags.data_complete).length;
-    expect(filtered.length).toBe(completeCount);
+    // data_complete 仅标记数据完整度，不做筛选条件
+    expect(filtered.length).toBe(all.length);
   });
 
   it("raw scores are numbers or null", () => {

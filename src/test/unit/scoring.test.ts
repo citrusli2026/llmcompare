@@ -6,12 +6,12 @@ describe("scoring", () => {
     // Reset module cache if needed
   });
 
-  it("getAllModels returns only data_complete models", () => {
+  it("getAllModels returns all models (data_complete is marker only)", () => {
     const models = getAllModels();
     expect(models.length).toBeGreaterThan(0);
-    for (const m of models) {
-      expect(m.flags.data_complete).toBe(true);
-    }
+    // data_complete 仅标记，不做筛选，所有模型都应返回
+    const all = getAllModelsUnfiltered();
+    expect(models.length).toBe(all.length);
   });
 
   it("getAllModelsUnfiltered returns all models", () => {

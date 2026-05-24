@@ -168,13 +168,13 @@ function initCache(): void {
 
 // ── Public API ──
 
-/** 返回 data_complete 的模型，供排名页使用 */
+/** 返回全量模型（data_complete 仅标记，不做筛选） */
 export function getAllModels(): ModelWithScores[] {
   initCache();
-  return _cache!.models.filter((m) => m.flags.data_complete);
+  return _cache!.models;
 }
 
-/** 返回全量模型（包含 data_complete=false），供静态路径生成和详情页使用 */
+/** 返回全量模型（同 getAllModels，保留兼容） */
 export function getAllModelsUnfiltered(): ModelWithScores[] {
   initCache();
   return _cache!.models;
