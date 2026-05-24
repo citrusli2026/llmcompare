@@ -51,13 +51,7 @@
       "prompt": 5.0,
       "completion": 30.0
     },
-    "arena_rankings": {
-      "text": {
-        "rank": 11,
-        "score": 1478,
-        "votes": 10294
-      }
-    },
+    "arena_rankings": {},
     "arena_votes": 10294
   },
   {
@@ -113,11 +107,6 @@
       "completion": 150.0
     },
     "arena_rankings": {
-      "text": {
-        "rank": 3,
-        "score": 1498,
-        "votes": 29240
-      },
       "code": {
         "rank": 2,
         "score": 1560,
@@ -179,11 +168,6 @@
       "completion": 12.0
     },
     "arena_rankings": {
-      "text": {
-        "rank": 6,
-        "score": 1488,
-        "votes": 34189
-      },
       "code": {
         "rank": 19,
         "score": 1450,
@@ -246,7 +230,13 @@
       "prompt": 2.5,
       "completion": 7.5
     },
-    "arena_rankings": {},
+    "arena_rankings": {
+      "code": {
+        "rank": 11,
+        "score": 1491,
+        "votes": 2117
+      }
+    },
     "arena_votes": 3741
   },
   {
@@ -439,11 +429,6 @@
       "completion": 6.24
     },
     "arena_rankings": {
-      "text": {
-        "rank": 14,
-        "score": 1475,
-        "votes": 3741
-      },
       "code": {
         "rank": 11,
         "score": 1491,
@@ -577,11 +562,6 @@
       "completion": 3.08
     },
     "arena_rankings": {
-      "text": {
-        "rank": 20,
-        "score": 1472,
-        "votes": 12295
-      },
       "code": {
         "rank": 5,
         "score": 1532,
@@ -701,7 +681,13 @@
       "prompt": 0.4,
       "completion": 2.0
     },
-    "arena_rankings": {},
+    "arena_rankings": {
+      "code": {
+        "rank": 14,
+        "score": 1471,
+        "votes": 4087
+      }
+    },
     "arena_votes": 4087
   },
   {
@@ -950,18 +936,13 @@
       "completion": 1.75
     },
     "arena_rankings": {
-      "text": {
-        "rank": 20,
-        "score": 1472,
-        "votes": 12295
-      },
       "code": {
         "rank": 5,
         "score": 1532,
         "votes": 3611
       }
     },
-    "arena_votes": null
+    "arena_votes": 12295
   },
   {
     "id": "hy3-preview",
@@ -1020,18 +1001,13 @@
       "completion": 0.26
     },
     "arena_rankings": {
-      "text": {
-        "rank": 14,
-        "score": 1475,
-        "votes": 3741
-      },
       "code": {
-        "rank": 11,
-        "score": 1491,
-        "votes": 2117
+        "rank": 16,
+        "score": 1461,
+        "votes": 5421
       }
     },
-    "arena_votes": null
+    "arena_votes": 5421
   },
   {
     "id": "deepseek-v3-2",
@@ -1150,8 +1126,14 @@
       "prompt": 0.1,
       "completion": 0.3
     },
-    "arena_rankings": {},
-    "arena_votes": null
+    "arena_rankings": {
+      "code": {
+        "rank": 14,
+        "score": 1471,
+        "votes": 4087
+      }
+    },
+    "arena_votes": 4087
   },
   {
     "id": "qwen3-max-thinking",
@@ -1212,18 +1194,13 @@
       "completion": 3.9
     },
     "arena_rankings": {
-      "text": {
-        "rank": 14,
-        "score": 1475,
-        "votes": 3741
-      },
       "code": {
         "rank": 11,
         "score": 1491,
         "votes": 2117
       }
     },
-    "arena_votes": null
+    "arena_votes": 2117
   },
   {
     "id": "qwen3-5-omni-plus",
@@ -1281,18 +1258,13 @@
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
     "arena_rankings": {
-      "text": {
-        "rank": 14,
-        "score": 1475,
-        "votes": 3741
-      },
       "code": {
-        "rank": 11,
-        "score": 1491,
-        "votes": 2117
+        "rank": 16,
+        "score": 1461,
+        "votes": 5421
       }
     },
-    "arena_votes": null
+    "arena_votes": 5421
   },
   {
     "id": "ring-2-6-1t",
@@ -1405,18 +1377,13 @@
       "completion": 0.3
     },
     "arena_rankings": {
-      "text": {
-        "rank": 14,
-        "score": 1475,
-        "votes": 3741
-      },
       "code": {
-        "rank": 11,
-        "score": 1491,
-        "votes": 2117
+        "rank": 16,
+        "score": 1461,
+        "votes": 5421
       }
     },
-    "arena_votes": null
+    "arena_votes": 5421
   },
   {
     "id": "ling-2-6-1t",
@@ -1473,17 +1440,12 @@
       "completion": 0.62
     },
     "arena_rankings": {
-      "text": {
-        "rank": 14,
-        "score": 1475,
-        "votes": 3741
-      },
       "code": {
-        "rank": 11,
-        "score": 1491,
-        "votes": 2117
+        "rank": 16,
+        "score": 1461,
+        "votes": 5421
       }
     },
-    "arena_votes": null
+    "arena_votes": 5421
   }
 ]
