@@ -21,7 +21,8 @@ interface MobileCardProps {
   percentiles: Record<string, { p25: number; p50: number; p75: number } | null>;
 }
 
-export function MobileCard({ model, group, idx, sortKey, headers, metricOrder, renderMetric, percentiles }: MobileCardProps) {
+export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metricOrder, renderMetric, percentiles }: MobileCardProps) {
+  void _sortKey; // 保留参数但当前未使用
   const { t } = useTranslation();
 
   const headerMap = useMemo(() => {
