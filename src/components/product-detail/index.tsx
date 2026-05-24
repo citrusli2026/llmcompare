@@ -14,6 +14,7 @@ import { SpeedSection } from "./speed-section";
 import { PricingSection } from "./pricing-section";
 import { ArenaRankings } from "./arena-rankings";
 import { TokenUsage } from "./token-usage";
+import { DataCompleteness } from "./data-completeness";
 
 interface ProductDetailClientProps {
   model: ModelWithScores;
@@ -38,6 +39,9 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
           <ModelHeader model={model} />
           <VendorLinks model={model} />
           <QuickFacts model={model} />
+          <div className="mt-4">
+            <DataCompleteness model={model} />
+          </div>
 
           <div className="grid gap-6 lg:grid-cols-3">
             <div className="lg:col-span-2 space-y-6">

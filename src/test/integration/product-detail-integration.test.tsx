@@ -66,6 +66,7 @@ const makeModel = (
       openrouter_pricing: { prompt: 1.5, completion: 2.5 },
       arena_rankings: { code: { rank: 5, score: 1250, votes: 1000 } },
       arena_code: 1250,
+      data_completeness_pct: 85,
       ...rawOverrides,
     },
   };

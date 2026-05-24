@@ -99,7 +99,9 @@
     "arenaRank": "排名",
     "arenaScore": "ELO 分数",
     "arenaVotes": "投票数",
-    "arenaSource": "数据来源：lmarena.ai"
+    "arenaSource": "数据来源：lmarena.ai",
+    "dataCompleteness": "数据完整度",
+    "dataCompletenessDesc": "基于 18 个核心字段的加权完整度评分，包括基准测试、速度、定价、Arena 排名等"
   },
   "table": {
     "model": "模型",

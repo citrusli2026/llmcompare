@@ -109,6 +109,7 @@ export interface ModelWithScores {
     openrouter_pricing: { prompt: number; completion: number } | null;
     arena_rankings: Record<string, ArenaRanking> | null;
     arena_code: number | null;
+    data_completeness_pct: number;
   };
 
   flags: ModelFlags;
@@ -158,6 +159,7 @@ function initCache(): void {
         openrouter_pricing: m.openrouter_pricing ?? null,
         arena_rankings: m.arena_rankings && Object.keys(m.arena_rankings).length > 0 ? m.arena_rankings : null,
         arena_code: m.arena_rankings?.code?.score ?? null,
+        data_completeness_pct: (m as any).data_completeness_pct ?? 0,
       },
       flags: m.flags,
     };

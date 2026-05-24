@@ -42,6 +42,7 @@ describe("ranking-table utils extended", () => {
       openrouter_pricing: { prompt: 1, completion: 2 },
       arena_rankings: null,
       arena_code: 1200,
+      data_completeness_pct: 80,
       ...overrides,
     },
   });
