@@ -57,7 +57,8 @@
         "score": 1478,
         "votes": 10294
       }
-    }
+    },
+    "arena_votes": 10294
   },
   {
     "id": "claude-opus-4-7",
@@ -122,7 +123,8 @@
         "score": 1560,
         "votes": 4186
       }
-    }
+    },
+    "arena_votes": 13571
   },
   {
     "id": "gemini-3-1-pro-preview",
@@ -187,7 +189,8 @@
         "score": 1450,
         "votes": 9555
       }
-    }
+    },
+    "arena_votes": 34189
   },
   {
     "id": "qwen3-7-max",
@@ -243,7 +246,8 @@
       "prompt": 2.5,
       "completion": 7.5
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": 3741
   },
   {
     "id": "kimi-k2-6",
@@ -308,7 +312,8 @@
         "score": 1519,
         "votes": 3437
       }
-    }
+    },
+    "arena_votes": 3437
   },
   {
     "id": "mimo-v2-5-pro",
@@ -372,7 +377,8 @@
         "score": 1471,
         "votes": 4087
       }
-    }
+    },
+    "arena_votes": 4087
   },
   {
     "id": "qwen3-6-max-preview",
@@ -443,7 +449,8 @@
         "score": 1491,
         "votes": 2117
       }
-    }
+    },
+    "arena_votes": 2117
   },
   {
     "id": "deepseek-v4-pro",
@@ -509,7 +516,8 @@
         "score": 1459,
         "votes": 3320
       }
-    }
+    },
+    "arena_votes": 3320
   },
   {
     "id": "glm-5-1",
@@ -579,7 +587,8 @@
         "score": 1532,
         "votes": 3611
       }
-    }
+    },
+    "arena_votes": 12295
   },
   {
     "id": "minimax-m2-7",
@@ -637,7 +646,8 @@
       "prompt": 0.28,
       "completion": 1.2
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": null
   },
   {
     "id": "mimo-v2-5",
@@ -691,7 +701,8 @@
       "prompt": 0.4,
       "completion": 2.0
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": 4087
   },
   {
     "id": "kimi-k2-5",
@@ -756,7 +767,8 @@
         "score": 1519,
         "votes": 3437
       }
-    }
+    },
+    "arena_votes": null
   },
   {
     "id": "deepseek-v4-flash",
@@ -816,7 +828,8 @@
       "prompt": 0.1,
       "completion": 0.2
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": null
   },
   {
     "id": "qwen3-5-397b-a17b",
@@ -876,7 +889,8 @@
       "prompt": 0.39,
       "completion": 2.34
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": null
   },
   {
     "id": "glm-4-7",
@@ -946,7 +960,8 @@
         "score": 1532,
         "votes": 3611
       }
-    }
+    },
+    "arena_votes": null
   },
   {
     "id": "hy3-preview",
@@ -1015,7 +1030,8 @@
         "score": 1491,
         "votes": 2117
       }
-    }
+    },
+    "arena_votes": null
   },
   {
     "id": "deepseek-v3-2",
@@ -1075,7 +1091,8 @@
       "prompt": 0.25,
       "completion": 0.38
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": null
   },
   {
     "id": "mimo-v2-flash",
@@ -1133,7 +1150,8 @@
       "prompt": 0.1,
       "completion": 0.3
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": null
   },
   {
     "id": "qwen3-max-thinking",
@@ -1204,7 +1222,8 @@
         "score": 1491,
         "votes": 2117
       }
-    }
+    },
+    "arena_votes": null
   },
   {
     "id": "qwen3-5-omni-plus",
@@ -1272,7 +1291,8 @@
         "score": 1491,
         "votes": 2117
       }
-    }
+    },
+    "arena_votes": null
   },
   {
     "id": "ring-2-6-1t",
@@ -1324,7 +1344,8 @@
       "prompt": 0.07,
       "completion": 0.62
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": null
   },
   {
     "id": "step-3-5-flash",
@@ -1394,7 +1415,8 @@
         "score": 1491,
         "votes": 2117
       }
-    }
+    },
+    "arena_votes": null
   },
   {
     "id": "ling-2-6-1t",
@@ -1461,6 +1483,7 @@
         "score": 1491,
         "votes": 2117
       }
-    }
+    },
+    "arena_votes": null
   }
 ]
