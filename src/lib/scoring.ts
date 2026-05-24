@@ -159,7 +159,7 @@ function initCache(): void {
         openrouter_pricing: m.openrouter_pricing ?? null,
         arena_rankings: m.arena_rankings && Object.keys(m.arena_rankings).length > 0 ? m.arena_rankings : null,
         arena_code: m.arena_rankings?.code?.score ?? null,
-        data_completeness_pct: (m as any).data_completeness_pct ?? 0,
+        data_completeness_pct: ((m as unknown) as Record<string, unknown>).data_completeness_pct as number ?? 0,
       },
       flags: m.flags,
     };
