@@ -1,0 +1,25 @@
+name: Data Refresh Notification
+
+on:
+  schedule:
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout data repo
+        uses: actions/checkout@v4
+        with:
+          repository: citrusli2026/llmcompare-data
+          path: data
+          
+      - name: Generate diff summary
+        run: |
+          cd data
+          python3 scripts/diff-ranking.py > /tmp/data-diff.md || echo "No previous data to compare"
+                    
+      - name: Post notification
+        run: |
+          cat /tmp/data-diff.md || echo "No diff available"          
