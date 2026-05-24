@@ -56,7 +56,7 @@ export function getRawValue(model: ModelWithScores, key: SortKey): number | null
     case "agentic": return model.raw.agentic ?? null;
     case "arenaCode": return model.raw.arena_code ?? null;
     case "cost": return model.raw.openrouter_pricing?.completion ?? null;
-    case "tokens": return model.raw.openrouter_weekly_tokens ?? null;
+    case "tokens": return model.raw.arena_votes ?? null;
     case "date": return null;
   }
 }

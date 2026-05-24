@@ -47,7 +47,7 @@ export function makeModel(
       output_tokens: null,
       release_date: "2024-01-01",
       omniscience: null,
-      openrouter_weekly_tokens: null,
+      arena_votes: null,
       openrouter_pricing: null,
       arena_rankings: null,
       arena_code: null,
