@@ -52,12 +52,13 @@
       "completion": 30.0
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 7,
-        "score": 1288,
-        "votes": 4662
+      "text": {
+        "rank": 11,
+        "score": 1478,
+        "votes": 10294
       }
-    }
+    },
+    "arena_votes": 10294
   },
   {
     "id": "claude-opus-4-7",
@@ -112,17 +113,18 @@
       "completion": 150.0
     },
     "arena_rankings": {
+      "text": {
+        "rank": 3,
+        "score": 1498,
+        "votes": 29240
+      },
       "code": {
         "rank": 2,
         "score": 1560,
         "votes": 4186
-      },
-      "vision": {
-        "rank": 2,
-        "score": 1304,
-        "votes": 6779
       }
-    }
+    },
+    "arena_votes": 13571
   },
   {
     "id": "gemini-3-1-pro-preview",
@@ -177,17 +179,18 @@
       "completion": 12.0
     },
     "arena_rankings": {
+      "text": {
+        "rank": 6,
+        "score": 1488,
+        "votes": 34189
+      },
       "code": {
         "rank": 19,
         "score": 1450,
         "votes": 9555
-      },
-      "vision": {
-        "rank": 10,
-        "score": 1277,
-        "votes": 16807
       }
-    }
+    },
+    "arena_votes": 34189
   },
   {
     "id": "qwen3-7-max",
@@ -218,7 +221,7 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": true
     },
     "meta": {
       "context_window": 1000000,
@@ -243,7 +246,8 @@
       "prompt": 2.5,
       "completion": 7.5
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": 3741
   },
   {
     "id": "kimi-k2-6",
@@ -307,13 +311,9 @@
         "rank": 7,
         "score": 1519,
         "votes": 3437
-      },
-      "vision": {
-        "rank": 19,
-        "score": 1259,
-        "votes": 5612
       }
-    }
+    },
+    "arena_votes": 3437
   },
   {
     "id": "mimo-v2-5-pro",
@@ -376,13 +376,9 @@
         "rank": 14,
         "score": 1471,
         "votes": 4087
-      },
-      "vision": {
-        "rank": 36,
-        "score": 1231,
-        "votes": 6912
       }
-    }
+    },
+    "arena_votes": 4087
   },
   {
     "id": "qwen3-6-max-preview",
@@ -443,12 +439,18 @@
       "completion": 6.24
     },
     "arena_rankings": {
+      "text": {
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
+      },
       "code": {
         "rank": 11,
         "score": 1491,
         "votes": 2117
       }
-    }
+    },
+    "arena_votes": 2117
   },
   {
     "id": "deepseek-v4-pro",
@@ -514,7 +516,8 @@
         "score": 1459,
         "votes": 3320
       }
-    }
+    },
+    "arena_votes": 3320
   },
   {
     "id": "glm-5-1",
@@ -574,12 +577,18 @@
       "completion": 3.08
     },
     "arena_rankings": {
+      "text": {
+        "rank": 20,
+        "score": 1472,
+        "votes": 12295
+      },
       "code": {
         "rank": 5,
         "score": 1532,
         "votes": 3611
       }
-    }
+    },
+    "arena_votes": 12295
   },
   {
     "id": "minimax-m2-7",
@@ -637,7 +646,8 @@
       "prompt": 0.28,
       "completion": 1.2
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": null
   },
   {
     "id": "mimo-v2-5",
@@ -668,7 +678,7 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": true
     },
     "meta": {
       "context_window": 1000000,
@@ -691,13 +701,8 @@
       "prompt": 0.4,
       "completion": 2.0
     },
-    "arena_rankings": {
-      "vision": {
-        "rank": 36,
-        "score": 1231,
-        "votes": 6912
-      }
-    }
+    "arena_rankings": {},
+    "arena_votes": 4087
   },
   {
     "id": "kimi-k2-5",
@@ -761,13 +766,9 @@
         "rank": 7,
         "score": 1519,
         "votes": 3437
-      },
-      "vision": {
-        "rank": 24,
-        "score": 1247,
-        "votes": 14366
       }
-    }
+    },
+    "arena_votes": null
   },
   {
     "id": "deepseek-v4-flash",
@@ -827,7 +828,8 @@
       "prompt": 0.1,
       "completion": 0.2
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": null
   },
   {
     "id": "qwen3-5-397b-a17b",
@@ -887,13 +889,8 @@
       "prompt": 0.39,
       "completion": 2.34
     },
-    "arena_rankings": {
-      "vision": {
-        "rank": 29,
-        "score": 1244,
-        "votes": 11789
-      }
-    }
+    "arena_rankings": {},
+    "arena_votes": null
   },
   {
     "id": "glm-4-7",
@@ -953,12 +950,18 @@
       "completion": 1.75
     },
     "arena_rankings": {
+      "text": {
+        "rank": 20,
+        "score": 1472,
+        "votes": 12295
+      },
       "code": {
         "rank": 5,
         "score": 1532,
         "votes": 3611
       }
-    }
+    },
+    "arena_votes": null
   },
   {
     "id": "hy3-preview",
@@ -1017,12 +1020,18 @@
       "completion": 0.26
     },
     "arena_rankings": {
+      "text": {
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
+      },
       "code": {
         "rank": 11,
         "score": 1491,
         "votes": 2117
       }
-    }
+    },
+    "arena_votes": null
   },
   {
     "id": "deepseek-v3-2",
@@ -1053,7 +1062,7 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": true
     },
     "meta": {
       "context_window": 128000,
@@ -1082,7 +1091,8 @@
       "prompt": 0.25,
       "completion": 0.38
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": null
   },
   {
     "id": "mimo-v2-flash",
@@ -1140,13 +1150,8 @@
       "prompt": 0.1,
       "completion": 0.3
     },
-    "arena_rankings": {
-      "vision": {
-        "rank": 36,
-        "score": 1231,
-        "votes": 6912
-      }
-    }
+    "arena_rankings": {},
+    "arena_votes": null
   },
   {
     "id": "qwen3-max-thinking",
@@ -1207,12 +1212,18 @@
       "completion": 3.9
     },
     "arena_rankings": {
+      "text": {
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
+      },
       "code": {
         "rank": 11,
         "score": 1491,
         "votes": 2117
       }
-    }
+    },
+    "arena_votes": null
   },
   {
     "id": "qwen3-5-omni-plus",
@@ -1270,12 +1281,18 @@
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
     "arena_rankings": {
+      "text": {
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
+      },
       "code": {
         "rank": 11,
         "score": 1491,
         "votes": 2117
       }
-    }
+    },
+    "arena_votes": null
   },
   {
     "id": "ring-2-6-1t",
@@ -1306,7 +1323,7 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": true
     },
     "meta": {
       "context_window": 262144,
@@ -1327,7 +1344,8 @@
       "prompt": 0.07,
       "completion": 0.62
     },
-    "arena_rankings": {}
+    "arena_rankings": {},
+    "arena_votes": null
   },
   {
     "id": "step-3-5-flash",
@@ -1387,12 +1405,18 @@
       "completion": 0.3
     },
     "arena_rankings": {
+      "text": {
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
+      },
       "code": {
         "rank": 11,
         "score": 1491,
         "votes": 2117
       }
-    }
+    },
+    "arena_votes": null
   },
   {
     "id": "ling-2-6-1t",
@@ -1423,7 +1447,7 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": true
     },
     "meta": {
       "context_window": 262144,
@@ -1449,11 +1473,17 @@
       "completion": 0.62
     },
     "arena_rankings": {
+      "text": {
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
+      },
       "code": {
         "rank": 11,
         "score": 1491,
         "votes": 2117
       }
-    }
+    },
+    "arena_votes": null
   }
 ]
