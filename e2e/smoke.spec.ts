@@ -158,11 +158,18 @@ test.describe("Other Pages", () => {
     const count = await buttons.count();
     expect(count).toBeGreaterThan(0);
 
-    // 点击第二个按钮（通常是"开源"或"Open"）
-    if (count > 1) {
-      await buttons.nth(1).click();
-      await page.waitForTimeout(300);
+    // 找到第一个可见的按钮并点击
+    let clicked = false;
+    for (let i = 0; i < count; i++) {
+      const btn = buttons.nth(i);
+      if (await btn.isVisible().catch(() => false)) {
+        await btn.click();
+        await page.waitForTimeout(300);
+        clicked = true;
+        break;
+      }
     }
+    expect(clicked).toBe(true);
 
     // 验证页面仍有内容
     await expect(page.locator("body")).not.toHaveText(/404|Error/);
