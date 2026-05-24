@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, fireEvent, within } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { RankingTable } from "@/components/ranking-table";
 import { type ModelWithScores } from "@/lib/scoring";
 import { makeModel } from "../fixtures";

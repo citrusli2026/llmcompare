@@ -2,7 +2,6 @@
 
 import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type Percentiles, type ColoredKey } from "./types";
-import { cn } from "@/lib/utils";
 
 export const COLOR_BY_BUCKET = {
   emerald: "text-emerald-500 dark:text-emerald-400",

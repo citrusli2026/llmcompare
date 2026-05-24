@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { quantile, computePercentiles, bucketByPercentile, getRawValue, formatScore } from "@/components/ranking-table/utils";
-import { type ModelWithScores } from "@/lib/scoring";
+import { quantile, computePercentiles, bucketByPercentile, formatScore } from "@/components/ranking-table/utils";
 
 describe("ranking-table utils", () => {
   describe("quantile", () => {
