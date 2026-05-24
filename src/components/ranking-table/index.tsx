@@ -86,7 +86,7 @@ export function RankingTable({ models }: RankingTableProps) {
         <span className="text-text-dim text-xs">—</span>
       ),
     tokens: (m) => {
-      const val = m.raw.openrouter_weekly_tokens;
+      const val = m.raw.arena_votes;
       if (val == null) return <span className="text-text-dim text-xs">—</span>;
       const { value, unit } = formatTokenCount(val);
       return <span>{value}{unit && <span className="text-text-secondary text-[10px]">{unit}</span>}</span>;

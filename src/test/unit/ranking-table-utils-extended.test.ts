@@ -38,7 +38,7 @@ describe("ranking-table utils extended", () => {
       output_tokens: null,
       release_date: "2024-01-01",
       omniscience: null,
-      openrouter_weekly_tokens: 1000,
+      arena_votes: 1000,
       openrouter_pricing: { prompt: 1, completion: 2 },
       arena_rankings: null,
       arena_code: 1200,
@@ -88,12 +88,12 @@ describe("ranking-table utils extended", () => {
     });
 
     it("returns tokens value", () => {
-      const model = makeModel({ openrouter_weekly_tokens: 5000 });
+      const model = makeModel({ arena_votes: 5000 });
       expect(getRawValue(model, "tokens")).toBe(5000);
     });
 
-    it("returns null when tokens is null", () => {
-      const model = makeModel({ openrouter_weekly_tokens: null });
+    it("returns null for missing tokens", () => {
+      const model = makeModel({ arena_votes: null });
       expect(getRawValue(model, "tokens")).toBeNull();
     });
   });

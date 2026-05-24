@@ -70,7 +70,7 @@ interface RawModel {
     source: string;
   } | null;
   flags: ModelFlags;
-  openrouter_weekly_tokens?: number | null;
+  arena_votes?: number | null;
   openrouter_pricing?: { prompt: number; completion: number } | null;
   arena_rankings?: Record<string, ArenaRanking> | null;
   meta?: RawMeta;
@@ -105,7 +105,7 @@ export interface ModelWithScores {
     output_tokens: number | null;
     release_date: string | null;
     omniscience: number | null;
-    openrouter_weekly_tokens: number | null;
+    arena_votes: number | null;
     openrouter_pricing: { prompt: number; completion: number } | null;
     arena_rankings: Record<string, ArenaRanking> | null;
     arena_code: number | null;
@@ -154,7 +154,7 @@ function initCache(): void {
         output_tokens: m.meta?.output_tokens ?? null,
         release_date: m.meta?.release_date ?? null,
         omniscience: m.meta?.omniscience ?? null,
-        openrouter_weekly_tokens: m.openrouter_weekly_tokens ?? null,
+        arena_votes: m.arena_votes ?? null,
         openrouter_pricing: m.openrouter_pricing ?? null,
         arena_rankings: m.arena_rankings && Object.keys(m.arena_rankings).length > 0 ? m.arena_rankings : null,
         arena_code: m.arena_rankings?.code?.score ?? null,

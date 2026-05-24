@@ -62,7 +62,7 @@ const makeModel = (
       output_tokens: 4096,
       release_date: "2024-06-15",
       omniscience: 82.1,
-      openrouter_weekly_tokens: 1234567,
+      arena_votes: 1234567,
       openrouter_pricing: { prompt: 1.5, completion: 2.5 },
       arena_rankings: { code: { rank: 5, score: 1250, votes: 1000 } },
       arena_code: 1250,
