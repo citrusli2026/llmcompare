@@ -54,9 +54,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Start server
-        run: npx serve dist -l 3000 &
-
       - name: Run E2E tests
         run: npx playwright test
 
