@@ -227,6 +227,7 @@ def check_ranking_consistency(models):
     排名页一致性检查（所有模型都参与排名，data_complete 仅标记）
     """
     issues = []
+    warnings = []
 
     # frontier 模型 intelligence 应 >= 50
     for m in models:
@@ -235,12 +236,12 @@ def check_ranking_consistency(models):
                 f"{m['id']}: frontier=true but intelligence={m['scores']['intelligence']:.1f} < 50"
             )
 
-    # 国际模型不应有国内定价
+    # 国际模型不应有国内定价（改为警告，因为我们现在主动为国际模型添加人民币参考价）
     for m in models:
         if not m["flags"].get("chinese_eval") and m.get("cn_pricing"):
-            issues.append(f"{m['id']}: international model has cn_pricing")
+            warnings.append(f"{m['id']}: international model has cn_pricing (reference price)")
 
-    return issues
+    return issues, warnings
 
 
 def check_thresholds(models):
@@ -421,8 +422,9 @@ def main():
 
     # 6. 排名页一致性（所有模型）
     print("[6/8] 排名页一致性...")
-    issues = check_ranking_consistency(models)
+    issues, consistency_warnings = check_ranking_consistency(models)
     all_issues.extend(issues)
+    all_warnings.extend(consistency_warnings)
     print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
 
     # 7. 统计量阈值

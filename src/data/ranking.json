@@ -38,7 +38,12 @@
       "release_date": "2026-04-23",
       "omniscience": null
     },
-    "url": null,
+    "url": "https://openai.com",
+    "cn_pricing": {
+      "input": 20.0,
+      "output": 100.0,
+      "source": "openai.com/api/pricing"
+    },
     "vendor_links": {
       "homepage": "https://openai.com",
       "api_docs": "https://platform.openai.com/docs",
@@ -93,7 +98,12 @@
       "release_date": "2026-04-16",
       "omniscience": null
     },
-    "url": null,
+    "url": "https://www.anthropic.com",
+    "cn_pricing": {
+      "input": 112.5,
+      "output": 562.5,
+      "source": "anthropic.com/pricing"
+    },
     "vendor_links": {
       "homepage": "https://www.anthropic.com",
       "api_docs": "https://docs.anthropic.com",
@@ -154,7 +164,12 @@
       "release_date": "2026-02-19",
       "omniscience": null
     },
-    "url": null,
+    "url": "https://ai.google.dev",
+    "cn_pricing": {
+      "input": 10.8,
+      "output": 43.2,
+      "source": "ai.google.dev/pricing"
+    },
     "vendor_links": {
       "homepage": "https://ai.google.dev",
       "api_docs": "https://ai.google.dev/gemini-api/docs",
