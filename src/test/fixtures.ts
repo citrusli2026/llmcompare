@@ -51,6 +51,7 @@ export function makeModel(
       openrouter_pricing: null,
       arena_rankings: null,
       arena_code: null,
+      data_completeness_pct: 80,
       ...rawOverrides,
     },
   };
