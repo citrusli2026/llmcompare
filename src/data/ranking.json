@@ -51,7 +51,13 @@
       "prompt": 5.0,
       "completion": 30.0
     },
-    "arena_rankings": {},
+    "arena_rankings": {
+      "text": {
+        "rank": 11,
+        "score": 1478,
+        "votes": 10294
+      }
+    },
     "arena_votes": 10294,
     "data_completeness_pct": 75.2
   },
@@ -108,6 +114,11 @@
       "completion": 150.0
     },
     "arena_rankings": {
+      "text": {
+        "rank": 3,
+        "score": 1498,
+        "votes": 29240
+      },
       "code": {
         "rank": 2,
         "score": 1560,
@@ -170,6 +181,11 @@
       "completion": 12.0
     },
     "arena_rankings": {
+      "text": {
+        "rank": 6,
+        "score": 1488,
+        "votes": 34189
+      },
       "code": {
         "rank": 19,
         "score": 1450,
@@ -238,6 +254,11 @@
       "completion": 7.5
     },
     "arena_rankings": {
+      "text": {
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
+      },
       "code": {
         "rank": 11,
         "score": 1491,
@@ -305,13 +326,18 @@
       "completion": 3.49
     },
     "arena_rankings": {
+      "text": {
+        "rank": 29,
+        "score": 1462,
+        "votes": 10281
+      },
       "code": {
         "rank": 7,
         "score": 1519,
         "votes": 3437
       }
     },
-    "arena_votes": 5612,
+    "arena_votes": 10281,
     "data_completeness_pct": 97.7
   },
   {
@@ -371,13 +397,18 @@
       "completion": 3.0
     },
     "arena_rankings": {
+      "text": {
+        "rank": 26,
+        "score": 1465,
+        "votes": 9700
+      },
       "code": {
         "rank": 14,
         "score": 1471,
         "votes": 4087
       }
     },
-    "arena_votes": 4087,
+    "arena_votes": 9700,
     "data_completeness_pct": 97.7
   },
   {
@@ -439,6 +470,11 @@
       "completion": 6.24
     },
     "arena_rankings": {
+      "text": {
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
+      },
       "code": {
         "rank": 11,
         "score": 1491,
@@ -507,13 +543,18 @@
       "completion": 0.87
     },
     "arena_rankings": {
+      "text": {
+        "rank": 30,
+        "score": 1461,
+        "votes": 9970
+      },
       "code": {
         "rank": 17,
         "score": 1459,
         "votes": 3320
       }
     },
-    "arena_votes": 3320,
+    "arena_votes": 9970,
     "data_completeness_pct": 97.7
   },
   {
@@ -574,6 +615,11 @@
       "completion": 3.08
     },
     "arena_rankings": {
+      "text": {
+        "rank": 20,
+        "score": 1472,
+        "votes": 12295
+      },
       "code": {
         "rank": 5,
         "score": 1532,
@@ -700,13 +746,18 @@
       "completion": 2.0
     },
     "arena_rankings": {
+      "text": {
+        "rank": 26,
+        "score": 1465,
+        "votes": 9700
+      },
       "code": {
         "rank": 14,
         "score": 1471,
         "votes": 4087
       }
     },
-    "arena_votes": 4087,
+    "arena_votes": 9700,
     "data_completeness_pct": 97.7
   },
   {
@@ -767,6 +818,11 @@
       "completion": 1.9
     },
     "arena_rankings": {
+      "text": {
+        "rank": 29,
+        "score": 1462,
+        "votes": 10281
+      },
       "code": {
         "rank": 7,
         "score": 1519,
@@ -958,6 +1014,11 @@
       "completion": 1.75
     },
     "arena_rankings": {
+      "text": {
+        "rank": 20,
+        "score": 1472,
+        "votes": 12295
+      },
       "code": {
         "rank": 5,
         "score": 1532,
@@ -1152,13 +1213,18 @@
       "completion": 0.3
     },
     "arena_rankings": {
+      "text": {
+        "rank": 26,
+        "score": 1465,
+        "votes": 9700
+      },
       "code": {
         "rank": 14,
         "score": 1471,
         "votes": 4087
       }
     },
-    "arena_votes": 4087,
+    "arena_votes": 9700,
     "data_completeness_pct": 97.7
   },
   {
@@ -1220,6 +1286,11 @@
       "completion": 3.9
     },
     "arena_rankings": {
+      "text": {
+        "rank": 14,
+        "score": 1475,
+        "votes": 3741
+      },
       "code": {
         "rank": 11,
         "score": 1491,
