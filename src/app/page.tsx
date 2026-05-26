@@ -23,22 +23,28 @@ export default function HomePage() {
     <div className="min-h-screen bg-surface-base">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden px-4 pt-10 pb-6 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
+      {/* Hero Section — Sentry ambient glow */}
+      <section
+        className="relative overflow-hidden px-4 pt-12 pb-8 sm:pt-16 sm:pb-10 lg:px-8"
+        style={{
+          background: "radial-gradient(ellipse at 50% 0%, rgba(106,95,193,0.15) 0%, transparent 60%)",
+          boxShadow: "rgba(22, 15, 36, 0.9) 0px 4px 4px 9px",
+        }}
+      >
+        <div className="mx-auto max-w-4xl text-center relative z-10">
           <Badge
             variant="secondary"
-            className="mb-4 bg-violet-500/10 text-accent-violet hover:bg-violet-500/20 dark:bg-violet-500/20 dark:text-violet-300"
+            className="mb-4 bg-accent-lime/10 text-accent-lime hover:bg-accent-lime/20 border-accent-lime/20"
           >
             <TrendingUp className="mr-1 h-3 w-3" />
             {t("home.badge")}
           </Badge>
 
-          <h1 className="text-3xl font-bold tracking-tight text-text-primary sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight text-text-primary sm:text-6xl lg:text-7xl">
             {t("home.heroTitle")}
           </h1>
 
-          <p className="mt-3 text-base text-text-secondary">
+          <p className="mt-3 text-base text-text-secondary sm:text-lg">
             {t("home.heroDesc")}
           </p>
           <p className="hidden sm:block mt-4 max-w-2xl mx-auto text-sm text-text-muted">
@@ -71,7 +77,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-surface-border px-4 py-8 sm:px-6 lg:px-8">
+      <footer className="border-t border-surface-border bg-surface-elevated px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl text-center text-sm text-text-muted">
           <p>{t("home.footer")}</p>
           <p className="mt-1">{t("home.footerDisclaimer")}</p>
