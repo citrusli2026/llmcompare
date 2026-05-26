@@ -7,7 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 import { cn, getTypeBadgeClasses } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup } from "./types";
-import { getRawValue, getScoreColor } from "./utils";
+import { getRawValue, getScoreColor, ScoreBar } from "./utils";
 import { useTranslation } from "@/lib/i18n";
 
 interface ModelRowProps {
@@ -67,19 +67,22 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
       >
         {model.raw.release_date ?? "—"}
       </TableCell>
-      {headers.map((h) => (
-        <TableCell
-          key={h.key}
-          className={cn(
-            "text-sm",
-            colVisibilityClass(h),
-            h.key === sortKey ? "font-semibold" : "",
-            h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key, percentiles)
-          )}
-        >
-          {renderers[h.key](model)}
-        </TableCell>
-      ))}
+      {headers.map((h) => {
+        const isScoreBar = h.key === "intelligence" || h.key === "coding" || h.key === "agentic";
+        return (
+          <TableCell
+            key={h.key}
+            className={cn(
+              "text-sm",
+              colVisibilityClass(h),
+              h.key === sortKey ? "font-semibold" : "",
+              h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key, percentiles)
+            )}
+          >
+            {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} /> : renderers[h.key](model)}
+          </TableCell>
+        );
+      })}
     </TableRow>
   );
 }

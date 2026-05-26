@@ -76,3 +76,17 @@ export function formatScore(val: number | null | undefined): React.ReactNode {
   if (val == null) return <span className="text-text-dim text-xs">—</span>;
   return val % 1 === 0 ? val : val.toFixed(1);
 }
+
+export function ScoreBar({ value, maxValue = 100 }: { value: number | null; maxValue?: number }) {
+  if (value == null) return <span className="text-text-dim text-xs">—</span>;
+  const pct = Math.min((value / maxValue) * 100, 100);
+  const color = pct >= 80 ? "bg-accent-violet" : pct >= 65 ? "bg-accent-cyan" : pct >= 50 ? "bg-accent-amber" : "bg-text-muted";
+  return (
+    <div className="flex items-center gap-2">
+      <span className="text-sm font-medium text-text-primary w-10 text-right tabular-nums">{value.toFixed(1)}</span>
+      <div className="flex-1 h-1.5 rounded-full bg-surface-border overflow-hidden">
+        <div className={`h-full rounded-full transition-all ${color}`} style={{ width: `${pct}%` }} />
+      </div>
+    </div>
+  );
+}

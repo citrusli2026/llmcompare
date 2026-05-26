@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { cn, getTypeBadgeClasses } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup, type ScoreKey } from "./types";
-import { getRawValue, getScoreColor } from "./utils";
+import { getRawValue, getScoreColor, ScoreBar } from "./utils";
 import { useMemo } from "react";
 import { useTranslation } from "@/lib/i18n";
 
@@ -79,6 +79,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
       <div className="grid grid-cols-3 gap-1 mb-2">
         {metricOrder.map((key) => {
           const h = headerMap.get(key)!;
+          const isScoreBar = h.key === "intelligence" || h.key === "coding" || h.key === "agentic";
           return (
             <div key={h.key} className="rounded-md bg-surface-hover px-1.5 py-1">
               <div className="flex items-center gap-0.5 mb-0.5">
@@ -91,7 +92,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
                   h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key, percentiles)
                 )}
               >
-                {renderMetric(model, h.key)}
+                {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} /> : renderMetric(model, h.key)}
               </div>
             </div>
           );
