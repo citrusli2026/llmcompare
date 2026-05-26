@@ -23,7 +23,7 @@ export function FilterBar({ options, activeKey, onFilterChange }: FilterBarProps
           className={cn(
             "rounded-lg px-4 py-2 text-sm font-medium transition-all",
             activeKey === opt.key
-              ? "bg-accent-violet/15 text-accent-violet border border-accent-violet/30"
+              ? "bg-accent-violet/20 text-accent-violet border border-accent-violet/40"
               : "bg-surface-card text-text-secondary border border-surface-border hover:bg-surface-hover hover:text-text-primary"
           )}
         >
