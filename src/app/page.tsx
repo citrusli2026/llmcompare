@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Bot, ArrowRight, TrendingUp } from "lucide-react";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
+import { StatsStrip } from "@/components/stats-strip";
 import { useTranslation } from "@/lib/i18n";
 
 export default function HomePage() {
@@ -45,6 +46,8 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      <StatsStrip />
 
       {/* Model Directory Table */}
       <section className="px-4 pt-6 pb-10 sm:px-6 lg:px-8">
