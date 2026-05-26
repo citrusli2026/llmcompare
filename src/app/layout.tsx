@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Rubik, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const rubik = Rubik({
+  variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -33,9 +34,9 @@ export const metadata: Metadata = {
   },
 };
 
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");var c=t==="dark"?"dark":"light";document.documentElement.classList.remove("light","dark");document.documentElement.classList.add(c);}catch(e){document.documentElement.classList.add("light");}})();`;
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");var c="dark";document.documentElement.classList.remove("light","dark");document.documentElement.classList.add(c);}catch(e){document.documentElement.classList.add("dark");}})();`;
 
-const localeScript = `(function(){try{var l=localStorage.getItem("llmcompare-locale");document.documentElement.lang=l==="en"?"en":"zh-CN";if(l&&l!=="zh"){document.documentElement.style.visibility="hidden";}}catch(e){}})();`;
+const localeScript = `(function(){try{var l=localStorage.getItem("llmcompare-locale");document.documentElement.lang=l==="en"?\"en\":\"zh-CN\";if(l&&l!==\"zh\"){document.documentElement.style.visibility=\"hidden\";}}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -45,7 +46,7 @@ export default function RootLayout({
   return (
     <html
       lang="zh-CN"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${rubik.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
