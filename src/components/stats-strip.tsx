@@ -70,14 +70,15 @@ export function StatsStrip() {
           {cards.map((card) => (
             <div
               key={card.label}
-              className="rounded-xl border border-surface-border bg-surface-card p-4 flex items-start gap-3"
+              className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 flex items-start gap-3 transition-all hover:bg-white/8"
+              style={{ boxShadow: "rgba(0,0,0,0.1) 0px 10px 15px -3px" }}
             >
-              <div className="mt-0.5 shrink-0 rounded-lg bg-accent-violet/10 p-2 text-accent-violet">
+              <div className="mt-0.5 shrink-0 rounded-lg bg-accent-violet/15 p-2 text-accent-violet">
                 <card.icon className="h-4 w-4" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs text-text-muted">{card.label}</p>
-                <p className="text-2xl font-bold text-text-primary tabular-nums">{card.value}</p>
+                <p className="text-[11px] text-text-muted uppercase tracking-wider">{card.label}</p>
+                <p className="text-2xl font-bold text-text-primary tabular-nums mt-0.5">{card.value}</p>
                 <p className="text-[11px] text-text-secondary truncate">{card.sub}</p>
               </div>
             </div>

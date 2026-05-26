@@ -4,10 +4,10 @@ import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type Percentiles, type ColoredKey } from "./types";
 
 export const COLOR_BY_BUCKET = {
-  emerald: "text-emerald-500 dark:text-emerald-400",
-  blue: "text-blue-500 dark:text-blue-300",
-  amber: "text-amber-500 dark:text-amber-300",
-  red: "text-red-500 dark:text-red-400",
+  emerald: "text-accent-lime",
+  blue: "text-accent-violet",
+  amber: "text-accent-coral",
+  red: "text-accent-fuchsia",
   dim: "text-text-dim",
 } as const;
 
@@ -80,7 +80,7 @@ export function formatScore(val: number | null | undefined): React.ReactNode {
 export function ScoreBar({ value, maxValue = 100 }: { value: number | null; maxValue?: number }) {
   if (value == null) return <span className="text-text-dim text-xs">—</span>;
   const pct = Math.min((value / maxValue) * 100, 100);
-  const color = pct >= 80 ? "bg-accent-violet" : pct >= 65 ? "bg-accent-cyan" : pct >= 50 ? "bg-accent-amber" : "bg-text-muted";
+  const color = pct >= 80 ? "bg-accent-lime" : pct >= 65 ? "bg-accent-violet" : pct >= 50 ? "bg-accent-coral" : "bg-text-muted";
   return (
     <div className="flex items-center gap-2">
       <span className="text-sm font-medium text-text-primary w-10 text-right tabular-nums">{value.toFixed(1)}</span>
