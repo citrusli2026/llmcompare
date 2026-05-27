@@ -47,7 +47,6 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Custom Sentry theme tokens */
   --color-surface-base: var(--surface-base);
   --color-surface-card: var(--surface-card);
   --color-surface-hover: var(--surface-hover);
@@ -65,9 +64,12 @@
   --color-glass-bg: var(--glass-bg);
 }
 
-/* ========== Sentry Dark Theme ========== */
+/* ================================================================
+   :root = DARK THEME (default, no class needed)
+   Sentry Dark: Deep purple canvas, lime/violet/coral accents
+   Tailwind dark: variants use .dark class
+   ================================================================ */
 :root {
-  /* shadcn required tokens */
   --background: #1f1633;
   --foreground: #ffffff;
   --card: rgba(255, 255, 255, 0.05);
@@ -100,8 +102,6 @@
   --chart-3: #ffb287;
   --chart-4: #fa7faa;
   --chart-5: #79628c;
-
-  /* Sentry custom tokens */
   --surface-base: #1f1633;
   --surface-card: rgba(255, 255, 255, 0.05);
   --surface-hover: rgba(54, 22, 107, 0.14);
@@ -119,7 +119,9 @@
   --glass-bg: rgba(255, 255, 255, 0.10);
 }
 
-/* Keep .dark class for compatibility — maps to same tokens */
+/* ================================================================
+   .dark = same as :root (for Tailwind dark: variant compatibility)
+   ================================================================ */
 .dark {
   --background: #1f1633;
   --foreground: #ffffff;
@@ -152,7 +154,6 @@
   --chart-3: #ffb287;
   --chart-4: #fa7faa;
   --chart-5: #79628c;
-
   --surface-base: #1f1633;
   --surface-card: rgba(255, 255, 255, 0.05);
   --surface-hover: rgba(54, 22, 107, 0.14);
@@ -168,6 +169,60 @@
   --accent-coral: #ffb287;
   --accent-emerald: #34d399;
   --glass-bg: rgba(255, 255, 255, 0.10);
+}
+
+/* ================================================================
+   .light = LIGHT THEME (opt-in)
+   Sentry Light: Lavender-tinted white canvas
+   ================================================================ */
+.light {
+  --background: #f5f3fa;
+  --foreground: #1a1530;
+  --card: #ffffff;
+  --card-foreground: #1a1530;
+  --popover: #ffffff;
+  --popover-foreground: #1a1530;
+  --primary: #6a5fc1;
+  --primary-foreground: #ffffff;
+  --secondary: #ede9f5;
+  --secondary-foreground: #4a4560;
+  --muted: #f5f3fa;
+  --muted-foreground: #8a85a0;
+  --accent: #ede9f5;
+  --accent-foreground: #1a1530;
+  --destructive: #cf2d56;
+  --border: #d4cde0;
+  --input: #d4cde0;
+  --ring: #6a5fc1;
+  --radius: 0.625rem;
+  --sidebar: #f5f3fa;
+  --sidebar-foreground: #1a1530;
+  --sidebar-primary: #6a5fc1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ede9f5;
+  --sidebar-accent-foreground: #1a1530;
+  --sidebar-border: #d4cde0;
+  --sidebar-ring: #6a5fc1;
+  --chart-1: #6a5fc1;
+  --chart-2: #4d9400;
+  --chart-3: #d97040;
+  --chart-4: #c43d7a;
+  --chart-5: #8a85a0;
+  --surface-base: #f5f3fa;
+  --surface-card: #ffffff;
+  --surface-hover: #ede9f5;
+  --surface-elevated: #e8e4f0;
+  --surface-border: #d4cde0;
+  --text-primary: #1a1530;
+  --text-secondary: #4a4560;
+  --text-muted: #8a85a0;
+  --text-dim: #c0bcd0;
+  --accent-violet: #6a5fc1;
+  --accent-fuchsia: #c43d7a;
+  --accent-lime: #4d9400;
+  --accent-coral: #d97040;
+  --accent-emerald: #059669;
+  --glass-bg: rgba(255, 255, 255, 0.85);
 }
 
 @layer base {
