@@ -51,13 +51,7 @@
       "prompt": 5.0,
       "completion": 30.0
     },
-    "arena_rankings": {
-      "vision": {
-        "rank": 7,
-        "score": 1288,
-        "votes": 4662
-      }
-    },
+    "arena_rankings": {},
     "arena_votes": 10294,
     "data_completeness_pct": 75.2
   },
@@ -114,11 +108,6 @@
       "completion": 150.0
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 2,
-        "score": 1304,
-        "votes": 6779
-      },
       "code": {
         "rank": 2,
         "score": 1562,
@@ -181,11 +170,6 @@
       "completion": 12.0
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 10,
-        "score": 1277,
-        "votes": 16807
-      },
       "code": {
         "rank": 20,
         "score": 1448,
@@ -250,8 +234,8 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 2.5,
-      "completion": 7.5
+      "prompt": 1.25,
+      "completion": 3.75
     },
     "arena_rankings": {
       "code": {
@@ -321,11 +305,6 @@
       "completion": 3.49
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 19,
-        "score": 1259,
-        "votes": 5612
-      },
       "code": {
         "rank": 8,
         "score": 1518,
@@ -388,15 +367,10 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 1.0,
-      "completion": 3.0
+      "prompt": 0.43,
+      "completion": 0.87
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 36,
-        "score": 1231,
-        "votes": 6912
-      },
       "code": {
         "rank": 15,
         "score": 1471,
@@ -722,15 +696,10 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.4,
-      "completion": 2.0
+      "prompt": 0.14,
+      "completion": 0.28
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 36,
-        "score": 1231,
-        "votes": 6912
-      },
       "code": {
         "rank": 15,
         "score": 1471,
@@ -798,18 +767,13 @@
       "completion": 1.9
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 24,
-        "score": 1247,
-        "votes": 14366
-      },
       "code": {
-        "rank": 29,
-        "score": 1431,
-        "votes": 10684
+        "rank": 8,
+        "score": 1518,
+        "votes": 4008
       }
     },
-    "arena_votes": 14366,
+    "arena_votes": null,
     "data_completeness_pct": 97.7
   },
   {
@@ -932,15 +896,9 @@
       "prompt": 0.39,
       "completion": 2.34
     },
-    "arena_rankings": {
-      "vision": {
-        "rank": 29,
-        "score": 1244,
-        "votes": 11789
-      }
-    },
-    "arena_votes": 11789,
-    "data_completeness_pct": 97.7
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 90.2
   },
   {
     "id": "glm-4-7",
@@ -1001,9 +959,9 @@
     },
     "arena_rankings": {
       "code": {
-        "rank": 22,
-        "score": 1440,
-        "votes": 4881
+        "rank": 6,
+        "score": 1533,
+        "votes": 3611
       }
     },
     "arena_votes": 12295,
@@ -1194,15 +1152,10 @@
       "completion": 0.3
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 36,
-        "score": 1231,
-        "votes": 6912
-      },
       "code": {
-        "rank": 23,
-        "score": 1440,
-        "votes": 3741
+        "rank": 15,
+        "score": 1471,
+        "votes": 4719
       }
     },
     "arena_votes": 4719,
