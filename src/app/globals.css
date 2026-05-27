@@ -47,7 +47,7 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  /* Custom Sentry theme tokens */
+  /* Custom design tokens */
   --color-surface-base: var(--surface-base);
   --color-surface-card: var(--surface-card);
   --color-surface-hover: var(--surface-hover);
@@ -65,61 +65,66 @@
   --color-glass-bg: var(--glass-bg);
 }
 
-/* ========== Sentry Dark Theme ========== */
+/* ================================================================
+   LIGHT THEME — Sentry Light (default)
+   Lavender-tinted white canvas, same accent family as dark theme
+   ================================================================ */
 :root {
-  /* shadcn required tokens */
-  --background: #1f1633;
-  --foreground: #ffffff;
-  --card: rgba(255, 255, 255, 0.05);
-  --card-foreground: #ffffff;
-  --popover: #1f1633;
-  --popover-foreground: #ffffff;
+  --background: #f5f3fa;
+  --foreground: #1a1530;
+  --card: #ffffff;
+  --card-foreground: #1a1530;
+  --popover: #ffffff;
+  --popover-foreground: #1a1530;
   --primary: #6a5fc1;
   --primary-foreground: #ffffff;
-  --secondary: #362d59;
-  --secondary-foreground: #e5e7eb;
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: #8b8aa0;
-  --accent: #79628c;
-  --accent-foreground: #ffffff;
+  --secondary: #ede9f5;
+  --secondary-foreground: #4a4560;
+  --muted: #f5f3fa;
+  --muted-foreground: #8a85a0;
+  --accent: #ede9f5;
+  --accent-foreground: #1a1530;
   --destructive: #cf2d56;
-  --border: #362d59;
-  --input: #362d59;
+  --border: #d4cde0;
+  --input: #d4cde0;
   --ring: #6a5fc1;
   --radius: 0.625rem;
-  --sidebar: #150f23;
-  --sidebar-foreground: #ffffff;
+  --sidebar: #f5f3fa;
+  --sidebar-foreground: #1a1530;
   --sidebar-primary: #6a5fc1;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #362d59;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #362d59;
+  --sidebar-accent: #ede9f5;
+  --sidebar-accent-foreground: #1a1530;
+  --sidebar-border: #d4cde0;
   --sidebar-ring: #6a5fc1;
   --chart-1: #6a5fc1;
-  --chart-2: #c2ef4e;
-  --chart-3: #ffb287;
-  --chart-4: #fa7faa;
-  --chart-5: #79628c;
+  --chart-2: #4d9400;
+  --chart-3: #d97040;
+  --chart-4: #c43d7a;
+  --chart-5: #8a85a0;
 
-  /* Sentry custom tokens */
-  --surface-base: #1f1633;
-  --surface-card: rgba(255, 255, 255, 0.05);
-  --surface-hover: rgba(54, 22, 107, 0.14);
-  --surface-elevated: #150f23;
-  --surface-border: #362d59;
-  --text-primary: #ffffff;
-  --text-secondary: #e5e7eb;
-  --text-muted: #8b8aa0;
-  --text-dim: #5a5870;
+  /* Custom tokens — Light */
+  --surface-base: #f5f3fa;
+  --surface-card: #ffffff;
+  --surface-hover: #ede9f5;
+  --surface-elevated: #e8e4f0;
+  --surface-border: #d4cde0;
+  --text-primary: #1a1530;
+  --text-secondary: #4a4560;
+  --text-muted: #8a85a0;
+  --text-dim: #c0bcd0;
   --accent-violet: #6a5fc1;
-  --accent-fuchsia: #fa7faa;
-  --accent-lime: #c2ef4e;
-  --accent-coral: #ffb287;
-  --accent-emerald: #34d399;
-  --glass-bg: rgba(255, 255, 255, 0.10);
+  --accent-fuchsia: #c43d7a;
+  --accent-lime: #4d9400;
+  --accent-coral: #d97040;
+  --accent-emerald: #059669;
+  --glass-bg: rgba(255, 255, 255, 0.85);
 }
 
-/* Keep .dark class for compatibility — maps to same tokens */
+/* ================================================================
+   DARK THEME — Sentry Dark
+   Deep purple canvas, lime/violet/coral accents
+   ================================================================ */
 .dark {
   --background: #1f1633;
   --foreground: #ffffff;
@@ -153,6 +158,7 @@
   --chart-4: #fa7faa;
   --chart-5: #79628c;
 
+  /* Custom tokens — Dark */
   --surface-base: #1f1633;
   --surface-card: rgba(255, 255, 255, 0.05);
   --surface-hover: rgba(54, 22, 107, 0.14);

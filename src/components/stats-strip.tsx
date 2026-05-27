@@ -70,8 +70,8 @@ export function StatsStrip() {
           {cards.map((card) => (
             <div
               key={card.label}
-              className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 flex items-start gap-3 transition-all hover:bg-white/8"
-              style={{ boxShadow: "rgba(0,0,0,0.1) 0px 10px 15px -3px" }}
+              className="rounded-xl border border-surface-border dark:border-white/10 bg-surface-card dark:bg-white/5 dark:backdrop-blur-xl p-4 flex items-start gap-3 transition-all hover:bg-surface-hover dark:hover:bg-white/8"
+              style={{ boxShadow: "rgba(0,0,0,0.08) 0px 4px 12px -3px" }}
             >
               <div className="mt-0.5 shrink-0 rounded-lg bg-accent-violet/15 p-2 text-accent-violet">
                 <card.icon className="h-4 w-4" />

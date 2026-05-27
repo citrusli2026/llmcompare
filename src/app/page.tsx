@@ -23,14 +23,8 @@ export default function HomePage() {
     <div className="min-h-screen bg-surface-base">
       <Navbar />
 
-      {/* Hero Section — Sentry ambient glow */}
-      <section
-        className="relative overflow-hidden px-4 pt-12 pb-8 sm:pt-16 sm:pb-10 lg:px-8"
-        style={{
-          background: "radial-gradient(ellipse at 50% 0%, rgba(106,95,193,0.15) 0%, transparent 60%)",
-          boxShadow: "rgba(22, 15, 36, 0.9) 0px 4px 4px 9px",
-        }}
-      >
+      {/* Hero Section — theme-responsive */}
+      <section className="relative overflow-hidden px-4 pt-12 pb-8 sm:pt-16 sm:pb-10 lg:px-8 bg-gradient-to-b from-accent-violet/10 to-transparent">
         <div className="mx-auto max-w-4xl text-center relative z-10">
           <Badge
             variant="secondary"
