@@ -16,7 +16,7 @@ type ThemeContextValue = {
 };
 
 const STORAGE_KEY = "theme";
-const DEFAULT_THEME: Theme = "light";
+const DEFAULT_THEME: Theme = "dark";
 
 function readStoredTheme(): Theme {
   if (typeof window === "undefined") return DEFAULT_THEME;
@@ -35,6 +35,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const root = document.documentElement;
     root.classList.remove("light", "dark");
+    // dark = default (no class needed for base), but add .dark for Tailwind dark: variants
+    // light = add .light class which overrides :root with light tokens
     root.classList.add(theme);
     try {
       localStorage.setItem(STORAGE_KEY, theme);
