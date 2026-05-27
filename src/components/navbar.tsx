@@ -25,7 +25,7 @@ export function Navbar() {
       <div className="mx-auto flex h-14 sm:h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500">
+          <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-gradient-to-br from-accent-violet to-accent-coral">
             <BarChart3 className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
           </div>
           <span className="text-base sm:text-xl font-bold bg-gradient-to-r from-text-primary to-text-secondary bg-clip-text text-transparent whitespace-nowrap">

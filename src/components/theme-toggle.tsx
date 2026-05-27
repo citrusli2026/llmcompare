@@ -28,12 +28,12 @@ export function ThemeToggle() {
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       className="rounded-lg p-2 bg-surface-card border border-surface-border hover:bg-surface-hover transition-all"
-      aria-label={theme === "dark" ? "切换浅色模式" : "切换深色模式"}
+      aria-label="切换主题"
     >
       {theme === "dark" ? (
-        <Sun className="h-5 w-5 text-amber-400" />
+        <Sun className="h-5 w-5 text-accent-coral" />
       ) : (
-        <Moon className="h-5 w-5 text-violet-500" />
+        <Moon className="h-5 w-5 text-accent-violet" />
       )}
     </button>
   );

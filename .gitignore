@@ -45,4 +45,4 @@ dist
 
 # worktrees
 .worktrees
-.playwright-mcp
+.playwright-mcp.hermes/

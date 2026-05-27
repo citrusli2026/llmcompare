@@ -90,7 +90,7 @@ test.describe("ScoreBar — 表格分数可视化", () => {
     await expect(bar.first()).toBeVisible();
 
     // 进度条填充 (violet/cyan/amber/muted 任一)
-    const fill = scoreCell.locator("[class*='bg-accent-violet'], [class*='bg-accent-cyan'], [class*='bg-accent-amber'], [class*='bg-text-muted']");
+    const fill = scoreCell.locator("[class*='bg-accent-lime'], [class*='bg-accent-violet'], [class*='bg-accent-coral'], [class*='bg-text-muted']");
     await expect(fill.first()).toBeVisible();
 
     await page.screenshot({ path: `${SCREENSHOTS}/ui-scorebar-desktop.png`, fullPage: true });
@@ -271,15 +271,15 @@ test.describe("Accessibility & Performance", () => {
     await page.waitForLoadState("networkidle");
 
     // 图标容器应有 bg-accent-violet/10 背景
-    const iconBoxes = page.locator("div.bg-accent-violet\\/10");
+    const iconBoxes = page.locator("[class*='bg-accent-violet/15']");
     await expect(iconBoxes.first()).toBeVisible();
 
     // 每张卡片应有 border-surface-border 边框
-    const cardBorder = page.locator("div.border-surface-border");
+    const cardBorder = page.locator("[class*='border-white/10']");
     await expect(cardBorder.first()).toBeVisible();
 
     // 卡片标题应为 text-xs text-text-muted
-    const cardLabels = page.locator("p.text-xs.text-text-muted");
+    const cardLabels = page.locator("p.uppercase.tracking-wider");
     await expect(cardLabels.first()).toBeVisible();
 
     // 数值应为 text-2xl font-bold
