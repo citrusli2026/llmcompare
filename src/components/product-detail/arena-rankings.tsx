@@ -17,6 +17,7 @@ export function ArenaRankings({ model }: ArenaRankingsProps) {
   }
 
   const ARENA_KEY_MAP: Record<string, string> = {
+    text: "product.arenaText",
     code: "product.arenaCode",
     vision: "product.arenaVision",
   };
