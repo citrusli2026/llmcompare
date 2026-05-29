@@ -72,7 +72,7 @@ interface RawModel {
   flags: ModelFlags;
   arena_votes?: number | null;
   openrouter_pricing?: { prompt: number; completion: number } | null;
-  arena_rankings?: Record<string, ArenaRanking> | null;
+  arena_rankings?: Record<string, ArenaRanking | undefined> | null;
   meta?: RawMeta;
 }
 
@@ -107,7 +107,7 @@ export interface ModelWithScores {
     omniscience: number | null;
     arena_votes: number | null;
     openrouter_pricing: { prompt: number; completion: number } | null;
-    arena_rankings: Record<string, ArenaRanking> | null;
+    arena_rankings: Record<string, ArenaRanking | undefined> | null;
     arena_code: number | null;
     data_completeness_pct: number;
   };
