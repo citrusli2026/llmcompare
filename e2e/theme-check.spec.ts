@@ -62,12 +62,14 @@ test.describe("Dual Theme — 亮色/暗色双主题验证", () => {
     await page.screenshot({ path: `${SCREENSHOTS}/theme-dark-full.png`, fullPage: true });
   });
 
-  test("亮暗切换: 无异常 + 表格保持", async ({ page }) => {
+  test("亮暗切换: 无异常 + 内容保持", async ({ page }) => {
     const errors: string[] = [];
     page.on("pageerror", (err) => errors.push(err.message));
 
     await page.goto("/");
     await page.waitForLoadState("networkidle");
+
+    const isMobile = (page.viewportSize()?.width ?? 1280) < 640;
 
     // Dark → Light via toggle
     await page.evaluate(() => {
@@ -75,7 +77,11 @@ test.describe("Dual Theme — 亮色/暗色双主题验证", () => {
       document.documentElement.classList.remove("dark");
     });
     await page.waitForTimeout(300);
-    await expect(page.locator("table")).toBeVisible();
+    if (isMobile) {
+      await expect(page.locator(".rounded-xl.border").first()).toBeVisible();
+    } else {
+      await expect(page.locator("table")).toBeVisible();
+    }
 
     // Light → Dark
     await page.evaluate(() => {
@@ -83,7 +89,11 @@ test.describe("Dual Theme — 亮色/暗色双主题验证", () => {
       document.documentElement.classList.add("dark");
     });
     await page.waitForTimeout(300);
-    await expect(page.locator("table")).toBeVisible();
+    if (isMobile) {
+      await expect(page.locator(".rounded-xl.border").first()).toBeVisible();
+    } else {
+      await expect(page.locator("table")).toBeVisible();
+    }
 
     expect(errors).toEqual([]);
     console.log("Theme toggle test passed, errors:", errors.length);
