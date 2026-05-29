@@ -33,10 +33,10 @@ export function ArenaRankings({ model }: ArenaRankingsProps) {
               <span className="text-sm font-medium text-text-primary">
                 {t(ARENA_KEY_MAP[key] ?? key)}
               </span>
-              <span className="text-xs text-text-muted">#{data.rank}</span>
+              <span className="text-xs text-text-muted">#{data!.rank}</span>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-2xl font-bold text-text-primary tabular-nums">{data.score}</span>
+              <span className="text-2xl font-bold text-text-primary tabular-nums">{data!.score}</span>
               <span className="text-xs text-text-muted">ELO</span>
             </div>
           </div>
