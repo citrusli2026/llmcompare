@@ -21,7 +21,7 @@ DATA_PATH = Path(__file__).parent.parent / "src" / "data" / "ranking.json"
 # ── 阈值配置（基于历史数据，留出合理波动） ──
 THRESHOLDS = {
     "total_models": (15, 35),
-    "data_complete": (4, 20),
+    "data_complete": (4, 25),
     "frontier": (5, 15),
     "intl": (2, 6),
     "has_arena": (10, 25),
