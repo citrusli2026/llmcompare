@@ -3,9 +3,9 @@
 LLMCompare 数据质量验证脚本
 
 规则:
-- data_complete 仅标记数据完整度，不做筛选条件
-- data_complete = intelligence 是否存在（唯一标准）
-- 新增 data_completeness_pct 字段：实际有值字段数 / 期待字段数
+- data_complete 多维度标准: intelligence + coding + agentic + speed(>0) + pricing 五者齐全
+- 由 enrich_models.py 在管线 Step 3 中覆盖设置
+- data_completeness_pct 字段：实际有值字段数 / 期待字段数
 - 验证失败时 exit code != 0，阻止自动合并
 """
 
@@ -21,7 +21,7 @@ DATA_PATH = Path(__file__).parent.parent / "src" / "data" / "ranking.json"
 # ── 阈值配置（基于历史数据，留出合理波动） ──
 THRESHOLDS = {
     "total_models": (15, 35),
-    "data_complete": (10, 25),
+    "data_complete": (15, 30),
     "frontier": (5, 15),
     "intl": (2, 6),
     "has_arena": (10, 25),
