@@ -58,7 +58,7 @@ export function StatsStrip() {
     {
       icon: Calendar,
       label: t("home.statsUpdated"),
-      value: "05-26",
+      value: t("home.statsUpdatedValue"),
       sub: t("home.statsUpdatedDesc"),
     },
   ];
