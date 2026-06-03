@@ -34,25 +34,23 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
   }, [headers]);
 
   return (
-    <div
+    <Link
+      href={`/product/${model.id}`}
       className={cn(
-        "rounded-xl border border-surface-border p-3",
+        "block rounded-xl border border-surface-border p-3 group hover:ring-1 hover:ring-accent-violet/30 transition-all",
         group.borderClass,
         group.rowBgClass
       )}
     >
       {/* 模型名 */}
       <div className="mb-2">
-        <Link
-          href={`/product/${model.id}`}
-          className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group max-w-full"
-        >
+        <div className="inline-flex items-center gap-1 font-medium text-text-primary max-w-full">
           {group.showRank && (
             <span className="text-text-muted text-xs mr-1">#{group.rankOffset + idx + 1}</span>
           )}
           <span className="truncate">{model.name}</span>
           <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
-        </Link>
+        </div>
       </div>
 
       {/* 元信息行 */}
@@ -98,6 +96,6 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
           );
         })}
       </div>
-    </div>
+    </Link>
   );
 }
