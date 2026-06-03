@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
@@ -23,26 +23,25 @@ interface ModelRowProps {
 
 export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVisibilityClass, percentiles }: ModelRowProps) {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <TableRow
       className={cn(
-        "border-gray-300 dark:border-white/25 hover:bg-surface-hover transition-colors",
+        "border-gray-300 dark:border-white/25 hover:bg-surface-hover transition-colors cursor-pointer",
         group.borderClass,
         group.rowBgClass
       )}
+      onClick={() => router.push(`/product/${model.id}`)}
     >
       <TableCell className="max-w-[240px]">
-        <Link
-          href={`/product/${model.id}`}
-          className="inline-flex items-center gap-1 font-medium text-text-primary hover:text-accent-violet transition-colors group truncate"
-        >
+        <div className="inline-flex items-center gap-1 font-medium text-text-primary group truncate">
           {group.showRank && (
             <span className="text-text-muted text-xs mr-1">#{group.rankOffset + idx + 1}</span>
           )}
           {model.name}
           <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
-        </Link>
+        </div>
         <div className="flex gap-1 mt-1">
           <Badge
             variant="secondary"
