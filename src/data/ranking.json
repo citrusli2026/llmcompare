@@ -1252,7 +1252,7 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 256000,
@@ -1515,7 +1515,7 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 262144,
