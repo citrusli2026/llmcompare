@@ -6,7 +6,7 @@
     "brand": "LLMCompare"
   },
   "home": {
-    "badge": "Updated Jun 3, 2026",
+    "badge": "Updated Jun 4, 2026",
     "heroTitle": "China AI Models at a Glance",
     "heroDesc": "Curated intelligence, speed, and pricing data for major Chinese LLM providers",
     "statsModels": "Models",
@@ -16,7 +16,7 @@
     "statsNewCount": "{n} models",
     "statsUpdated": "Updated",
     "statsUpdatedDesc": "Daily",
-    "statsUpdatedValue": "06-03",
+    "statsUpdatedValue": "06-04",
     "rankingTitle": "Model Directory",
     "rankingViewAll": "View all",
     "cardsTitle": "Frontier Models",
@@ -52,7 +52,7 @@
     "title": "About LLMCompare",
     "backLink": "Back to Home",
     "backgroundTitle": "Project Background",
-    "backgroundDesc": "Last updated: 2026.06.03",
+    "backgroundDesc": "Last updated: 2026.06.04",
     "backgroundContribute": "Spot an error or want to add a model? Submit an issue on",
     "filterDesc": "From Artificial Analysis' global index, we filter Chinese vendors' large-scale models, inject OpenRouter weekly usage and Arena leaderboard data, retaining models active within 180 days. International benchmark models (GPT, Claude, Gemini) are pinned at the top for comparison.",
     "sourceTitle": "Data Sources",
