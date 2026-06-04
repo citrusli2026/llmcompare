@@ -28,7 +28,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
   return (
     <TableRow
       className={cn(
-        "border-gray-300 dark:border-white/25 hover:bg-surface-hover transition-colors cursor-pointer",
+        "border-surface-border hover:bg-surface-hover transition-colors cursor-pointer",
         group.borderClass,
         group.rowBgClass
       )}
