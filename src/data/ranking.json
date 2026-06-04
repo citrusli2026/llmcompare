@@ -13,7 +13,14 @@
     "speed": {
       "median_tps": 82.9615658553594,
       "ttft_seconds": null,
-      "e2e_seconds": null
+      "e2e_seconds": null,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": null,
+      "hle": null,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 5,
@@ -80,7 +87,14 @@
     "speed": {
       "median_tps": 48.6482776027144,
       "ttft_seconds": null,
-      "e2e_seconds": null
+      "e2e_seconds": null,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": null,
+      "hle": null,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 6.25,
@@ -152,7 +166,14 @@
     "speed": {
       "median_tps": 139.446242976608,
       "ttft_seconds": null,
-      "e2e_seconds": null
+      "e2e_seconds": null,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": null,
+      "hle": null,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 2,
@@ -224,7 +245,14 @@
     "speed": {
       "median_tps": 158.534409598354,
       "ttft_seconds": 17.762549942532885,
-      "e2e_seconds": 20.916439380584517
+      "e2e_seconds": 20.916439380584517,
+      "p05_tps": 83.2988153351784,
+      "p95_tps": 216.480456644219
+    },
+    "benchmarks": {
+      "gpqa": 0.923232323232323,
+      "hle": 0.380908248378128,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 2.5,
@@ -297,7 +325,14 @@
     "speed": {
       "median_tps": 0,
       "ttft_seconds": 0,
-      "e2e_seconds": 0
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.929292929292929,
+      "hle": 0.371177015755329,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0,
@@ -312,7 +347,7 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": true
     },
     "meta": {
       "context_window": 1000000,
@@ -368,7 +403,14 @@
     "speed": {
       "median_tps": 44.4669543293223,
       "ttft_seconds": 102.39642829660615,
-      "e2e_seconds": 113.6407333663215
+      "e2e_seconds": 113.6407333663215,
+      "p05_tps": 25.7150095025782,
+      "p95_tps": 104.316553031583
+    },
+    "benchmarks": {
+      "gpqa": 0.911111111111111,
+      "hle": 0.359128822984245,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.95,
@@ -445,7 +487,14 @@
     "speed": {
       "median_tps": 42.127016758904,
       "ttft_seconds": 50.60375425026031,
-      "e2e_seconds": 62.47262222307539
+      "e2e_seconds": 62.47262222307539,
+      "p05_tps": 35.312053679493,
+      "p95_tps": 57.7839791806285
+    },
+    "benchmarks": {
+      "gpqa": 0.865656565656566,
+      "hle": 0.337812789620019,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.435,
@@ -516,7 +565,14 @@
     "speed": {
       "median_tps": 42.7690225273063,
       "ttft_seconds": 50.3655757191204,
-      "e2e_seconds": 62.056280122775405
+      "e2e_seconds": 62.056280122775405,
+      "p05_tps": 36.5140203075313,
+      "p95_tps": 49.5139597727808
+    },
+    "benchmarks": {
+      "gpqa": 0.887878787878788,
+      "hle": 0.288693234476367,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 1.3,
@@ -589,7 +645,14 @@
     "speed": {
       "median_tps": 52.2577720249176,
       "ttft_seconds": 85.41355164461933,
-      "e2e_seconds": 94.98150643154729
+      "e2e_seconds": 94.98150643154729,
+      "p05_tps": 39.4410430899609,
+      "p95_tps": 71.4021388693504
+    },
+    "benchmarks": {
+      "gpqa": 0.887878787878788,
+      "hle": 0.358665430954588,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.435,
@@ -657,7 +720,14 @@
     "speed": {
       "median_tps": 53.1511799594591,
       "ttft_seconds": 73.04641554977414,
-      "e2e_seconds": 82.45354442972325
+      "e2e_seconds": 82.45354442972325,
+      "p05_tps": 21.3233888816555,
+      "p95_tps": 176.694964193885
+    },
+    "benchmarks": {
+      "gpqa": 0.867676767676768,
+      "hle": 0.280352177942539,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 1.4,
@@ -729,7 +799,14 @@
     "speed": {
       "median_tps": 56.0557461500056,
       "ttft_seconds": 46.95981693902406,
-      "e2e_seconds": 55.87950910870808
+      "e2e_seconds": 55.87950910870808,
+      "p05_tps": 33.5977915950686,
+      "p95_tps": 99.5826123820302
+    },
+    "benchmarks": {
+      "gpqa": 0.873737373737374,
+      "hle": 0.280815569972196,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.3,
@@ -789,7 +866,14 @@
     "speed": {
       "median_tps": 90.0409698599687,
       "ttft_seconds": 24.99700936583894,
-      "e2e_seconds": 30.55003706842364
+      "e2e_seconds": 30.55003706842364,
+      "p05_tps": 69.6594766764266,
+      "p95_tps": 121.778797851523
+    },
+    "benchmarks": {
+      "gpqa": 0.84949494949495,
+      "hle": 0.2516218721038,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.14,
@@ -860,7 +944,14 @@
     "speed": {
       "median_tps": 40.9320909337656,
       "ttft_seconds": 75.62020115055839,
-      "e2e_seconds": 87.83555562167682
+      "e2e_seconds": 87.83555562167682,
+      "p05_tps": 27.4124861697458,
+      "p95_tps": 54.6081426667044
+    },
+    "benchmarks": {
+      "gpqa": 0.878787878787879,
+      "hle": 0.293790546802595,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.58,
@@ -937,7 +1028,14 @@
     "speed": {
       "median_tps": 138.151510831918,
       "ttft_seconds": 42.05765981893794,
-      "e2e_seconds": 45.67687467217487
+      "e2e_seconds": 45.67687467217487,
+      "p05_tps": 105.947638632491,
+      "p95_tps": 169.858508298826
+    },
+    "benchmarks": {
+      "gpqa": 0.893939393939394,
+      "hle": 0.320667284522706,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.14,
@@ -999,7 +1097,14 @@
     "speed": {
       "median_tps": 52.2491213870595,
       "ttft_seconds": 63.44746378505894,
-      "e2e_seconds": 73.0170026926325
+      "e2e_seconds": 73.0170026926325,
+      "p05_tps": 46.7711173204358,
+      "p95_tps": 58.1600420319061
+    },
+    "benchmarks": {
+      "gpqa": 0.892929292929293,
+      "hle": 0.272937905468026,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.6,
@@ -1067,7 +1172,14 @@
     "speed": {
       "median_tps": 418.151928075045,
       "ttft_seconds": 5.740372765562543,
-      "e2e_seconds": 6.936110406428487
+      "e2e_seconds": 6.936110406428487,
+      "p05_tps": 346.452773630021,
+      "p95_tps": 465.586859264013
+    },
+    "benchmarks": {
+      "gpqa": 0.809090909090909,
+      "hle": 0.199258572752549,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.2,
@@ -1124,7 +1236,14 @@
     "speed": {
       "median_tps": 78.4163209133416,
       "ttft_seconds": 26.959617661364902,
-      "e2e_seconds": 33.33584131195613
+      "e2e_seconds": 33.33584131195613,
+      "p05_tps": 24.9062547491814,
+      "p95_tps": 1213.10922751336
+    },
+    "benchmarks": {
+      "gpqa": 0.858585858585858,
+      "hle": 0.251158480074143,
+      "mmlu_pro": 0.856133643617021
     },
     "pricing": {
       "input": 0.6,
@@ -1196,7 +1315,14 @@
     "speed": {
       "median_tps": 90.8279016408439,
       "ttft_seconds": 26.040709508698974,
-      "e2e_seconds": 31.545625850123706
+      "e2e_seconds": 31.545625850123706,
+      "p05_tps": 64.8641304574968,
+      "p95_tps": 130.134993813845
+    },
+    "benchmarks": {
+      "gpqa": 0.866666666666667,
+      "hle": 0.255329008341057,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.123,
@@ -1262,7 +1388,14 @@
     "speed": {
       "median_tps": 127.22167216522,
       "ttft_seconds": 17.81436703639546,
-      "e2e_seconds": 21.744515033119328
+      "e2e_seconds": 21.744515033119328,
+      "p05_tps": 107.38148289739,
+      "p95_tps": 162.051025830986
+    },
+    "benchmarks": {
+      "gpqa": 0.835353535353535,
+      "hle": 0.200185356811863,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.1,
@@ -1333,7 +1466,14 @@
     "speed": {
       "median_tps": 0,
       "ttft_seconds": 0,
-      "e2e_seconds": 0
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.860606060606061,
+      "hle": 0.261816496756256,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 1.2,
@@ -1348,7 +1488,7 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": true
     },
     "meta": {
       "context_window": 256000,
@@ -1406,7 +1546,14 @@
     "speed": {
       "median_tps": 50.6806544972166,
       "ttft_seconds": 2.55531557550012,
-      "e2e_seconds": 12.42101294978048
+      "e2e_seconds": 12.42101294978048,
+      "p05_tps": 38.3638770379005,
+      "p95_tps": 56.284232146526
+    },
+    "benchmarks": {
+      "gpqa": 0.826262626262626,
+      "hle": 0.139017608897127,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.4,
@@ -1471,7 +1618,14 @@
     "speed": {
       "median_tps": 129.627119209038,
       "ttft_seconds": 18.64385200114139,
-      "e2e_seconds": 22.50106955755175
+      "e2e_seconds": 22.50106955755175,
+      "p05_tps": 108.376353189215,
+      "p95_tps": 157.546833314531
+    },
+    "benchmarks": {
+      "gpqa": 0.856565656565657,
+      "hle": 0.182576459684893,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.3,
@@ -1529,7 +1683,14 @@
     "speed": {
       "median_tps": 224.456427635087,
       "ttft_seconds": 10.06874896799357,
-      "e2e_seconds": 12.296352807491907
+      "e2e_seconds": 12.296352807491907,
+      "p05_tps": 177.430488862304,
+      "p95_tps": 265.490602722489
+    },
+    "benchmarks": {
+      "gpqa": 0.831313131313131,
+      "hle": 0.191380908248378,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.1,
@@ -1596,7 +1757,14 @@
     "speed": {
       "median_tps": 0,
       "ttft_seconds": 0,
-      "e2e_seconds": 0
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.751515151515151,
+      "hle": 0.082483781278962,
+      "mmlu_pro": null
     },
     "pricing": {
       "input": 0.3,
@@ -1611,7 +1779,7 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": true
     },
     "meta": {
       "context_window": 262144,
