@@ -69,7 +69,9 @@ describe("scoring cache", () => {
   it("raw scores are numbers or null", () => {
     const models = getAllModels();
     for (const m of models) {
-      expect(typeof m.raw.intelligence).toBe("number");
+      if (m.raw.intelligence !== null) {
+        expect(typeof m.raw.intelligence).toBe("number");
+      }
       if (m.raw.coding !== null) {
         expect(typeof m.raw.coding).toBe("number");
       }

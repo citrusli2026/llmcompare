@@ -52,6 +52,11 @@ export function makeModel(
       arena_rankings: null,
       arena_code: null,
       data_completeness_pct: 80,
+      benchmarks: {
+        gpqa: null,
+        hle: null,
+        mmlu_pro: null,
+      },
       ...rawOverrides,
     },
   };

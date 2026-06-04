@@ -6,9 +6,10 @@ import { Navbar } from "@/components/navbar";
 import { RankingTable } from "@/components/ranking-table";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
 import { SearchInput } from "@/components/search-input";
+import { CompareBar } from "@/components/compare-bar";
 
 import { Bot } from "lucide-react";
-import { getAllModelsUnfiltered } from "@/lib/scoring";
+import { getAllModelsUnfiltered, getModelById, type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 
 const FILTER_KEYS = ["全部", "开源", "闭源"] as const;
@@ -85,6 +86,34 @@ export default function ModelsPageClient() {
   );
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
+
+  // Compare selection from URL params
+  const compareFromUrl = searchParams.get("compare")?.split(",").filter(Boolean) ?? [];
+  const selectedCompareModels = useMemo(
+    () => compareFromUrl.map((id) => getModelById(id)).filter((m): m is ModelWithScores => m != null),
+    [compareFromUrl]
+  );
+
+  const handleRemoveCompare = useCallback(
+    (id: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      const remaining = compareFromUrl.filter((cid) => cid !== id);
+      if (remaining.length > 0) {
+        params.set("compare", remaining.join(","));
+      } else {
+        params.delete("compare");
+      }
+      router.replace(`?${params.toString()}`, { scroll: false });
+    },
+    [searchParams, router, compareFromUrl]
+  );
+
+  const handleClearCompare = useCallback(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("compare");
+    router.replace(`?${params.toString()}`, { scroll: false });
+  }, [searchParams, router]);
+
   const filteredModels = useMemo(() => {
     return allModels.filter((m) => {
       const matchesFilter =
@@ -134,6 +163,12 @@ export default function ModelsPageClient() {
           </div>
         </div>
       </div>
+
+      <CompareBar
+        selectedModels={selectedCompareModels}
+        onRemoveModel={handleRemoveCompare}
+        onClear={handleClearCompare}
+      />
     </div>
   );
 }

@@ -23,14 +23,16 @@ export function BenchmarkSection({ model }: BenchmarkSectionProps) {
         <div className="flex items-baseline justify-between mb-2">
           <span className="text-sm text-text-secondary">{t("product.intelligence")}</span>
           <div className="flex items-baseline gap-1">
-            <span className="text-3xl font-bold text-text-primary tabular-nums">{r.intelligence.toFixed(1)}</span>
-            <span className="text-xs text-text-muted">/100</span>
+            <span className="text-3xl font-bold text-text-primary tabular-nums">
+              {r.intelligence != null ? r.intelligence.toFixed(1) : "—"}
+            </span>
+            {r.intelligence != null && <span className="text-xs text-text-muted">/100</span>}
           </div>
         </div>
         <div className="h-2 bg-surface-hover rounded-full overflow-hidden">
           <div
             className="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 transition-all duration-500"
-            style={{ width: `${Math.min(Math.max(r.intelligence, 0), 100)}%` }}
+            style={{ width: r.intelligence != null ? `${Math.min(Math.max(r.intelligence, 0), 100)}%` : "0%" }}
           />
         </div>
       </div>

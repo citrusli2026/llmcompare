@@ -1,14 +1,17 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, CheckSquare, Square } from "lucide-react";
 import { cn, getTypeBadgeClasses } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup } from "./types";
 import { getRawValue, getScoreColor, ScoreBar } from "./utils";
 import { useTranslation } from "@/lib/i18n";
+import { useCallback } from "react";
+
+const MAX_COMPARE = 6;
 
 interface ModelRowProps {
   model: ModelWithScores;
@@ -24,6 +27,33 @@ interface ModelRowProps {
 export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVisibilityClass, percentiles }: ModelRowProps) {
   const { t } = useTranslation();
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Read compare IDs from URL
+  const compareIds = searchParams.get("compare")?.split(",").filter(Boolean) ?? [];
+
+  const isInCompare = compareIds.includes(model.id);
+
+  const toggleCompare = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      const params = new URLSearchParams(searchParams.toString());
+      let current = compareIds;
+      if (isInCompare) {
+        current = current.filter((id) => id !== model.id);
+      } else {
+        if (current.length >= MAX_COMPARE) return;
+        current = [...current, model.id];
+      }
+      if (current.length > 0) {
+        params.set("compare", current.join(","));
+      } else {
+        params.delete("compare");
+      }
+      router.replace(`?${params.toString()}`, { scroll: false });
+    },
+    [model.id, isInCompare, compareIds, searchParams, router]
+  );
 
   return (
     <TableRow
@@ -34,7 +64,29 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
       )}
       onClick={() => router.push(`/product/${model.id}`)}
     >
-      <TableCell className="max-w-[240px]">
+      {/* Compare checkbox */}
+      <TableCell className="w-10 sm:w-12">
+        <button
+          onClick={toggleCompare}
+          className={cn(
+            "flex items-center justify-center w-6 h-6 rounded transition-colors",
+            isInCompare
+              ? "text-accent-violet hover:text-violet-500"
+              : "text-text-muted hover:text-text-secondary"
+          )}
+          aria-label={isInCompare ? t("compare.remove") : t("compare.addToCompare")}
+          title={isInCompare ? t("compare.remove") : t("compare.addToCompare")}
+        >
+          {isInCompare ? (
+            <CheckSquare className="h-4 w-4 sm:h-5 sm:w-5" />
+          ) : (
+            <Square className="h-4 w-4 sm:h-5 sm:w-5" />
+          )}
+        </button>
+      </TableCell>
+
+      {/* Model name + badges */}
+      <TableCell className="max-w-[220px]">
         <div className="inline-flex items-center gap-1 font-medium text-text-primary group truncate">
           {group.showRank && (
             <span className="text-text-muted text-xs mr-1">#{group.rankOffset + idx + 1}</span>
