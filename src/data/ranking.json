@@ -53,17 +53,17 @@
     },
     "arena_rankings": {
       "text": {
-        "rank": 11,
+        "rank": 12,
         "score": 1476,
-        "votes": 16852
+        "votes": 20589
       },
       "vision": {
         "rank": 7,
-        "score": 1288,
-        "votes": 4662
+        "score": 1287,
+        "votes": 9121
       }
     },
-    "arena_votes": 16852,
+    "arena_votes": 20589,
     "data_completeness_pct": 75.2
   },
   {
@@ -122,20 +122,20 @@
       "text": {
         "rank": 3,
         "score": 1498,
-        "votes": 36512
+        "votes": 40597
       },
       "code": {
         "rank": 2,
-        "score": 1562,
-        "votes": 4862
+        "score": 1558,
+        "votes": 5676
       },
       "vision": {
-        "rank": 2,
-        "score": 1304,
-        "votes": 6779
+        "rank": 3,
+        "score": 1298,
+        "votes": 11717
       }
     },
-    "arena_votes": 20724,
+    "arena_votes": 24801,
     "data_completeness_pct": 75.2
   },
   {
@@ -193,21 +193,21 @@
     "arena_rankings": {
       "text": {
         "rank": 6,
-        "score": 1487,
-        "votes": 43742
+        "score": 1488,
+        "votes": 48990
       },
       "code": {
-        "rank": 20,
+        "rank": 21,
         "score": 1448,
-        "votes": 10289
+        "votes": 11131
       },
       "vision": {
-        "rank": 10,
-        "score": 1277,
-        "votes": 16807
+        "rank": 11,
+        "score": 1278,
+        "votes": 23632
       }
     },
-    "arena_votes": 43742,
+    "arena_votes": 48990,
     "data_completeness_pct": 75.2
   },
   {
@@ -222,9 +222,9 @@
       "agentic": 66.5557245964551
     },
     "speed": {
-      "median_tps": 182.319228959022,
-      "ttft_seconds": 15.787123735944188,
-      "e2e_seconds": 18.529566224620904
+      "median_tps": 158.534409598354,
+      "ttft_seconds": 17.762549942532885,
+      "e2e_seconds": 20.916439380584517
     },
     "pricing": {
       "input": 2.5,
@@ -271,16 +271,87 @@
     "arena_rankings": {
       "text": {
         "rank": 15,
-        "score": 1475,
-        "votes": 3755
+        "score": 1474,
+        "votes": 3751
       },
       "code": {
-        "rank": 13,
-        "score": 1486,
-        "votes": 2498
+        "rank": 14,
+        "score": 1484,
+        "votes": 2503
       }
     },
-    "arena_votes": 3755,
+    "arena_votes": 3751,
+    "data_completeness_pct": 94.0
+  },
+  {
+    "id": "minimax-m3",
+    "name": "MiniMax-M3",
+    "company": "MiniMax",
+    "type": "闭源",
+    "logo": "/logos/minimax.svg",
+    "scores": {
+      "intelligence": 54.6747796156564,
+      "coding": 43.4062850729517,
+      "agentic": 68.6216536717383
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "display": "¥4.2/¥16.8 (≤512K)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": false
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 511999,
+      "release_date": "2026-06-01",
+      "omniscience": 1.36666666666667
+    },
+    "url": "https://artificialanalysis.ai/models/minimax-m3",
+    "vendor_links": {
+      "homepage": "https://www.minimaxi.com",
+      "api_docs": "https://platform.minimaxi.com",
+      "huggingface": "https://huggingface.co/MiniMaxAI",
+      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing"
+    },
+    "cn_pricing": {
+      "input": 4.2,
+      "output": 16.8,
+      "source": "platform.minimaxi.com"
+    },
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.3,
+      "completion": 1.2
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 7,
+        "score": 1531,
+        "votes": 1398
+      },
+      "vision": {
+        "rank": 30,
+        "score": 1243,
+        "votes": 2368
+      }
+    },
+    "arena_votes": 2368,
     "data_completeness_pct": 94.0
   },
   {
@@ -296,8 +367,8 @@
     },
     "speed": {
       "median_tps": 44.4669543293223,
-      "ttft_seconds": 102.37998859260621,
-      "e2e_seconds": 113.62429366232156
+      "ttft_seconds": 102.39642829660615,
+      "e2e_seconds": 113.6407333663215
     },
     "pricing": {
       "input": 0.95,
@@ -341,18 +412,23 @@
       "completion": 3.42
     },
     "arena_rankings": {
+      "text": {
+        "rank": 28,
+        "score": 1462,
+        "votes": 18767
+      },
       "code": {
-        "rank": 8,
-        "score": 1518,
-        "votes": 4008
+        "rank": 9,
+        "score": 1517,
+        "votes": 4668
       },
       "vision": {
-        "rank": 19,
+        "rank": 17,
         "score": 1259,
-        "votes": 5612
+        "votes": 9608
       }
     },
-    "arena_votes": 5612,
+    "arena_votes": 18767,
     "data_completeness_pct": 97.7
   },
   {
@@ -367,9 +443,9 @@
       "agentic": 67.4384766534619
     },
     "speed": {
-      "median_tps": 44.1704954725457,
-      "ttft_seconds": 48.81562038681422,
-      "e2e_seconds": 60.135393793267774
+      "median_tps": 42.127016758904,
+      "ttft_seconds": 50.60375425026031,
+      "e2e_seconds": 62.47262222307539
     },
     "pricing": {
       "input": 0.435,
@@ -412,13 +488,18 @@
       "completion": 0.87
     },
     "arena_rankings": {
+      "text": {
+        "rank": 27,
+        "score": 1464,
+        "votes": 19096
+      },
       "code": {
-        "rank": 15,
-        "score": 1471,
-        "votes": 4719
+        "rank": 17,
+        "score": 1467,
+        "votes": 5401
       }
     },
-    "arena_votes": 4719,
+    "arena_votes": 19096,
     "data_completeness_pct": 97.7
   },
   {
@@ -433,9 +514,9 @@
       "agentic": 64.8295054241687
     },
     "speed": {
-      "median_tps": 39.9139983582222,
-      "ttft_seconds": 53.688280122565025,
-      "e2e_seconds": 66.21521354358124
+      "median_tps": 42.7690225273063,
+      "ttft_seconds": 50.3655757191204,
+      "e2e_seconds": 62.056280122775405
     },
     "pricing": {
       "input": 1.3,
@@ -482,16 +563,16 @@
     "arena_rankings": {
       "text": {
         "rank": 15,
-        "score": 1475,
-        "votes": 3755
+        "score": 1474,
+        "votes": 3751
       },
       "code": {
-        "rank": 13,
-        "score": 1486,
-        "votes": 2498
+        "rank": 14,
+        "score": 1484,
+        "votes": 2503
       }
     },
-    "arena_votes": 2498,
+    "arena_votes": 4907,
     "data_completeness_pct": 94.0
   },
   {
@@ -506,9 +587,9 @@
       "agentic": 67.1926607607022
     },
     "speed": {
-      "median_tps": 47.6099554242023,
-      "ttft_seconds": 93.63645680451837,
-      "e2e_seconds": 104.13846201634908
+      "median_tps": 52.2577720249176,
+      "ttft_seconds": 85.41355164461933,
+      "e2e_seconds": 94.98150643154729
     },
     "pricing": {
       "input": 0.435,
@@ -554,12 +635,12 @@
     },
     "arena_rankings": {
       "code": {
-        "rank": 17,
-        "score": 1464,
-        "votes": 3956
+        "rank": 19,
+        "score": 1461,
+        "votes": 4758
       }
     },
-    "arena_votes": 3956,
+    "arena_votes": 4758,
     "data_completeness_pct": 97.7
   },
   {
@@ -575,8 +656,8 @@
     },
     "speed": {
       "median_tps": 53.1511799594591,
-      "ttft_seconds": 72.98829678377413,
-      "e2e_seconds": 82.39542566372324
+      "ttft_seconds": 73.04641554977414,
+      "e2e_seconds": 82.45354442972325
     },
     "pricing": {
       "input": 1.4,
@@ -621,17 +702,17 @@
     },
     "arena_rankings": {
       "text": {
-        "rank": 16,
-        "score": 1474,
-        "votes": 13957
+        "rank": 13,
+        "score": 1475,
+        "votes": 14882
       },
       "code": {
         "rank": 6,
-        "score": 1533,
-        "votes": 3611
+        "score": 1532,
+        "votes": 3609
       }
     },
-    "arena_votes": 13957,
+    "arena_votes": 14882,
     "data_completeness_pct": 97.7
   },
   {
@@ -646,9 +727,9 @@
       "agentic": 61.489494916941
     },
     "speed": {
-      "median_tps": 59.9847201988382,
-      "ttft_seconds": 43.51461416190222,
-      "e2e_seconds": 51.85007023042422
+      "median_tps": 56.0557461500056,
+      "ttft_seconds": 46.95981693902406,
+      "e2e_seconds": 55.87950910870808
     },
     "pricing": {
       "input": 0.3,
@@ -707,8 +788,8 @@
     },
     "speed": {
       "median_tps": 90.0409698599687,
-      "ttft_seconds": 25.014566002338363,
-      "e2e_seconds": 30.567593704923063
+      "ttft_seconds": 24.99700936583894,
+      "e2e_seconds": 30.55003706842364
     },
     "pricing": {
       "input": 0.14,
@@ -751,13 +832,18 @@
       "completion": 0.28
     },
     "arena_rankings": {
+      "text": {
+        "rank": 27,
+        "score": 1464,
+        "votes": 19096
+      },
       "code": {
-        "rank": 15,
-        "score": 1471,
-        "votes": 4719
+        "rank": 17,
+        "score": 1467,
+        "votes": 5401
       }
     },
-    "arena_votes": 4719,
+    "arena_votes": 19096,
     "data_completeness_pct": 97.7
   },
   {
@@ -772,9 +858,9 @@
       "agentic": 58.9406156983764
     },
     "speed": {
-      "median_tps": 33.5195322842421,
-      "ttft_seconds": 91.89805045601229,
-      "e2e_seconds": 106.81472637380412
+      "median_tps": 40.9320909337656,
+      "ttft_seconds": 75.62020115055839,
+      "e2e_seconds": 87.83555562167682
     },
     "pricing": {
       "input": 0.58,
@@ -818,18 +904,23 @@
       "completion": 1.9
     },
     "arena_rankings": {
+      "text": {
+        "rank": 28,
+        "score": 1462,
+        "votes": 18767
+      },
       "code": {
-        "rank": 8,
-        "score": 1518,
-        "votes": 4008
+        "rank": 30,
+        "score": 1431,
+        "votes": 11364
       },
       "vision": {
-        "rank": 24,
-        "score": 1247,
-        "votes": 14366
+        "rank": 26,
+        "score": 1248,
+        "votes": 18296
       }
     },
-    "arena_votes": 14366,
+    "arena_votes": 18296,
     "data_completeness_pct": 97.7
   },
   {
@@ -844,9 +935,9 @@
       "agentic": 61.280477661017
     },
     "speed": {
-      "median_tps": 131.041649839827,
-      "ttft_seconds": 44.09574169373234,
-      "e2e_seconds": 47.91132246985316
+      "median_tps": 138.151510831918,
+      "ttft_seconds": 42.05765981893794,
+      "e2e_seconds": 45.67687467217487
     },
     "pricing": {
       "input": 0.14,
@@ -906,9 +997,9 @@
       "agentic": 55.8271783869895
     },
     "speed": {
-      "median_tps": 52.224166646558,
-      "ttft_seconds": 63.336318032884485,
-      "e2e_seconds": 72.91042963879853
+      "median_tps": 52.2491213870595,
+      "ttft_seconds": 63.44746378505894,
+      "e2e_seconds": 73.0170026926325
     },
     "pricing": {
       "input": 0.6,
@@ -954,12 +1045,12 @@
     },
     "arena_rankings": {
       "vision": {
-        "rank": 29,
-        "score": 1244,
-        "votes": 11789
+        "rank": 24,
+        "score": 1249,
+        "votes": 15888
       }
     },
-    "arena_votes": 11789,
+    "arena_votes": 15888,
     "data_completeness_pct": 97.7
   },
   {
@@ -974,9 +1065,9 @@
       "agentic": 59.5263667488411
     },
     "speed": {
-      "median_tps": 408.507306098168,
-      "ttft_seconds": 5.853295470811819,
-      "e2e_seconds": 7.0772637879900815
+      "median_tps": 418.151928075045,
+      "ttft_seconds": 5.740372765562543,
+      "e2e_seconds": 6.936110406428487
     },
     "pricing": {
       "input": 0.2,
@@ -1031,9 +1122,9 @@
       "agentic": 55.007009051294
     },
     "speed": {
-      "median_tps": 93.1908803090292,
-      "ttft_seconds": 22.891042035047114,
-      "e2e_seconds": 28.256373903808907
+      "median_tps": 78.4163209133416,
+      "ttft_seconds": 26.959617661364902,
+      "e2e_seconds": 33.33584131195613
     },
     "pricing": {
       "input": 0.6,
@@ -1078,17 +1169,17 @@
     },
     "arena_rankings": {
       "text": {
-        "rank": 16,
-        "score": 1474,
-        "votes": 13957
+        "rank": 13,
+        "score": 1475,
+        "votes": 14882
       },
       "code": {
-        "rank": 6,
-        "score": 1533,
-        "votes": 3611
+        "rank": 23,
+        "score": 1440,
+        "votes": 4881
       }
     },
-    "arena_votes": 13957,
+    "arena_votes": 14882,
     "data_completeness_pct": 97.7
   },
   {
@@ -1103,9 +1194,9 @@
       "agentic": 55.6654097734737
     },
     "speed": {
-      "median_tps": 87.6781210967962,
-      "ttft_seconds": 26.863437714966807,
-      "e2e_seconds": 32.56611466270845
+      "median_tps": 90.8279016408439,
+      "ttft_seconds": 26.040709508698974,
+      "e2e_seconds": 31.545625850123706
     },
     "pricing": {
       "input": 0.123,
@@ -1150,11 +1241,11 @@
     "arena_rankings": {
       "code": {
         "rank": 18,
-        "score": 1460,
-        "votes": 6136
+        "score": 1464,
+        "votes": 6911
       }
     },
-    "arena_votes": 6136,
+    "arena_votes": 6911,
     "data_completeness_pct": 97.7
   },
   {
@@ -1169,9 +1260,9 @@
       "agentic": 48.7647586511657
     },
     "speed": {
-      "median_tps": 128.064673445726,
-      "ttft_seconds": 17.593750452645804,
-      "e2e_seconds": 21.498027772432206
+      "median_tps": 127.22167216522,
+      "ttft_seconds": 17.81436703639546,
+      "e2e_seconds": 21.744515033119328
     },
     "pricing": {
       "input": 0.1,
@@ -1214,13 +1305,18 @@
       "completion": 0.3
     },
     "arena_rankings": {
+      "text": {
+        "rank": 27,
+        "score": 1464,
+        "votes": 19096
+      },
       "code": {
-        "rank": 15,
-        "score": 1471,
-        "votes": 4719
+        "rank": 27,
+        "score": 1437,
+        "votes": 4504
       }
     },
-    "arena_votes": 4719,
+    "arena_votes": 19096,
     "data_completeness_pct": 97.7
   },
   {
@@ -1284,16 +1380,16 @@
     "arena_rankings": {
       "text": {
         "rank": 15,
-        "score": 1475,
-        "votes": 3755
+        "score": 1474,
+        "votes": 3751
       },
       "code": {
-        "rank": 13,
-        "score": 1486,
-        "votes": 2498
+        "rank": 14,
+        "score": 1484,
+        "votes": 2503
       }
     },
-    "arena_votes": 2498,
+    "arena_votes": 4907,
     "data_completeness_pct": 94.0
   },
   {
@@ -1308,9 +1404,9 @@
       "agentic": 52.8265252211028
     },
     "speed": {
-      "median_tps": 51.7157347207991,
-      "ttft_seconds": 2.47717745699998,
-      "e2e_seconds": 12.145414845473345
+      "median_tps": 50.6806544972166,
+      "ttft_seconds": 2.55531557550012,
+      "e2e_seconds": 12.42101294978048
     },
     "pricing": {
       "input": 0.4,
@@ -1354,11 +1450,11 @@
     "arena_rankings": {
       "code": {
         "rank": 18,
-        "score": 1460,
-        "votes": 6136
+        "score": 1464,
+        "votes": 6911
       }
     },
-    "arena_votes": 6136,
+    "arena_votes": 6911,
     "data_completeness_pct": 90.2
   },
   {
@@ -1373,9 +1469,9 @@
       "agentic": 51.5100263514655
     },
     "speed": {
-      "median_tps": 122.641475091296,
-      "ttft_seconds": 19.612485196252063,
-      "e2e_seconds": 23.6894094148151
+      "median_tps": 129.627119209038,
+      "ttft_seconds": 18.64385200114139,
+      "e2e_seconds": 22.50106955755175
     },
     "pricing": {
       "input": 0.3,
@@ -1431,9 +1527,9 @@
       "agentic": 52.0038785700216
     },
     "speed": {
-      "median_tps": 222.977967510498,
-      "ttft_seconds": 10.103399599781019,
-      "e2e_seconds": 12.345773613601285
+      "median_tps": 224.456427635087,
+      "ttft_seconds": 10.06874896799357,
+      "e2e_seconds": 12.296352807491907
     },
     "pricing": {
       "input": 0.1,
@@ -1479,11 +1575,11 @@
     "arena_rankings": {
       "code": {
         "rank": 18,
-        "score": 1460,
-        "votes": 6136
+        "score": 1464,
+        "votes": 6911
       }
     },
-    "arena_votes": 6136,
+    "arena_votes": 6911,
     "data_completeness_pct": 97.7
   },
   {
@@ -1543,11 +1639,11 @@
     "arena_rankings": {
       "code": {
         "rank": 18,
-        "score": 1460,
-        "votes": 6136
+        "score": 1464,
+        "votes": 6911
       }
     },
-    "arena_votes": 6136,
+    "arena_votes": 6911,
     "data_completeness_pct": 97.7
   }
 ]
