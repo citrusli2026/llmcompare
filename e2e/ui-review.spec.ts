@@ -270,12 +270,12 @@ test.describe("Accessibility & Performance", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 图标容器应有 bg-accent-violet/10 背景
+    // 图标容器应有 bg-accent-violet/15 背景
     const iconBoxes = page.locator("[class*='bg-accent-violet/15']");
     await expect(iconBoxes.first()).toBeVisible();
 
-    // 每张卡片应有 border-surface-border 边框
-    const cardBorder = page.locator("[class*='border-white/10']");
+    // 每张卡片应有 border-surface-border 边框（Tailwind v4 设计 Token）
+    const cardBorder = page.locator("[class*='border-surface-border']");
     await expect(cardBorder.first()).toBeVisible();
 
     // 卡片标题应为 text-xs text-text-muted
