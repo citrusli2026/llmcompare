@@ -5,23 +5,19 @@ import { type ModelWithScores } from "@/lib/scoring";
 import { makeModel } from "../fixtures";
 
 describe("useModelGroups", () => {
-  it("groups models by category (intl / frontier / mainstream)", () => {
+  it("returns a single group with all models", () => {
     const models: ModelWithScores[] = [
-      makeModel("intl-1", { isInternational: true }),
-      makeModel("frontier-1", { flags: { frontier: true } }),
-      makeModel("mainstream-1", {}),
+      makeModel("m1", { isInternational: true }),
+      makeModel("m2", { flags: { frontier: true } }),
+      makeModel("m3", {}),
     ];
 
     const { result } = renderHook(() => useModelGroups(models, "date", true));
     const groups = result.current;
 
-    expect(groups).toHaveLength(3);
-    expect(groups[0].key).toBe("intl");
-    expect(groups[0].items.map((m) => m.id)).toEqual(["intl-1"]);
-    expect(groups[1].key).toBe("frontier");
-    expect(groups[1].items.map((m) => m.id)).toEqual(["frontier-1"]);
-    expect(groups[2].key).toBe("mainstream");
-    expect(groups[2].items.map((m) => m.id)).toEqual(["mainstream-1"]);
+    expect(groups).toHaveLength(1);
+    expect(groups[0].key).toBe("all");
+    expect(groups[0].items).toHaveLength(3);
   });
 
   it("sorts by intelligence descending", () => {
@@ -32,8 +28,8 @@ describe("useModelGroups", () => {
     ];
 
     const { result } = renderHook(() => useModelGroups(models, "intelligence", true));
-    const mainstream = result.current.find((g) => g.key === "mainstream")!;
-    expect(mainstream.items.map((m) => m.id)).toEqual(["m2", "m3", "m1"]);
+    const group = result.current[0];
+    expect(group.items.map((m) => m.id)).toEqual(["m2", "m3", "m1"]);
   });
 
   it("sorts by intelligence ascending", () => {
@@ -44,8 +40,8 @@ describe("useModelGroups", () => {
     ];
 
     const { result } = renderHook(() => useModelGroups(models, "intelligence", false));
-    const mainstream = result.current.find((g) => g.key === "mainstream")!;
-    expect(mainstream.items.map((m) => m.id)).toEqual(["m1", "m3", "m2"]);
+    const group = result.current[0];
+    expect(group.items.map((m) => m.id)).toEqual(["m1", "m3", "m2"]);
   });
 
   it("sorts by date descending", () => {
@@ -56,8 +52,8 @@ describe("useModelGroups", () => {
     ];
 
     const { result } = renderHook(() => useModelGroups(models, "date", true));
-    const mainstream = result.current.find((g) => g.key === "mainstream")!;
-    expect(mainstream.items.map((m) => m.id)).toEqual(["m2", "m3", "m1"]);
+    const group = result.current[0];
+    expect(group.items.map((m) => m.id)).toEqual(["m2", "m3", "m1"]);
   });
 
   it("sorts by date ascending", () => {
@@ -68,8 +64,8 @@ describe("useModelGroups", () => {
     ];
 
     const { result } = renderHook(() => useModelGroups(models, "date", false));
-    const mainstream = result.current.find((g) => g.key === "mainstream")!;
-    expect(mainstream.items.map((m) => m.id)).toEqual(["m1", "m3", "m2"]);
+    const group = result.current[0];
+    expect(group.items.map((m) => m.id)).toEqual(["m1", "m3", "m2"]);
   });
 
   it("handles null dates by pushing them to end when descending", () => {
@@ -80,8 +76,8 @@ describe("useModelGroups", () => {
     ];
 
     const { result } = renderHook(() => useModelGroups(models, "date", true));
-    const mainstream = result.current.find((g) => g.key === "mainstream")!;
-    expect(mainstream.items.map((m) => m.id)).toEqual(["m3", "m1", "m2"]);
+    const group = result.current[0];
+    expect(group.items.map((m) => m.id)).toEqual(["m3", "m1", "m2"]);
   });
 
   it("handles null values in numeric sort by pushing them to end", () => {
@@ -92,11 +88,11 @@ describe("useModelGroups", () => {
     ];
 
     const { result } = renderHook(() => useModelGroups(models, "intelligence", true));
-    const mainstream = result.current.find((g) => g.key === "mainstream")!;
-    expect(mainstream.items.map((m) => m.id)).toEqual(["m3", "m1", "m2"]);
+    const group = result.current[0];
+    expect(group.items.map((m) => m.id)).toEqual(["m3", "m1", "m2"]);
   });
 
-  it("calculates rankOffset correctly", () => {
+  it("calculates rankOffset correctly (starts at 0 for all)", () => {
     const models: ModelWithScores[] = [
       makeModel("f1", { flags: { frontier: true } }),
       makeModel("f2", { flags: { frontier: true } }),
@@ -104,29 +100,22 @@ describe("useModelGroups", () => {
     ];
 
     const { result } = renderHook(() => useModelGroups(models, "intelligence", true));
-    const groups = result.current;
+    const group = result.current[0];
 
-    expect(groups[0].key).toBe("intl");
-    expect(groups[0].rankOffset).toBe(0);
-    expect(groups[0].showRank).toBe(false);
-
-    expect(groups[1].key).toBe("frontier");
-    expect(groups[1].rankOffset).toBe(0);
-    expect(groups[1].showRank).toBe(true);
-
-    expect(groups[2].key).toBe("mainstream");
-    expect(groups[2].rankOffset).toBe(2); // offset by frontier count
-    expect(groups[2].showRank).toBe(true);
+    expect(group.key).toBe("all");
+    expect(group.rankOffset).toBe(0);
+    expect(group.items).toHaveLength(3);
+    expect(group.showRank).toBe(true);
   });
 
-  it("returns empty groups when no models match", () => {
+  it("returns empty group when no models", () => {
     const models: ModelWithScores[] = [];
     const { result } = renderHook(() => useModelGroups(models, "intelligence", true));
-    expect(result.current).toHaveLength(3);
-    expect(result.current.every((g) => g.items.length === 0)).toBe(true);
+    expect(result.current).toHaveLength(1);
+    expect(result.current[0].items.length).toBe(0);
   });
 
-  it("filters international models correctly", () => {
+  it("includes all models regardless of isInternational flag", () => {
     const models: ModelWithScores[] = [
       makeModel("intl-1", { isInternational: true }),
       makeModel("intl-2", { isInternational: true }),
@@ -134,8 +123,9 @@ describe("useModelGroups", () => {
     ];
 
     const { result } = renderHook(() => useModelGroups(models, "date", true));
-    const intl = result.current.find((g) => g.key === "intl")!;
-    expect(intl.items.map((m) => m.id)).toEqual(["intl-1", "intl-2"]);
+    const group = result.current[0];
+    expect(group.items).toHaveLength(3);
+    expect(group.items.map((m) => m.id)).toEqual(["intl-1", "intl-2", "cn-1"]);
   });
 
   it("recomputes when sortKey changes", () => {
@@ -149,9 +139,9 @@ describe("useModelGroups", () => {
       { initialProps: { sortKey: "intelligence" as const } }
     );
 
-    expect(result.current[2].items.map((m) => m.id)).toEqual(["m2", "m1"]);
+    expect(result.current[0].items.map((m) => m.id)).toEqual(["m2", "m1"]);
 
     rerender({ sortKey: "coding" });
-    expect(result.current[2].items.map((m) => m.id)).toEqual(["m1", "m2"]);
+    expect(result.current[0].items.map((m) => m.id)).toEqual(["m1", "m2"]);
   });
 });

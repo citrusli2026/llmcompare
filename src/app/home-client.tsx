@@ -19,9 +19,7 @@ export default function HomeClient() {
 
   const displayModels = useMemo(() => {
     const all = getAllModelsUnfiltered();
-    const intl = all.filter((m) => m.raw.isInternational);
-    const domestic = all.filter((m) => !m.raw.isInternational).slice(0, 10);
-    return [...intl, ...domestic];
+    return all.slice(0, 20);
   }, []);
 
   // Compare selection from URL params

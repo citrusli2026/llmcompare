@@ -5,32 +5,14 @@ import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type ModelGroup } from "./types";
 import { getRawValue } from "./utils";
 
-// 分离三组模型：国际标杆、国内前沿、国内主力，各自内部排序，组间不混排
+// 单组模型：所有模型统一排序，不再按国际/国内分组
 const GROUPS: Omit<ModelGroup, "rankOffset" | "items">[] = [
   {
-    key: "intl",
-    labelKey: "common.intlBaseline",
-    badgeClass: "bg-amber-500/10",
-    badgeTextClass: "text-amber-600 dark:text-amber-300",
-    filter: (m) => m.raw.isInternational,
-    showRank: false,
-  },
-  {
-    key: "frontier",
-    labelKey: "common.frontier",
-    badgeClass: "bg-violet-500/10",
-    badgeTextClass: "text-violet-400",
-    borderClass: "border-t-2 border-t-surface-border",
-    filter: (m) => !m.raw.isInternational && m.flags.frontier,
-    showRank: true,
-  },
-  {
-    key: "mainstream",
-    labelKey: "common.mainstream",
-    badgeClass: "bg-blue-500/10",
-    badgeTextClass: "text-blue-400",
-    borderClass: "border-t-2 border-t-surface-border",
-    filter: (m) => !m.raw.isInternational && !m.flags.frontier,
+    key: "all",
+    labelKey: "common.models",
+    badgeClass: "",
+    badgeTextClass: "",
+    filter: () => true,
     showRank: true,
   },
 ];

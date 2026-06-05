@@ -113,7 +113,7 @@ test.describe("ScoreBar — 表格分数可视化", () => {
     const rows = page.locator("tbody tr");
     const count = await rows.count();
     let foundDash = false;
-    for (let i = 0; i < Math.min(count, 10); i++) {
+    for (let i = 0; i < count; i++) {
       // td(0)=checkbox td(1)=name td(2)=company td(3)=date td(4)=intel
       // td(5)=coding td(6)=agentic td(7)=arenaCode td(8)=cost td(9)=tokens
       const cell = rows.nth(i).locator("td").nth(7);

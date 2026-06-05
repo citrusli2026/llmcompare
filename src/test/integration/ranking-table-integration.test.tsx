@@ -23,7 +23,7 @@ describe("RankingTable Integration — 完整数据流", () => {
     vi.clearAllMocks();
   });
 
-  it("三栏分组：国际/前沿/主力模型正确分类", () => {
+  it("单组全量排序：所有模型统一排名", () => {
     const models: ModelWithScores[] = [
       makeModel("gpt-5", { isInternational: true, intelligence: 60, flags: { chinese_eval: false } }),
       makeModel("claude-opus", { isInternational: true, intelligence: 58, flags: { chinese_eval: false } }),
@@ -34,20 +34,9 @@ describe("RankingTable Integration — 完整数据流", () => {
 
     render(<RankingTable models={models} />);
 
-    // 国际标杆应有 badge（不显示排名）
-    const intlBadges = screen.getAllByText("common.intlBaseline");
-    expect(intlBadges.length).toBeGreaterThanOrEqual(2); // desktop + mobile
-
-    // 前沿应有 badge 和排名
-    const frontierBadges = screen.getAllByText("common.frontier");
-    expect(frontierBadges.length).toBeGreaterThanOrEqual(1);
+    // 所有模型统一排名，#1 到 #5
     expect(screen.getAllByText(/#1/).length).toBeGreaterThanOrEqual(1);
-
-    // 主力应有 badge 和排名（接在前沿后面）
-    const mainstreamBadges = screen.getAllByText("common.mainstream");
-    expect(mainstreamBadges.length).toBeGreaterThanOrEqual(2);
-    expect(screen.getAllByText(/#2/).length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText(/#3/).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/#5/).length).toBeGreaterThanOrEqual(1);
   });
 
   it("排序切换：按智能分排序后重新分组并更新排名", () => {
@@ -68,7 +57,7 @@ describe("RankingTable Integration — 完整数据流", () => {
     expect(screen.getAllByText(/#1/).length).toBeGreaterThanOrEqual(1);
   });
 
-  it("移动端国际标杆只显示1个（slice 0,1）", () => {
+  it("移动端所有模型均显示（单组无限制）", () => {
     const models: ModelWithScores[] = [
       makeModel("gpt-5", { isInternational: true, intelligence: 60, flags: { chinese_eval: false } }),
       makeModel("claude-opus", { isInternational: true, intelligence: 58, flags: { chinese_eval: false } }),

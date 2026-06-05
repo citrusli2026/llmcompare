@@ -15,7 +15,7 @@ export type Percentiles = { p25: number; p50: number; p75: number };
 export type ColoredKey = "intelligence" | "coding" | "agentic" | "arenaCode" | "cost";
 
 export interface ModelGroup {
-  key: "intl" | "frontier" | "mainstream";
+  key: "all";
   labelKey: string;
   badgeClass: string;
   badgeTextClass: string;

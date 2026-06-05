@@ -23,7 +23,7 @@
     "cardsViewAll": "查看全部",
     "footer": "模型图鉴 - 全球 AI 模型数据，整理在一起",
     "footerDisclaimer": "数据仅供参考，基于公开信息整理",
-    "seoDesc": "模型图鉴收录了国内外主流大语言模型的基准测试分数、API 性能与定价数据，覆盖 DeepSeek、Kimi、Qwen、GPT、Claude、Gemini 等，帮助开发者和研究者快速对比选型。"
+    "seoDesc": "模型图鉴收录了主流大语言模型的基准测试分数、API 性能与定价数据，覆盖 DeepSeek、Kimi、Qwen、GPT、Claude、Gemini 等，帮助开发者和研究者快速对比选型。"
   },
   "models": {
     "title": "模型目录",
@@ -54,14 +54,15 @@
     "backgroundTitle": "项目背景",
     "backgroundDesc": "上次更新：2026.06.04",
     "backgroundContribute": "发现错误或想补充模型？欢迎提交",
-    "filterDesc": "从 Artificial Analysis 全球模型中筛选活跃模型（180 天内发布），注入 Arena 排行榜数据。覆盖国内外头部厂商，按智能分统一排名。",
+    "filterDesc": "从 Artificial Analysis 全球模型中筛选活跃模型（180 天内发布），注入 Arena 排行榜数据。覆盖头部厂商，按智能分统一排名。",
     "sourceTitle": "数据来源",
     "sourcePriceTitle": "模型官网",
     "sourceDesc": "Artificial Analysis 是权威大模型评测机构，提供标准化基准测试，其 Intelligence Index 综合 MMLU、HumanEval、MATH 等基准，评估推理、编程和数学能力。",
-    "priceDetail": "从各模型官网获取国内官方定价，详情页同时展示国内官价与 OpenRouter 国际定价，列表页统一用 OpenRouter 价格便于横向对比，每周更新。",
+    "priceDetail": "从各模型官网获取官方定价，详情页同时展示官价与 OpenRouter 定价，列表页统一用 OpenRouter 价格便于横向对比，每周更新。",
     "arenaDesc": "lmarena.ai（原 Chatbot Arena）是全球最大的众测 LLM 排行榜，基于真人盲测投票生成 ELO 分数。本站采集其文本对话、编程和视觉三榜数据，作为第三方真实使用体验的参考。",
     "orDesc": "全球最大 LLM API 路由平台，提供统一 API 访问，每周公布各模型 Token 消耗排名。本站采集其公开的周度消耗排名和 API 定价，消耗量反映真实热度，定价反映市场行情。",
-    "disclaimerDesc": "本图鉴仅供参考，不构成投资或使用建议。模型性能因场景而异，实际体验可能与数据有差异。"
+    "disclaimerDesc": "本图鉴仅供参考，不构成投资或使用建议。模型性能因场景而异，实际体验可能与数据有差异。",
+    "cnPriceLabel": "官价"
   },
   "product": {
     "backLink": "返回模型目录",
@@ -83,7 +84,7 @@
     "releaseDate": "发布日期",
     "outputTokens": "最大输出",
     "priceTitle": "价格",
-    "cnPriceLabel": "国内官价",
+    "cnPriceLabel": "官价",
     "input": "输入",
     "output": "输出",
     "inputAa": "输入 (AA)",
@@ -136,13 +137,10 @@
   "common": {
     "open": "开源",
     "closed": "闭源",
-    "frontier": "国内前沿",
-    "mainstream": "国内主力",
     "reasoning": "推理模型",
     "openWeights": "开源权重",
     "imageInput": "图像输入",
     "chineseEval": "中文评测",
-    "intlBaseline": "国际标杆",
     "unknown": "未知"
   },
   "compare": {

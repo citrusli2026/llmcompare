@@ -116,12 +116,6 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
         )}
         <Badge
           variant="secondary"
-          className={cn("text-[10px] py-0 px-1.5", group.badgeClass, group.badgeTextClass)}
-        >
-          {t(group.labelKey)}
-        </Badge>
-        <Badge
-          variant="secondary"
           className={cn("text-[10px] py-0 px-1.5", getTypeBadgeClasses(model.type))}
         >
           {t(model.type === "开源" ? "common.open" : "common.closed")}
