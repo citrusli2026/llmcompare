@@ -26,8 +26,11 @@ describe("ranking-table utils extended", () => {
       median_tps: null,
       ttft_seconds: null,
       e2e_seconds: null,
+      p05_tps: null,
+      p95_tps: null,
       input: null,
       output: null,
+      blended: null,
       display: "",
       cn_input: null,
       cn_output: null,
@@ -39,6 +42,7 @@ describe("ranking-table utils extended", () => {
       release_date: "2024-01-01",
       omniscience: null,
       arena_votes: 1000,
+      openrouter_weekly_tokens: null,
       openrouter_pricing: { prompt: 1, completion: 2 },
       arena_rankings: null,
       arena_code: 1200,
@@ -89,12 +93,12 @@ describe("ranking-table utils extended", () => {
     });
 
     it("returns tokens value", () => {
-      const model = makeModel({ arena_votes: 5000 });
+      const model = makeModel({ openrouter_weekly_tokens: 5000 });
       expect(getRawValue(model, "tokens")).toBe(5000);
     });
 
     it("returns null for missing tokens", () => {
-      const model = makeModel({ arena_votes: null });
+      const model = makeModel({ openrouter_weekly_tokens: null });
       expect(getRawValue(model, "tokens")).toBeNull();
     });
   });
@@ -106,6 +110,7 @@ describe("ranking-table utils extended", () => {
       agentic: { p25: 25, p50: 50, p75: 75 },
       arenaCode: { p25: 1000, p50: 1200, p75: 1400 },
       cost: { p25: 1, p50: 5, p75: 10 },
+      tokens: { p25: 500, p50: 1000, p75: 2000 },
     };
 
     it("returns dim for null value", () => {
@@ -120,8 +125,9 @@ describe("ranking-table utils extended", () => {
       expect(getScoreColor(50, "date", percentiles)).toBe("");
     });
 
-    it("returns empty string for tokens key", () => {
-      expect(getScoreColor(1000, "tokens", percentiles)).toBe("");
+    it("returns color for tokens key with percentiles", () => {
+      const p = { ...percentiles, tokens: { p25: 500, p50: 1000, p75: 2000 } };
+      expect(getScoreColor(1000, "tokens", p)).toBe(COLOR_BY_BUCKET.blue);
     });
 
     it("ascending: top quartile gets emerald", () => {
