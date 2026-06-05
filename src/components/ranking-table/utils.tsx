@@ -77,10 +77,23 @@ export function formatScore(val: number | null | undefined): React.ReactNode {
   return val % 1 === 0 ? val : val.toFixed(1);
 }
 
-export function ScoreBar({ value, maxValue = 100 }: { value: number | null; maxValue?: number }) {
+export function ScoreBar({ value, maxValue = 100, colorPercentiles }: {
+  value: number | null;
+  maxValue?: number;
+  colorPercentiles?: { p25: number; p50: number; p75: number } | null;
+}) {
   if (value == null) return <span className="text-text-dim text-xs">—</span>;
   const pct = Math.min((value / maxValue) * 100, 100);
-  const color = pct >= 80 ? "bg-accent-lime" : pct >= 65 ? "bg-accent-violet" : pct >= 50 ? "bg-accent-coral" : "bg-text-muted";
+  // 按当前列表排名染色：p75=green, p50=violet, p25=coral, below=gray
+  const color = colorPercentiles != null
+    ? value >= colorPercentiles.p75 ? "bg-accent-lime"
+      : value >= colorPercentiles.p50 ? "bg-accent-violet"
+      : value >= colorPercentiles.p25 ? "bg-accent-coral"
+      : "bg-text-muted"
+    : pct >= 80 ? "bg-accent-lime"
+      : pct >= 65 ? "bg-accent-violet"
+      : pct >= 50 ? "bg-accent-coral"
+      : "bg-text-muted";
   return (
     <div className="flex items-center gap-2">
       <span className="text-sm font-medium text-text-primary w-10 text-right tabular-nums">{value.toFixed(1)}</span>

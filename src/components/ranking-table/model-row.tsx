@@ -131,7 +131,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
               h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key, percentiles)
             )}
           >
-            {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} maxValue={globalMax[h.key]} /> : renderers[h.key](model)}
+            {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} maxValue={globalMax[h.key]} colorPercentiles={percentiles[h.key]} /> : renderers[h.key](model)}
           </TableCell>
         );
       })}

@@ -141,7 +141,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
                   h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key, percentiles)
                 )}
               >
-                {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} maxValue={globalMax[h.key]} /> : renderMetric(model, h.key)}
+                {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} maxValue={globalMax[h.key]} colorPercentiles={percentiles[h.key]} /> : renderMetric(model, h.key)}
               </div>
             </div>
           );
