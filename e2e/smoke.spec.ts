@@ -14,7 +14,7 @@ test.describe("Home Page", () => {
     // 使用更精确的选择器：logo 链接中的文本
     await expect(page.locator("header a[href='/'] span").filter({ hasText: "模型图鉴" })).toBeVisible();
     // Arena 投票列头
-    await expect(page.locator("th").filter({ hasText: /Arena投票|Arena Votes/ })).toBeVisible();
+    await expect(page.locator("th").filter({ hasText: /周用量|Weekly Usage/ })).toBeVisible();
 
     // 国际标杆模型置顶（检查表格第一行）
     const firstRow = page.locator("tbody tr").first();
@@ -46,12 +46,12 @@ test.describe("Home Page", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 找到 Arena投票/Arena Votes 列头并点击
-    const votesHeader = page.locator("th").filter({ hasText: /Arena投票|Arena Votes/ });
+    // 找到周用量/Weekly Usage 列头并点击
+    const votesHeader = page.locator("th").filter({ hasText: /周用量|Weekly Usage/ });
     await votesHeader.click();
     await page.waitForTimeout(500);
 
-    // 验证排序生效（有 votes 的模型排在前面）
+    // 验证排序生效（有数据的模型排在前面）
     const firstRow = page.locator("tbody tr").first();
     await expect(firstRow).toBeVisible();
   });

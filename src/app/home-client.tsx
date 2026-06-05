@@ -22,9 +22,15 @@ export default function HomeClient() {
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
 
   const displayModels = useMemo(() => {
-    if (!searchQuery) return allModels.slice(0, 12);
+    // 按 release_date 降序排列（null 排最后）
+    const sorted = [...allModels].sort((a, b) => {
+      if (!a.raw.release_date) return 1;
+      if (!b.raw.release_date) return -1;
+      return b.raw.release_date.localeCompare(a.raw.release_date);
+    });
+    if (!searchQuery) return sorted.slice(0, 12);
     const q = searchQuery.toLowerCase();
-    return allModels.filter(
+    return sorted.filter(
       (m) =>
         m.name.toLowerCase().includes(q) ||
         m.company.toLowerCase().includes(q)
