@@ -205,7 +205,6 @@ export function RankingTable({ models }: RankingTableProps) {
       <div className="block sm:hidden space-y-2">
         {groups.map((group) =>
           group.items
-            .slice(group.key === "intl" ? 0 : undefined, group.key === "intl" ? 1 : undefined)
             .map((model, idx) => (
               <MobileCard
                 key={model.id}
