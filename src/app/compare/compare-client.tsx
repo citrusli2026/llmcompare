@@ -179,16 +179,16 @@ export function ComparePageClient() {
 
           {/* Comparison Table */}
           <div className="overflow-x-auto rounded-xl border border-surface-border bg-surface-card">
-            <table className="w-full min-w-[600px]">
+            <table className="w-full min-w-[360px] sm:min-w-[600px]">
               <thead>
                 <tr className="border-b border-surface-border">
-                  <th className="sticky left-0 bg-surface-card z-10 text-left px-4 py-3 sm:px-6 sm:py-4 text-xs font-semibold text-text-muted uppercase tracking-wider min-w-[140px]">
+                  <th className="sticky left-0 bg-surface-card z-10 text-left px-2 py-2 sm:px-6 sm:py-4 text-xs font-semibold text-text-muted uppercase tracking-wider min-w-[100px] sm:min-w-[140px] shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]">
                     {t("compare.colName")}
                   </th>
                   {models.map((m) => (
                     <th
                       key={m.id}
-                      className="px-3 py-3 sm:px-4 sm:py-4 text-center min-w-[160px] sm:min-w-[180px]"
+                      className="px-2 py-2 sm:px-4 sm:py-4 text-center min-w-[120px] sm:min-w-[180px]"
                     >
                       <div className="inline-flex flex-col items-center gap-1">
                         <span className="font-semibold text-sm text-text-primary truncate max-w-[140px]">
@@ -220,7 +220,7 @@ export function ComparePageClient() {
                         ri % 2 === 1 ? "bg-surface-elevated/40" : ""
                       )}
                     >
-                      <td className="sticky left-0 bg-inherit z-10 px-4 py-3 sm:px-6 sm:py-4">
+                      <td className="sticky left-0 bg-inherit z-10 px-2 py-2 sm:px-6 sm:py-4 shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]">
                         <div className="flex items-center gap-2">
                           <Icon className="h-4 w-4 text-text-muted shrink-0" />
                           <span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span>
