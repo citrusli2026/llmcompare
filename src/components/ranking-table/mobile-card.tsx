@@ -101,10 +101,18 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
       {/* 模型名（可点击导航） */}
       <Link
         href={`/product/${model.id}`}
-        className="inline-flex items-center gap-1 font-medium text-text-primary max-w-[85%]"
+        className="inline-flex items-center gap-1.5 font-medium text-text-primary max-w-[85%]"
       >
         {group.showRank && (
-          <span className="text-text-muted text-xs mr-1">#{group.rankOffset + idx + 1}</span>
+          <span className="text-text-muted text-xs mr-0.5">#{group.rankOffset + idx + 1}</span>
+        )}
+        {model.logo && (
+          <img
+            src={model.logo}
+            alt=""
+            className="h-4 w-4 rounded shrink-0"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+          />
         )}
         <span className="truncate">{model.name}</span>
         <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
@@ -138,7 +146,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
               <div
                 className={cn(
                   "text-[11px] font-medium tabular-nums leading-tight",
-                  h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key, percentiles)
+                  getScoreColor(getRawValue(model, h.key), h.key, percentiles)
                 )}
               >
                 {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} maxValue={globalMax[h.key]} colorPercentiles={percentiles[h.key]} /> : renderMetric(model, h.key)}

@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink, TrendingUp } from "lucide-react";
+import { BarChart3 } from "lucide-react";
 import { type ModelWithScores } from "@/lib/scoring";
 import { formatTokenCount } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
@@ -13,30 +13,38 @@ export function TokenUsage({ model }: TokenUsageProps) {
   const { t } = useTranslation();
   const r = model.raw;
 
-  if (r.arena_votes == null) {
-    return null;
-  }
-
-  const { value, unit } = formatTokenCount(r.arena_votes);
-
   return (
     <div className="rounded-xl border border-surface-border bg-surface-card p-6">
       <h2 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
-        <TrendingUp className="h-5 w-5 text-accent-emerald" /> {t("product.arenaVotes")}
+        <BarChart3 className="h-5 w-5 text-accent-violet" /> {t("product.orSection")}
       </h2>
-      <p className="text-2xl font-bold text-text-primary">
-        {value}
-        <span className="text-sm text-text-muted ml-1">{unit}</span>
-        <span className="text-sm text-text-muted ml-1">{t("product.arenaVotesUnit")}</span>
-      </p>
-      <a
-        href="https://chat.lmsys.org"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 mt-2 text-xs text-text-muted hover:text-accent-violet transition-colors"
-      >
-        <ExternalLink className="h-3 w-3" /> {t("product.arenaSource")}
-      </a>
+
+      {r.arena_votes != null && (
+        <div className="mb-4">
+          <p className="text-xs text-text-muted mb-1">{t("product.orTokens")}</p>
+          <p className="text-2xl font-bold text-text-primary tabular-nums">
+            {formatTokenCount(r.arena_votes).value}
+            {formatTokenCount(r.arena_votes).unit && (
+              <span className="text-sm text-text-muted ml-1">{formatTokenCount(r.arena_votes).unit}</span>
+            )}
+          </p>
+          <p className="text-xs text-text-muted mt-0.5">{t("product.orTokensUnit")}</p>
+        </div>
+      )}
+
+      {r.openrouter_weekly_tokens != null && (
+        <div className={r.arena_votes != null ? "border-t border-surface-border pt-4" : ""}>
+          <p className="text-xs text-text-muted mb-1">{t("product.orWeeklyTokens")}</p>
+          <p className="text-2xl font-bold text-text-primary tabular-nums">
+            {formatTokenCount(r.openrouter_weekly_tokens).value}
+            {formatTokenCount(r.openrouter_weekly_tokens).unit && (
+              <span className="text-sm text-text-muted ml-1">{formatTokenCount(r.openrouter_weekly_tokens).unit}</span>
+            )}
+          </p>
+        </div>
+      )}
+
+      <p className="mt-4 text-xs text-text-muted">{t("product.orSource")}</p>
     </div>
   );
 }

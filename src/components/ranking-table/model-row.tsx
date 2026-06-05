@@ -94,9 +94,17 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
 
       {/* Model name + badges */}
       <TableCell className="max-w-[220px]">
-        <div className="inline-flex items-center gap-1 font-medium text-text-primary group truncate">
+        <div className="inline-flex items-center gap-1.5 font-medium text-text-primary group truncate">
           {group.showRank && (
-            <span className="text-text-muted text-xs mr-1">#{group.rankOffset + idx + 1}</span>
+            <span className="text-text-muted text-xs mr-0.5">#{group.rankOffset + idx + 1}</span>
+          )}
+          {model.logo && (
+            <img
+              src={model.logo}
+              alt=""
+              className="h-5 w-5 rounded shrink-0"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            />
           )}
           {model.name}
           <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
@@ -128,7 +136,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
               "text-sm",
               colVisibilityClass(h),
               h.key === sortKey ? "font-semibold" : "",
-              h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key, percentiles)
+              getScoreColor(getRawValue(model, h.key), h.key, percentiles)
             )}
           >
             {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} maxValue={globalMax[h.key]} colorPercentiles={percentiles[h.key]} /> : renderers[h.key](model)}

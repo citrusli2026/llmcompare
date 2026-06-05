@@ -45,6 +45,12 @@ export function PricingSection({ model }: PricingSectionProps) {
             <span className="text-text-muted">{t("product.outputAa")}</span>
             <span className="text-text-primary">${r.output}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>
           </div>
+          {r.blended != null && (
+            <div className="flex justify-between border-t border-surface-border pt-2 mt-2">
+              <span className="text-text-muted font-medium">{t("product.blendedAa")}</span>
+              <span className="text-text-primary font-semibold">${r.blended.toFixed(2)}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>
+            </div>
+          )}
         </div>
       </div>
       {r.openrouter_pricing != null && (

@@ -109,12 +109,12 @@ describe("RankingTable", () => {
     const models: ModelWithScores[] = [
       makeModel("priced-model", {
         openrouter_pricing: { prompt: 1.5, completion: 2.5 },
+        blended: 2.0,
       }),
     ];
 
     render(<RankingTable models={models} />);
-    expect(screen.getAllByText(/\$1\.5/).length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText(/2\.5/).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/\$2\.00/).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders arena code ELO when available", () => {
