@@ -45,7 +45,7 @@ export function BenchmarkSection({ model }: BenchmarkSectionProps) {
       </div>
 
       {/* Secondary metrics */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="rounded-lg bg-surface-hover p-3">
           <p className="text-xs text-text-muted">{t("product.coding")}</p>
           <p className="text-base font-semibold text-text-primary tabular-nums">
@@ -56,6 +56,12 @@ export function BenchmarkSection({ model }: BenchmarkSectionProps) {
           <p className="text-xs text-text-muted">{t("product.agentic")}</p>
           <p className="text-base font-semibold text-text-primary tabular-nums">
             {r.agentic != null ? r.agentic.toFixed(1) : "—"}
+          </p>
+        </div>
+        <div className="rounded-lg bg-surface-hover p-3">
+          <p className="text-xs text-text-muted">{t("product.benchmarkMmluPro")}</p>
+          <p className="text-base font-semibold text-text-primary tabular-nums">
+            {r.benchmarks.mmlu_pro != null ? r.benchmarks.mmlu_pro.toFixed(1) : "—"}
           </p>
         </div>
         {r.omniscience != null && (

@@ -73,11 +73,16 @@
     "agentic": "Agent",
     "hallucinationControl": "Omniscience Index",
     "hallucinationNote": "Range −100 to +100, higher is better",
+    "benchmarkMmluPro": "MMLU-Pro",
+    "orWeeklyTokens": "OpenRouter Weekly",
+    "orSection": "OpenRouter",
     "sourceAa": "Source: Artificial Analysis",
     "speedTitle": "Speed Performance",
     "medianTps": "Median TPS",
     "ttft": "Time to First Token",
     "e2e": "End-to-End Latency",
+    "p05Tps": "P5 TPS",
+    "p95Tps": "P95 TPS",
     "basicTitle": "Basic Info",
     "company": "Company",
     "parameters": "Parameters",
@@ -165,6 +170,8 @@
     "benchmarkGpqa": "GPQA",
     "benchmarkHle": "HLE",
     "arenaVotes": "Arena Votes",
+    "benchmarkMmluPro": "MMLU-Pro",
+    "orWeeklyTokens": "Weekly Tokens",
     "bestValue": "Best"
   }
 }

@@ -17,7 +17,7 @@ export function SpeedSection({ model }: SpeedSectionProps) {
       <h2 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
         <Zap className="h-5 w-5 text-accent-cyan" /> {t("product.speedTitle")}
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
         <div className="rounded-lg bg-surface-hover p-3">
           <p className="text-xs text-text-muted">{t("product.medianTps")}</p>
           <p className="text-lg font-semibold text-text-primary">
@@ -26,9 +26,29 @@ export function SpeedSection({ model }: SpeedSectionProps) {
                 {r.median_tps.toFixed(1)}{" "}
                 <span className="text-xs text-text-muted">TPS</span>
               </>
-            ) : (
-              "—"
-            )}
+            ) : ("—")}
+          </p>
+        </div>
+        <div className="rounded-lg bg-surface-hover p-3">
+          <p className="text-xs text-text-muted">{t("product.p05Tps")}</p>
+          <p className="text-lg font-semibold text-text-primary">
+            {r.p05_tps != null ? (
+              <>
+                {r.p05_tps.toFixed(1)}{" "}
+                <span className="text-xs text-text-muted">TPS</span>
+              </>
+            ) : "—"}
+          </p>
+        </div>
+        <div className="rounded-lg bg-surface-hover p-3">
+          <p className="text-xs text-text-muted">{t("product.p95Tps")}</p>
+          <p className="text-lg font-semibold text-text-primary">
+            {r.p95_tps != null ? (
+              <>
+                {r.p95_tps.toFixed(1)}{" "}
+                <span className="text-xs text-text-muted">TPS</span>
+              </>
+            ) : "—"}
           </p>
         </div>
         <div className="rounded-lg bg-surface-hover p-3">

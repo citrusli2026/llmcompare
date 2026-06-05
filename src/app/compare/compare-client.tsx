@@ -5,10 +5,10 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, BarChart3, Brain, Code, Bot, Zap, DollarSign, Layers, Calendar, Eye, Weight, MessageSquare, Trophy, Check, Star, X } from "lucide-react";
+import { ArrowLeft, BarChart3, Brain, Code, Bot, Zap, DollarSign, Layers, Calendar, Eye, Weight, MessageSquare, Trophy, Check, Star, X, TrendingUp } from "lucide-react";
 import { getModelById, type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
-import { cn, getTypeBadgeClasses } from "@/lib/utils";
+import { cn, formatTokenCount, getTypeBadgeClasses } from "@/lib/utils";
 import { Tooltip } from "@/components/tooltip";
 
 interface CompareRow {
@@ -90,8 +90,8 @@ export function ComparePageClient() {
         return "—";
       },
       getNumericValue: (m) => {
-        // Lower is better for cost
-        return m.raw.openrouter_pricing?.completion ?? m.raw.output ?? null;
+        // Lower is better for cost — use blended if available, fallback to completion
+        return m.raw.blended ?? m.raw.openrouter_pricing?.completion ?? m.raw.output ?? null;
       },
     },
     {
@@ -99,6 +99,17 @@ export function ComparePageClient() {
       icon: Trophy,
       getValue: (m) => m.raw.arena_votes != null ? formatNum(m.raw.arena_votes, 0) : "—",
       getNumericValue: (m) => m.raw.arena_votes,
+    },
+    {
+      labelKey: "compare.orWeeklyTokens",
+      icon: TrendingUp,
+      getValue: (m) => {
+        const v = m.raw.openrouter_weekly_tokens;
+        if (v == null) return "—";
+        const fmt = formatTokenCount(v);
+        return fmt.unit ? `${fmt.value} ${fmt.unit}` : fmt.value;
+      },
+      getNumericValue: (m) => m.raw.openrouter_weekly_tokens,
     },
     {
       labelKey: "compare.contextWindow",
@@ -144,6 +155,12 @@ export function ComparePageClient() {
       icon: Brain,
       getValue: (m) => m.raw.benchmarks.hle != null ? formatNum(m.raw.benchmarks.hle) : "—",
       getNumericValue: (m) => m.raw.benchmarks.hle,
+    },
+    {
+      labelKey: "compare.benchmarkMmluPro",
+      icon: Brain,
+      getValue: (m) => m.raw.benchmarks.mmlu_pro != null ? formatNum(m.raw.benchmarks.mmlu_pro) : "—",
+      getNumericValue: (m) => m.raw.benchmarks.mmlu_pro,
     },
   ], []);
 

@@ -36,11 +36,14 @@ interface RawSpeed {
   median_tps: number | null;
   ttft_seconds: number | null;
   e2e_seconds: number | null;
+  p05_tps: number | null;
+  p95_tps: number | null;
 }
 
 interface RawPricing {
   input: number | null;
   output: number | null;
+  blended: number | null;
   display: string;
 }
 
@@ -78,6 +81,7 @@ interface RawModel {
   } | null;
   flags: ModelFlags;
   arena_votes?: number | null;
+  openrouter_weekly_tokens?: number | null;
   openrouter_pricing?: { prompt: number; completion: number } | null;
   arena_rankings?: Record<string, ArenaRanking | undefined> | null;
   meta?: RawMeta;
@@ -100,8 +104,11 @@ export interface ModelWithScores {
     median_tps: number | null;
     ttft_seconds: number | null;
     e2e_seconds: number | null;
+    p05_tps: number | null;
+    p95_tps: number | null;
     input: number | null;
     output: number | null;
+    blended: number | null;
     display: string;
     cn_input: number | null;
     cn_output: number | null;
@@ -113,6 +120,7 @@ export interface ModelWithScores {
     release_date: string | null;
     omniscience: number | null;
     arena_votes: number | null;
+    openrouter_weekly_tokens: number | null;
     openrouter_pricing: { prompt: number; completion: number } | null;
     arena_rankings: Record<string, ArenaRanking | undefined> | null;
     arena_code: number | null;
@@ -155,8 +163,11 @@ function initCache(): void {
         median_tps: speedMissing ? null : m.speed!.median_tps,
         ttft_seconds: speedMissing ? null : m.speed!.ttft_seconds,
         e2e_seconds: speedMissing ? null : m.speed!.e2e_seconds,
+        p05_tps: speedMissing ? null : m.speed!.p05_tps ?? null,
+        p95_tps: speedMissing ? null : m.speed!.p95_tps ?? null,
         input: m.pricing?.input ?? null,
         output: m.pricing?.output ?? null,
+        blended: m.pricing?.blended ?? null,
         display: m.pricing?.display ?? "",
         cn_input: cn?.input ?? null,
         cn_output: cn?.output ?? null,
@@ -168,6 +179,7 @@ function initCache(): void {
         release_date: m.meta?.release_date ?? null,
         omniscience: m.meta?.omniscience ?? null,
         arena_votes: m.arena_votes ?? null,
+        openrouter_weekly_tokens: m.openrouter_weekly_tokens ?? null,
         openrouter_pricing: m.openrouter_pricing ?? null,
         arena_rankings: m.arena_rankings && Object.keys(m.arena_rankings).length > 0 ? m.arena_rankings : null,
         arena_code: m.arena_rankings?.code?.score ?? null,
