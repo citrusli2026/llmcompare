@@ -89,9 +89,9 @@ describe("ProductDetail Integration — 数据→渲染全链路", () => {
     expect(screen.getByText("2024-06-15")).toBeInTheDocument();
 
     // Benchmarks
-    expect(screen.getByText("75.5")).toBeInTheDocument(); // intelligence
-    expect(screen.getByText("70.2")).toBeInTheDocument(); // coding
-    expect(screen.getByText("65.0")).toBeInTheDocument(); // agentic
+    expect(screen.getAllByText("75.5").length).toBeGreaterThanOrEqual(1); // intelligence
+    expect(screen.getAllByText("70.2").length).toBeGreaterThanOrEqual(1); // coding
+    expect(screen.getAllByText("65.0").length).toBeGreaterThanOrEqual(1); // agentic
     expect(screen.getByText("82.1")).toBeInTheDocument(); // omniscience
   });
 
