@@ -73,13 +73,15 @@ export default function HomeClient() {
         }}
       >
         <div className="mx-auto max-w-4xl text-center relative z-10">
-          <Badge
-            variant="secondary"
-            className="mb-4 bg-accent-lime/10 text-accent-lime hover:bg-accent-lime/20 border-accent-lime/20"
-          >
-            <TrendingUp className="mr-1 h-3 w-3" />
-            {t("home.badge")}
-          </Badge>
+          <Link href="/models">
+            <Badge
+              variant="secondary"
+              className="mb-4 bg-accent-lime/10 text-accent-lime hover:bg-accent-lime/20 border-accent-lime/20 cursor-pointer"
+            >
+              <TrendingUp className="mr-1 h-3 w-3" />
+              {t("home.badge")}
+            </Badge>
+          </Link>
 
           <h1 className="text-4xl font-bold tracking-tight text-text-primary sm:text-6xl lg:text-7xl">
             {t("home.heroTitle")}

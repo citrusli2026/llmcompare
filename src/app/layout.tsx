@@ -3,6 +3,7 @@ import { Rubik, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
 import { Analytics } from "@vercel/analytics/next";
+import { BackToTop } from "@/components/back-to-top";
 import "./globals.css";
 
 const rubik = Rubik({
@@ -68,6 +69,7 @@ export default function RootLayout({
         <LanguageProvider>
           <ThemeProvider>
             {children}
+            <BackToTop />
             <Analytics />
           </ThemeProvider>
         </LanguageProvider>

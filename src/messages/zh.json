@@ -31,6 +31,7 @@
     "filterAll": "全部",
     "filterOpen": "开源",
     "filterClosed": "闭源",
+    "filterAllCompanies": "所有公司",
     "searchPlaceholder": "搜索模型或公司...",
     "emptyState": "未找到匹配的模型",
     "count": "共收录 {count} 个模型",
@@ -141,7 +142,8 @@
     "openWeights": "开源权重",
     "imageInput": "图像输入",
     "chineseEval": "中文评测",
-    "unknown": "未知"
+    "unknown": "未知",
+    "perMUnit": "/M = 每百万 tokens"
   },
   "compare": {
     "title": "模型对比",

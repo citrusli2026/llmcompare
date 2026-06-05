@@ -31,6 +31,7 @@
     "filterAll": "All",
     "filterOpen": "Open",
     "filterClosed": "Closed",
+    "filterAllCompanies": "All Companies",
     "searchPlaceholder": "Search models or companies...",
     "emptyState": "No matching models found",
     "count": "{count} models",
@@ -141,7 +142,8 @@
     "openWeights": "Open Weights",
     "imageInput": "Image Input",
     "chineseEval": "Chinese Eval",
-    "unknown": "Unknown"
+    "unknown": "Unknown",
+    "perMUnit": "/M = per million tokens"
   },
   "compare": {
     "title": "Model Comparison",
