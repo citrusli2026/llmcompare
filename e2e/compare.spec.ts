@@ -40,12 +40,13 @@ test.describe("Compare Feature — 模型对比功能", () => {
     const bar = page.locator("div.fixed.bottom-0");
     await expect(bar).toBeVisible();
 
-    // bar 内应有对比按钮
-    const compareBtn = bar.getByRole("button", { name: /对比|Compare/ });
+    // bar 内应有对比按钮 — 文本格式为 "对比 (2)" / "Compare (2)"
+    const compareBtn = page.locator("div.fixed.bottom-0 button:has(svg.lucide-arrow-right)");
     await expect(compareBtn).toBeVisible();
 
     // 点击跳转到对比页
     await compareBtn.click();
+    await page.waitForURL("**/compare?models=*");
     await page.waitForLoadState("networkidle");
 
     expect(page.url()).toContain("/compare?models=");
@@ -78,13 +79,14 @@ test.describe("Compare Feature — 模型对比功能", () => {
     await addBtn.click();
     await page.waitForTimeout(300);
 
-    // CompareBar 中的对比按钮
+    // CompareBar 中的对比按钮 — 带 ArrowRight 图标的按钮
     const bar = page.locator("div.fixed.bottom-0");
     await expect(bar).toBeVisible();
 
-    const compareBtn = bar.getByRole("button", { name: /对比|Compare/ });
+    const compareBtn = bar.locator("button:has(svg.lucide-arrow-right)");
     await expect(compareBtn).toBeVisible();
     await compareBtn.click();
+    await page.waitForURL("**/compare?models=*");
     await page.waitForLoadState("networkidle");
 
     expect(page.url()).toContain("/compare?models=");
