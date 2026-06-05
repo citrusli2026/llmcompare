@@ -34,7 +34,8 @@ test.describe("Home Page", () => {
     await page.waitForTimeout(500);
 
     // 验证排序后第一行有数据
-    const firstScore = page.locator("tbody tr").first().locator("td").nth(3);
+    // td(0)=checkbox td(1)=name td(2)=company td(3)=date td(4)=intelligence
+    const firstScore = page.locator("tbody tr").first().locator("td").nth(4);
     await expect(firstScore).not.toHaveText("—");
 
     await page.screenshot({ path: `${SCREENSHOTS}/home-sorted.png`, fullPage: true });
