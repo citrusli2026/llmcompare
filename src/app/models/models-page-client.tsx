@@ -22,16 +22,18 @@ export default function ModelsPageClient() {
 
   const initialQuery = searchParams.get("q") ?? "";
   const initialFilter = (searchParams.get("filter") as Filter) ?? "全部";
+  const initialCompany = searchParams.get("company") ?? "";
 
   const [activeFilter, setActiveFilter] = useState<Filter>(
     FILTER_KEYS.includes(initialFilter) ? initialFilter : "全部"
   );
   const [searchQuery, setSearchQuery] = useState(initialQuery);
+  const [companyFilter, setCompanyFilter] = useState(initialCompany);
 
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const updateUrl = useCallback(
-    (query: string, filter: Filter) => {
+    (query: string, filter: Filter, company: string) => {
       const params = new URLSearchParams(searchParams.toString());
       if (query) {
         params.set("q", query);
@@ -42,6 +44,11 @@ export default function ModelsPageClient() {
         params.set("filter", filter);
       } else {
         params.delete("filter");
+      }
+      if (company) {
+        params.set("company", company);
+      } else {
+        params.delete("company");
       }
       router.replace(`?${params.toString()}`, { scroll: false });
     },
@@ -55,19 +62,28 @@ export default function ModelsPageClient() {
         clearTimeout(searchDebounceRef.current);
       }
       searchDebounceRef.current = setTimeout(() => {
-        updateUrl(value, activeFilter);
+        updateUrl(value, activeFilter, companyFilter);
       }, 300);
     },
-    [activeFilter, updateUrl]
+    [activeFilter, updateUrl, companyFilter]
   );
 
   const handleFilterChange = useCallback(
     (key: string) => {
       const filter = key as Filter;
       setActiveFilter(filter);
-      updateUrl(searchQuery, filter);
+      updateUrl(searchQuery, filter, companyFilter);
     },
-    [searchQuery, updateUrl]
+    [searchQuery, updateUrl, companyFilter]
+  );
+
+  const handleCompanyChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const company = e.target.value;
+      setCompanyFilter(company);
+      updateUrl(searchQuery, activeFilter, company);
+    },
+    [searchQuery, activeFilter, updateUrl]
   );
 
   const filterOptions: FilterOption[] = useMemo(
@@ -86,6 +102,11 @@ export default function ModelsPageClient() {
   );
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
+
+  const companies = useMemo(
+    () => [...new Set(allModels.map((m) => m.company).filter(Boolean))].sort(),
+    [allModels]
+  );
 
   // Compare selection from URL params
   const compareFromUrl = useMemo(
@@ -121,14 +142,16 @@ export default function ModelsPageClient() {
     return allModels.filter((m) => {
       const matchesFilter =
         activeFilter === "全部" ? true : m.type === activeFilter;
+      const matchesCompany =
+        companyFilter === "" ? true : m.company === companyFilter;
       const matchesSearch =
         searchQuery === ""
           ? true
           : m.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             m.company.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesFilter && matchesSearch;
+      return matchesFilter && matchesCompany && matchesSearch;
     });
-  }, [allModels, activeFilter, searchQuery]);
+  }, [allModels, activeFilter, companyFilter, searchQuery]);
 
   return (
     <div className="min-h-screen bg-surface-base">
@@ -152,11 +175,23 @@ export default function ModelsPageClient() {
               activeKey={activeFilter}
               onFilterChange={handleFilterChange}
             />
-            <SearchInput
-              value={searchQuery}
-              onChange={handleSearchChange}
-              placeholder={t("models.searchPlaceholder")}
-            />
+            <div className="flex gap-3 flex-1">
+              <select
+                value={companyFilter}
+                onChange={handleCompanyChange}
+                className="rounded-lg border border-surface-border bg-surface-card px-3 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-violet/40"
+              >
+                <option value="">{t("models.filterAllCompanies")}</option>
+                {companies.map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
+              <SearchInput
+                value={searchQuery}
+                onChange={handleSearchChange}
+                placeholder={t("models.searchPlaceholder")}
+              />
+            </div>
           </div>
 
           <RankingTable models={filteredModels} />
