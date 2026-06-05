@@ -24,7 +24,7 @@ export default function Image() {
           模型图鉴
         </div>
         <div style={{ marginTop: 16, fontSize: 28, color: "#a5b4fc" }}>
-          国内大模型数据一览
+          全球 AI 模型数据一览
         </div>
       </div>
     ),
