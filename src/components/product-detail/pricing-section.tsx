@@ -3,6 +3,7 @@
 import { DollarSign } from "lucide-react";
 import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
+import { Tooltip } from "@/components/tooltip";
 
 interface PricingSectionProps {
   model: ModelWithScores;
@@ -23,11 +24,11 @@ export function PricingSection({ model }: PricingSectionProps) {
           <div className="space-y-1 text-sm">
             <div className="flex justify-between">
               <span className="text-text-muted">{t("product.input")}</span>
-              <span className="text-text-primary">¥{r.cn_input}/M</span>
+              <span className="text-text-primary">¥{r.cn_input}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>
             </div>
             <div className="flex justify-between">
               <span className="text-text-muted">{t("product.output")}</span>
-              <span className="text-text-primary">¥{r.cn_output}/M</span>
+              <span className="text-text-primary">¥{r.cn_output}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>
             </div>
           </div>
           <div className="border-t border-surface-border mt-3" />
@@ -38,11 +39,11 @@ export function PricingSection({ model }: PricingSectionProps) {
         <div className="space-y-1 text-sm">
           <div className="flex justify-between">
             <span className="text-text-muted">{t("product.inputAa")}</span>
-            <span className="text-text-primary">${r.input}/M</span>
+            <span className="text-text-primary">${r.input}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>
           </div>
           <div className="flex justify-between">
             <span className="text-text-muted">{t("product.outputAa")}</span>
-            <span className="text-text-primary">${r.output}/M</span>
+            <span className="text-text-primary">${r.output}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>
           </div>
         </div>
       </div>
@@ -54,11 +55,11 @@ export function PricingSection({ model }: PricingSectionProps) {
             <div className="space-y-1 text-sm">
               <div className="flex justify-between">
                 <span className="text-text-muted">{t("product.input")}</span>
-                <span className="text-text-primary">${r.openrouter_pricing.prompt}/M</span>
+                <span className="text-text-primary">${r.openrouter_pricing.prompt}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>
               </div>
               <div className="flex justify-between">
                 <span className="text-text-muted">{t("product.output")}</span>
-                <span className="text-text-primary">${r.openrouter_pricing.completion}/M</span>
+                <span className="text-text-primary">${r.openrouter_pricing.completion}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>
               </div>
             </div>
           </div>

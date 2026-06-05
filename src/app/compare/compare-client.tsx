@@ -9,6 +9,7 @@ import { ArrowLeft, BarChart3, Brain, Code, Bot, Zap, DollarSign, Layers, Calend
 import { getModelById, type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { cn, getTypeBadgeClasses } from "@/lib/utils";
+import { Tooltip } from "@/components/tooltip";
 
 interface CompareRow {
   labelKey: string;
@@ -74,10 +75,10 @@ export function ComparePageClient() {
       icon: DollarSign,
       getValue: (m) => {
         if (m.raw.openrouter_pricing) {
-          return `$${m.raw.openrouter_pricing.prompt}/$${m.raw.openrouter_pricing.completion}/M`;
+          return <span>${m.raw.openrouter_pricing.prompt}/${m.raw.openrouter_pricing.completion}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>;
         }
         if (m.raw.input != null) {
-          return `$${m.raw.input}/$${m.raw.output}/M`;
+          return <span>${m.raw.input}/${m.raw.output}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>;
         }
         return "—";
       },

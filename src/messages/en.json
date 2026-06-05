@@ -141,7 +141,8 @@
     "openWeights": "Open Weights",
     "imageInput": "Image Input",
     "chineseEval": "Chinese Eval",
-    "unknown": "Unknown"
+    "unknown": "Unknown",
+    "perMUnit": "/M = per million tokens"
   },
   "compare": {
     "title": "Model Comparison",

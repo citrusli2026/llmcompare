@@ -8,6 +8,7 @@ import { ArrowUpDown, ArrowUp, ArrowDown, Trophy, DollarSign, Brain, Code, Bot, 
 import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
+import { Tooltip } from "@/components/tooltip";
 import { type ScoreKey, type SortKey, type HeaderDef } from "./types";
 import { computePercentiles, formatScore } from "./utils";
 import { useModelGroups } from "./use-model-groups";
@@ -81,7 +82,7 @@ export function RankingTable({ models }: RankingTableProps) {
       ),
     cost: (m) =>
       m.raw.openrouter_pricing != null ? (
-        <span>${m.raw.openrouter_pricing.prompt}<span className="text-text-secondary text-[10px]">/</span>${m.raw.openrouter_pricing.completion}<span className="text-text-secondary text-[10px]">/M</span></span>
+        <span>${m.raw.openrouter_pricing.prompt}<span className="text-text-secondary text-[10px]">/</span>${m.raw.openrouter_pricing.completion}<Tooltip content={t("common.perMUnit")}><span className="text-text-secondary text-[10px]">/M</span></Tooltip></span>
       ) : (
         <span className="text-text-dim text-xs">—</span>
       ),
@@ -96,7 +97,7 @@ export function RankingTable({ models }: RankingTableProps) {
   const renderMetric = (model: ModelWithScores, key: ScoreKey) => {
     if (key === "cost") {
       if (model.raw.openrouter_pricing != null) {
-        return <span>${model.raw.openrouter_pricing.completion}<span className="text-text-secondary text-[10px]">/M</span></span>;
+        return <span>${model.raw.openrouter_pricing.completion}<Tooltip content={t("common.perMUnit")}><span className="text-text-secondary text-[10px]">/M</span></Tooltip></span>;
       }
       return <span className="text-text-dim text-xs">—</span>;
     }
