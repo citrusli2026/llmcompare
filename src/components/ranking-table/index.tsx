@@ -67,11 +67,10 @@ export function RankingTable({ models }: RankingTableProps) {
   // 全局数据集最大值，供 ScoreBar 以满进度渲染
   const globalMax = useMemo(() => {
     const all = getAllModelsUnfiltered();
-    const maxKey = (key: string) => Math.max(...all.map((m) => (m.raw as any)[key] ?? 0), 1);
     return {
-      intelligence: maxKey("intelligence"),
-      coding: maxKey("coding"),
-      agentic: maxKey("agentic"),
+      intelligence: Math.max(...all.map((m) => m.raw.intelligence ?? 0), 1),
+      coding: Math.max(...all.map((m) => m.raw.coding ?? 0), 1),
+      agentic: Math.max(...all.map((m) => m.raw.agentic ?? 0), 1),
     } as const;
   }, []);
 
