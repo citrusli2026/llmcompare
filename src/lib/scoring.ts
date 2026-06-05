@@ -44,6 +44,12 @@ interface RawPricing {
   display: string;
 }
 
+interface RawBenchmarks {
+  gpqa: number | null;
+  hle: number | null;
+  mmlu_pro: number | null;
+}
+
 interface RawMeta {
   context_window: number | null;
   parameters: number | null;
@@ -63,6 +69,7 @@ interface RawModel {
   scores: RawScores;
   speed?: RawSpeed;
   pricing?: RawPricing;
+  benchmarks?: RawBenchmarks;
   vendor_links?: VendorLinks;
   cn_pricing?: {
     input: number;
@@ -110,6 +117,11 @@ export interface ModelWithScores {
     arena_rankings: Record<string, ArenaRanking | undefined> | null;
     arena_code: number | null;
     data_completeness_pct: number;
+    benchmarks: {
+      gpqa: number | null;
+      hle: number | null;
+      mmlu_pro: number | null;
+    };
   };
 
   flags: ModelFlags;
@@ -160,6 +172,11 @@ function initCache(): void {
         arena_rankings: m.arena_rankings && Object.keys(m.arena_rankings).length > 0 ? m.arena_rankings : null,
         arena_code: m.arena_rankings?.code?.score ?? null,
         data_completeness_pct: ((m as unknown) as Record<string, unknown>).data_completeness_pct as number ?? 0,
+        benchmarks: {
+          gpqa: (m.benchmarks?.gpqa ?? null) as number | null,
+          hle: (m.benchmarks?.hle ?? null) as number | null,
+          mmlu_pro: (m.benchmarks?.mmlu_pro ?? null) as number | null,
+        },
       },
       flags: m.flags,
     };

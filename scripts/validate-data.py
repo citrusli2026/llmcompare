@@ -20,13 +20,13 @@ DATA_PATH = Path(__file__).parent.parent / "src" / "data" / "ranking.json"
 
 # ── 阈值配置（基于历史数据，留出合理波动） ──
 THRESHOLDS = {
-    "total_models": (15, 35),
-    "data_complete": (4, 25),
-    "frontier": (5, 15),
-    "intl": (2, 6),
-    "has_arena": (10, 25),
-    "has_cn_price": (10, 25),
-    "has_speed": (15, 30),
+    "total_models": (15, 50),     # 24→44 模型，宽上限
+    "data_complete": (20, 45),    # 21→42 完整
+    "frontier": (5, 20),          # 9→18 frontier
+    "intl": (5, 25),              # 3→23 国际模型
+    "has_arena": (15, 35),        # 16→28 arena
+    "has_cn_price": (10, 30),     # 21→42 国内定价
+    "has_speed": (20, 40),        # 20→37 速度数据
 }
 
 # 与上次数据对比的最大允许变化率
@@ -144,11 +144,14 @@ def check_required_fields(models):
                 issues.append(f"{m.get('id', '???')}: missing top-level field '{field}'")
                 break
 
-        # scores 必须有 intelligence
+        # scores 必须有 intelligence（仅 data_complete=true 的模型强制要求）
         if "scores" in m and isinstance(m["scores"], dict):
             intel = m["scores"].get("intelligence")
             if intel is None:
-                issues.append(f"{m.get('id', '???')}: missing scores.intelligence")
+                dc = m.get("flags", {}).get("data_complete", False)
+                if dc:
+                    issues.append(f"{m.get('id', '???')}: data_complete=true but missing scores.intelligence")
+                # data_complete=false 的模型 intelligence=null 可接受（新模型尚未评分）
             elif not isinstance(intel, (int, float)):
                 issues.append(f"{m.get('id', '???')}: scores.intelligence is not a number")
         else:
@@ -274,15 +277,24 @@ def check_thresholds(models):
 def check_score_distribution(models):
     """分数分布合理性检查"""
     issues = []
-    ints = [m["scores"]["intelligence"] for m in models if "scores" in m]
+    ints = [
+        m["scores"]["intelligence"]
+        for m in models
+        if "scores" in m and m["scores"].get("intelligence") is not None
+    ]
     if len(ints) < 2:
         return issues
 
     mean = sum(ints) / len(ints)
     std = math.sqrt(sum((x - mean) ** 2 for x in ints) / len(ints))
 
-    # 检查异常值 (>3σ)
-    outliers = [m["id"] for m in models if abs(m["scores"]["intelligence"] - mean) > 3 * std]
+    # 检查异常值 (>3σ) — 跳过 intelligence=null 的模型
+    outliers = [
+        m["id"]
+        for m in models
+        if m.get("scores", {}).get("intelligence") is not None
+        and abs(m["scores"]["intelligence"] - mean) > 3 * std
+    ]
     if outliers:
         issues.append(f"intelligence outliers (>3σ): {outliers}")
 

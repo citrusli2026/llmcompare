@@ -35,17 +35,26 @@ vi.mock("next/navigation", () => ({
   usePathname: () => "/models",
 }));
 
-// Mock scoring.ts getAllModelsUnfiltered
+// Mock scoring.ts getAllModelsUnfiltered + getModelById
 vi.mock("@/lib/scoring", async () => {
   const actual = await vi.importActual<typeof import("@/lib/scoring")>("@/lib/scoring");
+  const _models: Record<string, ModelWithScores> = {};
   return {
     ...actual,
     getAllModelsUnfiltered: vi.fn(),
+    getModelById: vi.fn((id: string) => _models[id] ?? undefined),
   };
 });
 
-import { getAllModelsUnfiltered } from "@/lib/scoring";
+import { getAllModelsUnfiltered, getModelById } from "@/lib/scoring";
 import { makeModel } from "../fixtures";
+
+// Helper to register models for getModelById mock
+function registerModels(models: ModelWithScores[]) {
+  (getModelById as ReturnType<typeof vi.fn>).mockImplementation(
+    (id: string) => models.find((m) => m.id === id) ?? undefined
+  );
+}
 
 describe("ModelsPage Integration — 筛选+搜索+表格联动", () => {
   beforeEach(() => {
@@ -153,5 +162,40 @@ describe("ModelsPage Integration — 筛选+搜索+表格联动", () => {
 
     // 只显示 deepseek 模型
     expect(screen.getAllByText(/deepseek/).length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("CompareBar 显示已选模型 (来自 URL param)", () => {
+    const mockModels: ModelWithScores[] = [
+      makeModel("compare-model-1"),
+      makeModel("compare-model-2"),
+      makeModel("other-model"),
+    ];
+    (getAllModelsUnfiltered as ReturnType<typeof vi.fn>).mockReturnValue(mockModels);
+    registerModels(mockModels);
+
+    mockSearchParams = new URLSearchParams("?compare=compare-model-1,compare-model-2");
+    render(<ModelsPageClient />);
+
+    // CompareBar 应显示两个模型名（模型名既在行中也在 CompareBar 中，用 getAllByText 检查）
+    const model1Elements = screen.getAllByText("compare-model-1");
+    expect(model1Elements.length).toBeGreaterThanOrEqual(1);
+    const model2Elements = screen.getAllByText("compare-model-2");
+    expect(model2Elements.length).toBeGreaterThanOrEqual(1);
+    // CompareBar 的"开始对比"按钮应存在
+    expect(screen.getByText(/compare.compareNow/)).toBeInTheDocument();
+  });
+
+  it("CompareBar 无选中模型时不显示", () => {
+    const mockModels: ModelWithScores[] = [
+      makeModel("model-1"),
+      makeModel("model-2"),
+    ];
+    (getAllModelsUnfiltered as ReturnType<typeof vi.fn>).mockReturnValue(mockModels);
+
+    mockSearchParams = new URLSearchParams();
+    render(<ModelsPageClient />);
+
+    // CompareBar 不应渲染任何模型标签
+    expect(screen.queryByText("compare.compareNow")).not.toBeInTheDocument();
   });
 });

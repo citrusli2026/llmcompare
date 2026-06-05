@@ -48,3 +48,7 @@ dist
 .playwright-mcp.hermes/
 .hermes
 .playwright-mcp
+
+# Python
+__pycache__/
+*.pyc

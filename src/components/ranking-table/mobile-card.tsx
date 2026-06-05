@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useMemo, useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, CheckSquare, Square } from "lucide-react";
 import { cn, getTypeBadgeClasses } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup, type ScoreKey } from "./types";
 import { getRawValue, getScoreColor, ScoreBar } from "./utils";
-import { useMemo } from "react";
 import { useTranslation } from "@/lib/i18n";
+
+const MAX_COMPARE = 6;
 
 interface MobileCardProps {
   model: ModelWithScores;
@@ -22,8 +25,41 @@ interface MobileCardProps {
 }
 
 export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metricOrder, renderMetric, percentiles }: MobileCardProps) {
-  void _sortKey; // 保留参数但当前未使用
+  void _sortKey;
   const { t } = useTranslation();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // ── Compare logic (same as model-row) ──
+  const compareIds = useMemo(
+    () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],
+    [searchParams]
+  );
+  const isInCompare = useMemo(
+    () => compareIds.includes(model.id),
+    [compareIds, model.id]
+  );
+  const toggleCompare = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      e.preventDefault();
+      const params = new URLSearchParams(searchParams.toString());
+      let current = compareIds;
+      if (isInCompare) {
+        current = current.filter((id) => id !== model.id);
+      } else {
+        if (current.length >= MAX_COMPARE) return;
+        current = [...current, model.id];
+      }
+      if (current.length > 0) {
+        params.set("compare", current.join(","));
+      } else {
+        params.delete("compare");
+      }
+      router.replace(`?${params.toString()}`, { scroll: false });
+    },
+    [model.id, isInCompare, compareIds, searchParams, router]
+  );
 
   const headerMap = useMemo(() => {
     const map = new Map<string, HeaderDef>();
@@ -34,27 +70,46 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
   }, [headers]);
 
   return (
-    <Link
-      href={`/product/${model.id}`}
+    <div
       className={cn(
-        "block rounded-xl border border-surface-border p-3 group hover:ring-1 hover:ring-accent-violet/30 transition-all",
+        "relative rounded-xl border border-surface-border p-3 group hover:ring-1 hover:ring-accent-violet/30 transition-all",
         group.borderClass,
         group.rowBgClass
       )}
     >
-      {/* 模型名 */}
-      <div className="mb-2">
-        <div className="inline-flex items-center gap-1 font-medium text-text-primary max-w-full">
-          {group.showRank && (
-            <span className="text-text-muted text-xs mr-1">#{group.rankOffset + idx + 1}</span>
-          )}
-          <span className="truncate">{model.name}</span>
-          <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
-        </div>
-      </div>
+      {/* Compare checkbox — top right */}
+      <button
+        onClick={toggleCompare}
+        className={cn(
+          "absolute top-2 right-2 flex items-center justify-center w-6 h-6 rounded transition-colors z-10",
+          isInCompare
+            ? "text-accent-violet hover:text-violet-500"
+            : "text-text-muted hover:text-text-secondary"
+        )}
+        aria-label={isInCompare ? t("compare.remove") : t("compare.addToCompare")}
+        title={isInCompare ? t("compare.remove") : t("compare.addToCompare")}
+      >
+        {isInCompare ? (
+          <CheckSquare className="h-4 w-4" />
+        ) : (
+          <Square className="h-4 w-4" />
+        )}
+      </button>
+
+      {/* 模型名（可点击导航） */}
+      <Link
+        href={`/product/${model.id}`}
+        className="inline-flex items-center gap-1 font-medium text-text-primary max-w-[85%]"
+      >
+        {group.showRank && (
+          <span className="text-text-muted text-xs mr-1">#{group.rankOffset + idx + 1}</span>
+        )}
+        <span className="truncate">{model.name}</span>
+        <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+      </Link>
 
       {/* 元信息行 */}
-      <div className="flex flex-wrap items-center gap-1 mb-2">
+      <div className="flex flex-wrap items-center gap-1 mt-1 mb-2">
         <span className="text-xs text-text-secondary">{model.company}</span>
         {model.raw.release_date && (
           <span className="text-[10px] text-text-muted">· {model.raw.release_date}</span>
@@ -96,6 +151,6 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
           );
         })}
       </div>
-    </Link>
+    </div>
   );
 }

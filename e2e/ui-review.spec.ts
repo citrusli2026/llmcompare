@@ -80,7 +80,8 @@ test.describe("ScoreBar — 表格分数可视化", () => {
     await expect(firstRow).toBeVisible();
 
     // ScoreBar: 分数数字 + 进度条
-    const scoreCell = firstRow.locator("td").nth(3);
+    // td(0)=checkbox td(1)=name td(2)=company td(3)=date td(4)=intelligence
+    const scoreCell = firstRow.locator("td").nth(4);
     // 分数文本有 tabular-nums class
     const scoreSpan = scoreCell.locator("span.tabular-nums");
     await expect(scoreSpan.first()).toBeVisible();
@@ -113,7 +114,9 @@ test.describe("ScoreBar — 表格分数可视化", () => {
     const count = await rows.count();
     let foundDash = false;
     for (let i = 0; i < Math.min(count, 10); i++) {
-      const cell = rows.nth(i).locator("td").nth(6);
+      // td(0)=checkbox td(1)=name td(2)=company td(3)=date td(4)=intel
+      // td(5)=coding td(6)=agentic td(7)=arenaCode td(8)=cost td(9)=tokens
+      const cell = rows.nth(i).locator("td").nth(7);
       const text = await cell.textContent();
       if (text?.includes("—")) {
         foundDash = true;
