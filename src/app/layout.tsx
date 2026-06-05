@@ -19,13 +19,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.llmcompare.cc"),
   title: {
-    default: "模型图鉴 - 国内大模型数据一览",
+    default: "模型图鉴 - 全球 AI 模型数据一览",
     template: "%s - 模型图鉴",
   },
-  description: "收集整理了国内大模型的智能评分、API 速度与官方定价数据，为开发者和研究者提供参考。",
+  description: "收集整理了全球 AI 模型的智能评分、API 速度与官方定价数据，涵盖国内外头部厂商的最新模型，为开发者和研究者提供参考。",
   openGraph: {
-    title: "模型图鉴 - 国内大模型数据一览",
-    description: "收集整理了国内大模型的智能评分、API 速度与官方定价数据。",
+    title: "模型图鉴 - 全球 AI 模型数据一览",
+    description: "收集整理了全球 AI 模型的智能评分、API 速度与官方定价数据。",
     type: "website",
     locale: "zh_CN",
   },
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
 const themeScript = `(function(){try{var t=localStorage.getItem("theme");document.documentElement.classList.remove("light","dark");if(t==="light"){document.documentElement.classList.add("light");}else{document.documentElement.classList.add("dark");}}catch(e){document.documentElement.classList.add("dark");}})();`;
 
-const localeScript = `(function(){try{var l=localStorage.getItem("llmcompare-locale");document.documentElement.lang=l==="en"?\"en\":\"zh-CN\";if(l&&l!==\"zh\"){document.documentElement.style.visibility=\"hidden\";}}catch(e){}})();`;
+const localeScript = `(function(){try{var l=localStorage.getItem("llmcompare-locale");document.documentElement.lang=l==="en"?"en":"zh-CN";if(l&&l!=="zh"){document.documentElement.style.visibility="hidden";}}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -60,7 +60,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "模型图鉴",
-              description: "收集整理了国内大模型的智能评分、API 速度与官方定价数据，为开发者和研究者提供参考。",
+              description: "收集整理了全球 AI 模型的智能评分、API 速度与官方定价数据，涵盖国内外头部厂商的最新模型，为开发者和研究者提供参考。",
               url: "https://www.llmcompare.cc",
             }),
           }}
