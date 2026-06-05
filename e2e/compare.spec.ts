@@ -58,8 +58,9 @@ test.describe("Compare Feature — 模型对比功能", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 找到第一个 button（不在 <a> 内的独立 button = 对比复选框）
-    const addBtn = page.locator("button").first();
+    // 找到卡片区域的对比按钮（mobile card 有 relative class，StatsStrip 没有）
+    const mobileCard = page.locator("div.relative.rounded-xl.border").first();
+    const addBtn = mobileCard.locator("button").first();
     await expect(addBtn).toBeVisible();
     await addBtn.click();
     await page.waitForTimeout(300);
@@ -74,8 +75,9 @@ test.describe("Compare Feature — 模型对比功能", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 选一个模型
-    const addBtn = page.locator("button").first();
+    // 找到卡片区域的对比按钮
+    const mobileCard = page.locator("div.relative.rounded-xl.border").first();
+    const addBtn = mobileCard.locator("button").first();
     await addBtn.click();
     await page.waitForTimeout(300);
 
