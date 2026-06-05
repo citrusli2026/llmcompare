@@ -22,13 +22,13 @@ export default function HomeClient() {
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
 
   const displayModels = useMemo(() => {
-    if (!searchQuery) return allModels.slice(0, 20);
+    if (!searchQuery) return allModels.slice(0, 15);
     const q = searchQuery.toLowerCase();
     return allModels.filter(
       (m) =>
         m.name.toLowerCase().includes(q) ||
         m.company.toLowerCase().includes(q)
-    ).slice(0, 20);
+    ).slice(0, 15);
   }, [allModels, searchQuery]);
 
   // Compare selection from URL params
