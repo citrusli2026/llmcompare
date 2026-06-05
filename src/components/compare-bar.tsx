@@ -25,7 +25,7 @@ export function CompareBar({
   if (selectedModels.length === 0) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-surface-border bg-surface-base/95 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
+    <div data-testid="compare-bar" className="fixed bottom-0 left-0 right-0 z-50 border-t border-surface-border bg-surface-base/95 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.12)]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex items-center gap-3 sm:gap-4">
           {/* Icon + Count */}
