@@ -150,6 +150,7 @@ export function RankingTable({ models }: RankingTableProps) {
           <Table>
             <TableHeader>
               <TableRow className="border-surface-border hover:bg-transparent">
+                <TableHead className="w-10 sm:w-12" />
                 <TableHead className="text-text-muted">{t("table.model")}</TableHead>
                 <TableHead className="text-text-muted hidden sm:table-cell">{t("table.company")}</TableHead>
                 <TableHead
