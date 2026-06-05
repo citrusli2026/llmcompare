@@ -1,7 +1,8 @@
 "use client";
 
+import { useMemo } from "react";
 import { BarChart3 } from "lucide-react";
-import { type ModelWithScores } from "@/lib/scoring";
+import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -25,11 +26,11 @@ function MetricBar({
   const color =
     value == null
       ? "bg-surface-border"
-      : fillPct >= 80
+      : fillPct >= 70
         ? "bg-accent-lime"
-        : fillPct >= 65
+        : fillPct >= 55
           ? "bg-accent-violet"
-          : fillPct >= 50
+          : fillPct >= 40
             ? "bg-accent-coral"
             : "bg-text-muted";
 
@@ -59,6 +60,19 @@ export function ScoreOverview({ model }: ScoreOverviewProps) {
   const { t } = useTranslation();
   const r = model.raw;
 
+  // Compute dynamic max values from the full dataset for consistent scaling
+  const { maxSpeed, maxPrice } = useMemo(() => {
+    const all = getAllModelsUnfiltered();
+    let maxS = 0;
+    let maxP = 0;
+    for (const m of all) {
+      if (m.raw.median_tps != null && m.raw.median_tps > maxS) maxS = m.raw.median_tps;
+      const p = m.raw.openrouter_pricing?.completion ?? m.raw.output ?? 0;
+      if (p > maxP) maxP = p;
+    }
+    return { maxSpeed: Math.max(maxS, 1), maxPrice: Math.max(maxP, 1) };
+  }, []);
+
   const metrics: { label: string; value: number | null; maxValue?: number; invert?: boolean; unit?: string }[] = [
     {
       label: t("source.intelligenceLabel"),
@@ -75,7 +89,7 @@ export function ScoreOverview({ model }: ScoreOverviewProps) {
     {
       label: t("source.speedLabel"),
       value: r.median_tps,
-      maxValue: 200,
+      maxValue: maxSpeed,
       unit: " t/s",
     },
   ];
@@ -89,7 +103,7 @@ export function ScoreOverview({ model }: ScoreOverviewProps) {
     metrics.push({
       label: t("source.costLabel"),
       value: priceVal,
-      maxValue: 30,
+      maxValue: maxPrice,
       invert: true,
       unit: "/M",
     });
