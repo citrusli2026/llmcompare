@@ -217,7 +217,7 @@ export function ComparePageClient() {
                       key={ri}
                       className={cn(
                         "border-b border-surface-border last:border-b-0",
-                        ri % 2 === 1 ? "bg-surface-elevated/40" : ""
+                        ri % 2 === 1 ? "bg-surface-elevated" : ""
                       )}
                     >
                       <td className="sticky left-0 bg-inherit z-10 px-2 py-2 sm:px-6 sm:py-4 shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]">
@@ -234,7 +234,7 @@ export function ComparePageClient() {
                             key={m.id}
                             className={cn(
                               "px-3 py-3 sm:px-4 sm:py-4 text-center text-sm transition-colors",
-                              isBest ? "bg-accent-lime/5" : ""
+                              isBest ? "bg-accent-lime/10" : ""
                             )}
                           >
                             <div className="flex items-center justify-center gap-1.5">
