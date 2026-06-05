@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
@@ -10,17 +10,26 @@ import { getAllModelsUnfiltered, getModelById, type ModelWithScores } from "@/li
 import { RankingTable } from "@/components/ranking-table";
 import { StatsStrip } from "@/components/stats-strip";
 import { CompareBar } from "@/components/compare-bar";
+import { SearchInput } from "@/components/search-input";
 import { useTranslation } from "@/lib/i18n";
 
 export default function HomeClient() {
   const { t } = useTranslation();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const allModels = useMemo(() => getAllModelsUnfiltered(), []);
 
   const displayModels = useMemo(() => {
-    const all = getAllModelsUnfiltered();
-    return all.slice(0, 20);
-  }, []);
+    if (!searchQuery) return allModels.slice(0, 20);
+    const q = searchQuery.toLowerCase();
+    return allModels.filter(
+      (m) =>
+        m.name.toLowerCase().includes(q) ||
+        m.company.toLowerCase().includes(q)
+    ).slice(0, 20);
+  }, [allModels, searchQuery]);
 
   // Compare selection from URL params
   const compareFromUrl = useMemo(
@@ -102,6 +111,14 @@ export default function HomeClient() {
               {t("home.rankingViewAll")}
               <ArrowRight className="h-4 w-4" />
             </Link>
+          </div>
+
+          <div className="mb-4 sm:mb-6">
+            <SearchInput
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder={t("models.searchPlaceholder")}
+            />
           </div>
 
           <RankingTable models={displayModels} />
