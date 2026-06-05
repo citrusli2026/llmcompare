@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -30,9 +31,15 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
   const searchParams = useSearchParams();
 
   // Read compare IDs from URL
-  const compareIds = searchParams.get("compare")?.split(",").filter(Boolean) ?? [];
+  const compareIds = useMemo(
+    () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],
+    [searchParams]
+  );
 
-  const isInCompare = compareIds.includes(model.id);
+  const isInCompare = useMemo(
+    () => compareIds.includes(model.id),
+    [compareIds, model.id]
+  );
 
   const toggleCompare = useCallback(
     (e: React.MouseEvent) => {

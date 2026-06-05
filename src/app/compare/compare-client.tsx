@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
@@ -31,7 +31,6 @@ function isBestValue(val: number | null, vals: (number | null)[], higherIsBetter
 
 export function ComparePageClient() {
   const { t } = useTranslation();
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const modelIds = useMemo(
@@ -136,7 +135,7 @@ export function ComparePageClient() {
       getValue: (m) => m.raw.benchmarks.hle != null ? formatNum(m.raw.benchmarks.hle) : "—",
       getNumericValue: (m) => m.raw.benchmarks.hle,
     },
-  ], [t]);
+  ], []);
 
   if (models.length === 0) {
     return (
@@ -227,7 +226,7 @@ export function ComparePageClient() {
                           <span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span>
                         </div>
                       </td>
-                      {models.map((m, mi) => {
+                      {models.map((m) => {
                         const numVal = row.getNumericValue?.(m) ?? null;
                         const isBest = isBestValue(numVal, values, higherIsBetter);
                         return (

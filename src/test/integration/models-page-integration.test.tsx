@@ -51,11 +51,9 @@ import { makeModel } from "../fixtures";
 
 // Helper to register models for getModelById mock
 function registerModels(models: ModelWithScores[]) {
-  for (const m of models) {
-    (getModelById as ReturnType<typeof vi.fn>).mockImplementation(
-      (id: string) => models.find((m) => m.id === id) ?? undefined
-    );
-  }
+  (getModelById as ReturnType<typeof vi.fn>).mockImplementation(
+    (id: string) => models.find((m) => m.id === id) ?? undefined
+  );
 }
 
 describe("ModelsPage Integration — 筛选+搜索+表格联动", () => {

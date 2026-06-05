@@ -25,7 +25,10 @@ export default function HomeClient() {
   }, []);
 
   // Compare selection from URL params
-  const compareFromUrl = searchParams.get("compare")?.split(",").filter(Boolean) ?? [];
+  const compareFromUrl = useMemo(
+    () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],
+    [searchParams]
+  );
   const selectedCompareModels = useMemo(
     () => compareFromUrl.map((id) => getModelById(id)).filter((m): m is ModelWithScores => m != null),
     [compareFromUrl]

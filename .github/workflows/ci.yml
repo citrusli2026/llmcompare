@@ -28,11 +28,17 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Security audit
+        run: npm audit --audit-level=high || true
+
       - name: Unit & Integration Tests
         run: npm test -- --run
 
       - name: Data Quality Validation
         run: python3 scripts/validate-data.py
+
+      - name: Data Validation Unit Tests
+        run: python3 scripts/test_validate_data.py
 
       - name: Build
         run: npm run build
