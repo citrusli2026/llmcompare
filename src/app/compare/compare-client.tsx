@@ -95,7 +95,9 @@ export function ComparePageClient() {
     {
       labelKey: "compare.contextWindow",
       icon: Layers,
-      getValue: (m) => m.raw.context_window != null ? `${formatNum(m.raw.context_window, 0)} tokens` : "—",
+      getValue: (m) => m.raw.context_window != null
+        ? `${m.raw.context_window >= 1000000 ? (m.raw.context_window / 1000000).toFixed(0) + 'M' : formatNum(m.raw.context_window, 0)} tokens`
+        : "—",
       getNumericValue: (m) => m.raw.context_window,
     },
     {
@@ -179,22 +181,22 @@ export function ComparePageClient() {
 
           {/* Comparison Table */}
           <div className="overflow-x-auto rounded-xl border border-surface-border bg-surface-card">
-            <table className="w-full min-w-[360px] sm:min-w-[600px]">
+            <table className="w-full min-w-[320px] sm:min-w-[600px]">
               <thead>
                 <tr className="border-b border-surface-border">
-                  <th className="sticky left-0 bg-surface-card z-10 text-left px-2 py-2 sm:px-6 sm:py-4 text-xs font-semibold text-text-muted uppercase tracking-wider min-w-[100px] sm:min-w-[140px] shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]">
+                  <th className="sticky left-0 bg-surface-card z-10 text-left px-1.5 py-2 sm:px-6 sm:py-4 text-xs font-semibold text-text-muted uppercase tracking-wider min-w-[75px] sm:min-w-[140px] shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]">
                     {t("compare.colName")}
                   </th>
                   {models.map((m) => (
                     <th
                       key={m.id}
-                      className="px-2 py-2 sm:px-4 sm:py-4 text-center min-w-[120px] sm:min-w-[180px]"
+                      className="px-1.5 py-2 sm:px-4 sm:py-4 text-center min-w-[100px] sm:min-w-[180px]"
                     >
-                      <div className="inline-flex flex-col items-center gap-1">
-                        <span className="font-semibold text-sm text-text-primary truncate max-w-[140px]">
+                      <div className="inline-flex flex-col items-center gap-0.5 sm:gap-1">
+                        <span className="font-semibold text-xs sm:text-sm text-text-primary truncate max-w-[95px] sm:max-w-[160px]">
                           {m.name}
                         </span>
-                        <span className="text-[10px] text-text-muted">{m.company}</span>
+                        <span className="text-[9px] sm:text-[10px] text-text-muted truncate max-w-[95px] sm:max-w-[160px]">{m.company}</span>
                         <Badge
                           variant="secondary"
                           className={cn("text-[10px] py-0 px-1.5", getTypeBadgeClasses(m.type as "开源" | "闭源"))}
@@ -220,9 +222,9 @@ export function ComparePageClient() {
                         ri % 2 === 1 ? "bg-surface-elevated" : ""
                       )}
                     >
-                      <td className="sticky left-0 bg-inherit z-10 px-2 py-2 sm:px-6 sm:py-4 shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]">
-                        <div className="flex items-center gap-2">
-                          <Icon className="h-4 w-4 text-text-muted shrink-0" />
+                      <td className="sticky left-0 bg-inherit z-10 px-1.5 py-2 sm:px-6 sm:py-4 shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]">
+                        <div className="flex items-center gap-1 sm:gap-2">
+                          <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-text-muted shrink-0" />
                           <span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span>
                         </div>
                       </td>
@@ -233,11 +235,11 @@ export function ComparePageClient() {
                           <td
                             key={m.id}
                             className={cn(
-                              "px-3 py-3 sm:px-4 sm:py-4 text-center text-sm transition-colors",
+                              "px-1.5 py-2 sm:px-4 sm:py-4 text-center text-xs sm:text-sm transition-colors",
                               isBest ? "bg-accent-lime/10" : ""
                             )}
                           >
-                            <div className="flex items-center justify-center gap-1.5">
+                            <div className="flex items-center justify-center gap-1">
                               {isBest && <Star className="h-3 w-3 text-accent-lime shrink-0" />}
                               <span className={cn(
                                 isBest ? "font-semibold text-accent-lime" : "text-text-primary"
