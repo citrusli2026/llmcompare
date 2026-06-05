@@ -62,6 +62,7 @@ export function RankingTable({ models }: RankingTableProps) {
     arenaCode: computePercentiles(models.map((m) => m.raw.arena_code)),
     // cost 用 OR completion 价，与移动端展示一致；桌面双值列 prompt/completion 高度相关，排序结果近似
     cost: computePercentiles(models.map((m) => m.raw.openrouter_pricing?.completion ?? null)),
+    tokens: computePercentiles(models.map((m) => m.raw.openrouter_weekly_tokens ?? null)),
   }), [models]);
 
   // 全局数据集最大值，供 ScoreBar 以满进度渲染
@@ -91,13 +92,23 @@ export function RankingTable({ models }: RankingTableProps) {
         <span className="text-text-dim text-xs">—</span>
       ),
     cost: (m) =>
-      m.raw.openrouter_pricing != null ? (
-        <span>${m.raw.openrouter_pricing.prompt}<span className="text-text-secondary text-[10px]">/</span>${m.raw.openrouter_pricing.completion}<Tooltip content={t("common.perMUnit")}><span className="text-text-secondary text-[10px]">/M</span></Tooltip></span>
+      m.raw.blended != null ? (
+        <span className="inline-flex items-center gap-0.5">
+          <span className="tabular-nums">${m.raw.blended.toFixed(2)}</span>
+          <Tooltip content={t("common.perMUnit")}>
+            <span className="text-text-secondary text-[10px] cursor-help">/M</span>
+          </Tooltip>
+          {m.raw.openrouter_pricing != null && (
+            <Tooltip content={`${t("compare.orPrice")}: $${m.raw.openrouter_pricing.prompt}/$${m.raw.openrouter_pricing.completion}/M`}>
+              <span className="text-text-dim text-[9px] cursor-help ml-0.5">ⓘ</span>
+            </Tooltip>
+          )}
+        </span>
       ) : (
         <span className="text-text-dim text-xs">—</span>
       ),
     tokens: (m) => {
-      const val = m.raw.arena_votes;
+      const val = m.raw.openrouter_weekly_tokens;
       if (val == null) return <span className="text-text-dim text-xs">—</span>;
       const { value, unit } = formatTokenCount(val);
       return <span>{value}{unit && <span className="text-text-secondary text-[10px]">{unit}</span>}</span>;
@@ -106,8 +117,8 @@ export function RankingTable({ models }: RankingTableProps) {
 
   const renderMetric = (model: ModelWithScores, key: ScoreKey) => {
     if (key === "cost") {
-      if (model.raw.openrouter_pricing != null) {
-        return <span>${model.raw.openrouter_pricing.completion}<Tooltip content={t("common.perMUnit")}><span className="text-text-secondary text-[10px]">/M</span></Tooltip></span>;
+      if (model.raw.blended != null) {
+        return <span>${model.raw.blended.toFixed(2)}<Tooltip content={t("common.perMUnit")}><span className="text-text-secondary text-[10px]">/M</span></Tooltip></span>;
       }
       return <span className="text-text-dim text-xs">—</span>;
     }

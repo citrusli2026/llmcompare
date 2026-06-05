@@ -95,12 +95,6 @@ export function ComparePageClient() {
       },
     },
     {
-      labelKey: "compare.arenaVotes",
-      icon: Trophy,
-      getValue: (m) => m.raw.arena_votes != null ? formatNum(m.raw.arena_votes, 0) : "—",
-      getNumericValue: (m) => m.raw.arena_votes,
-    },
-    {
       labelKey: "compare.orWeeklyTokens",
       icon: TrendingUp,
       getValue: (m) => {
@@ -110,6 +104,12 @@ export function ComparePageClient() {
         return fmt.unit ? `${fmt.value} ${fmt.unit}` : fmt.value;
       },
       getNumericValue: (m) => m.raw.openrouter_weekly_tokens,
+    },
+    {
+      labelKey: "compare.arenaVotes",
+      icon: Trophy,
+      getValue: (m) => m.raw.arena_votes != null ? formatNum(m.raw.arena_votes, 0) : "—",
+      getNumericValue: (m) => m.raw.arena_votes,
     },
     {
       labelKey: "compare.contextWindow",

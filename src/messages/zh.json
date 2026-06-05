@@ -95,6 +95,7 @@
     "output": "输出",
     "inputAa": "输入 (AA)",
     "outputAa": "输出 (AA)",
+    "blendedAa": "混合价 (AA)",
     "vendorLinks": "厂商链接",
     "homepage": "官网",
     "apiDocs": "API 文档",
@@ -172,6 +173,7 @@
     "arenaVotes": "Arena 投票",
     "benchmarkMmluPro": "MMLU-Pro",
     "orWeeklyTokens": "周用量",
+    "orPrice": "OR",
     "bestValue": "最佳"
   }
 }

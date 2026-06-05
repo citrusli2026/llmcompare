@@ -95,6 +95,7 @@
     "output": "Output",
     "inputAa": "Input (AA)",
     "outputAa": "Output (AA)",
+    "blendedAa": "Blended (AA)",
     "vendorLinks": "Vendor Links",
     "homepage": "Homepage",
     "apiDocs": "API Docs",
@@ -172,6 +173,7 @@
     "arenaVotes": "Arena Votes",
     "benchmarkMmluPro": "MMLU-Pro",
     "orWeeklyTokens": "Weekly Tokens",
+    "orPrice": "OR",
     "bestValue": "Best"
   }
 }

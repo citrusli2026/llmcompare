@@ -16,9 +16,18 @@ export function ModelHeader({ model }: ModelHeaderProps) {
   return (
     <div className="flex items-start justify-between gap-4 mb-6">
       <div className="flex items-start gap-4 min-w-0 flex-1">
-        <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-surface-elevated border border-surface-border text-2xl font-semibold text-text-primary shrink-0">
-          {model.name.charAt(0)}
-        </div>
+        {model.logo ? (
+          <img
+            src={model.logo}
+            alt={model.name}
+            className="h-16 w-16 rounded-xl shrink-0 object-contain bg-surface-elevated border border-surface-border p-2"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+          />
+        ) : (
+          <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-surface-elevated border border-surface-border text-2xl font-semibold text-text-primary shrink-0">
+            {model.name.charAt(0)}
+          </div>
+        )}
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 mb-2 flex-wrap">
             <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">{model.name}</h1>
