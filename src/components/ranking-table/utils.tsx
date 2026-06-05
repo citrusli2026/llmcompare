@@ -37,14 +37,14 @@ export function computePercentiles(values: (number | null | undefined)[]): Perce
 
 export function bucketByPercentile(val: number, p: Percentiles, ascending: boolean): keyof typeof COLOR_BY_BUCKET {
   if (ascending) {
-    if (val > p.p75) return "emerald";
-    if (val > p.p50) return "blue";
-    if (val > p.p25) return "amber";
+    if (val >= p.p75) return "emerald";
+    if (val >= p.p50) return "blue";
+    if (val >= p.p25) return "amber";
     return "red";
   }
-  if (val < p.p25) return "emerald";
-  if (val < p.p50) return "blue";
-  if (val < p.p75) return "amber";
+  if (val <= p.p25) return "emerald";
+  if (val <= p.p50) return "blue";
+  if (val <= p.p75) return "amber";
   return "red";
 }
 
