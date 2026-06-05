@@ -44,14 +44,21 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
           </div>
 
           <div className="grid gap-6 lg:grid-cols-3">
+            {/* On mobile: pricing + arena first, then benchmark + speed */}
             <div className="lg:col-span-2 space-y-6">
+              <div className="block lg:hidden space-y-6">
+                <PricingSection model={model} />
+                <ArenaRankings model={model} />
+              </div>
               <BenchmarkSection model={model} />
               <SpeedSection model={model} />
             </div>
 
             <div className="space-y-6">
-              <PricingSection model={model} />
-              <ArenaRankings model={model} />
+              <div className="hidden lg:block space-y-6">
+                <PricingSection model={model} />
+                <ArenaRankings model={model} />
+              </div>
               <TokenUsage model={model} />
             </div>
           </div>

@@ -164,6 +164,6 @@ describe("ProductDetail Integration — 数据→渲染全链路", () => {
     });
     render(<ProductDetailClient model={model} />);
 
-    expect(screen.getByText("1250")).toBeInTheDocument();
+    expect(screen.getAllByText("1250").length).toBeGreaterThanOrEqual(1);
   });
 });
