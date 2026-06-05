@@ -103,7 +103,7 @@ export function ComparePageClient() {
     {
       labelKey: "compare.parameters",
       icon: Weight,
-      getValue: (m) => m.raw.parameters != null ? `${formatNum(m.raw.parameters, 0)}B` : "—",
+      getValue: (m) => m.raw.parameters != null ? `${formatNum(m.raw.parameters, 0)}B` : t("common.unknown"),
     },
     {
       labelKey: "compare.releaseDate",
@@ -231,21 +231,35 @@ export function ComparePageClient() {
                       {models.map((m) => {
                         const numVal = row.getNumericValue?.(m) ?? null;
                         const isBest = isBestValue(numVal, values, higherIsBetter);
+                        const isScoreBar = row.labelKey === "compare.intelligence" || row.labelKey === "compare.coding" || row.labelKey === "compare.agentic";
+                        const validVals = values.filter((v): v is number => v != null);
+                        const maxValue = validVals.length > 0 ? Math.max(...validVals) : 100;
                         return (
                           <td
                             key={m.id}
                             className={cn(
-                              "px-1.5 py-2 sm:px-4 sm:py-4 text-center text-xs sm:text-sm transition-colors",
+                              "px-1.5 py-1.5 sm:px-4 sm:py-4 text-center text-xs sm:text-sm transition-colors",
                               isBest ? "bg-accent-lime/10" : ""
                             )}
                           >
-                            <div className="flex items-center justify-center gap-1">
-                              {isBest && <Star className="h-3 w-3 text-accent-lime shrink-0" />}
-                              <span className={cn(
-                                isBest ? "font-semibold text-accent-lime" : "text-text-primary"
-                              )}>
-                                {row.getValue(m)}
-                              </span>
+                            <div className="flex flex-col items-center gap-0.5">
+                              <div className="flex items-center justify-center gap-1">
+                                {isBest && <Star className="h-3 w-3 text-accent-lime shrink-0" />}
+                                <span className={cn(
+                                  "tabular-nums",
+                                  isBest ? "font-semibold text-accent-lime" : "text-text-primary"
+                                )}>
+                                  {row.getValue(m)}
+                                </span>
+                              </div>
+                              {isScoreBar && numVal != null && maxValue > 0 && (
+                                <div className="w-full h-1 rounded-full bg-surface-border overflow-hidden max-w-[60px] sm:max-w-[100px]">
+                                  <div
+                                    className="h-full rounded-full bg-accent-violet transition-all"
+                                    style={{ width: `${Math.min((numVal / maxValue) * 100, 100)}%` }}
+                                  />
+                                </div>
+                              )}
                             </div>
                           </td>
                         );

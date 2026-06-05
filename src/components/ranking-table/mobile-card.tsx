@@ -71,6 +71,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
 
   return (
     <div
+      data-testid="mobile-model-card"
       className={cn(
         "relative rounded-xl border border-surface-border p-3 group hover:ring-1 hover:ring-accent-violet/30 transition-all",
         group.borderClass,
