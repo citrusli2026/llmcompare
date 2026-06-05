@@ -15,6 +15,7 @@ import { PricingSection } from "./pricing-section";
 import { ArenaRankings } from "./arena-rankings";
 import { TokenUsage } from "./token-usage";
 import { DataCompleteness } from "./data-completeness";
+import { ScoreOverview } from "./score-overview";
 
 interface ProductDetailClientProps {
   model: ModelWithScores;
@@ -43,7 +44,11 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
             <DataCompleteness model={model} />
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="mt-6">
+            <ScoreOverview model={model} />
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-3 mt-6">
             {/* On mobile: pricing + arena first, then benchmark + speed */}
             <div className="lg:col-span-2 space-y-6">
               <div className="block lg:hidden space-y-6">

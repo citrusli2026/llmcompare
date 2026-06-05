@@ -1,0 +1,118 @@
+"use client";
+
+import { BarChart3 } from "lucide-react";
+import { type ModelWithScores } from "@/lib/scoring";
+import { useTranslation } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
+
+function MetricBar({
+  label,
+  value,
+  maxValue = 100,
+  invert = false,
+  unit = "",
+}: {
+  label: string;
+  value: number | null;
+  maxValue?: number;
+  invert?: boolean;
+  unit?: string;
+}) {
+  const displayVal = value == null ? "—" : value % 1 === 0 ? String(value) : value.toFixed(1);
+  const pct = value == null ? 0 : Math.min((value / maxValue) * 100, 100);
+  const fillPct = invert ? Math.max(0, 100 - pct) : pct;
+
+  const color =
+    value == null
+      ? "bg-surface-border"
+      : fillPct >= 80
+        ? "bg-accent-lime"
+        : fillPct >= 65
+          ? "bg-accent-violet"
+          : fillPct >= 50
+            ? "bg-accent-coral"
+            : "bg-text-muted";
+
+  return (
+    <div className="flex items-center gap-3 min-w-0">
+      <span className="text-xs text-text-secondary w-20 shrink-0 truncate" title={label}>
+        {label}
+      </span>
+      <div className="flex-1 h-2 rounded-full bg-surface-border overflow-hidden min-w-0">
+        <div
+          className={cn("h-full rounded-full transition-all", color)}
+          style={{ width: `${fillPct}%` }}
+        />
+      </div>
+      <span className="text-sm font-medium text-text-primary w-14 text-right tabular-nums shrink-0">
+        {displayVal}{unit}
+      </span>
+    </div>
+  );
+}
+
+interface ScoreOverviewProps {
+  model: ModelWithScores;
+}
+
+export function ScoreOverview({ model }: ScoreOverviewProps) {
+  const { t } = useTranslation();
+  const r = model.raw;
+
+  const metrics: { label: string; value: number | null; maxValue?: number; invert?: boolean; unit?: string }[] = [
+    {
+      label: t("source.intelligenceLabel"),
+      value: r.intelligence,
+    },
+    {
+      label: t("source.codingLabel"),
+      value: r.coding,
+    },
+    {
+      label: t("source.agenticLabel"),
+      value: r.agentic,
+    },
+    {
+      label: t("source.speedLabel"),
+      value: r.median_tps,
+      maxValue: 200,
+      unit: " t/s",
+    },
+  ];
+
+  // Price: lower is better → invert
+  const priceVal =
+    r.openrouter_pricing != null
+      ? r.openrouter_pricing.completion
+      : r.output;
+  if (priceVal != null) {
+    metrics.push({
+      label: t("source.costLabel"),
+      value: priceVal,
+      maxValue: 30,
+      invert: true,
+      unit: "/M",
+    });
+  }
+
+  return (
+    <div className="rounded-xl border border-surface-border bg-surface-card p-5">
+      <h3 className="text-sm font-semibold text-text-primary mb-4 flex items-center gap-2">
+        <BarChart3 className="h-4 w-4 text-text-muted" />
+        Score Overview
+      </h3>
+      <div className="space-y-3">
+        {metrics.map((m) => (
+          <MetricBar
+            key={m.label}
+            label={m.label}
+            value={m.value}
+            maxValue={m.maxValue ?? 100}
+            invert={m.invert ?? false}
+            unit={m.unit ?? ""}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
