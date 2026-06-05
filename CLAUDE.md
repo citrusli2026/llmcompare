@@ -13,14 +13,15 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内�
 | `npm run dev` | 在 `localhost:3000` 启动开发服务器 |
 | `npm run build` | 先运行 `scripts/generate-sitemap.mjs` 生成 sitemap，再构建静态导出到 `dist/` 目录 |
 | `npm run prebuild` | 自动在 build 前执行，删除 `dist/` 目录 |
+| `npm run build:turbo` | 同上但使用 Turbopack（默认 `build` 走 webpack） |
 | `npm run lint` | 运行 ESLint（扁平化配置，Next.js 预设） |
 | `npm test` | 运行 Vitest 单元/集成测试（watch 模式） |
 | `npm run test:coverage` | 运行测试并生成覆盖率报告 |
-| `npx playwright test` | 运行 Playwright E2E 测试 |
+| `npm run test:e2e` | 运行 Playwright E2E 测试（等价 `npx playwright test`） |
 
 ## 技术栈
 
-- **Next.js 16.2.4**（App Router）—— 静态导出模式
+- **Next.js 16.2.6**（App Router）—— 静态导出模式
 - **React 19.2.4** + **TypeScript**
 - **Tailwind CSS v4**（无 `tailwind.config.js`；通过 CSS 中 `@theme inline` 配置）
 - **shadcn/ui** 使用 `@base-ui/react` 底层组件（`style: "base-nova"`）
@@ -78,22 +79,24 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内�
 | 阶段 | 目录 | 功能 |
 |------|------|------|
 | 参考数据 | `0-refer/` | 耐久参考：厂商链接、国内官价映射（手动维护） |
-| 数据抓取 | `1-fetch/` | 从 Artificial Analysis 爬取原始数据 |
-| 原始数据 | `2-raw/` | 抓取产出（~512 模型 × 72 字段），只读 |
-| 数据处理 | `3-process/` | 5 步处理管线（筛选 → 字段选型 → 构建 → 富化 → 报告） |
+| 数据抓取 | `1-fetch/` | 从 Artificial Analysis / OpenRouter / Arena 爬取原始数据 |
+| 原始数据 | `2-raw/` | 抓取产出（AA 全量模型 + OR/Arena 快照），只读缓存 |
+| 数据处理 | `3-process/` | 4 步处理管线（筛国内 → 构建前端 → 富化+切活跃 → 报告） |
+| 编排入口 | `pipeline.py` | 一键编排：分支准备 → 抓取 → 处理 → 同步 → 验证 → 提交 PR |
+| 变化摘要 | `scripts/diff-ranking.py` | 两次 ranking.json 的差异报告（被 `pipeline.py` 调用） |
 | 最终输出 | `4-final/` | `ranking.json`（活跃模型 ≤180 天）+ `ranking_all.json`（全量） |
 
-**处理管线 4 步筛选（对应 About 页面的"榜单筛选"描述）：**
+**处理管线 4 步（对应 About 页面的"榜单筛选"描述）：**
 
-1. **国内模型筛选** (`filter_cn_models.py`) — 按公司名 + 模型名关键词双重匹配，从 ~512 个模型中筛选出约 134 个国内模型
-2. **Large 模型筛选** (`build_frontend_models.py`) — 只保留 `size_class == "Large"` 的模型，去重后约 50 个
-3. **富化 + 日期筛选** (`enrich_models.py`) — 注入厂商链接、国内官价、OpenRouter 消耗/定价、Arena 排行榜数据；按发布时间 ≤180 天筛选活跃模型，最终约 21 个
-4. **数据完整标记** (`build_frontend_models.py`) — 每模型计算 `flags.data_complete`（需同时具备 intelligence 分数 + speed 数据 + pricing 数据）
+1. **国内模型筛选** (`filter_cn_models.py`) — 按公司名 + 模型名关键词双重匹配，筛出国内模型
+2. **构建前端模型** (`build_frontend_models.py`) — 字段翻译/格式统一，只保留 `size_class == "Large"` 的国内模型 + 国外 Large 旗舰
+3. **富化 + 切活跃** (`enrich_models.py`) — 注入厂商链接、国内官价、OpenRouter 定价/调用量、Arena 排名与投票数；按发布时间 ≤180 天切活跃集；同时**重新计算** `flags.data_complete`（5 维度齐全：intelligence + coding + agentic + speed(>0) + pricing）
+4. **报告** (`build_report.py`) — 输出 `4-final/report.html` + 终端摘要
 
 **国际模型呈现：**
-- 国外旗舰（GPT-5.5 / Claude Opus / Gemini）作为对比标杆，在排名表中固定置顶
-- 国际行使用琥珀色顶部边框 + 轻微背景 tint + "国际标杆" badge 进行视觉区分
-- 国际模型不参与任何排序，始终可见
+- 国际/国内共用一张可排序表格（`/models`），由 `useModelGroups` 单一 group（`key: "all"`）统一排序，不再分组
+- `isInternational` 标志在 `lib/scoring.ts` 中由 `!flags.chinese_eval` 推导；仅供条件染色/筛选使用
+- 国际模型不固定置顶，会随用户选择的排序键参与全局排序
 
 **评分职责边界：**
 - 管线（Python）只做数据清洗和格式转换，不做评分计算
@@ -103,38 +106,47 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内�
 
 ### 数据更新操作流程
 
-当上游数据需要刷新时，按以下步骤执行：
+日常刷新**不需要**手工跑各步骤 —— 直接执行上游 `data/pipeline.py`：
 
-1. **跑完整管线**（在 `../data/` 目录）：
-   ```bash
-   cd ../data/1-fetch && python3 fetch_aa_data.py --output ../2-raw/
-   cd ../data && python3 1-fetch/fetch_or_models.py
-   cd ../data && python3 1-fetch/fetch_arena_leaderboards.py
-   cd ../data/3-process && python3.11 filter_cn_models.py
-   cd ../data/3-process && python3.11 build_frontend_models.py
-   cd ../data/3-process && python3.11 enrich_models.py
-   cd ../data/3-process && python3.11 build_report.py
-   ```
+```bash
+cd ../data && python3 pipeline.py            # 全自动：抓取 + 处理 + 同步 + 验证 + PR
+cd ../data && python3 pipeline.py --skip-fetch   # 复用 2-raw 缓存
+cd ../data && python3 pipeline.py --dry-run      # 演练，不写盘
+```
 
-2. **同步到前端**：
-   ```bash
-   cp ../data/4-final/ranking.json src/data/ranking.json
-   ```
+`pipeline.py` 会自动完成：
+1. `app/` 切日期分支、`data/` 保持 main
+2. 抓取 AA / OR / Arena（带 12h 缓存）
+3. 跑 4 步处理管线
+4. `data/` 本地提交 + 调用 `scripts/diff-ranking.py` 生成 PR 摘要
+5. 同步 `4-final/ranking.json` → `app/src/data/ranking.json`
+6. 更新 `src/messages/{zh,en}.json` 的三个日期 key：`about.badge`、`about.backgroundDesc`、`home.statsUpdatedValue`
+7. 跑 vitest + build + lint + `validate-data.py`，任一失败立即停止
+8. `app/` 提交并 `gh pr create`，最后切回 main
 
-3. **更新日期文案**：修改 `src/messages/zh.json` 和 `src/messages/en.json` 中 `about.backgroundDesc` 的日期。
+如果只想**手工**执行某一步，仍可单独跑：
 
-4. **完整验证**：
-   ```bash
-   npm test -- --run      # Vitest
-   npm run build           # 静态构建
-   npm run lint            # ESLint
-   npx playwright test     # E2E
-   ```
+```bash
+# 抓取（按需）
+cd ../data && python3 1-fetch/fetch_aa_data.py --output 2-raw/
+cd ../data && python3 1-fetch/fetch_or_models.py
+cd ../data && python3 1-fetch/fetch_arena_leaderboards.py
 
-5. **提交规范**：
-   ```
-   data: 刷新模型排名数据（YYYY-MM-DD）
-   ```
+# 处理管线
+cd ../data/3-process && python3.11 filter_cn_models.py
+cd ../data/3-process && python3.11 build_frontend_models.py
+cd ../data/3-process && python3.11 enrich_models.py
+cd ../data/3-process && python3.11 build_report.py
+
+# 同步
+cp ../data/4-final/ranking.json src/data/ranking.json
+```
+
+提交规范：
+
+```
+data: 刷新模型排名数据（YYYY-MM-DD）
+```
 
 ### 组件约定
 
