@@ -21,22 +21,24 @@
 - **Arena 投票** — lmarena.ai 人类评测投票数（反映模型受欢迎程度）
 - **官方定价** — 各厂商标准 API 定价 + OpenRouter 市场行情定价
 
-国际标杆模型（GPT-5.5 / Claude / Gemini）固定置顶，不参与排序，供横向对比。国内模型按前沿/主力分组，各组内部独立排序。
+国际模型（来自非国内厂商）作为对比标杆与国内模型统一排序，标注 `isInternational` 标志（来源：`flags.chinese_eval` 为 false）。所有模型在 `/models` 页面通过同一张可排序表格展示。
 
-目前收录 23 个活跃大模型（含 3 个国际标杆），数据每周更新。
+数据每日自动刷新（详见 `data/pipeline.py`）。
 
 ## 数据管线
 
 ```
-1-fetch/     → 抓取 Artificial Analysis、OpenRouter、Arena 数据
-3-process/   → 筛选国内模型、注入 Arena 排名和投票数、计算 data_complete
-4-final/     → 生成 ranking.json（活跃模型）+ ranking_all.json（全量）
-app/src/data/ → 同步 ranking.json 到前端
+../data/1-fetch/    → 抓取 Artificial Analysis / OpenRouter / Arena
+../data/3-process/  → 4 步处理管线：筛国内 → 构建前端模型 → 富化+切活跃 → 生成报告
+../data/4-final/    → ranking.json (活跃) + ranking_all.json (全量)
+../app/src/data/    → 同步 ranking.json 给前端消费
 ```
 
-- **data_complete**: 仅标记数据完整度（intelligence 是否存在），不做筛选
-- **Arena votes**: 替代原 OpenRouter weekly_tokens（OR 数据已无法获取）
-- **验证脚本**: `scripts/validate-data.py` 确保数据质量
+完整流程由 `../data/pipeline.py` 一键编排（分支准备 → 抓取 → 处理 → 同步 → 验证 → 提交 PR → 清理），日常无需手工跑各步骤。
+
+- **data_complete**: 富化时计算，需 `intelligence + coding + agentic + speed + pricing` 五维度齐全；缺一即 `false`
+- **Arena votes**: 作为热度指标注入；OpenRouter pricing/tokens 仍由管线消费
+- **验证脚本**: `scripts/validate-data.py` + Vitest/Build/Lint 在 `pipeline.py` Phase 5 一起跑
 
 ## 本地运行
 

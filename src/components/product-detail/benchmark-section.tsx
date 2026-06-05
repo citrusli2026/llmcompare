@@ -31,7 +31,14 @@ export function BenchmarkSection({ model }: BenchmarkSectionProps) {
         </div>
         <div className="h-2 bg-surface-hover rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 transition-all duration-500"
+            className={`h-full transition-all duration-500 ${
+              r.intelligence != null
+                ? r.intelligence >= 80 ? "bg-accent-lime"
+                  : r.intelligence >= 65 ? "bg-accent-violet"
+                  : r.intelligence >= 50 ? "bg-accent-coral"
+                  : "bg-text-muted"
+                : ""
+            }`}
             style={{ width: r.intelligence != null ? `${Math.min(Math.max(r.intelligence, 0), 100)}%` : "0%" }}
           />
         </div>
