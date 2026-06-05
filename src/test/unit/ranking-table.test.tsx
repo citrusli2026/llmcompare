@@ -44,55 +44,27 @@ describe("RankingTable", () => {
     expect(screen.getAllByText("mobile-model").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders international models with correct badge", () => {
+  it("renders all models with rank numbers", () => {
     const models: ModelWithScores[] = [
-      makeModel("intl-model", { isInternational: true }),
+      makeModel("m1", { intelligence: 90 }),
+      makeModel("m2", { intelligence: 70 }),
     ];
 
     render(<RankingTable models={models} />);
-    expect(screen.getAllByText("common.intlBaseline").length).toBeGreaterThanOrEqual(1);
-  });
-
-  it("renders frontier models with correct badge", () => {
-    const models: ModelWithScores[] = [
-      makeModel("frontier-model", { flags: { frontier: true } }),
-    ];
-
-    render(<RankingTable models={models} />);
-    expect(screen.getAllByText("common.frontier").length).toBeGreaterThanOrEqual(1);
-  });
-
-  it("renders mainstream models with correct badge", () => {
-    const models: ModelWithScores[] = [
-      makeModel("mainstream-model", {}),
-    ];
-
-    render(<RankingTable models={models} />);
-    expect(screen.getAllByText("common.mainstream").length).toBeGreaterThanOrEqual(1);
-  });
-
-  it("shows rank numbers for frontier and mainstream", () => {
-    const models: ModelWithScores[] = [
-      makeModel("f1", { flags: { frontier: true }, intelligence: 90 }),
-      makeModel("m1", { intelligence: 70 }),
-    ];
-
-    render(<RankingTable models={models} />);
-    // Frontier should show rank starting at 1
+    // All models show rank #1 and #2
     expect(screen.getAllByText("#1").length).toBeGreaterThanOrEqual(1);
-    // Mainstream should show rank starting after frontier count
     expect(screen.getAllByText("#2").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("does not show rank for international models", () => {
+  it("all models show rank (no group exceptions)", () => {
     const models: ModelWithScores[] = [
       makeModel("intl-1", { isInternational: true }),
     ];
 
     render(<RankingTable models={models} />);
-    // Intl group has showRank=false, so no #N badge
+    // All groups now show rank
     const rankElements = screen.queryAllByText(/#\d+/);
-    expect(rankElements.length).toBe(0);
+    expect(rankElements.length).toBeGreaterThanOrEqual(1);
   });
 
   it("handles sorting interaction on desktop headers", () => {
