@@ -7,8 +7,8 @@
   },
   "home": {
     "badge": "Updated Jun 4, 2026",
-    "heroTitle": "China AI Models at a Glance",
-    "heroDesc": "Curated intelligence, speed, and pricing data for major Chinese LLM providers",
+    "heroTitle": "Global AI Models at a Glance",
+    "heroDesc": "Curated intelligence, speed, and pricing data for the world's leading AI models",
     "statsModels": "Models",
     "statsActive": "{n} active",
     "statsTopScore": "Top Score",
@@ -21,13 +21,13 @@
     "rankingViewAll": "View all",
     "cardsTitle": "Frontier Models",
     "cardsViewAll": "View all",
-    "footer": "LLMCompare — China AI model data, curated in one place",
+    "footer": "LLMCompare — Global AI model data, curated in one place",
     "footerDisclaimer": "For reference only. Data based on publicly available information.",
-    "seoDesc": "LLMCompare curates benchmark scores, API performance, and pricing data for major Chinese LLMs including DeepSeek, Kimi, Qwen, Tongyi Qianwen, GLM, and MiniMax — helping developers and researchers compare and choose models efficiently."
+    "seoDesc": "LLMCompare curates benchmark scores, API performance, and pricing data for leading global LLMs including DeepSeek, GPT, Claude, Gemini, Qwen, Kimi, and more — helping developers and researchers compare and choose models efficiently."
   },
   "models": {
     "title": "Model Directory",
-    "desc": "Curated intelligence, speed, and pricing data for major Chinese LLM providers",
+    "desc": "Curated intelligence, speed, and pricing data for the world's leading AI models",
     "filterAll": "All",
     "filterOpen": "Open",
     "filterClosed": "Closed",
@@ -54,7 +54,7 @@
     "backgroundTitle": "Project Background",
     "backgroundDesc": "Last updated: 2026.06.04",
     "backgroundContribute": "Spot an error or want to add a model? Submit an issue on",
-    "filterDesc": "From Artificial Analysis' global index, we filter Chinese vendors' large-scale models, inject OpenRouter weekly usage and Arena leaderboard data, retaining models active within 180 days. International benchmark models (GPT, Claude, Gemini) are pinned at the top for comparison.",
+    "filterDesc": "From Artificial Analysis' global index, we select active models (released within 180 days) and inject Arena leaderboard data. Covers leading vendors worldwide, ranked uniformly by intelligence score.",
     "sourceTitle": "Data Sources",
     "sourcePriceTitle": "Official Sites",
     "sourceDesc": "Artificial Analysis is an authoritative LLM evaluation org providing standardized benchmarks. Its Intelligence Index combines MMLU, HumanEval, MATH, and other benchmarks to assess reasoning, coding, and math capabilities.",

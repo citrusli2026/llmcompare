@@ -7,8 +7,8 @@
   },
   "home": {
     "badge": "2026年6月4日最新数据",
-    "heroTitle": "国内大模型一览",
-    "heroDesc": "收集整理了国内大模型的智能、速度、成本数据",
+    "heroTitle": "全球 AI 模型一览",
+    "heroDesc": "收集整理了全球主流 AI 模型的智能、速度、成本数据",
     "statsModels": "收录模型",
     "statsActive": "{n} 活跃",
     "statsTopScore": "最高智能分",
@@ -21,13 +21,13 @@
     "rankingViewAll": "查看全部",
     "cardsTitle": "前沿模型",
     "cardsViewAll": "查看全部",
-    "footer": "模型图鉴 - 国内大模型数据，整理在一起",
+    "footer": "模型图鉴 - 全球 AI 模型数据，整理在一起",
     "footerDisclaimer": "数据仅供参考，基于公开信息整理",
-    "seoDesc": "模型图鉴收录了 DeepSeek、Kimi、Qwen、通义千问、GLM、MiniMax 等国内主流大语言模型的基准测试分数、API 性能与定价数据，帮助开发者和研究者快速对比选型。"
+    "seoDesc": "模型图鉴收录了国内外主流大语言模型的基准测试分数、API 性能与定价数据，覆盖 DeepSeek、Kimi、Qwen、GPT、Claude、Gemini 等，帮助开发者和研究者快速对比选型。"
   },
   "models": {
     "title": "模型目录",
-    "desc": "收集整理了国内大模型的智能、速度、成本数据",
+    "desc": "收集整理了全球主流 AI 模型的智能、速度、成本数据",
     "filterAll": "全部",
     "filterOpen": "开源",
     "filterClosed": "闭源",
@@ -54,7 +54,7 @@
     "backgroundTitle": "项目背景",
     "backgroundDesc": "上次更新：2026.06.04",
     "backgroundContribute": "发现错误或想补充模型？欢迎提交",
-    "filterDesc": "从 Artificial Analysis 全球模型中筛选国内厂商大参数量模型，注入 OpenRouter 周度消耗和 Arena 排行榜数据，保留近 180 天活跃模型。国际标杆模型（GPT、Claude、Gemini）固定置顶，不参与排序，供横向对比。",
+    "filterDesc": "从 Artificial Analysis 全球模型中筛选活跃模型（180 天内发布），注入 Arena 排行榜数据。覆盖国内外头部厂商，按智能分统一排名。",
     "sourceTitle": "数据来源",
     "sourcePriceTitle": "模型官网",
     "sourceDesc": "Artificial Analysis 是权威大模型评测机构，提供标准化基准测试，其 Intelligence Index 综合 MMLU、HumanEval、MATH 等基准，评估推理、编程和数学能力。",
