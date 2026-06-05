@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { BarChart3 } from "lucide-react";
+import { BarChart3, ArrowDown } from "lucide-react";
 import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -45,8 +45,9 @@ function MetricBar({
           style={{ width: `${fillPct}%` }}
         />
       </div>
-      <span className="text-sm font-medium text-text-primary w-14 text-right tabular-nums shrink-0">
+      <span className="text-sm font-medium text-text-primary w-14 text-right tabular-nums shrink-0 flex items-center justify-end gap-0.5">
         {displayVal}{unit}
+        {invert && <ArrowDown className="h-3 w-3 text-accent-lime shrink-0" />}
       </span>
     </div>
   );
@@ -61,16 +62,29 @@ export function ScoreOverview({ model }: ScoreOverviewProps) {
   const r = model.raw;
 
   // Compute dynamic max values from the full dataset for consistent scaling
+  // Use percentile cap to prevent extreme outliers from compressing other bars
   const { maxSpeed, maxPrice } = useMemo(() => {
     const all = getAllModelsUnfiltered();
-    let maxS = 0;
-    let maxP = 0;
-    for (const m of all) {
-      if (m.raw.median_tps != null && m.raw.median_tps > maxS) maxS = m.raw.median_tps;
-      const p = m.raw.openrouter_pricing?.completion ?? m.raw.output ?? 0;
-      if (p > maxP) maxP = p;
-    }
-    return { maxSpeed: Math.max(maxS, 1), maxPrice: Math.max(maxP, 1) };
+
+    // Speed: sort and use P90 (clips top ~3 outliers: 418, 420, 224)
+    const speeds = all
+      .map((m) => m.raw.median_tps)
+      .filter((v): v is number => v != null)
+      .sort((a, b) => a - b);
+    const speedCap = speeds.length > 0
+      ? speeds[Math.min(Math.floor(speeds.length * 0.90), speeds.length - 1)]
+      : 1;
+
+    // Price: sort and use P85 (OR 价格有 4 个 $150-180 极端值)
+    const prices = all
+      .map((m) => m.raw.openrouter_pricing?.completion ?? m.raw.output)
+      .filter((v): v is number => v != null)
+      .sort((a, b) => a - b);
+    const priceCap = prices.length > 0
+      ? prices[Math.min(Math.floor(prices.length * 0.85), prices.length - 1)]
+      : 1;
+
+    return { maxSpeed: Math.max(speedCap, 1), maxPrice: Math.max(priceCap, 1) };
   }, []);
 
   const metrics: { label: string; value: number | null; maxValue?: number; invert?: boolean; unit?: string }[] = [
