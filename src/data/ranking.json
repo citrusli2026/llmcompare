@@ -859,7 +859,7 @@
       "input": 0.4,
       "output": 1.16,
       "blended": 0.59,
-      "display": "$0.4/$1.16 (输入/输出 每百万token)"
+      "display": "$0.4/$1.16 (USD/百万token)"
     },
     "flags": {
       "frontier": true,
