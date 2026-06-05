@@ -30,6 +30,13 @@ function isBestValue(val: number | null, vals: (number | null)[], higherIsBetter
   return higherIsBetter ? val >= Math.max(...valid) : val <= Math.min(...valid);
 }
 
+function barColor(fillPct: number): string {
+  return fillPct >= 80 ? "bg-accent-lime"
+    : fillPct >= 65 ? "bg-accent-violet"
+    : fillPct >= 50 ? "bg-accent-coral"
+    : "bg-text-muted";
+}
+
 export function ComparePageClient() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
@@ -235,7 +242,7 @@ export function ComparePageClient() {
                       {models.map((m) => {
                         const numVal = row.getNumericValue?.(m) ?? null;
                         const isBest = isBestValue(numVal, values, higherIsBetter);
-                        const isScoreBar = row.labelKey === "compare.intelligence" || row.labelKey === "compare.coding" || row.labelKey === "compare.agentic";
+                        const isScoreBar = row.labelKey === "compare.intelligence" || row.labelKey === "compare.coding" || row.labelKey === "compare.agentic" || row.labelKey === "compare.speed" || row.labelKey === "compare.price";
                         const validVals = values.filter((v): v is number => v != null);
                         const maxValue = validVals.length > 0 ? Math.max(...validVals) : 100;
                         return (
@@ -256,14 +263,18 @@ export function ComparePageClient() {
                                   {row.getValue(m)}
                                 </span>
                               </div>
-                              {isScoreBar && numVal != null && maxValue > 0 && (
-                                <div className="w-full h-1 rounded-full bg-surface-border overflow-hidden max-w-[60px] sm:max-w-[100px]">
-                                  <div
-                                    className="h-full rounded-full bg-accent-violet transition-all"
-                                    style={{ width: `${Math.min((numVal / maxValue) * 100, 100)}%` }}
-                                  />
-                                </div>
-                              )}
+                              {isScoreBar && numVal != null && maxValue > 0 && (() => {
+                                const rawPct = Math.min((numVal / maxValue) * 100, 100);
+                                const fillPct = higherIsBetter ? rawPct : Math.max(0, 100 - rawPct);
+                                return (
+                                  <div className="w-full h-1 rounded-full bg-surface-border overflow-hidden max-w-[60px] sm:max-w-[100px]">
+                                    <div
+                                      className={`h-full rounded-full ${barColor(fillPct)} transition-all`}
+                                      style={{ width: `${fillPct}%` }}
+                                    />
+                                  </div>
+                                );
+                              })()}
                             </div>
                           </td>
                         );
