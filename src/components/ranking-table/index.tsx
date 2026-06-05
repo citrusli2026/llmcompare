@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/table";
 import { ArrowUpDown, ArrowUp, ArrowDown, Trophy, DollarSign, Brain, Code, Bot, Calendar, TrendingUp } from "lucide-react";
 import { cn, formatTokenCount } from "@/lib/utils";
-import { type ModelWithScores } from "@/lib/scoring";
+import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { Tooltip } from "@/components/tooltip";
 import { type ScoreKey, type SortKey, type HeaderDef } from "./types";
@@ -63,6 +63,17 @@ export function RankingTable({ models }: RankingTableProps) {
     // cost 用 OR completion 价，与移动端展示一致；桌面双值列 prompt/completion 高度相关，排序结果近似
     cost: computePercentiles(models.map((m) => m.raw.openrouter_pricing?.completion ?? null)),
   }), [models]);
+
+  // 全局数据集最大值，供 ScoreBar 以满进度渲染
+  const globalMax = useMemo(() => {
+    const all = getAllModelsUnfiltered();
+    const maxKey = (key: string) => Math.max(...all.map((m) => (m.raw as any)[key] ?? 0), 1);
+    return {
+      intelligence: maxKey("intelligence"),
+      coding: maxKey("coding"),
+      agentic: maxKey("agentic"),
+    } as const;
+  }, []);
 
   const colVisibilityClass = (h: HeaderDef) => cn(
     !h.mobile && "hidden sm:table-cell",
@@ -195,6 +206,7 @@ export function RankingTable({ models }: RankingTableProps) {
                     renderers={renderers}
                     colVisibilityClass={colVisibilityClass}
                     percentiles={percentiles}
+                    globalMax={globalMax}
                   />
                 ))
               )}
@@ -218,6 +230,7 @@ export function RankingTable({ models }: RankingTableProps) {
                 metricOrder={MOBILE_METRIC_ORDER}
                 renderMetric={renderMetric}
                 percentiles={percentiles}
+                globalMax={globalMax}
               />
             ))
         )}

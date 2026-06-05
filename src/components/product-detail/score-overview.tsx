@@ -26,11 +26,11 @@ function MetricBar({
   const color =
     value == null
       ? "bg-surface-border"
-      : fillPct >= 70
+      : fillPct >= 80
         ? "bg-accent-lime"
-        : fillPct >= 55
+        : fillPct >= 65
           ? "bg-accent-violet"
-          : fillPct >= 40
+          : fillPct >= 50
             ? "bg-accent-coral"
             : "bg-text-muted";
 

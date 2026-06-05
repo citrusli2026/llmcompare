@@ -23,9 +23,10 @@ interface ModelRowProps {
   renderers: Record<string, (m: ModelWithScores) => React.ReactNode>;
   colVisibilityClass: (h: HeaderDef) => string;
   percentiles: Record<string, { p25: number; p50: number; p75: number } | null>;
+  globalMax: Record<string, number>;
 }
 
-export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVisibilityClass, percentiles }: ModelRowProps) {
+export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVisibilityClass, percentiles, globalMax }: ModelRowProps) {
   const { t } = useTranslation();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -130,7 +131,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
               h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key, percentiles)
             )}
           >
-            {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} /> : renderers[h.key](model)}
+            {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} maxValue={globalMax[h.key]} /> : renderers[h.key](model)}
           </TableCell>
         );
       })}
