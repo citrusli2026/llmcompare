@@ -13,7 +13,7 @@ export const COLOR_BY_BUCKET = {
 
 // cost 是反向（数字越小越好），其他正向
 export const ASCENDING: Record<ColoredKey, boolean> = {
-  intelligence: true, coding: true, agentic: true, arenaCode: true, cost: false,
+  intelligence: true, coding: true, agentic: true, arenaCode: true, cost: false, date: true, tokens: true,
 };
 
 export function quantile(sorted: number[], q: number): number {
@@ -56,7 +56,12 @@ export function getRawValue(model: ModelWithScores, key: SortKey): number | null
     case "arenaCode": return model.raw.arena_code ?? null;
     case "cost": return model.raw.openrouter_pricing?.completion ?? null;
     case "tokens": return model.raw.arena_votes ?? null;
-    case "date": return null;
+    case "date": {
+      const d = model.raw.release_date;
+      if (!d) return null;
+      const ts = Date.parse(d);
+      return isNaN(ts) ? null : ts;
+    }
   }
 }
 
@@ -66,7 +71,6 @@ export function getScoreColor(
   percentiles: Record<ColoredKey, Percentiles | null>
 ): string {
   if (val == null) return COLOR_BY_BUCKET.dim;
-  if (key === "date" || key === "tokens") return "";
   const p = percentiles[key];
   if (!p) return COLOR_BY_BUCKET.dim;
   return COLOR_BY_BUCKET[bucketByPercentile(val, p, ASCENDING[key])];

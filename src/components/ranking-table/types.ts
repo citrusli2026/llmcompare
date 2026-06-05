@@ -12,7 +12,7 @@ export interface HeaderDef {
 }
 
 export type Percentiles = { p25: number; p50: number; p75: number };
-export type ColoredKey = "intelligence" | "coding" | "agentic" | "arenaCode" | "cost";
+export type ColoredKey = "intelligence" | "coding" | "agentic" | "arenaCode" | "cost" | "date" | "tokens";
 
 export interface ModelGroup {
   key: "all";

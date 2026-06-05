@@ -62,6 +62,13 @@ export function RankingTable({ models }: RankingTableProps) {
     arenaCode: computePercentiles(models.map((m) => m.raw.arena_code)),
     // cost 用 OR completion 价，与移动端展示一致；桌面双值列 prompt/completion 高度相关，排序结果近似
     cost: computePercentiles(models.map((m) => m.raw.openrouter_pricing?.completion ?? null)),
+    date: computePercentiles(models.map((m) => {
+      const d = m.raw.release_date;
+      if (!d) return null;
+      const ts = Date.parse(d);
+      return isNaN(ts) ? null : ts;
+    })),
+    tokens: computePercentiles(models.map((m) => m.raw.arena_votes)),
   }), [models]);
 
   // 全局数据集最大值，供 ScoreBar 以满进度渲染

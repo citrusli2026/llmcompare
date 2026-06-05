@@ -114,7 +114,8 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
       <TableCell
         className={cn(
           "hidden lg:table-cell text-sm",
-          sortKey === "date" ? "font-semibold text-text-primary" : "text-text-secondary"
+          sortKey === "date" ? "font-semibold" : "",
+          getScoreColor(getRawValue(model, "date"), "date", percentiles)
         )}
       >
         {model.raw.release_date ?? "—"}
@@ -128,7 +129,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
               "text-sm",
               colVisibilityClass(h),
               h.key === sortKey ? "font-semibold" : "",
-              h.key !== "tokens" && getScoreColor(getRawValue(model, h.key), h.key, percentiles)
+              getScoreColor(getRawValue(model, h.key), h.key, percentiles)
             )}
           >
             {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} maxValue={globalMax[h.key]} colorPercentiles={percentiles[h.key]} /> : renderers[h.key](model)}
