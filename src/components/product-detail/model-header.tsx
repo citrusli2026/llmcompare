@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { type ModelWithScores } from "@/lib/scoring";
 import { getTypeBadgeClasses } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { cn } from "@/lib/utils";
+import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { Plus, Check } from "lucide-react";
 
 interface ModelHeaderProps {
@@ -19,6 +20,9 @@ export function ModelHeader({ model }: ModelHeaderProps) {
   const [logoError, setLogoError] = useState(false);
   const { isInCompare, toggleCompare } = useCompareIds();
   const inCompare = isInCompare(model.id);
+
+  // Recommendation Tags — turns raw data into decision guidance
+  const recommendationTags = useMemo(() => getRecommendationTags(model), [model]);
 
   return (
     <div className="flex items-start justify-between gap-4 mb-6">
@@ -45,6 +49,22 @@ export function ModelHeader({ model }: ModelHeaderProps) {
               {t(model.type === "开源" ? "common.open" : "common.closed")}
             </Badge>
           </div>
+
+          {/* Recommendation Tags — turns raw data into decision guidance */}
+          {recommendationTags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mb-2">
+              {recommendationTags.map((tag) => (
+                <span
+                  key={tag.key}
+                  className={cn("inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium", tag.colorClass)}
+                >
+                  <span>{tag.icon}</span>
+                  <span>{t(tag.labelKey)}</span>
+                </span>
+              ))}
+            </div>
+          )}
+
           <div className="flex flex-wrap gap-1.5">
             {f.frontier && (
               <Badge className="bg-violet-500/10 text-violet-400 text-xs">{t("common.frontier")}</Badge>

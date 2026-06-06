@@ -136,7 +136,13 @@
     "arenaVotes": "Votes",
     "arenaSource": "Source: lmarena.ai",
     "dataCompleteness": "Data Completeness",
-    "dataCompletenessDesc": "Weighted completeness score based on 18 core fields including benchmarks, speed, pricing, and Arena rankings"
+    "dataCompletenessDesc": "Weighted completeness score based on 18 core fields including benchmarks, speed, pricing, and Arena rankings",
+    "badgeCoding": "Top Coder",
+    "badgeAgent": "Agent Recommended",
+    "badgeValue": "Best Value",
+    "badgeReasoning": "Frontier Reasoning",
+    "badgeBudget": "Budget Pick",
+    "badgeOpenLeader": "Open Leader"
   },
   "table": {
     "model": "Model",

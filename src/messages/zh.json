@@ -136,7 +136,13 @@
     "arenaVotes": "投票数",
     "arenaSource": "数据来源：lmarena.ai",
     "dataCompleteness": "数据完整度",
-    "dataCompletenessDesc": "基于 18 个核心字段的加权完整度评分，包括基准测试、速度、定价、Arena 排名等"
+    "dataCompletenessDesc": "基于 18 个核心字段的加权完整度评分，包括基准测试、速度、定价、Arena 排名等",
+    "badgeCoding": "编程能力突出",
+    "badgeAgent": "Agent场景推荐",
+    "badgeValue": "性价比之选",
+    "badgeReasoning": "前沿推理模型",
+    "badgeBudget": "经济实惠",
+    "badgeOpenLeader": "开源标杆"
   },
   "table": {
     "model": "模型",
