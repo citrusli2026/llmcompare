@@ -90,6 +90,14 @@ const SCENES: SceneDef[] = [
 
 const TOP_N = 4;
 
+/** Map scene keys to /models sort params for seamless context transfer */
+const SCENE_SORT_MAP: Record<SceneKey, string> = {
+  coding: "coding",
+  agent: "agentic",
+  value: "cost",
+  reasoning: "intelligence",
+};
+
 interface SceneSelectorProps {
   hideHeader?: boolean;
 }
@@ -220,9 +228,9 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                       ))}
                     </div>
 
-                    {/* Browse all link */}
+                    {/* Browse all link — carries scene context as sort param */}
                     <Link
-                      href="/models"
+                      href={`/models?sort=${SCENE_SORT_MAP[scene.key]}`}
                       className="flex items-center justify-center gap-1 py-2.5 text-sm text-accent-violet hover:text-violet-500 border-t border-surface-border transition-colors"
                     >
                       {t("home.sceneBrowseAll", { n: totalCount })}
