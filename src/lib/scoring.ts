@@ -84,6 +84,7 @@ interface RawModel {
   openrouter_weekly_tokens?: number | null;
   openrouter_pricing?: { prompt: number; completion: number } | null;
   arena_rankings?: Record<string, ArenaRanking | undefined> | null;
+  data_completeness_pct?: number;
   meta?: RawMeta;
 }
 
@@ -183,7 +184,7 @@ function initCache(): void {
         openrouter_pricing: m.openrouter_pricing ?? null,
         arena_rankings: m.arena_rankings && Object.keys(m.arena_rankings).length > 0 ? m.arena_rankings : null,
         arena_code: m.arena_rankings?.code?.score ?? null,
-        data_completeness_pct: ((m as unknown) as Record<string, unknown>).data_completeness_pct as number ?? 0,
+        data_completeness_pct: m.data_completeness_pct ?? 0,
         benchmarks: {
           gpqa: (m.benchmarks?.gpqa ?? null) as number | null,
           hle: (m.benchmarks?.hle ?? null) as number | null,
@@ -205,11 +206,11 @@ export function getAllModels(): ModelWithScores[] {
   return _cache!.models;
 }
 
-/** 返回全量模型（同 getAllModels，保留兼容） */
-export function getAllModelsUnfiltered(): ModelWithScores[] {
-  initCache();
-  return _cache!.models;
-}
+/**
+ * 返回全量模型（同 getAllModels，保留兼容）
+ * @deprecated 请使用 getAllModels
+ */
+export const getAllModelsUnfiltered = getAllModels;
 
 export function getModelById(id: string): ModelWithScores | undefined {
   initCache();
