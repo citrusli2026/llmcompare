@@ -93,15 +93,19 @@ export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
       ) : (
         <span className="text-text-dim text-xs">—</span>
       ),
-    cost: (m) =>
-      m.raw.blended != null ? (
-        <span className="inline-flex items-center gap-0.5">
-          <span className="tabular-nums">${m.raw.blended.toFixed(2)}</span>
-          <span className="text-text-secondary text-[10px]">/M</span>
-        </span>
-      ) : (
-        <span className="text-text-dim text-xs">—</span>
-      ),
+    cost: (m) => {
+      const blended = m.raw.blended;
+      if (blended != null) {
+        if (blended === 0) return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
+        return (
+          <span className="inline-flex items-center gap-0.5">
+            <span className="tabular-nums">${blended.toFixed(2)}</span>
+            <span className="text-text-secondary text-[10px]">/M</span>
+          </span>
+        );
+      }
+      return <span className="text-text-dim text-xs">—</span>;
+    },
     tokens: (m) => {
       const val = m.raw.openrouter_weekly_tokens;
       if (val == null) return <span className="text-text-dim text-xs">—</span>;
@@ -112,8 +116,10 @@ export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
 
   const renderMetric = (model: ModelWithScores, key: ScoreKey) => {
     if (key === "cost") {
-      if (model.raw.blended != null) {
-        return <span>${model.raw.blended.toFixed(2)}<span className="text-text-secondary text-[10px]">/M</span></span>;
+      const blended = model.raw.blended;
+      if (blended != null) {
+        if (blended === 0) return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
+        return <span>${blended.toFixed(2)}<span className="text-text-secondary text-[10px]">/M</span></span>;
       }
       return <span className="text-text-dim text-xs">—</span>;
     }
@@ -186,14 +192,20 @@ export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
                   <div className="flex items-center gap-1">
                     <Calendar className="h-3 w-3" />
                     {t("table.date")}
-                    <ArrowUpDown className="h-3 w-3" />
+                    {sortKey === "date"
+                      ? (sortDesc ? <ArrowDown className="h-3 w-3" /> : <ArrowUp className="h-3 w-3" />)
+                      : <ArrowUpDown className="h-3 w-3" />
+                    }
                   </div>
                 </th>
                 {headers.map((h) => (
                   <th
                     key={h.key}
                     className={cn(
-                      "h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap cursor-pointer text-text-muted hover:text-text-primary",
+                      "h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap cursor-pointer",
+                      sortKey === h.key
+                        ? "text-text-primary font-semibold"
+                        : "text-text-muted hover:text-text-primary",
                       colVisibilityClass(h)
                     )}
                     onClick={() => handleSort(h.key)}
@@ -201,7 +213,10 @@ export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
                     <div className="flex items-center gap-1">
                       <h.icon className="h-3 w-3" />
                       {t(h.labelKey)}
-                      <ArrowUpDown className="h-3 w-3" />
+                      {sortKey === h.key
+                        ? (sortDesc ? <ArrowDown className="h-3 w-3" /> : <ArrowUp className="h-3 w-3" />)
+                        : <ArrowUpDown className="h-3 w-3" />
+                      }
                     </div>
                   </th>
                 ))}
@@ -227,6 +242,27 @@ export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* 颜色图例 */}
+      <div className="hidden sm:flex items-center gap-4 px-1 py-2 text-xs text-text-muted">
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block h-2.5 w-2.5 rounded-full bg-accent-lime" />
+          {t("models.top25")}
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block h-2.5 w-2.5 rounded-full bg-accent-violet" />
+          {t("models.top50")}
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block h-2.5 w-2.5 rounded-full bg-accent-coral" />
+          {t("models.top75")}
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block h-2.5 w-2.5 rounded-full bg-text-muted" />
+          {t("models.bottom25")}
+        </span>
+        <span className="text-text-dim ml-2">{t("models.colorByRank")}</span>
       </div>
 
       {/* 移动端卡片列表 */}
