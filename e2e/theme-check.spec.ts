@@ -1,24 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-const SCREENSHOTS = "test-results/screenshots";
-
 test.describe("Dual Theme — 亮色/暗色双主题验证", () => {
-  // Helper to check computed styles
-  async function checkBgColors(page: any, errors: string[]) {
-    const bodyStyles = await page.evaluate(() => {
-      const body = document.body;
-      const styles = window.getComputedStyle(body);
-      return {
-        backgroundColor: styles.backgroundColor,
-        color: styles.color,
-      };
-    });
-    console.log(`Body bg: ${bodyStyles.backgroundColor}, color: ${bodyStyles.color}`);
-    if (bodyStyles.color === "rgba(0, 0, 0, 0)") {
-      errors.push("Body color is transparent");
-    }
-  }
-
   test("暗色模式: 基础元素存在 + 文本可见", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
