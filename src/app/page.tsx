@@ -5,13 +5,13 @@ import HomeClient from "./home-client";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.llmcompare.cc"),
   title: {
-    default: "模型图鉴 - 全球 AI 模型数据一览",
-    template: "%s - 模型图鉴",
+    default: "AI 模型选型助手 - 选对模型，事半功倍",
+    template: "%s - AI 模型选型",
   },
-  description: "收集整理了全球 AI 模型的智能评分、API 速度与官方定价数据，涵盖头部厂商的最新模型，为开发者和研究者提供参考。",
+  description: "60+ 全球 AI 模型 — 根据你的使用场景推荐最合适的模型。智能评分、速度、定价全方位对比，帮你从编程、Agent、性价比等角度找到最佳选择。",
   openGraph: {
-    title: "模型图鉴 - 全球 AI 模型数据一览",
-    description: "收集整理了全球 AI 模型的智能评分、API 速度与官方定价数据。",
+    title: "AI 模型选型助手 - 选对模型，事半功倍",
+    description: "60+ 全球 AI 模型 — 根据你的使用场景推荐最合适的模型。智能评分、速度、定价全方位对比。",
     type: "website",
     locale: "zh_CN",
   },
