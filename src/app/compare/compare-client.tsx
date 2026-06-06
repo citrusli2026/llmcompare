@@ -95,13 +95,13 @@ export function ComparePageClient() {
           if (prompt === 0 && completion === 0) {
             return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
           }
-          return <span>${prompt}/${completion}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>;
+          return <span><span className="tabular-nums">${prompt}/${completion}</span> <Tooltip content={t("common.perMUnit")}><span className="text-text-secondary text-[10px]">/M</span></Tooltip></span>;
         }
         if (m.raw.input != null) {
           if (m.raw.input === 0 && m.raw.output === 0) {
             return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
           }
-          return <span>${m.raw.input}/${m.raw.output}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>;
+          return <span><span className="tabular-nums">${m.raw.input}/${m.raw.output}</span> <Tooltip content={t("common.perMUnit")}><span className="text-text-secondary text-[10px]">/M</span></Tooltip></span>;
         }
         return "—";
       },
@@ -317,12 +317,14 @@ export function ComparePageClient() {
                     {rows.map((row, ri) => {
                       const values = models.map((m) => row.getNumericValue?.(m) ?? null);
                       const higherIsBetter = row.labelKey !== "compare.price";
+                      const allEmpty = values.every((v) => v == null);
                       return (
                         <tr
                           key={ri}
                           className={cn(
                             "border-b border-surface-border last:border-b-0",
-                            ri % 2 === 1 ? "bg-surface-elevated" : ""
+                            ri % 2 === 1 ? "bg-surface-elevated" : "",
+                            allEmpty && "opacity-40"
                           )}
                         >
                           {models.map((m) => {
