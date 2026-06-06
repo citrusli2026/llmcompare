@@ -10,7 +10,7 @@
     "heroTitle": "Global AI Models at a Glance",
     "heroDesc": "Curated intelligence, speed, and pricing data for the world's leading AI models",
     "statsModels": "Models",
-    "statsActive": "{n} active",
+    "statsActive": "Updated within 180d",
     "statsTopScore": "Top Score",
     "statsNewModels": "New This Month",
     "statsNewCount": "{n} models",

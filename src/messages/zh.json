@@ -10,7 +10,7 @@
     "heroTitle": "全球 AI 模型一览",
     "heroDesc": "收集整理了全球主流 AI 模型的智能、速度、成本数据",
     "statsModels": "收录模型",
-    "statsActive": "{n} 活跃",
+    "statsActive": "180天内更新",
     "statsTopScore": "最高智能分",
     "statsNewModels": "本月新增",
     "statsNewCount": "{n} 模型",
