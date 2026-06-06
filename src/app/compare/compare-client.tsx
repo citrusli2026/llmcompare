@@ -223,7 +223,7 @@ export function ComparePageClient() {
             <table className="w-full min-w-[320px] sm:min-w-[600px]">
               <thead>
                 <tr className="border-b border-surface-border">
-                  <th className="sticky left-0 bg-surface-base z-10 text-left px-1.5 py-2 sm:px-6 sm:py-4 text-xs font-semibold text-text-muted uppercase tracking-wider min-w-[75px] sm:min-w-[140px] shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]">
+                  <th className="sticky left-0 bg-surface-card z-20 text-left px-1.5 py-2 sm:px-6 sm:py-4 text-xs font-semibold text-text-muted uppercase tracking-wider min-w-[75px] sm:min-w-[140px] shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]">
                     {t("compare.colName")}
                   </th>
                   {models.map((m) => (
@@ -262,7 +262,7 @@ export function ComparePageClient() {
                       )}
                     >
                       <td className={cn(
-                        "sticky left-0 z-10 px-1.5 py-2 sm:px-6 sm:py-4 shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]",
+                        "sticky left-0 z-20 px-1.5 py-2 sm:px-6 sm:py-4 shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]",
                         ri % 2 === 1 ? "bg-surface-elevated" : "bg-surface-base"
                       )}>
                         <div className="flex items-center gap-1 sm:gap-2">

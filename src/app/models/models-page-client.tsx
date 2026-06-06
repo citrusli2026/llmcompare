@@ -138,7 +138,7 @@ export default function ModelsPageClient() {
     <div className="min-h-screen bg-surface-base">
       <Navbar />
 
-      <div className="px-4 py-6 sm:py-12 sm:px-6 lg:px-8">
+      <div className="px-4 py-6 sm:py-12 sm:px-6 lg:px-8 pb-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-4 sm:mb-8">
             <div className="flex items-center gap-3 mb-2 sm:mb-4">
