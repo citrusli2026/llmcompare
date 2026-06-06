@@ -145,7 +145,8 @@
   "common": {
     "open": "开源",
     "closed": "闭源",
-    "reasoning": "推理模型",
+    "frontier": "前沿",
+    "reasoning": "推理",
     "openWeights": "开源权重",
     "imageInput": "图像输入",
     "chineseEval": "中文评测",
@@ -194,7 +195,9 @@
     "benchmarkMmluPro": "MMLU-Pro",
     "orWeeklyTokens": "周用量",
     "orPrice": "OR",
-    "bestValue": "最佳"
+    "bestValue": "最佳",
+    "share": "复制分享链接",
+    "copied": "已复制"
   },
   "theme": {
     "toggle": "切换主题"
