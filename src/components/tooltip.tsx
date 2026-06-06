@@ -138,7 +138,7 @@ export function Tooltip({ children, content }: TooltipProps) {
           role="tooltip"
           data-above={above ? "true" : "false"}
           className={[
-            "max-w-[75vw] sm:max-w-[280px] whitespace-normal break-words rounded-lg px-3 py-2 text-xs leading-relaxed shadow-lg",
+            "w-max min-w-[120px] max-w-[75vw] sm:max-w-[280px] whitespace-normal break-words rounded-lg px-3 py-2 text-xs leading-relaxed shadow-lg",
             "bg-gray-900 text-white dark:bg-neutral-700",
             "absolute left-1/2 -translate-x-1/2 z-50",
             above
