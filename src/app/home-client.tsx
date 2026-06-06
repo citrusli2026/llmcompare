@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import { Bot, TrendingUp, ChevronUp } from "lucide-react";
+import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { StatsStrip } from "@/components/stats-strip";
 import { CompareBar } from "@/components/compare-bar";
@@ -175,6 +176,19 @@ export default function HomeClient() {
                     {model.type}
                   </span>
                 </div>
+
+                {/* Recommendation tag — why this model is a top pick */}
+                {getRecommendationTags(model).length > 0 && (
+                  <div className="mt-1.5">
+                    <span className={cn(
+                      "inline-flex items-center gap-0.5 rounded-full px-1.5 py-[1px] text-[10px] font-medium",
+                      getRecommendationTags(model)[0].colorClass
+                    )}>
+                      <span>{getRecommendationTags(model)[0].icon}</span>
+                      <span className="truncate max-w-[6rem]">{t(getRecommendationTags(model)[0].labelKey)}</span>
+                    </span>
+                  </div>
+                )}
               </Link>
             ))}
           </div>
