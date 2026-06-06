@@ -74,7 +74,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
             <img
               src={model.logo}
               alt=""
-              className="h-5 w-5 rounded shrink-0"
+              className="h-4 w-4 rounded shrink-0"
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
           )}
