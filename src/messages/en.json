@@ -23,7 +23,19 @@
     "cardsViewAll": "View all",
     "footer": "LLMCompare — Global AI model data, curated in one place",
     "footerDisclaimer": "For reference only. Data based on publicly available information.",
-    "seoDesc": "LLMCompare curates benchmark scores, API performance, and pricing data for leading global LLMs including DeepSeek, GPT, Claude, Gemini, Qwen, Kimi, and more — helping developers and researchers compare and choose models efficiently."
+    "seoDesc": "LLMCompare curates benchmark scores, API performance, and pricing data for leading global LLMs including DeepSeek, GPT, Claude, Gemini, Qwen, Kimi, and more — helping developers and researchers compare and choose models efficiently.",
+    "sceneTitle": "Find Your Model",
+    "sceneDesc": "60+ AI models — recommended for your use case",
+    "sceneCoding": "Coding",
+    "sceneCodingDesc": "Write code",
+    "sceneAgent": "Agent",
+    "sceneAgentDesc": "Automation",
+    "sceneValue": "Value",
+    "sceneValueDesc": "Smart & cheap",
+    "sceneReasoning": "Reasoning",
+    "sceneReasoningDesc": "Complex thinking",
+    "sceneBrowseAll": "Browse all {n} models",
+    "sceneCollapse": "Collapse"
   },
   "models": {
     "title": "Model Directory",
