@@ -14,6 +14,8 @@ import { MobileCard } from "./mobile-card";
 interface RankingTableProps {
   models: ModelWithScores[];
   hideArenaCode?: boolean;
+  initialSortKey?: SortKey;
+  initialSortDesc?: boolean;
 }
 
 const HEADERS: HeaderDef[] = [
@@ -35,9 +37,9 @@ const MOBILE_SORT_OPTIONS: { key: SortKey | ""; labelKey: string }[] = [
   { key: "date", labelKey: "table.date" },
 ];
 
-export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
-  const [sortKey, setSortKey] = useState<SortKey>("date");
-  const [sortDesc, setSortDesc] = useState(true);
+export function RankingTable({ models, hideArenaCode, initialSortKey, initialSortDesc }: RankingTableProps) {
+  const [sortKey, setSortKey] = useState<SortKey>(initialSortKey ?? "date");
+  const [sortDesc, setSortDesc] = useState(initialSortDesc ?? true);
   const { t } = useTranslation();
 
   const headers = useMemo(
