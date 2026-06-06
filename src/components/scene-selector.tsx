@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Code, Bot, DollarSign, Brain, ArrowRight, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
+import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { useTranslation } from "@/lib/i18n";
 
 type SceneKey = "coding" | "agent" | "value" | "reasoning";
@@ -213,6 +214,18 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                             <div className="text-xs text-text-muted truncate">
                               {model.company}
                             </div>
+                            {/* Recommendation tag — why this model is recommended */}
+                            {getRecommendationTags(model).length > 0 && (
+                              <div className="mt-0.5">
+                                <span className={cn(
+                                  "inline-flex items-center gap-0.5 rounded-full px-1.5 py-[1px] text-[10px] font-medium",
+                                  getRecommendationTags(model)[0].colorClass
+                                )}>
+                                  <span>{getRecommendationTags(model)[0].icon}</span>
+                                  <span className="truncate max-w-[6rem]">{t(getRecommendationTags(model)[0].labelKey)}</span>
+                                </span>
+                              </div>
+                            )}
                           </div>
 
                           {/* Score */}
