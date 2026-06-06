@@ -4,7 +4,7 @@ import { Tooltip } from "@/components/tooltip";
 export function FieldTip({ tip }: { tip: string }) {
   return (
     <Tooltip content={tip}>
-      <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full border border-current text-[9px] text-text-muted cursor-help leading-none shrink-0 ml-1 select-none">
+      <span className="relative inline-flex items-center justify-center w-3.5 h-3.5 rounded-full border border-current text-[9px] text-text-muted cursor-help leading-none shrink-0 ml-1 select-none touch-manipulation before:absolute before:-inset-2 before:rounded-full">
         i
       </span>
     </Tooltip>
