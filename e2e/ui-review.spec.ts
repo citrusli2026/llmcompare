@@ -99,24 +99,18 @@ test.describe("ScoreBar — 表格分数可视化", () => {
 
   test("desktop: 无分数模型显示 —", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
-    await page.goto("/");
+    // /models 页展示全部 46 个模型，GPT-5.5 Pro 等无 intelligence 数据
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    // 编程(AA) 列所有模型都有数据，改用 Arena编程 列（索引 6），
-    // GPT-5.5 没有 Arena 编程分，显示 "—"
-    const arenaHeader = page.locator("th").filter({ hasText: /Arena编程|Arena Coding/ });
-    await expect(arenaHeader).toBeVisible({ timeout: 5000 });
-    await arenaHeader.click();
-    await page.waitForTimeout(500);
-
-    // 找所有行，至少有一行显示 —
+    // 找所有行，至少有一行在智能列显示 —
+    // td(0)=checkbox td(1)=name td(2)=company td(3)=date
+    // td(4)=intel td(5)=coding td(6)=agentic td(7)=cost td(8)=tokens
     const rows = page.locator("tbody tr");
     const count = await rows.count();
     let foundDash = false;
     for (let i = 0; i < count; i++) {
-      // td(0)=checkbox td(1)=name td(2)=company td(3)=date td(4)=intel
-      // td(5)=coding td(6)=agentic td(7)=arenaCode td(8)=cost td(9)=tokens
-      const cell = rows.nth(i).locator("td").nth(7);
+      const cell = rows.nth(i).locator("td").nth(4);
       const text = await cell.textContent();
       if (text?.includes("—")) {
         foundDash = true;
