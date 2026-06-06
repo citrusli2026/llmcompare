@@ -48,7 +48,7 @@ export function PricingSection({ model }: PricingSectionProps) {
           </div>
           {r.blended != null && (
             <div className="flex justify-between border-t border-surface-border pt-2 mt-2">
-              <span className="text-text-muted font-medium">{t("product.blendedAa")}<FieldTip tip={t("tip.blended")} /></span>
+              <span className="text-text-muted font-medium"><FieldTip tip={t("tip.blended")}>{t("product.blendedAa")}</FieldTip></span>
               <span className="text-text-primary font-semibold">${r.blended.toFixed(2)}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>
             </div>
           )}

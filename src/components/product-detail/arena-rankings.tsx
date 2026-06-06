@@ -39,7 +39,7 @@ export function ArenaRankings({ model }: ArenaRankingsProps) {
             </div>
             <div className="flex items-baseline gap-1">
               <span className="text-2xl font-bold text-text-primary tabular-nums">{data!.score}</span>
-              <span className="text-xs text-text-muted">ELO<FieldTip tip={t("tip.elo")} /></span>
+              <span className="text-xs text-text-muted"><FieldTip tip={t("tip.elo")}>ELO</FieldTip></span>
             </div>
           </div>
         ))}

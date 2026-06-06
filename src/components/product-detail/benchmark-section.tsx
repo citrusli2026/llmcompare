@@ -22,7 +22,7 @@ export function BenchmarkSection({ model }: BenchmarkSectionProps) {
       {/* Primary metric: intelligence */}
       <div className="mb-5">
         <div className="flex items-baseline justify-between mb-2">
-          <span className="text-sm text-text-secondary">{t("product.intelligence")}<FieldTip tip={t("tip.intelligence")} /></span>
+          <span className="text-sm text-text-secondary"><FieldTip tip={t("tip.intelligence")}>{t("product.intelligence")}</FieldTip></span>
           <div className="flex items-baseline gap-1">
             <span className="text-3xl font-bold text-text-primary tabular-nums">
               {r.intelligence != null ? r.intelligence.toFixed(1) : "—"}
@@ -48,19 +48,19 @@ export function BenchmarkSection({ model }: BenchmarkSectionProps) {
       {/* Secondary metrics */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.coding")}<FieldTip tip={t("tip.coding")} /></p>
+          <p className="text-xs text-text-muted"><FieldTip tip={t("tip.coding")}>{t("product.coding")}</FieldTip></p>
           <p className="text-base font-semibold text-text-primary tabular-nums">
             {r.coding != null ? r.coding.toFixed(1) : "—"}
           </p>
         </div>
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.agentic")}<FieldTip tip={t("tip.agentic")} /></p>
+          <p className="text-xs text-text-muted"><FieldTip tip={t("tip.agentic")}>{t("product.agentic")}</FieldTip></p>
           <p className="text-base font-semibold text-text-primary tabular-nums">
             {r.agentic != null ? r.agentic.toFixed(1) : "—"}
           </p>
         </div>
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.benchmarkMmluPro")}<FieldTip tip={t("tip.mmluPro")} /></p>
+          <p className="text-xs text-text-muted"><FieldTip tip={t("tip.mmluPro")}>{t("product.benchmarkMmluPro")}</FieldTip></p>
           <p className="text-base font-semibold text-text-primary tabular-nums">
             {r.benchmarks.mmlu_pro != null ? r.benchmarks.mmlu_pro.toFixed(1) : "—"}
           </p>

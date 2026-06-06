@@ -22,7 +22,7 @@ export function TokenUsage({ model }: TokenUsageProps) {
 
       {r.arena_votes != null && (
         <div className="mb-4">
-          <p className="text-xs text-text-muted mb-1">{t("product.orTokens")}<FieldTip tip={t("tip.arenaVotes")} /></p>
+          <p className="text-xs text-text-muted mb-1"><FieldTip tip={t("tip.arenaVotes")}>{t("product.orTokens")}</FieldTip></p>
           <p className="text-2xl font-bold text-text-primary tabular-nums">
             {formatTokenCount(r.arena_votes).value}
             {formatTokenCount(r.arena_votes).unit && (
@@ -35,7 +35,7 @@ export function TokenUsage({ model }: TokenUsageProps) {
 
       {r.openrouter_weekly_tokens != null && (
         <div className={r.arena_votes != null ? "border-t border-surface-border pt-4" : ""}>
-          <p className="text-xs text-text-muted mb-1">{t("product.orWeeklyTokens")}<FieldTip tip={t("tip.orWeeklyTokens")} /></p>
+          <p className="text-xs text-text-muted mb-1"><FieldTip tip={t("tip.orWeeklyTokens")}>{t("product.orWeeklyTokens")}</FieldTip></p>
           <p className="text-2xl font-bold text-text-primary tabular-nums">
             {formatTokenCount(r.openrouter_weekly_tokens).value}
             {formatTokenCount(r.openrouter_weekly_tokens).unit && (

@@ -20,7 +20,7 @@ export function SpeedSection({ model }: SpeedSectionProps) {
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.medianTps")}<FieldTip tip={t("tip.speed")} /></p>
+          <p className="text-xs text-text-muted"><FieldTip tip={t("tip.speed")}>{t("product.medianTps")}</FieldTip></p>
           <p className="text-lg font-semibold text-text-primary">
             {r.median_tps != null ? (
               <>
@@ -31,7 +31,7 @@ export function SpeedSection({ model }: SpeedSectionProps) {
           </p>
         </div>
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.p05Tps")}<FieldTip tip={t("tip.p5")} /></p>
+          <p className="text-xs text-text-muted"><FieldTip tip={t("tip.p5")}>{t("product.p05Tps")}</FieldTip></p>
           <p className="text-lg font-semibold text-text-primary">
             {r.p05_tps != null ? (
               <>
@@ -42,7 +42,7 @@ export function SpeedSection({ model }: SpeedSectionProps) {
           </p>
         </div>
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.p95Tps")}<FieldTip tip={t("tip.p95")} /></p>
+          <p className="text-xs text-text-muted"><FieldTip tip={t("tip.p95")}>{t("product.p95Tps")}</FieldTip></p>
           <p className="text-lg font-semibold text-text-primary">
             {r.p95_tps != null ? (
               <>
@@ -53,13 +53,13 @@ export function SpeedSection({ model }: SpeedSectionProps) {
           </p>
         </div>
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.ttft")}<FieldTip tip={t("tip.ttft")} /></p>
+          <p className="text-xs text-text-muted"><FieldTip tip={t("tip.ttft")}>{t("product.ttft")}</FieldTip></p>
           <p className="text-lg font-semibold text-text-primary">
             {r.ttft_seconds != null ? `${r.ttft_seconds.toFixed(1)}s` : "—"}
           </p>
         </div>
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.e2e")}<FieldTip tip={t("tip.e2e")} /></p>
+          <p className="text-xs text-text-muted"><FieldTip tip={t("tip.e2e")}>{t("product.e2e")}</FieldTip></p>
           <p className="text-lg font-semibold text-text-primary">
             {r.e2e_seconds != null ? `${r.e2e_seconds.toFixed(1)}s` : "—"}
           </p>
