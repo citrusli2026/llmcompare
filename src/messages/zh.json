@@ -157,7 +157,9 @@
     "badgeValue": "性价比之选",
     "badgeReasoning": "前沿推理模型",
     "badgeBudget": "经济实惠",
-    "badgeOpenLeader": "开源标杆"
+    "badgeOpenLeader": "开源标杆",
+    "similarModels": "你可能也喜欢",
+    "similarModelsDesc": "同类模型推荐"
   },
   "table": {
     "model": "模型",
