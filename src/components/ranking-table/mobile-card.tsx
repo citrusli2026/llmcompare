@@ -69,14 +69,14 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
         onClick={handleToggleCompare}
         className={cn(
           "absolute top-1 right-1 flex items-center justify-center w-11 h-11 rounded-lg transition-all z-10",
-          isInCompare
+          isInCompare(model.id)
             ? "text-accent-violet hover:text-violet-500 bg-accent-violet/5"
             : "text-text-muted hover:text-text-secondary hover:bg-surface-hover"
         )}
-        aria-label={isInCompare ? t("compare.remove") : t("compare.addToCompare")}
-        title={isInCompare ? t("compare.remove") : t("compare.addToCompare")}
+        aria-label={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
+        title={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
       >
-        {isInCompare ? (
+        {isInCompare(model.id) ? (
           <CheckSquare className="h-5 w-5" />
         ) : (
           <Square className="h-5 w-5" />

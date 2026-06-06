@@ -49,16 +49,16 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
       <TableCell className="w-10 sm:w-12">
         <button
           onClick={handleToggleCompare}
-          className={cn(
-            "flex items-center justify-center w-6 h-6 rounded transition-colors",
-            isInCompare
-              ? "text-accent-violet hover:text-violet-500"
-              : "text-text-muted hover:text-text-secondary"
-          )}
-          aria-label={isInCompare ? t("compare.remove") : t("compare.addToCompare")}
-          title={isInCompare ? t("compare.remove") : t("compare.addToCompare")}
-        >
-          {isInCompare ? (
+        className={cn(
+          "flex items-center justify-center w-6 h-6 rounded transition-colors",
+          isInCompare(model.id)
+            ? "text-accent-violet hover:text-violet-500"
+            : "text-text-muted hover:text-text-secondary"
+        )}
+        aria-label={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
+        title={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
+      >
+        {isInCompare(model.id) ? (
             <CheckSquare className="h-4 w-4 sm:h-5 sm:w-5" />
           ) : (
             <Square className="h-4 w-4 sm:h-5 sm:w-5" />
