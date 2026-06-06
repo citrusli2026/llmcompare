@@ -127,7 +127,7 @@ export function ScoreOverview({ model }: ScoreOverviewProps) {
     <div className="rounded-xl border border-surface-border bg-surface-card p-5">
       <h3 className="text-sm font-semibold text-text-primary mb-4 flex items-center gap-2">
         <BarChart3 className="h-4 w-4 text-text-muted" />
-        Score Overview
+        {t("source.scoreOverview")}
       </h3>
       <div className="space-y-3">
         {metrics.map((m) => (

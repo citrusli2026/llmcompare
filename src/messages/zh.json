@@ -139,7 +139,8 @@
     "speedLabel": "速度 (TPS)",
     "speedSource": "Artificial Analysis",
     "costLabel": "成本",
-    "costSource": "官网/厂商定价"
+    "costSource": "官网/厂商定价",
+    "scoreOverview": "分数概览"
   },
   "common": {
     "open": "开源",
