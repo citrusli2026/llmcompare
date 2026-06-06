@@ -4,12 +4,10 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
-import { Bot, TrendingUp, ArrowRight } from "lucide-react";
-import { getRecommendationTags } from "@/lib/recommendation-tags";
+import { Bot, TrendingUp, ChevronUp } from "lucide-react";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { StatsStrip } from "@/components/stats-strip";
 import { CompareBar } from "@/components/compare-bar";
-import { SearchInput } from "@/components/search-input";
 import { SceneSelector } from "@/components/scene-selector";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
@@ -66,8 +64,8 @@ export default function HomeClient() {
         <SceneSelector hideHeader />
       </section>
 
-      {/* Model Directory Table — moved before StatsStrip on mobile via ordering */}
-      <section className="px-4 pt-4 pb-4 sm:px-6 lg:px-8 order-first sm:order-none">
+      {/* Top Picks — compact recommendation card strip (replaces full ranking table) */}
+      <section className="px-4 pt-6 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-3">
@@ -137,19 +135,6 @@ export default function HomeClient() {
                     {model.type}
                   </span>
                 </div>
-
-                {/* Recommendation tag — why this model is a top pick */}
-                {getRecommendationTags(model).length > 0 && (
-                  <div className="mt-1.5">
-                    <span className={cn(
-                      "inline-flex items-center gap-0.5 rounded-full px-1.5 py-[1px] text-[10px] font-medium",
-                      getRecommendationTags(model)[0].colorClass
-                    )}>
-                      <span>{getRecommendationTags(model)[0].icon}</span>
-                      <span className="truncate max-w-[6rem]">{t(getRecommendationTags(model)[0].labelKey)}</span>
-                    </span>
-                  </div>
-                )}
               </Link>
             ))}
           </div>

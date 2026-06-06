@@ -35,7 +35,9 @@
     "sceneReasoning": "Reasoning",
     "sceneReasoningDesc": "Complex thinking",
     "sceneBrowseAll": "Browse all {n} models",
-    "sceneCollapse": "Collapse"
+    "sceneCollapse": "Collapse",
+    "topPicks": "Top Picks",
+    "viewAllModels": "View all {n} models →"
   },
   "models": {
     "title": "Model Directory",
