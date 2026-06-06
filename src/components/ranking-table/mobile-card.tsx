@@ -31,6 +31,10 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  const handleCardClick = useCallback(() => {
+    router.push(`/product/${model.id}`);
+  }, [router, model.id]);
+
   // ── Compare logic (same as model-row) ──
   const compareIds = useMemo(
     () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],
@@ -73,8 +77,9 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
   return (
     <div
       data-testid="mobile-model-card"
+      onClick={handleCardClick}
       className={cn(
-        "relative rounded-xl border border-surface-border p-3 group hover:ring-1 hover:ring-accent-violet/30 transition-all",
+        "relative rounded-xl border border-surface-border p-3 transition-all active:scale-[0.97] active:bg-surface-elevated cursor-pointer",
         group.borderClass,
         group.rowBgClass
       )}
@@ -115,7 +120,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
           />
         )}
         <span className="truncate">{model.name}</span>
-        <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+        <ArrowUpRight className="h-3 w-3 text-accent-violet opacity-70 shrink-0" />
       </Link>
 
       {/* 元信息行 */}

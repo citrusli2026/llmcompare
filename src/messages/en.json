@@ -151,6 +151,25 @@
     "unknown": "Unknown",
     "perMUnit": "/M = per million tokens"
   },
+  "tip": {
+    "intelligence": "Artificial Analysis composite score based on MMLU, HumanEval, MATH and other benchmarks. Range 0-100, higher is better.",
+    "coding": "Coding ability score based on code generation benchmarks like HumanEval. Range 0-100, higher is better.",
+    "agentic": "Agent capability score measuring the model's ability to autonomously complete multi-step tasks. Range 0-100, higher is better.",
+    "mmluPro": "Massive Multitask Language Understanding benchmark — measures broad knowledge across 57 subjects. Range 0-100, higher is better.",
+    "speed": "Tokens Per Second — how many tokens the model processes per second. Higher is faster.",
+    "p5": "P5 speed — the processing speed of the fastest 5% of samples, reflecting peak performance.",
+    "p95": "P95 speed — the processing speed of the slowest 5% of samples, reflecting worst-case performance.",
+    "ttft": "Time to First Token — delay from sending a request to receiving the first token. Lower is better.",
+    "e2e": "End-to-End Latency — total time to complete a full request. Lower is better.",
+    "blended": "Weighted average of input and output pricing, calculated at a typical 60% input / 40% output ratio.",
+    "parameters": "Number of model parameters (B = Billion). Generally larger models are more capable but cost more to run.",
+    "orWeeklyTokens": "Real weekly token consumption on OpenRouter, reflecting real-world usage popularity.",
+    "arenaVotes": "Cumulative blind human evaluation votes from lmarena.ai (Chatbot Arena). More votes = more reliable ranking.",
+    "elo": "ELO rating from paired battle results on lmarena.ai. Typical range 1200-1600, higher ranks higher.",
+    "contextWindow": "Maximum number of tokens the model can process in a single request (input + output combined). Larger = can handle longer content.",
+    "gpqa": "Graduate-level Q&A benchmark — tests PhD-level knowledge across domains. Higher is better.",
+    "hle": "Hard Language Understanding benchmark — tests difficult reasoning and comprehension. Higher is better."
+  },
   "compare": {
     "title": "Model Comparison",
     "addToCompare": "Add to Compare",

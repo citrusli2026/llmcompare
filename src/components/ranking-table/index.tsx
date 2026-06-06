@@ -8,7 +8,6 @@ import { ArrowUpDown, ArrowUp, ArrowDown, Trophy, DollarSign, Brain, Code, Bot, 
 import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
-import { Tooltip } from "@/components/tooltip";
 import { type ScoreKey, type SortKey, type HeaderDef } from "./types";
 import { computePercentiles, formatScore } from "./utils";
 import { useModelGroups } from "./use-model-groups";
@@ -95,14 +94,7 @@ export function RankingTable({ models }: RankingTableProps) {
       m.raw.blended != null ? (
         <span className="inline-flex items-center gap-0.5">
           <span className="tabular-nums">${m.raw.blended.toFixed(2)}</span>
-          <Tooltip content={t("common.perMUnit")}>
-            <span className="text-text-secondary text-[10px] cursor-help">/M</span>
-          </Tooltip>
-          {m.raw.openrouter_pricing != null && (
-            <Tooltip content={`${t("compare.orPrice")}: $${m.raw.openrouter_pricing.prompt}/$${m.raw.openrouter_pricing.completion}/M`}>
-              <span className="text-text-dim text-[9px] cursor-help ml-0.5">ⓘ</span>
-            </Tooltip>
-          )}
+          <span className="text-text-secondary text-[10px]">/M</span>
         </span>
       ) : (
         <span className="text-text-dim text-xs">—</span>
@@ -118,7 +110,7 @@ export function RankingTable({ models }: RankingTableProps) {
   const renderMetric = (model: ModelWithScores, key: ScoreKey) => {
     if (key === "cost") {
       if (model.raw.blended != null) {
-        return <span>${model.raw.blended.toFixed(2)}<Tooltip content={t("common.perMUnit")}><span className="text-text-secondary text-[10px]">/M</span></Tooltip></span>;
+        return <span>${model.raw.blended.toFixed(2)}<span className="text-text-secondary text-[10px]">/M</span></span>;
       }
       return <span className="text-text-dim text-xs">—</span>;
     }

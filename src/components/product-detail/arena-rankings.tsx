@@ -3,6 +3,7 @@
 import { ExternalLink, Trophy } from "lucide-react";
 import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
+import { FieldTip } from "@/components/field-tip";
 
 interface ArenaRankingsProps {
   model: ModelWithScores;
@@ -38,7 +39,7 @@ export function ArenaRankings({ model }: ArenaRankingsProps) {
             </div>
             <div className="flex items-baseline gap-1">
               <span className="text-2xl font-bold text-text-primary tabular-nums">{data!.score}</span>
-              <span className="text-xs text-text-muted">ELO</span>
+              <span className="text-xs text-text-muted">ELO<FieldTip tip={t("tip.elo")} /></span>
             </div>
           </div>
         ))}
