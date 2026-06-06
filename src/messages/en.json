@@ -145,6 +145,7 @@
   "common": {
     "open": "Open",
     "closed": "Closed",
+    "frontier": "Frontier",
     "reasoning": "Reasoning",
     "openWeights": "Open Weights",
     "imageInput": "Image Input",
@@ -194,7 +195,9 @@
     "benchmarkMmluPro": "MMLU-Pro",
     "orWeeklyTokens": "Weekly Tokens",
     "orPrice": "OR",
-    "bestValue": "Best"
+    "bestValue": "Best",
+    "share": "Copy Share Link",
+    "copied": "Copied!"
   },
   "theme": {
     "toggle": "Toggle theme"
