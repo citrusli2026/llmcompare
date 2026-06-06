@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 interface TooltipProps {
   children: React.ReactNode;
@@ -12,8 +12,55 @@ export function Tooltip({ children, content }: TooltipProps) {
   const [clicked, setClicked] = useState(false);
   const timer = useRef(0);
   const ref = useRef<HTMLSpanElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const [style, setStyle] = useState<React.CSSProperties>({});
 
-  // Outside click → close (for click-opened tooltips on mobile/desktop)
+  const position = useCallback(() => {
+    if (!ref.current || !innerRef.current) return;
+    const trigger = ref.current.getBoundingClientRect();
+    const tooltip = innerRef.current.getBoundingClientRect();
+    const vpW = window.innerWidth;
+    const vpH = window.innerHeight;
+    const tw = tooltip.width;
+    const th = tooltip.height;
+    const gap = 8;
+
+    // Vertical: prefer above, fallback below
+    const spaceAbove = trigger.top - gap;
+    const spaceBelow = vpH - trigger.bottom - gap;
+    const useAbove = spaceAbove >= th || spaceBelow < th;
+
+    // Horizontal: center on trigger, bounded to viewport
+    let left = trigger.left + trigger.width / 2 - tw / 2;
+    left = Math.max(12, Math.min(left, vpW - tw - 12));
+
+    setStyle({
+      position: "fixed",
+      left,
+      [useAbove ? "bottom" : "top"]: useAbove
+        ? vpH - trigger.top + gap
+        : trigger.bottom + gap,
+      zIndex: 50,
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!show) return;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => position());
+    });
+
+    if (!clicked) {
+      window.addEventListener("scroll", position, { passive: true });
+    }
+    window.addEventListener("resize", position);
+    return () => {
+      window.removeEventListener("scroll", position);
+      window.removeEventListener("resize", position);
+    };
+  }, [show, clicked, position]);
+
+  // Outside click → close (click-opened tooltips only)
   useEffect(() => {
     if (!show || !clicked) return;
     const handle = (e: MouseEvent) => {
@@ -26,24 +73,26 @@ export function Tooltip({ children, content }: TooltipProps) {
     return () => document.removeEventListener("mousedown", handle);
   }, [show, clicked]);
 
-  const handleEnter = () => {
-    // Don't override a click-opened tooltip
+  const handleEnter = useCallback(() => {
     if (clicked) return;
     window.clearTimeout(timer.current);
     setShow(true);
-  };
+  }, [clicked]);
 
-  const handleLeave = () => {
+  const handleLeave = useCallback(() => {
     if (clicked) return;
     timer.current = window.setTimeout(() => setShow(false), 150);
-  };
+  }, [clicked]);
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    const newShow = !show;
-    setShow(newShow);
-    setClicked(newShow);
-  };
+  const handleClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      e.preventDefault();
+      setShow((s) => !s);
+      setClicked((s) => !s);
+    },
+    []
+  );
 
   return (
     <span
@@ -52,19 +101,19 @@ export function Tooltip({ children, content }: TooltipProps) {
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
       onClick={handleClick}
+      onTouchEnd={(e) => {
+        e.stopPropagation();
+      }}
     >
       {children}
       {show && (
-        <span
-          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 z-50 pointer-events-none"
-          onMouseEnter={handleEnter}
-          onMouseLeave={handleLeave}
+        <div
+          ref={innerRef}
+          style={style}
+          className="max-w-[75vw] sm:max-w-[280px] whitespace-normal break-words rounded-lg bg-gray-900 px-3 py-2 text-xs leading-relaxed text-white shadow-lg dark:bg-neutral-700"
         >
-          <span className="whitespace-nowrap rounded-md bg-gray-900 px-2.5 py-1.5 text-xs text-white shadow-lg dark:bg-neutral-700">
-            {content}
-          </span>
-          <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900 dark:border-t-neutral-700" />
-        </span>
+          {content}
+        </div>
       )}
     </span>
   );
