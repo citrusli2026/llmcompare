@@ -20,13 +20,13 @@ DATA_PATH = Path(__file__).parent.parent / "src" / "data" / "ranking.json"
 
 # ── 阈值配置（基于历史数据，留出合理波动） ──
 THRESHOLDS = {
-    "total_models": (15, 50),     # 24→44 模型，宽上限
-    "data_complete": (20, 45),    # 21→42 完整
+    "total_models": (15, 70),     # 24→60 模型（策略 C + 去旧），宽上限
+    "data_complete": (20, 65),    # 21→58 完整
     "frontier": (5, 20),          # 9→18 frontier
-    "intl": (5, 25),              # 3→23 国际模型
-    "has_arena": (15, 35),        # 16→28 arena
-    "has_cn_price": (10, 30),     # 21→42 国内定价
-    "has_speed": (20, 40),        # 20→37 速度数据
+    "intl": (5, 40),              # 3→33 国际模型
+    "has_arena": (15, 35),        # 16→27 arena
+    "has_cn_price": (10, 30),     # 21→18 国内定价
+    "has_speed": (20, 55),        # 20→48 速度数据
 }
 
 # 与上次数据对比的最大允许变化率
