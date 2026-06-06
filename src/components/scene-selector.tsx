@@ -104,7 +104,7 @@ interface SceneSelectorProps {
 
 export function SceneSelector({ hideHeader }: SceneSelectorProps) {
   const { t } = useTranslation();
-  const [expanded, setExpanded] = useState<SceneKey | null>(null);
+  const [expanded, setExpanded] = useState<SceneKey | null>("coding");
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
 
