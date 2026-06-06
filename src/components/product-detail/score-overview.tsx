@@ -75,13 +75,13 @@ export function ScoreOverview({ model }: ScoreOverviewProps) {
       ? speeds[Math.min(Math.floor(speeds.length * 0.90), speeds.length - 1)]
       : 1;
 
-    // Price: sort and use P85 (OR 价格有 4 个 $150-180 极端值)
+    // Price: sort and use P95 (OR 价格有 ~4 个 $25-180 极端值)
     const prices = all
       .map((m) => m.raw.openrouter_pricing?.completion ?? m.raw.output)
       .filter((v): v is number => v != null)
       .sort((a, b) => a - b);
     const priceCap = prices.length > 0
-      ? prices[Math.min(Math.floor(prices.length * 0.85), prices.length - 1)]
+      ? prices[Math.min(Math.floor(prices.length * 0.95), prices.length - 1)]
       : 1;
 
     return { maxSpeed: Math.max(speedCap, 1), maxPrice: Math.max(priceCap, 1) };
