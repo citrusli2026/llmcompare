@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { type ModelWithScores } from "@/lib/scoring";
 import { getTypeBadgeClasses } from "@/lib/utils";
@@ -12,16 +13,17 @@ interface ModelHeaderProps {
 export function ModelHeader({ model }: ModelHeaderProps) {
   const { t } = useTranslation();
   const f = model.flags;
+  const [logoError, setLogoError] = useState(false);
 
   return (
     <div className="flex items-start justify-between gap-4 mb-6">
       <div className="flex items-start gap-4 min-w-0 flex-1">
-        {model.logo ? (
+        {model.logo && !logoError ? (
           <img
             src={model.logo}
             alt={model.name}
             className="h-16 w-16 rounded-xl shrink-0 object-contain bg-surface-elevated border border-surface-border p-2"
-            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            onError={() => setLogoError(true)}
           />
         ) : (
           <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-surface-elevated border border-surface-border text-2xl font-semibold text-text-primary shrink-0">

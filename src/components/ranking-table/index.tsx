@@ -1,9 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import {
-  Table, TableBody, TableHead, TableHeader, TableRow,
-} from "@/components/ui/table";
 import { ArrowUpDown, ArrowUp, ArrowDown, Trophy, DollarSign, Brain, Code, Bot, Calendar, TrendingUp } from "lucide-react";
 import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
@@ -165,17 +162,23 @@ export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
       </div>
 
       {/* 桌面端表格 */}
-      <div className="rounded-xl border border-surface-border bg-surface-card overflow-hidden hidden sm:block">
-        <div className="overflow-x-auto">
-          <Table>
-            <TableHeader>
-              <TableRow className="border-surface-border hover:bg-transparent">
-                <TableHead className="w-10 sm:w-12" />
-                <TableHead className="text-text-muted">{t("table.model")}</TableHead>
-                <TableHead className="text-text-muted hidden sm:table-cell">{t("table.company")}</TableHead>
-                <TableHead
+      <div className="rounded-xl border border-surface-border bg-surface-card hidden sm:block">
+        <div className="max-h-[calc(100vh-280px)] overflow-auto">
+          <table className="w-full caption-bottom text-sm">
+            <thead className="sticky top-0 z-10 bg-surface-card">
+              <tr className="border-b border-surface-border hover:bg-transparent">
+                <th className="h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap w-10 sm:w-12">
+                  <span className="sr-only">{t("compare.select")}</span>
+                </th>
+                <th className="h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap text-text-muted">
+                  {t("table.model")}
+                </th>
+                <th className="h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap text-text-muted hidden sm:table-cell">
+                  {t("table.company")}
+                </th>
+                <th
                   className={cn(
-                    "cursor-pointer text-text-muted hover:text-text-primary hidden lg:table-cell",
+                    "h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap cursor-pointer text-text-muted hover:text-text-primary hidden lg:table-cell",
                     sortKey === "date" && "font-semibold text-text-primary"
                   )}
                   onClick={() => handleSort("date")}
@@ -185,11 +188,14 @@ export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
                     {t("table.date")}
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
-                </TableHead>
+                </th>
                 {headers.map((h) => (
-                  <TableHead
+                  <th
                     key={h.key}
-                    className={cn("cursor-pointer text-text-muted hover:text-text-primary", colVisibilityClass(h))}
+                    className={cn(
+                      "h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap cursor-pointer text-text-muted hover:text-text-primary",
+                      colVisibilityClass(h)
+                    )}
                     onClick={() => handleSort(h.key)}
                   >
                     <div className="flex items-center gap-1">
@@ -197,11 +203,11 @@ export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
                       {t(h.labelKey)}
                       <ArrowUpDown className="h-3 w-3" />
                     </div>
-                  </TableHead>
+                  </th>
                 ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+              </tr>
+            </thead>
+            <tbody>
               {groups.map((group) =>
                 group.items.map((model, idx) => (
                   <ModelRow
@@ -218,8 +224,8 @@ export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
                   />
                 ))
               )}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
         </div>
       </div>
 

@@ -97,6 +97,7 @@ export default function HomeClient() {
               value={searchQuery}
               onChange={setSearchQuery}
               placeholder={t("models.searchPlaceholder")}
+              className="max-w-xl"
             />
           </div>
 
