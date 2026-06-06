@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/navbar";
-import { getAllModelsUnfiltered, getModelById, type ModelWithScores } from "@/lib/scoring";
+import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
 import { SearchInput } from "@/components/search-input";

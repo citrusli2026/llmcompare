@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useCallback } from "react";
+import { useCallback } from "react";
 import Link from "next/link";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { TableCell, TableRow } from "@/components/ui/table";
@@ -11,8 +11,6 @@ import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup } from "./types";
 import { getRawValue, getScoreColor, ScoreBar } from "./utils";
 import { useTranslation } from "@/lib/i18n";
-
-const MAX_COMPARE = 6;
 
 interface ModelRowProps {
   model: ModelWithScores;

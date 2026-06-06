@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import { Bot, ArrowRight, TrendingUp } from "lucide-react";
-import { getAllModelsUnfiltered, getModelById, type ModelWithScores } from "@/lib/scoring";
+import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
 import { StatsStrip } from "@/components/stats-strip";
 import { CompareBar } from "@/components/compare-bar";
@@ -16,8 +15,6 @@ import { useCompareIds } from "@/hooks/use-compare-ids";
 
 export default function HomeClient() {
   const { t } = useTranslation();
-  const router = useRouter();
-  const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
