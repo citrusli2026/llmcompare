@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback, useRef } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/navbar";
 import { RankingTable } from "@/components/ranking-table";
@@ -55,6 +55,14 @@ export default function ModelsPageClient() {
     [router, searchParams]
   );
 
+  // Refs to prevent stale closure in debounce/timeouts
+  const activeFilterRef = useRef(activeFilter);
+  const companyFilterRef = useRef(companyFilter);
+  const searchQueryRef = useRef(searchQuery);
+  useEffect(() => { activeFilterRef.current = activeFilter; }, [activeFilter]);
+  useEffect(() => { companyFilterRef.current = companyFilter; }, [companyFilter]);
+  useEffect(() => { searchQueryRef.current = searchQuery; }, [searchQuery]);
+
   const handleSearchChange = useCallback(
     (value: string) => {
       setSearchQuery(value);
@@ -62,28 +70,28 @@ export default function ModelsPageClient() {
         clearTimeout(searchDebounceRef.current);
       }
       searchDebounceRef.current = setTimeout(() => {
-        updateUrl(value, activeFilter, companyFilter);
+        updateUrl(value, activeFilterRef.current, companyFilterRef.current);
       }, 300);
     },
-    [activeFilter, updateUrl, companyFilter]
+    [updateUrl]
   );
 
   const handleFilterChange = useCallback(
     (key: string) => {
       const filter = key as Filter;
       setActiveFilter(filter);
-      updateUrl(searchQuery, filter, companyFilter);
+      updateUrl(searchQueryRef.current, filter, companyFilterRef.current);
     },
-    [searchQuery, updateUrl, companyFilter]
+    [updateUrl]
   );
 
   const handleCompanyChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       const company = e.target.value;
       setCompanyFilter(company);
-      updateUrl(searchQuery, activeFilter, company);
+      updateUrl(searchQueryRef.current, activeFilterRef.current, company);
     },
-    [searchQuery, activeFilter, updateUrl]
+    [updateUrl]
   );
 
   const filterOptions: FilterOption[] = useMemo(

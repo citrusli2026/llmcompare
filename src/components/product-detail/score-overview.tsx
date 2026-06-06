@@ -45,7 +45,7 @@ function MetricBar({
           style={{ width: `${fillPct}%` }}
         />
       </div>
-      <span className="text-sm font-medium text-text-primary w-24 text-right tabular-nums shrink-0 flex items-center justify-end gap-0.5">
+      <span className="text-sm font-medium text-text-primary min-w-[5rem] text-right tabular-nums shrink-0 flex items-center justify-end gap-0.5 whitespace-nowrap">
         {displayVal}{unit}
         {invert && <ArrowDown className="h-3 w-3 text-accent-lime shrink-0" />}
       </span>

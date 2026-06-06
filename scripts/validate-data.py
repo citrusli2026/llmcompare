@@ -21,7 +21,7 @@ DATA_PATH = Path(__file__).parent.parent / "src" / "data" / "ranking.json"
 # ── 阈值配置（基于历史数据，留出合理波动） ──
 THRESHOLDS = {
     "total_models": (15, 70),     # 24→60 模型（策略 C + 去旧），宽上限
-    "data_complete": (20, 65),    # 21→58 完整
+    "data_complete": (20, 60),    # 21→58 完整
     "frontier": (5, 20),          # 9→18 frontier
     "intl": (5, 40),              # 3→33 国际模型
     "has_arena": (15, 35),        # 16→27 arena
@@ -30,7 +30,7 @@ THRESHOLDS = {
 }
 
 # 与上次数据对比的最大允许变化率
-MAX_CHANGE_RATIO = 0.30
+MAX_CHANGE_RATIO = 0.50
 
 # ── 数据完整度计算配置 ──
 # 定义哪些字段参与完整度计算，以及权重
