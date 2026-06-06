@@ -90,11 +90,8 @@ export function Tooltip({ children, content }: TooltipProps) {
   }, [clicked]);
 
   const toggleTooltip = useCallback(() => {
-    setClicked((c) => {
-      const next = !c;
-      setShow(next);
-      return next;
-    });
+    setClicked((prev) => !prev);
+    setShow((prev) => !prev);
   }, []);
 
   const handleClick = useCallback(
@@ -113,12 +110,14 @@ export function Tooltip({ children, content }: TooltipProps) {
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
       onClick={handleClick}
-
+      aria-describedby={show ? "tooltip-content" : undefined}
     >
       {children}
       {show && (
         <div
           ref={innerRef}
+          id="tooltip-content"
+          role="tooltip"
           style={style}
           className="max-w-[75vw] sm:max-w-[280px] whitespace-normal break-words rounded-lg bg-gray-900 px-3 py-2 text-xs leading-relaxed text-white shadow-lg dark:bg-neutral-700"
         >

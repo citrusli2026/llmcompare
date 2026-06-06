@@ -195,5 +195,8 @@
     "orWeeklyTokens": "Weekly Tokens",
     "orPrice": "OR",
     "bestValue": "Best"
+  },
+  "theme": {
+    "toggle": "Toggle theme"
   }
 }

@@ -1,20 +1,18 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useTheme } from "@/components/theme-provider";
-import { useSyncExternalStore } from "react";
+import { useTranslation } from "@/lib/i18n";
 import { Sun, Moon } from "lucide-react";
-
-function useIsMounted() {
-  return useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false
-  );
-}
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const mounted = useIsMounted();
+  const [mounted, setMounted] = useState(false);
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
     return (
@@ -28,7 +26,7 @@ export function ThemeToggle() {
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       className="rounded-lg p-2 bg-surface-card border border-surface-border hover:bg-surface-hover transition-all"
-      aria-label="切换主题"
+      aria-label={t("theme.toggle")}
     >
       {theme === "dark" ? (
         <Sun className="h-5 w-5 text-accent-coral" />

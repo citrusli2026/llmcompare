@@ -195,5 +195,8 @@
     "orWeeklyTokens": "周用量",
     "orPrice": "OR",
     "bestValue": "最佳"
+  },
+  "theme": {
+    "toggle": "切换主题"
   }
 }
