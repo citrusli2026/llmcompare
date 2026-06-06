@@ -4,7 +4,7 @@
 
 ## 项目概览
 
-LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内中文 AI 大语言模型。它展示各家厂商（百度、阿里、腾讯、字节跳动、DeepSeek 等）大模型的基准测试分数、API 性能指标以及 Arena AI ELO 排名。
+LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排位全球 AI 大语言模型。它展示各家厂商模型的基准测试分数、API 性能指标以及 Arena ELO 排名。
 
 ## 常用命令
 
@@ -81,17 +81,16 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排名国内�
 | 参考数据 | `0-refer/` | 耐久参考：厂商链接、国内官价映射（手动维护） |
 | 数据抓取 | `1-fetch/` | 从 Artificial Analysis / OpenRouter / Arena 爬取原始数据 |
 | 原始数据 | `2-raw/` | 抓取产出（AA 全量模型 + OR/Arena 快照），只读缓存 |
-| 数据处理 | `3-process/` | 4 步处理管线（筛国内 → 构建前端 → 富化+切活跃 → 报告） |
+| 数据处理 | `3-process/` | 3 步处理管线（构建前端 → 富化+切活跃 → 报告） |
 | 编排入口 | `pipeline.py` | 一键编排：分支准备 → 抓取 → 处理 → 同步 → 验证 → 提交 PR |
 | 变化摘要 | `scripts/diff-ranking.py` | 两次 ranking.json 的差异报告（被 `pipeline.py` 调用） |
 | 最终输出 | `4-final/` | `ranking.json`（活跃模型 ≤180 天）+ `ranking_all.json`（全量） |
 
-**处理管线 4 步（对应 About 页面的"榜单筛选"描述）：**
+**处理管线 3 步（对应 About 页面的"榜单筛选"描述）：**
 
-1. **国内模型筛选** (`filter_cn_models.py`) — 按公司名 + 模型名关键词双重匹配，筛出国内模型
-2. **构建前端模型** (`build_frontend_models.py`) — 字段翻译/格式统一，只保留 `size_class == "Large"` 的国内模型 + 国外 Large 旗舰
-3. **富化 + 切活跃** (`enrich_models.py`) — 注入厂商链接、国内官价、OpenRouter 定价/调用量、Arena 排名与投票数；按发布时间 ≤180 天切活跃集；同时**重新计算** `flags.data_complete`（5 维度齐全：intelligence + coding + agentic + speed(>0) + pricing）
-4. **报告** (`build_report.py`) — 输出 `4-final/report.html` + 终端摘要
+1. **构建前端模型** (`build_frontend_models.py`) — 策略 C 三档条件筛选（Large 尺寸 / 前沿标杆 / 智能分≥30），字段翻译/格式统一
+2. **富化 + 切活跃** (`enrich_models.py`) — 注入厂商链接、国内官价、OpenRouter 定价/调用量、Arena 排名与投票数；按发布时间 ≤180 天切活跃集；同时**重新计算** `flags.data_complete`（5 维度齐全：intelligence + coding + agentic + speed(>0) + pricing）
+3. **报告** (`build_report.py`) — 输出 `4-final/report.html` + 终端摘要
 
 **国际模型呈现：**
 - 国际/国内共用一张可排序表格（`/models`），由 `useModelGroups` 单一 group（`key: "all"`）统一排序，不再分组
@@ -133,7 +132,6 @@ cd ../data && python3 1-fetch/fetch_or_models.py
 cd ../data && python3 1-fetch/fetch_arena_leaderboards.py
 
 # 处理管线
-cd ../data/3-process && python3.11 filter_cn_models.py
 cd ../data/3-process && python3.11 build_frontend_models.py
 cd ../data/3-process && python3.11 enrich_models.py
 cd ../data/3-process && python3.11 build_report.py

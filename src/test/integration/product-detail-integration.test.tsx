@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { ProductDetailClient } from "@/components/product-detail-client";
+import { ProductDetailClient } from "@/components/product-detail";
 import { type ModelWithScores } from "@/lib/scoring";
 
 // Mock i18n

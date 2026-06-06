@@ -90,8 +90,12 @@ export function Tooltip({ children, content }: TooltipProps) {
   }, [clicked]);
 
   const toggleTooltip = useCallback(() => {
-    setClicked((c) => {
-      const next = !c;
+    // clicked 和 show 必须联动：当 clicked 从 false→true 时 show 保持；
+    // 当 clicked 从 true→false 时 show 关闭
+    setClicked((prev) => {
+      const next = !prev;
+      // hover 展开时 show=true, clicked=false, 点击后：
+      // next=true, show 设为 true（保持不变）
       setShow(next);
       return next;
     });
@@ -113,12 +117,14 @@ export function Tooltip({ children, content }: TooltipProps) {
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
       onClick={handleClick}
-
+      aria-describedby={show ? "tooltip-content" : undefined}
     >
       {children}
       {show && (
         <div
           ref={innerRef}
+          id="tooltip-content"
+          role="tooltip"
           style={style}
           className="max-w-[75vw] sm:max-w-[280px] whitespace-normal break-words rounded-lg bg-gray-900 px-3 py-2 text-xs leading-relaxed text-white shadow-lg dark:bg-neutral-700"
         >

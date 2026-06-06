@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ProductDetailClient } from "@/components/product-detail-client";
+import { ProductDetailClient } from "@/components/product-detail";
 import { getModelById, getAllModelsUnfiltered } from "@/lib/scoring";
 
 const BASE_URL = "https://www.llmcompare.cc";

@@ -1,16 +1,16 @@
 "use client";
 
-import { useState, useMemo, useCallback, useRef } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/navbar";
+import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
 import { SearchInput } from "@/components/search-input";
 import { CompareBar } from "@/components/compare-bar";
-
-import { Bot } from "lucide-react";
-import { getAllModelsUnfiltered, getModelById, type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
+import { useCompareIds } from "@/hooks/use-compare-ids";
+import { Bot } from "lucide-react";
 
 const FILTER_KEYS = ["全部", "开源", "闭源"] as const;
 type Filter = (typeof FILTER_KEYS)[number];
@@ -55,6 +55,14 @@ export default function ModelsPageClient() {
     [router, searchParams]
   );
 
+  // Refs to prevent stale closure in debounce/timeouts
+  const activeFilterRef = useRef(activeFilter);
+  const companyFilterRef = useRef(companyFilter);
+  const searchQueryRef = useRef(searchQuery);
+  useEffect(() => { activeFilterRef.current = activeFilter; }, [activeFilter]);
+  useEffect(() => { companyFilterRef.current = companyFilter; }, [companyFilter]);
+  useEffect(() => { searchQueryRef.current = searchQuery; }, [searchQuery]);
+
   const handleSearchChange = useCallback(
     (value: string) => {
       setSearchQuery(value);
@@ -62,28 +70,28 @@ export default function ModelsPageClient() {
         clearTimeout(searchDebounceRef.current);
       }
       searchDebounceRef.current = setTimeout(() => {
-        updateUrl(value, activeFilter, companyFilter);
+        updateUrl(value, activeFilterRef.current, companyFilterRef.current);
       }, 300);
     },
-    [activeFilter, updateUrl, companyFilter]
+    [updateUrl]
   );
 
   const handleFilterChange = useCallback(
     (key: string) => {
       const filter = key as Filter;
       setActiveFilter(filter);
-      updateUrl(searchQuery, filter, companyFilter);
+      updateUrl(searchQueryRef.current, filter, companyFilterRef.current);
     },
-    [searchQuery, updateUrl, companyFilter]
+    [updateUrl]
   );
 
   const handleCompanyChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       const company = e.target.value;
       setCompanyFilter(company);
-      updateUrl(searchQuery, activeFilter, company);
+      updateUrl(searchQueryRef.current, activeFilterRef.current, company);
     },
-    [searchQuery, activeFilter, updateUrl]
+    [updateUrl]
   );
 
   const filterOptions: FilterOption[] = useMemo(
@@ -108,35 +116,8 @@ export default function ModelsPageClient() {
     [allModels]
   );
 
-  // Compare selection from URL params
-  const compareFromUrl = useMemo(
-    () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],
-    [searchParams]
-  );
-  const selectedCompareModels = useMemo(
-    () => compareFromUrl.map((id) => getModelById(id)).filter((m): m is ModelWithScores => m != null),
-    [compareFromUrl]
-  );
-
-  const handleRemoveCompare = useCallback(
-    (id: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      const remaining = compareFromUrl.filter((cid) => cid !== id);
-      if (remaining.length > 0) {
-        params.set("compare", remaining.join(","));
-      } else {
-        params.delete("compare");
-      }
-      router.replace(`?${params.toString()}`, { scroll: false });
-    },
-    [searchParams, router, compareFromUrl]
-  );
-
-  const handleClearCompare = useCallback(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete("compare");
-    router.replace(`?${params.toString()}`, { scroll: false });
-  }, [searchParams, router]);
+  // Compare selection from URL params (via shared hook)
+  const { selectedCompareModels, handleRemoveCompare, handleClearCompare } = useCompareIds();
 
   const filteredModels = useMemo(() => {
     return allModels.filter((m) => {
