@@ -192,32 +192,35 @@ export default function ModelsPageClient() {
             </p>
           </div>
 
-          <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row gap-3 sm:gap-4">
+          {/* 搜索框—独立一行 */}
+          <div className="mb-4 sm:mb-6 w-full sm:w-auto">
+            <SearchInput
+              value={searchQuery}
+              onChange={handleSearchChange}
+              placeholder={t("models.searchPlaceholder")}
+              className="max-w-none sm:max-w-md w-full"
+            />
+          </div>
+
+          {/* 筛选条件 — 统一排版 */}
+          <div className="mb-4 sm:mb-6 flex flex-wrap items-center gap-2">
             <FilterBar
               options={filterOptions}
               activeKey={activeFilter}
               onFilterChange={handleFilterChange}
             />
-            <div className="flex gap-3 flex-1">
-              <select
-                value={companyFilter}
-                onChange={handleCompanyChange}
-                className="rounded-lg border border-surface-border bg-surface-card px-3 py-2 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-violet/40"
-              >
-                <option value="">{t("models.filterAllCompanies")}</option>
-                {companies.map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </select>
-              <SearchInput
-                value={searchQuery}
-                onChange={handleSearchChange}
-                placeholder={t("models.searchPlaceholder")}
-              />
-            </div>
-          </div>
-
-          <div className="mb-4 sm:mb-6">
+            <div className="h-5 w-px bg-surface-border mx-0.5 hidden sm:block" />
+            <select
+              value={companyFilter}
+              onChange={handleCompanyChange}
+              className="h-9 rounded-lg border border-surface-border bg-surface-card px-3 py-1.5 text-xs text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-violet/40"
+            >
+              <option value="">{t("models.filterAllCompanies")}</option>
+              {companies.map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+            <div className="h-5 w-px bg-surface-border mx-0.5 hidden sm:block" />
             <FeatureFilter
               activeKeys={featureKeys}
               onToggle={handleFeatureToggle}
