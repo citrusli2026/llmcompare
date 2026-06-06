@@ -48,6 +48,8 @@
     "filterAllCompanies": "All Companies",
     "searchPlaceholder": "Search models or companies...",
     "emptyState": "No matching models found",
+    "emptySuggestion": "Try reducing your filters, or check out these recommendations:",
+    "emptyClear": "Clear all filters",
     "count": "{count} models",
     "colIntelligence": "Intelligence",
     "colCoding": "Coding(AA)",

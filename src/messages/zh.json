@@ -48,6 +48,8 @@
     "filterAllCompanies": "所有公司",
     "searchPlaceholder": "搜索模型或公司...",
     "emptyState": "未找到匹配的模型",
+    "emptySuggestion": "试试减少筛选条件，或查看以下推荐：",
+    "emptyClear": "清除所有筛选",
     "count": "共收录 {count} 个模型",
     "colIntelligence": "智能",
     "colCoding": "编程(AA)",

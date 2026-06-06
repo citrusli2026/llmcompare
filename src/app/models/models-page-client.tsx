@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
@@ -11,7 +12,7 @@ import { SearchInput } from "@/components/search-input";
 import { CompareBar } from "@/components/compare-bar";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
-import { Bot } from "lucide-react";
+import { Bot, SearchX, X, Sparkles } from "lucide-react";
 
 const FILTER_KEYS = ["全部", "开源", "闭源"] as const;
 type Filter = (typeof FILTER_KEYS)[number];
@@ -176,6 +177,28 @@ export default function ModelsPageClient() {
     });
   }, [allModels, activeFilter, companyFilter, searchQuery, featureKeys]);
 
+  // Clear all filters
+  const handleClearAll = useCallback(() => {
+    setActiveFilter("全部");
+    setSearchQuery("");
+    setCompanyFilter("");
+    setFeatureKeys(new Set());
+    router.replace("/models", { scroll: false });
+  }, [router]);
+
+  // Fallback: top 8 by intelligence for empty state recommendations
+  const fallbackModels = useMemo(() => {
+    return [...allModels]
+      .filter((m) => m.raw.intelligence != null)
+      .sort((a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0))
+      .slice(0, 8);
+  }, [allModels]);
+
+  // Detect if any filter is active
+  const hasActiveFilters = activeFilter !== "全部" || searchQuery !== "" || companyFilter !== "" || featureKeys.size > 0;
+
+  const isEmpty = filteredModels.length === 0;
+
   return (
     <div className="min-h-screen bg-surface-base">
       <Navbar />
@@ -227,11 +250,68 @@ export default function ModelsPageClient() {
             />
           </div>
 
-          <RankingTable models={filteredModels} />
+          {isEmpty ? (
+            /* Empty State — guidance instead of a dead-end */
+            <div className="flex flex-col items-center justify-center py-16 sm:py-20 text-center">
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-surface-elevated border border-surface-border">
+                <SearchX className="h-7 w-7 text-text-muted" />
+              </div>
+              <h3 className="text-lg font-semibold text-text-primary mb-1">{t("models.emptyState")}</h3>
+              <p className="text-sm text-text-secondary max-w-sm mb-6">{t("models.emptySuggestion")}</p>
 
-          <div className="mt-8 text-center text-sm text-text-muted">
-            {t("models.count", { count: String(filteredModels.length) })}
-          </div>
+              {hasActiveFilters && (
+                <button
+                  onClick={handleClearAll}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-surface-border bg-surface-card px-4 py-2 text-sm font-medium text-text-primary hover:border-accent-violet/30 hover:text-accent-violet hover:bg-accent-violet/5 transition-all mb-10"
+                >
+                  <X className="h-3.5 w-3.5" />
+                  {t("models.emptyClear")}
+                </button>
+              )}
+
+              {/* Fallback recommendations — top models by intelligence */}
+              <div className="w-full max-w-xl">
+                <div className="flex items-center gap-2 mb-4 justify-center">
+                  <Sparkles className="h-4 w-4 text-accent-violet" />
+                  <span className="text-sm font-medium text-text-secondary">{t("home.topPicks")}</span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {fallbackModels.map((model) => (
+                    <Link
+                      key={model.id}
+                      href={`/product/${model.id}`}
+                      className="flex items-center gap-2 rounded-lg border border-surface-border bg-surface-card p-2.5 transition-all hover:border-accent-violet/30 hover:shadow-sm hover:-translate-y-0.5 group"
+                    >
+                      <div className="h-8 w-8 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
+                        {model.logo ? (
+                          <img src={model.logo} alt="" className="h-5 w-5 object-contain"
+                            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                          />
+                        ) : (
+                          <span className="text-xs font-bold text-text-muted">{model.name.charAt(0)}</span>
+                        )}
+                      </div>
+                      <div className="min-w-0 flex-1 text-left">
+                        <div className="text-xs font-medium text-text-primary truncate group-hover:text-accent-violet transition-colors">
+                          {model.name}
+                        </div>
+                        <div className="text-[10px] text-text-muted truncate">
+                          {model.raw.intelligence?.toFixed(1) ?? "—"}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <>
+              <RankingTable models={filteredModels} />
+              <div className="mt-8 text-center text-sm text-text-muted">
+                {t("models.count", { count: String(filteredModels.length) })}
+              </div>
+            </>
+          )}
         </div>
       </div>
 
