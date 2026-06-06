@@ -144,7 +144,9 @@
     "badgeValue": "Best Value",
     "badgeReasoning": "Frontier Reasoning",
     "badgeBudget": "Budget Pick",
-    "badgeOpenLeader": "Open Leader"
+    "badgeOpenLeader": "Open Leader",
+    "similarModels": "You Might Also Like",
+    "similarModelsDesc": "Similar models to consider"
   },
   "table": {
     "model": "Model",
