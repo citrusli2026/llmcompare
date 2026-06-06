@@ -11,7 +11,6 @@ export function StatsStrip() {
   const stats = useMemo(() => {
     const all = getAllModels();
     const total = all.length;
-    const active = all.filter((m) => m.raw.data_completeness_pct >= 60).length;
 
     const topModel = all.reduce((best, m) => {
       const score = m.raw.intelligence ?? -Infinity;
@@ -29,7 +28,6 @@ export function StatsStrip() {
 
     return {
       total,
-      active,
       topScore: topModel.score > -Infinity ? topModel.score : null,
       topName: topModel.name,
       newThisMonth,
@@ -41,7 +39,7 @@ export function StatsStrip() {
       icon: Bot,
       label: t("home.statsModels"),
       value: stats.total,
-      sub: t("home.statsActive", { n: stats.active }),
+      sub: t("home.statsActive"),
     },
     {
       icon: Trophy,
