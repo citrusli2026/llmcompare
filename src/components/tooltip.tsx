@@ -13,7 +13,10 @@ export function Tooltip({ children, content }: TooltipProps) {
   const timer = useRef(0);
   const ref = useRef<HTMLSpanElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
-  const [style, setStyle] = useState<React.CSSProperties>({});
+  const [style, setStyle] = useState<React.CSSProperties>({
+    visibility: "hidden",
+  });
+  const posCount = useRef(0);
 
   const position = useCallback(() => {
     if (!ref.current || !innerRef.current) return;
@@ -21,18 +24,18 @@ export function Tooltip({ children, content }: TooltipProps) {
     const tooltip = innerRef.current.getBoundingClientRect();
     const vpW = window.innerWidth;
     const vpH = window.innerHeight;
-    const tw = tooltip.width;
-    const th = tooltip.height;
+    const tw = tooltip.width || 200; // fallback width before render
+    const th = tooltip.height || 60;
     const gap = 8;
 
-    // Vertical: prefer above, fallback below
     const spaceAbove = trigger.top - gap;
     const spaceBelow = vpH - trigger.bottom - gap;
     const useAbove = spaceAbove >= th || spaceBelow < th;
 
-    // Horizontal: center on trigger, bounded to viewport
     let left = trigger.left + trigger.width / 2 - tw / 2;
     left = Math.max(12, Math.min(left, vpW - tw - 12));
+
+    posCount.current += 1;
 
     setStyle({
       position: "fixed",
@@ -41,21 +44,34 @@ export function Tooltip({ children, content }: TooltipProps) {
         ? vpH - trigger.top + gap
         : trigger.bottom + gap,
       zIndex: 50,
+      visibility: "visible",
     });
   }, []);
 
   useEffect(() => {
     if (!show) return;
+
+    // Position immediately on next frame
     requestAnimationFrame(() => {
       requestAnimationFrame(() => position());
     });
 
-    if (!clicked) {
-      window.addEventListener("scroll", position, { passive: true });
-    }
+    // Handle scroll for both hover and click tooltips:
+    // - hover: reposition to follow the trigger
+    // - click: close the tooltip on scroll
+    const onScroll = () => {
+      if (clicked) {
+        setShow(false);
+        setClicked(false);
+      } else {
+        position();
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", position);
     return () => {
-      window.removeEventListener("scroll", position);
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", position);
     };
   }, [show, clicked, position]);

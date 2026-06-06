@@ -139,7 +139,8 @@
     "speedLabel": "Speed (TPS)",
     "speedSource": "Artificial Analysis",
     "costLabel": "Cost",
-    "costSource": "Official/Vendor Pricing"
+    "costSource": "Official/Vendor Pricing",
+    "scoreOverview": "Score Overview"
   },
   "common": {
     "open": "Open",
