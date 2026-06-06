@@ -157,15 +157,7 @@
     "badgeValue": "性价比之选",
     "badgeReasoning": "前沿推理模型",
     "badgeBudget": "经济实惠",
-    "badgeOpenLeader": "开源标杆",
-    "oneLinerTopIntel": "全球智能排名前 5 的模型",
-    "oneLinerFrontierValue": "前沿模型中的性价比之选",
-    "oneLinerCoding": "代码领域表现优异",
-    "oneLinerAgentic": "Agent 领域表现出色",
-    "oneLinerReasoning": "专注推理任务的模型",
-    "oneLinerDefault": "综合能力均衡的模型",
-    "similarModels": "你可能也喜欢",
-    "similarModelsDesc": "同类模型推荐"
+    "badgeOpenLeader": "开源标杆"
   },
   "table": {
     "model": "模型",

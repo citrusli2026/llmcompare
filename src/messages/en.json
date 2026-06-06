@@ -157,15 +157,7 @@
     "badgeValue": "Best Value",
     "badgeReasoning": "Frontier Reasoning",
     "badgeBudget": "Budget Pick",
-    "badgeOpenLeader": "Open Source Leader",
-    "oneLinerTopIntel": "Top 5 globally by intelligence",
-    "oneLinerFrontierValue": "Best-value frontier model",
-    "oneLinerCoding": "Excellent for code generation",
-    "oneLinerAgentic": "Strong agentic performance",
-    "oneLinerReasoning": "Built for complex reasoning",
-    "oneLinerDefault": "Balanced all-rounder",
-    "similarModels": "You Might Also Like",
-    "similarModelsDesc": "Similar models to consider"
+    "badgeOpenLeader": "Open Leader"
   },
   "table": {
     "model": "Model",
