@@ -13,8 +13,7 @@ import { SearchInput } from "@/components/search-input";
 import { CompareBar } from "@/components/compare-bar";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
-import { cn } from "@/lib/utils";
-import { Bot, SearchX, X, Sparkles, Trophy, Code, DollarSign, Home } from "lucide-react";
+import { Bot, SearchX, X, Sparkles } from "lucide-react";
 
 const FILTER_KEYS = ["全部", "开源", "闭源"] as const;
 type Filter = (typeof FILTER_KEYS)[number];
@@ -201,31 +200,6 @@ export default function ModelsPageClient() {
 
   const isEmpty = filteredModels.length === 0;
 
-  // Top pick from filtered results — highest intelligence model
-  const topPick = useMemo(() => {
-    if (isEmpty) return null;
-    return [...filteredModels]
-      .filter((m) => m.raw.intelligence != null)
-      .sort((a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0))[0] ?? null;
-  }, [filteredModels, isEmpty]);
-
-  // Initial sort key from URL (for scene sort)
-  const initialSort = searchParams.get("sort") as SortKey | null;
-
-  // Scene sort buttons
-  const SCENE_SORTS: { key: string; icon: React.ComponentType<{ className?: string }>; labelKey: string; sortKey: SortKey }[] = [
-    { key: "intelligence", icon: Trophy, labelKey: "models.sortByIntelligence", sortKey: "intelligence" },
-    { key: "coding", icon: Code, labelKey: "models.sortByCoding", sortKey: "coding" },
-    { key: "agentic", icon: Bot, labelKey: "models.sortByAgent", sortKey: "agentic" },
-    { key: "cost", icon: DollarSign, labelKey: "models.sortByValue", sortKey: "cost" },
-  ];
-
-  const handleSceneSort = (sortKey: SortKey) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("sort", sortKey);
-    router.replace(`?${params.toString()}`, { scroll: false });
-  };
-
   return (
     <div className="min-h-screen bg-surface-base">
       <Navbar />
@@ -333,109 +307,7 @@ export default function ModelsPageClient() {
             </div>
           ) : (
             <>
-              {/* Recommendation banner — guidance when results exist */}
-              {topPick && (
-                <div className="mb-4 rounded-xl border border-accent-violet/20 bg-accent-violet/5 p-4 sm:p-5">
-                  <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-violet/10">
-                      <Trophy className="h-5 w-5 text-accent-violet" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-sm font-semibold text-text-primary">{t("models.recommendTitle")}</span>
-                        <span className="text-xs text-text-muted">{t(hasActiveFilters ? "models.recommendDesc" : "models.recommendFirstLoadDesc")}</span>
-                      </div>
-                      <Link
-                        href={`/product/${topPick.id}`}
-                        className="inline-flex items-center gap-2.5 rounded-lg bg-surface-card border border-surface-border px-3.5 py-2.5 transition-all hover:border-accent-violet/30 hover:shadow-sm hover:-translate-y-0.5 group"
-                      >
-                        <div className="h-8 w-8 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
-                          {topPick.logo ? (
-                            <img src={topPick.logo} alt="" className="h-5 w-5 object-contain"
-                              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-                            />
-                          ) : (
-                            <span className="text-xs font-bold text-text-muted">{topPick.name.charAt(0)}</span>
-                          )}
-                        </div>
-                        <div>
-                          <div className="text-sm font-semibold text-text-primary group-hover:text-accent-violet transition-colors">
-                            {topPick.name}
-                          </div>
-                          <div className="text-xs text-text-muted">
-                            {topPick.company} · {t("models.colIntelligence")} {topPick.raw.intelligence?.toFixed(1) ?? "—"}
-                          </div>
-                        </div>
-                        <span className="ml-auto text-xs text-accent-violet font-medium whitespace-nowrap">
-                          {t("models.recommendView")}
-                        </span>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Scene sort bar — always visible, not just when filters are active */}
-              {/* This transforms /models from "a data table" into "a selection tool" */}
-              {/* by guiding users to browse by scene even on first load */}
-              <div className={cn(
-                "mb-4 flex flex-wrap items-center gap-1.5",
-                !hasActiveFilters && "rounded-xl border border-surface-border bg-surface-card p-3 sm:p-4"
-              )}>
-                {!hasActiveFilters && (
-                  <span className="text-xs text-text-muted mr-1 whitespace-nowrap">
-                    {t("models.sortBy")}：
-                  </span>
-                )}
-                {SCENE_SORTS.map((scene) => {
-                  const SceneIcon = scene.icon;
-                  const isActiveSort = initialSort === scene.sortKey || (!initialSort && scene.sortKey === "intelligence");
-                  return (
-                    <button
-                      key={scene.key}
-                      onClick={() => handleSceneSort(scene.sortKey)}
-                      className={cn(
-                        "inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-medium transition-all",
-                        isActiveSort
-                          ? "border-accent-violet/30 bg-accent-violet/10 text-accent-violet"
-                          : "border-surface-border bg-surface-card text-text-secondary hover:border-accent-violet/20 hover:text-accent-violet"
-                      )}
-                    >
-                      <SceneIcon className="h-3 w-3" />
-                      {t(scene.labelKey)}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Scene context indicator — shows when user arrived from home page scene selection */}
-              {initialSort && ["intelligence", "coding", "agentic", "cost"].includes(initialSort) && (
-                <div className="mb-4 flex items-center gap-2 rounded-xl border border-accent-violet/10 bg-accent-violet/[0.03] px-4 py-3">
-                  <span className="text-sm">🎯</span>
-                  <span className="text-sm text-text-primary font-medium">
-                    {t("models.sceneBrowsing", {
-                      scene: t(
-                        initialSort === "intelligence"
-                          ? "models.sortByIntelligence"
-                          : initialSort === "coding"
-                          ? "models.sortByCoding"
-                          : initialSort === "agentic"
-                          ? "models.sortByAgent"
-                          : "models.sortByValue"
-                      ),
-                    })}
-                  </span>
-                  <Link
-                    href="/"
-                    className="ml-auto flex items-center gap-1 text-xs text-accent-violet hover:text-violet-500 transition-colors whitespace-nowrap"
-                  >
-                    <Home className="h-3 w-3" />
-                    {t("models.sceneBrowsingBack")}
-                  </Link>
-                </div>
-              )}
-
-              <RankingTable models={filteredModels} initialSortKey={initialSort ?? undefined} />
+              <RankingTable models={filteredModels} />
               <div className="mt-8 text-center text-sm text-text-muted">
                 {t("models.count", { count: String(filteredModels.length) })}
               </div>
