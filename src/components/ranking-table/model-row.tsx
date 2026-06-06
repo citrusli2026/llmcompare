@@ -111,14 +111,12 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
             className="inline-flex items-center gap-1.5 group/link"
             onClick={(e) => e.stopPropagation()}
           >
-            <span>{model.name}</span>
+            <span className="truncate">{model.name}</span>
             <ArrowUpRight className="h-3 w-3 text-text-muted transition-all duration-200 opacity-40 group-hover/link:opacity-100 group-hover/link:text-accent-violet group-hover/link:translate-x-0.5 shrink-0" />
           </Link>
-        </div>
-        <div className="flex gap-1 mt-1">
           <Badge
             variant="secondary"
-            className={cn("text-[10px] py-0 px-1.5", getTypeBadgeClasses(model.type))}
+            className={cn("text-[10px] py-0 px-1.5 whitespace-nowrap shrink-0", getTypeBadgeClasses(model.type))}
           >
             {t(model.type === "开源" ? "common.open" : "common.closed")}
           </Badge>
