@@ -11,11 +11,11 @@
       "agentic": 77.8082777543421
     },
     "speed": {
-      "median_tps": 57.3741070393051,
-      "ttft_seconds": 13.1950949144998,
-      "e2e_seconds": 21.909827496873007,
-      "p05_tps": 42.7064415885766,
-      "p95_tps": 75.2832865484525
+      "median_tps": 57.4240161607793,
+      "ttft_seconds": 13.1135448679997,
+      "e2e_seconds": 21.82070318656922,
+      "p05_tps": 42.6733469877203,
+      "p95_tps": 75.2963915777243
     },
     "benchmarks": {
       "gpqa": 0.92020202020202,
@@ -91,11 +91,11 @@
       "agentic": 74.1229617920152
     },
     "speed": {
-      "median_tps": 62.8565322138711,
-      "ttft_seconds": 85.8036077659999,
-      "e2e_seconds": 93.7582304979498,
-      "p05_tps": 41.4947877237511,
-      "p95_tps": 84.1930828482346
+      "median_tps": 63.3775088099657,
+      "ttft_seconds": 82.0724823245,
+      "e2e_seconds": 89.96171636648839,
+      "p05_tps": 41.4855357144488,
+      "p95_tps": 84.2265481237787
     },
     "benchmarks": {
       "gpqa": 0.935353535353535,
@@ -166,11 +166,11 @@
       "agentic": 71.288187135722
     },
     "speed": {
-      "median_tps": 48.1659791996713,
-      "ttft_seconds": 9.24340462250008,
-      "e2e_seconds": 19.624175621201424,
-      "p05_tps": 33.7071529769405,
-      "p95_tps": 68.9415571217216
+      "median_tps": 48.6711840540448,
+      "ttft_seconds": 6.74878039600026,
+      "e2e_seconds": 17.021799426003653,
+      "p05_tps": 33.5656695192521,
+      "p95_tps": 69.0039122150541
     },
     "benchmarks": {
       "gpqa": 0.914141414141414,
@@ -246,11 +246,11 @@
       "agentic": 59.0860006638396
     },
     "speed": {
-      "median_tps": 139.804755125316,
-      "ttft_seconds": 38.9190527814995,
-      "e2e_seconds": 42.49546904539423,
-      "p05_tps": 100.526142356226,
-      "p95_tps": 177.703796591702
+      "median_tps": 139.899325229782,
+      "ttft_seconds": 40.6960184309992,
+      "e2e_seconds": 44.27001708452208,
+      "p05_tps": 99.9796202207485,
+      "p95_tps": 177.828273237321
     },
     "benchmarks": {
       "gpqa": 0.941414141414141,
@@ -321,11 +321,11 @@
       "agentic": 67.9578711253417
     },
     "speed": {
-      "median_tps": 79.3887967917887,
-      "ttft_seconds": 207.288270569,
-      "e2e_seconds": 213.5863884421218,
-      "p05_tps": 64.415035503428,
-      "p95_tps": 121.48618897085
+      "median_tps": 80.1080019069929,
+      "ttft_seconds": 195.2095676055,
+      "e2e_seconds": 201.45114133218604,
+      "p05_tps": 64.2601981499101,
+      "p95_tps": 124.181876775052
     },
     "benchmarks": {
       "gpqa": 0.92020202020202,
@@ -391,11 +391,11 @@
       "agentic": 66.5557245964551
     },
     "speed": {
-      "median_tps": 105.827557262177,
-      "ttft_seconds": 25.431042770205917,
-      "e2e_seconds": 30.155710077430072,
-      "p05_tps": 72.1056218771628,
-      "p95_tps": 214.359021879643
+      "median_tps": 103.946126236052,
+      "ttft_seconds": 25.845898034855953,
+      "e2e_seconds": 30.656082099479452,
+      "p05_tps": 71.5524812026436,
+      "p95_tps": 214.387498135071
     },
     "benchmarks": {
       "gpqa": 0.923232323232323,
@@ -473,9 +473,9 @@
     },
     "speed": {
       "median_tps": 182.534404346833,
-      "ttft_seconds": 28.1962561275,
-      "e2e_seconds": 30.935465767398632,
-      "p05_tps": 129.455800553851,
+      "ttft_seconds": 32.9066715330002,
+      "e2e_seconds": 35.64588117289883,
+      "p05_tps": 116.309330396825,
       "p95_tps": 281.111143334679
     },
     "benchmarks": {
@@ -626,11 +626,11 @@
       "agentic": 65.9688109161793
     },
     "speed": {
-      "median_tps": 44.0357223000193,
-      "ttft_seconds": 103.28063624119869,
-      "e2e_seconds": 114.63505428828908,
-      "p05_tps": 25.4831710174774,
-      "p95_tps": 102.814812724171
+      "median_tps": 41.8011913821161,
+      "ttft_seconds": 108.68422374310357,
+      "e2e_seconds": 120.64560530826911,
+      "p05_tps": 25.3281724716069,
+      "p95_tps": 102.958244558683
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
@@ -706,11 +706,11 @@
       "agentic": 67.4384766534619
     },
     "speed": {
-      "median_tps": 43.4088630774745,
-      "ttft_seconds": 49.23138921873668,
-      "e2e_seconds": 60.74977428004591,
-      "p05_tps": 33.9162743760165,
-      "p95_tps": 57.027819811377
+      "median_tps": 44.2750068493416,
+      "ttft_seconds": 48.30049445612224,
+      "e2e_seconds": 59.593547480402805,
+      "p05_tps": 33.7132545586962,
+      "p95_tps": 57.0366008332248
     },
     "benchmarks": {
       "gpqa": 0.865656565656566,
@@ -780,11 +780,11 @@
       "agentic": 60.535128949109
     },
     "speed": {
-      "median_tps": 79.1605037175714,
-      "ttft_seconds": 91.157156459,
-      "e2e_seconds": 97.47343764113975,
-      "p05_tps": 52.7372922012998,
-      "p95_tps": 117.367038388977
+      "median_tps": 80.3042521231442,
+      "ttft_seconds": 110.4670221515,
+      "e2e_seconds": 116.69334251163815,
+      "p05_tps": 52.6878636995943,
+      "p95_tps": 117.796395292477
     },
     "benchmarks": {
       "gpqa": 0.915151515151515,
@@ -844,11 +844,11 @@
       "agentic": 65.128458771159
     },
     "speed": {
-      "median_tps": 53.4339767235785,
-      "ttft_seconds": 39.80696905204809,
-      "e2e_seconds": 49.164311152685116,
-      "p05_tps": 49.8103529803305,
-      "p95_tps": 58.8620218294241
+      "median_tps": 53.1423194648367,
+      "ttft_seconds": 40.02089722678851,
+      "e2e_seconds": 49.42959457073566,
+      "p05_tps": 49.8024424541626,
+      "p95_tps": 59.0403378248886
     },
     "benchmarks": {
       "gpqa": 0.9,
@@ -910,11 +910,11 @@
       "agentic": 65.8880297791428
     },
     "speed": {
-      "median_tps": 186.925101423746,
-      "ttft_seconds": 13.0270389854999,
-      "e2e_seconds": 15.701907134248607,
-      "p05_tps": 95.201909134167,
-      "p95_tps": 302.072561183107
+      "median_tps": 187.799653870227,
+      "ttft_seconds": 12.744684745,
+      "e2e_seconds": 15.407096467790018,
+      "p05_tps": 118.204173246466,
+      "p95_tps": 304.37763115102
     },
     "benchmarks": {
       "gpqa": 0.901010101010101,
@@ -981,11 +981,11 @@
       "agentic": 67.5823408682488
     },
     "speed": {
-      "median_tps": 40.2499786765187,
-      "ttft_seconds": 16.6461902485001,
-      "e2e_seconds": 29.06855707801828,
-      "p05_tps": 32.2410178350674,
-      "p95_tps": 58.6546373990426
+      "median_tps": 41.1033380903641,
+      "ttft_seconds": 15.3001023699999,
+      "e2e_seconds": 27.464564509322244,
+      "p05_tps": 32.2368057175337,
+      "p95_tps": 58.7492962744743
     },
     "benchmarks": {
       "gpqa": 0.895959595959596,
@@ -1137,9 +1137,9 @@
       "agentic": 64.8295054241687
     },
     "speed": {
-      "median_tps": 42.9707712162094,
-      "ttft_seconds": 50.08078060436169,
-      "e2e_seconds": 61.71659690107713,
+      "median_tps": 43.3306793145447,
+      "ttft_seconds": 49.69418851006013,
+      "e2e_seconds": 61.23335678320018,
       "p05_tps": 35.3053403568534,
       "p95_tps": 48.6864301998888
     },
@@ -1218,11 +1218,11 @@
       "agentic": 62.9991597010475
     },
     "speed": {
-      "median_tps": 54.4151196540125,
-      "ttft_seconds": 109.339693521,
-      "e2e_seconds": 118.52831615344387,
-      "p05_tps": 39.5228166818591,
-      "p95_tps": 76.3003276433677
+      "median_tps": 54.6487213875455,
+      "ttft_seconds": 106.333010778,
+      "e2e_seconds": 115.48235567216894,
+      "p05_tps": 39.4762389832686,
+      "p95_tps": 76.4520664178558
     },
     "benchmarks": {
       "gpqa": 0.874747474747475,
@@ -1293,11 +1293,11 @@
       "agentic": 67.1926607607022
     },
     "speed": {
-      "median_tps": 52.2577720249176,
-      "ttft_seconds": 85.4609838516196,
-      "e2e_seconds": 95.02893863854756,
-      "p05_tps": 38.8892799684769,
-      "p95_tps": 70.0505029536574
+      "median_tps": 52.4000631042227,
+      "ttft_seconds": 85.23976712122636,
+      "e2e_seconds": 94.78174036285223,
+      "p05_tps": 38.8694151700968,
+      "p95_tps": 70.3162095189412
     },
     "benchmarks": {
       "gpqa": 0.887878787878788,
@@ -1370,10 +1370,10 @@
     },
     "speed": {
       "median_tps": 56.5461213743138,
-      "ttft_seconds": 68.75763482639312,
-      "e2e_seconds": 77.59997428041491,
-      "p05_tps": 22.4904895235374,
-      "p95_tps": 173.294915918174
+      "ttft_seconds": 68.73808491239285,
+      "e2e_seconds": 77.58042436641465,
+      "p05_tps": 22.3564909019351,
+      "p95_tps": 173.494432902168
     },
     "benchmarks": {
       "gpqa": 0.867676767676768,
@@ -1449,11 +1449,11 @@
       "agentic": 60.1954553678395
     },
     "speed": {
-      "median_tps": 71.1802737034463,
-      "ttft_seconds": 141.128790177,
-      "e2e_seconds": 148.153208235339,
-      "p05_tps": 51.5826898830516,
-      "p95_tps": 96.6009998575804
+      "median_tps": 73.3479497180194,
+      "ttft_seconds": 132.6003709955,
+      "e2e_seconds": 139.4171941231022,
+      "p05_tps": 51.558133223474,
+      "p95_tps": 97.1717046053796
     },
     "benchmarks": {
       "gpqa": 0.903030303030303,
@@ -1513,10 +1513,10 @@
       "agentic": 61.489494916941
     },
     "speed": {
-      "median_tps": 66.2006092642194,
-      "ttft_seconds": 40.22590533491291,
-      "e2e_seconds": 47.778705914200685,
-      "p05_tps": 32.8390023274955,
+      "median_tps": 72.233607769019,
+      "ttft_seconds": 37.05906494630765,
+      "e2e_seconds": 43.98105064580154,
+      "p05_tps": 38.1332254800656,
       "p95_tps": 245.286421086224
     },
     "benchmarks": {
@@ -1581,11 +1581,11 @@
       "agentic": 53.8572278392907
     },
     "speed": {
-      "median_tps": 178.715554875287,
-      "ttft_seconds": 14.41314937,
-      "e2e_seconds": 17.210891292066687,
-      "p05_tps": 125.871343847941,
-      "p95_tps": 268.801666944575
+      "median_tps": 178.340659846281,
+      "ttft_seconds": 14.527850826,
+      "e2e_seconds": 17.331473961806328,
+      "p05_tps": 125.351538101292,
+      "p95_tps": 269.977837544715
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
@@ -1646,11 +1646,11 @@
       "agentic": 56.5194157016923
     },
     "speed": {
-      "median_tps": 137.039566813822,
-      "ttft_seconds": 63.6762693315,
-      "e2e_seconds": 67.32485062539219,
-      "p05_tps": 98.011947013617,
-      "p95_tps": 171.444421255497
+      "median_tps": 139.48280785474,
+      "ttft_seconds": 56.749812475,
+      "e2e_seconds": 60.33448364480258,
+      "p05_tps": 97.9757007879846,
+      "p95_tps": 171.780559590954
     },
     "benchmarks": {
       "gpqa": 0.898989898989899,
@@ -1710,11 +1710,11 @@
       "agentic": 65.5299139777991
     },
     "speed": {
-      "median_tps": 81.2265071366373,
-      "ttft_seconds": 27.598557074437252,
-      "e2e_seconds": 33.75418308404655,
-      "p05_tps": 67.5511608299077,
-      "p95_tps": 107.825580118926
+      "median_tps": 79.4888656120821,
+      "ttft_seconds": 28.11555678404764,
+      "e2e_seconds": 34.405745933809534,
+      "p05_tps": 67.5310907573155,
+      "p95_tps": 108.192376104967
     },
     "benchmarks": {
       "gpqa": 0.84949494949495,
@@ -1784,11 +1784,11 @@
       "agentic": 58.8785663257088
     },
     "speed": {
-      "median_tps": 158.769254547058,
-      "ttft_seconds": 12.810090673,
-      "e2e_seconds": 15.959315007562859,
-      "p05_tps": 117.911674489204,
-      "p95_tps": 219.907887208046
+      "median_tps": 162.872733920672,
+      "ttft_seconds": 13.823815517,
+      "e2e_seconds": 16.893697061712864,
+      "p05_tps": 117.09435638653,
+      "p95_tps": 220.927124149504
     },
     "benchmarks": {
       "gpqa": 0.874747474747475,
@@ -1848,11 +1848,11 @@
       "agentic": 50.883690027477
     },
     "speed": {
-      "median_tps": 168.75314075832,
-      "ttft_seconds": 15.6197699979999,
-      "e2e_seconds": 18.582677815615426,
-      "p05_tps": 130.847108546007,
-      "p95_tps": 254.523422241676
+      "median_tps": 165.405907768684,
+      "ttft_seconds": 17.6750159359999,
+      "e2e_seconds": 20.697882572052812,
+      "p05_tps": 130.637416582813,
+      "p95_tps": 254.914927720606
     },
     "benchmarks": {
       "gpqa": 0.884848484848485,
@@ -1913,11 +1913,11 @@
       "agentic": 57.0647000199381
     },
     "speed": {
-      "median_tps": 140.955694862138,
-      "ttft_seconds": 17.449340048799883,
-      "e2e_seconds": 20.99655394809658,
-      "p05_tps": 13.2066482638282,
-      "p95_tps": 362.302444299419
+      "median_tps": 141.40732538634,
+      "ttft_seconds": 17.392463507152506,
+      "e2e_seconds": 20.92834821916404,
+      "p05_tps": 13.2222891785618,
+      "p95_tps": 362.189847612587
     },
     "benchmarks": {
       "gpqa": 0.866666666666667,
@@ -1978,11 +1978,11 @@
       "agentic": 58.9406156983764
     },
     "speed": {
-      "median_tps": 44.2727908467276,
-      "ttft_seconds": 70.05193709130772,
-      "e2e_seconds": 81.34555537100913,
-      "p05_tps": 32.6359292791986,
-      "p95_tps": 59.8549198605304
+      "median_tps": 45.1087771793552,
+      "ttft_seconds": 68.79928796423513,
+      "e2e_seconds": 79.8836052803967,
+      "p05_tps": 32.5876225869001,
+      "p95_tps": 59.8832403549591
     },
     "benchmarks": {
       "gpqa": 0.878787878787879,
@@ -2047,6 +2047,71 @@
     "data_completeness_pct": 100.0
   },
   {
+    "id": "glm-5-turbo",
+    "name": "GLM-5-Turbo",
+    "company": "Z AI",
+    "type": "闭源",
+    "logo": "/logos/z-ai.svg",
+    "scores": {
+      "intelligence": 46.7579895566062,
+      "coding": 36.766975308642,
+      "agentic": 66.1267582785957
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.847474747474747,
+      "hle": 0.253938832252085,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 200000,
+      "size_class": null,
+      "parameters": null,
+      "output_tokens": 131000,
+      "release_date": "2026-03-15",
+      "omniscience": -15.0833333333333
+    },
+    "url": "https://artificialanalysis.ai/models/glm-5-turbo",
+    "vendor_links": {
+      "homepage": "https://z.ai",
+      "api_docs": "https://open.bigmodel.cn",
+      "github": "https://github.com/zai-org",
+      "huggingface": "https://huggingface.co/zai-org",
+      "pricing_doc": "https://open.bigmodel.cn/pricing"
+    },
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 23491161727,
+    "openrouter_pricing": {
+      "prompt": 1.2,
+      "completion": 4.0
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 81.2
+  },
+  {
     "id": "deepseek-v4-flash",
     "name": "DeepSeek V4 Flash",
     "company": "DeepSeek",
@@ -2058,11 +2123,11 @@
       "agentic": 61.280477661017
     },
     "speed": {
-      "median_tps": 128.311345942661,
-      "ttft_seconds": 45.10302822281106,
-      "e2e_seconds": 48.999799754016394,
-      "p05_tps": 80.6010645319472,
-      "p95_tps": 160.080340719199
+      "median_tps": 128.728554499795,
+      "ttft_seconds": 45.00562949559495,
+      "e2e_seconds": 48.88977161109425,
+      "p05_tps": 80.2410155855489,
+      "p95_tps": 160.442086042127
     },
     "benchmarks": {
       "gpqa": 0.893939393939394,
@@ -2128,9 +2193,9 @@
       "agentic": 49.6640448258862
     },
     "speed": {
-      "median_tps": 174.449711387883,
-      "ttft_seconds": 7.51748550200045,
-      "e2e_seconds": 10.38364100333153,
+      "median_tps": 179.304147377372,
+      "ttft_seconds": 7.39802284100006,
+      "e2e_seconds": 10.186580759561064,
       "p05_tps": 115.58909588577,
       "p95_tps": 211.031966500383
     },
@@ -2189,33 +2254,33 @@
     "data_completeness_pct": 82.7
   },
   {
-    "id": "qwen3-5-397b-a17b",
-    "name": "Qwen3.5 397B A17B",
+    "id": "qwen3-6-27b",
+    "name": "Qwen3.6 27B",
     "company": "Alibaba",
     "type": "开源",
     "logo": "/logos/alibaba.svg",
     "scores": {
-      "intelligence": 45.0466381495413,
-      "coding": 41.2773569023569,
-      "agentic": 55.8271783869895
+      "intelligence": 45.8228437394046,
+      "coding": 36.5039281705948,
+      "agentic": 62.8548249439456
     },
     "speed": {
-      "median_tps": 53.149793438082,
-      "ttft_seconds": 62.529476973927835,
-      "e2e_seconds": 71.93685125812868,
-      "p05_tps": 49.9267708507127,
-      "p95_tps": 57.3491168465426
+      "median_tps": 60.0409993746433,
+      "ttft_seconds": 98.4711782900794,
+      "e2e_seconds": 106.79882115425133,
+      "p05_tps": 37.490108436685,
+      "p95_tps": 72.6588779765268
     },
     "benchmarks": {
-      "gpqa": 0.892929292929293,
-      "hle": 0.272937905468026,
+      "gpqa": 0.842424242424242,
+      "hle": 0.215940685820204,
       "mmlu_pro": null
     },
     "pricing": {
       "input": 0.6,
       "output": 3.6,
       "blended": 1.35,
-      "display": "¥1.2/¥7.2 (≤128K)"
+      "display": "$0.6/$3.6 (USD/百万token)"
     },
     "flags": {
       "frontier": false,
@@ -2229,13 +2294,13 @@
     },
     "meta": {
       "context_window": 262144,
-      "size_class": "Large",
-      "parameters": 397,
-      "output_tokens": 65000,
-      "release_date": "2026-02-16",
-      "omniscience": -29.7833333333333
+      "size_class": "Small",
+      "parameters": 27.8,
+      "output_tokens": 81920,
+      "release_date": "2026-04-22",
+      "omniscience": -19.7833333333333
     },
-    "url": "https://artificialanalysis.ai/models/qwen3-5-397b-a17b",
+    "url": "https://artificialanalysis.ai/models/qwen3-6-27b",
     "vendor_links": {
       "homepage": "https://tongyi.aliyun.com",
       "api_docs": "https://dashscope.aliyun.com",
@@ -2244,25 +2309,397 @@
       "huggingface": "https://huggingface.co/Qwen",
       "pricing_doc": "https://bailian.console.aliyun.com"
     },
-    "cn_pricing": {
-      "input": 1.2,
-      "output": 7.2,
-      "source": "bailian.console.aliyun.com"
-    },
-    "openrouter_weekly_tokens": 55882365011,
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 36251907683,
     "openrouter_pricing": {
-      "prompt": 0.39,
-      "completion": 2.34
+      "prompt": 0.29,
+      "completion": 3.2
     },
-    "arena_rankings": {
-      "vision": {
-        "rank": 24,
-        "score": 1249,
-        "votes": 15888
-      }
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 85.0
+  },
+  {
+    "id": "mimo-v2-omni-0327",
+    "name": "MiMo-V2-Omni-0327",
+    "company": "Xiaomi",
+    "type": "闭源",
+    "logo": "/logos/xiaomi.svg",
+    "scores": {
+      "intelligence": 44.9320138501088,
+      "coding": 36.8932379349046,
+      "agentic": 58.6321532931964
     },
-    "arena_votes": 15888,
-    "data_completeness_pct": 100.0
+    "speed": {
+      "median_tps": 84.4367558226226,
+      "ttft_seconds": 26.920369140966752,
+      "e2e_seconds": 32.841960930333414,
+      "p05_tps": 67.2394623372006,
+      "p95_tps": 106.69151390692
+    },
+    "benchmarks": {
+      "gpqa": 0.854545454545455,
+      "hle": 0.204355885078777,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.4,
+      "output": 2,
+      "blended": 0.8,
+      "display": "$0.4/$2 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Medium",
+      "parameters": null,
+      "output_tokens": 131072,
+      "release_date": "2026-03-27",
+      "omniscience": -14.0166666666667
+    },
+    "url": "https://artificialanalysis.ai/models/mimo-v2-omni-0327",
+    "vendor_links": {
+      "homepage": "https://huggingface.co/XiaomiMiMo",
+      "huggingface": "https://huggingface.co/XiaomiMiMo",
+      "pricing_doc": "小米开放平台控制台（需登录）",
+      "pricing_note": "2026-05-02 登录实测"
+    },
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 5037459323,
+    "openrouter_pricing": {
+      "prompt": 0.14,
+      "completion": 0.28
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 81.2
+  },
+  {
+    "id": "gpt-5-4-nano",
+    "name": "GPT-5.4 nano",
+    "company": "OpenAI",
+    "type": "闭源",
+    "logo": "/logos/openai.svg",
+    "scores": {
+      "intelligence": 43.9769365878793,
+      "coding": 43.9078282828283,
+      "agentic": 47.6017479407774
+    },
+    "speed": {
+      "median_tps": 152.921037636451,
+      "ttft_seconds": 4.69070613799977,
+      "e2e_seconds": 7.960367446397913,
+      "p05_tps": 128.788412363296,
+      "p95_tps": 185.855492401909
+    },
+    "benchmarks": {
+      "gpqa": 0.817171717171717,
+      "hle": 0.264596848934198,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.2,
+      "output": 1.25,
+      "blended": 0.4625,
+      "display": "$0.2/$1.25 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 400000,
+      "size_class": "Medium",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-03-17",
+      "omniscience": -29.55
+    },
+    "url": "https://artificialanalysis.ai/models/gpt-5-4-nano",
+    "vendor_links": {
+      "homepage": "https://openai.com",
+      "api_docs": "https://platform.openai.com/docs",
+      "console": "https://platform.openai.com",
+      "github": "https://github.com/openai",
+      "pricing_doc": "https://openai.com/api/pricing"
+    },
+    "openrouter_weekly_tokens": 104714950777,
+    "openrouter_pricing": {
+      "prompt": 0.2,
+      "completion": 1.25
+    },
+    "arena_rankings": {},
+    "arena_votes": 10421,
+    "data_completeness_pct": 81.2
+  },
+  {
+    "id": "kat-coder-pro-v2",
+    "name": "KAT-Coder-Pro V2",
+    "company": "KwaiKAT",
+    "type": "闭源",
+    "logo": "/logos/kwaikat.svg",
+    "scores": {
+      "intelligence": 43.8334653857388,
+      "coding": 45.5983445566779,
+      "agentic": 50.6777451579024
+    },
+    "speed": {
+      "median_tps": 113.03270921651,
+      "ttft_seconds": 1.83553706699968,
+      "e2e_seconds": 6.2590353929777685,
+      "p05_tps": 79.0463000587448,
+      "p95_tps": 131.499328427497
+    },
+    "benchmarks": {
+      "gpqa": 0.854545454545454,
+      "hle": 0.159870250231696,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 1.2,
+      "blended": 0.525,
+      "display": "$0.3/$1.2 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Medium",
+      "parameters": null,
+      "output_tokens": 80000,
+      "release_date": "2026-03-27",
+      "omniscience": -21.6
+    },
+    "url": "https://artificialanalysis.ai/models/kat-coder-pro-v2",
+    "vendor_links": {},
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 3161099381,
+    "openrouter_pricing": {
+      "prompt": 0.3,
+      "completion": 1.2
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 77.4
+  },
+  {
+    "id": "qwen3-6-35b-a3b",
+    "name": "Qwen3.6 35B A3B",
+    "company": "Alibaba",
+    "type": "开源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 43.4942180907145,
+      "coding": 35.1536195286195,
+      "agentic": 58.3372775083472
+    },
+    "speed": {
+      "median_tps": 183.372182805829,
+      "ttft_seconds": 32.01356047546116,
+      "e2e_seconds": 34.740255399136934,
+      "p05_tps": 144.487730696786,
+      "p95_tps": 212.721822701277
+    },
+    "benchmarks": {
+      "gpqa": 0.841414141414142,
+      "hle": 0.201575532900834,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.248,
+      "output": 1.485,
+      "blended": 0.5573,
+      "display": "$0.248/$1.485 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": "Small",
+      "parameters": 36,
+      "output_tokens": 65536,
+      "release_date": "2026-04-16",
+      "omniscience": -21.4333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 46067854030,
+    "openrouter_pricing": {
+      "prompt": 0.14,
+      "completion": 1.0
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 85.0
+  },
+  {
+    "id": "mimo-v2-omni",
+    "name": "MiMo-V2-Omni",
+    "company": "Xiaomi",
+    "type": "闭源",
+    "logo": "/logos/xiaomi.svg",
+    "scores": {
+      "intelligence": 43.399511505697,
+      "coding": 35.4622615039282,
+      "agentic": 58.5619269235444
+    },
+    "speed": {
+      "median_tps": 85.9886787821447,
+      "ttft_seconds": 26.553896169,
+      "e2e_seconds": 32.368615119000005,
+      "p05_tps": 66.6692464818267,
+      "p95_tps": 101.489185983158
+    },
+    "benchmarks": {
+      "gpqa": 0.828282828282828,
+      "hle": 0.199258572752549,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": null,
+      "parameters": null,
+      "output_tokens": 131072,
+      "release_date": "2026-03-19",
+      "omniscience": -17.4333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/mimo-v2-omni",
+    "vendor_links": {
+      "homepage": "https://huggingface.co/XiaomiMiMo",
+      "huggingface": "https://huggingface.co/XiaomiMiMo",
+      "pricing_doc": "小米开放平台控制台（需登录）",
+      "pricing_note": "2026-05-02 登录实测"
+    },
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 5037459323,
+    "openrouter_pricing": {
+      "prompt": 0.14,
+      "completion": 0.28
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 81.2
+  },
+  {
+    "id": "glm-5v-turbo",
+    "name": "GLM 5V Turbo",
+    "company": "Z AI",
+    "type": "闭源",
+    "logo": "/logos/z-ai.svg",
+    "scores": {
+      "intelligence": 42.8535869336354,
+      "coding": 36.2233445566779,
+      "agentic": 61.0657924284304
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.809090909090909,
+      "hle": 0.158480074142725,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 200000,
+      "size_class": null,
+      "parameters": null,
+      "output_tokens": 131100,
+      "release_date": "2026-04-01",
+      "omniscience": -18.9833333333333
+    },
+    "url": "https://artificialanalysis.ai/models/glm-5v-turbo",
+    "vendor_links": {
+      "homepage": "https://z.ai",
+      "api_docs": "https://open.bigmodel.cn",
+      "github": "https://github.com/zai-org",
+      "huggingface": "https://huggingface.co/zai-org",
+      "pricing_doc": "https://open.bigmodel.cn/pricing"
+    },
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 7995633376,
+    "openrouter_pricing": {
+      "prompt": 1.2,
+      "completion": 4.0
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 81.2
   },
   {
     "id": "step-3-7-flash",
@@ -2279,7 +2716,7 @@
       "median_tps": 392.112746036196,
       "ttft_seconds": 6.1887891233506735,
       "e2e_seconds": 7.463932573938339,
-      "p05_tps": 119.103857602239,
+      "p05_tps": 103.917919423802,
       "p95_tps": 476.949197087562
     },
     "benchmarks": {
@@ -2334,86 +2771,6 @@
     "data_completeness_pct": 92.5
   },
   {
-    "id": "glm-4-7",
-    "name": "GLM-4.7",
-    "company": "Z AI",
-    "type": "开源",
-    "logo": "/logos/z-ai.svg",
-    "scores": {
-      "intelligence": 42.1079898832385,
-      "coding": 36.2584175084175,
-      "agentic": 55.007009051294
-    },
-    "speed": {
-      "median_tps": 78.4163209133416,
-      "ttft_seconds": 26.999515274365464,
-      "e2e_seconds": 33.37573892495669,
-      "p05_tps": 24.6921625856601,
-      "p95_tps": 1002.81617989415
-    },
-    "benchmarks": {
-      "gpqa": 0.858585858585858,
-      "hle": 0.251158480074143,
-      "mmlu_pro": 0.856133643617021
-    },
-    "pricing": {
-      "input": 0.6,
-      "output": 2.2,
-      "blended": 1.0,
-      "display": "¥2/¥8 (<32K)"
-    },
-    "flags": {
-      "frontier": false,
-      "open_weights": true,
-      "reasoning": true,
-      "image_input": false,
-      "chinese_eval": true,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true
-    },
-    "meta": {
-      "context_window": 200000,
-      "size_class": "Large",
-      "parameters": 357,
-      "output_tokens": 128000,
-      "release_date": "2025-12-22",
-      "omniscience": -34.6
-    },
-    "url": "https://artificialanalysis.ai/models/glm-4-7",
-    "vendor_links": {
-      "homepage": "https://z.ai",
-      "api_docs": "https://open.bigmodel.cn",
-      "github": "https://github.com/zai-org",
-      "huggingface": "https://huggingface.co/zai-org",
-      "pricing_doc": "https://open.bigmodel.cn/pricing"
-    },
-    "cn_pricing": {
-      "input": 2,
-      "output": 8,
-      "source": "open.bigmodel.cn/pricing"
-    },
-    "openrouter_weekly_tokens": 132600416398,
-    "openrouter_pricing": {
-      "prompt": 0.4,
-      "completion": 1.75
-    },
-    "arena_rankings": {
-      "text": {
-        "rank": 12,
-        "score": 1475,
-        "votes": 15019
-      },
-      "code": {
-        "rank": 6,
-        "score": 1532,
-        "votes": 3609
-      }
-    },
-    "arena_votes": 15019,
-    "data_completeness_pct": 100.0
-  },
-  {
     "id": "hy3-preview",
     "name": "Hy3-preview",
     "company": "Tencent",
@@ -2425,11 +2782,11 @@
       "agentic": 55.6654097734737
     },
     "speed": {
-      "median_tps": 89.3854022456855,
-      "ttft_seconds": 26.156567033936533,
-      "e2e_seconds": 31.750321578170677,
-      "p05_tps": 64.2110171349673,
-      "p95_tps": 116.454271341271
+      "median_tps": 88.5432501814065,
+      "ttft_seconds": 26.463647963767286,
+      "e2e_seconds": 32.110605794834086,
+      "p05_tps": 64.1848642645652,
+      "p95_tps": 117.292687449043
     },
     "benchmarks": {
       "gpqa": 0.866666666666667,
@@ -2574,11 +2931,11 @@
       "agentic": 48.7647586511657
     },
     "speed": {
-      "median_tps": 116.377387047531,
-      "ttft_seconds": 19.294080605141136,
-      "e2e_seconds": 23.590447903676456,
-      "p05_tps": 96.6628863154534,
-      "p95_tps": 158.144002672094
+      "median_tps": 115.820498684772,
+      "ttft_seconds": 19.378451090877565,
+      "e2e_seconds": 23.695476191596974,
+      "p05_tps": 96.4955592031911,
+      "p95_tps": 158.699161825037
     },
     "benchmarks": {
       "gpqa": 0.835353535353535,
@@ -2718,39 +3075,174 @@
     "data_completeness_pct": 96.2
   },
   {
-    "id": "qwen3-5-omni-plus",
-    "name": "Qwen3.5 Omni Plus",
-    "company": "Alibaba",
-    "type": "闭源",
-    "logo": "/logos/alibaba.svg",
+    "id": "mistral-medium-3-5",
+    "name": "Mistral Medium 3.5",
+    "company": "Mistral",
+    "type": "开源",
+    "logo": "/logos/mistral.svg",
     "scores": {
-      "intelligence": 38.6333183791893,
-      "coding": 27.6445005611672,
-      "agentic": 52.8265252211028
+      "intelligence": 39.2258230149669,
+      "coding": 35.4166666666667,
+      "agentic": 53.1603715829632
     },
     "speed": {
-      "median_tps": 51.0302399979293,
-      "ttft_seconds": 2.52149888650001,
-      "e2e_seconds": 12.319610751548831,
-      "p05_tps": 42.004399811393,
-      "p95_tps": 58.5638183039708
+      "median_tps": 132.525762650809,
+      "ttft_seconds": 17.43947272973123,
+      "e2e_seconds": 21.21232406066411,
+      "p05_tps": 49.551398444594,
+      "p95_tps": 206.766399212575
     },
     "benchmarks": {
-      "gpqa": 0.826262626262626,
-      "hle": 0.139017608897127,
+      "gpqa": 0.748484848484849,
+      "hle": 0.127896200185357,
       "mmlu_pro": null
     },
     "pricing": {
-      "input": 0.4,
-      "output": 4.8,
-      "blended": 1.5,
-      "display": "¥7/¥40 (文本)"
+      "input": 1.5,
+      "output": 7.5,
+      "blended": 3.0,
+      "display": "$1.5/$7.5 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Medium",
+      "parameters": 128,
+      "output_tokens": 128000,
+      "release_date": "2026-04-29",
+      "omniscience": -36.3166666666667
+    },
+    "url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+    "vendor_links": {
+      "homepage": "https://mistral.ai",
+      "api_docs": "https://docs.mistral.ai",
+      "console": "https://console.mistral.ai",
+      "github": "https://github.com/mistralai",
+      "huggingface": "https://huggingface.co/mistralai",
+      "pricing_doc": "https://mistral.ai/pricing"
+    },
+    "openrouter_weekly_tokens": 9233342751,
+    "openrouter_pricing": {
+      "prompt": 1.5,
+      "completion": 7.5
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 85.0
+  },
+  {
+    "id": "gemma-4-31b",
+    "name": "Gemma 4 31B",
+    "company": "Google",
+    "type": "开源",
+    "logo": "/logos/google.svg",
+    "scores": {
+      "intelligence": 39.1830083809416,
+      "coding": 38.7100168350168,
+      "agentic": 40.9424942385576
+    },
+    "speed": {
+      "median_tps": 35.7331225270226,
+      "ttft_seconds": 49.70945165458227,
+      "e2e_seconds": 63.70207151650122,
+      "p05_tps": 33.4330438055473,
+      "p95_tps": 38.6566585341939
+    },
+    "benchmarks": {
+      "gpqa": 0.856565656565657,
+      "hle": 0.226598702502317,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Small",
+      "parameters": 30.7,
+      "output_tokens": 128000,
+      "release_date": "2026-04-02",
+      "omniscience": -45.4166666666667
+    },
+    "url": "https://artificialanalysis.ai/models/gemma-4-31b",
+    "vendor_links": {
+      "homepage": "https://ai.google.dev",
+      "api_docs": "https://ai.google.dev/gemini-api/docs",
+      "console": "https://aistudio.google.com",
+      "github": "https://github.com/google-gemini",
+      "pricing_doc": "https://ai.google.dev/pricing"
+    },
+    "openrouter_weekly_tokens": 403299870105,
+    "openrouter_pricing": {
+      "prompt": 0.12,
+      "completion": 0.36
+    },
+    "arena_rankings": {
+      "vision": {
+        "rank": 22,
+        "score": 1250,
+        "votes": 24852
+      }
+    },
+    "arena_votes": 24852,
+    "data_completeness_pct": 92.5
+  },
+  {
+    "id": "step-3-5-flash-2603",
+    "name": "Step 3.5 Flash 2603",
+    "company": "StepFun",
+    "type": "闭源",
+    "logo": "/logos/stepfun.svg",
+    "scores": {
+      "intelligence": 38.4676923468985,
+      "coding": 34.5643939393939,
+      "agentic": 48.2306478734105
+    },
+    "speed": {
+      "median_tps": 217.030163028762,
+      "ttft_seconds": 10.46359488858765,
+      "e2e_seconds": 12.767422121734672,
+      "p05_tps": 133.115113361228,
+      "p95_tps": 288.625115728485
+    },
+    "benchmarks": {
+      "gpqa": 0.826262626262626,
+      "hle": 0.225671918443003,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.1,
+      "output": 0.3,
+      "blended": 0.15,
+      "display": "$0.1/$0.3 (USD/百万token)"
     },
     "flags": {
       "frontier": false,
       "open_weights": false,
-      "reasoning": false,
-      "image_input": true,
+      "reasoning": true,
+      "image_input": false,
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
@@ -2758,37 +3250,29 @@
     },
     "meta": {
       "context_window": 256000,
-      "size_class": "Large",
+      "size_class": "Medium",
       "parameters": null,
-      "output_tokens": 65536,
-      "release_date": "2026-03-30",
-      "omniscience": -12.3
+      "output_tokens": 256000,
+      "release_date": "2026-04-02",
+      "omniscience": -43.6666666666667
     },
-    "url": "https://artificialanalysis.ai/models/qwen3-5-omni-plus",
+    "url": "https://artificialanalysis.ai/models/step-3-5-flash",
     "vendor_links": {
-      "homepage": "https://tongyi.aliyun.com",
-      "api_docs": "https://dashscope.aliyun.com",
-      "console": "https://bailian.aliyun.com",
-      "github": "https://github.com/QwenLM",
-      "huggingface": "https://huggingface.co/Qwen",
-      "pricing_doc": "https://bailian.console.aliyun.com"
+      "homepage": "https://www.stepfun.com",
+      "api_docs": "https://platform.stepfun.com/docs",
+      "console": "https://platform.stepfun.com",
+      "huggingface": "https://huggingface.co/stepfun-ai",
+      "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details"
     },
-    "cn_pricing": {
-      "input": 7,
-      "output": 40,
-      "source": "bailian.console.aliyun.com"
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 17751634640,
+    "openrouter_pricing": {
+      "prompt": 0.09,
+      "completion": 0.3
     },
-    "openrouter_weekly_tokens": null,
-    "openrouter_pricing": null,
-    "arena_rankings": {
-      "code": {
-        "rank": 18,
-        "score": 1464,
-        "votes": 6911
-      }
-    },
-    "arena_votes": 6911,
-    "data_completeness_pct": 90.2
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 81.2
   },
   {
     "id": "ring-2-6-1t",
@@ -2803,8 +3287,8 @@
     },
     "speed": {
       "median_tps": 124.724771442684,
-      "ttft_seconds": 19.346541692283367,
-      "e2e_seconds": 23.35536844110423,
+      "ttft_seconds": 19.42964690428379,
+      "e2e_seconds": 23.43847365310465,
       "p05_tps": 85.0387049635947,
       "p95_tps": 156.468901567593
     },
@@ -2868,11 +3352,11 @@
       "agentic": 52.0038785700216
     },
     "speed": {
-      "median_tps": 222.754437488926,
-      "ttft_seconds": 10.133544008234345,
-      "e2e_seconds": 12.378168203542945,
-      "p05_tps": 144.255914566326,
-      "p95_tps": 273.133165174274
+      "median_tps": 231.420930371982,
+      "ttft_seconds": 9.801347710394348,
+      "e2e_seconds": 11.961912872742925,
+      "p05_tps": 142.655925048718,
+      "p95_tps": 273.27597854094
     },
     "benchmarks": {
       "gpqa": 0.831313131313131,
@@ -2997,6 +3481,126 @@
     "data_completeness_pct": 85.0
   },
   {
+    "id": "jt-35b-flash",
+    "name": "JT-35B-Flash",
+    "company": "China Mobile",
+    "type": "闭源",
+    "logo": "/logos/china-mobile.svg",
+    "scores": {
+      "intelligence": 36.1421972176011,
+      "coding": 28.8755611672278,
+      "agentic": 52.250082368622
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.829292929292929,
+      "hle": 0.0611677479147359,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Small",
+      "parameters": 35,
+      "output_tokens": null,
+      "release_date": "2026-05-14",
+      "omniscience": -23.25
+    },
+    "url": "https://artificialanalysis.ai/models/jt-35b-flash",
+    "vendor_links": {},
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": null,
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 71.4
+  },
+  {
+    "id": "nvidia-nemotron-3-super",
+    "name": "NVIDIA Nemotron 3 Super",
+    "company": "NVIDIA",
+    "type": "开源",
+    "logo": "/logos/nvidia.svg",
+    "scores": {
+      "intelligence": 35.9698120752192,
+      "coding": 31.1903759820426,
+      "agentic": 40.1814218513827
+    },
+    "speed": {
+      "median_tps": 154.288535431773,
+      "ttft_seconds": 14.675672580849826,
+      "e2e_seconds": 17.916354065062254,
+      "p05_tps": 130.143975245782,
+      "p95_tps": 341.708482318304
+    },
+    "benchmarks": {
+      "gpqa": 0.8,
+      "hle": 0.191844300278035,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 0.75,
+      "blended": 0.4125,
+      "display": "$0.3/$0.75 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Medium",
+      "parameters": 120.6,
+      "output_tokens": 220000,
+      "release_date": "2026-03-11",
+      "omniscience": -42.0666666666667
+    },
+    "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
+    "vendor_links": {
+      "homepage": "https://www.nvidia.com",
+      "api_docs": "https://docs.nvidia.com",
+      "console": "https://build.nvidia.com",
+      "github": "https://github.com/NVIDIA",
+      "huggingface": "https://huggingface.co/nvidia",
+      "pricing_doc": "https://build.nvidia.com/pricing"
+    },
+    "openrouter_weekly_tokens": 721068611877,
+    "openrouter_pricing": {
+      "prompt": 0.09,
+      "completion": 0.45
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 85.0
+  },
+  {
     "id": "ling-2-6-1t",
     "name": "Ling-2.6-1T",
     "company": "InclusionAI",
@@ -3069,6 +3673,128 @@
     "data_completeness_pct": 100.0
   },
   {
+    "id": "gemini-3-1-flash-lite",
+    "name": "Gemini 3.1 Flash-Lite",
+    "company": "Google",
+    "type": "闭源",
+    "logo": "/logos/google.svg",
+    "scores": {
+      "intelligence": 33.5180974406105,
+      "coding": 30.1276655443322,
+      "agentic": 25.6655341949821
+    },
+    "speed": {
+      "median_tps": 332.996280846862,
+      "ttft_seconds": 6.12324704850005,
+      "e2e_seconds": 7.624765319900623,
+      "p05_tps": 222.103006005206,
+      "p95_tps": 384.822463407861
+    },
+    "benchmarks": {
+      "gpqa": 0.822222222222222,
+      "hle": 0.162187210379981,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.25,
+      "output": 1.5,
+      "blended": 0.5625,
+      "display": "$0.25/$1.5 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Medium",
+      "parameters": null,
+      "output_tokens": 64000,
+      "release_date": "2026-03-03",
+      "omniscience": -15.5166666666667
+    },
+    "url": "https://artificialanalysis.ai/models/gemini-3-1-flash-lite-preview",
+    "vendor_links": {
+      "homepage": "https://ai.google.dev",
+      "api_docs": "https://ai.google.dev/gemini-api/docs",
+      "console": "https://aistudio.google.com",
+      "github": "https://github.com/google-gemini",
+      "pricing_doc": "https://ai.google.dev/pricing"
+    },
+    "openrouter_weekly_tokens": 440742533709,
+    "openrouter_pricing": {
+      "prompt": 0.25,
+      "completion": 1.5
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 81.2
+  },
+  {
+    "id": "mercury-2",
+    "name": "Mercury 2",
+    "company": "Inception",
+    "type": "闭源",
+    "logo": "/logos/inception.svg",
+    "scores": {
+      "intelligence": 32.8235225382182,
+      "coding": 30.5625701459035,
+      "agentic": 39.739691506841
+    },
+    "speed": {
+      "median_tps": 899.456606460746,
+      "ttft_seconds": 5.0179223920004,
+      "e2e_seconds": 5.573813578310587,
+      "p05_tps": 632.034633652089,
+      "p95_tps": 1695.65654253373
+    },
+    "benchmarks": {
+      "gpqa": 0.76969696969697,
+      "hle": 0.155236329935125,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.25,
+      "output": 0.75,
+      "blended": 0.375,
+      "display": "$0.25/$0.75 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 128000,
+      "size_class": "Medium",
+      "parameters": null,
+      "output_tokens": 16000,
+      "release_date": "2026-02-20",
+      "omniscience": -52.2833333333333
+    },
+    "url": "https://artificialanalysis.ai/models/mercury-2",
+    "vendor_links": {},
+    "openrouter_weekly_tokens": 4231280095,
+    "openrouter_pricing": {
+      "prompt": 0.25,
+      "completion": 0.75
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 77.4
+  },
+  {
     "id": "k-exaone",
     "name": "K-EXAONE",
     "company": "LG AI Research",
@@ -3138,11 +3864,11 @@
       "agentic": 42.6071412068343
     },
     "speed": {
-      "median_tps": 162.972186387551,
-      "ttft_seconds": 13.584154028195806,
-      "e2e_seconds": 16.652162202369713,
-      "p05_tps": 98.3622256524398,
-      "p95_tps": 309.308949100663
+      "median_tps": 161.036454354116,
+      "ttft_seconds": 13.734791416724038,
+      "e2e_seconds": 16.839678456154935,
+      "p05_tps": 97.7765277086673,
+      "p95_tps": 311.187287366325
     },
     "benchmarks": {
       "gpqa": 0.751515151515151,
@@ -3189,6 +3915,128 @@
     "arena_rankings": {},
     "arena_votes": null,
     "data_completeness_pct": 85.0
+  },
+  {
+    "id": "gemma-4-26b-a4b",
+    "name": "Gemma 4 26B A4B",
+    "company": "Google",
+    "type": "开源",
+    "logo": "/logos/google.svg",
+    "scores": {
+      "intelligence": 31.2149630375269,
+      "coding": 22.4420987654321,
+      "agentic": 32.1495441284382
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.791919191919192,
+      "hle": 0.182576459684893,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.13,
+      "output": 0.4,
+      "blended": 0.1975,
+      "display": "$0.13/$0.4 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Small",
+      "parameters": 25.2,
+      "output_tokens": 32768,
+      "release_date": "2026-04-02",
+      "omniscience": -48.0666666666667
+    },
+    "url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+    "vendor_links": {
+      "homepage": "https://ai.google.dev",
+      "api_docs": "https://ai.google.dev/gemini-api/docs",
+      "console": "https://aistudio.google.com",
+      "github": "https://github.com/google-gemini",
+      "pricing_doc": "https://ai.google.dev/pricing"
+    },
+    "openrouter_weekly_tokens": 279184279060,
+    "openrouter_pricing": {
+      "prompt": 0.06,
+      "completion": 0.33
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 85.0
+  },
+  {
+    "id": "exaone-4-5-33b",
+    "name": "EXAONE 4.5 33B",
+    "company": "LG AI Research",
+    "type": "开源",
+    "logo": "/logos/lg-ai-research.svg",
+    "scores": {
+      "intelligence": 30.2255494961422,
+      "coding": 22.9727833894501,
+      "agentic": 36.5030915470672
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.793939393939394,
+      "hle": 0.11631139944393,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": "Small",
+      "parameters": 34.4,
+      "output_tokens": 262144,
+      "release_date": "2026-04-09",
+      "omniscience": -51.4833333333333
+    },
+    "url": "https://artificialanalysis.ai/models/exaone-4-5-33b",
+    "vendor_links": {
+      "homepage": "https://www.lgresearch.ai",
+      "huggingface": "https://huggingface.co/lgresearch"
+    },
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": null,
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 78.9
   },
   {
     "id": "gpt-5-5-pro",
