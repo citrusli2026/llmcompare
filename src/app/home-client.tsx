@@ -9,6 +9,7 @@ import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { StatsStrip } from "@/components/stats-strip";
 import { CompareBar } from "@/components/compare-bar";
+import { SearchInput } from "@/components/search-input";
 import { SceneSelector } from "@/components/scene-selector";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
@@ -76,8 +77,11 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* Top Picks — compact recommendation card strip (replaces full ranking table) */}
-      <section className="px-4 pt-6 sm:px-6 lg:px-8">
+      {/* Scene Selection Cards — V2 selection assistant entry point */}
+      <SceneSelector />
+
+      {/* Model Directory Table — moved before StatsStrip on mobile via ordering */}
+      <section className="px-4 pt-4 pb-4 sm:px-6 lg:px-8 order-first sm:order-none">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-3">
