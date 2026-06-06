@@ -55,7 +55,7 @@
     "backgroundTitle": "Project Background",
     "backgroundDesc": "Last updated: 2026.06.06",
     "backgroundContribute": "Spot an error or want to add a model? Submit an issue on",
-    "filterDesc": "From Artificial Analysis' global index, we select active models (released within 180 days) and inject Arena leaderboard data. Covers leading vendors worldwide, ranked uniformly by intelligence score.",
+    "filterDesc": "From Artificial Analysis' global index, we select models using three criteria: Large size class, frontier flag, or intel score ≥30 (capturing high-value small/medium models). Older generations within the same series (e.g., Qwen3.5, GLM-4) are excluded. Active models (released within 180 days) receive Arena leaderboard data. Covers leading vendors worldwide, ranked uniformly by intelligence score.",
     "sourceTitle": "Data Sources",
     "sourcePriceTitle": "Official Sites",
     "sourceDesc": "Artificial Analysis is an authoritative LLM evaluation org providing standardized benchmarks. Its Intelligence Index combines MMLU, HumanEval, MATH, and other benchmarks to assess reasoning, coding, and math capabilities.",

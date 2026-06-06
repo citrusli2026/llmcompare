@@ -28,16 +28,18 @@
 ## 数据管线
 
 ```
-../data/1-fetch/    → 抓取 Artificial Analysis / OpenRouter / Arena
-../data/3-process/  → 4 步处理管线：筛国内 → 构建前端模型 → 富化+切活跃 → 生成报告
-../data/4-final/    → ranking.json (活跃) + ranking_all.json (全量)
-../app/src/data/    → 同步 ranking.json 给前端消费
+../data/1-fetch/      → 抓取 Artificial Analysis / OpenRouter / Arena
+../data/3-process/    → 3 步处理管线：构建前端模型 → 富化+切活跃 → 生成报告
+../data/4-final/      → ranking.json (活跃) + ranking_all.json (全量)
+../app/src/data/      → 同步 ranking.json 给前端消费
 ```
 
 完整流程由 `../data/pipeline.py` 一键编排（分支准备 → 抓取 → 处理 → 同步 → 验证 → 提交 PR → 清理），日常无需手工跑各步骤。
 
+模型筛选策略：`build_frontend_models.py` 从 AA 全量数据直接读取，按三档条件（Large / frontier / intel≥30）筛选，同时用 `EXCLUDED_PATTERNS` 黑名单去旧。不再依赖单独的国内筛步骤。
+
 - **data_complete**: 富化时计算，需 `intelligence + coding + agentic + speed + pricing` 五维度齐全；缺一即 `false`
-- **Arena votes**: 作为热度指标注入；OpenRouter pricing/tokens 仍由管线消费
+- **OpenRouter 周用量**: 作为热度指标注入；OpenRouter pricing 仍由管线消费
 - **验证脚本**: `scripts/validate-data.py` + Vitest/Build/Lint 在 `pipeline.py` Phase 5 一起跑
 
 ## 本地运行
