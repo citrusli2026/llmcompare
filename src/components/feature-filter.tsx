@@ -32,11 +32,14 @@ export function FeatureFilter({ activeKeys, onToggle }: FeatureFilterProps) {
             className={cn(
               "rounded-lg px-3 py-1.5 text-xs font-medium transition-all min-h-9",
               isActive
-                ? "bg-accent-violet/15 border border-accent-violet/40 text-accent-violet"
+                ? "bg-accent-violet/20 text-accent-violet border border-accent-violet/40 shadow-[inset_0_0_0_1px_rgba(168,85,247,0.15)]"
                 : "bg-surface-card text-text-secondary border border-surface-border hover:bg-surface-hover hover:text-text-primary"
             )}
           >
-            {t(labelKey)}
+            <span className="flex items-center gap-1.5">
+              {isActive && <span className="h-1.5 w-1.5 rounded-full bg-accent-violet shrink-0" />}
+              {t(labelKey)}
+            </span>
           </button>
         );
       })}
