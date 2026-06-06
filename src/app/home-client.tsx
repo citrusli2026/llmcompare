@@ -129,7 +129,7 @@ export default function HomeClient() {
             />
           </div>
 
-          <RankingTable models={displayModels} />
+          <RankingTable models={displayModels} hideArenaCode />
         </div>
       </section>
 

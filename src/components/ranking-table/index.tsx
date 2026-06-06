@@ -16,6 +16,7 @@ import { MobileCard } from "./mobile-card";
 
 interface RankingTableProps {
   models: ModelWithScores[];
+  hideArenaCode?: boolean;
 }
 
 const HEADERS: HeaderDef[] = [
@@ -37,10 +38,15 @@ const MOBILE_SORT_OPTIONS: { key: SortKey | ""; labelKey: string }[] = [
   { key: "date", labelKey: "table.date" },
 ];
 
-export function RankingTable({ models }: RankingTableProps) {
+export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>("date");
   const [sortDesc, setSortDesc] = useState(true);
   const { t } = useTranslation();
+
+  const headers = useMemo(
+    () => (hideArenaCode ? HEADERS.filter((h) => h.key !== "arenaCode") : HEADERS),
+    [hideArenaCode]
+  );
 
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
@@ -180,7 +186,7 @@ export function RankingTable({ models }: RankingTableProps) {
                     <ArrowUpDown className="h-3 w-3" />
                   </div>
                 </TableHead>
-                {HEADERS.map((h) => (
+                {headers.map((h) => (
                   <TableHead
                     key={h.key}
                     className={cn("cursor-pointer text-text-muted hover:text-text-primary", colVisibilityClass(h))}
@@ -204,7 +210,7 @@ export function RankingTable({ models }: RankingTableProps) {
                     group={group}
                     idx={idx}
                     sortKey={sortKey}
-                    headers={HEADERS}
+                    headers={headers}
                     renderers={renderers}
                     colVisibilityClass={colVisibilityClass}
                     percentiles={percentiles}
@@ -228,7 +234,7 @@ export function RankingTable({ models }: RankingTableProps) {
                 group={group}
                 idx={idx}
                 sortKey={sortKey}
-                headers={HEADERS}
+                headers={headers}
                 metricOrder={MOBILE_METRIC_ORDER}
                 renderMetric={renderMetric}
                 percentiles={percentiles}
