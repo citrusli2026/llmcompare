@@ -4,6 +4,7 @@ import { DollarSign } from "lucide-react";
 import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { Tooltip } from "@/components/tooltip";
+import { FieldTip } from "@/components/field-tip";
 
 interface PricingSectionProps {
   model: ModelWithScores;
@@ -47,7 +48,7 @@ export function PricingSection({ model }: PricingSectionProps) {
           </div>
           {r.blended != null && (
             <div className="flex justify-between border-t border-surface-border pt-2 mt-2">
-              <span className="text-text-muted font-medium">{t("product.blendedAa")}</span>
+              <span className="text-text-muted font-medium">{t("product.blendedAa")}<FieldTip tip={t("tip.blended")} /></span>
               <span className="text-text-primary font-semibold">${r.blended.toFixed(2)}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>
             </div>
           )}

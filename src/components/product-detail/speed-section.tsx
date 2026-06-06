@@ -3,6 +3,7 @@
 import { Zap } from "lucide-react";
 import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
+import { FieldTip } from "@/components/field-tip";
 
 interface SpeedSectionProps {
   model: ModelWithScores;
@@ -19,7 +20,7 @@ export function SpeedSection({ model }: SpeedSectionProps) {
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.medianTps")}</p>
+          <p className="text-xs text-text-muted">{t("product.medianTps")}<FieldTip tip={t("tip.speed")} /></p>
           <p className="text-lg font-semibold text-text-primary">
             {r.median_tps != null ? (
               <>
@@ -30,7 +31,7 @@ export function SpeedSection({ model }: SpeedSectionProps) {
           </p>
         </div>
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.p05Tps")}</p>
+          <p className="text-xs text-text-muted">{t("product.p05Tps")}<FieldTip tip={t("tip.p5")} /></p>
           <p className="text-lg font-semibold text-text-primary">
             {r.p05_tps != null ? (
               <>
@@ -41,7 +42,7 @@ export function SpeedSection({ model }: SpeedSectionProps) {
           </p>
         </div>
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.p95Tps")}</p>
+          <p className="text-xs text-text-muted">{t("product.p95Tps")}<FieldTip tip={t("tip.p95")} /></p>
           <p className="text-lg font-semibold text-text-primary">
             {r.p95_tps != null ? (
               <>
@@ -52,13 +53,13 @@ export function SpeedSection({ model }: SpeedSectionProps) {
           </p>
         </div>
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.ttft")}</p>
+          <p className="text-xs text-text-muted">{t("product.ttft")}<FieldTip tip={t("tip.ttft")} /></p>
           <p className="text-lg font-semibold text-text-primary">
             {r.ttft_seconds != null ? `${r.ttft_seconds.toFixed(1)}s` : "—"}
           </p>
         </div>
         <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted">{t("product.e2e")}</p>
+          <p className="text-xs text-text-muted">{t("product.e2e")}<FieldTip tip={t("tip.e2e")} /></p>
           <p className="text-lg font-semibold text-text-primary">
             {r.e2e_seconds != null ? `${r.e2e_seconds.toFixed(1)}s` : "—"}
           </p>

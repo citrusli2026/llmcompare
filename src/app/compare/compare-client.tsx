@@ -10,12 +10,14 @@ import { getModelById, type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { cn, formatTokenCount, getTypeBadgeClasses } from "@/lib/utils";
 import { Tooltip } from "@/components/tooltip";
+import { FieldTip } from "@/components/field-tip";
 
 interface CompareRow {
   labelKey: string;
   icon: React.ComponentType<{ className?: string }>;
   getValue: (m: ModelWithScores) => React.ReactNode;
   getNumericValue?: (m: ModelWithScores) => number | null;
+  tipKey?: string;
 }
 
 function formatNum(v: number | null | undefined, decimals = 2): string {
@@ -58,24 +60,28 @@ export function ComparePageClient() {
       icon: Brain,
       getValue: (m) => formatNum(m.raw.intelligence),
       getNumericValue: (m) => m.raw.intelligence,
+      tipKey: "tip.intelligence",
     },
     {
       labelKey: "compare.coding",
       icon: Code,
       getValue: (m) => formatNum(m.raw.coding),
       getNumericValue: (m) => m.raw.coding,
+      tipKey: "tip.coding",
     },
     {
       labelKey: "compare.agentic",
       icon: Bot,
       getValue: (m) => formatNum(m.raw.agentic),
       getNumericValue: (m) => m.raw.agentic,
+      tipKey: "tip.agentic",
     },
     {
       labelKey: "compare.speed",
       icon: Zap,
       getValue: (m) => m.raw.median_tps != null ? `${m.raw.median_tps.toFixed(1)} t/s` : "—",
       getNumericValue: (m) => m.raw.median_tps,
+      tipKey: "tip.speed",
     },
     {
       labelKey: "compare.price",
@@ -93,6 +99,7 @@ export function ComparePageClient() {
         // Lower is better for cost — use blended if available, fallback to completion
         return m.raw.blended ?? m.raw.openrouter_pricing?.completion ?? m.raw.output ?? null;
       },
+      tipKey: "tip.blended",
     },
     {
       labelKey: "compare.orWeeklyTokens",
@@ -104,12 +111,14 @@ export function ComparePageClient() {
         return fmt.unit ? `${fmt.value} ${fmt.unit}` : fmt.value;
       },
       getNumericValue: (m) => m.raw.openrouter_weekly_tokens,
+      tipKey: "tip.orWeeklyTokens",
     },
     {
       labelKey: "compare.arenaVotes",
       icon: Trophy,
       getValue: (m) => m.raw.arena_votes != null ? formatNum(m.raw.arena_votes, 0) : "—",
       getNumericValue: (m) => m.raw.arena_votes,
+      tipKey: "tip.arenaVotes",
     },
     {
       labelKey: "compare.contextWindow",
@@ -118,11 +127,13 @@ export function ComparePageClient() {
         ? `${m.raw.context_window >= 1000000 ? (m.raw.context_window / 1000000).toFixed(0) + 'M' : formatNum(m.raw.context_window, 0)} tokens`
         : "—",
       getNumericValue: (m) => m.raw.context_window,
+      tipKey: "tip.contextWindow",
     },
     {
       labelKey: "compare.parameters",
       icon: Weight,
       getValue: (m) => m.raw.parameters != null ? `${formatNum(m.raw.parameters, 0)}B` : t("common.unknown"),
+      tipKey: "tip.parameters",
     },
     {
       labelKey: "compare.releaseDate",
@@ -149,20 +160,23 @@ export function ComparePageClient() {
       icon: Brain,
       getValue: (m) => m.raw.benchmarks.gpqa != null ? formatNum(m.raw.benchmarks.gpqa) : "—",
       getNumericValue: (m) => m.raw.benchmarks.gpqa,
+      tipKey: "tip.gpqa",
     },
     {
       labelKey: "compare.benchmarkHle",
       icon: Brain,
       getValue: (m) => m.raw.benchmarks.hle != null ? formatNum(m.raw.benchmarks.hle) : "—",
       getNumericValue: (m) => m.raw.benchmarks.hle,
+      tipKey: "tip.hle",
     },
     {
       labelKey: "compare.benchmarkMmluPro",
       icon: Brain,
       getValue: (m) => m.raw.benchmarks.mmlu_pro != null ? formatNum(m.raw.benchmarks.mmlu_pro) : "—",
       getNumericValue: (m) => m.raw.benchmarks.mmlu_pro,
+      tipKey: "tip.mmluPro",
     },
-  ], []);
+  ], [t]);
 
   if (models.length === 0) {
     return (
@@ -254,6 +268,7 @@ export function ComparePageClient() {
                         <div className="flex items-center gap-1 sm:gap-2">
                           <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-text-muted shrink-0" />
                           <span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span>
+                          {row.tipKey && <FieldTip tip={t(row.tipKey)} />}
                         </div>
                       </td>
                       {models.map((m) => {

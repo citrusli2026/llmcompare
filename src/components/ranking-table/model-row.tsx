@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -66,10 +67,9 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
   return (
     <TableRow
       className={cn(
-        "border-surface-border hover:bg-surface-hover transition-colors cursor-pointer even:bg-surface-elevated/40",
+        "border-surface-border hover:bg-surface-hover transition-colors even:bg-surface-elevated/40",
         group.borderClass,
       )}
-      onClick={() => router.push(`/product/${model.id}`)}
     >
       {/* Compare checkbox */}
       <TableCell className="w-10 sm:w-12">
@@ -106,8 +106,14 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
               onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
             />
           )}
-          {model.name}
-          <ArrowUpRight className="h-3 w-3 text-text-muted group-hover:text-accent-violet transition-colors opacity-50 group-hover:opacity-100 shrink-0" />
+          <Link
+            href={`/product/${model.id}`}
+            className="inline-flex items-center gap-1.5 group/link"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span>{model.name}</span>
+            <ArrowUpRight className="h-3 w-3 text-text-muted transition-all duration-200 opacity-40 group-hover/link:opacity-100 group-hover/link:text-accent-violet group-hover/link:translate-x-0.5 shrink-0" />
+          </Link>
         </div>
         <div className="flex gap-1 mt-1">
           <Badge
