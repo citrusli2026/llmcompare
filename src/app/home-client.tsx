@@ -84,14 +84,14 @@ export default function HomeClient() {
     <div className="min-h-screen bg-surface-base">
       <Navbar />
 
-      {/* Hero Section — Sentry ambient glow */}
+      {/* Hero Section — Selection Assistant Entry Point */}
       <section
-        className="relative overflow-hidden px-4 pt-10 pb-6 sm:pt-16 sm:pb-10 lg:px-8"
+        className="relative overflow-hidden px-4 pt-10 sm:pt-16 lg:px-8"
         style={{
           background: "radial-gradient(ellipse at 50% 0%, rgba(106,95,193,0.15) 0%, transparent 60%)",
         }}
       >
-        <div className="mx-auto max-w-4xl text-center relative z-10">
+        <div className="mx-auto max-w-5xl text-center relative z-10">
           <Link href="/models" className="hidden sm:inline-block">
             <Badge
               variant="secondary"
@@ -106,17 +106,14 @@ export default function HomeClient() {
             {t("home.heroTitle")}
           </h1>
 
-          <p className="mt-3 text-sm sm:text-base md:text-lg text-text-secondary">
+          <p className="mt-3 text-sm sm:text-base md:text-lg text-text-secondary max-w-2xl mx-auto">
             {t("home.heroDesc")}
           </p>
-          <p className="hidden sm:block mt-4 max-w-2xl mx-auto text-sm text-text-muted">
-            {t("home.seoDesc")}
-          </p>
         </div>
-      </section>
 
-      {/* Scene Selection Cards — V2 selection assistant entry point */}
-      <SceneSelector />
+        {/* Scene Selection Cards — inline in hero */}
+        <SceneSelector hideHeader />
+      </section>
 
       {/* Model Directory Table — moved before StatsStrip on mobile via ordering */}
       <section className="px-4 pt-4 pb-4 sm:px-6 lg:px-8 order-first sm:order-none">
