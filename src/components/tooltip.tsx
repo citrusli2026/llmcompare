@@ -89,14 +89,21 @@ export function Tooltip({ children, content }: TooltipProps) {
     timer.current = window.setTimeout(() => setShow(false), 150);
   }, [clicked]);
 
+  const toggleTooltip = useCallback(() => {
+    setClicked((c) => {
+      const next = !c;
+      setShow(next);
+      return next;
+    });
+  }, []);
+
   const handleClick = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
       e.preventDefault();
-      setShow((s) => !s);
-      setClicked((s) => !s);
+      toggleTooltip();
     },
-    []
+    [toggleTooltip]
   );
 
   return (
@@ -106,9 +113,7 @@ export function Tooltip({ children, content }: TooltipProps) {
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
       onClick={handleClick}
-      onTouchEnd={(e) => {
-        e.stopPropagation();
-      }}
+
     >
       {children}
       {show && (
