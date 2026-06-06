@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
-import { Bot, ArrowRight, TrendingUp } from "lucide-react";
+import { Bot, ArrowRight, TrendingUp, ChevronUp } from "lucide-react";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
 import { StatsStrip } from "@/components/stats-strip";
@@ -12,6 +12,47 @@ import { CompareBar } from "@/components/compare-bar";
 import { SearchInput } from "@/components/search-input";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
+import { cn } from "@/lib/utils";
+
+function BackToTop() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    // Watch a sentinel at the top of the page
+    const sentinel = document.createElement("div");
+    sentinel.id = "scroll-sentinel";
+    sentinel.style.position = "absolute";
+    sentinel.style.top = "0";
+    sentinel.style.height = "1px";
+    sentinel.style.width = "1px";
+    document.body.prepend(sentinel);
+    observer.observe(sentinel);
+
+    return () => {
+      observer.disconnect();
+      sentinel.remove();
+    };
+  }, []);
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  return (
+    <button
+      onClick={scrollToTop}
+      className={cn(
+        "fixed bottom-20 right-4 sm:bottom-8 sm:right-8 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-accent-violet text-white shadow-lg transition-all duration-300 hover:bg-violet-600",
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+      )}
+      aria-label="Back to top"
+    >
+      <ChevronUp className="h-5 w-5" />
+    </button>
+  );
+}
 
 export default function HomeClient() {
   const { t } = useTranslation();
@@ -26,13 +67,13 @@ export default function HomeClient() {
       if (!b.raw.release_date) return -1;
       return b.raw.release_date.localeCompare(a.raw.release_date);
     });
-    if (!searchQuery) return sorted.slice(0, 12);
+    if (!searchQuery) return sorted.slice(0, 20);
     const q = searchQuery.toLowerCase();
     return sorted.filter(
       (m) =>
         m.name.toLowerCase().includes(q) ||
         m.company.toLowerCase().includes(q)
-    ).slice(0, 12);
+    ).slice(0, 20);
   }, [allModels, searchQuery]);
 
   // Compare selection from URL params (via shared hook)
@@ -44,13 +85,13 @@ export default function HomeClient() {
 
       {/* Hero Section — Sentry ambient glow */}
       <section
-        className="relative overflow-hidden px-4 pt-12 pb-8 sm:pt-16 sm:pb-10 lg:px-8"
+        className="relative overflow-hidden px-4 pt-10 pb-6 sm:pt-16 sm:pb-10 lg:px-8"
         style={{
           background: "radial-gradient(ellipse at 50% 0%, rgba(106,95,193,0.15) 0%, transparent 60%)",
         }}
       >
         <div className="mx-auto max-w-4xl text-center relative z-10">
-          <Link href="/models">
+          <Link href="/models" className="hidden sm:inline-block">
             <Badge
               variant="secondary"
               className="mb-4 bg-accent-lime/10 text-accent-lime hover:bg-accent-lime/20 border-accent-lime/20 cursor-pointer"
@@ -60,11 +101,11 @@ export default function HomeClient() {
             </Badge>
           </Link>
 
-          <h1 className="text-4xl font-bold tracking-tight text-text-primary sm:text-6xl lg:text-7xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-text-primary">
             {t("home.heroTitle")}
           </h1>
 
-          <p className="mt-3 text-base text-text-secondary sm:text-lg">
+          <p className="mt-3 text-sm sm:text-base md:text-lg text-text-secondary">
             {t("home.heroDesc")}
           </p>
           <p className="hidden sm:block mt-4 max-w-2xl mx-auto text-sm text-text-muted">
@@ -73,10 +114,8 @@ export default function HomeClient() {
         </div>
       </section>
 
-      <StatsStrip />
-
-      {/* Model Directory Table */}
-      <section className="px-4 pt-6 pb-10 sm:px-6 lg:px-8">
+      {/* Model Directory Table — moved before StatsStrip on mobile via ordering */}
+      <section className="px-4 pt-4 pb-4 sm:px-6 lg:px-8 order-first sm:order-none">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
@@ -105,6 +144,9 @@ export default function HomeClient() {
         </div>
       </section>
 
+      {/* StatsStrip — below model list on all sizes */}
+      <StatsStrip />
+
       {/* Footer */}
       <footer className="border-t border-surface-border bg-surface-elevated px-4 py-8 sm:px-6 lg:px-8 pb-20">
         <div className="mx-auto max-w-7xl text-center text-sm text-text-muted">
@@ -118,6 +160,8 @@ export default function HomeClient() {
         onRemoveModel={handleRemoveCompare}
         onClear={handleClearCompare}
       />
+
+      <BackToTop />
     </div>
   );
 }
