@@ -47,7 +47,12 @@
     "colType": "Type",
     "sortBy": "Sort by",
     "sortAsc": "Ascending",
-    "sortDesc": "Descending"
+    "sortDesc": "Descending",
+    "top25": "Top 25%",
+    "top50": "Top 50%",
+    "top75": "Bottom 50%",
+    "bottom25": "Bottom 25%",
+    "colorByRank": "Colored by rank within current list, not absolute scores"
   },
   "about": {
     "title": "About LLMCompare",
@@ -151,7 +156,8 @@
     "imageInput": "Image Input",
     "chineseEval": "Chinese Eval",
     "unknown": "Unknown",
-    "perMUnit": "/M = per million tokens"
+    "perMUnit": "/M = per million tokens",
+    "free": "Free"
   },
   "tip": {
     "intelligence": "Artificial Analysis composite score based on MMLU, HumanEval, MATH and other benchmarks. Range 0-100, higher is better.",

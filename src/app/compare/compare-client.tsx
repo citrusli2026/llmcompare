@@ -90,9 +90,17 @@ export function ComparePageClient() {
       icon: DollarSign,
       getValue: (m) => {
         if (m.raw.openrouter_pricing) {
-          return <span>${m.raw.openrouter_pricing.prompt}/${m.raw.openrouter_pricing.completion}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>;
+          const prompt = m.raw.openrouter_pricing.prompt;
+          const completion = m.raw.openrouter_pricing.completion;
+          if (prompt === 0 && completion === 0) {
+            return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
+          }
+          return <span>${prompt}/${completion}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>;
         }
         if (m.raw.input != null) {
+          if (m.raw.input === 0 && m.raw.output === 0) {
+            return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
+          }
           return <span>${m.raw.input}/${m.raw.output}<Tooltip content={t("common.perMUnit")}>/M</Tooltip></span>;
         }
         return "—";

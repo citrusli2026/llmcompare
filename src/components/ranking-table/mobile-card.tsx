@@ -49,7 +49,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
 
   // ── Data helpers ──
   const blended = model.raw.blended;
-  const costStr = blended != null ? `$${blended.toFixed(2)}` : null;
+  const costStr = blended != null ? (blended === 0 ? t("common.free") : `$${blended.toFixed(2)}`) : null;
 
   const weeklyTokens = model.raw.openrouter_weekly_tokens;
   const tokensDisplay = weeklyTokens != null

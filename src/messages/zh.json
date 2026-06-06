@@ -47,7 +47,12 @@
     "colType": "类型",
     "sortBy": "排序方式",
     "sortAsc": "升序",
-    "sortDesc": "降序"
+    "sortDesc": "降序",
+    "top25": "前25%",
+    "top50": "前50%",
+    "top75": "后50%",
+    "bottom25": "后25%",
+    "colorByRank": "颜色按当前榜单相对排名，非绝对分数"
   },
   "about": {
     "title": "关于模型图鉴",
@@ -151,7 +156,8 @@
     "imageInput": "图像输入",
     "chineseEval": "中文评测",
     "unknown": "未知",
-    "perMUnit": "/M = 每百万 tokens"
+    "perMUnit": "/M = 每百万 tokens",
+    "free": "免费"
   },
   "tip": {
     "intelligence": "Artificial Analysis 综合评分，综合 MMLU、HumanEval、MATH 等基准测试。0-100 分，越高越好。",
