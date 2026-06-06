@@ -248,107 +248,122 @@ export function ComparePageClient() {
             </button>
           </div>
 
-          {/* Comparison Table */}
-          <div className="overflow-x-auto rounded-xl border border-surface-border bg-surface-card">
-            <table className="w-full min-w-[320px] sm:min-w-[600px]">
-              <thead>
-                <tr className="border-b border-surface-border">
-                  <th className="sticky left-0 bg-surface-card z-20 text-left px-1.5 py-2 sm:px-6 sm:py-4 text-xs font-semibold text-text-muted uppercase tracking-wider min-w-[75px] sm:min-w-[140px] shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]">
-                    {t("compare.colName")}
-                  </th>
-                  {models.map((m) => (
-                    <th
-                      key={m.id}
-                      className="px-1.5 py-2 sm:px-4 sm:py-4 text-center min-w-[100px] sm:min-w-[180px]"
-                    >
-                      <div className="inline-flex flex-col items-center gap-0.5 sm:gap-1">
-                        <span className="font-semibold text-xs sm:text-sm text-text-primary truncate max-w-[95px] sm:max-w-[160px]">
-                          {m.name}
-                        </span>
-                        <span className="text-[9px] sm:text-[10px] text-text-muted truncate max-w-[95px] sm:max-w-[160px]">{m.company}</span>
-                        <Badge
-                          variant="secondary"
-                          className={cn("text-[10px] py-0 px-1.5", getTypeBadgeClasses(m.type as "开源" | "闭源"))}
-                        >
-                          {t(m.type === "开源" ? "common.open" : "common.closed")}
-                        </Badge>
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
+          {/* Comparison Table — dual panel: fixed left + scrollable right */}
+          <div className="rounded-xl border border-surface-border bg-surface-card overflow-hidden">
+            <div className="flex">
+              {/* Fixed left panel */}
+              <div className="shrink-0 min-w-[75px] sm:min-w-[140px]">
+                <div className="px-1.5 py-2 sm:px-6 sm:py-4 text-xs font-semibold text-text-muted uppercase tracking-wider">
+                  {t("compare.colName")}
+                </div>
                 {rows.map((row, ri) => {
                   const Icon = row.icon;
-                  const values = models.map((m) => row.getNumericValue?.(m) ?? null);
-                  const higherIsBetter = row.labelKey !== "compare.price";
-
                   return (
-                    <tr
+                    <div
                       key={ri}
                       className={cn(
-                        "border-b border-surface-border last:border-b-0",
-                        ri % 2 === 1 ? "bg-surface-elevated" : ""
+                        "px-1.5 py-1.5 sm:px-6 sm:py-4 border-b border-surface-border last:border-b-0 shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]",
+                        ri % 2 === 1 ? "bg-surface-elevated" : "bg-surface-base"
                       )}
                     >
-                      <td className={cn(
-                        "sticky left-0 z-20 px-1.5 py-2 sm:px-6 sm:py-4 shadow-[2px_0_8px_-4px_rgba(0,0,0,0.15)]",
-                        ri % 2 === 1 ? "bg-surface-elevated" : "bg-surface-base"
-                      )}>
-                        <div className="flex items-center gap-1 sm:gap-2">
-                          <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-text-muted shrink-0" />
-                          {row.tipKey ? (
-                            <FieldTip tip={t(row.tipKey)}><span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span></FieldTip>
-                          ) : (
-                            <span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span>
-                          )}
-                        </div>
-                      </td>
-                      {models.map((m) => {
-                        const numVal = row.getNumericValue?.(m) ?? null;
-                        const isBest = isBestValue(numVal, values, higherIsBetter);
-                        const isScoreBar = row.labelKey === "compare.intelligence" || row.labelKey === "compare.coding" || row.labelKey === "compare.agentic" || row.labelKey === "compare.speed" || row.labelKey === "compare.price";
-                        const validVals = values.filter((v): v is number => v != null);
-                        const maxValue = validVals.length > 0 ? Math.max(...validVals) : 100;
-                        return (
-                          <td
-                            key={m.id}
-                            className={cn(
-                              "px-1.5 py-1.5 sm:px-4 sm:py-4 text-center text-xs sm:text-sm transition-colors",
-                              isBest ? "bg-accent-lime/10" : ""
-                            )}
-                          >
-                            <div className="flex flex-col items-center gap-0.5">
-                              <div className="flex items-center justify-center gap-1">
-                                {isBest && <Star className="h-3 w-3 text-accent-lime shrink-0" />}
-                                <span className={cn(
-                                  "tabular-nums",
-                                  isBest ? "font-semibold text-accent-lime" : "text-text-primary"
-                                )}>
-                                  {row.getValue(m)}
-                                </span>
-                              </div>
-                              {isScoreBar && numVal != null && maxValue > 0 && (() => {
-                                const rawPct = Math.min((numVal / maxValue) * 100, 100);
-                                const fillPct = higherIsBetter ? rawPct : Math.max(0, 100 - rawPct);
-                                return (
-                                  <div className="w-full h-1 rounded-full bg-surface-border overflow-hidden max-w-[60px] sm:max-w-[100px]">
-                                    <div
-                                      className={`h-full rounded-full ${barColor(fillPct)} transition-all`}
-                                      style={{ width: `${fillPct}%` }}
-                                    />
-                                  </div>
-                                );
-                              })()}
-                            </div>
-                          </td>
-                        );
-                      })}
-                    </tr>
+                      <div className="flex items-center gap-1 sm:gap-2">
+                        <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-text-muted shrink-0" />
+                        {row.tipKey ? (
+                          <FieldTip tip={t(row.tipKey)}><span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span></FieldTip>
+                        ) : (
+                          <span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span>
+                        )}
+                      </div>
+                    </div>
                   );
                 })}
-              </tbody>
-            </table>
+              </div>
+
+              {/* Scrollable right panel */}
+              <div className="overflow-x-auto flex-1">
+                <table className="w-full min-w-[320px] sm:min-w-[600px]">
+                  <thead>
+                    <tr className="border-b border-surface-border">
+                      {models.map((m) => (
+                        <th
+                          key={m.id}
+                          className="px-1.5 py-2 sm:px-4 sm:py-4 text-center min-w-[100px] sm:min-w-[180px]"
+                        >
+                          <div className="inline-flex flex-col items-center gap-0.5 sm:gap-1">
+                            <span className="font-semibold text-xs sm:text-sm text-text-primary truncate max-w-[95px] sm:max-w-[160px]">
+                              {m.name}
+                            </span>
+                            <span className="text-[9px] sm:text-[10px] text-text-muted truncate max-w-[95px] sm:max-w-[160px]">{m.company}</span>
+                            <Badge
+                              variant="secondary"
+                              className={cn("text-[10px] py-0 px-1.5", getTypeBadgeClasses(m.type as "开源" | "闭源"))}
+                            >
+                              {t(m.type === "开源" ? "common.open" : "common.closed")}
+                            </Badge>
+                          </div>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rows.map((row, ri) => {
+                      const values = models.map((m) => row.getNumericValue?.(m) ?? null);
+                      const higherIsBetter = row.labelKey !== "compare.price";
+                      return (
+                        <tr
+                          key={ri}
+                          className={cn(
+                            "border-b border-surface-border last:border-b-0",
+                            ri % 2 === 1 ? "bg-surface-elevated" : ""
+                          )}
+                        >
+                          {models.map((m) => {
+                            const numVal = row.getNumericValue?.(m) ?? null;
+                            const isBest = isBestValue(numVal, values, higherIsBetter);
+                            const isScoreBar = row.labelKey === "compare.intelligence" || row.labelKey === "compare.coding" || row.labelKey === "compare.agentic" || row.labelKey === "compare.speed" || row.labelKey === "compare.price";
+                            const validVals = values.filter((v): v is number => v != null);
+                            const maxValue = validVals.length > 0 ? Math.max(...validVals) : 100;
+                            return (
+                              <td
+                                key={m.id}
+                                className={cn(
+                                  "px-1.5 py-1.5 sm:px-4 sm:py-4 text-center text-xs sm:text-sm transition-colors",
+                                  isBest ? "bg-accent-lime/10" : ri % 2 === 1 ? "bg-surface-elevated" : "bg-surface-card"
+                                )}
+                              >
+                                <div className="flex flex-col items-center gap-0.5">
+                                  <div className="flex items-center justify-center gap-1">
+                                    {isBest && <Star className="h-3 w-3 text-accent-lime shrink-0" />}
+                                    <span className={cn(
+                                      "tabular-nums",
+                                      isBest ? "font-semibold text-accent-lime" : "text-text-primary"
+                                    )}>
+                                      {row.getValue(m)}
+                                    </span>
+                                  </div>
+                                  {isScoreBar && numVal != null && maxValue > 0 && (() => {
+                                    const rawPct = Math.min((numVal / maxValue) * 100, 100);
+                                    const fillPct = higherIsBetter ? rawPct : Math.max(0, 100 - rawPct);
+                                    return (
+                                      <div className="w-full h-1 rounded-full bg-surface-border overflow-hidden max-w-[60px] sm:max-w-[100px]">
+                                        <div
+                                          className={`h-full rounded-full ${barColor(fillPct)} transition-all`}
+                                          style={{ width: `${fillPct}%` }}
+                                        />
+                                      </div>
+                                    );
+                                  })()}
+                                </div>
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
           {/* Legend */}

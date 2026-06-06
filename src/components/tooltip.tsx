@@ -10,75 +10,68 @@ interface TooltipProps {
 export function Tooltip({ children, content }: TooltipProps) {
   const [show, setShow] = useState(false);
   const [clicked, setClicked] = useState(false);
-  const [above, setAbove] = useState(false);
   const timer = useRef(0);
   const ref = useRef<HTMLSpanElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
 
-  // Position tooltip with CSS only, then correct viewport overflow via ref
-  const correctOverflow = useCallback(() => {
-    if (!ref.current || !innerRef.current) return;
-    const trigger = ref.current.getBoundingClientRect();
-    const tipRect = innerRef.current.getBoundingClientRect();
+  // Position tooltip via ref (no setState → no re-render → no flicker)
+  const positionTooltip = useCallback(() => {
+    const tip = innerRef.current;
+    const trigger = ref.current;
+    if (!tip || !trigger) return;
+
+    const tr = trigger.getBoundingClientRect();
     const vpW = window.innerWidth;
-
-    // Correct horizontal overflow
-    if (tipRect.right > vpW) {
-      innerRef.current.style.left = `${vpW - tipRect.width - 12}px`;
-    } else if (tipRect.left < 12) {
-      innerRef.current.style.left = "12px";
-    } else {
-      // Reset to CSS default (centered)
-      innerRef.current.style.left = "";
-    }
-  }, []);
-
-  // Decide above/below based on available space (triggers re-render but
-  // tooltip is already in CSS position → no flicker, only height flip)
-  const decideDirection = useCallback(() => {
-    if (!ref.current) return;
-    const trigger = ref.current.getBoundingClientRect();
     const vpH = window.innerHeight;
     const gap = 8;
-    const spaceAbove = trigger.top - gap;
-    const spaceBelow = vpH - trigger.bottom - gap;
-    // Use above if there's more space above OR not enough below
-    setAbove(spaceAbove >= spaceBelow);
+
+    const tw = tip.offsetWidth;
+    const th = tip.offsetHeight;
+    if (tw === 0 || th === 0) return;
+
+    // Decide direction
+    const spaceAbove = tr.top - gap;
+    const spaceBelow = vpH - tr.bottom - gap;
+    const showAbove = spaceAbove >= spaceBelow;
+
+    // Calculate position
+    let top = showAbove ? tr.top - th - gap : tr.bottom + gap;
+    if (top < 4) top = 4;
+    if (top + th > vpH - 4) top = vpH - th - 4;
+
+    let left = tr.left + tr.width / 2 - tw / 2;
+    left = Math.max(8, Math.min(left, vpW - tw - 8));
+
+    // Direct DOM — no re-render
+    tip.style.left = `${left}px`;
+    tip.style.top = `${top}px`;
+    tip.style.opacity = "1";
+    tip.style.pointerEvents = "auto";
+    tip.setAttribute("data-above", showAbove ? "true" : "false");
   }, []);
 
-  // useLayoutEffect: correct overflow after DOM is committed, before paint
   useLayoutEffect(() => {
     if (!show) return;
-    decideDirection();
-    // Use rAF to ensure tooltip dimensions are settled after direction flip
-    const raf = requestAnimationFrame(() => {
-      correctOverflow();
-    });
+    // rAF ensures tooltip dimensions are settled after DOM commit
+    const raf = requestAnimationFrame(() => positionTooltip());
 
-    const onScroll = () => {
+    const reposition = () => {
       if (clicked) {
         setShow(false);
         setClicked(false);
       } else {
-        decideDirection();
-        requestAnimationFrame(() => {
-          correctOverflow();
-        });
+        requestAnimationFrame(() => positionTooltip());
       }
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", () => {
-      decideDirection();
-      requestAnimationFrame(() => {
-        correctOverflow();
-      });
-    });
+    window.addEventListener("scroll", reposition, { passive: true });
+    window.addEventListener("resize", positionTooltip);
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", reposition);
+      window.removeEventListener("resize", positionTooltip);
     };
-  }, [show, clicked, decideDirection, correctOverflow]);
+  }, [show, clicked, positionTooltip]);
 
   // Outside click → close (click-opened tooltips only)
   useEffect(() => {
@@ -136,15 +129,15 @@ export function Tooltip({ children, content }: TooltipProps) {
           ref={innerRef}
           id="tooltip-content"
           role="tooltip"
-          data-above={above ? "true" : "false"}
-          className={[
-            "w-max min-w-[120px] max-w-[75vw] sm:max-w-[280px] whitespace-normal break-words rounded-lg px-3 py-2 text-xs leading-relaxed shadow-lg",
-            "bg-gray-900 text-white dark:bg-neutral-700",
-            "absolute left-1/2 -translate-x-1/2 z-50",
-            above
-              ? "bottom-full mb-2"
-              : "top-full mt-2",
-          ].join(" ")}
+          style={{
+            position: "fixed",
+            zIndex: 9999,
+            opacity: 0,
+            pointerEvents: "none",
+            left: 0,
+            top: 0,
+          }}
+          className="w-max min-w-[120px] max-w-[75vw] sm:max-w-[280px] whitespace-normal break-words rounded-lg px-3 py-2 text-xs leading-relaxed shadow-lg bg-gray-900 text-white dark:bg-neutral-700"
         >
           {content}
         </div>
