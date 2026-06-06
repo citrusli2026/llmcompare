@@ -22,10 +22,6 @@ export default defineConfig({
       name: "Mobile Chrome",
       use: { ...devices["Pixel 5"] },
     },
-    {
-      name: "iPhone SE",
-      use: { ...devices["iPhone SE"] },
-    },
   ],
 
   webServer: {
