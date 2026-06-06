@@ -25,14 +25,14 @@ export function QuickFacts({ model }: QuickFactsProps) {
       <div className="flex items-center gap-3">
         <Cpu className="h-4 w-4 text-text-muted shrink-0" />
         <div className="min-w-0">
-          <p className="text-[10px] uppercase tracking-wider text-text-muted">{t("product.parameters")}<FieldTip tip={t("tip.parameters")} /></p>
+          <p className="text-[10px] uppercase tracking-wider text-text-muted"><FieldTip tip={t("tip.parameters")}>{t("product.parameters")}</FieldTip></p>
           <p className="text-sm font-medium text-text-primary truncate">{r.parameters != null ? `${r.parameters}B` : "—"}</p>
         </div>
       </div>
       <div className="flex items-center gap-3">
         <BookOpen className="h-4 w-4 text-text-muted shrink-0" />
         <div className="min-w-0">
-          <p className="text-[10px] uppercase tracking-wider text-text-muted">{t("product.contextWindow")}<FieldTip tip={t("tip.contextWindow")} /></p>
+          <p className="text-[10px] uppercase tracking-wider text-text-muted"><FieldTip tip={t("tip.contextWindow")}>{t("product.contextWindow")}</FieldTip></p>
           <p className="text-sm font-medium text-text-primary truncate">
             {r.context_window != null
               ? typeof r.context_window === "number"

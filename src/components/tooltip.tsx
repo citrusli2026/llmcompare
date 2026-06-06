@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useLayoutEffect, useEffect, useCallback } from "react";
 
 interface TooltipProps {
   children: React.ReactNode;
@@ -13,10 +13,7 @@ export function Tooltip({ children, content }: TooltipProps) {
   const timer = useRef(0);
   const ref = useRef<HTMLSpanElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
-  const [style, setStyle] = useState<React.CSSProperties>({
-    visibility: "hidden",
-  });
-  const posCount = useRef(0);
+  const [style, setStyle] = useState<React.CSSProperties>({});
 
   const position = useCallback(() => {
     if (!ref.current || !innerRef.current) return;
@@ -24,7 +21,7 @@ export function Tooltip({ children, content }: TooltipProps) {
     const tooltip = innerRef.current.getBoundingClientRect();
     const vpW = window.innerWidth;
     const vpH = window.innerHeight;
-    const tw = tooltip.width || 200; // fallback width before render
+    const tw = tooltip.width || 200;
     const th = tooltip.height || 60;
     const gap = 8;
 
@@ -35,8 +32,6 @@ export function Tooltip({ children, content }: TooltipProps) {
     let left = trigger.left + trigger.width / 2 - tw / 2;
     left = Math.max(12, Math.min(left, vpW - tw - 12));
 
-    posCount.current += 1;
-
     setStyle({
       position: "fixed",
       left,
@@ -44,21 +39,15 @@ export function Tooltip({ children, content }: TooltipProps) {
         ? vpH - trigger.top + gap
         : trigger.bottom + gap,
       zIndex: 50,
-      visibility: "visible",
     });
   }, []);
 
-  useEffect(() => {
+  // useLayoutEffect fires synchronously after DOM mutation, before paint
+  // → tooltip is in correct position before user sees it → no flicker
+  useLayoutEffect(() => {
     if (!show) return;
+    position();
 
-    // Position immediately on next frame
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => position());
-    });
-
-    // Handle scroll for both hover and click tooltips:
-    // - hover: reposition to follow the trigger
-    // - click: close the tooltip on scroll
     const onScroll = () => {
       if (clicked) {
         setShow(false);

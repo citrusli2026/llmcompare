@@ -267,8 +267,11 @@ export function ComparePageClient() {
                       )}>
                         <div className="flex items-center gap-1 sm:gap-2">
                           <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-text-muted shrink-0" />
-                          <span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span>
-                          {row.tipKey && <FieldTip tip={t(row.tipKey)} />}
+                          {row.tipKey ? (
+                            <FieldTip tip={t(row.tipKey)}><span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span></FieldTip>
+                          ) : (
+                            <span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span>
+                          )}
                         </div>
                       </td>
                       {models.map((m) => {
