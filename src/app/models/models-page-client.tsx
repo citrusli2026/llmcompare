@@ -3,14 +3,14 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Navbar } from "@/components/navbar";
+import { getAllModelsUnfiltered, getModelById, type ModelWithScores } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
 import { SearchInput } from "@/components/search-input";
 import { CompareBar } from "@/components/compare-bar";
-
-import { Bot } from "lucide-react";
-import { getAllModelsUnfiltered, getModelById, type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
+import { useCompareIds } from "@/hooks/use-compare-ids";
+import { Bot } from "lucide-react";
 
 const FILTER_KEYS = ["全部", "开源", "闭源"] as const;
 type Filter = (typeof FILTER_KEYS)[number];
@@ -116,35 +116,8 @@ export default function ModelsPageClient() {
     [allModels]
   );
 
-  // Compare selection from URL params
-  const compareFromUrl = useMemo(
-    () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],
-    [searchParams]
-  );
-  const selectedCompareModels = useMemo(
-    () => compareFromUrl.map((id) => getModelById(id)).filter((m): m is ModelWithScores => m != null),
-    [compareFromUrl]
-  );
-
-  const handleRemoveCompare = useCallback(
-    (id: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      const remaining = compareFromUrl.filter((cid) => cid !== id);
-      if (remaining.length > 0) {
-        params.set("compare", remaining.join(","));
-      } else {
-        params.delete("compare");
-      }
-      router.replace(`?${params.toString()}`, { scroll: false });
-    },
-    [searchParams, router, compareFromUrl]
-  );
-
-  const handleClearCompare = useCallback(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete("compare");
-    router.replace(`?${params.toString()}`, { scroll: false });
-  }, [searchParams, router]);
+  // Compare selection from URL params (via shared hook)
+  const { selectedCompareModels, handleRemoveCompare, handleClearCompare } = useCompareIds();
 
   const filteredModels = useMemo(() => {
     return allModels.filter((m) => {

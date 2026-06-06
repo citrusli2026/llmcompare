@@ -18,6 +18,13 @@ vi.mock("next/link", () => ({
   ),
 }));
 
+// Mock next/navigation for useCompareIds
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: vi.fn(), replace: vi.fn(), refresh: vi.fn(), back: vi.fn() }),
+  useSearchParams: () => new URLSearchParams(),
+  usePathname: () => "/",
+}));
+
 describe("RankingTable Integration — 完整数据流", () => {
   beforeEach(() => {
     vi.clearAllMocks();

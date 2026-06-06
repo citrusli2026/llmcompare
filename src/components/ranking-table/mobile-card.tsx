@@ -1,8 +1,8 @@
 "use client";
-
+import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useMemo, useCallback } from "react";
+import { useRouter } from "next/navigation";
+import { useCompareIds } from "@/hooks/use-compare-ids";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight, CheckSquare, Square } from "lucide-react";
 import { cn, getTypeBadgeClasses } from "@/lib/utils";
@@ -29,41 +29,21 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
   void _sortKey;
   const { t } = useTranslation();
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const handleCardClick = useCallback(() => {
     router.push(`/product/${model.id}`);
   }, [router, model.id]);
 
-  // ── Compare logic (same as model-row) ──
-  const compareIds = useMemo(
-    () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],
-    [searchParams]
-  );
-  const isInCompare = useMemo(
-    () => compareIds.includes(model.id),
-    [compareIds, model.id]
-  );
-  const toggleCompare = useCallback(
+  // ── Compare logic ──
+  const { isInCompare, toggleCompare } = useCompareIds();
+
+  const handleToggleCompare = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
       e.preventDefault();
-      const params = new URLSearchParams(searchParams.toString());
-      let current = compareIds;
-      if (isInCompare) {
-        current = current.filter((id) => id !== model.id);
-      } else {
-        if (current.length >= MAX_COMPARE) return;
-        current = [...current, model.id];
-      }
-      if (current.length > 0) {
-        params.set("compare", current.join(","));
-      } else {
-        params.delete("compare");
-      }
-      router.replace(`?${params.toString()}`, { scroll: false });
+      toggleCompare(model.id);
     },
-    [model.id, isInCompare, compareIds, searchParams, router]
+    [model.id, toggleCompare]
   );
 
   const headerMap = useMemo(() => {
@@ -86,7 +66,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, headers, metr
     >
       {/* Compare checkbox — top right */}
       <button
-        onClick={toggleCompare}
+        onClick={handleToggleCompare}
         className={cn(
           "absolute top-1 right-1 flex items-center justify-center w-11 h-11 rounded-lg transition-all z-10",
           isInCompare

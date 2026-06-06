@@ -11,6 +11,13 @@ vi.mock("@/lib/i18n", () => ({
   }),
 }));
 
+// Mock next/navigation for useCompareIds
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: vi.fn(), replace: vi.fn(), refresh: vi.fn(), back: vi.fn() }),
+  useSearchParams: () => new URLSearchParams(),
+  usePathname: () => "/",
+}));
+
 describe("RankingTable", () => {
   it("renders desktop table with model names", () => {
     const models: ModelWithScores[] = [

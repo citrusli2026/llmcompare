@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useCompareIds } from "@/hooks/use-compare-ids";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight, CheckSquare, Square } from "lucide-react";
@@ -11,7 +11,6 @@ import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup } from "./types";
 import { getRawValue, getScoreColor, ScoreBar } from "./utils";
 import { useTranslation } from "@/lib/i18n";
-import { useCallback } from "react";
 
 const MAX_COMPARE = 6;
 
@@ -29,39 +28,14 @@ interface ModelRowProps {
 
 export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVisibilityClass, percentiles, globalMax }: ModelRowProps) {
   const { t } = useTranslation();
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const { isInCompare, toggleCompare } = useCompareIds();
 
-  // Read compare IDs from URL
-  const compareIds = useMemo(
-    () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],
-    [searchParams]
-  );
-
-  const isInCompare = useMemo(
-    () => compareIds.includes(model.id),
-    [compareIds, model.id]
-  );
-
-  const toggleCompare = useCallback(
+  const handleToggleCompare = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
-      const params = new URLSearchParams(searchParams.toString());
-      let current = compareIds;
-      if (isInCompare) {
-        current = current.filter((id) => id !== model.id);
-      } else {
-        if (current.length >= MAX_COMPARE) return;
-        current = [...current, model.id];
-      }
-      if (current.length > 0) {
-        params.set("compare", current.join(","));
-      } else {
-        params.delete("compare");
-      }
-      router.replace(`?${params.toString()}`, { scroll: false });
+      toggleCompare(model.id);
     },
-    [model.id, isInCompare, compareIds, searchParams, router]
+    [model.id, toggleCompare]
   );
 
   return (
@@ -74,7 +48,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
       {/* Compare checkbox */}
       <TableCell className="w-10 sm:w-12">
         <button
-          onClick={toggleCompare}
+          onClick={handleToggleCompare}
           className={cn(
             "flex items-center justify-center w-6 h-6 rounded transition-colors",
             isInCompare

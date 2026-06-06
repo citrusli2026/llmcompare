@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useMemo, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
@@ -12,6 +12,7 @@ import { StatsStrip } from "@/components/stats-strip";
 import { CompareBar } from "@/components/compare-bar";
 import { SearchInput } from "@/components/search-input";
 import { useTranslation } from "@/lib/i18n";
+import { useCompareIds } from "@/hooks/use-compare-ids";
 
 export default function HomeClient() {
   const { t } = useTranslation();
@@ -37,35 +38,8 @@ export default function HomeClient() {
     ).slice(0, 12);
   }, [allModels, searchQuery]);
 
-  // Compare selection from URL params
-  const compareFromUrl = useMemo(
-    () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],
-    [searchParams]
-  );
-  const selectedCompareModels = useMemo(
-    () => compareFromUrl.map((id) => getModelById(id)).filter((m): m is ModelWithScores => m != null),
-    [compareFromUrl]
-  );
-
-  const handleRemoveCompare = useCallback(
-    (id: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      const remaining = compareFromUrl.filter((cid) => cid !== id);
-      if (remaining.length > 0) {
-        params.set("compare", remaining.join(","));
-      } else {
-        params.delete("compare");
-      }
-      router.replace(`?${params.toString()}`, { scroll: false });
-    },
-    [searchParams, router, compareFromUrl]
-  );
-
-  const handleClearCompare = useCallback(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete("compare");
-    router.replace(`?${params.toString()}`, { scroll: false });
-  }, [searchParams, router]);
+  // Compare selection from URL params (via shared hook)
+  const { selectedCompareModels, handleRemoveCompare, handleClearCompare } = useCompareIds();
 
   return (
     <div className="min-h-screen bg-surface-base">
