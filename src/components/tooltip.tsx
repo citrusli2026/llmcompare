@@ -90,8 +90,15 @@ export function Tooltip({ children, content }: TooltipProps) {
   }, [clicked]);
 
   const toggleTooltip = useCallback(() => {
-    setClicked((prev) => !prev);
-    setShow((prev) => !prev);
+    // clicked 和 show 必须联动：当 clicked 从 false→true 时 show 保持；
+    // 当 clicked 从 true→false 时 show 关闭
+    setClicked((prev) => {
+      const next = !prev;
+      // hover 展开时 show=true, clicked=false, 点击后：
+      // next=true, show 设为 true（保持不变）
+      setShow(next);
+      return next;
+    });
   }, []);
 
   const handleClick = useCallback(
