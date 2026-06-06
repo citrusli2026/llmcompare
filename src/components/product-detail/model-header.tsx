@@ -5,6 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { type ModelWithScores } from "@/lib/scoring";
 import { getTypeBadgeClasses } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
+import { useCompareIds } from "@/hooks/use-compare-ids";
+import { cn } from "@/lib/utils";
+import { Plus, Check } from "lucide-react";
 
 interface ModelHeaderProps {
   model: ModelWithScores;
@@ -14,6 +17,8 @@ export function ModelHeader({ model }: ModelHeaderProps) {
   const { t } = useTranslation();
   const f = model.flags;
   const [logoError, setLogoError] = useState(false);
+  const { isInCompare, toggleCompare } = useCompareIds();
+  const inCompare = isInCompare(model.id);
 
   return (
     <div className="flex items-start justify-between gap-4 mb-6">
@@ -59,6 +64,25 @@ export function ModelHeader({ model }: ModelHeaderProps) {
           </div>
         </div>
       </div>
+      <button
+        onClick={() => toggleCompare(model.id)}
+        className={cn(
+          "flex shrink-0 items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs sm:text-sm font-medium transition-all",
+          inCompare
+            ? "bg-accent-lime/10 text-accent-lime border-accent-lime/30"
+            : "bg-surface-elevated text-text-secondary border-surface-border hover:border-accent-violet/30 hover:text-accent-violet hover:bg-accent-violet/5"
+        )}
+        aria-label={inCompare ? t("compare.remove") : t("compare.addToCompare")}
+      >
+        {inCompare ? (
+          <Check className="h-3.5 w-3.5" />
+        ) : (
+          <Plus className="h-3.5 w-3.5" />
+        )}
+        <span className="hidden sm:inline">
+          {inCompare ? t("compare.remove") : t("compare.addToCompare")}
+        </span>
+      </button>
     </div>
   );
 }

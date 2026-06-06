@@ -5,9 +5,24 @@ import { type ModelWithScores } from "@/lib/scoring";
 import { formatTokenCount } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 import { FieldTip } from "@/components/field-tip";
+import { cn } from "@/lib/utils";
 
 interface TokenUsageProps {
   model: ModelWithScores;
+}
+
+function TokenMagnitude({ val, children }: { val: number; children: React.ReactNode }) {
+  const unit = formatTokenCount(val).unit;
+  return (
+    <span className={cn(
+      unit === "T" && "text-accent-lime text-3xl font-bold",
+      unit === "B" && "text-text-primary",
+      unit === "M" && "text-text-muted text-xl",
+      !unit && "text-text-primary"
+    )}>
+      {children}
+    </span>
+  );
 }
 
 export function TokenUsage({ model }: TokenUsageProps) {
@@ -23,12 +38,14 @@ export function TokenUsage({ model }: TokenUsageProps) {
       {r.arena_votes != null && (
         <div className="mb-4">
           <p className="text-xs text-text-muted mb-1"><FieldTip tip={t("tip.arenaVotes")}>{t("product.orTokens")}</FieldTip></p>
-          <p className="text-2xl font-bold text-text-primary tabular-nums">
-            {formatTokenCount(r.arena_votes).value}
-            {formatTokenCount(r.arena_votes).unit && (
-              <span className="text-sm text-text-muted ml-1">{formatTokenCount(r.arena_votes).unit}</span>
-            )}
-          </p>
+          <TokenMagnitude val={r.arena_votes}>
+            <p className="text-2xl font-bold tabular-nums">
+              {formatTokenCount(r.arena_votes).value}
+              {formatTokenCount(r.arena_votes).unit && (
+                <span className="text-sm text-text-muted ml-1">{formatTokenCount(r.arena_votes).unit}</span>
+              )}
+            </p>
+          </TokenMagnitude>
           <p className="text-xs text-text-muted mt-0.5">{t("product.orTokensUnit")}</p>
         </div>
       )}
@@ -36,12 +53,14 @@ export function TokenUsage({ model }: TokenUsageProps) {
       {r.openrouter_weekly_tokens != null && (
         <div className={r.arena_votes != null ? "border-t border-surface-border pt-4" : ""}>
           <p className="text-xs text-text-muted mb-1"><FieldTip tip={t("tip.orWeeklyTokens")}>{t("product.orWeeklyTokens")}</FieldTip></p>
-          <p className="text-2xl font-bold text-text-primary tabular-nums">
-            {formatTokenCount(r.openrouter_weekly_tokens).value}
-            {formatTokenCount(r.openrouter_weekly_tokens).unit && (
-              <span className="text-sm text-text-muted ml-1">{formatTokenCount(r.openrouter_weekly_tokens).unit}</span>
-            )}
-          </p>
+          <TokenMagnitude val={r.openrouter_weekly_tokens}>
+            <p className="text-2xl font-bold tabular-nums">
+              {formatTokenCount(r.openrouter_weekly_tokens).value}
+              {formatTokenCount(r.openrouter_weekly_tokens).unit && (
+                <span className="text-sm text-text-muted ml-1">{formatTokenCount(r.openrouter_weekly_tokens).unit}</span>
+              )}
+            </p>
+          </TokenMagnitude>
         </div>
       )}
 

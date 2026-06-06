@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { ProductDetailClient } from "@/components/product-detail";
 import { getModelById, getAllModelsUnfiltered } from "@/lib/scoring";
 
@@ -89,7 +90,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <ProductDetailClient model={model} />
+      <Suspense fallback={<div className="min-h-screen bg-surface-base" />}>
+        <ProductDetailClient model={model} />
+      </Suspense>
     </>
   );
 }

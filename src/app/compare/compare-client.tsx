@@ -142,7 +142,7 @@ export function ComparePageClient() {
     {
       labelKey: "compare.parameters",
       icon: Weight,
-      getValue: (m) => m.raw.parameters != null ? `${formatNum(m.raw.parameters, 0)}B` : t("common.unknown"),
+      getValue: (m) => m.raw.parameters != null ? `${formatNum(m.raw.parameters, 0)}B` : "—",
       tipKey: "tip.parameters",
     },
     {

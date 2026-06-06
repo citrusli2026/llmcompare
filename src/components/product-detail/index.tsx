@@ -27,7 +27,7 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
   return (
     <div className="min-h-screen bg-surface-base">
       <Navbar />
-      <div className="px-4 py-12 sm:px-6 lg:px-8">
+      <div className="px-4 py-6 sm:py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <Link
             href="/models"
