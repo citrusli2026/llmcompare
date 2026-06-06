@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight, CheckSquare, Square } from "lucide-react";
-import { cn, getTypeBadgeClasses } from "@/lib/utils";
+import { cn, getTypeBadgeClasses, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup, type ScoreKey } from "./types";
 import { getScoreColor } from "./utils";
@@ -20,12 +20,6 @@ interface MobileCardProps {
   renderMetric: (model: ModelWithScores, key: ScoreKey) => React.ReactNode;
   percentiles: Record<string, { p25: number; p50: number; p75: number } | null>;
   globalMax: Record<string, number>;
-}
-
-function costDisplay(model: ModelWithScores): string | null {
-  const blended = model.raw.blended;
-  if (blended == null) return null;
-  return `$${blended.toFixed(2)}`;
 }
 
 function scoreValue(model: ModelWithScores): number | null {
@@ -53,12 +47,24 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
     [model.id, toggleCompare]
   );
 
+  // ── Data helpers ──
+  const blended = model.raw.blended;
+  const costStr = blended != null ? `$${blended.toFixed(2)}` : null;
+
+  const weeklyTokens = model.raw.openrouter_weekly_tokens;
+  const tokensDisplay = weeklyTokens != null
+    ? (() => {
+        const fmt = formatTokenCount(weeklyTokens);
+        return fmt.unit ? `${fmt.value}${fmt.unit}` : fmt.value;
+      })()
+    : null;
+
   return (
     <div
       data-testid="mobile-model-card"
       onClick={handleCardClick}
       className={cn(
-        "relative rounded-xl border border-surface-border p-2.5 pr-10 transition-all active:scale-[0.97] active:bg-surface-elevated cursor-pointer",
+        "relative rounded-xl border border-surface-border p-2.5 transition-all active:scale-[0.97] active:bg-surface-elevated cursor-pointer",
         group.borderClass,
         group.rowBgClass
       )}
@@ -82,8 +88,8 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         )}
       </button>
 
-      {/* Main row: rank + logo + name + score + cost */}
-      <div className="flex items-center gap-1.5 min-h-9">
+      {/* Main row: rank + logo + name + intelligence score */}
+      <div className="flex items-center gap-1.5 min-h-9 pr-11">
         {group.showRank && (
           <span className="text-xs text-text-muted tabular-nums w-5 shrink-0">
             #{group.rankOffset + idx + 1}
@@ -100,44 +106,51 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         <span className="text-sm font-medium text-text-primary truncate min-w-0 flex-1">
           {model.name}
         </span>
-        {/* Intelligence score */}
+        {/* Intelligence score — most important metric, always shown */}
         {scoreValue(model) != null && (
           <span
             className={cn(
-              "text-sm font-semibold tabular-nums shrink-0",
+              "text-sm font-semibold tabular-nums shrink-0 ml-1",
               getScoreColor(scoreValue(model), "intelligence", percentiles)
             )}
           >
             {scoreValue(model)!.toFixed(1)}
           </span>
         )}
-        {/* Cost */}
-        {costDisplay(model) != null && (
-          <span className="text-[11px] text-text-secondary tabular-nums shrink-0 ml-0.5">
-            {costDisplay(model)}
-          </span>
-        )}
       </div>
 
-      {/* Sub row: company · date · type badge */}
+      {/* Sub row: company · date | cost · tokens · badge · ↗ */}
       <div className="flex items-center gap-1 mt-0.5 text-[11px] text-text-secondary leading-tight">
-        <span className="truncate max-w-[45%]">{model.company}</span>
+        {/* Left: company · date */}
+        <span className="truncate max-w-[35%]">{model.company}</span>
         {model.raw.release_date && (
           <>
             <span className="text-text-muted shrink-0">·</span>
             <span className="text-text-muted shrink-0">{model.raw.release_date}</span>
           </>
         )}
+        {/* Spacer */}
+        <span className="flex-1 min-w-2" />
+        {/* Right: cost · tokens */}
+        {costStr && (
+          <span className="tabular-nums shrink-0 text-text-secondary">{costStr}</span>
+        )}
+        {tokensDisplay && (
+          <>
+            {costStr && <span className="text-text-muted shrink-0">·</span>}
+            <span className="tabular-nums shrink-0 text-text-secondary">{tokensDisplay}</span>
+          </>
+        )}
         <Badge
           variant="secondary"
           className={cn(
-            "text-[10px] py-0 px-1.5 h-[18px] leading-none",
+            "text-[10px] py-0 px-1.5 h-[18px] leading-none shrink-0",
             getTypeBadgeClasses(model.type)
           )}
         >
           {t(model.type === "开源" ? "common.open" : "common.closed")}
         </Badge>
-        <ArrowUpRight className="h-3 w-3 text-text-muted shrink-0 ml-auto" />
+        <ArrowUpRight className="h-3 w-3 text-text-muted shrink-0" />
       </div>
     </div>
   );

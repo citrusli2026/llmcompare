@@ -106,7 +106,7 @@ export default function HomeClient() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-surface-border bg-surface-elevated px-4 py-8 sm:px-6 lg:px-8">
+      <footer className="border-t border-surface-border bg-surface-elevated px-4 py-8 sm:px-6 lg:px-8 pb-20">
         <div className="mx-auto max-w-7xl text-center text-sm text-text-muted">
           <p>{t("home.footer")}</p>
           <p className="mt-1">{t("home.footerDisclaimer")}</p>
