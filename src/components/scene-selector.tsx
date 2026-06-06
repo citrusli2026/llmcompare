@@ -90,7 +90,11 @@ const SCENES: SceneDef[] = [
 
 const TOP_N = 4;
 
-export function SceneSelector() {
+interface SceneSelectorProps {
+  hideHeader?: boolean;
+}
+
+export function SceneSelector({ hideHeader }: SceneSelectorProps) {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState<SceneKey | null>(null);
 
@@ -117,15 +121,17 @@ export function SceneSelector() {
   return (
     <section className="px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
-        {/* Title */}
-        <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
-            🎯 {t("home.sceneTitle")}
-          </h2>
-          <p className="mt-2 text-sm sm:text-base text-text-secondary">
-            {t("home.sceneDesc")}
-          </p>
-        </div>
+        {/* Title — only shown when not integrated into hero */}
+        {!hideHeader && (
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
+              🎯 {t("home.sceneTitle")}
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-text-secondary">
+              {t("home.sceneDesc")}
+            </p>
+          </div>
+        )}
 
         {/* Scene Cards Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">

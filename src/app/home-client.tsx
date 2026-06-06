@@ -64,21 +64,7 @@ export default function HomeClient() {
 
         {/* Scene Selection Cards — inline in hero */}
         <SceneSelector hideHeader />
-
-        {/* Browse All CTA — for users who don't identify with a specific scene */}
-        <div className="flex justify-center mt-2 sm:mt-6">
-          <Link
-            href="/models"
-            className="inline-flex items-center gap-2 rounded-full border border-accent-violet/20 bg-accent-violet/5 px-6 py-2.5 text-sm font-medium text-accent-violet hover:bg-accent-violet/10 hover:border-accent-violet/30 transition-all group"
-          >
-            {t("home.viewAllModels", { n: allModels.length })}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </div>
       </section>
-
-      {/* Scene Selection Cards — V2 selection assistant entry point */}
-      <SceneSelector />
 
       {/* Model Directory Table — moved before StatsStrip on mobile via ordering */}
       <section className="px-4 pt-4 pb-4 sm:px-6 lg:px-8 order-first sm:order-none">
