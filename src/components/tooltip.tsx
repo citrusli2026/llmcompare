@@ -10,60 +10,75 @@ interface TooltipProps {
 export function Tooltip({ children, content }: TooltipProps) {
   const [show, setShow] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const [above, setAbove] = useState(false);
   const timer = useRef(0);
   const ref = useRef<HTMLSpanElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
-  const [style, setStyle] = useState<React.CSSProperties>({});
 
-  const position = useCallback(() => {
+  // Position tooltip with CSS only, then correct viewport overflow via ref
+  const correctOverflow = useCallback(() => {
     if (!ref.current || !innerRef.current) return;
     const trigger = ref.current.getBoundingClientRect();
-    const tooltip = innerRef.current.getBoundingClientRect();
+    const tipRect = innerRef.current.getBoundingClientRect();
     const vpW = window.innerWidth;
-    const vpH = window.innerHeight;
-    const tw = tooltip.width || 200;
-    const th = tooltip.height || 60;
-    const gap = 8;
 
-    const spaceAbove = trigger.top - gap;
-    const spaceBelow = vpH - trigger.bottom - gap;
-    const useAbove = spaceAbove >= th || spaceBelow < th;
-
-    let left = trigger.left + trigger.width / 2 - tw / 2;
-    left = Math.max(12, Math.min(left, vpW - tw - 12));
-
-    setStyle({
-      position: "fixed",
-      left,
-      [useAbove ? "bottom" : "top"]: useAbove
-        ? vpH - trigger.top + gap
-        : trigger.bottom + gap,
-      zIndex: 50,
-    });
+    // Correct horizontal overflow
+    if (tipRect.right > vpW) {
+      innerRef.current.style.left = `${vpW - tipRect.width - 12}px`;
+    } else if (tipRect.left < 12) {
+      innerRef.current.style.left = "12px";
+    } else {
+      // Reset to CSS default (centered)
+      innerRef.current.style.left = "";
+    }
   }, []);
 
-  // useLayoutEffect fires synchronously after DOM mutation, before paint
-  // → tooltip is in correct position before user sees it → no flicker
+  // Decide above/below based on available space (triggers re-render but
+  // tooltip is already in CSS position → no flicker, only height flip)
+  const decideDirection = useCallback(() => {
+    if (!ref.current) return;
+    const trigger = ref.current.getBoundingClientRect();
+    const vpH = window.innerHeight;
+    const gap = 8;
+    const spaceAbove = trigger.top - gap;
+    const spaceBelow = vpH - trigger.bottom - gap;
+    // Use above if there's more space above OR not enough below
+    setAbove(spaceAbove >= spaceBelow);
+  }, []);
+
+  // useLayoutEffect: correct overflow after DOM is committed, before paint
   useLayoutEffect(() => {
     if (!show) return;
-    position();
+    decideDirection();
+    // Use rAF to ensure tooltip dimensions are settled after direction flip
+    const raf = requestAnimationFrame(() => {
+      correctOverflow();
+    });
 
     const onScroll = () => {
       if (clicked) {
         setShow(false);
         setClicked(false);
       } else {
-        position();
+        decideDirection();
+        requestAnimationFrame(() => {
+          correctOverflow();
+        });
       }
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", position);
+    window.addEventListener("resize", () => {
+      decideDirection();
+      requestAnimationFrame(() => {
+        correctOverflow();
+      });
+    });
     return () => {
+      cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", position);
     };
-  }, [show, clicked, position]);
+  }, [show, clicked, decideDirection, correctOverflow]);
 
   // Outside click → close (click-opened tooltips only)
   useEffect(() => {
@@ -90,12 +105,8 @@ export function Tooltip({ children, content }: TooltipProps) {
   }, [clicked]);
 
   const toggleTooltip = useCallback(() => {
-    // clicked 和 show 必须联动：当 clicked 从 false→true 时 show 保持；
-    // 当 clicked 从 true→false 时 show 关闭
     setClicked((prev) => {
       const next = !prev;
-      // hover 展开时 show=true, clicked=false, 点击后：
-      // next=true, show 设为 true（保持不变）
       setShow(next);
       return next;
     });
@@ -125,8 +136,15 @@ export function Tooltip({ children, content }: TooltipProps) {
           ref={innerRef}
           id="tooltip-content"
           role="tooltip"
-          style={style}
-          className="max-w-[75vw] sm:max-w-[280px] whitespace-normal break-words rounded-lg bg-gray-900 px-3 py-2 text-xs leading-relaxed text-white shadow-lg dark:bg-neutral-700"
+          data-above={above ? "true" : "false"}
+          className={[
+            "max-w-[75vw] sm:max-w-[280px] whitespace-normal break-words rounded-lg px-3 py-2 text-xs leading-relaxed shadow-lg",
+            "bg-gray-900 text-white dark:bg-neutral-700",
+            "absolute left-1/2 -translate-x-1/2 z-50",
+            above
+              ? "bottom-full mb-2"
+              : "top-full mt-2",
+          ].join(" ")}
         >
           {content}
         </div>
