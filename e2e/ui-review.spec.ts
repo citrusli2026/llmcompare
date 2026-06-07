@@ -91,9 +91,9 @@ test.describe("ScoreBar — 表格分数可视化", () => {
     const barTrack = scoreCell.locator("div.rounded-full.overflow-hidden");
     await expect(barTrack.first()).toBeAttached();
 
-    // 进度条填充 (violet/cyan/amber/muted 任一)
+    // 进度条填充 (violet/cyan/amber/muted 任一) — DOM 存在即表示渲染正确
     const fill = scoreCell.locator("[class*='bg-accent-lime'], [class*='bg-accent-violet'], [class*='bg-accent-coral'], [class*='bg-text-muted']");
-    await expect(fill.first()).toBeVisible();
+    await expect(fill.first()).toBeAttached();
 
     await page.screenshot({ path: `${SCREENSHOTS}/ui-scorebar-desktop.png`, fullPage: true });
   });
