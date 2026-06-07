@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight, CheckSquare, Square } from "lucide-react";
+import { ArrowUpRight, Plus } from "lucide-react";
 import { cn, getTypeBadgeClasses } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup } from "./types";
@@ -43,23 +43,29 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
         group.borderClass,
       )}
     >
-      {/* Compare checkbox */}
-      <TableCell className="w-10 sm:w-12">
+      {/* Compare checkbox — visible "⊕ 对比" button */}
+      <TableCell className="w-16 sm:w-20">
         <button
           onClick={handleToggleCompare}
-        className={cn(
-          "flex items-center justify-center w-6 h-6 rounded transition-colors",
-          isInCompare(model.id)
-            ? "text-accent-violet hover:text-violet-500"
-            : "text-text-muted hover:text-text-secondary"
-        )}
-        aria-label={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
-        title={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
-      >
-        {isInCompare(model.id) ? (
-            <CheckSquare className="h-4 w-4 sm:h-5 sm:w-5" />
+          className={cn(
+            "inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium transition-all",
+            isInCompare(model.id)
+              ? "bg-accent-violet/10 text-accent-violet border border-accent-violet/30"
+              : "text-text-muted border border-surface-border hover:border-accent-violet/50 hover:text-accent-violet hover:bg-accent-violet/5"
+          )}
+          aria-label={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
+          title={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
+        >
+          {isInCompare(model.id) ? (
+            <span className="flex items-center gap-1">
+              <span className="text-[10px]">☑</span>
+              <span>{t("compare.remove")}</span>
+            </span>
           ) : (
-            <Square className="h-4 w-4 sm:h-5 sm:w-5" />
+            <span className="flex items-center gap-1">
+              <Plus className="h-3 w-3" />
+              <span>{t("compare.addToCompare")}</span>
+            </span>
           )}
         </button>
       </TableCell>
