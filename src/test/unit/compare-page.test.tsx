@@ -169,22 +169,25 @@ describe("ComparePageClient", () => {
       render(<ComparePageClient />);
       expect(screen.getAllByText("model-a").length).toBeGreaterThanOrEqual(1);
       expect(screen.getAllByText("model-b").length).toBeGreaterThanOrEqual(1);
-      expect(screen.getByText("AlphaCorp")).toBeInTheDocument();
-      expect(screen.getByText("BetaInc")).toBeInTheDocument();
+      // Both mobile and desktop views render company — use getAll
+      expect(screen.getAllByText("AlphaCorp").length).toBeGreaterThanOrEqual(1);
+      expect(screen.getAllByText("BetaInc").length).toBeGreaterThanOrEqual(1);
     });
 
     it("renders intelligence scores for all models", () => {
       mockSearchParams = new URLSearchParams("models=model-a,model-b");
       render(<ComparePageClient />);
-      expect(screen.getByText("85.50")).toBeInTheDocument();
-      expect(screen.getByText("72.30")).toBeInTheDocument();
+      // Both mobile and desktop views render scores — use getAll
+      expect(screen.getAllByText("85.50").length).toBeGreaterThanOrEqual(1);
+      expect(screen.getAllByText("72.30").length).toBeGreaterThanOrEqual(1);
     });
 
     it("renders speed column correctly (t/s format)", () => {
       mockSearchParams = new URLSearchParams("models=model-a,model-b");
       render(<ComparePageClient />);
-      expect(screen.getByText("120.5 t/s")).toBeInTheDocument();
-      expect(screen.getByText("200.0 t/s")).toBeInTheDocument();
+      // Both mobile and desktop views render speed — use getAll
+      expect(screen.getAllByText("120.5 t/s").length).toBeGreaterThanOrEqual(1);
+      expect(screen.getAllByText("200.0 t/s").length).toBeGreaterThanOrEqual(1);
     });
 
     it("highlights best values", () => {
@@ -210,7 +213,8 @@ describe("ComparePageClient", () => {
       );
       mockSearchParams = new URLSearchParams("models=single");
       render(<ComparePageClient />);
-      expect(screen.getByText("single")).toBeInTheDocument();
+      // Both mobile and desktop views render model name — use getAll
+      expect(screen.getAllByText("single").length).toBeGreaterThanOrEqual(1);
       expect(screen.getByText(/1 Models/)).toBeInTheDocument();
     });
 
