@@ -7,7 +7,7 @@ import { getTypeBadgeClasses } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { cn } from "@/lib/utils";
-import { getRecommendationTags } from "@/lib/recommendation-tags";
+import { getRecommendationTags, getModelOneLiner } from "@/lib/recommendation-tags";
 import { Plus, Check } from "lucide-react";
 
 interface ModelHeaderProps {
@@ -23,6 +23,7 @@ export function ModelHeader({ model }: ModelHeaderProps) {
 
   // Recommendation Tags — turns raw data into decision guidance
   const recommendationTags = useMemo(() => getRecommendationTags(model), [model]);
+  const modelOneLiner = useMemo(() => getModelOneLiner(model), [model]);
 
   return (
     <div className="flex items-start justify-between gap-4 mb-6">
@@ -49,6 +50,11 @@ export function ModelHeader({ model }: ModelHeaderProps) {
               {t(model.type === "开源" ? "common.open" : "common.closed")}
             </Badge>
           </div>
+
+          {/* One-liner — data-driven summary of what this model is good for */}
+          {modelOneLiner.labelKey && (
+            <p className="text-sm text-text-secondary mb-3">{t(modelOneLiner.labelKey)}</p>
+          )}
 
           {/* Recommendation Tags — turns raw data into decision guidance */}
           {recommendationTags.length > 0 && (

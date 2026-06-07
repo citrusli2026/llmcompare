@@ -120,3 +120,41 @@ export function getRecommendationTags(model: ModelWithScores): RecommendationTag
 
   return tags;
 }
+
+/**
+ * Generate a one-line summary for a model based on its ranking data.
+ * This is displayed under the model name on the detail page to provide
+ * an immediate sense of what the model is good for — transforming
+ * the page from raw data display to decision guidance.
+ */
+export function getModelOneLiner(model: ModelWithScores): { labelKey: string } {
+  const allModels = getAllModels();
+
+  // Rank intelligence (descending)
+  const rankedByIntel = [...allModels]
+    .filter((m) => m.raw.intelligence != null)
+    .sort((a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0));
+  const intelRank = rankedByIntel.findIndex((m) => m.id === model.id) + 1;
+
+  // Rank coding (descending)
+  const rankedByCoding = [...allModels]
+    .filter((m) => m.raw.coding != null)
+    .sort((a, b) => (b.raw.coding ?? 0) - (a.raw.coding ?? 0));
+  const codingRank = rankedByCoding.findIndex((m) => m.id === model.id) + 1;
+
+  // Rank agentic (descending)
+  const rankedByAgent = [...allModels]
+    .filter((m) => m.raw.agentic != null)
+    .sort((a, b) => (b.raw.agentic ?? 0) - (a.raw.agentic ?? 0));
+  const agentRank = rankedByAgent.findIndex((m) => m.id === model.id) + 1;
+
+  // Priority chain — first match wins
+  if (intelRank > 0 && intelRank <= 5) return { labelKey: "product.oneLinerTopIntel" };
+  if (model.flags.frontier && model.raw.blended != null && model.raw.blended > 0 && model.raw.blended < 1) {
+    return { labelKey: "product.oneLinerFrontierValue" };
+  }
+  if (codingRank > 0 && codingRank <= 10) return { labelKey: "product.oneLinerCoding" };
+  if (agentRank > 0 && agentRank <= 10) return { labelKey: "product.oneLinerAgentic" };
+  if (model.flags.reasoning) return { labelKey: "product.oneLinerReasoning" };
+  return { labelKey: "product.oneLinerDefault" };
+}

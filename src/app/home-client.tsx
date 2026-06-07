@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
-import { Bot, TrendingUp, ChevronUp, ArrowRight } from "lucide-react";
+import { Bot, TrendingUp, ArrowRight } from "lucide-react";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { StatsStrip } from "@/components/stats-strip";
