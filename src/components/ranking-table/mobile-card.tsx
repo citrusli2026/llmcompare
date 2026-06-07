@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight, CheckSquare, Square } from "lucide-react";
+import { ArrowUpRight, Plus } from "lucide-react";
 import { cn, getTypeBadgeClasses, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup, type ScoreKey } from "./types";
@@ -69,22 +69,22 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         group.rowBgClass
       )}
     >
-      {/* Compare checkbox — top right */}
+      {/* Compare button — top right, visible Plus icon */}
       <button
         onClick={handleToggleCompare}
         className={cn(
-          "absolute top-0.5 right-0.5 flex items-center justify-center w-11 h-11 rounded-lg transition-all z-10",
+          "absolute top-1 right-1 flex items-center justify-center w-10 h-10 rounded-full transition-all z-10 shadow-sm",
           isInCompare(model.id)
-            ? "text-accent-violet hover:text-violet-500 bg-accent-violet/5"
-            : "text-text-muted hover:text-text-secondary hover:bg-surface-hover"
+            ? "bg-accent-violet text-white shadow-accent-violet/20"
+            : "bg-surface-card text-text-muted border border-surface-border hover:border-accent-violet/50 hover:text-accent-violet"
         )}
         aria-label={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
         title={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
       >
         {isInCompare(model.id) ? (
-          <CheckSquare className="h-5 w-5" />
+          <span className="text-sm font-bold">✓</span>
         ) : (
-          <Square className="h-5 w-5" />
+          <Plus className="h-5 w-5" />
         )}
       </button>
 
