@@ -98,11 +98,8 @@ export function Tooltip({ children, content }: TooltipProps) {
   }, [clicked]);
 
   const toggleTooltip = useCallback(() => {
-    setClicked((prev) => {
-      const next = !prev;
-      setShow(next);
-      return next;
-    });
+    setClicked((prev) => !prev);
+    setShow((prev) => !prev);
   }, []);
 
   const handleClick = useCallback(
