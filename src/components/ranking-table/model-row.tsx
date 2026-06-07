@@ -79,7 +79,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
             />
           )}
           <Link
-            href={`/product/${model.id}`}
+            href={`/models/${model.id}`}
             className="inline-flex items-center gap-1.5 group/link"
             onClick={(e) => e.stopPropagation()}
           >

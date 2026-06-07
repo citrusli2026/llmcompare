@@ -148,7 +148,7 @@ test.describe("Full-Page Visual Review", () => {
 
   test("desktop: 模型详情页截图", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
-    await page.goto("/product/deepseek-v3");
+    await page.goto("/models/deepseek-v3");
     await page.waitForLoadState("networkidle");
 
     await page.screenshot({ path: `${SCREENSHOTS}/full-detail-desktop.png`, fullPage: true });

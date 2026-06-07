@@ -198,7 +198,7 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                 {models.map((model) => (
                   <Link
                     key={model.id}
-                    href={`/product/${model.id}`}
+                    href={`/models/${model.id}`}
                     className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-base transition-colors group"
                   >
                     {/* Logo */}

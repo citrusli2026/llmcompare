@@ -307,7 +307,7 @@ export default function ModelsPageClient() {
                   {fallbackModels.map((model) => (
                     <Link
                       key={model.id}
-                      href={`/product/${model.id}`}
+                      href={`/models/${model.id}`}
                       className="flex items-center gap-2 rounded-lg border border-surface-border bg-surface-card p-2.5 transition-all hover:border-accent-violet/30 hover:shadow-sm hover:-translate-y-0.5 group"
                     >
                       <div className="h-8 w-8 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
@@ -346,7 +346,7 @@ export default function ModelsPageClient() {
                     {topPicks.map((model) => (
                       <Link
                         key={model.id}
-                        href={`/product/${model.id}`}
+                        href={`/models/${model.id}`}
                         className="flex items-center gap-2.5 rounded-lg bg-surface-card border border-surface-border px-3 py-2.5 transition-all hover:border-accent-violet/30 hover:shadow-sm hover:-translate-y-0.5 group"
                       >
                         <div className="h-7 w-7 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">

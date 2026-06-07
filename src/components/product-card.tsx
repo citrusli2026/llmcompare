@@ -16,7 +16,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const { t } = useTranslation();
 
   return (
-    <Link href={`/product/${product.id}`}>
+    <Link href={`/models/${product.id}`}>
       <div className="group relative rounded-xl border border-surface-border bg-surface-card p-5 transition-all hover:bg-surface-hover hover:border-accent-violet/30">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 
-export function ModelRedirectClient() {
+export function OldProductRedirectClient() {
   const params = useParams();
   const router = useRouter();
 
@@ -13,7 +13,7 @@ export function ModelRedirectClient() {
 
   return (
     <div className="min-h-screen bg-surface-base flex items-center justify-center">
-      <p className="text-text-muted text-sm">Redirecting...</p>
+      <p className="text-text-muted text-sm">正在跳转…</p>
     </div>
   );
 }

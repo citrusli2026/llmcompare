@@ -1,25 +1,5 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { Suspense } from "react";
-import { ProductDetailClient } from "@/components/product-detail";
-import { getModelById, getAllModelsUnfiltered } from "@/lib/scoring";
-
-const BASE_URL = "https://www.llmcompare.cc";
-
-interface ProductPageProps {
-  params: Promise<{ id: string }>;
-}
-
-export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const { id } = await params;
-  const model = getModelById(id);
-  if (!model) return { title: "未找到" };
-  return {
-    title: `${model.name} - ${model.company}`,
-    description: `${model.company} ${model.name} 的智能评分、速度性能与定价详情。${model.type === "开源" ? "开源" : "闭源"}模型。`,
-    alternates: { canonical: `${BASE_URL}/product/${model.id}` },
-  };
-}
+import { getAllModelsUnfiltered } from "@/lib/scoring";
+import { OldProductRedirectClient } from "./redirect-client";
 
 export function generateStaticParams() {
   return getAllModelsUnfiltered().map((model) => ({
@@ -27,72 +7,6 @@ export function generateStaticParams() {
   }));
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { id } = await params;
-  const model = getModelById(id);
-
-  if (!model) {
-    notFound();
-  }
-
-  const url = `${BASE_URL}/product/${model.id}`;
-
-  const softwareSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: model.name,
-    applicationCategory: "AIApplication",
-    operatingSystem: "Web",
-    url,
-    ...(model.company && { manufacturer: { "@type": "Organization", name: model.company } }),
-    ...(model.raw.release_date && { datePublished: model.raw.release_date }),
-    ...(model.raw.intelligence != null && {
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: model.raw.intelligence,
-        bestRating: 100,
-        worstRating: 0,
-        ratingCount: 1,
-      },
-    }),
-    ...(model.raw.cn_input != null && {
-      offers: {
-        "@type": "Offer",
-        price: model.raw.cn_input,
-        priceCurrency: "CNY",
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
-          price: model.raw.cn_input,
-          priceCurrency: "CNY",
-          unitText: "per 1M input tokens",
-        },
-      },
-    }),
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "首页", item: `${BASE_URL}/` },
-      { "@type": "ListItem", position: 2, name: "模型目录", item: `${BASE_URL}/models` },
-      { "@type": "ListItem", position: 3, name: model.name, item: url },
-    ],
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <Suspense fallback={<div className="min-h-screen bg-surface-base" />}>
-        <ProductDetailClient model={model} />
-      </Suspense>
-    </>
-  );
+export default function OldProductRedirectPage() {
+  return <OldProductRedirectClient />;
 }

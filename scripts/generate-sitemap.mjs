@@ -18,7 +18,7 @@ const staticPages = [
 ];
 
 const productPages = models.map((m) => ({
-  loc: `${BASE}/product/${m.id}`,
+  loc: `${BASE}/models/${m.id}`,
   lastmod: m.meta?.release_date || today,
   priority: m.flags?.frontier ? "0.8" : "0.6",
 }));
