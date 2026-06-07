@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import HomeClient from "./home-client";
+import { HomeSkeleton } from "@/components/skeletons";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.llmcompare.cc"),
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-surface-base" />}>
+    <Suspense fallback={<HomeSkeleton />}>
       <HomeClient />
     </Suspense>
   );

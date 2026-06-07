@@ -12,6 +12,7 @@ import { useTranslation } from "@/lib/i18n";
 import { cn, formatTokenCount, getTypeBadgeClasses } from "@/lib/utils";
 import { Tooltip } from "@/components/tooltip";
 import { FieldTip } from "@/components/field-tip";
+import { formatNum, isBestValue, barColor } from "@/lib/compare-utils";
 
 interface CompareRow {
   labelKey: string;
@@ -19,25 +20,6 @@ interface CompareRow {
   getValue: (m: ModelWithScores) => React.ReactNode;
   getNumericValue?: (m: ModelWithScores) => number | null;
   tipKey?: string;
-}
-
-function formatNum(v: number | null | undefined, decimals = 2): string {
-  if (v == null) return "—";
-  return v.toFixed(decimals);
-}
-
-function isBestValue(val: number | null, vals: (number | null)[], higherIsBetter: boolean): boolean {
-  if (val == null) return false;
-  const valid = vals.filter((v): v is number => v != null);
-  if (valid.length === 0) return false;
-  return higherIsBetter ? val >= Math.max(...valid) : val <= Math.min(...valid);
-}
-
-function barColor(fillPct: number): string {
-  return fillPct >= 80 ? "bg-accent-lime"
-    : fillPct >= 65 ? "bg-accent-violet"
-    : fillPct >= 50 ? "bg-accent-coral"
-    : "bg-text-muted";
 }
 
 export function ComparePageClient() {

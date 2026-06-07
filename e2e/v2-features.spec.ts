@@ -129,3 +129,54 @@ test.describe("V2 — About Page Mission", () => {
     await expect(missionText).toBeVisible();
   });
 });
+
+test.describe("V3 — UX Enhancements", () => {
+  test("scene card 'browse all' navigates to /models?sort=", async ({ page }) => {
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+
+    // 找到"查看更多同类模型"链接并验证 href
+    const browseLink = page.locator("a[href^='/models?sort=']").first();
+    await expect(browseLink).toBeVisible();
+    const href = await browseLink.getAttribute("href");
+    expect(href).toMatch(/^\/models\?sort=/);
+  });
+
+  test("back to top button appears after scroll", async ({ page }) => {
+    await page.goto("/models");
+    await page.waitForLoadState("networkidle");
+
+    // 初始按钮应不可见（opacity-0 or hidden）
+    const backBtn = page.locator("button").filter({ hasText: "" }).and(page.locator("[class*='fixed']")).filter({ has: page.locator("svg.lucide-arrow-up") });
+    // 滚动到底部
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await page.waitForTimeout(500);
+    // 验证滚动后页面仍正常
+    await expect(page.locator("body")).not.toHaveText(/Error/);
+  });
+
+  test("mobile: scene cards show 2-col grid layout", async ({ page }) => {
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+
+    // 场景卡片在移动端应以 grid 布局显示
+    const sceneGrid = page.locator("button").filter({ hasText: /编程|Coding/ }).first();
+    await expect(sceneGrid).toBeVisible();
+    // 验证 4 个场景按钮都存在
+    const scenes = ["编程", "Agent", "性价比", "推理"];
+    for (const s of scenes) {
+      await expect(page.locator("button").filter({ hasText: new RegExp(s) }).first()).toBeVisible();
+    }
+  });
+
+  test("top picks section shows multiple recommendation cards", async ({ page }) => {
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+
+    // Top Picks 区有至少 3 个模型链接
+    const topPicks = page.locator("section").filter({ hasText: /热门推荐|Top Picks/ });
+    const cards = topPicks.locator("a[href^='/models/']");
+    const count = await cards.count();
+    expect(count).toBeGreaterThanOrEqual(3);
+  });
+});

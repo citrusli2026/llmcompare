@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import ModelsPageClient from "./models-page-client";
+import { ModelsSkeleton } from "@/components/skeletons";
 
 export const metadata: Metadata = {
   title: "模型目录",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ModelsPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-surface-base" />}>
+    <Suspense fallback={<ModelsSkeleton />}>
       <ModelsPageClient />
     </Suspense>
   );
