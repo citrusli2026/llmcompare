@@ -61,6 +61,7 @@ vi.mock("next/navigation", () => ({
     back: vi.fn(),
   }),
   useSearchParams: () => mockSearchParams,
+  useParams: () => ({ ids: undefined }),
   usePathname: () => "/compare",
 }));
 

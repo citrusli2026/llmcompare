@@ -48,10 +48,10 @@ test.describe("Compare Feature — 模型对比功能", () => {
 
     // 点击跳转到对比页
     await compareBtn.click();
-    await page.waitForURL("**/compare?models=*");
+    await page.waitForURL("**/compare/**");
     await page.waitForLoadState("networkidle");
 
-    expect(page.url()).toContain("/compare?models=");
+    expect(page.url()).toContain("/compare/");
     await expect(page.locator("h1")).toBeVisible();
   });
 
@@ -92,9 +92,9 @@ test.describe("Compare Feature — 模型对比功能", () => {
     const compareBtn = bar.locator("button:has(svg.lucide-arrow-right)");
     await expect(compareBtn).toBeVisible();
     await compareBtn.click();
-    await page.waitForURL("**/compare?models=*");
+    await page.waitForURL("**/compare/**");
     await page.waitForLoadState("networkidle");
 
-    expect(page.url()).toContain("/compare?models=");
+    expect(page.url()).toContain("/compare/");
   });
 });

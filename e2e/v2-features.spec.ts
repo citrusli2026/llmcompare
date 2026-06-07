@@ -107,7 +107,7 @@ test.describe("V2 — Compare Page Verdict", () => {
     await page.waitForLoadState("networkidle");
 
     // Compare page with two models
-    await page.goto("/compare?models=claude-opus-4-8,gpt-5-5");
+    await page.goto("/compare/claude-opus-4-8/gpt-5-5");
     await page.waitForLoadState("networkidle");
 
     // Verdict should be visible
