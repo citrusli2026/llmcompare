@@ -16,6 +16,7 @@ import { ArenaRankings } from "./arena-rankings";
 import { TokenUsage } from "./token-usage";
 import { DataCompleteness } from "./data-completeness";
 import { ScoreOverview } from "./score-overview";
+import { SimilarModels } from "./similar-models";
 
 interface ProductDetailClientProps {
   model: ModelWithScores;
@@ -67,6 +68,9 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
               <TokenUsage model={model} />
             </div>
           </div>
+
+          {/* Similar model recommendations — "you might also like" */}
+          <SimilarModels model={model} />
         </div>
       </div>
     </div>

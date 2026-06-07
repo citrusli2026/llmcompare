@@ -9,23 +9,21 @@ test.describe("Home Page", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 核心元素可见
-    await expect(page.locator("table")).toBeVisible();
-    // 使用更精确的选择器：logo 链接中的文本
+    // 核心元素可见 — 场景卡片取代了原有表格
+    await expect(page.locator("header")).toBeVisible();
     await expect(page.locator("header a[href='/'] span").filter({ hasText: "模型图鉴" })).toBeVisible();
-    // Arena 投票列头
-    await expect(page.locator("th").filter({ hasText: /周用量|Weekly Usage/ })).toBeVisible();
-
-    // 国际标杆模型置顶（检查表格第一行）
-    const firstRow = page.locator("tbody tr").first();
-    await expect(firstRow).toBeVisible();
+    // 场景选择按钮可见（V2 改版后首页以场景选择为核心）
+    await expect(page.locator("button").filter({ hasText: /编程|Coding/ })).toBeVisible();
+    // Top Picks 推荐卡片可见
+    await expect(page.locator("a[href^='/product/']").first()).toBeVisible();
 
     await page.screenshot({ path: `${SCREENSHOTS}/home-desktop.png`, fullPage: true });
   });
 
   test("sort by intelligence works", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
-    await page.goto("/");
+    // 首页已改为场景卡片，排序功能在 /models 页面
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
     // 找到"智能"列头并点击
@@ -43,7 +41,8 @@ test.describe("Home Page", () => {
 
   test("sort by arena votes works", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
-    await page.goto("/");
+    // 首页已改为场景卡片，排序功能在 /models 页面
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
     // 找到周用量/Weekly Usage 列头并点击
@@ -61,9 +60,11 @@ test.describe("Home Page", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 移动端显示下拉排序，隐藏表格
-    await expect(page.locator("select")).toBeVisible();
-    await expect(page.locator("table")).toBeHidden();
+    // 移动端显示场景卡片
+    await expect(page.locator("button").filter({ hasText: /编程|Coding/ })).toBeVisible();
+    // 场景卡片布局为 2×2 grid
+    const agents = page.locator("button").filter({ hasText: /Agent/ });
+    await expect(agents).toBeVisible();
 
     await page.screenshot({ path: `${SCREENSHOTS}/home-mobile.png`, fullPage: true });
   });
@@ -73,10 +74,13 @@ test.describe("Home Page", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    const select = page.locator("select");
-    await expect(select).toBeVisible();
-    await select.selectOption("intelligence");
-    await page.waitForTimeout(500);
+    // 点击编程场景卡片展开推荐模型
+    const codingButton = page.locator("button").filter({ hasText: /编程|Coding/ }).first();
+    await codingButton.click();
+    await page.waitForTimeout(300);
+
+    // 展开后应有模型链接
+    await expect(page.locator("a[href^='/product/']").first()).toBeVisible();
 
     await page.screenshot({ path: `${SCREENSHOTS}/home-mobile-sorted.png`, fullPage: true });
   });

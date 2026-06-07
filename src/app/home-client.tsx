@@ -1,80 +1,31 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
-import { Bot, ArrowRight, TrendingUp, ChevronUp } from "lucide-react";
+import { Bot, TrendingUp, ArrowRight } from "lucide-react";
+import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
-import { RankingTable } from "@/components/ranking-table";
 import { StatsStrip } from "@/components/stats-strip";
 import { CompareBar } from "@/components/compare-bar";
-import { SearchInput } from "@/components/search-input";
+import { SceneSelector } from "@/components/scene-selector";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { cn } from "@/lib/utils";
 
-function BackToTop() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setVisible(!entry.isIntersecting),
-      { threshold: 0 }
-    );
-    // Watch a sentinel at the top of the page
-    const sentinel = document.createElement("div");
-    sentinel.id = "scroll-sentinel";
-    sentinel.style.position = "absolute";
-    sentinel.style.top = "0";
-    sentinel.style.height = "1px";
-    sentinel.style.width = "1px";
-    document.body.prepend(sentinel);
-    observer.observe(sentinel);
-
-    return () => {
-      observer.disconnect();
-      sentinel.remove();
-    };
-  }, []);
-
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
-  return (
-    <button
-      onClick={scrollToTop}
-      className={cn(
-        "fixed bottom-20 right-4 sm:bottom-8 sm:right-8 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-accent-violet text-white shadow-lg transition-all duration-300 hover:bg-violet-600",
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
-      )}
-      aria-label="Back to top"
-    >
-      <ChevronUp className="h-5 w-5" />
-    </button>
-  );
-}
-
 export default function HomeClient() {
   const { t } = useTranslation();
-  const [searchQuery, setSearchQuery] = useState("");
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
 
-  const displayModels = useMemo(() => {
-    // 按 release_date 降序排列（null 排最后）
-    const sorted = [...allModels].sort((a, b) => {
-      if (!a.raw.release_date) return 1;
-      if (!b.raw.release_date) return -1;
-      return b.raw.release_date.localeCompare(a.raw.release_date);
-    });
-    if (!searchQuery) return sorted.slice(0, 20);
-    const q = searchQuery.toLowerCase();
-    return sorted.filter(
-      (m) =>
-        m.name.toLowerCase().includes(q) ||
-        m.company.toLowerCase().includes(q)
-    ).slice(0, 20);
-  }, [allModels, searchQuery]);
+  // Top picks: top 5 by intelligence score (compact recommendation strip)
+  const topPicks = useMemo(() => {
+    return [...allModels]
+      .filter((m) => m.raw.intelligence != null)
+      .sort((a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0))
+      .slice(0, 5);
+  }, [allModels]);
 
   // Compare selection from URL params (via shared hook)
   const { selectedCompareModels, handleRemoveCompare, handleClearCompare } = useCompareIds();
@@ -83,14 +34,14 @@ export default function HomeClient() {
     <div className="min-h-screen bg-surface-base">
       <Navbar />
 
-      {/* Hero Section — Sentry ambient glow */}
+      {/* Hero Section — Selection Assistant Entry Point */}
       <section
-        className="relative overflow-hidden px-4 pt-10 pb-6 sm:pt-16 sm:pb-10 lg:px-8"
+        className="relative overflow-hidden px-4 pt-10 sm:pt-16 lg:px-8"
         style={{
           background: "radial-gradient(ellipse at 50% 0%, rgba(106,95,193,0.15) 0%, transparent 60%)",
         }}
       >
-        <div className="mx-auto max-w-4xl text-center relative z-10">
+        <div className="mx-auto max-w-5xl text-center relative z-10">
           <Link href="/models" className="hidden sm:inline-block">
             <Badge
               variant="secondary"
@@ -105,42 +56,113 @@ export default function HomeClient() {
             {t("home.heroTitle")}
           </h1>
 
-          <p className="mt-3 text-sm sm:text-base md:text-lg text-text-secondary">
+          <p className="mt-3 text-sm sm:text-base md:text-lg text-text-secondary max-w-2xl mx-auto">
             {t("home.heroDesc")}
           </p>
-          <p className="hidden sm:block mt-4 max-w-2xl mx-auto text-sm text-text-muted">
-            {t("home.seoDesc")}
-          </p>
+        </div>
+
+        {/* Scene Selection Cards — inline in hero */}
+        <SceneSelector hideHeader />
+
+        {/* Browse All CTA — for users who don't identify with a specific scene */}
+        <div className="flex justify-center mt-2 sm:mt-6">
+          <Link
+            href="/models"
+            className="inline-flex items-center gap-2 rounded-full border border-accent-violet/20 bg-accent-violet/5 px-6 py-2.5 text-sm font-medium text-accent-violet hover:bg-accent-violet/10 hover:border-accent-violet/30 transition-all group"
+          >
+            {t("home.viewAllModels", { n: allModels.length })}
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
         </div>
       </section>
 
-      {/* Model Directory Table — moved before StatsStrip on mobile via ordering */}
-      <section className="px-4 pt-4 pb-4 sm:px-6 lg:px-8 order-first sm:order-none">
+      {/* Top Picks — compact recommendation card strip (replaces full ranking table) */}
+      <section className="px-4 pt-6 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-3">
-              <Bot className="h-6 w-6 text-accent-violet" />
-              <h2 className="text-2xl font-bold text-text-primary">{t("home.rankingTitle")}</h2>
+              <Bot className="h-5 w-5 text-accent-violet" />
+              <h2 className="text-lg sm:text-xl font-bold text-text-primary">{t("home.topPicks")}</h2>
             </div>
             <Link
               href="/models"
               className="flex items-center gap-1 text-sm text-accent-violet hover:text-violet-500 transition-colors"
             >
-              {t("home.rankingViewAll")}
-              <ArrowRight className="h-4 w-4" />
+              {t("home.viewAllModels", { n: allModels.length })}
             </Link>
           </div>
 
-          <div className="mb-4 sm:mb-6">
-            <SearchInput
-              value={searchQuery}
-              onChange={setSearchQuery}
-              placeholder={t("models.searchPlaceholder")}
-              className="max-w-xl"
-            />
-          </div>
+          {/* Compact horizontal cards — 5 models, wraps to 2 rows on small screens */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            {topPicks.map((model) => (
+              <Link
+                key={model.id}
+                href={`/product/${model.id}`}
+                className="rounded-xl border border-surface-border bg-surface-card p-3 sm:p-4 transition-all duration-200 hover:border-accent-violet/30 hover:shadow-md hover:-translate-y-0.5 group"
+              >
+                {/* Logo + Name row */}
+                <div className="flex items-start gap-2.5 mb-2">
+                  <div className="h-8 w-8 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
+                    {model.logo ? (
+                      <img
+                        src={model.logo}
+                        alt=""
+                        className="h-6 w-6 object-contain"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = "none";
+                        }}
+                      />
+                    ) : (
+                      <span className="text-xs font-bold text-text-muted">
+                        {model.name.charAt(0)}
+                      </span>
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-sm font-semibold text-text-primary truncate group-hover:text-accent-violet transition-colors">
+                      {model.name}
+                    </div>
+                    <div className="text-xs text-text-muted truncate">
+                      {model.company}
+                    </div>
+                  </div>
+                </div>
 
-          <RankingTable models={displayModels} hideArenaCode />
+                {/* Intelligence score */}
+                <div className="flex items-baseline gap-1">
+                  <span className="text-lg font-bold text-accent-violet">
+                    {model.raw.intelligence?.toFixed(1) ?? "—"}
+                  </span>
+                  <span className="text-xs text-text-muted">{t("models.colIntelligence")}</span>
+                </div>
+
+                {/* Type badge */}
+                <div className="mt-1.5">
+                  <span className={cn(
+                    "inline-block text-[10px] font-medium px-1.5 py-0.5 rounded",
+                    model.type === "开源"
+                      ? "bg-accent-lime/10 text-accent-lime"
+                      : "bg-accent-violet/10 text-accent-violet"
+                  )}>
+                    {model.type}
+                  </span>
+                </div>
+
+                {/* Recommendation tag — why this model is a top pick */}
+                {getRecommendationTags(model).length > 0 && (
+                  <div className="mt-1.5">
+                    <span className={cn(
+                      "inline-flex items-center gap-0.5 rounded-full px-1.5 py-[1px] text-[10px] font-medium",
+                      getRecommendationTags(model)[0].colorClass
+                    )}>
+                      <span>{getRecommendationTags(model)[0].icon}</span>
+                      <span className="truncate max-w-[6rem]">{t(getRecommendationTags(model)[0].labelKey)}</span>
+                    </span>
+                  </div>
+                )}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -160,8 +182,6 @@ export default function HomeClient() {
         onRemoveModel={handleRemoveCompare}
         onClear={handleClearCompare}
       />
-
-      <BackToTop />
     </div>
   );
 }

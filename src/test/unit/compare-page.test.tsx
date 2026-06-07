@@ -19,7 +19,8 @@ vi.mock("@/lib/i18n", () => ({
         "compare.noModelsDesc": "Select models to compare their capabilities",
         "compare.title": "Model Comparison",
         "compare.colName": "Metric",
-        "compare.bestValue": "Best value",
+        "compare.bestValue": "Best in this column",
+        "compare.verdictTitle": "Quick Verdict",
         "compare.intelligence": "Intelligence",
         "compare.coding": "Coding",
         "compare.agentic": "Agentic",
@@ -64,9 +65,54 @@ vi.mock("next/navigation", () => ({
 }));
 
 // Mock scoring to return controlled model data
+// Mock scoring to return controlled model data
 const mockGetModelById = vi.fn();
+// Provide minimal models for recommendation-tags which calls getAllModels internally
+const mockAllModels = vi.hoisted(() => {
+  return [
+    {
+      id: "model-a", name: "model-a", company: "Test", type: "开源" as const,
+      logo: "", url: "", vendor_links: {},
+      raw: {
+        intelligence: 60, coding: 55, agentic: 50,
+        median_tps: null, ttft_seconds: null, e2e_seconds: null,
+        p05_tps: null, p95_tps: null,
+        input: null, output: null, blended: null, display: "",
+        cn_input: null, cn_output: null, cn_display: null,
+        isInternational: true,
+        context_window: null, parameters: null, output_tokens: null,
+        release_date: null, omniscience: null,
+        arena_votes: null, openrouter_weekly_tokens: null,
+        openrouter_pricing: null, arena_rankings: null, arena_code: null,
+        data_completeness_pct: 0,
+        benchmarks: { gpqa: null, hle: null, mmlu_pro: null },
+      },
+      flags: { frontier: false, open_weights: false, reasoning: false, image_input: false, chinese_eval: false, has_speed: false, data_complete: false },
+    },
+    {
+      id: "model-b", name: "model-b", company: "Test", type: "开源" as const,
+      logo: "", url: "", vendor_links: {},
+      raw: {
+        intelligence: 50, coding: 45, agentic: 60,
+        median_tps: null, ttft_seconds: null, e2e_seconds: null,
+        p05_tps: null, p95_tps: null,
+        input: null, output: null, blended: null, display: "",
+        cn_input: null, cn_output: null, cn_display: null,
+        isInternational: true,
+        context_window: null, parameters: null, output_tokens: null,
+        release_date: null, omniscience: null,
+        arena_votes: null, openrouter_weekly_tokens: null,
+        openrouter_pricing: null, arena_rankings: null, arena_code: null,
+        data_completeness_pct: 0,
+        benchmarks: { gpqa: null, hle: null, mmlu_pro: null },
+      },
+      flags: { frontier: false, open_weights: false, reasoning: false, image_input: false, chinese_eval: false, has_speed: false, data_complete: false },
+    },
+  ];
+});
 vi.mock("@/lib/scoring", () => ({
   getModelById: (id: string) => mockGetModelById(id),
+  getAllModels: () => mockAllModels,
 }));
 
 describe("ComparePageClient", () => {
@@ -121,8 +167,8 @@ describe("ComparePageClient", () => {
     it("renders model names and companies", () => {
       mockSearchParams = new URLSearchParams("models=model-a,model-b");
       render(<ComparePageClient />);
-      expect(screen.getByText("model-a")).toBeInTheDocument();
-      expect(screen.getByText("model-b")).toBeInTheDocument();
+      expect(screen.getAllByText("model-a").length).toBeGreaterThanOrEqual(1);
+      expect(screen.getAllByText("model-b").length).toBeGreaterThanOrEqual(1);
       expect(screen.getByText("AlphaCorp")).toBeInTheDocument();
       expect(screen.getByText("BetaInc")).toBeInTheDocument();
     });

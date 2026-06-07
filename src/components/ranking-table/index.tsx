@@ -14,6 +14,8 @@ import { MobileCard } from "./mobile-card";
 interface RankingTableProps {
   models: ModelWithScores[];
   hideArenaCode?: boolean;
+  initialSortKey?: SortKey;
+  initialSortDesc?: boolean;
 }
 
 const HEADERS: HeaderDef[] = [
@@ -35,9 +37,9 @@ const MOBILE_SORT_OPTIONS: { key: SortKey | ""; labelKey: string }[] = [
   { key: "date", labelKey: "table.date" },
 ];
 
-export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
-  const [sortKey, setSortKey] = useState<SortKey>("date");
-  const [sortDesc, setSortDesc] = useState(true);
+export function RankingTable({ models, hideArenaCode, initialSortKey, initialSortDesc }: RankingTableProps) {
+  const [sortKey, setSortKey] = useState<SortKey>(initialSortKey ?? "date");
+  const [sortDesc, setSortDesc] = useState(initialSortDesc ?? true);
   const { t } = useTranslation();
 
   const headers = useMemo(
@@ -97,10 +99,15 @@ export function RankingTable({ models, hideArenaCode }: RankingTableProps) {
       const blended = m.raw.blended;
       if (blended != null) {
         if (blended === 0) return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
+        // Value indicator: smart model at low price
+        const isValue = m.raw.intelligence >= 40 && blended < 1;
         return (
           <span className="inline-flex items-center gap-0.5">
             <span className="tabular-nums">${blended.toFixed(2)}</span>
             <span className="text-text-secondary text-[10px]">/M</span>
+            {isValue && (
+              <span className="ml-0.5 inline-flex text-[10px]" title={t("models.colValueLabel")}>💎</span>
+            )}
           </span>
         );
       }

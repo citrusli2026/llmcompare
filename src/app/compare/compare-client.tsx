@@ -7,6 +7,7 @@ import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, BarChart3, Brain, Code, Bot, Zap, DollarSign, Layers, Calendar, Eye, Weight, MessageSquare, Trophy, Check, Star, X, TrendingUp, Link2, CheckCheck } from "lucide-react";
 import { getModelById, type ModelWithScores } from "@/lib/scoring";
+import { getRecommendationTags, getModelOneLiner } from "@/lib/recommendation-tags";
 import { useTranslation } from "@/lib/i18n";
 import { cn, formatTokenCount, getTypeBadgeClasses } from "@/lib/utils";
 import { Tooltip } from "@/components/tooltip";
@@ -256,11 +257,36 @@ export function ComparePageClient() {
             </button>
           </div>
 
+          {/* Verdict — which model for which scenario */}
+          {models.length >= 2 && (
+            <div className="mb-6 rounded-xl border border-accent-violet/20 bg-accent-violet/[0.03] p-4 sm:p-5">
+              <div className="flex items-center gap-3 mb-3">
+                <Star className="h-5 w-5 text-accent-violet" />
+                <h2 className="text-base sm:text-lg font-semibold text-text-primary">{t("compare.verdictTitle")}</h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {models.map((m) => {
+                  const oneLiner = getModelOneLiner(m);
+                  return (
+                    <div key={m.id} className="rounded-lg border border-surface-border bg-surface-card p-3">
+                      <div className="text-sm font-semibold text-text-primary mb-0.5">{m.name}</div>
+                      <div className="text-xs text-text-secondary mb-1">{t(oneLiner.labelKey)}</div>
+                      <div className="flex items-center gap-1 text-[10px] text-text-muted">
+                        <Brain className="h-3 w-3" />
+                        <span>{t("models.colIntelligence")}: {m.raw.intelligence?.toFixed(1) ?? "—"}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {/* Comparison Table — dual panel: fixed left + scrollable right */}
           <div className="rounded-xl border border-surface-border bg-surface-card overflow-hidden">
             <div className="flex">
               {/* Fixed left panel */}
-              <div className="shrink-0 min-w-[75px] sm:min-w-[140px]">
+              <div className="shrink-0 min-w-[60px] sm:min-w-[140px]">
                 <div className="px-1.5 py-2 sm:px-6 sm:py-4 text-xs font-semibold text-text-muted uppercase tracking-wider">
                   {t("compare.colName")}
                 </div>
@@ -277,9 +303,9 @@ export function ComparePageClient() {
                       <div className="flex items-center gap-1 sm:gap-2">
                         <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-text-muted shrink-0" />
                         {row.tipKey ? (
-                          <FieldTip tip={t(row.tipKey)}><span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span></FieldTip>
+                          <FieldTip tip={t(row.tipKey)}><span className="text-xs sm:text-sm font-medium text-text-primary">{t(row.labelKey)}</span></FieldTip>
                         ) : (
-                          <span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span>
+                          <span className="text-xs sm:text-sm font-medium text-text-primary">{t(row.labelKey)}</span>
                         )}
                       </div>
                     </div>
@@ -288,14 +314,18 @@ export function ComparePageClient() {
               </div>
 
               {/* Scrollable right panel */}
-              <div className="overflow-x-auto flex-1">
-                <table className="w-full min-w-[320px] sm:min-w-[600px]">
-                  <thead>
-                    <tr className="border-b border-surface-border">
-                      {models.map((m) => (
-                        <th
-                          key={m.id}
-                          className="px-1.5 py-2 sm:px-4 sm:py-4 text-center min-w-[100px] sm:min-w-[180px]"
+              <div className="flex-1 min-w-0">
+                {/* Scroll hint gradient — outside overflow container so always visible */}
+                <div className="relative">
+                  <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-accent-violet/20 via-surface-card/80 to-transparent z-10 sm:hidden" />
+                  <div className="overflow-x-auto">
+                    <table className="w-full min-w-[225px] sm:min-w-[600px]">
+                      <thead>
+                        <tr className="border-b border-surface-border">
+                          {models.map((m) => (
+                            <th
+                              key={m.id}
+                              className="px-1.5 py-2 sm:px-4 sm:py-4 text-center min-w-[75px] sm:min-w-[180px]"
                         >
                           <div className="inline-flex flex-col items-center gap-0.5 sm:gap-1">
                             <span className="font-semibold text-xs sm:text-sm text-text-primary truncate max-w-[95px] sm:max-w-[160px]">
@@ -308,6 +338,19 @@ export function ComparePageClient() {
                             >
                               {t(m.type === "开源" ? "common.open" : "common.closed")}
                             </Badge>
+                            {/* Scene recommendation badges */}
+                            {(() => {
+                              const tags = getRecommendationTags(m);
+                              return tags.length > 0 ? (
+                                <span className={cn(
+                                  "inline-flex items-center gap-0.5 rounded-full px-1.5 py-[1px] text-[9px] font-medium mt-0.5",
+                                  tags[0].colorClass
+                                )}>
+                                  <span>{tags[0].icon}</span>
+                                  <span className="truncate max-w-[80px]">{t(tags[0].labelKey)}</span>
+                                </span>
+                              ) : null;
+                            })()}
                           </div>
                         </th>
                       ))}
@@ -372,6 +415,8 @@ export function ComparePageClient() {
                     })}
                   </tbody>
                 </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -384,6 +429,6 @@ export function ComparePageClient() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
   );
 }

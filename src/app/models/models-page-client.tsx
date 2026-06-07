@@ -2,16 +2,19 @@
 
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
+import type { SortKey } from "@/components/ranking-table/types";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
 import { FeatureFilter, type FeatureKey } from "@/components/feature-filter";
 import { SearchInput } from "@/components/search-input";
 import { CompareBar } from "@/components/compare-bar";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
-import { Bot } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Bot, SearchX, X, Sparkles, Trophy, Code, DollarSign, Home } from "lucide-react";
 
 const FILTER_KEYS = ["全部", "开源", "闭源"] as const;
 type Filter = (typeof FILTER_KEYS)[number];
@@ -176,6 +179,53 @@ export default function ModelsPageClient() {
     });
   }, [allModels, activeFilter, companyFilter, searchQuery, featureKeys]);
 
+  // Clear all filters
+  const handleClearAll = useCallback(() => {
+    setActiveFilter("全部");
+    setSearchQuery("");
+    setCompanyFilter("");
+    setFeatureKeys(new Set());
+    router.replace("/models", { scroll: false });
+  }, [router]);
+
+  // Fallback: top 8 by intelligence for empty state recommendations
+  const fallbackModels = useMemo(() => {
+    return [...allModels]
+      .filter((m) => m.raw.intelligence != null)
+      .sort((a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0))
+      .slice(0, 8);
+  }, [allModels]);
+
+  // Detect if any filter is active
+  const hasActiveFilters = activeFilter !== "全部" || searchQuery !== "" || companyFilter !== "" || featureKeys.size > 0;
+
+  const isEmpty = filteredModels.length === 0;
+
+  // Top pick from filtered results — highest intelligence model
+  const topPick = useMemo(() => {
+    if (isEmpty) return null;
+    return [...filteredModels]
+      .filter((m) => m.raw.intelligence != null)
+      .sort((a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0))[0] ?? null;
+  }, [filteredModels, isEmpty]);
+
+  // Initial sort key from URL (for scene sort)
+  const initialSort = searchParams.get("sort") as SortKey | null;
+
+  // Scene sort buttons
+  const SCENE_SORTS: { key: string; icon: React.ComponentType<{ className?: string }>; labelKey: string; sortKey: SortKey }[] = [
+    { key: "intelligence", icon: Trophy, labelKey: "models.sortByIntelligence", sortKey: "intelligence" },
+    { key: "coding", icon: Code, labelKey: "models.sortByCoding", sortKey: "coding" },
+    { key: "agentic", icon: Bot, labelKey: "models.sortByAgent", sortKey: "agentic" },
+    { key: "cost", icon: DollarSign, labelKey: "models.sortByValue", sortKey: "cost" },
+  ];
+
+  const handleSceneSort = (sortKey: SortKey) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("sort", sortKey);
+    router.replace(`?${params.toString()}`, { scroll: false });
+  };
+
   return (
     <div className="min-h-screen bg-surface-base">
       <Navbar />
@@ -227,11 +277,170 @@ export default function ModelsPageClient() {
             />
           </div>
 
-          <RankingTable models={filteredModels} />
+          {isEmpty ? (
+            /* Empty State — guidance instead of a dead-end */
+            <div className="flex flex-col items-center justify-center py-16 sm:py-20 text-center">
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-surface-elevated border border-surface-border">
+                <SearchX className="h-7 w-7 text-text-muted" />
+              </div>
+              <h3 className="text-lg font-semibold text-text-primary mb-1">{t("models.emptyState")}</h3>
+              <p className="text-sm text-text-secondary max-w-sm mb-6">{t("models.emptySuggestion")}</p>
 
-          <div className="mt-8 text-center text-sm text-text-muted">
-            {t("models.count", { count: String(filteredModels.length) })}
-          </div>
+              {hasActiveFilters && (
+                <button
+                  onClick={handleClearAll}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-surface-border bg-surface-card px-4 py-2 text-sm font-medium text-text-primary hover:border-accent-violet/30 hover:text-accent-violet hover:bg-accent-violet/5 transition-all mb-10"
+                >
+                  <X className="h-3.5 w-3.5" />
+                  {t("models.emptyClear")}
+                </button>
+              )}
+
+              {/* Fallback recommendations — top models by intelligence */}
+              <div className="w-full max-w-xl">
+                <div className="flex items-center gap-2 mb-4 justify-center">
+                  <Sparkles className="h-4 w-4 text-accent-violet" />
+                  <span className="text-sm font-medium text-text-secondary">{t("home.topPicks")}</span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {fallbackModels.map((model) => (
+                    <Link
+                      key={model.id}
+                      href={`/product/${model.id}`}
+                      className="flex items-center gap-2 rounded-lg border border-surface-border bg-surface-card p-2.5 transition-all hover:border-accent-violet/30 hover:shadow-sm hover:-translate-y-0.5 group"
+                    >
+                      <div className="h-8 w-8 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
+                        {model.logo ? (
+                          <img src={model.logo} alt="" className="h-5 w-5 object-contain"
+                            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                          />
+                        ) : (
+                          <span className="text-xs font-bold text-text-muted">{model.name.charAt(0)}</span>
+                        )}
+                      </div>
+                      <div className="min-w-0 flex-1 text-left">
+                        <div className="text-xs font-medium text-text-primary truncate group-hover:text-accent-violet transition-colors">
+                          {model.name}
+                        </div>
+                        <div className="text-[10px] text-text-muted truncate">
+                          {model.raw.intelligence?.toFixed(1) ?? "—"}
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <>
+              {/* Recommendation banner — guidance when results exist */}
+              {topPick && (
+                <div className="mb-4 rounded-xl border border-accent-violet/20 bg-accent-violet/5 p-4 sm:p-5">
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-violet/10">
+                      <Trophy className="h-5 w-5 text-accent-violet" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-sm font-semibold text-text-primary">{t("models.recommendTitle")}</span>
+                        <span className="text-xs text-text-muted">{t(hasActiveFilters ? "models.recommendDesc" : "models.recommendFirstLoadDesc")}</span>
+                      </div>
+                      <Link
+                        href={`/product/${topPick.id}`}
+                        className="inline-flex items-center gap-2.5 rounded-lg bg-surface-card border border-surface-border px-3.5 py-2.5 transition-all hover:border-accent-violet/30 hover:shadow-sm hover:-translate-y-0.5 group"
+                      >
+                        <div className="h-8 w-8 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
+                          {topPick.logo ? (
+                            <img src={topPick.logo} alt="" className="h-5 w-5 object-contain"
+                              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                            />
+                          ) : (
+                            <span className="text-xs font-bold text-text-muted">{topPick.name.charAt(0)}</span>
+                          )}
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-text-primary group-hover:text-accent-violet transition-colors">
+                            {topPick.name}
+                          </div>
+                          <div className="text-xs text-text-muted">
+                            {topPick.company} · {t("models.colIntelligence")} {topPick.raw.intelligence?.toFixed(1) ?? "—"}
+                          </div>
+                        </div>
+                        <span className="ml-auto text-xs text-accent-violet font-medium whitespace-nowrap">
+                          {t("models.recommendView")}
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Scene sort bar — always visible, not just when filters are active */}
+              {/* This transforms /models from "a data table" into "a selection tool" */}
+              {/* by guiding users to browse by scene even on first load */}
+              <div className={cn(
+                "mb-4 flex flex-wrap items-center gap-1.5",
+                !hasActiveFilters && "rounded-xl border border-surface-border bg-surface-card p-3 sm:p-4"
+              )}>
+                {!hasActiveFilters && (
+                  <span className="text-xs text-text-muted mr-1 whitespace-nowrap">
+                    {t("models.sortBy")}：
+                  </span>
+                )}
+                {SCENE_SORTS.map((scene) => {
+                  const SceneIcon = scene.icon;
+                  const isActiveSort = initialSort === scene.sortKey || (!initialSort && scene.sortKey === "intelligence");
+                  return (
+                    <button
+                      key={scene.key}
+                      onClick={() => handleSceneSort(scene.sortKey)}
+                      className={cn(
+                        "inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-medium transition-all",
+                        isActiveSort
+                          ? "border-accent-violet/30 bg-accent-violet/10 text-accent-violet"
+                          : "border-surface-border bg-surface-card text-text-secondary hover:border-accent-violet/20 hover:text-accent-violet"
+                      )}
+                    >
+                      <SceneIcon className="h-3 w-3" />
+                      {t(scene.labelKey)}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Scene context indicator — shows when user arrived from home page scene selection */}
+              {initialSort && ["intelligence", "coding", "agentic", "cost"].includes(initialSort) && (
+                <div className="mb-4 flex items-center gap-2 rounded-xl border border-accent-violet/10 bg-accent-violet/[0.03] px-4 py-3">
+                  <span className="text-sm">🎯</span>
+                  <span className="text-sm text-text-primary font-medium">
+                    {t("models.sceneBrowsing", {
+                      scene: t(
+                        initialSort === "intelligence"
+                          ? "models.sortByIntelligence"
+                          : initialSort === "coding"
+                          ? "models.sortByCoding"
+                          : initialSort === "agentic"
+                          ? "models.sortByAgent"
+                          : "models.sortByValue"
+                      ),
+                    })}
+                  </span>
+                  <Link
+                    href="/"
+                    className="ml-auto flex items-center gap-1 text-xs text-accent-violet hover:text-violet-500 transition-colors whitespace-nowrap"
+                  >
+                    <Home className="h-3 w-3" />
+                    {t("models.sceneBrowsingBack")}
+                  </Link>
+                </div>
+              )}
+
+              <RankingTable models={filteredModels} initialSortKey={initialSort ?? undefined} />
+              <div className="mt-8 text-center text-sm text-text-muted">
+                {t("models.count", { count: String(filteredModels.length) })}
+              </div>
+            </>
+          )}
         </div>
       </div>
 
