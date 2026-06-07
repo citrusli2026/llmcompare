@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { renderHook } from "@testing-library/react";
 import { useModelGroups } from "@/components/ranking-table/use-model-groups";
+import { type SortKey } from "@/components/ranking-table/types";
 import { type ModelWithScores } from "@/lib/scoring";
 import { makeModel } from "../fixtures";
 
@@ -136,7 +137,7 @@ describe("useModelGroups", () => {
 
     const { result, rerender } = renderHook(
       ({ sortKey }) => useModelGroups(models, sortKey, true),
-      { initialProps: { sortKey: "intelligence" as const } }
+      { initialProps: { sortKey: "intelligence" as SortKey } }
     );
 
     expect(result.current[0].items.map((m) => m.id)).toEqual(["m2", "m1"]);
