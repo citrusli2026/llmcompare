@@ -62,6 +62,10 @@ vi.mock("next/navigation", () => ({
   usePathname: () => "/compare",
 }));
 
+vi.mock("@/hooks/use-url-search-params", () => ({
+  useUrlSearchParams: () => mockSearchParams,
+}));
+
 const mockGetModelById = vi.fn();
 const mockAllModels = vi.hoisted(() => {
   return [

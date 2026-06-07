@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +8,7 @@ import { ArrowLeft, BarChart3, Brain, Code, Bot, Zap, DollarSign, Layers, Calend
 import { getModelById, type ModelWithScores } from "@/lib/scoring";
 import { getRecommendationTags, getModelOneLiner } from "@/lib/recommendation-tags";
 import { useTranslation } from "@/lib/i18n";
+import { useSearchParams } from "next/navigation";
 import { cn, formatTokenCount, getTypeBadgeClasses } from "@/lib/utils";
 import { Tooltip } from "@/components/tooltip";
 import { FieldTip } from "@/components/field-tip";

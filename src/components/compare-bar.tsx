@@ -5,14 +5,13 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 import { type ModelWithScores } from "@/lib/scoring";
+import { MAX_COMPARE } from "@/hooks/use-compare-ids";
 
 interface CompareBarProps {
   selectedModels: ModelWithScores[];
   onRemoveModel: (id: string) => void;
   onClear: () => void;
 }
-
-const MAX_COMPARE = 6;
 
 export function CompareBar({
   selectedModels,

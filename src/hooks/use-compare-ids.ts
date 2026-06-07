@@ -4,7 +4,7 @@ import { useMemo, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { getModelById, type ModelWithScores } from "@/lib/scoring";
 
-const MAX_COMPARE = 6;
+export const MAX_COMPARE = 6;
 
 /**
  * Hook for managing model compare selection state via URL search params.
@@ -54,21 +54,22 @@ export function useCompareIds() {
 
   const toggleCompare = useCallback(
     (id: string) => {
-      let current = compareIds;
+      let next: string[];
       if (compareIds.includes(id)) {
-        current = current.filter((cid) => cid !== id);
+        next = compareIds.filter((cid) => cid !== id);
       } else {
-        if (current.length >= MAX_COMPARE) return;
-        current = [...current, id];
+        if (compareIds.length >= MAX_COMPARE) return;
+        next = [...compareIds, id];
       }
-      updateUrl(current);
+      updateUrl(next);
     },
     [compareIds, updateUrl]
   );
 
   const handleRemoveCompare = useCallback(
     (id: string) => {
-      updateUrl(compareIds.filter((cid) => cid !== id));
+      const next = compareIds.filter((cid) => cid !== id);
+      updateUrl(next);
     },
     [compareIds, updateUrl]
   );
