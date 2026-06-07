@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo, useCallback, useState, useRef, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useMemo, useCallback } from "react";
 import { getModelById, type ModelWithScores } from "@/lib/scoring";
 import { useUrlSearchParams } from "./use-url-search-params";
 
@@ -20,22 +19,11 @@ export const MAX_COMPARE = 6;
  */
 export function useCompareIds() {
   const searchParams = useUrlSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
 
-  // Initial value is read from the current URL. After mount, callers
-  // update both this state and the URL in lockstep (see toggleCompare
-  // etc.) so the two stay in sync. `router.replace` does not fire
-  // `popstate`, so we can't rely on useUrlSearchParams to detect
-  // same-tab URL mutations.
-  const [compareIds, setCompareIds] = useState<string[]>(() =>
-    searchParams.get("compare")?.split(",").filter(Boolean) ?? []
+  const compareIds = useMemo(
+    () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],
+    [searchParams]
   );
-
-  const compareIdsRef = useRef(compareIds);
-  useEffect(() => {
-    compareIdsRef.current = compareIds;
-  }, [compareIds]);
 
   const selectedCompareModels = useMemo(
     () =>
@@ -54,9 +42,12 @@ export function useCompareIds() {
         params.delete("compare");
       }
       const qs = params.toString();
-      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+      const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+      window.history.pushState({}, "", url);
+      // Dispatch popstate so useUrlSearchParams detects the change
+      window.dispatchEvent(new PopStateEvent("popstate"));
     },
-    [router, pathname]
+    []
   );
 
   const isInCompare = useCallback(
@@ -66,7 +57,7 @@ export function useCompareIds() {
 
   const toggleCompare = useCallback(
     (id: string) => {
-      const current = compareIdsRef.current;
+      const current = compareIds;
       let next: string[];
       if (current.includes(id)) {
         next = current.filter((cid) => cid !== id);
@@ -74,26 +65,20 @@ export function useCompareIds() {
         if (current.length >= MAX_COMPARE) return;
         next = [...current, id];
       }
-      setCompareIds(next);
-      compareIdsRef.current = next;
       updateUrl(next);
     },
-    [updateUrl]
+    [compareIds, updateUrl]
   );
 
   const handleRemoveCompare = useCallback(
     (id: string) => {
-      const next = compareIdsRef.current.filter((cid) => cid !== id);
-      setCompareIds(next);
-      compareIdsRef.current = next;
+      const next = compareIds.filter((cid) => cid !== id);
       updateUrl(next);
     },
-    [updateUrl]
+    [compareIds, updateUrl]
   );
 
   const handleClearCompare = useCallback(() => {
-    setCompareIds([]);
-    compareIdsRef.current = [];
     updateUrl([]);
   }, [updateUrl]);
 

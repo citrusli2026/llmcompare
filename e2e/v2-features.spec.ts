@@ -93,7 +93,7 @@ test.describe("V2 — Models Page Guidance", () => {
   });
 
   test("empty state shows guidance when no results", async ({ page }) => {
-    await page.goto("/models?filter=开源&company=OpenAI");
+    await page.goto("/models?filter=open&company=OpenAI");
     await page.waitForLoadState("networkidle");
 
     // Should show empty state with guidance — check both heading and suggestion
