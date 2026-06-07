@@ -15,50 +15,13 @@ export function BenchmarkSection({ model }: BenchmarkSectionProps) {
 
   return (
     <div className="rounded-xl border border-surface-border bg-surface-card p-6">
-      <h2 className="text-lg font-semibold text-text-primary mb-5 flex items-center gap-2">
+      <h2 className="text-lg font-semibold text-text-primary mb-2 flex items-center gap-2">
         <Target className="h-5 w-5 text-accent-amber" /> {t("product.benchmarkTitle")}
       </h2>
+      <p className="text-xs text-text-muted mb-5">{t("product.benchmarkSubtitle")}</p>
 
-      {/* Primary metric: intelligence */}
-      <div className="mb-5">
-        <div className="flex items-baseline justify-between mb-2">
-          <span className="text-sm text-text-secondary"><FieldTip tip={t("tip.intelligence")}>{t("product.intelligence")}</FieldTip></span>
-          <div className="flex items-baseline gap-1">
-            <span className="text-3xl font-bold text-text-primary tabular-nums">
-              {r.intelligence != null ? r.intelligence.toFixed(1) : "—"}
-            </span>
-            {r.intelligence != null && <span className="text-xs text-text-muted">/100</span>}
-          </div>
-        </div>
-        <div className="h-2 bg-surface-hover rounded-full overflow-hidden">
-          <div
-            className={`h-full transition-all duration-500 ${
-              r.intelligence != null
-                ? r.intelligence >= 80 ? "bg-accent-lime"
-                  : r.intelligence >= 65 ? "bg-accent-violet"
-                  : r.intelligence >= 50 ? "bg-accent-coral"
-                  : "bg-text-muted"
-                : ""
-            }`}
-            style={{ width: r.intelligence != null ? `${Math.min(Math.max(r.intelligence, 0), 100)}%` : "0%" }}
-          />
-        </div>
-      </div>
-
-      {/* Secondary metrics */}
+      {/* Detailed benchmark sub-scores */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted"><FieldTip tip={t("tip.coding")}>{t("product.coding")}</FieldTip></p>
-          <p className="text-base font-semibold text-text-primary tabular-nums">
-            {r.coding != null ? r.coding.toFixed(1) : "—"}
-          </p>
-        </div>
-        <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted"><FieldTip tip={t("tip.agentic")}>{t("product.agentic")}</FieldTip></p>
-          <p className="text-base font-semibold text-text-primary tabular-nums">
-            {r.agentic != null ? r.agentic.toFixed(1) : "—"}
-          </p>
-        </div>
         <div className="rounded-lg bg-surface-hover p-3">
           <p className="text-xs text-text-muted"><FieldTip tip={t("tip.mmluPro")}>{t("product.benchmarkMmluPro")}</FieldTip></p>
           <p className="text-base font-semibold text-text-primary tabular-nums">

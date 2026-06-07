@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ArrowUpDown, ArrowUp, ArrowDown, Trophy, DollarSign, Brain, Code, Bot, Calendar, TrendingUp } from "lucide-react";
+import { ArrowUpDown, ArrowUp, ArrowDown, DollarSign, Brain, Code, Bot, Calendar } from "lucide-react";
 import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
@@ -13,7 +13,6 @@ import { MobileCard } from "./mobile-card";
 
 interface RankingTableProps {
   models: ModelWithScores[];
-  hideArenaCode?: boolean;
   initialSortKey?: SortKey;
   initialSortDesc?: boolean;
 }
@@ -22,9 +21,7 @@ const HEADERS: HeaderDef[] = [
   { key: "intelligence", labelKey: "models.colIntelligence", icon: Brain, mobile: true, desktop: true },
   { key: "coding", labelKey: "models.colCoding", icon: Code, mobile: false, desktop: true },
   { key: "agentic", labelKey: "models.colAgentic", icon: Bot, mobile: false, desktop: true },
-  { key: "arenaCode", labelKey: "models.colArenaCode", icon: Trophy, mobile: false, desktop: true },
   { key: "cost", labelKey: "models.colCost", icon: DollarSign, mobile: false, desktop: true },
-  { key: "tokens", labelKey: "models.colTokens", icon: TrendingUp, mobile: false, desktop: true },
 ];
 
 const MOBILE_METRIC_ORDER: ScoreKey[] = ["intelligence", "cost", "tokens"];
@@ -37,15 +34,12 @@ const MOBILE_SORT_OPTIONS: { key: SortKey | ""; labelKey: string }[] = [
   { key: "date", labelKey: "table.date" },
 ];
 
-export function RankingTable({ models, hideArenaCode, initialSortKey, initialSortDesc }: RankingTableProps) {
+export function RankingTable({ models, initialSortKey, initialSortDesc }: RankingTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>(initialSortKey ?? "date");
   const [sortDesc, setSortDesc] = useState(initialSortDesc ?? true);
   const { t } = useTranslation();
 
-  const headers = useMemo(
-    () => (hideArenaCode ? HEADERS.filter((h) => h.key !== "arenaCode") : HEADERS),
-    [hideArenaCode]
-  );
+  const headers = HEADERS;
 
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
@@ -63,10 +57,8 @@ export function RankingTable({ models, hideArenaCode, initialSortKey, initialSor
     intelligence: computePercentiles(models.map((m) => m.raw.intelligence)),
     coding: computePercentiles(models.map((m) => m.raw.coding)),
     agentic: computePercentiles(models.map((m) => m.raw.agentic)),
-    arenaCode: computePercentiles(models.map((m) => m.raw.arena_code)),
     // cost 用 OR completion 价，与移动端展示一致；桌面双值列 prompt/completion 高度相关，排序结果近似
     cost: computePercentiles(models.map((m) => m.raw.openrouter_pricing?.completion ?? null)),
-    tokens: computePercentiles(models.map((m) => m.raw.openrouter_weekly_tokens ?? null)),
   }), [models]);
 
   // 全局数据集最大值，供 ScoreBar 以满进度渲染
@@ -89,12 +81,6 @@ export function RankingTable({ models, hideArenaCode, initialSortKey, initialSor
     intelligence: (m) => formatScore(m.raw.intelligence),
     coding: (m) => formatScore(m.raw.coding),
     agentic: (m) => formatScore(m.raw.agentic),
-    arenaCode: (m) =>
-      m.raw.arena_code != null ? (
-        <span>{m.raw.arena_code} <span className="text-text-secondary text-[10px]">ELO</span></span>
-      ) : (
-        <span className="text-text-dim text-xs">—</span>
-      ),
     cost: (m) => {
       const blended = m.raw.blended;
       if (blended != null) {
@@ -180,7 +166,7 @@ export function RankingTable({ models, hideArenaCode, initialSortKey, initialSor
           <table className="w-full caption-bottom text-sm">
             <thead className="sticky top-0 z-10 bg-surface-card">
               <tr className="border-b border-surface-border hover:bg-transparent">
-                <th className="h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap w-10 sm:w-12">
+                <th className="h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap w-16 sm:w-20">
                   <span className="sr-only">{t("compare.select")}</span>
                 </th>
                 <th className="h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap text-text-muted">

@@ -1,6 +1,6 @@
 import { type ModelWithScores } from "@/lib/scoring";
 
-export type ScoreKey = "intelligence" | "coding" | "agentic" | "arenaCode" | "cost" | "tokens";
+export type ScoreKey = "intelligence" | "coding" | "agentic" | "cost" | "tokens";
 export type SortKey = ScoreKey | "date";
 
 export interface HeaderDef {
@@ -12,7 +12,7 @@ export interface HeaderDef {
 }
 
 export type Percentiles = { p25: number; p50: number; p75: number };
-export type ColoredKey = "intelligence" | "coding" | "agentic" | "arenaCode" | "cost" | "tokens";
+export type ColoredKey = "intelligence" | "coding" | "agentic" | "cost" | "tokens";
 
 export interface ModelGroup {
   key: "all";

@@ -34,7 +34,7 @@
     "sceneValueDesc": "高性价比",
     "sceneReasoning": "推理",
     "sceneReasoningDesc": "复杂推理",
-    "sceneBrowseAll": "浏览全部 {n} 个模型",
+    "sceneBrowseAll": "查看更多同类模型",
     "sceneCollapse": "收起",
     "topPicks": "热门推荐",
     "viewAllModels": "查看全部 {n} 个模型 →",
@@ -103,7 +103,8 @@
   },
   "product": {
     "backLink": "返回模型目录",
-    "benchmarkTitle": "基准测试",
+            "benchmarkTitle": "基准测试",
+            "benchmarkSubtitle": "以下为该模型在专项基准测试中的表现，涵盖多个维度的细粒度评估",
     "intelligence": "智能",
     "coding": "编程",
     "agentic": "Agent能力",

@@ -2,6 +2,7 @@
 
 import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type Percentiles, type ColoredKey } from "./types";
+import { Tooltip } from "@/components/tooltip";
 
 export const COLOR_BY_BUCKET = {
   emerald: "text-accent-lime",
@@ -13,7 +14,7 @@ export const COLOR_BY_BUCKET = {
 
 // cost 是反向（数字越小越好），其他正向
 export const ASCENDING: Record<ColoredKey, boolean> = {
-  intelligence: true, coding: true, agentic: true, arenaCode: true, cost: false, tokens: true,
+  intelligence: true, coding: true, agentic: true, cost: false, tokens: true,
 };
 
 export function quantile(sorted: number[], q: number): number {
@@ -53,7 +54,6 @@ export function getRawValue(model: ModelWithScores, key: SortKey): number | null
     case "intelligence": return model.raw.intelligence;
     case "coding": return model.raw.coding ?? null;
     case "agentic": return model.raw.agentic ?? null;
-    case "arenaCode": return model.raw.arena_code ?? null;
     case "cost": return model.raw.openrouter_pricing?.completion ?? null;
     case "tokens": return model.raw.openrouter_weekly_tokens ?? null;
     case "date": return null;
@@ -77,10 +77,11 @@ export function formatScore(val: number | null | undefined): React.ReactNode {
   return val % 1 === 0 ? val : val.toFixed(1);
 }
 
-export function ScoreBar({ value, maxValue = 100, colorPercentiles }: {
+export function ScoreBar({ value, maxValue = 100, colorPercentiles, tipContent }: {
   value: number | null;
   maxValue?: number;
   colorPercentiles?: { p25: number; p50: number; p75: number } | null;
+  tipContent?: string;
 }) {
   if (value == null) return <span className="text-text-dim text-xs">—</span>;
   const pct = Math.min((value / maxValue) * 100, 100);
@@ -94,7 +95,7 @@ export function ScoreBar({ value, maxValue = 100, colorPercentiles }: {
       : pct >= 65 ? "bg-accent-violet"
       : pct >= 50 ? "bg-accent-coral"
       : "bg-text-muted";
-  return (
+  const bar = (
     <div className="flex items-center gap-2">
       <span className="text-sm font-medium text-text-primary w-10 text-right tabular-nums">{value.toFixed(1)}</span>
       <div className="flex-1 h-1.5 rounded-full bg-surface-border overflow-hidden">
@@ -102,4 +103,6 @@ export function ScoreBar({ value, maxValue = 100, colorPercentiles }: {
       </div>
     </div>
   );
+  if (!tipContent) return bar;
+  return <Tooltip content={tipContent}>{bar}</Tooltip>;
 }

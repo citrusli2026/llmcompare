@@ -310,75 +310,93 @@ export function ComparePageClient() {
             </div>
           )}
 
-          {/* Mobile: per-model card view */}
-          <div className="sm:hidden space-y-4">
-            {models.map((m) => {
-              const mTags = getRecommendationTags(m);
-              return (
-                <div key={m.id} className="rounded-xl border border-surface-border bg-surface-card overflow-hidden">
-                  {/* Card header */}
-                  <div className="px-4 py-3 border-b border-surface-border bg-surface-elevated">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="font-semibold text-sm text-text-primary">{m.name}</div>
-                        <div className="text-[10px] text-text-muted">{m.company}</div>
+          {/* Mobile: shared-row comparison — each row shows both models' values side-by-side */}
+          <div className="sm:hidden space-y-3">
+            {/* Verdict header for each model */}
+            <div className="grid grid-cols-2 gap-2 mb-2">
+              {models.map((m) => {
+                const oneLiner = getModelOneLiner(m);
+                const mTags = getRecommendationTags(m);
+                return (
+                  <div key={m.id} className="rounded-lg border border-surface-border bg-surface-card px-3 py-2">
+                    <div className="text-xs font-semibold text-text-primary">{m.name}</div>
+                    <div className="text-[10px] text-text-muted">{m.company}</div>
+                    <div className="flex items-center gap-1 mt-1">
+                      <div className="flex items-center gap-0.5 text-[10px] text-text-secondary">
+                        <Brain className="h-2.5 w-2.5" />
+                        <span>{m.raw.intelligence?.toFixed(1) ?? "—"}</span>
                       </div>
-                      <div className="flex flex-col items-end gap-1">
-                        <Badge variant="secondary" className={cn("text-[10px] py-0 px-1.5", getTypeBadgeClasses(m.type as "开源" | "闭源"))}>
-                          {t(m.type === "开源" ? "common.open" : "common.closed")}
-                        </Badge>
-                        {mTags.length > 0 && (
-                          <span className={cn("inline-flex items-center gap-0.5 rounded-full px-1.5 py-[1px] text-[9px] font-medium", mTags[0].colorClass)}>
-                            <span>{mTags[0].icon}</span>
-                            <span>{t(mTags[0].labelKey)}</span>
-                          </span>
-                        )}
-                      </div>
+                      <Badge variant="secondary" className={cn("text-[8px] py-0 px-1 h-[14px]", getTypeBadgeClasses(m.type as "开源" | "闭源"))}>
+                        {t(m.type === "开源" ? "common.open" : "common.closed")}
+                      </Badge>
                     </div>
                   </div>
-                  {/* Metrics */}
-                  <div className="divide-y divide-surface-border">
-                    {rows.map((row, ri) => {
-                      const Icon = row.icon;
-                      const numVal = row.getNumericValue?.(m) ?? null;
-                      const allValues = models.map((mm) => row.getNumericValue?.(mm) ?? null);
-                      const higherIsBetter = row.labelKey !== "compare.price";
-                      const isBest = isBestValue(numVal, allValues, higherIsBetter);
-                      const isScoreBar = row.labelKey === "compare.intelligence" || row.labelKey === "compare.coding" || row.labelKey === "compare.agentic" || row.labelKey === "compare.speed" || row.labelKey === "compare.price";
-                      const validVals = allValues.filter((v): v is number => v != null);
-                      const maxValue = validVals.length > 0 ? Math.max(...validVals) : 100;
-                      return (
-                        <div key={ri} className={cn("flex items-center justify-between px-4 py-2.5", isBest && "bg-accent-lime/5")}>
-                          <div className="flex items-center gap-1.5">
-                            <Icon className="h-3.5 w-3.5 text-text-muted shrink-0" />
-                            {row.tipKey ? (
-                              <FieldTip tip={t(row.tipKey)}><span className="text-xs text-text-primary">{t(row.labelKey)}</span></FieldTip>
-                            ) : (
-                              <span className="text-xs text-text-primary">{t(row.labelKey)}</span>
+                );
+              })}
+            </div>
+
+            {/* Comparison rows */}
+            <div className="rounded-xl border border-surface-border bg-surface-card divide-y divide-surface-border">
+              {visibleRows.map((row, ri) => {
+                const Icon = row.icon;
+                const values = models.map((m) => row.getNumericValue?.(m) ?? null);
+                const higherIsBetter = row.labelKey !== "compare.price";
+                const isScoreBar = row.labelKey === "compare.intelligence" || row.labelKey === "compare.coding" || row.labelKey === "compare.agentic" || row.labelKey === "compare.speed" || row.labelKey === "compare.price";
+                const validVals = values.filter((v): v is number => v != null);
+                const maxValue = validVals.length > 0 ? Math.max(...validVals) : 100;
+                return (
+                  <div key={ri} className="px-3 py-2.5">
+                    {/* Metric label row */}
+                    <div className="flex items-center gap-1 mb-2">
+                      <Icon className="h-3 w-3 text-text-muted shrink-0" />
+                      {row.tipKey ? (
+                        <FieldTip tip={t(row.tipKey)}><span className="text-[11px] font-medium text-text-primary">{t(row.labelKey)}</span></FieldTip>
+                      ) : (
+                        <span className="text-[11px] font-medium text-text-primary">{t(row.labelKey)}</span>
+                      )}
+                    </div>
+                    {/* Side-by-side values */}
+                    <div className="grid grid-cols-2 gap-2">
+                      {models.map((m, mi) => {
+                        const numVal = row.getNumericValue?.(m) ?? null;
+                        const isBest = isBestValue(numVal, values, higherIsBetter);
+                        return (
+                          <div
+                            key={m.id}
+                            className={cn(
+                              "flex items-center justify-between rounded-lg px-2 py-1.5 min-h-[32px]",
+                              isBest ? "bg-accent-lime/8" : "bg-surface-elevated/50"
                             )}
-                          </div>
-                          <div className="flex items-center gap-1.5">
-                            {isBest && <Star className="h-3 w-3 text-accent-lime shrink-0" />}
-                            <span className={cn("text-xs tabular-nums text-right", isBest ? "font-semibold text-accent-lime" : "text-text-primary")}>
+                          >
+                            <span className={cn(
+                              "text-xs tabular-nums",
+                              isBest ? "font-semibold text-accent-lime" : "text-text-primary"
+                            )}>
                               {row.getValue(m)}
                             </span>
                             {isScoreBar && numVal != null && maxValue > 0 && (() => {
                               const rawPct = Math.min((numVal / maxValue) * 100, 100);
                               const fillPct = higherIsBetter ? rawPct : Math.max(0, 100 - rawPct);
                               return (
-                                <div className="w-12 h-1 rounded-full bg-surface-border overflow-hidden">
+                                <div className="w-10 h-1 rounded-full bg-surface-border overflow-hidden">
                                   <div className={`h-full rounded-full ${barColor(fillPct)} transition-all`} style={{ width: `${fillPct}%` }} />
                                 </div>
                               );
                             })()}
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+
+            {/* Legend */}
+            <div className="flex items-center gap-2 text-[10px] text-text-muted px-1">
+              <Star className="h-3 w-3 text-accent-lime" />
+              <span>{t("compare.bestValue")}</span>
+            </div>
           </div>
 
           {/* Desktop: comparison table — hidden on mobile */}
