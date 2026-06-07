@@ -99,10 +99,15 @@ export function RankingTable({ models, hideArenaCode, initialSortKey, initialSor
       const blended = m.raw.blended;
       if (blended != null) {
         if (blended === 0) return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
+        // Value indicator: smart model at low price
+        const isValue = m.raw.intelligence >= 40 && blended < 1;
         return (
           <span className="inline-flex items-center gap-0.5">
             <span className="tabular-nums">${blended.toFixed(2)}</span>
             <span className="text-text-secondary text-[10px]">/M</span>
+            {isValue && (
+              <span className="ml-0.5 inline-flex text-[10px]" title={t("models.colValueLabel")}>💎</span>
+            )}
           </span>
         );
       }

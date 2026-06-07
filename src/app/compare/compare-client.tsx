@@ -7,6 +7,7 @@ import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, BarChart3, Brain, Code, Bot, Zap, DollarSign, Layers, Calendar, Eye, Weight, MessageSquare, Trophy, Check, Star, X, TrendingUp, Link2, CheckCheck } from "lucide-react";
 import { getModelById, type ModelWithScores } from "@/lib/scoring";
+import { getRecommendationTags, getModelOneLiner } from "@/lib/recommendation-tags";
 import { useTranslation } from "@/lib/i18n";
 import { cn, formatTokenCount, getTypeBadgeClasses } from "@/lib/utils";
 import { Tooltip } from "@/components/tooltip";
@@ -256,6 +257,31 @@ export function ComparePageClient() {
             </button>
           </div>
 
+          {/* Verdict — which model for which scenario */}
+          {models.length >= 2 && (
+            <div className="mb-6 rounded-xl border border-accent-violet/20 bg-accent-violet/[0.03] p-4 sm:p-5">
+              <div className="flex items-center gap-3 mb-3">
+                <Star className="h-5 w-5 text-accent-violet" />
+                <h2 className="text-base sm:text-lg font-semibold text-text-primary">{t("compare.verdictTitle")}</h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {models.map((m) => {
+                  const oneLiner = getModelOneLiner(m);
+                  return (
+                    <div key={m.id} className="rounded-lg border border-surface-border bg-surface-card p-3">
+                      <div className="text-sm font-semibold text-text-primary mb-0.5">{m.name}</div>
+                      <div className="text-xs text-text-secondary mb-1">{t(oneLiner.labelKey)}</div>
+                      <div className="flex items-center gap-1 text-[10px] text-text-muted">
+                        <Brain className="h-3 w-3" />
+                        <span>{t("models.colIntelligence")}: {m.raw.intelligence?.toFixed(1) ?? "—"}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {/* Comparison Table — dual panel: fixed left + scrollable right */}
           <div className="rounded-xl border border-surface-border bg-surface-card overflow-hidden">
             <div className="flex">
@@ -308,6 +334,19 @@ export function ComparePageClient() {
                             >
                               {t(m.type === "开源" ? "common.open" : "common.closed")}
                             </Badge>
+                            {/* Scene recommendation badges */}
+                            {(() => {
+                              const tags = getRecommendationTags(m);
+                              return tags.length > 0 ? (
+                                <span className={cn(
+                                  "inline-flex items-center gap-0.5 rounded-full px-1.5 py-[1px] text-[9px] font-medium mt-0.5",
+                                  tags[0].colorClass
+                                )}>
+                                  <span>{tags[0].icon}</span>
+                                  <span className="truncate max-w-[80px]">{t(tags[0].labelKey)}</span>
+                                </span>
+                              ) : null;
+                            })()}
                           </div>
                         </th>
                       ))}

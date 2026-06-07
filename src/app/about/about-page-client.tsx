@@ -32,7 +32,12 @@ export default function AboutPageClient() {
                 {t("about.backgroundTitle")}
               </h2>
               <p className="text-sm text-text-secondary">
-                {t("about.backgroundDesc")}{" "}
+                {t("about.backgroundDesc")}
+              </p>
+              <p className="text-sm text-text-secondary mt-3">
+                {t("about.backgroundMission")}
+              </p>
+              <p className="text-sm text-text-secondary mt-3">
                 {t("about.backgroundContribute")}{" "}
                 <a
                   href="https://github.com/citrusli2026/llmcompare/issues"

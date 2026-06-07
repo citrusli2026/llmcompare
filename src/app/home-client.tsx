@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
-import { Bot, TrendingUp, ChevronUp, ArrowRight } from "lucide-react";
+import { Bot, TrendingUp, ArrowRight } from "lucide-react";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { StatsStrip } from "@/components/stats-strip";
@@ -13,46 +13,6 @@ import { SceneSelector } from "@/components/scene-selector";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { cn } from "@/lib/utils";
-
-function BackToTop() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setVisible(!entry.isIntersecting),
-      { threshold: 0 }
-    );
-    // Watch a sentinel at the top of the page
-    const sentinel = document.createElement("div");
-    sentinel.id = "scroll-sentinel";
-    sentinel.style.position = "absolute";
-    sentinel.style.top = "0";
-    sentinel.style.height = "1px";
-    sentinel.style.width = "1px";
-    document.body.prepend(sentinel);
-    observer.observe(sentinel);
-
-    return () => {
-      observer.disconnect();
-      sentinel.remove();
-    };
-  }, []);
-
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
-  return (
-    <button
-      onClick={scrollToTop}
-      className={cn(
-        "fixed bottom-20 right-4 sm:bottom-8 sm:right-8 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-accent-violet text-white shadow-lg transition-all duration-300 hover:bg-violet-600",
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
-      )}
-      aria-label="Back to top"
-    >
-      <ChevronUp className="h-5 w-5" />
-    </button>
-  );
-}
 
 export default function HomeClient() {
   const { t } = useTranslation();
@@ -222,8 +182,6 @@ export default function HomeClient() {
         onRemoveModel={handleRemoveCompare}
         onClear={handleClearCompare}
       />
-
-      <BackToTop />
     </div>
   );
 }
