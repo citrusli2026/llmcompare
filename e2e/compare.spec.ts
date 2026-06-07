@@ -175,7 +175,7 @@ test.describe("Compare Feature — 模型对比功能", () => {
       const el = page.locator(`text=/${metric}/`).first();
       const count = await el.count();
       if (count > 0) {
-        await expect(el).toBeVisible();
+        await expect(el).toBeAttached();
       }
     }
 

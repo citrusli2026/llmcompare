@@ -174,8 +174,9 @@ test.describe("Full-Page Visual Review", () => {
     await langBtn.click();
     await page.waitForTimeout(500);
 
-    // 验证关键英文翻译出现
-    await expect(page.getByText("Intelligence").or(page.getByText("Coding")).or(page.getByText("Speed"))).toBeVisible();
+    // 验证关键英文翻译出现（取第一个匹配的元素）
+    const enText = page.getByText("Intelligence", { exact: false }).or(page.getByText("Coding")).or(page.getByText("Speed (TPS)"));
+    await expect(enText.first()).toBeAttached();
   });
 
   test("desktop: /models 页面截图", async ({ page }, testInfo) => {

@@ -120,18 +120,12 @@ test.describe("Home Page", () => {
     await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    // 找到公司筛选下拉框（自定义 combobox）
-    const companySelect = page.locator("[role='combobox']").first();
+    // 找到公司筛选下拉框（native select）
+    const companySelect = page.locator("select").first();
     await expect(companySelect).toBeVisible();
 
-    // 打开下拉框
-    await companySelect.click();
-    await page.waitForTimeout(300);
-
     // 选择 OpenAI
-    const openaiOption = page.locator("[role='option']").filter({ hasText: /OpenAI/ });
-    await expect(openaiOption).toBeVisible();
-    await openaiOption.click();
+    await companySelect.selectOption("OpenAI");
     await page.waitForTimeout(500);
 
     // 验证筛选生效
