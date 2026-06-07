@@ -37,7 +37,8 @@
     "sceneBrowseAll": "浏览全部 {n} 个模型",
     "sceneCollapse": "收起",
     "topPicks": "热门推荐",
-    "viewAllModels": "查看全部 {n} 个模型 →"
+    "viewAllModels": "查看全部 {n} 个模型 →",
+    "startSelection": "开始选型 →"
   },
   "models": {
     "title": "模型目录",
@@ -52,8 +53,8 @@
     "emptyClear": "清除所有筛选",
     "count": "共收录 {count} 个模型",
     "recommendTitle": "🏆 精选推荐",
-    "recommendDesc": "当前筛选中智能分最高的模型——从这里开始",
-    "recommendFirstLoadDesc": "所有模型中智能分最高的热门精选——从这里开始",
+    "recommendDesc": "当前筛选智能分 Top 3 — 快速对比热门选择",
+    "recommendFirstLoadDesc": "全模型智能分 Top 3 — 快速发现热门精选",
     "recommendView": "查看详情 →",
     "sortByIntelligence": "按智能",
     "sortByCoding": "按编程",
@@ -97,7 +98,8 @@
     "arenaDesc": "lmarena.ai（原 Chatbot Arena）是全球最大的众测 LLM 排行榜，基于真人盲测投票生成 ELO 分数。本站采集其文本对话、编程和视觉三榜数据，作为第三方真实使用体验的参考。",
     "orDesc": "全球最大 LLM API 路由平台，提供统一 API 访问，每周公布各模型 Token 消耗排名。本站采集其公开的周度消耗排名和 API 定价，消耗量反映真实热度，定价反映市场行情。",
     "disclaimerDesc": "本图鉴仅供参考，不构成投资或使用建议。模型性能因场景而异，实际体验可能与数据有差异。",
-    "cnPriceLabel": "官价"
+    "cnPriceLabel": "官价",
+    "updateFreq": "数据每日更新"
   },
   "product": {
     "backLink": "返回模型目录",
@@ -248,7 +250,10 @@
     "verdictTitle": "📋 一句话速览",
     "share": "复制分享链接",
     "copied": "已复制",
-    "select": "选择"
+    "select": "选择",
+    "addMore": "添加更多模型",
+    "priceInput": "输入",
+    "priceOutput": "输出"
   },
   "theme": {
     "toggle": "切换主题"

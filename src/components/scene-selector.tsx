@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Code, Bot, DollarSign, Brain, ArrowRight, Minus, Plus } from "lucide-react";
+import { Code, Bot, DollarSign, Brain, ArrowRight, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
@@ -153,26 +153,27 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                 key={scene.key}
                 onClick={() => toggle(scene.key)}
                 className={cn(
-                  "w-full rounded-xl border p-4 text-left transition-all duration-200",
+                  "w-full rounded-xl border p-3 sm:p-4 text-left transition-all duration-200",
                   "hover:shadow-md",
                   isActive
                     ? "ring-2 ring-accent-violet/40 border-accent-violet/40 bg-surface-elevated"
                     : "border-surface-border bg-surface-base hover:border-surface-border-hover"
                 )}
               >
-                <div className="flex items-center gap-2 mb-1.5">
+                <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
                   <Icon className={cn("h-5 w-5", scene.accentClass.split(" ")[0])} />
                   <span className="font-semibold text-text-primary text-sm sm:text-base">
                     {t(scene.labelKey)}
                   </span>
                 </div>
-                <p className="text-xs text-text-muted">{t(scene.descKey)}</p>
-                <div className="mt-2 flex items-center justify-end">
-                  {isActive ? (
-                    <Minus className="h-3.5 w-3.5 text-accent-violet" />
-                  ) : (
-                    <Plus className="h-3.5 w-3.5 text-text-muted" />
-                  )}
+                <p className="text-[10px] sm:text-xs text-text-muted">{t(scene.descKey)}</p>
+                <div className="mt-1.5 flex items-center justify-end">
+                  <ChevronDown
+                    className={cn(
+                      "h-3.5 w-3.5 text-text-muted transition-transform duration-200",
+                      isActive && "rotate-180"
+                    )}
+                  />
                 </div>
               </button>
             );

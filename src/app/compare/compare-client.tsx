@@ -96,13 +96,27 @@ export function ComparePageClient() {
           if (prompt === 0 && completion === 0) {
             return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
           }
-          return <span><span className="tabular-nums">${prompt}/${completion}</span> <Tooltip content={t("common.perMUnit")}><span className="text-text-secondary text-[10px]">/M</span></Tooltip></span>;
+          return                <span className="text-[10px] sm:text-xs">
+                        <span className="text-text-muted">{t("compare.priceInput")}:</span>{" "}
+                        <span className="tabular-nums">${prompt}</span>
+                        {" / "}
+                        <span className="text-text-muted">{t("compare.priceOutput")}:</span>{" "}
+                        <span className="tabular-nums">${completion}</span>{" "}
+                        <Tooltip content={t("common.perMUnit")}><span className="text-text-secondary text-[10px]">/M</span></Tooltip>
+                      </span>;
         }
         if (m.raw.input != null) {
           if (m.raw.input === 0 && m.raw.output === 0) {
             return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
           }
-          return <span><span className="tabular-nums">${m.raw.input}/${m.raw.output}</span> <Tooltip content={t("common.perMUnit")}><span className="text-text-secondary text-[10px]">/M</span></Tooltip></span>;
+          return <span className="text-[10px] sm:text-xs">
+                <span className="text-text-muted">{t("compare.priceInput")}:</span>{" "}
+                <span className="tabular-nums">${m.raw.input}</span>
+                {" / "}
+                <span className="text-text-muted">{t("compare.priceOutput")}:</span>{" "}
+                <span className="tabular-nums">${m.raw.output}</span>{" "}
+                <Tooltip content={t("common.perMUnit")}><span className="text-text-secondary text-[10px]">/M</span></Tooltip>
+              </span>;
         }
         return "—";
       },
@@ -188,6 +202,20 @@ export function ComparePageClient() {
       tipKey: "tip.mmluPro",
     },
   ], [t]);
+
+  // Filter out rows where ALL models show "—" (no data available)
+  const visibleRows = useMemo(() => {
+    return rows.filter((row) => {
+      if (row.getNumericValue) {
+        const values = models.map((m) => row.getNumericValue!(m) ?? null);
+        return values.some((v) => v != null);
+      }
+      // For rows without numeric values (parameters, releaseDate, flags),
+      // check if getValue returns anything other than "—"
+      const displayValues = models.map((m) => row.getValue(m));
+      return displayValues.some((v) => v !== "—");
+    });
+  }, [rows, models]);
 
   if (models.length === 0) {
     return (
@@ -361,7 +389,7 @@ export function ComparePageClient() {
                 <div className="px-1.5 py-2 sm:px-6 sm:py-4 text-xs font-semibold text-text-muted uppercase tracking-wider">
                   {t("compare.colName")}
                 </div>
-                {rows.map((row, ri) => {
+                {visibleRows.map((row, ri) => {
                   const Icon = row.icon;
                   return (
                     <div
@@ -426,17 +454,15 @@ export function ComparePageClient() {
                     </tr>
                   </thead>
                   <tbody>
-                    {rows.map((row, ri) => {
+                    {visibleRows.map((row, ri) => {
                       const values = models.map((m) => row.getNumericValue?.(m) ?? null);
                       const higherIsBetter = row.labelKey !== "compare.price";
-                      const allEmpty = values.every((v) => v == null);
                       return (
                         <tr
                           key={ri}
                           className={cn(
                             "border-b border-surface-border last:border-b-0",
-                            ri % 2 === 1 ? "bg-surface-elevated" : "",
-                            allEmpty && "opacity-40"
+                            ri % 2 === 1 ? "bg-surface-elevated" : ""
                           )}
                         >
                           {models.map((m) => {
@@ -495,6 +521,17 @@ export function ComparePageClient() {
             <span className="flex items-center gap-1">
               <Star className="h-3 w-3 text-accent-lime" /> {t("compare.bestValue")}
             </span>
+          </div>
+
+          {/* Add more models CTA */}
+          <div className="mt-6 flex justify-center">
+            <Link
+              href="/models"
+              className="inline-flex items-center gap-2 rounded-lg border border-accent-violet/20 bg-accent-violet/5 px-5 py-2.5 text-sm font-medium text-accent-violet hover:bg-accent-violet/10 hover:border-accent-violet/30 transition-all group"
+            >
+              {t("compare.addMore")}
+              <ArrowLeft className="h-4 w-4 rotate-180 transition-transform group-hover:translate-x-0.5" />
+            </Link>
           </div>
         </div>
       </div>

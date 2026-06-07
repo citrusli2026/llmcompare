@@ -37,7 +37,8 @@
     "sceneBrowseAll": "Browse all {n} models",
     "sceneCollapse": "Collapse",
     "topPicks": "Top Picks",
-    "viewAllModels": "View all {n} models →"
+    "viewAllModels": "View all {n} models →",
+    "startSelection": "Start Selection →"
   },
   "models": {
     "title": "Model Directory",
@@ -52,8 +53,8 @@
     "emptyClear": "Clear all filters",
     "count": "{count} models",
     "recommendTitle": "🏆 Top Pick",
-    "recommendDesc": "Highest intelligence in current results — start here",
-    "recommendFirstLoadDesc": "Highest intelligence across all models — start exploring here",
+    "recommendDesc": "Top 3 by intelligence in current filter",
+    "recommendFirstLoadDesc": "Top 3 by intelligence — discover top picks",
     "recommendView": "View details →",
     "sortByIntelligence": "By Intelligence",
     "sortByCoding": "By Coding",
@@ -97,7 +98,8 @@
     "arenaDesc": "lmarena.ai (formerly Chatbot Arena) is the world's largest crowdsourced LLM leaderboard, generating ELO scores based on blind human evaluation. We collect its text, coding, and vision leaderboard data as a reference for real-world usage experience.",
     "orDesc": "The world's largest LLM API routing platform, providing unified API access and weekly token consumption rankings. We collect its public weekly rankings and API pricing — volume reflects real-world usage, pricing reflects market rates.",
     "disclaimerDesc": "This field guide is for reference only. Model performance varies by use case and may differ from the data presented.",
-    "cnPriceLabel": "Official"
+    "cnPriceLabel": "Official",
+    "updateFreq": "Updated Daily"
   },
   "product": {
     "backLink": "Back to Model Directory",
@@ -248,7 +250,10 @@
     "verdictTitle": "📋 Quick Verdict",
     "share": "Copy Share Link",
     "copied": "Copied!",
-    "select": "Select"
+    "select": "Select",
+    "addMore": "Add More Models",
+    "priceInput": "Input",
+    "priceOutput": "Output"
   },
   "theme": {
     "toggle": "Toggle theme"

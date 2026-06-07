@@ -59,6 +59,11 @@ export default function AboutPageClient() {
 
               <div className="space-y-4 text-sm">
                 <p className="text-text-secondary">{t("about.filterDesc")}</p>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-accent-lime/10 px-2.5 py-0.5 text-[10px] font-medium text-accent-lime">
+                    <Database className="h-3 w-3" /> {t("about.updateFreq")}
+                  </span>
+                </div>
                 <div className="rounded-lg bg-surface-hover p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <Brain className="h-4 w-4 text-accent-violet" />
