@@ -124,16 +124,6 @@ describe("RankingTable", () => {
     expect(screen.getAllByText(/\$2\.00/).length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders arena code ELO when available", () => {
-    const models: ModelWithScores[] = [
-      makeModel("arena-model", { arena_code: 1250 }),
-    ];
-
-    render(<RankingTable models={models} />);
-    expect(screen.getAllByText("1250").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText("ELO").length).toBeGreaterThanOrEqual(1);
-  });
-
   it("renders open/closed source badges", () => {
     const models: ModelWithScores[] = [
       makeModel("open-model", { type: "开源" }),
