@@ -243,48 +243,6 @@ export default function ModelsPageClient() {
             </p>
           </div>
 
-          {/* Recommendation banner — moved above search/filter to be first visual guide */}
-          {topPick && (
-            <div className="mb-4 sm:mb-6 rounded-xl border border-accent-violet/20 bg-accent-violet/5 p-4 sm:p-5">
-              <div className="flex items-start gap-3 sm:gap-4">
-                <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-violet/10">
-                  <Trophy className="h-5 w-5 text-accent-violet" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm font-semibold text-text-primary">{t("models.recommendTitle")}</span>
-                    <span className="text-xs text-text-muted">{t("models.recommendFirstLoadDesc")}</span>
-                  </div>
-                  <Link
-                    href={`/product/${topPick.id}`}
-                    className="inline-flex items-center gap-2.5 rounded-lg bg-surface-card border border-surface-border px-3.5 py-2.5 transition-all hover:border-accent-violet/30 hover:shadow-sm hover:-translate-y-0.5 group"
-                  >
-                    <div className="h-8 w-8 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
-                      {topPick.logo ? (
-                        <img src={topPick.logo} alt="" className="h-5 w-5 object-contain"
-                          onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-                        />
-                      ) : (
-                        <span className="text-xs font-bold text-text-muted">{topPick.name.charAt(0)}</span>
-                      )}
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold text-text-primary group-hover:text-accent-violet transition-colors">
-                        {topPick.name}
-                      </div>
-                      <div className="text-xs text-text-muted">
-                        {topPick.company} · {t("models.colIntelligence")} {topPick.raw.intelligence?.toFixed(1) ?? "—"}
-                      </div>
-                    </div>
-                    <span className="ml-auto text-xs text-accent-violet font-medium whitespace-nowrap">
-                      {t("models.recommendView")}
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
-
           {/* 搜索框—独立一行 */}
           <div className="mb-4 sm:mb-6 w-full sm:w-auto">
             <SearchInput
