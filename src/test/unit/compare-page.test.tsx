@@ -13,7 +13,6 @@ vi.mock("@/lib/i18n", () => ({
       if (params) {
         return key.replace(/\{(\w+)\}/g, (_, k) => String(params[k] ?? `{${k}}`));
       }
-      // Return a recognizable value for specific keys
       const labels: Record<string, string> = {
         "compare.noModels": "No models selected",
         "compare.noModelsDesc": "Select models to compare their capabilities",
@@ -45,14 +44,12 @@ vi.mock("@/lib/i18n", () => ({
   }),
 }));
 
-// Mock next/link
 vi.mock("next/link", () => ({
   default: ({ children, href }: { children: React.ReactNode; href: string }) => (
     <a href={href}>{children}</a>
   ),
 }));
 
-// Mock next/navigation — shared state allows per-test param injection
 vi.mock("next/navigation", () => ({
   useRouter: () => ({
     push: vi.fn(),
@@ -61,13 +58,11 @@ vi.mock("next/navigation", () => ({
     back: vi.fn(),
   }),
   useSearchParams: () => mockSearchParams,
+  useParams: () => ({ ids: undefined }),
   usePathname: () => "/compare",
 }));
 
-// Mock scoring to return controlled model data
-// Mock scoring to return controlled model data
 const mockGetModelById = vi.fn();
-// Provide minimal models for recommendation-tags which calls getAllModels internally
 const mockAllModels = vi.hoisted(() => {
   return [
     {
@@ -123,7 +118,6 @@ describe("ComparePageClient", () => {
 
   describe("empty state", () => {
     it("shows no-models placeholder when no query param", () => {
-      mockSearchParams = new URLSearchParams();
       render(<ComparePageClient />);
       expect(screen.getByText("No models selected")).toBeInTheDocument();
       expect(screen.getByText("Select models to compare their capabilities")).toBeInTheDocument();
@@ -169,7 +163,6 @@ describe("ComparePageClient", () => {
       render(<ComparePageClient />);
       expect(screen.getAllByText("model-a").length).toBeGreaterThanOrEqual(1);
       expect(screen.getAllByText("model-b").length).toBeGreaterThanOrEqual(1);
-      // Both mobile and desktop views render company — use getAll
       expect(screen.getAllByText("AlphaCorp").length).toBeGreaterThanOrEqual(1);
       expect(screen.getAllByText("BetaInc").length).toBeGreaterThanOrEqual(1);
     });
@@ -177,7 +170,6 @@ describe("ComparePageClient", () => {
     it("renders intelligence scores for all models", () => {
       mockSearchParams = new URLSearchParams("models=model-a,model-b");
       render(<ComparePageClient />);
-      // Both mobile and desktop views render scores — use getAll
       expect(screen.getAllByText("85.50").length).toBeGreaterThanOrEqual(1);
       expect(screen.getAllByText("72.30").length).toBeGreaterThanOrEqual(1);
     });
@@ -185,7 +177,6 @@ describe("ComparePageClient", () => {
     it("renders speed column correctly (t/s format)", () => {
       mockSearchParams = new URLSearchParams("models=model-a,model-b");
       render(<ComparePageClient />);
-      // Both mobile and desktop views render speed — use getAll
       expect(screen.getAllByText("120.5 t/s").length).toBeGreaterThanOrEqual(1);
       expect(screen.getAllByText("200.0 t/s").length).toBeGreaterThanOrEqual(1);
     });
@@ -193,7 +184,6 @@ describe("ComparePageClient", () => {
     it("highlights best values", () => {
       mockSearchParams = new URLSearchParams("models=model-a,model-b");
       const { container } = render(<ComparePageClient />);
-      // Model A has higher intelligence → should be highlighted
       const stars = container.querySelectorAll("svg.text-accent-lime");
       expect(stars.length).toBeGreaterThan(0);
     });
@@ -213,7 +203,6 @@ describe("ComparePageClient", () => {
       );
       mockSearchParams = new URLSearchParams("models=single");
       render(<ComparePageClient />);
-      // Both mobile and desktop views render model name — use getAll
       expect(screen.getAllByText("single").length).toBeGreaterThanOrEqual(1);
       expect(screen.getByText(/1 Models/)).toBeInTheDocument();
     });
@@ -228,8 +217,6 @@ describe("ComparePageClient", () => {
       );
       mockSearchParams = new URLSearchParams("models=none");
       const { container } = render(<ComparePageClient />);
-      // Intelligence row with no data is hidden (filtered out by visibleRows).
-      // Check that other rows still render and page doesn't crash.
       const labels = container.querySelectorAll("th, td");
       expect(labels.length).toBeGreaterThan(0);
     });
@@ -238,7 +225,6 @@ describe("ComparePageClient", () => {
       mockGetModelById.mockReturnValue(null);
       mockSearchParams = new URLSearchParams("models=nonexistent");
       render(<ComparePageClient />);
-      // Falls back to empty state when no valid models
       expect(screen.getByText("No models selected")).toBeInTheDocument();
     });
   });
