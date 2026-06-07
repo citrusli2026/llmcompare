@@ -14,7 +14,7 @@ import { CompareBar } from "@/components/compare-bar";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { cn } from "@/lib/utils";
-import { Bot, SearchX, X, Sparkles, Trophy, Code, DollarSign } from "lucide-react";
+import { Bot, SearchX, X, Sparkles, Trophy, Code, DollarSign, Home } from "lucide-react";
 
 const FILTER_KEYS = ["全部", "开源", "闭源"] as const;
 type Filter = (typeof FILTER_KEYS)[number];
@@ -407,6 +407,33 @@ export default function ModelsPageClient() {
                   );
                 })}
               </div>
+
+              {/* Scene context indicator — shows when user arrived from home page scene selection */}
+              {initialSort && ["intelligence", "coding", "agentic", "cost"].includes(initialSort) && (
+                <div className="mb-4 flex items-center gap-2 rounded-xl border border-accent-violet/10 bg-accent-violet/[0.03] px-4 py-3">
+                  <span className="text-sm">🎯</span>
+                  <span className="text-sm text-text-primary font-medium">
+                    {t("models.sceneBrowsing", {
+                      scene: t(
+                        initialSort === "intelligence"
+                          ? "models.sortByIntelligence"
+                          : initialSort === "coding"
+                          ? "models.sortByCoding"
+                          : initialSort === "agentic"
+                          ? "models.sortByAgent"
+                          : "models.sortByValue"
+                      ),
+                    })}
+                  </span>
+                  <Link
+                    href="/"
+                    className="ml-auto flex items-center gap-1 text-xs text-accent-violet hover:text-violet-500 transition-colors whitespace-nowrap"
+                  >
+                    <Home className="h-3 w-3" />
+                    {t("models.sceneBrowsingBack")}
+                  </Link>
+                </div>
+              )}
 
               <RankingTable models={filteredModels} initialSortKey={initialSort ?? undefined} />
               <div className="mt-8 text-center text-sm text-text-muted">
