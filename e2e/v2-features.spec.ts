@@ -96,9 +96,8 @@ test.describe("V2 — Models Page Guidance", () => {
     await page.goto("/models?filter=开源&company=OpenAI");
     await page.waitForLoadState("networkidle");
 
-    // Should show empty state with guidance
-    const emptyState = page.locator("text=/未找到|No matching|试试|Try/");
-    await expect(emptyState).toBeVisible();
+    // Should show empty state with guidance — check both heading and suggestion
+    await expect(page.getByText("未找到匹配的模型")).toBeVisible();
   });
 });
 
