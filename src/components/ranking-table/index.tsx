@@ -180,7 +180,7 @@ export function RankingTable({ models, hideArenaCode, initialSortKey, initialSor
           <table className="w-full caption-bottom text-sm">
             <thead className="sticky top-0 z-10 bg-surface-card">
               <tr className="border-b border-surface-border hover:bg-transparent">
-                <th className="h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap w-10 sm:w-12">
+                <th className="h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap w-16 sm:w-20">
                   <span className="sr-only">{t("compare.select")}</span>
                 </th>
                 <th className="h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap text-text-muted">
