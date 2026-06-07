@@ -59,6 +59,16 @@ export default function HomeClient() {
           <p className="mt-3 text-sm sm:text-base md:text-lg text-text-secondary max-w-2xl mx-auto">
             {t("home.heroDesc")}
           </p>
+
+          {/* Primary CTA — Start Selection */}
+          <div className="mt-6 flex justify-center">
+            <Link
+              href="/models"
+              className="inline-flex items-center gap-2 rounded-full bg-accent-violet px-6 py-3 text-sm font-semibold text-white hover:bg-violet-600 transition-all shadow-lg shadow-accent-violet/20 hover:shadow-xl hover:shadow-accent-violet/30 hover:-translate-y-0.5 active:scale-95"
+            >
+              {t("home.startSelection")}
+            </Link>
+          </div>
         </div>
 
         {/* Scene Selection Cards — inline in hero */}
