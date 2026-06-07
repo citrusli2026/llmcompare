@@ -259,7 +259,7 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                 href={`/models?sort=${SCENE_SORT_MAP[expanded]}`}
                 className="flex items-center justify-center gap-1 py-2.5 text-sm text-accent-violet hover:text-violet-500 border-t border-surface-border transition-colors"
               >
-                {t("home.sceneBrowseAll", { n: totalCount })}
+                {t("home.sceneBrowseAll")}
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
