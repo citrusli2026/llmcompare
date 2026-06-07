@@ -372,32 +372,41 @@ export default function ModelsPageClient() {
                       </Link>
                     </div>
                   </div>
-
-                  {/* Scene quick-sort chips */}
-                  <div className="mt-3.5 flex flex-wrap items-center gap-1.5">
-                    <span className="text-xs text-text-muted mr-0.5">{t("models.sortBy")}：</span>
-                    {SCENE_SORTS.map((scene) => {
-                      const SceneIcon = scene.icon;
-                      const isActiveSort = initialSort === scene.sortKey || (!initialSort && scene.sortKey === "intelligence");
-                      return (
-                        <button
-                          key={scene.key}
-                          onClick={() => handleSceneSort(scene.sortKey)}
-                          className={cn(
-                            "inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-medium transition-all",
-                            isActiveSort
-                              ? "border-accent-violet/30 bg-accent-violet/10 text-accent-violet"
-                              : "border-surface-border bg-surface-card text-text-secondary hover:border-accent-violet/20 hover:text-accent-violet"
-                          )}
-                        >
-                          <SceneIcon className="h-3 w-3" />
-                          {t(scene.labelKey)}
-                        </button>
-                      );
-                    })}
-                  </div>
                 </div>
               )}
+
+              {/* Scene sort bar — always visible, not just when filters are active */}
+              {/* This transforms /models from "a data table" into "a selection tool" */}
+              {/* by guiding users to browse by scene even on first load */}
+              <div className={cn(
+                "mb-4 flex flex-wrap items-center gap-1.5",
+                !hasActiveFilters && "rounded-xl border border-surface-border bg-surface-card p-3 sm:p-4"
+              )}>
+                {!hasActiveFilters && (
+                  <span className="text-xs text-text-muted mr-1 whitespace-nowrap">
+                    {t("models.sortBy")}：
+                  </span>
+                )}
+                {SCENE_SORTS.map((scene) => {
+                  const SceneIcon = scene.icon;
+                  const isActiveSort = initialSort === scene.sortKey || (!initialSort && scene.sortKey === "intelligence");
+                  return (
+                    <button
+                      key={scene.key}
+                      onClick={() => handleSceneSort(scene.sortKey)}
+                      className={cn(
+                        "inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-medium transition-all",
+                        isActiveSort
+                          ? "border-accent-violet/30 bg-accent-violet/10 text-accent-violet"
+                          : "border-surface-border bg-surface-card text-text-secondary hover:border-accent-violet/20 hover:text-accent-violet"
+                      )}
+                    >
+                      <SceneIcon className="h-3 w-3" />
+                      {t(scene.labelKey)}
+                    </button>
+                  );
+                })}
+              </div>
 
               <RankingTable models={filteredModels} initialSortKey={initialSort ?? undefined} />
               <div className="mt-8 text-center text-sm text-text-muted">
