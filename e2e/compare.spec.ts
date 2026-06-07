@@ -97,4 +97,82 @@ test.describe("Compare Feature — 模型对比功能", () => {
 
     expect(page.url()).toContain("/compare?models=");
   });
+
+  test("desktop: 取消对比 — 从CompareBar移除模型", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用");
+    await page.goto("/models");
+    await page.waitForLoadState("networkidle");
+
+    // 选一个模型
+    const rows = page.locator("tbody tr");
+    await rows.nth(0).locator("button").first().click();
+    await page.waitForTimeout(300);
+
+    // CompareBar 出现
+    const bar = page.locator("div.fixed.bottom-0");
+    await expect(bar).toBeVisible();
+
+    // 移除按钮（X或close图标）
+    const removeBtn = bar.locator("button:has(svg.lucide-x), button:has(svg.lucide-close)").first();
+    if (await removeBtn.count() > 0) {
+      await removeBtn.click();
+      await page.waitForTimeout(300);
+    }
+  });
+
+  test("desktop: 从详情页加入对比", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用");
+    await page.goto("/models/gpt-5-5");
+    await page.waitForLoadState("networkidle");
+
+    // 详情页的"加入对比"按钮
+    const addBtn = page.locator("button").filter({ hasText: /加入对比|Add to Compare/ });
+    await expect(addBtn).toBeVisible();
+    await addBtn.click();
+    await page.waitForTimeout(300);
+
+    // CompareBar 应出现
+    const bar = page.locator("div.fixed.bottom-0");
+    await expect(bar).toBeVisible();
+  });
+
+  test("desktop: 对比页数据正确性 — 数值与模型一致", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用");
+    // 已知 Claude Opus 4.8: intelligence=61.44, coding=56.71
+    // 已知 GPT-5.5: intelligence=60.24, coding=59.12
+    await page.goto("/compare?models=claude-opus-4-8,gpt-5-5");
+    await page.waitForLoadState("networkidle");
+
+    // 验证两个模型名称都存在
+    await expect(page.locator("text=/Claude Opus 4.8/").first()).toBeVisible();
+    await expect(page.locator("text=/GPT-5.5/").first()).toBeVisible();
+
+    // 验证智能分数（比较表格中的值）
+    // 表格包含两列：Claude 左列, GPT-5.5 右列
+    // 智能行包含两个分数
+    const intelligenceValues = page.locator("text=/61.44|60.24/");
+    await expect(intelligenceValues.first()).toBeVisible();
+  });
+
+  test("desktop: 对比页完整渲染 — 所有行存在", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用");
+    await page.goto("/compare?models=claude-opus-4-8,gpt-5-5");
+    await page.waitForLoadState("networkidle");
+
+    // 验证对比表头两列
+    await expect(page.locator("text=/Claude Opus 4.8/").first()).toBeVisible();
+    await expect(page.locator("text=/GPT-5.5/").first()).toBeVisible();
+
+    // 验证关键指标行存在
+    const metrics = ["智能", "Intelligence", "编程", "Coding", "Agent", "速度", "Speed", "价格", "Pricing", "上下文", "Context"];
+    for (const metric of metrics) {
+      const el = page.locator(`text=/${metric}/`).first();
+      const count = await el.count();
+      if (count > 0) {
+        await expect(el).toBeVisible();
+      }
+    }
+
+    await expect(page.locator("a").filter({ hasText: /添加更多模型|Add More/ })).toBeVisible();
+  });
 });

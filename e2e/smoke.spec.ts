@@ -55,6 +55,90 @@ test.describe("Home Page", () => {
     await expect(firstRow).toBeVisible();
   });
 
+  test("hero CTA navigates to /models", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+
+    // 点击 Hero 区主按钮 "开始选型"
+    const startBtn = page.locator("a").filter({ hasText: /开始选型|Start Selection/ });
+    await expect(startBtn).toBeVisible();
+    await startBtn.click();
+    await page.waitForURL("**/models");
+    await expect(page.locator("h1")).toBeVisible();
+  });
+
+  test("hot picks card navigates to detail page", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+
+    // 热门推荐区的第一张卡片点击
+    const topPicksSection = page.locator("section").filter({ hasText: /热门推荐|Top Picks/ });
+    const firstCard = topPicksSection.locator("a[href^='/models/']").first();
+    await expect(firstCard).toBeVisible();
+    const href = await firstCard.getAttribute("href");
+    await firstCard.click();
+    await page.waitForURL(`**${href}`);
+    await expect(page.locator("h1")).toBeVisible();
+  });
+
+  test("sort by cost works", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
+    await page.goto("/models");
+    await page.waitForLoadState("networkidle");
+
+    // 点击按性价比排序按钮
+    const costBtn = page.locator("button").filter({ hasText: /性价比|Cost|Value/ });
+    await expect(costBtn).toBeVisible();
+    await costBtn.click();
+    await page.waitForTimeout(500);
+
+    // 验证第一个模型可见
+    const firstRow = page.locator("tbody tr").first();
+    await expect(firstRow).toBeVisible();
+  });
+
+  test("feature tag filters work", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
+    await page.goto("/models");
+    await page.waitForLoadState("networkidle");
+
+    // 点击"开源"标签筛选
+    const openBtn = page.locator("button").filter({ hasText: /开源|Open Source/ });
+    await expect(openBtn).toBeVisible();
+    await openBtn.click();
+    await page.waitForTimeout(300);
+
+    // 验证筛选生效 — 至少有一个结果
+    const rows = page.locator("tbody tr");
+    await expect(rows.first()).toBeVisible();
+  });
+
+  test("company filter dropdown works", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
+    await page.goto("/models");
+    await page.waitForLoadState("networkidle");
+
+    // 找到公司筛选下拉框并点击
+    const companySelect = page.locator("select, [role='combobox']").first();
+    await expect(companySelect).toBeVisible();
+    await companySelect.click();
+    await page.waitForTimeout(300);
+
+    // 选择 OpenAI
+    const openaiOption = page.locator("option, [role='option']").filter({ hasText: /OpenAI/ });
+    if (await openaiOption.count() > 0) {
+      await openaiOption.click();
+      await page.waitForTimeout(500);
+
+      // 验证筛选生效
+      const rows = page.locator("tbody tr");
+      const count = await rows.count();
+      expect(count).toBeGreaterThan(0);
+    }
+  });
+
   test("mobile view renders correctly", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用测试");
     await page.goto("/");

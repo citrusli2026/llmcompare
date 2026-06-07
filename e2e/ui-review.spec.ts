@@ -154,6 +154,29 @@ test.describe("Full-Page Visual Review", () => {
     await page.screenshot({ path: `${SCREENSHOTS}/full-detail-desktop.png`, fullPage: true });
   });
 
+  test("mobile: 模型详情页截图", async ({ page }, testInfo) => {
+    test.skip(!isMobile(testInfo.project.name), "移动端专用");
+    await page.goto("/models/gpt-5-5");
+    await page.waitForLoadState("networkidle");
+
+    await expect(page.locator("h1")).toBeVisible();
+    await page.screenshot({ path: `${SCREENSHOTS}/full-detail-mobile.png`, fullPage: true });
+  });
+
+  test("desktop: 详情页语言切换后关键字段翻译", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用");
+    await page.goto("/models/gpt-5-5");
+    await page.waitForLoadState("networkidle");
+
+    // 切换到英文
+    const langBtn = page.locator("button").filter({ hasText: /EN|中/ });
+    await langBtn.click();
+    await page.waitForTimeout(500);
+
+    // 验证关键英文翻译出现
+    await expect(page.getByText("Intelligence").or(page.getByText("Coding")).or(page.getByText("Speed"))).toBeVisible();
+  });
+
   test("desktop: /models 页面截图", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");

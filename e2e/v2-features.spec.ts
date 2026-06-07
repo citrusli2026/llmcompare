@@ -22,6 +22,30 @@ test.describe("V2 — Scene Cards on Homepage", () => {
     const modelLinks = page.locator("a[href^='/models/']");
     await expect(modelLinks.first()).toBeVisible();
   });
+
+  test("expand all 4 scene cards — Agent, Value, Reasoning", async ({ page }) => {
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+
+    // 点击每个未展开的场景卡片 — 验证展开后显示推荐列表
+    const scenes = [
+      { btn: /Agent/, title: /Agent/ },
+      { btn: /性价比|Value/, title: /性价比|Value/ },
+      { btn: /推理|Reasoning/, title: /推理|Reasoning/ },
+    ];
+
+    for (const scene of scenes) {
+      const btn = page.locator("button").filter({ hasText: scene.btn }).first();
+      await expect(btn).toBeVisible();
+      await btn.click();
+      await page.waitForTimeout(400);
+
+      // 验证展开后出现模型链接
+      const modelLinks = page.locator("a[href^='/models/']");
+      const count = await modelLinks.count();
+      expect(count).toBeGreaterThan(0);
+    }
+  });
 });
 
 test.describe("V2 — Top Picks Cards", () => {
