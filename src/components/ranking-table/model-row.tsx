@@ -105,6 +105,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
       </TableCell>
       {headers.map((h) => {
         const isScoreBar = h.key === "intelligence" || h.key === "coding" || h.key === "agentic";
+        const tipKey = isScoreBar ? `tip.${h.key}` as const : null;
         return (
           <TableCell
             key={h.key}
@@ -115,7 +116,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
               getScoreColor(getRawValue(model, h.key), h.key, percentiles)
             )}
           >
-            {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} maxValue={globalMax[h.key]} colorPercentiles={percentiles[h.key]} /> : renderers[h.key](model)}
+            {isScoreBar ? <ScoreBar value={getRawValue(model, h.key)} maxValue={globalMax[h.key]} colorPercentiles={percentiles[h.key]} tipContent={tipKey ? t(tipKey) : undefined} /> : renderers[h.key](model)}
           </TableCell>
         );
       })}
