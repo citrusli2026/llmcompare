@@ -15,7 +15,7 @@ test.describe("Home Page", () => {
     // 场景选择按钮可见（V2 改版后首页以场景选择为核心）
     await expect(page.locator("button").filter({ hasText: /编程|Coding/ })).toBeVisible();
     // Top Picks 推荐卡片可见
-    await expect(page.locator("a[href^='/product/']").first()).toBeVisible();
+    await expect(page.locator("a[href^='/models/']").first()).toBeVisible();
 
     await page.screenshot({ path: `${SCREENSHOTS}/home-desktop.png`, fullPage: true });
   });
@@ -80,7 +80,7 @@ test.describe("Home Page", () => {
     await page.waitForTimeout(300);
 
     // 展开后应有模型链接
-    await expect(page.locator("a[href^='/product/']").first()).toBeVisible();
+    await expect(page.locator("a[href^='/models/']").first()).toBeVisible();
 
     await page.screenshot({ path: `${SCREENSHOTS}/home-mobile-sorted.png`, fullPage: true });
   });
@@ -91,7 +91,7 @@ test.describe("Product Detail", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    const firstLink = page.locator("a[href^='/product/']").first();
+    const firstLink = page.locator("a[href^='/models/']").first();
     const href = await firstLink.getAttribute("href");
     await page.goto(href!);
     await page.waitForLoadState("networkidle");
@@ -106,7 +106,7 @@ test.describe("Product Detail", () => {
 
   test("product with arena votes shows votes card", async ({ page }) => {
     // 找一个有 arena_votes 的模型（如 Gemini）
-    await page.goto("/product/gemini-3-1-pro-preview");
+    await page.goto("/models/gemini-3-1-pro-preview");
     await page.waitForLoadState("networkidle");
 
     // 检查页面加载成功（有模型名称）
@@ -119,7 +119,7 @@ test.describe("Product Detail", () => {
 
   test("product without arena votes hides votes card", async ({ page }) => {
     // 找一个没有 arena_votes 的模型
-    await page.goto("/product/qwen3-7-max");
+    await page.goto("/models/qwen3-7-max");
     await page.waitForLoadState("networkidle");
 
     // 检查没有 Arena 投票数卡片
@@ -201,7 +201,7 @@ test.describe("Data Quality", () => {
     await page.waitForLoadState("networkidle");
 
     // 获取所有产品链接
-    const links = await page.locator("a[href^='/product/']").all();
+    const links = await page.locator("a[href^='/models/']").all();
     const attrs = await Promise.all(links.map(l => l.getAttribute("href")));
     const hrefs = Array.from(new Set(attrs.filter((h): h is string => h !== null))).slice(0, 5);
 

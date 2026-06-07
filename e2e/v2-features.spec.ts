@@ -19,7 +19,7 @@ test.describe("V2 — Scene Cards on Homepage", () => {
     // Coding scene is expanded by default — model links should be visible
     const sceneSection = page.locator("button").filter({ hasText: /编程|Coding/ }).locator("..");
     // After clicking, the expanded area should contain model links
-    const modelLinks = page.locator("a[href^='/product/']");
+    const modelLinks = page.locator("a[href^='/models/']");
     await expect(modelLinks.first()).toBeVisible();
   });
 });
@@ -30,7 +30,7 @@ test.describe("V2 — Top Picks Cards", () => {
     await page.waitForLoadState("networkidle");
 
     // Top Picks section with 5 cards linking to product pages
-    const recommendationCards = page.locator("section").filter({ hasText: /热门推荐|Top Picks/ }).locator("a[href^='/product/']");
+    const recommendationCards = page.locator("section").filter({ hasText: /热门推荐|Top Picks/ }).locator("a[href^='/models/']");
     await expect(recommendationCards).not.toHaveCount(0);
   });
 });
@@ -42,7 +42,7 @@ test.describe("V2 — Detail Page Recommendations", () => {
     await page.waitForLoadState("networkidle");
 
     // Click first model link from scene selector or top picks
-    const firstModelLink = page.locator("a[href^='/product/']").first();
+    const firstModelLink = page.locator("a[href^='/models/']").first();
     const href = await firstModelLink.getAttribute("href");
     await page.goto(href!);
     await page.waitForLoadState("networkidle");
@@ -61,13 +61,13 @@ test.describe("V2 — Detail Page Recommendations", () => {
 
   test("shows similar models section", async ({ page }) => {
     // Go directly to a well-known model detail page
-    await page.goto("/product/gpt-5-5");
+    await page.goto("/models/gpt-5-5");
     await page.waitForLoadState("networkidle").catch(() => {});
     // Fallback: use any product page
     if (await page.locator("h1").count() === 0) {
       await page.goto("/");
       await page.waitForLoadState("networkidle");
-      const firstLink = page.locator("a[href^='/product/']").first();
+      const firstLink = page.locator("a[href^='/models/']").first();
       const href = await firstLink.getAttribute("href");
       await page.goto(href!);
       await page.waitForLoadState("networkidle");

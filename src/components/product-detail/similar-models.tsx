@@ -82,7 +82,7 @@ export function SimilarModels({ model }: SimilarModelsProps) {
         {similar.map((m) => (
           <Link
             key={m.id}
-            href={`/product/${m.id}`}
+            href={`/models/${m.id}`}
             className="rounded-xl border border-surface-border bg-surface-card p-3 sm:p-4 transition-all duration-200 hover:border-accent-violet/30 hover:shadow-md hover:-translate-y-0.5 group"
           >
             {/* Logo + Name row */}

@@ -32,7 +32,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
   const router = useRouter();
 
   const handleCardClick = useCallback(() => {
-    router.push(`/product/${model.id}`);
+    router.push(`/models/${model.id}`);
   }, [router, model.id]);
 
   // ── Compare logic ──
