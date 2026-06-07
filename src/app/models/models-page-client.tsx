@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
@@ -13,11 +13,25 @@ import { SearchInput } from "@/components/search-input";
 import { CompareBar } from "@/components/compare-bar";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
+import { useUrlSearchParams } from "@/hooks/use-url-search-params";
 import { cn } from "@/lib/utils";
 import { Bot, SearchX, X, Sparkles, Trophy, Code, DollarSign, Home, TrendingUp } from "lucide-react";
 
-const FILTER_KEYS = ["全部", "开源", "闭源"] as const;
-type Filter = (typeof FILTER_KEYS)[number];
+type FilterKey = "all" | "open" | "closed";
+
+const FILTERS: { key: FilterKey; labelKey: string; matchValue: string | undefined }[] = [
+  { key: "all", labelKey: "models.filterAll", matchValue: undefined },
+  { key: "open", labelKey: "models.filterOpen", matchValue: "开源" },
+  { key: "closed", labelKey: "models.filterClosed", matchValue: "闭源" },
+];
+
+function isFilterKey(value: string): value is FilterKey {
+  return FILTERS.some((f) => f.key === value);
+}
+
+function matchValueFor(key: FilterKey): string | undefined {
+  return FILTERS.find((f) => f.key === key)?.matchValue;
+}
 
 const FEATURE_KEYS: FeatureKey[] = ["frontier", "reasoning", "image_input", "chinese_eval", "open_weights"];
 
@@ -31,16 +45,15 @@ function parseFeatures(param: string | null): Set<FeatureKey> {
 
 export default function ModelsPageClient() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams = useUrlSearchParams();
   const { t } = useTranslation();
 
   const initialQuery = searchParams.get("q") ?? "";
-  const initialFilter = (searchParams.get("filter") as Filter) ?? "全部";
+  const initialFilterRaw = searchParams.get("filter") ?? "all";
+  const initialFilter: FilterKey = isFilterKey(initialFilterRaw) ? initialFilterRaw : "all";
   const initialCompany = searchParams.get("company") ?? "";
 
-  const [activeFilter, setActiveFilter] = useState<Filter>(
-    FILTER_KEYS.includes(initialFilter) ? initialFilter : "全部"
-  );
+  const [activeFilter, setActiveFilter] = useState<FilterKey>(initialFilter);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [companyFilter, setCompanyFilter] = useState(initialCompany);
   const [featureKeys, setFeatureKeys] = useState<Set<FeatureKey>>(
@@ -50,14 +63,14 @@ export default function ModelsPageClient() {
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const updateUrl = useCallback(
-    (query: string, filter: Filter, company: string, features: Set<FeatureKey>) => {
+    (query: string, filter: FilterKey, company: string, features: Set<FeatureKey>) => {
       const params = new URLSearchParams(searchParams.toString());
       if (query) {
         params.set("q", query);
       } else {
         params.delete("q");
       }
-      if (filter !== "全部") {
+      if (filter !== "all") {
         params.set("filter", filter);
       } else {
         params.delete("filter");
@@ -102,9 +115,9 @@ export default function ModelsPageClient() {
 
   const handleFilterChange = useCallback(
     (key: string) => {
-      const filter = key as Filter;
-      setActiveFilter(filter);
-      updateUrl(searchQueryRef.current, filter, companyFilterRef.current, featureKeysRef.current);
+      if (!isFilterKey(key)) return;
+      setActiveFilter(key);
+      updateUrl(searchQueryRef.current, key, companyFilterRef.current, featureKeysRef.current);
     },
     [updateUrl]
   );
@@ -136,17 +149,7 @@ export default function ModelsPageClient() {
   );
 
   const filterOptions: FilterOption[] = useMemo(
-    () =>
-      FILTER_KEYS.map((key) => ({
-        key,
-        label: t(
-          key === "全部"
-            ? "models.filterAll"
-            : key === "开源"
-            ? "models.filterOpen"
-            : "models.filterClosed"
-        ),
-      })),
+    () => FILTERS.map((f) => ({ key: f.key, label: t(f.labelKey) })),
     [t]
   );
 
@@ -161,9 +164,10 @@ export default function ModelsPageClient() {
   const { selectedCompareModels, handleRemoveCompare, handleClearCompare } = useCompareIds();
 
   const filteredModels = useMemo(() => {
+    const filterMatchValue = matchValueFor(activeFilter);
     return allModels.filter((m) => {
       const matchesFilter =
-        activeFilter === "全部" ? true : m.type === activeFilter;
+        activeFilter === "all" ? true : m.type === filterMatchValue;
       const matchesCompany =
         companyFilter === "" ? true : m.company === companyFilter;
       const matchesSearch =
@@ -181,7 +185,7 @@ export default function ModelsPageClient() {
 
   // Clear all filters
   const handleClearAll = useCallback(() => {
-    setActiveFilter("全部");
+    setActiveFilter("all");
     setSearchQuery("");
     setCompanyFilter("");
     setFeatureKeys(new Set());
@@ -197,7 +201,7 @@ export default function ModelsPageClient() {
   }, [allModels]);
 
   // Detect if any filter is active
-  const hasActiveFilters = activeFilter !== "全部" || searchQuery !== "" || companyFilter !== "" || featureKeys.size > 0;
+  const hasActiveFilters = activeFilter !== "all" || searchQuery !== "" || companyFilter !== "" || featureKeys.size > 0;
 
   const isEmpty = filteredModels.length === 0;
 

@@ -24,6 +24,13 @@ export const metadata: Metadata = {
     template: "%s - 模型图鉴",
   },
   description: "收集整理了全球 AI 模型的智能评分、API 速度与官方定价数据，涵盖头部厂商的最新模型，为开发者和研究者提供参考。",
+  alternates: {
+    canonical: "/",
+    languages: {
+      "zh-CN": "/",
+      "x-default": "/",
+    },
+  },
   openGraph: {
     title: "模型图鉴 - 全球 AI 模型数据一览",
     description: "收集整理了全球 AI 模型的智能评分、API 速度与官方定价数据。",
