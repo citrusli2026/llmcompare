@@ -2,8 +2,6 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -65,117 +63,10 @@
 }
 
 /* ================================================================
-   :root = DARK THEME (default, no class needed)
-   Sentry Dark: Deep purple canvas, lime/violet/coral accents
-   Tailwind dark: variants use .dark class
-   ================================================================ */
-:root {
-  --background: #1f1633;
-  --foreground: #ffffff;
-  --card: rgba(255, 255, 255, 0.05);
-  --card-foreground: #ffffff;
-  --popover: #1f1633;
-  --popover-foreground: #ffffff;
-  --primary: #6a5fc1;
-  --primary-foreground: #ffffff;
-  --secondary: #362d59;
-  --secondary-foreground: #e5e7eb;
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: #8b8aa0;
-  --accent: #79628c;
-  --accent-foreground: #ffffff;
-  --destructive: #cf2d56;
-  --border: #362d59;
-  --input: #362d59;
-  --ring: #6a5fc1;
-  --radius: 0.625rem;
-  --sidebar: #150f23;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #6a5fc1;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #362d59;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #362d59;
-  --sidebar-ring: #6a5fc1;
-  --chart-1: #6a5fc1;
-  --chart-2: #c2ef4e;
-  --chart-3: #ffb287;
-  --chart-4: #fa7faa;
-  --chart-5: #79628c;
-  --surface-base: #1f1633;
-  --surface-card: rgba(255, 255, 255, 0.05);
-  --surface-hover: rgba(54, 22, 107, 0.14);
-  --surface-elevated: #150f23;
-  --surface-border: #362d59;
-  --text-primary: #ffffff;
-  --text-secondary: #e5e7eb;
-  --text-muted: #8b8aa0;
-  --text-dim: #5a5870;
-  --accent-violet: #6a5fc1;
-  --accent-fuchsia: #fa7faa;
-  --accent-lime: #c2ef4e;
-  --accent-coral: #ffb287;
-  --accent-emerald: #34d399;
-  --glass-bg: rgba(255, 255, 255, 0.10);
-}
-
-/* ================================================================
-   .dark = same as :root (for Tailwind dark: variant compatibility)
-   ================================================================ */
-.dark {
-  --background: #1f1633;
-  --foreground: #ffffff;
-  --card: rgba(255, 255, 255, 0.05);
-  --card-foreground: #ffffff;
-  --popover: #1f1633;
-  --popover-foreground: #ffffff;
-  --primary: #6a5fc1;
-  --primary-foreground: #ffffff;
-  --secondary: #362d59;
-  --secondary-foreground: #e5e7eb;
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: #8b8aa0;
-  --accent: #79628c;
-  --accent-foreground: #ffffff;
-  --destructive: #cf2d56;
-  --border: #362d59;
-  --input: #362d59;
-  --ring: #6a5fc1;
-  --sidebar: #150f23;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #6a5fc1;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #362d59;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #362d59;
-  --sidebar-ring: #6a5fc1;
-  --chart-1: #6a5fc1;
-  --chart-2: #c2ef4e;
-  --chart-3: #ffb287;
-  --chart-4: #fa7faa;
-  --chart-5: #79628c;
-  --surface-base: #1f1633;
-  --surface-card: rgba(255, 255, 255, 0.05);
-  --surface-hover: rgba(54, 22, 107, 0.14);
-  --surface-elevated: #150f23;
-  --surface-border: #362d59;
-  --text-primary: #ffffff;
-  --text-secondary: #e5e7eb;
-  --text-muted: #8b8aa0;
-  --text-dim: #5a5870;
-  --accent-violet: #6a5fc1;
-  --accent-fuchsia: #fa7faa;
-  --accent-lime: #c2ef4e;
-  --accent-coral: #ffb287;
-  --accent-emerald: #34d399;
-  --glass-bg: rgba(255, 255, 255, 0.10);
-}
-
-/* ================================================================
-   .light = LIGHT THEME (opt-in)
+   :root = LIGHT THEME (default)
    Sentry Light: Lavender-tinted white canvas
    ================================================================ */
-.light {
+:root {
   --background: #f5f3fa;
   --foreground: #1a1530;
   --card: #ffffff;

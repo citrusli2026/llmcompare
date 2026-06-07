@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { BarChart3, Bot, Info, Menu, X } from "lucide-react";
-import { ThemeToggle } from "./theme-toggle";
 import { LanguageToggle } from "./language-toggle";
 import { useTranslation } from "@/lib/i18n";
 import { useState } from "react";
@@ -58,7 +57,6 @@ export function Navbar() {
           </nav>
           <div className="w-px h-6 bg-surface-border mx-1" />
           <LanguageToggle />
-          <ThemeToggle />
           <a
             href="https://github.com/citrusli2026/llmcompare"
             target="_blank"
@@ -75,7 +73,6 @@ export function Navbar() {
         {/* Mobile Navigation */}
         <div className="flex sm:hidden items-center gap-1">
           <LanguageToggle />
-          <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="flex items-center justify-center h-9 w-9 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-card transition-colors"

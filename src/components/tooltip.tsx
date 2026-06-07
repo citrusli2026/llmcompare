@@ -137,7 +137,7 @@ export function Tooltip({ children, content }: TooltipProps) {
             left: 0,
             top: 0,
           }}
-          className="w-max min-w-[120px] max-w-[75vw] sm:max-w-[280px] whitespace-normal break-words rounded-lg px-3 py-2 text-xs leading-relaxed shadow-lg bg-gray-900 text-white dark:bg-neutral-700"
+          className="w-max min-w-[120px] max-w-[75vw] sm:max-w-[280px] whitespace-normal break-words rounded-lg px-3 py-2 text-xs leading-relaxed shadow-lg bg-gray-900 text-white"
         >
           {content}
         </div>
