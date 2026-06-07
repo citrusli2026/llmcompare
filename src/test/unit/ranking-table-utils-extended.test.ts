@@ -72,16 +72,6 @@ describe("ranking-table utils extended", () => {
       expect(getRawValue(model, "agentic")).toBeNull();
     });
 
-    it("returns arena_code value", () => {
-      const model = makeModel({ arena_code: 1300 });
-      expect(getRawValue(model, "arenaCode")).toBe(1300);
-    });
-
-    it("returns null when arena_code is null", () => {
-      const model = makeModel({ arena_code: null });
-      expect(getRawValue(model, "arenaCode")).toBeNull();
-    });
-
     it("returns cost from openrouter_pricing.completion", () => {
       const model = makeModel({ openrouter_pricing: { prompt: 5, completion: 10 } });
       expect(getRawValue(model, "cost")).toBe(10);
@@ -167,16 +157,10 @@ describe("ranking-table utils extended", () => {
         intelligence: null,
         coding: null,
         agentic: null,
-        arenaCode: null,
         cost: null,
+        tokens: null,
       };
       expect(getScoreColor(80, "intelligence", emptyPercentiles)).toBe(COLOR_BY_BUCKET.dim);
-    });
-
-    it("handles arenaCode with custom percentiles", () => {
-      expect(getScoreColor(1500, "arenaCode", percentiles)).toBe(COLOR_BY_BUCKET.emerald);
-      expect(getScoreColor(1100, "arenaCode", percentiles)).toBe(COLOR_BY_BUCKET.amber);
-      expect(getScoreColor(900, "arenaCode", percentiles)).toBe(COLOR_BY_BUCKET.red);
     });
   });
 });

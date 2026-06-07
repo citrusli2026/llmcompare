@@ -14,7 +14,7 @@ export const COLOR_BY_BUCKET = {
 
 // cost 是反向（数字越小越好），其他正向
 export const ASCENDING: Record<ColoredKey, boolean> = {
-  intelligence: true, coding: true, agentic: true, arenaCode: true, cost: false, tokens: true,
+  intelligence: true, coding: true, agentic: true, cost: false, tokens: true,
 };
 
 export function quantile(sorted: number[], q: number): number {
@@ -54,7 +54,6 @@ export function getRawValue(model: ModelWithScores, key: SortKey): number | null
     case "intelligence": return model.raw.intelligence;
     case "coding": return model.raw.coding ?? null;
     case "agentic": return model.raw.agentic ?? null;
-    case "arenaCode": return model.raw.arena_code ?? null;
     case "cost": return model.raw.openrouter_pricing?.completion ?? null;
     case "tokens": return model.raw.openrouter_weekly_tokens ?? null;
     case "date": return null;
