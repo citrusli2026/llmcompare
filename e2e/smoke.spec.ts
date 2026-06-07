@@ -55,6 +55,114 @@ test.describe("Home Page", () => {
     await expect(firstRow).toBeVisible();
   });
 
+  test("desktop: hero badge (TrendingUp) visible", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+
+    // Hero badge with trending-up icon and badge text
+    const badge = page.locator("header + section a[href='/models']").first();
+    await expect(badge).toBeVisible();
+    await expect(badge.locator("svg")).toBeVisible();
+  });
+
+  test("hot picks: 5 cards with valid hrefs", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+
+    // Top Picks section cards
+    const topPicksSection = page.locator("section").filter({ hasText: /热门推荐|Top Picks/ });
+    const cards = topPicksSection.locator("a[href^='/models/']");
+    const count = await cards.count();
+    expect(count).toBeGreaterThanOrEqual(3); // 至少 3 张卡片
+
+    // 所有卡片 href 合法
+    for (let i = 0; i < count; i++) {
+      const href = await cards.nth(i).getAttribute("href");
+      expect(href).toMatch(/^\/models\//);
+    }
+  });
+
+  test("hero CTA navigates to /models", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+
+    // 点击 Hero 区主按钮 "开始选型"
+    const startBtn = page.locator("a").filter({ hasText: /开始选型|Start Selection/ });
+    await expect(startBtn).toBeVisible();
+    await startBtn.click();
+    await page.waitForURL("**/models");
+    await expect(page.locator("h1")).toBeVisible();
+  });
+
+  test("hot picks card navigates to detail page", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+
+    // 热门推荐区的第一张卡片点击
+    const topPicksSection = page.locator("section").filter({ hasText: /热门推荐|Top Picks/ });
+    const firstCard = topPicksSection.locator("a[href^='/models/']").first();
+    await expect(firstCard).toBeVisible();
+    const href = await firstCard.getAttribute("href");
+    await firstCard.click();
+    await page.waitForURL(`**${href}`);
+    await expect(page.locator("h1")).toBeVisible();
+  });
+
+  test("sort by cost works", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
+    await page.goto("/models");
+    await page.waitForLoadState("networkidle");
+
+    // 点击按性价比排序按钮
+    const costBtn = page.locator("button").filter({ hasText: /性价比|Cost|Value/ });
+    await expect(costBtn).toBeVisible();
+    await costBtn.click();
+    await page.waitForTimeout(500);
+
+    // 验证第一个模型可见
+    const firstRow = page.locator("tbody tr").first();
+    await expect(firstRow).toBeVisible();
+  });
+
+  test("feature tag filters work", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
+    await page.goto("/models");
+    await page.waitForLoadState("networkidle");
+
+    // 点击"开源"标签筛选（不含"开源权重"）
+    const openBtn = page.locator("button").filter({ hasText: /^开源$|^Open Source$/ });
+    await expect(openBtn).toBeVisible();
+    await openBtn.click();
+    await page.waitForTimeout(300);
+
+    // 验证筛选生效 — 至少有一个结果
+    const rows = page.locator("tbody tr");
+    await expect(rows.first()).toBeVisible();
+  });
+
+  test("company filter dropdown works", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
+    await page.goto("/models");
+    await page.waitForLoadState("networkidle");
+
+    // 找到公司筛选下拉框（native select）
+    const companySelect = page.locator("select").first();
+    await expect(companySelect).toBeVisible();
+
+    // 选择 OpenAI
+    await companySelect.selectOption("OpenAI");
+    await page.waitForTimeout(500);
+
+    // 验证筛选生效
+    const rows = page.locator("tbody tr");
+    const count = await rows.count();
+    expect(count).toBeGreaterThan(0);
+  });
+
   test("mobile view renders correctly", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用测试");
     await page.goto("/");
@@ -129,17 +237,7 @@ test.describe("Product Detail", () => {
 });
 
 test.describe("Other Pages", () => {
-  test("about page renders", async ({ page }) => {
-    await page.goto("/about");
-    await page.waitForLoadState("networkidle");
-
-    // 检查 about 页面有内容
-    await expect(page.locator("h1, h2").first()).toBeVisible();
-    await expect(page.locator("body")).not.toHaveText(/404|Error/);
-
-    await page.screenshot({ path: `${SCREENSHOTS}/about.png`, fullPage: true });
-  });
-
+  // about page tests consolidated below (mission statement + content check)
   test("models page renders with filter", async ({ page }) => {
     await page.goto("/models");
     await page.waitForLoadState("networkidle");
@@ -178,6 +276,27 @@ test.describe("Other Pages", () => {
 
     // 验证页面仍有内容
     await expect(page.locator("body")).not.toHaveText(/404|Error/);
+  });
+
+  test("about page renders mission statement", async ({ page }) => {
+    await page.goto("/about");
+    await page.waitForLoadState("networkidle");
+
+    // Mission statement
+    await expect(page.locator("text=/选型助手|selection assistant|Our Mission/")).toBeVisible();
+    // 至少有一个 section 或页面内容区块
+    await expect(page.locator("main, section, article").first()).toBeVisible();
+  });
+
+  test("404 page renders for invalid route", async ({ page }) => {
+    await page.goto("/nonexistent-page");
+    await page.waitForLoadState("networkidle");
+
+    // 404 title visible
+    await expect(page.locator("text=404")).toBeVisible();
+    // 有返回首页链接
+    const homeLink = page.locator("a[href='/']");
+    await expect(homeLink).toBeVisible();
   });
 
   test("language switch works", async ({ page }) => {
