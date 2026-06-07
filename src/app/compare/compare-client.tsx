@@ -315,10 +315,8 @@ export function ComparePageClient() {
 
               {/* Scrollable right panel */}
               <div className="flex-1 min-w-0">
-                {/* Scroll hint gradient — outside overflow container so always visible */}
                 <div className="relative">
-                  <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-accent-violet/20 via-surface-card/80 to-transparent z-10 sm:hidden" />
-                  <div className="overflow-x-auto">
+                  <div className="overflow-x-auto [mask-image:linear-gradient(to_right,black_80%,transparent_97%)] [-webkit-mask-image:linear-gradient(to_right,black_80%,transparent_97%)]">
                     <table className="w-full min-w-[225px] sm:min-w-[600px]">
                       <thead>
                         <tr className="border-b border-surface-border">
