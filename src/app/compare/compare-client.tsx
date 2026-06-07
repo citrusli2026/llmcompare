@@ -282,8 +282,79 @@ export function ComparePageClient() {
             </div>
           )}
 
-          {/* Comparison Table — dual panel: fixed left + scrollable right */}
-          <div className="rounded-xl border border-surface-border bg-surface-card overflow-hidden">
+          {/* Mobile: per-model card view */}
+          <div className="sm:hidden space-y-4">
+            {models.map((m) => {
+              const mTags = getRecommendationTags(m);
+              return (
+                <div key={m.id} className="rounded-xl border border-surface-border bg-surface-card overflow-hidden">
+                  {/* Card header */}
+                  <div className="px-4 py-3 border-b border-surface-border bg-surface-elevated">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-semibold text-sm text-text-primary">{m.name}</div>
+                        <div className="text-[10px] text-text-muted">{m.company}</div>
+                      </div>
+                      <div className="flex flex-col items-end gap-1">
+                        <Badge variant="secondary" className={cn("text-[10px] py-0 px-1.5", getTypeBadgeClasses(m.type as "开源" | "闭源"))}>
+                          {t(m.type === "开源" ? "common.open" : "common.closed")}
+                        </Badge>
+                        {mTags.length > 0 && (
+                          <span className={cn("inline-flex items-center gap-0.5 rounded-full px-1.5 py-[1px] text-[9px] font-medium", mTags[0].colorClass)}>
+                            <span>{mTags[0].icon}</span>
+                            <span>{t(mTags[0].labelKey)}</span>
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  {/* Metrics */}
+                  <div className="divide-y divide-surface-border">
+                    {rows.map((row, ri) => {
+                      const Icon = row.icon;
+                      const numVal = row.getNumericValue?.(m) ?? null;
+                      const allValues = models.map((mm) => row.getNumericValue?.(mm) ?? null);
+                      const higherIsBetter = row.labelKey !== "compare.price";
+                      const isBest = isBestValue(numVal, allValues, higherIsBetter);
+                      const isScoreBar = row.labelKey === "compare.intelligence" || row.labelKey === "compare.coding" || row.labelKey === "compare.agentic" || row.labelKey === "compare.speed" || row.labelKey === "compare.price";
+                      const validVals = allValues.filter((v): v is number => v != null);
+                      const maxValue = validVals.length > 0 ? Math.max(...validVals) : 100;
+                      return (
+                        <div key={ri} className={cn("flex items-center justify-between px-4 py-2.5", isBest && "bg-accent-lime/5")}>
+                          <div className="flex items-center gap-1.5">
+                            <Icon className="h-3.5 w-3.5 text-text-muted shrink-0" />
+                            {row.tipKey ? (
+                              <FieldTip tip={t(row.tipKey)}><span className="text-xs text-text-primary">{t(row.labelKey)}</span></FieldTip>
+                            ) : (
+                              <span className="text-xs text-text-primary">{t(row.labelKey)}</span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            {isBest && <Star className="h-3 w-3 text-accent-lime shrink-0" />}
+                            <span className={cn("text-xs tabular-nums text-right", isBest ? "font-semibold text-accent-lime" : "text-text-primary")}>
+                              {row.getValue(m)}
+                            </span>
+                            {isScoreBar && numVal != null && maxValue > 0 && (() => {
+                              const rawPct = Math.min((numVal / maxValue) * 100, 100);
+                              const fillPct = higherIsBetter ? rawPct : Math.max(0, 100 - rawPct);
+                              return (
+                                <div className="w-12 h-1 rounded-full bg-surface-border overflow-hidden">
+                                  <div className={`h-full rounded-full ${barColor(fillPct)} transition-all`} style={{ width: `${fillPct}%` }} />
+                                </div>
+                              );
+                            })()}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Desktop: comparison table — hidden on mobile */}
+          <div className="hidden sm:block rounded-xl border border-surface-border bg-surface-card overflow-hidden">
             <div className="flex">
               {/* Fixed left panel */}
               <div className="shrink-0 min-w-[60px] sm:min-w-[140px]">

@@ -19,11 +19,11 @@ export default function HomeClient() {
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
 
-  // Top picks: top 5 by intelligence score (compact recommendation strip)
+  // Top picks: top 5 by weekly usage (most popular), different dimension from scene cards
   const topPicks = useMemo(() => {
     return [...allModels]
-      .filter((m) => m.raw.intelligence != null)
-      .sort((a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0))
+      .filter((m) => m.raw.intelligence != null && m.raw.openrouter_weekly_tokens != null)
+      .sort((a, b) => (b.raw.openrouter_weekly_tokens ?? 0) - (a.raw.openrouter_weekly_tokens ?? 0))
       .slice(0, 5);
   }, [allModels]);
 

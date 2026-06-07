@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Code, Bot, DollarSign, Brain, ArrowRight, ChevronDown } from "lucide-react";
+import { Code, Bot, DollarSign, Brain, ArrowRight, Minus, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
@@ -168,12 +168,11 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                 </div>
                 <p className="text-xs text-text-muted">{t(scene.descKey)}</p>
                 <div className="mt-2 flex items-center justify-end">
-                  <ChevronDown
-                    className={cn(
-                      "h-3.5 w-3.5 text-text-muted transition-transform duration-200",
-                      isActive && "rotate-180"
-                    )}
-                  />
+                  {isActive ? (
+                    <Minus className="h-3.5 w-3.5 text-accent-violet" />
+                  ) : (
+                    <Plus className="h-3.5 w-3.5 text-text-muted" />
+                  )}
                 </div>
               </button>
             );
