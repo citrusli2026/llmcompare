@@ -3,8 +3,8 @@ import { render, screen } from "@testing-library/react";
 import { ComparePageClient } from "@/app/compare/compare-client";
 import { makeModel } from "../fixtures";
 
-// ── Shared mock state for path params ──
-let mockParams: { ids?: string[] } = {};
+// ── Shared mock state for search params ──
+let mockSearchParams = new URLSearchParams();
 
 // ── Mocks ──
 vi.mock("@/lib/i18n", () => ({
@@ -13,7 +13,6 @@ vi.mock("@/lib/i18n", () => ({
       if (params) {
         return key.replace(/\{(\w+)\}/g, (_, k) => String(params[k] ?? `{${k}}`));
       }
-      // Return a recognizable value for specific keys
       const labels: Record<string, string> = {
         "compare.noModels": "No models selected",
         "compare.noModelsDesc": "Select models to compare their capabilities",
@@ -45,14 +44,12 @@ vi.mock("@/lib/i18n", () => ({
   }),
 }));
 
-// Mock next/link
 vi.mock("next/link", () => ({
   default: ({ children, href }: { children: React.ReactNode; href: string }) => (
     <a href={href}>{children}</a>
   ),
 }));
 
-// Mock next/navigation — shared state allows per-test param injection
 vi.mock("next/navigation", () => ({
   useRouter: () => ({
     push: vi.fn(),
@@ -60,13 +57,12 @@ vi.mock("next/navigation", () => ({
     refresh: vi.fn(),
     back: vi.fn(),
   }),
-  useParams: () => mockParams,
+  useSearchParams: () => mockSearchParams,
+  useParams: () => ({ ids: undefined }),
   usePathname: () => "/compare",
 }));
 
-// Mock scoring to return controlled model data
 const mockGetModelById = vi.fn();
-// Provide minimal models for recommendation-tags which calls getAllModels internally
 const mockAllModels = vi.hoisted(() => {
   return [
     {
@@ -117,14 +113,20 @@ vi.mock("@/lib/scoring", () => ({
 describe("ComparePageClient", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockParams = {};
+    mockSearchParams = new URLSearchParams();
   });
 
   describe("empty state", () => {
-    it("shows no-models placeholder when no path ids", () => {
+    it("shows no-models placeholder when no query param", () => {
       render(<ComparePageClient />);
       expect(screen.getByText("No models selected")).toBeInTheDocument();
       expect(screen.getByText("Select models to compare their capabilities")).toBeInTheDocument();
+    });
+
+    it("shows no-models placeholder when models param is empty", () => {
+      mockSearchParams = new URLSearchParams("models=");
+      render(<ComparePageClient />);
+      expect(screen.getByText("No models selected")).toBeInTheDocument();
     });
   });
 
@@ -157,7 +159,7 @@ describe("ComparePageClient", () => {
     });
 
     it("renders model names and companies", () => {
-      mockParams = { ids: ["model-a", "model-b"] };
+      mockSearchParams = new URLSearchParams("models=model-a,model-b");
       render(<ComparePageClient />);
       expect(screen.getAllByText("model-a").length).toBeGreaterThanOrEqual(1);
       expect(screen.getAllByText("model-b").length).toBeGreaterThanOrEqual(1);
@@ -166,28 +168,28 @@ describe("ComparePageClient", () => {
     });
 
     it("renders intelligence scores for all models", () => {
-      mockParams = { ids: ["model-a", "model-b"] };
+      mockSearchParams = new URLSearchParams("models=model-a,model-b");
       render(<ComparePageClient />);
       expect(screen.getAllByText("85.50").length).toBeGreaterThanOrEqual(1);
       expect(screen.getAllByText("72.30").length).toBeGreaterThanOrEqual(1);
     });
 
     it("renders speed column correctly (t/s format)", () => {
-      mockParams = { ids: ["model-a", "model-b"] };
+      mockSearchParams = new URLSearchParams("models=model-a,model-b");
       render(<ComparePageClient />);
       expect(screen.getAllByText("120.5 t/s").length).toBeGreaterThanOrEqual(1);
       expect(screen.getAllByText("200.0 t/s").length).toBeGreaterThanOrEqual(1);
     });
 
     it("highlights best values", () => {
-      mockParams = { ids: ["model-a", "model-b"] };
+      mockSearchParams = new URLSearchParams("models=model-a,model-b");
       const { container } = render(<ComparePageClient />);
       const stars = container.querySelectorAll("svg.text-accent-lime");
       expect(stars.length).toBeGreaterThan(0);
     });
 
     it("counts models in header", () => {
-      mockParams = { ids: ["model-a", "model-b"] };
+      mockSearchParams = new URLSearchParams("models=model-a,model-b");
       render(<ComparePageClient />);
       expect(screen.getByText(/2 Models/)).toBeInTheDocument();
     });
@@ -199,7 +201,7 @@ describe("ComparePageClient", () => {
       mockGetModelById.mockImplementation((id: string) =>
         id === "single" ? single : null
       );
-      mockParams = { ids: ["single"] };
+      mockSearchParams = new URLSearchParams("models=single");
       render(<ComparePageClient />);
       expect(screen.getAllByText("single").length).toBeGreaterThanOrEqual(1);
       expect(screen.getByText(/1 Models/)).toBeInTheDocument();
@@ -213,7 +215,7 @@ describe("ComparePageClient", () => {
       mockGetModelById.mockImplementation((id: string) =>
         id === "none" ? nullIntel : null
       );
-      mockParams = { ids: ["none"] };
+      mockSearchParams = new URLSearchParams("models=none");
       const { container } = render(<ComparePageClient />);
       const labels = container.querySelectorAll("th, td");
       expect(labels.length).toBeGreaterThan(0);
@@ -221,7 +223,7 @@ describe("ComparePageClient", () => {
 
     it("handles unknown model id (returns null from getModelById)", () => {
       mockGetModelById.mockReturnValue(null);
-      mockParams = { ids: ["nonexistent"] };
+      mockSearchParams = new URLSearchParams("models=nonexistent");
       render(<ComparePageClient />);
       expect(screen.getByText("No models selected")).toBeInTheDocument();
     });

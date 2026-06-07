@@ -120,7 +120,7 @@ describe("CompareBar", () => {
     );
     const compareBtn = screen.getByText(/compare.compareNow/);
     fireEvent.click(compareBtn);
-    expect(mockPush).toHaveBeenCalledWith("/compare/m1/m2");
+    expect(mockPush).toHaveBeenCalledWith("/compare?models=m1,m2");
   });
 
   it("handles single model correctly", () => {

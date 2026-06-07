@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
@@ -42,11 +42,12 @@ function barColor(fillPct: number): string {
 
 export function ComparePageClient() {
   const { t } = useTranslation();
-  const params = useParams();
+  const searchParams = useSearchParams();
 
-  const modelIds = useMemo(() => {
-    return Array.isArray(params.ids) ? params.ids : [];
-  }, [params.ids]);
+  const modelIds = useMemo(
+    () => searchParams.get("models")?.split(",").filter(Boolean) ?? [],
+    [searchParams]
+  );
 
   const models = useMemo(
     () => modelIds.map((id) => getModelById(id)).filter(Boolean) as ModelWithScores[],
