@@ -103,7 +103,8 @@
   },
   "product": {
     "backLink": "Back to Model Directory",
-    "benchmarkTitle": "Benchmarks",
+            "benchmarkTitle": "Benchmarks",
+            "benchmarkSubtitle": "Detailed benchmark scores covering multiple evaluation dimensions",
     "intelligence": "Intelligence",
     "coding": "Coding",
     "agentic": "Agent",

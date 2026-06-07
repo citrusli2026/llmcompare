@@ -30,9 +30,9 @@ export function SimilarModels({ model }: SimilarModelsProps) {
     const scored = all.map((m) => {
       let score = 0;
 
-      // Priority 1: Same company (strongest signal)
+      // Priority 1: Same company (weaker signal — diversity matters)
       if (m.company === model.company) {
-        score += 10;
+        score += 6;
       }
 
       // Priority 2: Same intelligence tier (±8 points)
@@ -61,7 +61,26 @@ export function SimilarModels({ model }: SimilarModelsProps) {
       return (b.model.raw.intelligence ?? 0) - (a.model.raw.intelligence ?? 0);
     });
 
-    return scored.slice(0, MAX_CARDS).map((s) => s.model);
+    // Enforce diversity: at least 1 model from a different company in the top 4
+    const sameCompany = scored.filter((s) => s.model.company === model.company);
+    const otherCompany = scored.filter((s) => s.model.company !== model.company);
+
+    const result: ModelWithScores[] = [];
+    // Take top 2 from same-company pool (if available)
+    if (sameCompany.length > 0) result.push(sameCompany[0].model);
+    if (sameCompany.length > 1) result.push(sameCompany[1].model);
+    // Fill remaining slots with best from other companies
+    for (const oc of otherCompany) {
+      if (result.length >= MAX_CARDS) break;
+      result.push(oc.model);
+    }
+    // If still not enough, pad with remaining same-company models
+    for (let i = 2; i < sameCompany.length; i++) {
+      if (result.length >= MAX_CARDS) break;
+      result.push(sameCompany[i].model);
+    }
+
+    return result;
   }, [model]);
 
   if (similar.length === 0) return null;

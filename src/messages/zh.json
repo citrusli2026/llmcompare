@@ -103,7 +103,8 @@
   },
   "product": {
     "backLink": "返回模型目录",
-    "benchmarkTitle": "基准测试",
+            "benchmarkTitle": "基准测试",
+            "benchmarkSubtitle": "以下为该模型在专项基准测试中的表现，涵盖多个维度的细粒度评估",
     "intelligence": "智能",
     "coding": "编程",
     "agentic": "Agent能力",

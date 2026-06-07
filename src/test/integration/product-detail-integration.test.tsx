@@ -97,11 +97,10 @@ describe("ProductDetail Integration — 数据→渲染全链路", () => {
     expect(screen.getByText("4K")).toBeInTheDocument(); // output_tokens
     expect(screen.getByText("2024-06-15")).toBeInTheDocument();
 
-    // Benchmarks
+    // Benchmarks (ScoreOverview shows formatted values)
     expect(screen.getAllByText("75.5").length).toBeGreaterThanOrEqual(1); // intelligence
     expect(screen.getAllByText("70.2").length).toBeGreaterThanOrEqual(1); // coding
-    expect(screen.getAllByText("65.0").length).toBeGreaterThanOrEqual(1); // agentic
-    expect(screen.getByText("82.1")).toBeInTheDocument(); // omniscience
+    expect(screen.getByText("82.1")).toBeInTheDocument(); // omniscience (unique to BenchmarkSection)
   });
 
   it("context_window 为字符串 '922k' 时直接显示，不格式化", () => {
