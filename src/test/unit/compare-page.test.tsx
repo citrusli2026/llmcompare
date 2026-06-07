@@ -3,8 +3,8 @@ import { render, screen } from "@testing-library/react";
 import { ComparePageClient } from "@/app/compare/compare-client";
 import { makeModel } from "../fixtures";
 
-// ── Shared mock state for search params ──
-let mockSearchParams = new URLSearchParams();
+// ── Shared mock state for path params ──
+let mockParams: { ids?: string[] } = {};
 
 // ── Mocks ──
 vi.mock("@/lib/i18n", () => ({
@@ -60,12 +60,10 @@ vi.mock("next/navigation", () => ({
     refresh: vi.fn(),
     back: vi.fn(),
   }),
-  useSearchParams: () => mockSearchParams,
-  useParams: () => ({ ids: undefined }),
+  useParams: () => mockParams,
   usePathname: () => "/compare",
 }));
 
-// Mock scoring to return controlled model data
 // Mock scoring to return controlled model data
 const mockGetModelById = vi.fn();
 // Provide minimal models for recommendation-tags which calls getAllModels internally
@@ -119,21 +117,14 @@ vi.mock("@/lib/scoring", () => ({
 describe("ComparePageClient", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockSearchParams = new URLSearchParams();
+    mockParams = {};
   });
 
   describe("empty state", () => {
-    it("shows no-models placeholder when no query param", () => {
-      mockSearchParams = new URLSearchParams();
+    it("shows no-models placeholder when no path ids", () => {
       render(<ComparePageClient />);
       expect(screen.getByText("No models selected")).toBeInTheDocument();
       expect(screen.getByText("Select models to compare their capabilities")).toBeInTheDocument();
-    });
-
-    it("shows no-models placeholder when models param is empty", () => {
-      mockSearchParams = new URLSearchParams("models=");
-      render(<ComparePageClient />);
-      expect(screen.getByText("No models selected")).toBeInTheDocument();
     });
   });
 
@@ -166,41 +157,37 @@ describe("ComparePageClient", () => {
     });
 
     it("renders model names and companies", () => {
-      mockSearchParams = new URLSearchParams("models=model-a,model-b");
+      mockParams = { ids: ["model-a", "model-b"] };
       render(<ComparePageClient />);
       expect(screen.getAllByText("model-a").length).toBeGreaterThanOrEqual(1);
       expect(screen.getAllByText("model-b").length).toBeGreaterThanOrEqual(1);
-      // Both mobile and desktop views render company — use getAll
       expect(screen.getAllByText("AlphaCorp").length).toBeGreaterThanOrEqual(1);
       expect(screen.getAllByText("BetaInc").length).toBeGreaterThanOrEqual(1);
     });
 
     it("renders intelligence scores for all models", () => {
-      mockSearchParams = new URLSearchParams("models=model-a,model-b");
+      mockParams = { ids: ["model-a", "model-b"] };
       render(<ComparePageClient />);
-      // Both mobile and desktop views render scores — use getAll
       expect(screen.getAllByText("85.50").length).toBeGreaterThanOrEqual(1);
       expect(screen.getAllByText("72.30").length).toBeGreaterThanOrEqual(1);
     });
 
     it("renders speed column correctly (t/s format)", () => {
-      mockSearchParams = new URLSearchParams("models=model-a,model-b");
+      mockParams = { ids: ["model-a", "model-b"] };
       render(<ComparePageClient />);
-      // Both mobile and desktop views render speed — use getAll
       expect(screen.getAllByText("120.5 t/s").length).toBeGreaterThanOrEqual(1);
       expect(screen.getAllByText("200.0 t/s").length).toBeGreaterThanOrEqual(1);
     });
 
     it("highlights best values", () => {
-      mockSearchParams = new URLSearchParams("models=model-a,model-b");
+      mockParams = { ids: ["model-a", "model-b"] };
       const { container } = render(<ComparePageClient />);
-      // Model A has higher intelligence → should be highlighted
       const stars = container.querySelectorAll("svg.text-accent-lime");
       expect(stars.length).toBeGreaterThan(0);
     });
 
     it("counts models in header", () => {
-      mockSearchParams = new URLSearchParams("models=model-a,model-b");
+      mockParams = { ids: ["model-a", "model-b"] };
       render(<ComparePageClient />);
       expect(screen.getByText(/2 Models/)).toBeInTheDocument();
     });
@@ -212,9 +199,8 @@ describe("ComparePageClient", () => {
       mockGetModelById.mockImplementation((id: string) =>
         id === "single" ? single : null
       );
-      mockSearchParams = new URLSearchParams("models=single");
+      mockParams = { ids: ["single"] };
       render(<ComparePageClient />);
-      // Both mobile and desktop views render model name — use getAll
       expect(screen.getAllByText("single").length).toBeGreaterThanOrEqual(1);
       expect(screen.getByText(/1 Models/)).toBeInTheDocument();
     });
@@ -227,19 +213,16 @@ describe("ComparePageClient", () => {
       mockGetModelById.mockImplementation((id: string) =>
         id === "none" ? nullIntel : null
       );
-      mockSearchParams = new URLSearchParams("models=none");
+      mockParams = { ids: ["none"] };
       const { container } = render(<ComparePageClient />);
-      // Intelligence row with no data is hidden (filtered out by visibleRows).
-      // Check that other rows still render and page doesn't crash.
       const labels = container.querySelectorAll("th, td");
       expect(labels.length).toBeGreaterThan(0);
     });
 
     it("handles unknown model id (returns null from getModelById)", () => {
       mockGetModelById.mockReturnValue(null);
-      mockSearchParams = new URLSearchParams("models=nonexistent");
+      mockParams = { ids: ["nonexistent"] };
       render(<ComparePageClient />);
-      // Falls back to empty state when no valid models
       expect(screen.getByText("No models selected")).toBeInTheDocument();
     });
   });
