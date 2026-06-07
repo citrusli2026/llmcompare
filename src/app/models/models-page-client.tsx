@@ -334,7 +334,7 @@ export default function ModelsPageClient() {
           ) : (
             <>
               {/* Recommendation banner — guidance when results exist */}
-              {topPick && hasActiveFilters && (
+              {topPick && (
                 <div className="mb-4 rounded-xl border border-accent-violet/20 bg-accent-violet/5 p-4 sm:p-5">
                   <div className="flex items-start gap-3 sm:gap-4">
                     <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-violet/10">
@@ -343,7 +343,7 @@ export default function ModelsPageClient() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-sm font-semibold text-text-primary">{t("models.recommendTitle")}</span>
-                        <span className="text-xs text-text-muted">{t("models.recommendDesc")}</span>
+                        <span className="text-xs text-text-muted">{t(hasActiveFilters ? "models.recommendDesc" : "models.recommendFirstLoadDesc")}</span>
                       </div>
                       <Link
                         href={`/product/${topPick.id}`}

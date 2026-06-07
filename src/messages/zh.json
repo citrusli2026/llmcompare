@@ -53,6 +53,7 @@
     "count": "共收录 {count} 个模型",
     "recommendTitle": "🏆 精选推荐",
     "recommendDesc": "当前筛选中智能分最高的模型——从这里开始",
+    "recommendFirstLoadDesc": "所有模型中智能分最高的热门精选——从这里开始",
     "recommendView": "查看详情 →",
     "sortByIntelligence": "按智能",
     "sortByCoding": "按编程",
