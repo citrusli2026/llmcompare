@@ -53,6 +53,7 @@
     "count": "{count} models",
     "recommendTitle": "🏆 Top Pick",
     "recommendDesc": "Highest intelligence in current results — start here",
+    "recommendFirstLoadDesc": "Highest intelligence across all models — start exploring here",
     "recommendView": "View details →",
     "sortByIntelligence": "By Intelligence",
     "sortByCoding": "By Coding",
