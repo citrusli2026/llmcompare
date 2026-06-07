@@ -22,7 +22,8 @@ test.describe("Home Page", () => {
 
   test("sort by intelligence works", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
-    await page.goto("/");
+    // 首页已改为场景卡片，排序功能在 /models 页面
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
     // 找到"智能"列头并点击
@@ -40,7 +41,8 @@ test.describe("Home Page", () => {
 
   test("sort by arena votes works", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
-    await page.goto("/");
+    // 首页已改为场景卡片，排序功能在 /models 页面
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
     // 找到周用量/Weekly Usage 列头并点击

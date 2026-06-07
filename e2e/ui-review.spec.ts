@@ -67,7 +67,8 @@ test.describe("StatsStrip — 首页数据概览卡片", () => {
 test.describe("ScoreBar — 表格分数可视化", () => {
   test("desktop: 智能列显示进度条替代纯文本分数", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
-    await page.goto("/");
+    // 首页已改为场景卡片，ScoreBar 在 /models 页面
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
     // 智能列头点击排序
@@ -166,7 +167,8 @@ test.describe("Full-Page Visual Review", () => {
 test.describe("Interaction & Responsiveness", () => {
   test("desktop: 排序后 ScoreBar 保持渲染", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
-    await page.goto("/");
+    // 首页已改为场景卡片，表格排序在 /models 页面
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
     // 依次点击各个可排序列头
@@ -190,23 +192,18 @@ test.describe("Interaction & Responsiveness", () => {
     await page.screenshot({ path: `${SCREENSHOTS}/ui-sort-scorebar.png`, fullPage: true });
   });
 
-  test("mobile: 下拉排序后卡片重新渲染", async ({ page }, testInfo) => {
+  test("mobile: 场景排序后卡片重新渲染", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用");
-    await page.goto("/");
+    // 首页已改为场景卡片，表格在 /models 页面
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    const select = page.locator("select");
-    await expect(select).toBeVisible();
+    // /models 使用场景排序按钮而非下拉 select
+    const sortButtons = page.locator("button").filter({ hasText: /智能|编程|Agent|Intelligence|Coding/ });
+    await expect(sortButtons.first()).toBeVisible();
 
-    // 获取实际存在的 option values
-    const options = select.locator("option");
-    const optionValues = await options.evaluateAll((els) =>
-      els.map((el) => (el as HTMLOptionElement).value)
-    );
-
-    // 选一个非 intelligence 的值（如 coding, agentic, tokens）
-    const target = optionValues.find((v) => v !== "intelligence") || optionValues[0];
-    await select.selectOption(target);
+    // 点击排序按钮触发重新排序
+    await sortButtons.first().click();
     await page.waitForTimeout(500);
 
     // 移动端卡片显示

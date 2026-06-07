@@ -5,7 +5,8 @@ const isMobile = (projectName: string) => projectName === "Mobile Chrome";
 test.describe("Compare Feature — 模型对比功能", () => {
   test("desktop: 表格行复选框加入对比", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
-    await page.goto("/");
+    // 首页已改为场景卡片，对比功能在 /models 目录页的表格中
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
     // 第一行第一个 button（即对比复选框）
@@ -23,7 +24,8 @@ test.describe("Compare Feature — 模型对比功能", () => {
 
   test("desktop: CompareBar 显示已选模型 + 跳转对比页", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
-    await page.goto("/");
+    // 首页已改为场景卡片，使用 /models 页面的表格
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
     // 选两个模型
@@ -55,7 +57,8 @@ test.describe("Compare Feature — 模型对比功能", () => {
 
   test("mobile: 卡片复选框 + CompareBar 出现", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用");
-    await page.goto("/");
+    // 使用 /models 页面的表格（首页已改为场景卡片）
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
     // 找到卡片区域的对比按钮（mobile card 有 relative class，StatsStrip 没有）
@@ -72,7 +75,8 @@ test.describe("Compare Feature — 模型对比功能", () => {
 
   test("mobile: 从 CompareBar 跳转对比页", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用");
-    await page.goto("/");
+    // 使用 /models 页面的表格（首页已改为场景卡片）
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
     // 找到卡片区域的对比按钮
