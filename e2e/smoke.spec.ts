@@ -104,8 +104,8 @@ test.describe("Home Page", () => {
     await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    // 点击"开源"标签筛选
-    const openBtn = page.locator("button").filter({ hasText: /开源|Open Source/ });
+    // 点击"开源"标签筛选（不含"开源权重"）
+    const openBtn = page.locator("button").filter({ hasText: /^开源$|^Open Source$/ });
     await expect(openBtn).toBeVisible();
     await openBtn.click();
     await page.waitForTimeout(300);
@@ -120,23 +120,24 @@ test.describe("Home Page", () => {
     await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    // 找到公司筛选下拉框并点击
-    const companySelect = page.locator("select, [role='combobox']").first();
+    // 找到公司筛选下拉框（自定义 combobox）
+    const companySelect = page.locator("[role='combobox']").first();
     await expect(companySelect).toBeVisible();
+
+    // 打开下拉框
     await companySelect.click();
     await page.waitForTimeout(300);
 
     // 选择 OpenAI
-    const openaiOption = page.locator("option, [role='option']").filter({ hasText: /OpenAI/ });
-    if (await openaiOption.count() > 0) {
-      await openaiOption.click();
-      await page.waitForTimeout(500);
+    const openaiOption = page.locator("[role='option']").filter({ hasText: /OpenAI/ });
+    await expect(openaiOption).toBeVisible();
+    await openaiOption.click();
+    await page.waitForTimeout(500);
 
-      // 验证筛选生效
-      const rows = page.locator("tbody tr");
-      const count = await rows.count();
-      expect(count).toBeGreaterThan(0);
-    }
+    // 验证筛选生效
+    const rows = page.locator("tbody tr");
+    const count = await rows.count();
+    expect(count).toBeGreaterThan(0);
   });
 
   test("mobile view renders correctly", async ({ page }, testInfo) => {

@@ -168,8 +168,9 @@ test.describe("Full-Page Visual Review", () => {
     await page.goto("/models/gpt-5-5");
     await page.waitForLoadState("networkidle");
 
-    // 切换到英文
-    const langBtn = page.locator("button").filter({ hasText: /EN|中/ });
+    // 切换到英文（两个 EN 按钮中选择第一个可用的）
+    const langBtn = page.locator("button").filter({ hasText: "EN" }).first();
+    await expect(langBtn).toBeVisible();
     await langBtn.click();
     await page.waitForTimeout(500);
 
