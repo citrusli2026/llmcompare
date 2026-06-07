@@ -248,7 +248,10 @@
     "verdictTitle": "📋 Quick Verdict",
     "share": "Copy Share Link",
     "copied": "Copied!",
-    "select": "Select"
+    "select": "Select",
+    "addMore": "Add More Models",
+    "priceInput": "Input",
+    "priceOutput": "Output"
   },
   "theme": {
     "toggle": "Toggle theme"

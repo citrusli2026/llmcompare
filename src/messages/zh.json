@@ -248,7 +248,10 @@
     "verdictTitle": "📋 一句话速览",
     "share": "复制分享链接",
     "copied": "已复制",
-    "select": "选择"
+    "select": "选择",
+    "addMore": "添加更多模型",
+    "priceInput": "输入",
+    "priceOutput": "输出"
   },
   "theme": {
     "toggle": "切换主题"
