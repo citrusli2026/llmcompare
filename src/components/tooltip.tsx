@@ -36,7 +36,7 @@ function tooltipReducer(state: State, action: Action): State {
 
 export function Tooltip({ children, content }: TooltipProps) {
   const [state, dispatch] = useReducer(tooltipReducer, { show: false, clicked: false });
-  const { show, clicked } = state;
+  const { show } = state;
   const timer = useRef(0);
   const ref = useRef<HTMLSpanElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
@@ -97,7 +97,7 @@ export function Tooltip({ children, content }: TooltipProps) {
       window.removeEventListener("scroll", reposition);
       window.removeEventListener("resize", positionTooltip);
     };
-  }, [state.show, state.clicked, positionTooltip]);
+  }, [show, state.clicked, positionTooltip]);
 
   // Outside click → close (click-opened tooltips only)
   useEffect(() => {
