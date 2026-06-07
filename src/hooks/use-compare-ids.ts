@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useCallback } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { getModelById, type ModelWithScores } from "@/lib/scoring";
-import { useUrlSearchParams } from "./use-url-search-params";
 
 export const MAX_COMPARE = 6;
 
@@ -18,7 +18,8 @@ export const MAX_COMPARE = 6;
  * - handleClearCompare: clear all selections
  */
 export function useCompareIds() {
-  const searchParams = useUrlSearchParams();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
   const compareIds = useMemo(
     () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],
@@ -35,19 +36,15 @@ export function useCompareIds() {
 
   const updateUrl = useCallback(
     (ids: string[]) => {
-      const params = new URLSearchParams(window.location.search);
+      const params = new URLSearchParams(searchParams.toString());
       if (ids.length > 0) {
         params.set("compare", ids.join(","));
       } else {
         params.delete("compare");
       }
-      const qs = params.toString();
-      const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
-      window.history.pushState({}, "", url);
-      // Dispatch popstate so useUrlSearchParams detects the change
-      window.dispatchEvent(new PopStateEvent("popstate"));
+      router.replace(`?${params.toString()}`, { scroll: false });
     },
-    []
+    [searchParams, router]
   );
 
   const isInCompare = useCallback(
@@ -57,13 +54,12 @@ export function useCompareIds() {
 
   const toggleCompare = useCallback(
     (id: string) => {
-      const current = compareIds;
       let next: string[];
-      if (current.includes(id)) {
-        next = current.filter((cid) => cid !== id);
+      if (compareIds.includes(id)) {
+        next = compareIds.filter((cid) => cid !== id);
       } else {
-        if (current.length >= MAX_COMPARE) return;
-        next = [...current, id];
+        if (compareIds.length >= MAX_COMPARE) return;
+        next = [...compareIds, id];
       }
       updateUrl(next);
     },

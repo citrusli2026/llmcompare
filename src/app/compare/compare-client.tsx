@@ -8,7 +8,7 @@ import { ArrowLeft, BarChart3, Brain, Code, Bot, Zap, DollarSign, Layers, Calend
 import { getModelById, type ModelWithScores } from "@/lib/scoring";
 import { getRecommendationTags, getModelOneLiner } from "@/lib/recommendation-tags";
 import { useTranslation } from "@/lib/i18n";
-import { useUrlSearchParams } from "@/hooks/use-url-search-params";
+import { useSearchParams } from "next/navigation";
 import { cn, formatTokenCount, getTypeBadgeClasses } from "@/lib/utils";
 import { Tooltip } from "@/components/tooltip";
 import { FieldTip } from "@/components/field-tip";
@@ -24,7 +24,7 @@ interface CompareRow {
 
 export function ComparePageClient() {
   const { t } = useTranslation();
-  const searchParams = useUrlSearchParams();
+  const searchParams = useSearchParams();
 
   const modelIds = useMemo(
     () => searchParams.get("models")?.split(",").filter(Boolean) ?? [],

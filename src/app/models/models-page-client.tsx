@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
@@ -13,7 +13,6 @@ import { SearchInput } from "@/components/search-input";
 import { CompareBar } from "@/components/compare-bar";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
-import { useUrlSearchParams } from "@/hooks/use-url-search-params";
 import { cn } from "@/lib/utils";
 import { Bot, SearchX, X, Sparkles, Trophy, Code, DollarSign, Home, TrendingUp } from "lucide-react";
 
@@ -45,7 +44,7 @@ function parseFeatures(param: string | null): Set<FeatureKey> {
 
 export default function ModelsPageClient() {
   const router = useRouter();
-  const searchParams = useUrlSearchParams();
+  const searchParams = useSearchParams();
   const { t } = useTranslation();
 
   const initialQuery = searchParams.get("q") ?? "";
