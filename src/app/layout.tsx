@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
 };
 
-const themeScript = `(function(){try{var t=localStorage.getItem("theme");document.documentElement.classList.remove("light","dark");if(t==="light"){document.documentElement.classList.add("light");}else{document.documentElement.classList.add("dark");}}catch(e){document.documentElement.classList.add("dark");}})();`;
+const themeScript = `(function(){try{document.documentElement.classList.add("light");}catch(e){}})();`;
 
 const localeScript = `(function(){try{var l=localStorage.getItem("llmcompare-locale");document.documentElement.lang=l==="en"?"en":"zh-CN";if(l&&l!=="zh"){document.documentElement.style.visibility="hidden";}}catch(e){}})();`;
 

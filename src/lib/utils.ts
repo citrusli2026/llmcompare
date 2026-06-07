@@ -14,6 +14,6 @@ export function formatTokenCount(val: number): { value: string; unit: "T" | "B" 
 
 export function getTypeBadgeClasses(type: "开源" | "闭源"): string {
   return type === "开源"
-    ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
-    : "bg-blue-500/10 text-blue-600 dark:text-blue-300";
+    ? "bg-emerald-500/10 text-emerald-600"
+    : "bg-blue-500/10 text-blue-600";
 }
