@@ -1,15 +1,42 @@
 "use client";
 
-import { useState, useRef, useLayoutEffect, useEffect, useCallback } from "react";
+import { useReducer, useRef, useLayoutEffect, useEffect, useCallback } from "react";
 
 interface TooltipProps {
   children: React.ReactNode;
   content: string;
 }
 
+type Action =
+  | { type: "hover_enter" }
+  | { type: "hover_leave" }
+  | { type: "click" }
+  | { type: "close" };
+
+interface State {
+  show: boolean;
+  clicked: boolean;
+}
+
+function tooltipReducer(state: State, action: Action): State {
+  switch (action.type) {
+    case "hover_enter":
+      if (state.clicked) return state; // click-opened: ignore hover
+      return { ...state, show: true };
+    case "hover_leave":
+      if (state.clicked) return state; // click-opened: ignore hover
+      return { ...state, show: false };
+    case "click":
+      if (state.clicked) return { show: false, clicked: false }; // close
+      return { show: true, clicked: true }; // open (stays open even if was hover-shown)
+    case "close":
+      return { show: false, clicked: false };
+  }
+}
+
 export function Tooltip({ children, content }: TooltipProps) {
-  const [show, setShow] = useState(false);
-  const [clicked, setClicked] = useState(false);
+  const [state, dispatch] = useReducer(tooltipReducer, { show: false, clicked: false });
+  const { show, clicked } = state;
   const timer = useRef(0);
   const ref = useRef<HTMLSpanElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
@@ -56,9 +83,8 @@ export function Tooltip({ children, content }: TooltipProps) {
     const raf = requestAnimationFrame(() => positionTooltip());
 
     const reposition = () => {
-      if (clicked) {
-        setShow(false);
-        setClicked(false);
+      if (state.clicked) {
+        dispatch({ type: "close" });
       } else {
         requestAnimationFrame(() => positionTooltip());
       }
@@ -71,44 +97,36 @@ export function Tooltip({ children, content }: TooltipProps) {
       window.removeEventListener("scroll", reposition);
       window.removeEventListener("resize", positionTooltip);
     };
-  }, [show, clicked, positionTooltip]);
+  }, [state.show, state.clicked, positionTooltip]);
 
   // Outside click → close (click-opened tooltips only)
   useEffect(() => {
-    if (!show || !clicked) return;
+    if (!state.show || !state.clicked) return;
     const handle = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {
-        setShow(false);
-        setClicked(false);
+        dispatch({ type: "close" });
       }
     };
     document.addEventListener("mousedown", handle);
     return () => document.removeEventListener("mousedown", handle);
-  }, [show, clicked]);
+  }, [state.show, state.clicked]);
 
   const handleEnter = useCallback(() => {
-    if (clicked) return;
     window.clearTimeout(timer.current);
-    setShow(true);
-  }, [clicked]);
+    dispatch({ type: "hover_enter" });
+  }, []);
 
   const handleLeave = useCallback(() => {
-    if (clicked) return;
-    timer.current = window.setTimeout(() => setShow(false), 150);
-  }, [clicked]);
-
-  const toggleTooltip = useCallback(() => {
-    setClicked((prev) => !prev);
-    setShow((prev) => !prev);
+    timer.current = window.setTimeout(() => dispatch({ type: "hover_leave" }), 150);
   }, []);
 
   const handleClick = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
       e.preventDefault();
-      toggleTooltip();
+      dispatch({ type: "click" });
     },
-    [toggleTooltip]
+    []
   );
 
   return (
