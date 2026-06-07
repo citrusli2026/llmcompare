@@ -45,12 +45,12 @@ test.describe("Home Page", () => {
     await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    // 找到周用量/Weekly Usage 列头并点击
-    const votesHeader = page.locator("th").filter({ hasText: /周用量|Weekly Usage/ });
+    // 找到智能/Intelligence 列头并点击
+    const votesHeader = page.locator("th").filter({ hasText: /智能|Intelligence/ });
     await votesHeader.click();
     await page.waitForTimeout(500);
 
-    // 验证排序生效（有数据的模型排在前面）
+    // 验证排序生效（第一个模型有智能分数）
     const firstRow = page.locator("tbody tr").first();
     await expect(firstRow).toBeVisible();
   });
