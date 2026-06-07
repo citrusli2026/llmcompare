@@ -142,119 +142,130 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
           </div>
         )}
 
-        {/* Scene Cards Grid */}
+        {/* Scene Cards Grid — only the buttons, no expanded content inside grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           {SCENES.map((scene) => {
             const Icon = scene.icon;
             const isActive = expanded === scene.key;
-            const models = sceneModels[scene.key];
 
             return (
-              <div key={scene.key} className="relative">
-                <button
-                  onClick={() => toggle(scene.key)}
-                  className={cn(
-                    "w-full rounded-xl border p-4 text-left transition-all duration-200",
-                    "hover:shadow-md",
-                    isActive
-                      ? "ring-2 ring-accent-violet/40 border-accent-violet/40 bg-surface-elevated"
-                      : "border-surface-border bg-surface-base hover:border-surface-border-hover"
-                  )}
-                >
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <Icon className={cn("h-5 w-5", scene.accentClass.split(" ")[0])} />
-                    <span className="font-semibold text-text-primary text-sm sm:text-base">
-                      {t(scene.labelKey)}
-                    </span>
-                  </div>
-                  <p className="text-xs text-text-muted">{t(scene.descKey)}</p>
-                  <div className="mt-2 flex items-center justify-end">
-                    <ChevronDown
-                      className={cn(
-                        "h-3.5 w-3.5 text-text-muted transition-transform duration-200",
-                        isActive && "rotate-180"
-                      )}
-                    />
-                  </div>
-                </button>
-
-                {/* Expanded model list */}
-                {isActive && (
-                  <div className="mt-2 rounded-xl border border-surface-border bg-surface-elevated overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                    <div className="p-1">
-                      {models.map((model) => (
-                        <Link
-                          key={model.id}
-                          href={`/product/${model.id}`}
-                          className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-base transition-colors group"
-                        >
-                          {/* Logo */}
-                          <div className="h-7 w-7 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
-                            {model.logo ? (
-                              <img
-                                src={model.logo}
-                                alt=""
-                                className="h-5 w-5 object-contain"
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).style.display = "none";
-                                }}
-                              />
-                            ) : (
-                              <span className="text-xs font-bold text-text-muted">
-                                {model.name.charAt(0)}
-                              </span>
-                            )}
-                          </div>
-
-                          {/* Name + Company */}
-                          <div className="flex-1 min-w-0">
-                            <div className="text-sm font-medium text-text-primary truncate group-hover:text-accent-violet transition-colors">
-                              {model.name}
-                            </div>
-                            <div className="text-xs text-text-muted truncate">
-                              {model.company}
-                            </div>
-                            {/* Recommendation tag — why this model is recommended */}
-                            {getRecommendationTags(model).length > 0 && (
-                              <div className="mt-0.5">
-                                <span className={cn(
-                                  "inline-flex items-center gap-0.5 rounded-full px-1.5 py-[1px] text-[10px] font-medium",
-                                  getRecommendationTags(model)[0].colorClass
-                                )}>
-                                  <span>{getRecommendationTags(model)[0].icon}</span>
-                                  <span className="truncate max-w-[6rem]">{t(getRecommendationTags(model)[0].labelKey)}</span>
-                                </span>
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Score */}
-                          <div className="text-right shrink-0">
-                            <div className="text-sm font-semibold text-text-primary">
-                              {scene.displayScore(model)}
-                            </div>
-                            <div className="text-xs text-text-muted">
-                              {scene.secondaryInfo(model)}
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-
-                    {/* Browse all link — carries scene context as sort param */}
-                    <Link
-                      href={`/models?sort=${SCENE_SORT_MAP[scene.key]}`}
-                      className="flex items-center justify-center gap-1 py-2.5 text-sm text-accent-violet hover:text-violet-500 border-t border-surface-border transition-colors"
-                    >
-                      {t("home.sceneBrowseAll", { n: totalCount })}
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
-                  </div>
+              <button
+                key={scene.key}
+                onClick={() => toggle(scene.key)}
+                className={cn(
+                  "w-full rounded-xl border p-4 text-left transition-all duration-200",
+                  "hover:shadow-md",
+                  isActive
+                    ? "ring-2 ring-accent-violet/40 border-accent-violet/40 bg-surface-elevated"
+                    : "border-surface-border bg-surface-base hover:border-surface-border-hover"
                 )}
-              </div>
+              >
+                <div className="flex items-center gap-2 mb-1.5">
+                  <Icon className={cn("h-5 w-5", scene.accentClass.split(" ")[0])} />
+                  <span className="font-semibold text-text-primary text-sm sm:text-base">
+                    {t(scene.labelKey)}
+                  </span>
+                </div>
+                <p className="text-xs text-text-muted">{t(scene.descKey)}</p>
+                <div className="mt-2 flex items-center justify-end">
+                  <ChevronDown
+                    className={cn(
+                      "h-3.5 w-3.5 text-text-muted transition-transform duration-200",
+                      isActive && "rotate-180"
+                    )}
+                  />
+                </div>
+              </button>
             );
           })}
         </div>
+
+        {/* Expanded model list — full width below the entire grid */}
+        {expanded && (() => {
+          const scene = SCENES.find(s => s.key === expanded)!;
+          const Icon = scene.icon;
+          const models = sceneModels[expanded];
+
+          return (
+            <div className="mt-3 rounded-xl border border-surface-border bg-surface-elevated overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+              {/* Scene label header */}
+              <div className="flex items-center gap-2 px-4 pt-3 pb-1">
+                <Icon className={cn("h-4 w-4", scene.accentClass.split(" ")[0])} />
+                <span className="text-sm font-semibold text-text-primary">
+                  {t(scene.labelKey)} — {t("home.topPicks")}
+                </span>
+              </div>
+              <div className="px-1 pb-1">
+                {models.map((model) => (
+                  <Link
+                    key={model.id}
+                    href={`/product/${model.id}`}
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-base transition-colors group"
+                  >
+                    {/* Logo */}
+                    <div className="h-7 w-7 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
+                      {model.logo ? (
+                        <img
+                          src={model.logo}
+                          alt=""
+                          className="h-5 w-5 object-contain"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).style.display = "none";
+                          }}
+                        />
+                      ) : (
+                        <span className="text-xs font-bold text-text-muted">
+                          {model.name.charAt(0)}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Name + Company */}
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-medium text-text-primary truncate group-hover:text-accent-violet transition-colors">
+                        {model.name}
+                      </div>
+                      <div className="text-xs text-text-muted truncate">
+                        {model.company}
+                      </div>
+                      {/* Recommendation tag — why this model is recommended */}
+                      {getRecommendationTags(model).length > 0 && (
+                        <div className="mt-0.5">
+                          <span className={cn(
+                            "inline-flex items-center gap-0.5 rounded-full px-1.5 py-[1px] text-[10px] font-medium",
+                            getRecommendationTags(model)[0].colorClass
+                          )}>
+                            <span>{getRecommendationTags(model)[0].icon}</span>
+                            <span className="truncate max-w-[6rem]">{t(getRecommendationTags(model)[0].labelKey)}</span>
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Score */}
+                    <div className="text-right shrink-0">
+                      <div className="text-sm font-semibold text-text-primary">
+                        {scene.displayScore(model)}
+                      </div>
+                      <div className="text-xs text-text-muted">
+                        {scene.secondaryInfo(model)}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* Browse all link — carries scene context as sort param */}
+              <Link
+                href={`/models?sort=${SCENE_SORT_MAP[expanded]}`}
+                className="flex items-center justify-center gap-1 py-2.5 text-sm text-accent-violet hover:text-violet-500 border-t border-surface-border transition-colors"
+              >
+                {t("home.sceneBrowseAll", { n: totalCount })}
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          );
+        })()}
       </div>
     </section>
   );

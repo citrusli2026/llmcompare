@@ -133,7 +133,13 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         <span className="flex-1 min-w-2" />
         {/* Right: cost · tokens */}
         {costStr && (
-          <span className="tabular-nums shrink-0 text-text-secondary">{costStr}</span>
+          <span className="tabular-nums shrink-0 text-text-secondary">
+            {costStr}
+            {(() => {
+              const isValue = model.raw.intelligence != null && model.raw.intelligence >= 40 && model.raw.blended != null && model.raw.blended > 0 && model.raw.blended < 1;
+              return isValue ? <span className="ml-0.5 text-[10px]" title={t("models.colValueLabel")}>💎</span> : null;
+            })()}
+          </span>
         )}
         {tokensDisplay && (
           <>

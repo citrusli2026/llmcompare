@@ -286,7 +286,7 @@ export function ComparePageClient() {
           <div className="rounded-xl border border-surface-border bg-surface-card overflow-hidden">
             <div className="flex">
               {/* Fixed left panel */}
-              <div className="shrink-0 min-w-[75px] sm:min-w-[140px]">
+              <div className="shrink-0 min-w-[60px] sm:min-w-[140px]">
                 <div className="px-1.5 py-2 sm:px-6 sm:py-4 text-xs font-semibold text-text-muted uppercase tracking-wider">
                   {t("compare.colName")}
                 </div>
@@ -303,9 +303,9 @@ export function ComparePageClient() {
                       <div className="flex items-center gap-1 sm:gap-2">
                         <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-text-muted shrink-0" />
                         {row.tipKey ? (
-                          <FieldTip tip={t(row.tipKey)}><span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span></FieldTip>
+                          <FieldTip tip={t(row.tipKey)}><span className="text-xs sm:text-sm font-medium text-text-primary">{t(row.labelKey)}</span></FieldTip>
                         ) : (
-                          <span className="text-sm font-medium text-text-primary">{t(row.labelKey)}</span>
+                          <span className="text-xs sm:text-sm font-medium text-text-primary">{t(row.labelKey)}</span>
                         )}
                       </div>
                     </div>
@@ -314,14 +314,18 @@ export function ComparePageClient() {
               </div>
 
               {/* Scrollable right panel */}
-              <div className="overflow-x-auto flex-1">
-                <table className="w-full min-w-[320px] sm:min-w-[600px]">
-                  <thead>
-                    <tr className="border-b border-surface-border">
-                      {models.map((m) => (
-                        <th
-                          key={m.id}
-                          className="px-1.5 py-2 sm:px-4 sm:py-4 text-center min-w-[100px] sm:min-w-[180px]"
+              <div className="flex-1 min-w-0">
+                {/* Scroll hint gradient — outside overflow container so always visible */}
+                <div className="relative">
+                  <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-accent-violet/20 via-surface-card/80 to-transparent z-10 sm:hidden" />
+                  <div className="overflow-x-auto">
+                    <table className="w-full min-w-[225px] sm:min-w-[600px]">
+                      <thead>
+                        <tr className="border-b border-surface-border">
+                          {models.map((m) => (
+                            <th
+                              key={m.id}
+                              className="px-1.5 py-2 sm:px-4 sm:py-4 text-center min-w-[75px] sm:min-w-[180px]"
                         >
                           <div className="inline-flex flex-col items-center gap-0.5 sm:gap-1">
                             <span className="font-semibold text-xs sm:text-sm text-text-primary truncate max-w-[95px] sm:max-w-[160px]">
@@ -411,6 +415,8 @@ export function ComparePageClient() {
                     })}
                   </tbody>
                 </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -423,6 +429,6 @@ export function ComparePageClient() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
   );
 }
