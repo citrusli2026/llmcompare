@@ -1,34 +1,14 @@
 "use client";
 
-import { useMemo } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
-import { Bot, TrendingUp, ArrowRight } from "lucide-react";
-import { getRecommendationTags } from "@/lib/recommendation-tags";
-import { getAllModelsUnfiltered } from "@/lib/scoring";
-import { StatsStrip } from "@/components/stats-strip";
-import { CompareBar } from "@/components/compare-bar";
+import { TrendingUp } from "lucide-react";
 import { SceneSelector } from "@/components/scene-selector";
 import { useTranslation } from "@/lib/i18n";
-import { useCompareIds } from "@/hooks/use-compare-ids";
-import { cn } from "@/lib/utils";
 
 export default function HomeClient() {
   const { t } = useTranslation();
-
-  const allModels = useMemo(() => getAllModelsUnfiltered(), []);
-
-  // Top picks: top 5 by weekly usage (most popular), different dimension from scene cards
-  const topPicks = useMemo(() => {
-    return [...allModels]
-      .filter((m) => m.raw.intelligence != null && m.raw.openrouter_weekly_tokens != null)
-      .sort((a, b) => (b.raw.openrouter_weekly_tokens ?? 0) - (a.raw.openrouter_weekly_tokens ?? 0))
-      .slice(0, 5);
-  }, [allModels]);
-
-  // Compare selection from URL params (via shared hook)
-  const { selectedCompareModels, handleRemoveCompare, handleClearCompare } = useCompareIds();
 
   return (
     <div className="min-h-screen bg-surface-base">
@@ -75,99 +55,6 @@ export default function HomeClient() {
         <SceneSelector hideHeader />
       </section>
 
-      {/* Top Picks — compact recommendation card strip (replaces full ranking table) */}
-      <section className="px-4 pt-6 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex items-center justify-between mb-5">
-            <div className="flex items-center gap-3">
-              <Bot className="h-5 w-5 text-accent-violet" />
-              <h2 className="text-lg sm:text-xl font-bold text-text-primary">{t("home.topPicks")}</h2>
-            </div>
-            <Link
-              href="/models"
-              className="flex items-center gap-1 text-sm text-accent-violet hover:text-violet-500 transition-colors"
-            >
-              {t("home.viewAllModels", { n: allModels.length })}
-            </Link>
-          </div>
-
-          {/* Compact horizontal cards — 5 models, wraps to 2 rows on small screens */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-            {topPicks.map((model) => (
-              <Link
-                key={model.id}
-                href={`/models/${model.id}`}
-                className="rounded-xl border border-surface-border bg-surface-card p-3 sm:p-4 transition-all duration-200 hover:border-accent-violet/30 hover:shadow-md hover:-translate-y-0.5 group"
-              >
-                {/* Logo + Name row */}
-                <div className="flex items-start gap-2.5 mb-2">
-                  <div className="h-8 w-8 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
-                    {model.logo ? (
-                      <img
-                        src={model.logo}
-                        alt=""
-                        className="h-6 w-6 object-contain"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = "none";
-                        }}
-                      />
-                    ) : (
-                      <span className="text-xs font-bold text-text-muted">
-                        {model.name.charAt(0)}
-                      </span>
-                    )}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="text-sm font-semibold text-text-primary truncate group-hover:text-accent-violet transition-colors">
-                      {model.name}
-                    </div>
-                    <div className="text-xs text-text-muted truncate">
-                      {model.company}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Intelligence score */}
-                <div className="flex items-baseline gap-1">
-                  <span className="text-lg font-bold text-accent-violet">
-                    {model.raw.intelligence?.toFixed(1) ?? "—"}
-                  </span>
-                  <span className="text-xs text-text-muted">{t("models.colIntelligence")}</span>
-                </div>
-
-                {/* Type badge */}
-                <div className="mt-1.5">
-                  <span className={cn(
-                    "inline-block text-[10px] font-medium px-1.5 py-0.5 rounded",
-                    model.type === "开源"
-                      ? "bg-accent-lime/10 text-accent-lime"
-                      : "bg-accent-violet/10 text-accent-violet"
-                  )}>
-                    {model.type}
-                  </span>
-                </div>
-
-                {/* Recommendation tag — why this model is a top pick */}
-                {getRecommendationTags(model).length > 0 && (
-                  <div className="mt-1.5">
-                    <span className={cn(
-                      "inline-flex items-center gap-0.5 rounded-full px-1.5 py-[1px] text-[10px] font-medium",
-                      getRecommendationTags(model)[0].colorClass
-                    )}>
-                      <span>{getRecommendationTags(model)[0].icon}</span>
-                      <span className="truncate max-w-[6rem]">{t(getRecommendationTags(model)[0].labelKey)}</span>
-                    </span>
-                  </div>
-                )}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* StatsStrip — below model list on all sizes */}
-      <StatsStrip />
-
       {/* Footer */}
       <footer className="border-t border-surface-border bg-surface-elevated px-4 py-8 sm:px-6 lg:px-8 pb-20">
         <div className="mx-auto max-w-7xl text-center text-sm text-text-muted">
@@ -175,12 +62,6 @@ export default function HomeClient() {
           <p className="mt-1">{t("home.footerDisclaimer")}</p>
         </div>
       </footer>
-
-      <CompareBar
-        selectedModels={selectedCompareModels}
-        onRemoveModel={handleRemoveCompare}
-        onClear={handleClearCompare}
-      />
     </div>
   );
 }

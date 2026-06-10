@@ -25,7 +25,7 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排位全球 
 - **React 19.2.4** + **TypeScript**
 - **Tailwind CSS v4**（无 `tailwind.config.js`；通过 CSS 中 `@theme inline` 配置）
 - **shadcn/ui** 使用 `@base-ui/react` 底层组件（`style: "base-nova"`）
-- **next-themes** 实现暗色/亮色切换（默认暗色，`enableSystem: false`）
+- **仅亮色主题**（`ThemeProvider` 强制 `light` class；不接 next-themes，不支持深色）
 - **Geist / Geist Mono** 字体，通过 `next/font/google` 加载
 - **@vercel/analytics** 网站分析
 - **Vitest** + **@testing-library/react** + **jsdom** — 单元/集成测试
@@ -55,7 +55,7 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排位全球 
 ### 布局与 Hydration 策略
 
 `src/app/layout.tsx` 包含两个内联脚本（`localeScript` + `themeScript`），在 HTML `<head>` 中早于 React hydration 执行：
-- **主题**：读取 `localStorage` 的 `theme` 键，在页面渲染前就给 `<html>` 加上 `light`/`dark` 类，防止主题闪烁
+- **主题**：直接给 `<html>` 加 `light` class（项目只支持亮色，无主题切换）
 - **语言**：读取 `localStorage` 的 `llmcompare-locale` 键，非中文用户 SSR 输出时先将 `<html>` 设为 `visibility: hidden`，hydration 完成后由 `i18n.tsx` 中的 `useEffect` 恢复可见，避免中文内容闪烁
 
 产品详情页（`/product/[id]`）还注入 JSON-LD 结构化数据（SoftwareApplication + BreadcrumbList）用于 SEO。

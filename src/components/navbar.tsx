@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { BarChart3, Bot, Info, Menu, X } from "lucide-react";
+import { BarChart3, Bot, Heart, Info, Menu, X } from "lucide-react";
 import { LanguageToggle } from "./language-toggle";
 import { useTranslation } from "@/lib/i18n";
 import { useState } from "react";
@@ -11,6 +11,7 @@ import { useState } from "react";
 const navItems = [
   { href: "/", labelKey: "nav.home", icon: BarChart3 },
   { href: "/models", labelKey: "nav.models", icon: Bot },
+  { href: "/favorites", labelKey: "nav.favorites", icon: Heart },
   { href: "/about", labelKey: "nav.about", icon: Info },
 ];
 

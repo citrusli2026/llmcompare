@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
@@ -8,13 +8,9 @@ import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
 import type { SortKey } from "@/components/ranking-table/types";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
-import { FeatureFilter, type FeatureKey } from "@/components/feature-filter";
-import { SearchInput } from "@/components/search-input";
-import { CompareBar } from "@/components/compare-bar";
 import { useTranslation } from "@/lib/i18n";
-import { useCompareIds } from "@/hooks/use-compare-ids";
-import { cn } from "@/lib/utils";
-import { Bot, SearchX, X, Sparkles, Trophy, Code, DollarSign, Home, TrendingUp } from "lucide-react";
+import { Bot, SearchX, X, Sparkles, Trophy, TrendingUp } from "lucide-react";
+import { ShareButton } from "@/components/share-button";
 
 type FilterKey = "all" | "open" | "closed";
 
@@ -32,117 +28,35 @@ function matchValueFor(key: FilterKey): string | undefined {
   return FILTERS.find((f) => f.key === key)?.matchValue;
 }
 
-const FEATURE_KEYS: FeatureKey[] = ["frontier", "reasoning", "image_input", "chinese_eval", "open_weights"];
-
-function parseFeatures(param: string | null): Set<FeatureKey> {
-  if (!param) return new Set();
-  const keys = param.split(",").filter((k): k is FeatureKey =>
-    FEATURE_KEYS.includes(k as FeatureKey)
-  );
-  return new Set(keys);
-}
-
 export default function ModelsPageClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { t } = useTranslation();
 
-  const initialQuery = searchParams.get("q") ?? "";
   const initialFilterRaw = searchParams.get("filter") ?? "all";
   const initialFilter: FilterKey = isFilterKey(initialFilterRaw) ? initialFilterRaw : "all";
-  const initialCompany = searchParams.get("company") ?? "";
+  const initialSort = searchParams.get("sort") as SortKey | null;
 
   const [activeFilter, setActiveFilter] = useState<FilterKey>(initialFilter);
-  const [searchQuery, setSearchQuery] = useState(initialQuery);
-  const [companyFilter, setCompanyFilter] = useState(initialCompany);
-  const [featureKeys, setFeatureKeys] = useState<Set<FeatureKey>>(
-    parseFeatures(searchParams.get("feature"))
-  );
-
-  const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const updateUrl = useCallback(
-    (query: string, filter: FilterKey, company: string, features: Set<FeatureKey>) => {
+    (filter: FilterKey) => {
       const params = new URLSearchParams(searchParams.toString());
-      if (query) {
-        params.set("q", query);
-      } else {
-        params.delete("q");
-      }
       if (filter !== "all") {
         params.set("filter", filter);
       } else {
         params.delete("filter");
-      }
-      if (company) {
-        params.set("company", company);
-      } else {
-        params.delete("company");
-      }
-      if (features.size > 0) {
-        params.set("feature", [...features].join(","));
-      } else {
-        params.delete("feature");
       }
       router.replace(`?${params.toString()}`, { scroll: false });
     },
     [router, searchParams]
   );
 
-  // Refs to prevent stale closure in debounce/timeouts
-  const activeFilterRef = useRef(activeFilter);
-  const companyFilterRef = useRef(companyFilter);
-  const searchQueryRef = useRef(searchQuery);
-  const featureKeysRef = useRef(featureKeys);
-  useEffect(() => { activeFilterRef.current = activeFilter; }, [activeFilter]);
-  useEffect(() => { companyFilterRef.current = companyFilter; }, [companyFilter]);
-  useEffect(() => { searchQueryRef.current = searchQuery; }, [searchQuery]);
-  useEffect(() => { featureKeysRef.current = featureKeys; }, [featureKeys]);
-
-  const handleSearchChange = useCallback(
-    (value: string) => {
-      setSearchQuery(value);
-      if (searchDebounceRef.current) {
-        clearTimeout(searchDebounceRef.current);
-      }
-      searchDebounceRef.current = setTimeout(() => {
-        updateUrl(value, activeFilterRef.current, companyFilterRef.current, featureKeysRef.current);
-      }, 300);
-    },
-    [updateUrl]
-  );
-
   const handleFilterChange = useCallback(
     (key: string) => {
       if (!isFilterKey(key)) return;
       setActiveFilter(key);
-      updateUrl(searchQueryRef.current, key, companyFilterRef.current, featureKeysRef.current);
-    },
-    [updateUrl]
-  );
-
-  const handleCompanyChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      const company = e.target.value;
-      setCompanyFilter(company);
-      updateUrl(searchQueryRef.current, activeFilterRef.current, company, featureKeysRef.current);
-    },
-    [updateUrl]
-  );
-
-  const handleFeatureToggle = useCallback(
-    (key: FeatureKey) => {
-      setFeatureKeys((prev) => {
-        const next = new Set(prev);
-        if (next.has(key)) {
-          next.delete(key);
-        } else {
-          next.add(key);
-        }
-        // Update URL synchronously with new set
-        updateUrl(searchQueryRef.current, activeFilterRef.current, companyFilterRef.current, next);
-        return next;
-      });
+      updateUrl(key);
     },
     [updateUrl]
   );
@@ -154,40 +68,16 @@ export default function ModelsPageClient() {
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
 
-  const companies = useMemo(
-    () => [...new Set(allModels.map((m) => m.company).filter(Boolean))].sort(),
-    [allModels]
-  );
-
-  // Compare selection from URL params (via shared hook)
-  const { selectedCompareModels, handleRemoveCompare, handleClearCompare } = useCompareIds();
-
   const filteredModels = useMemo(() => {
     const filterMatchValue = matchValueFor(activeFilter);
-    return allModels.filter((m) => {
-      const matchesFilter =
-        activeFilter === "all" ? true : m.type === filterMatchValue;
-      const matchesCompany =
-        companyFilter === "" ? true : m.company === companyFilter;
-      const matchesSearch =
-        searchQuery === ""
-          ? true
-          : m.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            m.company.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesFeatures =
-        featureKeys.size === 0
-          ? true
-          : [...featureKeys].every((k) => Boolean(m.flags[k]));
-      return matchesFilter && matchesCompany && matchesSearch && matchesFeatures;
-    });
-  }, [allModels, activeFilter, companyFilter, searchQuery, featureKeys]);
+    return allModels.filter((m) =>
+      activeFilter === "all" ? true : m.type === filterMatchValue
+    );
+  }, [allModels, activeFilter]);
 
   // Clear all filters
   const handleClearAll = useCallback(() => {
     setActiveFilter("all");
-    setSearchQuery("");
-    setCompanyFilter("");
-    setFeatureKeys(new Set());
     router.replace("/models", { scroll: false });
   }, [router]);
 
@@ -200,7 +90,7 @@ export default function ModelsPageClient() {
   }, [allModels]);
 
   // Detect if any filter is active
-  const hasActiveFilters = activeFilter !== "all" || searchQuery !== "" || companyFilter !== "" || featureKeys.size > 0;
+  const hasActiveFilters = activeFilter !== "all";
 
   const isEmpty = filteredModels.length === 0;
 
@@ -213,71 +103,31 @@ export default function ModelsPageClient() {
       .slice(0, 3);
   }, [filteredModels, isEmpty]);
 
-  // Initial sort key from URL (for scene sort)
-  const initialSort = searchParams.get("sort") as SortKey | null;
-
-  // Scene sort buttons
-  const SCENE_SORTS: { key: string; icon: React.ComponentType<{ className?: string }>; labelKey: string; sortKey: SortKey }[] = [
-    { key: "intelligence", icon: Trophy, labelKey: "models.sortByIntelligence", sortKey: "intelligence" },
-    { key: "coding", icon: Code, labelKey: "models.sortByCoding", sortKey: "coding" },
-    { key: "agentic", icon: Bot, labelKey: "models.sortByAgent", sortKey: "agentic" },
-    { key: "cost", icon: DollarSign, labelKey: "models.sortByValue", sortKey: "cost" },
-  ];
-
-  const handleSceneSort = (sortKey: SortKey) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("sort", sortKey);
-    router.replace(`?${params.toString()}`, { scroll: false });
-  };
-
   return (
     <div className="min-h-screen bg-surface-base">
       <Navbar />
 
       <div className="px-4 py-6 sm:py-12 sm:px-6 lg:px-8 pb-20">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-4 sm:mb-8">
-            <div className="flex items-center gap-3 mb-2 sm:mb-4">
-              <Bot className="h-7 w-7 sm:h-8 sm:w-8 text-accent-violet" />
-              <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">{t("models.title")}</h1>
+          <div className="mb-4 sm:mb-8 flex items-start justify-between gap-3">
+            <div>
+              <div className="flex items-center gap-3 mb-2 sm:mb-4">
+                <Bot className="h-7 w-7 sm:h-8 sm:w-8 text-accent-violet" />
+                <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">{t("models.title")}</h1>
+              </div>
+              <p className="hidden sm:block text-text-secondary">
+                {t("models.desc")}
+              </p>
             </div>
-            <p className="hidden sm:block text-text-secondary">
-              {t("models.desc")}
-            </p>
+            <ShareButton size="sm" variant="ghost" className="shrink-0 mt-1" />
           </div>
 
-          {/* 搜索框—独立一行 */}
-          <div className="mb-4 sm:mb-6 w-full sm:w-auto">
-            <SearchInput
-              value={searchQuery}
-              onChange={handleSearchChange}
-              placeholder={t("models.searchPlaceholder")}
-              className="max-w-none sm:max-w-md w-full"
-            />
-          </div>
-
-          {/* 筛选条件 — 统一排版 */}
+          {/* 筛选条件 — 全部/开源/闭源 */}
           <div className="mb-4 sm:mb-6 flex flex-wrap items-center gap-2">
             <FilterBar
               options={filterOptions}
               activeKey={activeFilter}
               onFilterChange={handleFilterChange}
-            />
-            <div className="h-5 w-px bg-surface-border mx-0.5 hidden sm:block" />
-            <select
-              value={companyFilter}
-              onChange={handleCompanyChange}
-              className="h-9 rounded-lg border border-surface-border bg-surface-card px-3 py-1.5 text-xs text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-violet/40"
-            >
-              <option value="">{t("models.filterAllCompanies")}</option>
-              {companies.map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </select>
-            <div className="h-5 w-px bg-surface-border mx-0.5 hidden sm:block" />
-            <FeatureFilter
-              activeKeys={featureKeys}
-              onToggle={handleFeatureToggle}
             />
           </div>
 
@@ -376,67 +226,6 @@ export default function ModelsPageClient() {
                 </div>
               )}
 
-              {/* Scene sort bar — always visible, not just when filters are active */}
-              <div className={cn(
-                "mb-4",
-                !hasActiveFilters && "rounded-xl border border-accent-violet/10 bg-accent-violet/[0.02] p-3 sm:p-4"
-              )}>
-                <div className="flex flex-wrap items-center gap-1.5">
-                  {!hasActiveFilters && (
-                    <span className="flex items-center gap-1.5 text-xs text-text-muted mr-1 whitespace-nowrap">
-                      <span className="hidden sm:inline w-px h-3 bg-accent-violet/20" />
-                      {t("models.sortBy")}：
-                    </span>
-                  )}
-                  {SCENE_SORTS.map((scene) => {
-                  const SceneIcon = scene.icon;
-                  const isActiveSort = initialSort === scene.sortKey || (!initialSort && scene.sortKey === "intelligence");
-                  return (
-                    <button
-                      key={scene.key}
-                      onClick={() => handleSceneSort(scene.sortKey)}
-                      className={cn(
-                        "inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-medium transition-all",
-                        isActiveSort
-                          ? "border-accent-violet/30 bg-accent-violet/10 text-accent-violet"
-                          : "border-surface-border bg-surface-card text-text-secondary hover:border-accent-violet/20 hover:text-accent-violet"
-                      )}
-                    >
-                      <SceneIcon className="h-3 w-3" />
-                      {t(scene.labelKey)}
-                    </button>
-                  );
-                })}
-                </div>
-              </div>
-
-              {/* Scene context indicator — shows when user arrived from home page scene selection */}
-              {initialSort && ["intelligence", "coding", "agentic", "cost"].includes(initialSort) && (
-                <div className="mb-4 flex items-center gap-2 rounded-xl border border-accent-violet/10 bg-accent-violet/[0.03] px-4 py-3">
-                  <span className="text-sm">🎯</span>
-                  <span className="text-sm text-text-primary font-medium">
-                    {t("models.sceneBrowsing", {
-                      scene: t(
-                        initialSort === "intelligence"
-                          ? "models.sortByIntelligence"
-                          : initialSort === "coding"
-                          ? "models.sortByCoding"
-                          : initialSort === "agentic"
-                          ? "models.sortByAgent"
-                          : "models.sortByValue"
-                      ),
-                    })}
-                  </span>
-                  <Link
-                    href="/"
-                    className="ml-auto flex items-center gap-1 text-xs text-accent-violet hover:text-violet-500 transition-colors whitespace-nowrap"
-                  >
-                    <Home className="h-3 w-3" />
-                    {t("models.sceneBrowsingBack")}
-                  </Link>
-                </div>
-              )}
-
               <RankingTable models={filteredModels} initialSortKey={initialSort ?? undefined} />
               <div className="mt-8 text-center text-sm text-text-muted">
                 {t("models.count", { count: String(filteredModels.length) })}
@@ -445,12 +234,6 @@ export default function ModelsPageClient() {
           )}
         </div>
       </div>
-
-      <CompareBar
-        selectedModels={selectedCompareModels}
-        onRemoveModel={handleRemoveCompare}
-        onClear={handleClearCompare}
-      />
     </div>
   );
 }

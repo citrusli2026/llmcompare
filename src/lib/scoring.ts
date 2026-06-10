@@ -86,6 +86,7 @@ interface RawModel {
   arena_rankings?: Record<string, ArenaRanking | undefined> | null;
   data_completeness_pct?: number;
   meta?: RawMeta;
+  license?: string | null;
 }
 
 // ── Public Types ──
@@ -126,6 +127,7 @@ export interface ModelWithScores {
     arena_rankings: Record<string, ArenaRanking | undefined> | null;
     arena_code: number | null;
     data_completeness_pct: number;
+    license: string | null;
     benchmarks: {
       gpqa: number | null;
       hle: number | null;
@@ -185,6 +187,7 @@ function initCache(): void {
         arena_rankings: m.arena_rankings && Object.keys(m.arena_rankings).length > 0 ? m.arena_rankings : null,
         arena_code: m.arena_rankings?.code?.score ?? null,
         data_completeness_pct: m.data_completeness_pct ?? 0,
+        license: m.license ?? null,
         benchmarks: {
           gpqa: (m.benchmarks?.gpqa ?? null) as number | null,
           hle: (m.benchmarks?.hle ?? null) as number | null,

@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { BackToTop } from "@/components/back-to-top";
+import { TrackCtaClicks } from "@/components/track-cta-clicks";
 import "./globals.css";
 
 const rubik = Rubik({
@@ -77,6 +78,7 @@ export default function RootLayout({
           <ThemeProvider>
             {children}
             <BackToTop />
+            <TrackCtaClicks />
             <Analytics />
           </ThemeProvider>
         </LanguageProvider>

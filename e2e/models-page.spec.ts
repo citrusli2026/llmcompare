@@ -3,26 +3,6 @@ import { test, expect } from "@playwright/test";
 const isMobile = (projectName: string) => projectName === "Mobile Chrome";
 
 test.describe("Models Page — 筛选与搜索功能", () => {
-  test("desktop: 搜索框按名称筛选模型", async ({ page }, testInfo) => {
-    test.skip(isMobile(testInfo.project.name), "桌面端专用");
-    await page.goto("/models");
-    await page.waitForLoadState("networkidle");
-
-    // 输入搜索词
-    const searchInput = page.locator("input[placeholder*='搜索'], input[placeholder*='Search']");
-    await expect(searchInput).toBeVisible();
-    await searchInput.fill("Claude");
-    await page.waitForTimeout(500);
-
-    // 验证结果只含 Claude
-    const rows = page.locator("tbody tr");
-    const count = await rows.count();
-    if (count > 0) {
-      const firstCell = rows.first().locator("td").nth(1);
-      await expect(firstCell).toContainText(/Claude/i);
-    }
-  });
-
   test("desktop: 5 个功能标签全部可切换", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");
@@ -144,7 +124,7 @@ test.describe("Models Page — 筛选与搜索功能", () => {
     await page.waitForLoadState("networkidle");
 
     // 移动端显示卡片结构
-    const mobileCard = page.locator("div.relative.rounded-xl.border").first();
+    const mobileCard = page.locator("[data-testid='mobile-model-card']").first();
     await expect(mobileCard).toBeVisible();
     // 卡片内有模型名称文字
     await expect(mobileCard.locator("a, span, div").filter({ hasText: /^(?!$)/ }).first()).toBeAttached();

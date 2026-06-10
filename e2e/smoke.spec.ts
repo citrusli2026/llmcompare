@@ -66,18 +66,17 @@ test.describe("Home Page", () => {
     await expect(badge.locator("svg")).toBeVisible();
   });
 
-  test("hot picks: 5 cards with valid hrefs", async ({ page }, testInfo) => {
+  test("scene cards: 展开后有 5 个 model 链接", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // Top Picks section cards
-    const topPicksSection = page.locator("section").filter({ hasText: /热门推荐|Top Picks/ });
-    const cards = topPicksSection.locator("a[href^='/models/']");
+    // 默认展开 coding 场景,验证 top 5 model 链接
+    const cards = page.locator(".animate-in a[href^='/models/']");
     const count = await cards.count();
-    expect(count).toBeGreaterThanOrEqual(3); // 至少 3 张卡片
+    expect(count).toBeGreaterThanOrEqual(3);
 
-    // 所有卡片 href 合法
+    // 所有 href 合法
     for (let i = 0; i < count; i++) {
       const href = await cards.nth(i).getAttribute("href");
       expect(href).toMatch(/^\/models\//);
@@ -97,35 +96,18 @@ test.describe("Home Page", () => {
     await expect(page.locator("h1")).toBeVisible();
   });
 
-  test("hot picks card navigates to detail page", async ({ page }, testInfo) => {
+  test("scene card: 展开后点击 model 链接跳转详情页", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 热门推荐区的第一张卡片点击
-    const topPicksSection = page.locator("section").filter({ hasText: /热门推荐|Top Picks/ });
-    const firstCard = topPicksSection.locator("a[href^='/models/']").first();
+    // 默认展开的 coding 场景卡的第一项
+    const firstCard = page.locator(".animate-in a[href^='/models/']").first();
     await expect(firstCard).toBeVisible();
     const href = await firstCard.getAttribute("href");
     await firstCard.click();
     await page.waitForURL(`**${href}`);
     await expect(page.locator("h1")).toBeVisible();
-  });
-
-  test("sort by cost works", async ({ page }, testInfo) => {
-    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
-    await page.goto("/models");
-    await page.waitForLoadState("networkidle");
-
-    // 点击按性价比排序按钮
-    const costBtn = page.locator("button").filter({ hasText: /性价比|Cost|Value/ });
-    await expect(costBtn).toBeVisible();
-    await costBtn.click();
-    await page.waitForTimeout(500);
-
-    // 验证第一个模型可见
-    const firstRow = page.locator("tbody tr").first();
-    await expect(firstRow).toBeVisible();
   });
 
   test("feature tag filters work", async ({ page }, testInfo) => {
@@ -144,25 +126,6 @@ test.describe("Home Page", () => {
     await expect(rows.first()).toBeVisible();
   });
 
-  test("company filter dropdown works", async ({ page }, testInfo) => {
-    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
-    await page.goto("/models");
-    await page.waitForLoadState("networkidle");
-
-    // 找到公司筛选下拉框（native select）
-    const companySelect = page.locator("select").first();
-    await expect(companySelect).toBeVisible();
-
-    // 选择 OpenAI
-    await companySelect.selectOption("OpenAI");
-    await page.waitForTimeout(500);
-
-    // 验证筛选生效
-    const rows = page.locator("tbody tr");
-    const count = await rows.count();
-    expect(count).toBeGreaterThan(0);
-  });
-
   test("mobile view renders correctly", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用测试");
     await page.goto("/");
@@ -177,18 +140,18 @@ test.describe("Home Page", () => {
     await page.screenshot({ path: `${SCREENSHOTS}/home-mobile.png`, fullPage: true });
   });
 
-  test("mobile sort interaction works", async ({ page }, testInfo) => {
+  test("mobile scene card 切换展开后显示 model 链接", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用测试");
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 点击编程场景卡片展开推荐模型
-    const codingButton = page.locator("button").filter({ hasText: /编程|Coding/ }).first();
-    await codingButton.click();
+    // 点击 Agent 场景卡(默认收起)展开
+    const agentButton = page.locator("button").filter({ hasText: /Agent/ }).first();
+    await agentButton.click();
     await page.waitForTimeout(300);
 
     // 展开后应有模型链接
-    await expect(page.locator("a[href^='/models/']").first()).toBeVisible();
+    await expect(page.locator(".animate-in a[href^='/models/']").first()).toBeVisible();
 
     await page.screenshot({ path: `${SCREENSHOTS}/home-mobile-sorted.png`, fullPage: true });
   });

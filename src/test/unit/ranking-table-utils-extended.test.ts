@@ -47,6 +47,7 @@ describe("ranking-table utils extended", () => {
       arena_rankings: null,
       arena_code: 1200,
       data_completeness_pct: 80,
+      license: null,
       benchmarks: { gpqa: null, hle: null, mmlu_pro: null },
       ...overrides,
     },

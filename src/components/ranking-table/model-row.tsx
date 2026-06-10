@@ -2,15 +2,16 @@
 
 import { useCallback } from "react";
 import Link from "next/link";
-import { useCompareIds } from "@/hooks/use-compare-ids";
+import { useRouter } from "next/navigation";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight, Plus } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { cn, getTypeBadgeClasses } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup } from "./types";
 import { getRawValue, getScoreColor, ScoreBar } from "./utils";
 import { useTranslation } from "@/lib/i18n";
+import { FavoriteButton } from "@/components/favorite-button";
 
 interface ModelRowProps {
   model: ModelWithScores;
@@ -26,48 +27,26 @@ interface ModelRowProps {
 
 export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVisibilityClass, percentiles, globalMax }: ModelRowProps) {
   const { t } = useTranslation();
-  const { isInCompare, toggleCompare } = useCompareIds();
+  const router = useRouter();
 
-  const handleToggleCompare = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation();
-      toggleCompare(model.id);
-    },
-    [model.id, toggleCompare]
-  );
+  const handleRowClick = useCallback(() => {
+    router.push(`/models/${model.id}`);
+  }, [router, model.id]);
 
   return (
     <TableRow
+      data-model-id={model.id}
+      onClick={handleRowClick}
       className={cn(
-        "border-surface-border hover:bg-surface-hover transition-colors even:bg-surface-elevated/40",
+        "border-surface-border hover:bg-surface-hover transition-colors even:bg-surface-elevated/40 cursor-pointer",
         group.borderClass,
       )}
     >
-      {/* Compare checkbox — visible "⊕ 对比" button */}
+      {/* Favorite button — first column, visually prominent, replaces the old compare slot */}
       <TableCell className="w-16 sm:w-20">
-        <button
-          onClick={handleToggleCompare}
-          className={cn(
-            "inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium transition-all",
-            isInCompare(model.id)
-              ? "bg-accent-violet/10 text-accent-violet border border-accent-violet/30"
-              : "text-text-muted border border-surface-border hover:border-accent-violet/50 hover:text-accent-violet hover:bg-accent-violet/5"
-          )}
-          aria-label={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
-          title={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
-        >
-          {isInCompare(model.id) ? (
-            <span className="flex items-center gap-1">
-              <span className="text-[10px]">☑</span>
-              <span>{t("compare.remove")}</span>
-            </span>
-          ) : (
-            <span className="flex items-center gap-1">
-              <Plus className="h-3 w-3" />
-              <span>{t("compare.addToCompare")}</span>
-            </span>
-          )}
-        </button>
+        <span onClick={(e) => e.stopPropagation()} className="inline-flex">
+          <FavoriteButton modelId={model.id} size="lg" />
+        </span>
       </TableCell>
 
       {/* Model name + badges */}
@@ -92,6 +71,19 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
             <span className="truncate">{model.name}</span>
             <ArrowUpRight className="h-3 w-3 text-text-muted transition-all duration-200 opacity-40 group-hover/link:opacity-100 group-hover/link:text-accent-violet group-hover/link:translate-x-0.5 shrink-0" />
           </Link>
+          {model.vendor_links?.console && (
+            <a
+              href={model.vendor_links.console}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              data-cta="row-console"
+              title={t("models.rowTryCta")}
+              className="hidden sm:inline-flex items-center justify-center h-5 w-5 rounded text-text-muted opacity-30 hover:opacity-100 hover:text-accent-violet hover:bg-accent-violet/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40 shrink-0"
+            >
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          )}
           <Badge
             variant="secondary"
             className={cn("text-[10px] py-0 px-1.5 whitespace-nowrap shrink-0", getTypeBadgeClasses(model.type))}

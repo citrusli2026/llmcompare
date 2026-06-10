@@ -7,14 +7,11 @@ import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 
 import { ModelHeader } from "./model-header";
-import { VendorLinks } from "./vendor-links";
+import { CtaGroup } from "./cta-group";
 import { QuickFacts } from "./quick-facts";
 import { BenchmarkSection } from "./benchmark-section";
 import { SpeedSection } from "./speed-section";
 import { PricingSection } from "./pricing-section";
-import { ArenaRankings } from "./arena-rankings";
-import { TokenUsage } from "./token-usage";
-import { DataCompleteness } from "./data-completeness";
 import { ScoreOverview } from "./score-overview";
 import { SimilarModels } from "./similar-models";
 
@@ -39,34 +36,23 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
           </Link>
 
           <ModelHeader model={model} />
-          <VendorLinks model={model} />
+
+          {/* Primary CTA group — the main reason to land on a model page */}
+          <CtaGroup model={model} />
+
           <QuickFacts model={model} />
-          <div className="mt-4">
-            <DataCompleteness model={model} />
-          </div>
 
           <div className="mt-6">
             <ScoreOverview model={model} />
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-3 mt-6">
-            {/* On mobile: pricing + arena first, then benchmark + speed */}
-            <div className="lg:col-span-2 space-y-6">
-              <div className="block lg:hidden space-y-6">
-                <PricingSection model={model} />
-                <ArenaRankings model={model} />
-              </div>
-              <BenchmarkSection model={model} />
-              <SpeedSection model={model} />
-            </div>
+          <div className="mt-6">
+            <PricingSection model={model} />
+          </div>
 
-            <div className="space-y-6">
-              <div className="hidden lg:block space-y-6">
-                <PricingSection model={model} />
-                <ArenaRankings model={model} />
-              </div>
-              <TokenUsage model={model} />
-            </div>
+          <div className="grid gap-6 lg:grid-cols-2 mt-6">
+            <BenchmarkSection model={model} />
+            <SpeedSection model={model} />
           </div>
 
           {/* Similar model recommendations — "you might also like" */}
