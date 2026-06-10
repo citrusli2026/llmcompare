@@ -2,6 +2,7 @@
 
 import { useCallback } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -27,6 +28,7 @@ interface ModelRowProps {
 
 export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVisibilityClass, percentiles, globalMax }: ModelRowProps) {
   const { t } = useTranslation();
+  const router = useRouter();
   const { isInCompare, toggleCompare, isAtMax } = useCompareIds();
 
   const handleToggleCompare = useCallback(
@@ -37,11 +39,16 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
     [model.id, toggleCompare]
   );
 
+  const handleRowClick = useCallback(() => {
+    router.push(`/models/${model.id}`);
+  }, [router, model.id]);
+
   return (
     <TableRow
       data-model-id={model.id}
+      onClick={handleRowClick}
       className={cn(
-        "border-surface-border hover:bg-surface-hover transition-colors even:bg-surface-elevated/40",
+        "border-surface-border hover:bg-surface-hover transition-colors even:bg-surface-elevated/40 cursor-pointer",
         group.borderClass,
       )}
     >
@@ -110,7 +117,9 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
               <ExternalLink className="h-3 w-3" />
             </a>
           )}
-          <FavoriteButton modelId={model.id} size="sm" className="h-6 w-6 ml-0.5" />
+          <span onClick={(e) => e.stopPropagation()} className="inline-flex">
+            <FavoriteButton modelId={model.id} size="sm" className="h-6 w-6 ml-0.5" />
+          </span>
           <Badge
             variant="secondary"
             className={cn("text-[10px] py-0 px-1.5 whitespace-nowrap shrink-0", getTypeBadgeClasses(model.type))}
