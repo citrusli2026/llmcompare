@@ -1,4 +1,5 @@
 import { type ModelWithScores, getAllModels } from "./scoring";
+import { isValuePick, BADGE_PALETTE } from "./utils";
 
 export interface RecommendationTag {
   key: string;
@@ -40,11 +41,6 @@ export function getRecommendationTags(model: ModelWithScores): RecommendationTag
     .filter((s): s is number => s != null)
     .sort((a, b) => b - a);
 
-  const pricedModels = allModels
-    .map((m) => m.raw.blended)
-    .filter((p): p is number => p != null && p > 0)
-    .sort((a, b) => a - b); // ascending for price
-
   // 1. 编程能力突出 ⌨️ — coding score in top 25% AND ≥ 40
   if (model.raw.coding != null && codingScores.length > 0) {
     const top25Coding = topPThreshold(codingScores, 25);
@@ -53,7 +49,7 @@ export function getRecommendationTags(model: ModelWithScores): RecommendationTag
         key: "badgeCoding",
         labelKey: "product.badgeCoding",
         icon: "⌨️",
-        colorClass: "bg-accent-lime/10 text-accent-lime",
+        colorClass: BADGE_PALETTE.openWeights,
       });
     }
   }
@@ -66,23 +62,19 @@ export function getRecommendationTags(model: ModelWithScores): RecommendationTag
         key: "badgeAgent",
         labelKey: "product.badgeAgent",
         icon: "🤖",
-        colorClass: "bg-accent-violet/10 text-accent-violet",
+        colorClass: BADGE_PALETTE.frontier,
       });
     }
   }
 
-  // 3. 性价比之选 💎 — intelligence ≥ 40 AND blended price in bottom 50% of priced models
-  if (model.raw.intelligence >= 40 && model.raw.blended != null && model.raw.blended > 0 && pricedModels.length > 0) {
-    const medianPriceIdx = Math.floor(pricedModels.length / 2);
-    const medianPrice = pricedModels[medianPriceIdx];
-    if (model.raw.blended <= medianPrice) {
-      tags.push({
-        key: "badgeValue",
-        labelKey: "product.badgeValue",
-        icon: "💎",
-        colorClass: "bg-emerald-500/10 text-emerald-500",
-      });
-    }
+  // 3. 性价比之选 💎 — uses shared isValuePick definition
+  if (isValuePick(model, allModels)) {
+    tags.push({
+      key: "badgeValue",
+      labelKey: "product.badgeValue",
+      icon: "💎",
+      colorClass: BADGE_PALETTE.value,
+    });
   }
 
   // 4. 前沿推理模型 🧠 — reasoning flag AND intelligence in top 25%
@@ -93,7 +85,7 @@ export function getRecommendationTags(model: ModelWithScores): RecommendationTag
         key: "badgeReasoning",
         labelKey: "product.badgeReasoning",
         icon: "🧠",
-        colorClass: "bg-amber-500/10 text-amber-500",
+        colorClass: BADGE_PALETTE.reasoning,
       });
     }
   }
@@ -104,7 +96,7 @@ export function getRecommendationTags(model: ModelWithScores): RecommendationTag
       key: "badgeBudget",
       labelKey: "product.badgeBudget",
       icon: "💰",
-      colorClass: "bg-sky-500/10 text-sky-500",
+      colorClass: "bg-accent-cyan/10 text-accent-cyan",
     });
   }
 
@@ -114,7 +106,7 @@ export function getRecommendationTags(model: ModelWithScores): RecommendationTag
       key: "badgeOpenLeader",
       labelKey: "product.badgeOpenLeader",
       icon: "🌐",
-      colorClass: "bg-cyan-500/10 text-cyan-500",
+      colorClass: "bg-accent-cyan/10 text-accent-cyan",
     });
   }
 

@@ -50,21 +50,20 @@ export default async function ProductPage({ params }: ProductPageProps) {
     ...(model.raw.intelligence != null && {
       aggregateRating: {
         "@type": "AggregateRating",
-        ratingValue: model.raw.intelligence,
+        ratingValue: Math.round(model.raw.intelligence * 10) / 10,
         bestRating: 100,
         worstRating: 0,
-        ratingCount: 1,
       },
     }),
-    ...(model.raw.cn_input != null && {
+    ...(model.raw.input != null && {
       offers: {
         "@type": "Offer",
-        price: model.raw.cn_input,
-        priceCurrency: "CNY",
+        price: model.raw.input,
+        priceCurrency: "USD",
         priceSpecification: {
           "@type": "UnitPriceSpecification",
-          price: model.raw.cn_input,
-          priceCurrency: "CNY",
+          price: model.raw.input,
+          priceCurrency: "USD",
           unitText: "per 1M input tokens",
         },
       },

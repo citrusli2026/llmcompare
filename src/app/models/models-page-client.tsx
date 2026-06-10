@@ -15,6 +15,7 @@ import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { cn } from "@/lib/utils";
 import { Bot, SearchX, X, Sparkles, Trophy, Code, DollarSign, Home, TrendingUp } from "lucide-react";
+import { ShareButton } from "@/components/share-button";
 
 type FilterKey = "all" | "open" | "closed";
 
@@ -236,14 +237,17 @@ export default function ModelsPageClient() {
 
       <div className="px-4 py-6 sm:py-12 sm:px-6 lg:px-8 pb-20">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-4 sm:mb-8">
-            <div className="flex items-center gap-3 mb-2 sm:mb-4">
-              <Bot className="h-7 w-7 sm:h-8 sm:w-8 text-accent-violet" />
-              <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">{t("models.title")}</h1>
+          <div className="mb-4 sm:mb-8 flex items-start justify-between gap-3">
+            <div>
+              <div className="flex items-center gap-3 mb-2 sm:mb-4">
+                <Bot className="h-7 w-7 sm:h-8 sm:w-8 text-accent-violet" />
+                <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">{t("models.title")}</h1>
+              </div>
+              <p className="hidden sm:block text-text-secondary">
+                {t("models.desc")}
+              </p>
             </div>
-            <p className="hidden sm:block text-text-secondary">
-              {t("models.desc")}
-            </p>
+            <ShareButton size="sm" variant="ghost" className="shrink-0 mt-1" />
           </div>
 
           {/* 搜索框—独立一行 */}

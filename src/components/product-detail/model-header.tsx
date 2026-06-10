@@ -3,12 +3,13 @@
 import { useState, useMemo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { type ModelWithScores } from "@/lib/scoring";
-import { getTypeBadgeClasses } from "@/lib/utils";
+import { getTypeBadgeClasses, getFeatureBadgeClasses } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { cn } from "@/lib/utils";
 import { getRecommendationTags, getModelOneLiner } from "@/lib/recommendation-tags";
 import { Plus, Check } from "lucide-react";
+import { ShareButton } from "@/components/share-button";
 
 interface ModelHeaderProps {
   model: ModelWithScores;
@@ -73,42 +74,45 @@ export function ModelHeader({ model }: ModelHeaderProps) {
 
           <div className="flex flex-wrap gap-1.5">
             {f.frontier && (
-              <Badge className="bg-violet-500/10 text-violet-400 text-xs">{t("common.frontier")}</Badge>
+              <Badge className={cn(getFeatureBadgeClasses("frontier"), "text-xs")}>{t("common.frontier")}</Badge>
             )}
             {f.reasoning && (
-              <Badge className="bg-amber-500/10 text-amber-400 text-xs">{t("common.reasoning")}</Badge>
+              <Badge className={cn(getFeatureBadgeClasses("reasoning"), "text-xs")}>{t("common.reasoning")}</Badge>
             )}
             {f.open_weights && (
-              <Badge className="bg-emerald-500/10 text-emerald-400 text-xs">{t("common.openWeights")}</Badge>
+              <Badge className={cn(getFeatureBadgeClasses("open_weights"), "text-xs")}>{t("common.openWeights")}</Badge>
             )}
             {f.image_input && (
-              <Badge className="bg-cyan-500/10 text-cyan-400 text-xs">{t("common.imageInput")}</Badge>
+              <Badge className={cn(getFeatureBadgeClasses("image_input"), "text-xs")}>{t("common.imageInput")}</Badge>
             )}
             {f.chinese_eval && (
-              <Badge className="bg-blue-500/10 text-blue-400 text-xs">{t("common.chineseEval")}</Badge>
+              <Badge className={cn(getFeatureBadgeClasses("chinese_eval"), "text-xs")}>{t("common.chineseEval")}</Badge>
             )}
           </div>
         </div>
       </div>
-      <button
-        onClick={() => toggleCompare(model.id)}
-        className={cn(
-          "flex shrink-0 items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs sm:text-sm font-medium transition-all",
-          inCompare
-            ? "bg-accent-lime/10 text-accent-lime border-accent-lime/30"
-            : "bg-surface-elevated text-text-secondary border-surface-border hover:border-accent-violet/30 hover:text-accent-violet hover:bg-accent-violet/5"
-        )}
-        aria-label={inCompare ? t("compare.remove") : t("compare.addToCompare")}
-      >
-        {inCompare ? (
-          <Check className="h-3.5 w-3.5" />
-        ) : (
-          <Plus className="h-3.5 w-3.5" />
-        )}
-        <span className="hidden sm:inline">
-          {inCompare ? t("compare.remove") : t("compare.addToCompare")}
-        </span>
-      </button>
+      <div className="flex shrink-0 items-center gap-1.5">
+        <ShareButton size="sm" variant="ghost" showLabel={false} />
+        <button
+          onClick={() => toggleCompare(model.id)}
+          className={cn(
+            "flex shrink-0 items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs sm:text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base",
+            inCompare
+              ? "bg-accent-lime/10 text-accent-lime border-accent-lime/30"
+              : "bg-surface-elevated text-text-secondary border-surface-border hover:border-accent-violet/30 hover:text-accent-violet hover:bg-accent-violet/5"
+          )}
+          aria-label={inCompare ? t("compare.remove") : t("compare.addToCompare")}
+        >
+          {inCompare ? (
+            <Check className="h-3.5 w-3.5" />
+          ) : (
+            <Plus className="h-3.5 w-3.5" />
+          )}
+          <span className="hidden sm:inline">
+            {inCompare ? t("compare.remove") : t("compare.addToCompare")}
+          </span>
+        </button>
+      </div>
     </div>
   );
 }

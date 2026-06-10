@@ -21,7 +21,7 @@ export function FilterBar({ options, activeKey, onFilterChange }: FilterBarProps
           key={opt.key}
           onClick={() => onFilterChange(opt.key)}
           className={cn(
-            "rounded-lg px-3 py-1.5 text-xs font-medium transition-all min-h-9",
+            "rounded-lg px-3 py-1.5 text-xs font-medium transition-all min-h-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base",
             activeKey === opt.key
               ? "bg-accent-violet/20 text-accent-violet border border-accent-violet/40"
               : "bg-surface-card text-text-secondary border border-surface-border hover:bg-surface-hover hover:text-text-primary"

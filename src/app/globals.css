@@ -59,11 +59,18 @@
   --color-accent-lime: var(--accent-lime);
   --color-accent-coral: var(--accent-coral);
   --color-accent-emerald: var(--accent-emerald);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-blue: var(--accent-blue);
   --color-glass-bg: var(--glass-bg);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-accent-violet: var(--shadow-accent-violet);
 }
 
 /* ================================================================
-   :root = LIGHT THEME (default)
+   :root = LIGHT THEME (sole theme)
    Sentry Light: Lavender-tinted white canvas
    ================================================================ */
 :root {
@@ -104,16 +111,25 @@
   --surface-hover: #ede9f5;
   --surface-elevated: #e8e4f0;
   --surface-border: #d4cde0;
+  /* Text scale: 4-grade gradient, all ≥ WCAG AA on white */
   --text-primary: #1a1530;
   --text-secondary: #4a4560;
-  --text-muted: #8a85a0;
-  --text-dim: #c0bcd0;
+  --text-muted: #6a6783;
+  --text-dim: #7a7596;
   --accent-violet: #6a5fc1;
   --accent-fuchsia: #c43d7a;
   --accent-lime: #4d9400;
   --accent-coral: #d97040;
   --accent-emerald: #059669;
+  --accent-amber: #b45309;
+  --accent-cyan: #0e7490;
+  --accent-blue: #1d4ed8;
   --glass-bg: rgba(255, 255, 255, 0.85);
+  /* Shadow scale — centralized for consistency */
+  --shadow-sm: 0 1px 2px 0 rgba(26, 21, 48, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(26, 21, 48, 0.08), 0 2px 4px -2px rgba(26, 21, 48, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(26, 21, 48, 0.10), 0 4px 6px -4px rgba(26, 21, 48, 0.05);
+  --shadow-accent-violet: 0 8px 20px -4px rgba(106, 95, 193, 0.35);
 }
 
 @layer base {

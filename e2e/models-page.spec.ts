@@ -144,7 +144,7 @@ test.describe("Models Page — 筛选与搜索功能", () => {
     await page.waitForLoadState("networkidle");
 
     // 移动端显示卡片结构
-    const mobileCard = page.locator("div.relative.rounded-xl.border").first();
+    const mobileCard = page.locator("[data-testid='mobile-model-card']").first();
     await expect(mobileCard).toBeVisible();
     // 卡片内有模型名称文字
     await expect(mobileCard.locator("a, span, div").filter({ hasText: /^(?!$)/ }).first()).toBeAttached();

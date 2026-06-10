@@ -3,7 +3,8 @@
     "home": "Home",
     "models": "Model Directory",
     "about": "About",
-    "brand": "LLMCompare"
+    "brand": "LLMCompare",
+    "tryModels": "Try models"
   },
   "home": {
     "badge": "Updated Jun 10, 2026",
@@ -51,6 +52,9 @@
     "emptyState": "No matching models found",
     "emptySuggestion": "Try reducing your filters, or check out these recommendations:",
     "emptyClear": "Clear all filters",
+    "share": "Share",
+    "shareCopied": "Link copied",
+    "shareFailed": "Copy failed",
     "count": "{count} models",
     "recommendTitle": "🏆 Top Pick",
     "recommendDesc": "Top 3 by intelligence in current filter",
@@ -69,6 +73,8 @@
     "colCost": "Price",
     "colTokens": "Weekly Usage",
     "colValueLabel": "Best Value",
+    "rowTryCta": "Try",
+    "expandHint": "Tap to see more metrics",
     "colModel": "Model",
     "colCompany": "Company",
     "colType": "Type",
@@ -145,6 +151,9 @@
     "orPricing": "OpenRouter",
     "orSource": "Source: lmarena.ai",
     "dataSource": "Artificial Analysis Data Source",
+    "tryIt": "Try it now",
+    "visitHomepage": "Visit website",
+    "viewApiDocs": "API docs",
     "arenaRankings": "Arena Rankings",
     "arenaText": "Text",
     "arenaCode": "Coding",
@@ -256,7 +265,5 @@
     "priceInput": "Input",
     "priceOutput": "Output"
   },
-  "theme": {
-    "toggle": "Toggle theme"
-  }
+  "theme": {}
 }

@@ -62,7 +62,7 @@ test.describe("Compare Feature — 模型对比功能", () => {
     await page.waitForLoadState("networkidle");
 
     // 找到卡片区域的对比按钮（mobile card 有 relative class，StatsStrip 没有）
-    const mobileCard = page.locator("div.relative.rounded-xl.border").first();
+    const mobileCard = page.locator("[data-testid='mobile-model-card']").first();
     const addBtn = mobileCard.locator("button").first();
     await expect(addBtn).toBeVisible();
     await addBtn.click();
@@ -80,7 +80,7 @@ test.describe("Compare Feature — 模型对比功能", () => {
     await page.waitForLoadState("networkidle");
 
     // 找到卡片区域的对比按钮
-    const mobileCard = page.locator("div.relative.rounded-xl.border").first();
+    const mobileCard = page.locator("[data-testid='mobile-model-card']").first();
     const addBtn = mobileCard.locator("button").first();
     await addBtn.click();
     await page.waitForTimeout(300);
@@ -236,7 +236,7 @@ test.describe("Compare Feature — 模型对比功能", () => {
     await page.waitForLoadState("networkidle");
 
     // 加入一个模型到对比
-    const mobileCard = page.locator("div.relative.rounded-xl.border").first();
+    const mobileCard = page.locator("[data-testid='mobile-model-card']").first();
     const addBtn = mobileCard.locator("button").first();
     await addBtn.click();
     await page.waitForTimeout(300);

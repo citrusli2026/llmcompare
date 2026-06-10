@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { BarChart3, Bot, Info, Menu, X } from "lucide-react";
+import { BarChart3, Bot, Info, Menu, Sparkles, X } from "lucide-react";
 import { LanguageToggle } from "./language-toggle";
 import { useTranslation } from "@/lib/i18n";
 import { useState } from "react";
@@ -55,6 +55,16 @@ export function Navbar() {
               );
             })}
           </nav>
+          <a
+            href="https://openrouter.ai/models"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cta="navbar-try"
+            className="flex items-center gap-1.5 rounded-lg bg-accent-violet px-3 py-2 text-sm font-semibold text-white shadow-[var(--shadow-accent-violet)] hover:bg-accent-violet/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base"
+          >
+            <Sparkles className="h-4 w-4" />
+            <span>{t("nav.tryModels")}</span>
+          </a>
           <div className="w-px h-6 bg-surface-border mx-1" />
           <LanguageToggle />
           <a
@@ -72,6 +82,16 @@ export function Navbar() {
 
         {/* Mobile Navigation */}
         <div className="flex sm:hidden items-center gap-1">
+          <a
+            href="https://openrouter.ai/models"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cta="navbar-try-mobile"
+            aria-label={t("nav.tryModels")}
+            className="flex items-center justify-center h-9 w-9 rounded-lg bg-accent-violet text-white shadow-[var(--shadow-accent-violet)]"
+          >
+            <Sparkles className="h-4 w-4" />
+          </a>
           <LanguageToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
