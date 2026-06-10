@@ -63,6 +63,7 @@ function makeModel(overrides: {
       arena_rankings: null,
       arena_code: null,
       data_completeness_pct: 100,
+      license: null,
       benchmarks: { gpqa: null, hle: null, mmlu_pro: null },
     },
     flags: {

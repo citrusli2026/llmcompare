@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "models": "Model Directory",
+    "favorites": "My Favorites",
     "about": "About",
     "brand": "LLMCompare",
     "tryModels": "Try models"
@@ -89,6 +90,15 @@
     "sceneBrowsing": "Browsing by {scene}",
     "sceneBrowsingBack": "Back to selection"
   },
+  "favorites": {
+    "title": "My Favorites",
+    "add": "Add to favorites",
+    "remove": "Remove from favorites",
+    "empty": "No favorite models yet",
+    "emptyHint": "Click the ♡ on any model in the directory or detail page to add",
+    "clear": "Clear all favorites",
+    "count": "{n} models favorited"
+  },
   "about": {
     "title": "About LLMCompare",
     "backLink": "Back to Home",
@@ -130,6 +140,8 @@
     "company": "Company",
     "parameters": "Parameters",
     "contextWindow": "Context Window",
+    "license": "License",
+    "licenseProprietary": "Proprietary",
     "releaseDate": "Release Date",
     "outputTokens": "Max Output",
     "priceTitle": "Pricing",
@@ -250,6 +262,7 @@
     "contextWindow": "Context Window",
     "parameters": "Parameters",
     "releaseDate": "Release Date",
+    "license": "Model weight license. Closed-source models show \"Proprietary\".",
     "benchmarkGpqa": "GPQA",
     "benchmarkHle": "HLE",
     "arenaVotes": "Arena Votes",

@@ -56,6 +56,7 @@ export function makeModel(
       arena_rankings: null,
       arena_code: null,
       data_completeness_pct: 80,
+      license: null,
       benchmarks: {
         gpqa: null,
         hle: null,
