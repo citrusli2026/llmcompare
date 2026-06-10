@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { Bot, TrendingUp, ArrowRight } from "lucide-react";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
-import { StatsStrip } from "@/components/stats-strip";
 import { CompareBar } from "@/components/compare-bar";
 import { SceneSelector } from "@/components/scene-selector";
 import { useTranslation } from "@/lib/i18n";
@@ -164,9 +163,6 @@ export default function HomeClient() {
           </div>
         </div>
       </section>
-
-      {/* StatsStrip — below model list on all sizes */}
-      <StatsStrip />
 
       {/* Footer */}
       <footer className="border-t border-surface-border bg-surface-elevated px-4 py-8 sm:px-6 lg:px-8 pb-20">
