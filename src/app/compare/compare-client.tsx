@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, BarChart3, Brain, Code, Bot, Zap, DollarSign, Layers, Calendar, Eye, Weight, MessageSquare, Trophy, Check, Star, X, TrendingUp, Link2, CheckCheck } from "lucide-react";
+import { ShareButton } from "@/components/share-button";
+import { ArrowLeft, BarChart3, Brain, Code, Bot, Zap, DollarSign, Layers, Calendar, Eye, Weight, MessageSquare, Trophy, Check, Star, X, TrendingUp } from "lucide-react";
 import { getModelById, type ModelWithScores } from "@/lib/scoring";
 import { getRecommendationTags, getModelOneLiner } from "@/lib/recommendation-tags";
 import { useTranslation } from "@/lib/i18n";
@@ -35,8 +36,6 @@ export function ComparePageClient() {
     () => modelIds.map((id) => getModelById(id)).filter(Boolean) as ModelWithScores[],
     [modelIds]
   );
-
-  const [copied, setCopied] = useState(false);
 
   // ── Define comparison rows ──
   const rows: CompareRow[] = useMemo(() => [
@@ -238,33 +237,7 @@ export function ComparePageClient() {
             <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">{t("compare.title")}</h1>
             <span className="text-text-muted text-sm ml-2">({models.length} {t("nav.models")})</span>
             <span className="flex-1" />
-            <button
-              onClick={async () => {
-                try {
-                  await navigator.clipboard.writeText(window.location.href);
-                } catch {
-                  const ta = document.createElement("textarea");
-                  ta.value = window.location.href;
-                  ta.style.position = "fixed";
-                  ta.style.opacity = "0";
-                  document.body.appendChild(ta);
-                  ta.select();
-                  document.execCommand("copy");
-                  ta.remove();
-                }
-                setCopied(true);
-                setTimeout(() => setCopied(false), 2000);
-              }}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-surface-border px-3 py-2 text-xs sm:text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-hover transition-all shrink-0"
-              aria-label={t("compare.share")}
-            >
-              {copied ? (
-                <CheckCheck className="h-4 w-4 text-accent-lime" />
-              ) : (
-                <Link2 className="h-4 w-4" />
-              )}
-              {copied ? t("compare.copied") : t("compare.share")}
-            </button>
+            <ShareButton variant="outline" className="shrink-0" />
           </div>
 
           {/* Verdict — which model for which scenario */}
