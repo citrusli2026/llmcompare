@@ -9,6 +9,7 @@ import { getAllModels, type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup, type ScoreKey } from "./types";
 import { getScoreColor } from "./utils";
 import { useTranslation } from "@/lib/i18n";
+import { FavoriteButton } from "@/components/favorite-button";
 
 interface MobileCardProps {
   model: ModelWithScores;
@@ -58,6 +59,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
   return (
     <div
       data-testid="mobile-model-card"
+      data-model-id={model.id}
       onClick={handleCardClick}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -107,6 +109,9 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
             <Plus className="h-3.5 w-3.5" />
           )}
         </button>
+      </div>
+      <div className="absolute top-1 left-1 z-10">
+        <FavoriteButton modelId={model.id} size="icon" className="h-7 w-7 bg-surface-card/80 backdrop-blur-sm" />
       </div>
 
       {/* Main row: rank + logo + name + intelligence score + cost */}

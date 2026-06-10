@@ -11,6 +11,7 @@ import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup } from "./types";
 import { getRawValue, getScoreColor, ScoreBar } from "./utils";
 import { useTranslation } from "@/lib/i18n";
+import { FavoriteButton } from "@/components/favorite-button";
 
 interface ModelRowProps {
   model: ModelWithScores;
@@ -38,6 +39,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
 
   return (
     <TableRow
+      data-model-id={model.id}
       className={cn(
         "border-surface-border hover:bg-surface-hover transition-colors even:bg-surface-elevated/40",
         group.borderClass,
@@ -105,6 +107,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
               <ExternalLink className="h-3 w-3" />
             </a>
           )}
+          <FavoriteButton modelId={model.id} size="sm" className="h-6 w-6 ml-0.5" />
           <Badge
             variant="secondary"
             className={cn("text-[10px] py-0 px-1.5 whitespace-nowrap shrink-0", getTypeBadgeClasses(model.type))}

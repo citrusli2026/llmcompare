@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { getRecommendationTags, getModelOneLiner } from "@/lib/recommendation-tags";
 import { Plus, Check } from "lucide-react";
 import { ShareButton } from "@/components/share-button";
+import { FavoriteButton } from "@/components/favorite-button";
 
 interface ModelHeaderProps {
   model: ModelWithScores;
@@ -92,6 +93,7 @@ export function ModelHeader({ model }: ModelHeaderProps) {
         </div>
       </div>
       <div className="flex shrink-0 items-center gap-1.5">
+        <FavoriteButton modelId={model.id} size="md" />
         <ShareButton size="sm" variant="ghost" showLabel={false} />
         <button
           onClick={() => toggleCompare(model.id)}
