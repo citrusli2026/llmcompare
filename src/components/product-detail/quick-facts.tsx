@@ -4,7 +4,7 @@ import { Calendar, Building2, Cpu, BookOpen, Scale } from "lucide-react";
 import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { FieldTip } from "@/components/field-tip";
-import { formatParameters } from "@/lib/compare-utils";
+import { formatParameters } from "@/lib/utils";
 
 interface QuickFactsProps {
   model: ModelWithScores;

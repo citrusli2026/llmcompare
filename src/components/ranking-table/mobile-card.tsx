@@ -1,9 +1,8 @@
 "use client";
 import { useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { useCompareIds } from "@/hooks/use-compare-ids";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Plus } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { cn, getTypeBadgeClasses, isValuePick } from "@/lib/utils";
 import { getAllModels, type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup, type ScoreKey } from "./types";
@@ -36,18 +35,6 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
     router.push(`/models/${model.id}`);
   }, [router, model.id]);
 
-  // ── Compare logic ──
-  const { isInCompare, toggleCompare, isAtMax } = useCompareIds();
-
-  const handleToggleCompare = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation();
-      e.preventDefault();
-      toggleCompare(model.id);
-    },
-    [model.id, toggleCompare]
-  );
-
   // ── Data helpers ──
   const blended = model.raw.blended;
   const costStr = blended != null ? (blended === 0 ? t("common.free") : `$${blended.toFixed(2)}`) : null;
@@ -76,7 +63,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         group.rowBgClass
       )}
     >
-      {/* Top-right: try CTA + compare button (stacked) */}
+      {/* Top-right: try CTA + favorite button (stacked) — favorite promoted to top-right slot */}
       <div className="absolute top-1 right-1 flex items-center gap-0.5 z-10">
         {tryUrl && (
           <a
@@ -92,29 +79,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
             <ExternalLink className="h-3.5 w-3.5" />
           </a>
         )}
-        <button
-          onClick={handleToggleCompare}
-          disabled={!isInCompare(model.id) && isAtMax}
-          className={cn(
-            "flex items-center justify-center w-8 h-8 rounded-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
-            isInCompare(model.id)
-              ? "bg-accent-violet text-white"
-              : isAtMax
-                ? "bg-surface-elevated text-text-muted/50 border border-surface-border cursor-not-allowed"
-                : "bg-surface-elevated text-text-muted border border-surface-border hover:border-accent-violet/50 hover:text-accent-violet"
-          )}
-          aria-label={isInCompare(model.id) ? t("compare.remove") : isAtMax ? t("compare.maxReached") : t("compare.addToCompare")}
-          title={isInCompare(model.id) ? t("compare.remove") : isAtMax ? t("compare.maxReached") : t("compare.addToCompare")}
-        >
-          {isInCompare(model.id) ? (
-            <span className="text-xs font-bold">✓</span>
-          ) : (
-            <Plus className="h-3.5 w-3.5" />
-          )}
-        </button>
-      </div>
-      <div className="absolute top-1 left-1 z-10">
-        <FavoriteButton modelId={model.id} size="icon" className="h-7 w-7 bg-surface-card/80 backdrop-blur-sm" />
+        <FavoriteButton modelId={model.id} size="lg" />
       </div>
 
       {/* Main row: rank + logo + name + intelligence score + cost */}

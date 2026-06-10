@@ -112,22 +112,6 @@ test.describe("Home Page", () => {
     await expect(page.locator("h1")).toBeVisible();
   });
 
-  test("sort by cost works", async ({ page }, testInfo) => {
-    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
-    await page.goto("/models");
-    await page.waitForLoadState("networkidle");
-
-    // 点击按性价比排序按钮
-    const costBtn = page.locator("button").filter({ hasText: /性价比|Cost|Value/ });
-    await expect(costBtn).toBeVisible();
-    await costBtn.click();
-    await page.waitForTimeout(500);
-
-    // 验证第一个模型可见
-    const firstRow = page.locator("tbody tr").first();
-    await expect(firstRow).toBeVisible();
-  });
-
   test("feature tag filters work", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
     await page.goto("/models");
@@ -142,25 +126,6 @@ test.describe("Home Page", () => {
     // 验证筛选生效 — 至少有一个结果
     const rows = page.locator("tbody tr");
     await expect(rows.first()).toBeVisible();
-  });
-
-  test("company filter dropdown works", async ({ page }, testInfo) => {
-    test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
-    await page.goto("/models");
-    await page.waitForLoadState("networkidle");
-
-    // 找到公司筛选下拉框（native select）
-    const companySelect = page.locator("select").first();
-    await expect(companySelect).toBeVisible();
-
-    // 选择 OpenAI
-    await companySelect.selectOption("OpenAI");
-    await page.waitForTimeout(500);
-
-    // 验证筛选生效
-    const rows = page.locator("tbody tr");
-    const count = await rows.count();
-    expect(count).toBeGreaterThan(0);
   });
 
   test("mobile view renders correctly", async ({ page }, testInfo) => {

@@ -5,10 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { type ModelWithScores } from "@/lib/scoring";
 import { getTypeBadgeClasses, getFeatureBadgeClasses } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
-import { useCompareIds } from "@/hooks/use-compare-ids";
 import { cn } from "@/lib/utils";
 import { getRecommendationTags, getModelOneLiner } from "@/lib/recommendation-tags";
-import { Plus, Check } from "lucide-react";
 import { ShareButton } from "@/components/share-button";
 import { FavoriteButton } from "@/components/favorite-button";
 
@@ -20,9 +18,6 @@ export function ModelHeader({ model }: ModelHeaderProps) {
   const { t } = useTranslation();
   const f = model.flags;
   const [logoError, setLogoError] = useState(false);
-  const { isInCompare, toggleCompare, isAtMax } = useCompareIds();
-  const inCompare = isInCompare(model.id);
-  const compareDisabled = !inCompare && isAtMax;
 
   // Recommendation Tags — turns raw data into decision guidance
   const recommendationTags = useMemo(() => getRecommendationTags(model), [model]);
@@ -94,31 +89,8 @@ export function ModelHeader({ model }: ModelHeaderProps) {
         </div>
       </div>
       <div className="flex shrink-0 items-center gap-1.5">
-        <FavoriteButton modelId={model.id} size="md" />
+        <FavoriteButton modelId={model.id} size="lg" />
         <ShareButton size="sm" variant="ghost" showLabel={false} />
-        <button
-          onClick={() => toggleCompare(model.id)}
-          disabled={compareDisabled}
-          className={cn(
-            "flex shrink-0 items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs sm:text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base",
-            inCompare
-              ? "bg-accent-lime/10 text-accent-lime border-accent-lime/30"
-              : compareDisabled
-                ? "bg-surface-elevated text-text-muted/50 border-surface-border cursor-not-allowed"
-                : "bg-surface-elevated text-text-secondary border-surface-border hover:border-accent-violet/30 hover:text-accent-violet hover:bg-accent-violet/5"
-          )}
-          aria-label={inCompare ? t("compare.remove") : compareDisabled ? t("compare.maxReached") : t("compare.addToCompare")}
-          title={inCompare ? t("compare.remove") : compareDisabled ? t("compare.maxReached") : t("compare.addToCompare")}
-        >
-          {inCompare ? (
-            <Check className="h-3.5 w-3.5" />
-          ) : (
-            <Plus className="h-3.5 w-3.5" />
-          )}
-          <span className="hidden sm:inline">
-            {inCompare ? t("compare.remove") : t("compare.addToCompare")}
-          </span>
-        </button>
       </div>
     </div>
   );

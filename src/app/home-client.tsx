@@ -7,10 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Bot, TrendingUp, ArrowRight } from "lucide-react";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
-import { CompareBar } from "@/components/compare-bar";
 import { SceneSelector } from "@/components/scene-selector";
 import { useTranslation } from "@/lib/i18n";
-import { useCompareIds } from "@/hooks/use-compare-ids";
 import { cn } from "@/lib/utils";
 
 export default function HomeClient() {
@@ -25,9 +23,6 @@ export default function HomeClient() {
       .sort((a, b) => (b.raw.openrouter_weekly_tokens ?? 0) - (a.raw.openrouter_weekly_tokens ?? 0))
       .slice(0, 5);
   }, [allModels]);
-
-  // Compare selection from URL params (via shared hook)
-  const { selectedCompareModels, handleRemoveCompare, handleClearCompare, maxCompare } = useCompareIds();
 
   return (
     <div className="min-h-screen bg-surface-base">
@@ -171,13 +166,6 @@ export default function HomeClient() {
           <p className="mt-1">{t("home.footerDisclaimer")}</p>
         </div>
       </footer>
-
-      <CompareBar
-        selectedModels={selectedCompareModels}
-        onRemoveModel={handleRemoveCompare}
-        onClear={handleClearCompare}
-        maxCompare={maxCompare}
-      />
     </div>
   );
 }

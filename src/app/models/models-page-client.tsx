@@ -8,9 +8,7 @@ import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
 import type { SortKey } from "@/components/ranking-table/types";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
-import { CompareBar } from "@/components/compare-bar";
 import { useTranslation } from "@/lib/i18n";
-import { useCompareIds } from "@/hooks/use-compare-ids";
 import { Bot, SearchX, X, Sparkles, Trophy, TrendingUp } from "lucide-react";
 import { ShareButton } from "@/components/share-button";
 
@@ -69,9 +67,6 @@ export default function ModelsPageClient() {
   );
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
-
-  // Compare selection from URL params (via shared hook)
-  const { selectedCompareModels, handleRemoveCompare, handleClearCompare, maxCompare } = useCompareIds();
 
   const filteredModels = useMemo(() => {
     const filterMatchValue = matchValueFor(activeFilter);
@@ -239,13 +234,6 @@ export default function ModelsPageClient() {
           )}
         </div>
       </div>
-
-      <CompareBar
-        selectedModels={selectedCompareModels}
-        onRemoveModel={handleRemoveCompare}
-        onClear={handleClearCompare}
-        maxCompare={maxCompare}
-      />
     </div>
   );
 }

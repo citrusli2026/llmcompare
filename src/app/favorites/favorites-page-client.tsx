@@ -4,10 +4,8 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { RankingTable } from "@/components/ranking-table";
-import { CompareBar } from "@/components/compare-bar";
 import { FavoriteButton } from "@/components/favorite-button";
 import { useFavorites } from "@/hooks/use-favorites";
-import { useCompareIds } from "@/hooks/use-compare-ids";
 import { getAllModelsUnfiltered } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { Heart, SearchX, Trash2 } from "lucide-react";
@@ -15,7 +13,6 @@ import { Heart, SearchX, Trash2 } from "lucide-react";
 export default function FavoritesPageClient() {
   const { t } = useTranslation();
   const { favorites, clearFavorites } = useFavorites();
-  const { selectedCompareModels, handleRemoveCompare, handleClearCompare, maxCompare } = useCompareIds();
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
   const favoritedModels = useMemo(
@@ -95,13 +92,6 @@ export default function FavoritesPageClient() {
           )}
         </div>
       </div>
-
-      <CompareBar
-        selectedModels={selectedCompareModels}
-        onRemoveModel={handleRemoveCompare}
-        onClear={handleClearCompare}
-        maxCompare={maxCompare}
-      />
     </div>
   );
 }

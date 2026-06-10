@@ -14,6 +14,18 @@ export function formatTokenCount(val: number): { value: string; unit: "T" | "B" 
 }
 
 /**
+ * Format a model parameter count (in billions) for display.
+ * 7B → "7B", 1000B → "1T", 1600B → "1.6T"
+ */
+export function formatParameters(billions: number): string {
+  if (billions >= 1000) {
+    const trillions = billions / 1000;
+    return Number.isInteger(trillions) ? `${trillions}T` : `${trillions.toFixed(1)}T`;
+  }
+  return `${billions}B`;
+}
+
+/**
  * Badge palette for type/feature chips.
  * Single source of truth — all component Badges should use this map.
  * Each entry has a tinted bg + accessible fg (≥ 4.5:1 on white).

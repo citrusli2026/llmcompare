@@ -3,66 +3,6 @@ import { test, expect } from "@playwright/test";
 const SCREENSHOTS = "e2e/screenshots";
 const isMobile = (projectName: string) => projectName === "Mobile Chrome";
 
-// ─── Stats Strip ───────────────────────────────────────────────────
-test.describe("StatsStrip — 首页数据概览卡片", () => {
-  test("desktop: 4 卡片全部渲染且有有效数据", async ({ page }, testInfo) => {
-    test.skip(isMobile(testInfo.project.name), "桌面端专用");
-    await page.goto("/");
-    await page.waitForLoadState("networkidle");
-
-    // StatsStrip 区域可见
-    const strip = page.locator("section.px-4.pt-2");
-    await expect(strip).toBeVisible();
-
-    // 4 卡片结构
-    const cards = strip.locator("> div > div.grid > div.rounded-xl");
-    await expect(cards).toHaveCount(4);
-
-    // 卡片1: 收录模型数，数值 > 0
-    const card0 = cards.nth(0);
-    await expect(card0.locator("svg")).toBeVisible(); // Bot icon
-    const val0 = card0.locator("p.text-2xl");
-    await expect(val0).toBeVisible();
-    const num0 = parseInt(await val0.textContent() || "0");
-    expect(num0).toBeGreaterThan(0);
-
-    // 卡片2: 最高智能分
-    const val1 = cards.nth(1).locator("p.text-2xl");
-    await expect(val1).toBeVisible();
-
-    // 卡片3: 本月新增
-    const val2 = cards.nth(2).locator("p.text-2xl");
-    await expect(val2).toBeVisible();
-
-    // 卡片4: 更新日期
-    const card3 = cards.nth(3);
-    await expect(card3.locator("svg")).toBeVisible(); // Calendar icon
-    const val3 = card3.locator("p.text-2xl");
-    await expect(val3).toBeVisible();
-
-    await page.screenshot({ path: `${SCREENSHOTS}/ui-statsstrip-desktop.png`, fullPage: true });
-  });
-
-  test("mobile: StatsStrip 变为 2 列布局", async ({ page }, testInfo) => {
-    test.skip(!isMobile(testInfo.project.name), "移动端专用");
-    await page.goto("/");
-    await page.waitForLoadState("networkidle");
-
-    const strip = page.locator("section.px-4.pt-2");
-    await expect(strip).toBeVisible();
-
-    // 移动端 grid-cols-2
-    const grid = strip.locator("> div > div.grid");
-    await expect(grid).toHaveClass(/grid-cols-2/);
-
-    // 4 卡片都存在
-    const cards = strip.locator("> div > div.grid > div.rounded-xl");
-    await expect(cards).toHaveCount(4);
-
-    await page.screenshot({ path: `${SCREENSHOTS}/ui-statsstrip-mobile.png`, fullPage: true });
-  });
-});
-
 // ─── ScoreBar — 分数进度条 ─────────────────────────────────────────
 test.describe("ScoreBar — 表格分数可视化", () => {
   test("desktop: 智能列显示进度条替代纯文本分数", async ({ page }, testInfo) => {
@@ -192,44 +132,40 @@ test.describe("Interaction & Responsiveness", () => {
     await page.screenshot({ path: `${SCREENSHOTS}/ui-sort-scorebar.png`, fullPage: true });
   });
 
-  test("mobile: 场景排序后卡片重新渲染", async ({ page }, testInfo) => {
+  test("mobile: 收藏按钮在移动卡片可见且可切换", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用");
-    // 首页已改为场景卡片，表格在 /models 页面
     await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    // /models 使用场景排序按钮而非下拉 select
-    const sortButtons = page.locator("button").filter({ hasText: /智能|编程|Agent|Intelligence|Coding/ });
-    await expect(sortButtons.first()).toBeVisible();
+    // 移动卡片的首张应有大号心形按钮
+    const firstCard = page.locator("[data-testid='mobile-model-card']").first();
+    const favBtn = firstCard.locator("button[data-cta='favorite']");
+    await expect(favBtn).toBeVisible();
+    // 点击后 aria-pressed 变化
+    const before = await favBtn.getAttribute("aria-pressed");
+    await favBtn.click();
+    await page.waitForTimeout(200);
+    const after = await favBtn.getAttribute("aria-pressed");
+    expect(before).not.toBe(after);
 
-    // 点击排序按钮触发重新排序
-    await sortButtons.first().click();
-    await page.waitForTimeout(500);
-
-    // 移动端卡片显示
-    const cards = page.locator("[class*='rounded']");
-    await expect(cards.first()).toBeVisible();
-
-    await page.screenshot({ path: `${SCREENSHOTS}/ui-mobile-sorted.png`, fullPage: true });
+    await page.screenshot({ path: `${SCREENSHOTS}/ui-mobile-favorite.png`, fullPage: true });
   });
 
-  test("desktop: 语言切换后 StatsStrip 翻译生效", async ({ page }, testInfo) => {
+  test("desktop: 语言切换后核心中文文案存在", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 当前是中文，验证中文文案 (i18n: "收录模型" / "最高智能分")
-    await expect(page.locator("body")).toContainText("收录模型");
-    await expect(page.locator("body")).toContainText("最高智能分");
+    // 验证当前语言的关键文案
+    await expect(page.locator("body")).toContainText("模型图鉴");
 
     // 切换英文
     const langBtn = page.locator("button[aria-label='切换语言'], button[aria-label='Switch language']");
     if (await langBtn.isVisible().catch(() => false)) {
       await langBtn.click();
       await page.waitForTimeout(500);
-
-      // 验证英文 StatsStrip (i18n: "Models" / "Top Score")
-      await expect(page.locator("body")).toContainText("Top Score");
+      // 验证英文文案
+      await expect(page.locator("body")).toContainText("Home");
     }
 
     await page.screenshot({ path: `${SCREENSHOTS}/ui-lang-en.png`, fullPage: true });
@@ -259,26 +195,21 @@ test.describe("Accessibility & Performance", () => {
     expect(errors).toEqual([]);
   });
 
-  test("desktop: StatsStrip 卡片颜色遵循设计系统", async ({ page }, testInfo) => {
+  test("desktop: 收藏按钮颜色遵循设计系统 (玫红)", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
-    await page.goto("/");
+    await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    // 图标容器应有 bg-accent-violet/15 背景
-    const iconBoxes = page.locator("[class*='bg-accent-violet/15']");
-    await expect(iconBoxes.first()).toBeVisible();
+    // 第一行的心形按钮:未收藏态用 accent-fuchsia 描边/图标
+    const favBtn = page.locator("tr[data-model-id]").first().locator("button[data-cta='favorite']");
+    await expect(favBtn).toBeVisible();
 
-    // 每张卡片应有 border-surface-border 边框（Tailwind v4 设计 Token）
-    const cardBorder = page.locator("[class*='border-surface-border']");
-    await expect(cardBorder.first()).toBeVisible();
-
-    // 卡片标题应为 text-xs text-text-muted
-    const cardLabels = page.locator("p.uppercase.tracking-wider");
-    await expect(cardLabels.first()).toBeVisible();
-
-    // 数值应为 text-2xl font-bold
-    const cardValues = page.locator("p.text-2xl.font-bold");
-    await expect(cardValues.first()).toBeVisible();
+    // 点击一次 → 应切换 aria-pressed & 颜色类
+    const before = await favBtn.getAttribute("aria-pressed");
+    await favBtn.click();
+    await page.waitForTimeout(200);
+    const after = await favBtn.getAttribute("aria-pressed");
+    expect(before).not.toBe(after);
   });
 });
 

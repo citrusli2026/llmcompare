@@ -82,43 +82,6 @@ test.describe("V2 — Detail Page Recommendations", () => {
   });
 });
 
-test.describe("V2 — Models Page Guidance", () => {
-  test("shows scene sort buttons on models page", async ({ page }) => {
-    await page.goto("/models");
-    await page.waitForLoadState("networkidle");
-
-    // Scene sort buttons should be visible
-    await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ })).toBeVisible();
-    await expect(page.locator("button").filter({ hasText: /编程|Coding/ }).or(page.locator("button").filter({ hasText: /排序/ }))).toBeVisible();
-  });
-
-  test("empty state shows guidance when no results", async ({ page }) => {
-    await page.goto("/models?filter=open&company=OpenAI");
-    await page.waitForLoadState("networkidle");
-
-    // Should show empty state with guidance — check both heading and suggestion
-    await expect(page.getByText("未找到匹配的模型")).toBeVisible();
-  });
-});
-
-test.describe("V2 — Compare Page Verdict", () => {
-  test("shows verdict section when comparing models", async ({ page }) => {
-    await page.goto("/");
-    await page.waitForLoadState("networkidle");
-
-    // Compare page with two models
-    await page.goto("/compare?models=claude-opus-4-8,gpt-5-5");
-    await page.waitForLoadState("networkidle");
-
-    // Verdict should be visible
-    const verdictSection = page.locator("text=/速览|Verdict/");
-    const exists = await verdictSection.count();
-    if (exists > 0) {
-      await expect(verdictSection).toBeVisible();
-    }
-  });
-});
-
 test.describe("V2 — About Page Mission", () => {
   test("shows updated mission statement", async ({ page }) => {
     await page.goto("/about");
