@@ -161,7 +161,7 @@ export default function ModelsPageClient() {
   );
 
   // Compare selection from URL params (via shared hook)
-  const { selectedCompareModels, handleRemoveCompare, handleClearCompare } = useCompareIds();
+  const { selectedCompareModels, handleRemoveCompare, handleClearCompare, maxCompare } = useCompareIds();
 
   const filteredModels = useMemo(() => {
     const filterMatchValue = matchValueFor(activeFilter);
@@ -226,9 +226,17 @@ export default function ModelsPageClient() {
   ];
 
   const handleSceneSort = (sortKey: SortKey) => {
+    // Capture scroll position so re-sort doesn't jump the user back to the top.
+    // The ranking-table is a flat list, so the absolute scrollY stays valid
+    // even after rows reorder.
+    const scrollY = window.scrollY;
     const params = new URLSearchParams(searchParams.toString());
     params.set("sort", sortKey);
     router.replace(`?${params.toString()}`, { scroll: false });
+    // Restore on the next frame in case the browser auto-resets focus/scroll.
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: scrollY, left: 0, behavior: "auto" });
+    });
   };
 
   return (
@@ -454,6 +462,7 @@ export default function ModelsPageClient() {
         selectedModels={selectedCompareModels}
         onRemoveModel={handleRemoveCompare}
         onClear={handleClearCompare}
+        maxCompare={maxCompare}
       />
     </div>
   );

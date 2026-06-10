@@ -1,13 +1,24 @@
 "use client";
 
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { getModelById, type ModelWithScores } from "@/lib/scoring";
 
-export const MAX_COMPARE = 6;
+const MAX_COMPARE_DESKTOP = 3;
+const MAX_COMPARE_MOBILE = 2;
+const MOBILE_BREAKPOINT = 640;
+
+function getMaxCompare(): number {
+  if (typeof window === "undefined") return MAX_COMPARE_DESKTOP;
+  return window.innerWidth < MOBILE_BREAKPOINT
+    ? MAX_COMPARE_MOBILE
+    : MAX_COMPARE_DESKTOP;
+}
 
 /**
  * Hook for managing model compare selection state via URL search params.
+ *
+ * Compare limit is responsive: 2 on mobile (< 640px), 3 on desktop (>= 640px).
  *
  * Returns:
  * - compareIds: selected model IDs from URL
@@ -16,10 +27,21 @@ export const MAX_COMPARE = 6;
  * - toggleCompare(id): add/remove a model
  * - handleRemoveCompare(id): remove a specific model
  * - handleClearCompare: clear all selections
+ * - maxCompare: current max for the viewport
+ * - isAtMax: true when count reaches max
  */
 export function useCompareIds() {
   const searchParams = useSearchParams();
   const router = useRouter();
+
+  const [maxCompare, setMaxCompare] = useState<number>(MAX_COMPARE_DESKTOP);
+
+  useEffect(() => {
+    const update = () => setMaxCompare(getMaxCompare());
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const compareIds = useMemo(
     () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],
@@ -43,6 +65,18 @@ export function useCompareIds() {
         params.delete("compare");
       }
       router.replace(`?${params.toString()}`, { scroll: false });
+      // Mirror to localStorage so /compare can fall back when opened without ?models=
+      try {
+        if (typeof window !== "undefined") {
+          if (ids.length > 0) {
+            window.localStorage.setItem("llmcompare-compare", ids.join(","));
+          } else {
+            window.localStorage.removeItem("llmcompare-compare");
+          }
+        }
+      } catch {
+        // ignore quota / privacy errors
+      }
     },
     [searchParams, router]
   );
@@ -52,18 +86,20 @@ export function useCompareIds() {
     [compareIds]
   );
 
+  const isAtMax = compareIds.length >= maxCompare;
+
   const toggleCompare = useCallback(
     (id: string) => {
       let next: string[];
       if (compareIds.includes(id)) {
         next = compareIds.filter((cid) => cid !== id);
       } else {
-        if (compareIds.length >= MAX_COMPARE) return;
+        if (compareIds.length >= maxCompare) return;
         next = [...compareIds, id];
       }
       updateUrl(next);
     },
-    [compareIds, updateUrl]
+    [compareIds, updateUrl, maxCompare]
   );
 
   const handleRemoveCompare = useCallback(
@@ -85,5 +121,7 @@ export function useCompareIds() {
     toggleCompare,
     handleRemoveCompare,
     handleClearCompare,
+    maxCompare,
+    isAtMax,
   };
 }

@@ -9,6 +9,18 @@ export function formatNum(v: number | null | undefined, decimals = 2): string {
   return v.toFixed(decimals);
 }
 
+/**
+ * Format a model parameter count (in billions) for display.
+ * 7B \u2192 "7B", 1000B \u2192 "1T", 1600B \u2192 "1.6T", 1234B \u2192 "1.2T"
+ */
+export function formatParameters(billions: number): string {
+  if (billions >= 1000) {
+    const trillions = billions / 1000;
+    return Number.isInteger(trillions) ? `${trillions}T` : `${trillions.toFixed(1)}T`;
+  }
+  return `${billions}B`;
+}
+
 export function isBestValue(
   val: number | null,
   vals: (number | null)[],

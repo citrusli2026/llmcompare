@@ -119,8 +119,8 @@
   },
   "product": {
     "backLink": "返回模型目录",
-            "benchmarkTitle": "基准测试",
-            "benchmarkSubtitle": "以下为该模型在专项基准测试中的表现，涵盖多个维度的细粒度评估",
+    "benchmarkTitle": "基准测试",
+    "benchmarkSubtitle": "以下为该模型在专项基准测试中的表现，涵盖多个维度的细粒度评估",
     "intelligence": "智能",
     "coding": "编程",
     "agentic": "Agent能力",
@@ -252,7 +252,7 @@
     "selected": "已选 {n} 个模型",
     "compareNow": "对比 ({n})",
     "noModels": "请从模型目录选择模型进行对比",
-    "noModelsDesc": "在模型列表页勾选需要对比的模型，最多 6 个。",
+    "noModelsDesc": "在模型列表页勾选需要对比的模型，最多 3 个。",
     "colName": "指标",
     "intelligence": "智能",
     "coding": "编程",
@@ -276,7 +276,9 @@
     "select": "选择",
     "addMore": "添加更多模型",
     "priceInput": "输入",
-    "priceOutput": "输出"
+    "priceOutput": "输出",
+    "maxReached": "已达对比上限",
+    "compareNowShort": "对比 ({n})"
   },
   "theme": {}
 }

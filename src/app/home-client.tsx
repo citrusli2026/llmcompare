@@ -28,7 +28,7 @@ export default function HomeClient() {
   }, [allModels]);
 
   // Compare selection from URL params (via shared hook)
-  const { selectedCompareModels, handleRemoveCompare, handleClearCompare } = useCompareIds();
+  const { selectedCompareModels, handleRemoveCompare, handleClearCompare, maxCompare } = useCompareIds();
 
   return (
     <div className="min-h-screen bg-surface-base">
@@ -180,6 +180,7 @@ export default function HomeClient() {
         selectedModels={selectedCompareModels}
         onRemoveModel={handleRemoveCompare}
         onClear={handleClearCompare}
+        maxCompare={maxCompare}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
@@ -9,7 +9,7 @@ import { ArrowLeft, BarChart3, Brain, Code, Bot, Zap, DollarSign, Layers, Calend
 import { getModelById, type ModelWithScores } from "@/lib/scoring";
 import { getRecommendationTags, getModelOneLiner } from "@/lib/recommendation-tags";
 import { useTranslation } from "@/lib/i18n";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { cn, formatTokenCount, getTypeBadgeClasses } from "@/lib/utils";
 import { Tooltip } from "@/components/tooltip";
 import { FieldTip } from "@/components/field-tip";
@@ -26,11 +26,32 @@ interface CompareRow {
 export function ComparePageClient() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const restoredRef = useRef(false);
 
   const modelIds = useMemo(
     () => searchParams.get("models")?.split(",").filter(Boolean) ?? [],
     [searchParams]
   );
+
+  // Fallback: if /compare is opened without ?models= but localStorage has selections
+  // (e.g. cleared URL, opened a stale share link), restore from the persisted list.
+  useEffect(() => {
+    if (restoredRef.current || modelIds.length > 0) return;
+    if (typeof window === "undefined") return;
+    restoredRef.current = true;
+    try {
+      const stored = window.localStorage.getItem("llmcompare-compare");
+      if (!stored) return;
+      const ids = stored.split(",").filter(Boolean);
+      if (ids.length === 0) return;
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("models", ids.join(","));
+      router.replace(`/compare?${params.toString()}`, { scroll: false });
+    } catch {
+      // ignore quota / privacy errors
+    }
+  }, [modelIds.length, router, searchParams]);
 
   const models = useMemo(
     () => modelIds.map((id) => getModelById(id)).filter(Boolean) as ModelWithScores[],

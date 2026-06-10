@@ -15,7 +15,7 @@ import { Heart, SearchX, Trash2 } from "lucide-react";
 export default function FavoritesPageClient() {
   const { t } = useTranslation();
   const { favorites, clearFavorites } = useFavorites();
-  const { selectedCompareModels, handleRemoveCompare, handleClearCompare } = useCompareIds();
+  const { selectedCompareModels, handleRemoveCompare, handleClearCompare, maxCompare } = useCompareIds();
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
   const favoritedModels = useMemo(
@@ -100,6 +100,7 @@ export default function FavoritesPageClient() {
         selectedModels={selectedCompareModels}
         onRemoveModel={handleRemoveCompare}
         onClear={handleClearCompare}
+        maxCompare={maxCompare}
       />
     </div>
   );

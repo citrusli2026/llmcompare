@@ -37,6 +37,7 @@ describe("CompareBar — E2E 难测的交互", () => {
         selectedModels={models}
         onRemoveModel={onRemove}
         onClear={vi.fn()}
+        maxCompare={3}
       />
     );
     const removeButtons = screen.getAllByRole("button", { name: "compare.remove" });
@@ -53,6 +54,7 @@ describe("CompareBar — E2E 难测的交互", () => {
         selectedModels={models}
         onRemoveModel={vi.fn()}
         onClear={onClear}
+        maxCompare={3}
       />
     );
     const clearButtons = screen.getAllByText("compare.remove");
@@ -60,8 +62,8 @@ describe("CompareBar — E2E 难测的交互", () => {
     expect(onClear).toHaveBeenCalled();
   });
 
-  it("handles up to 6 model tags without overflow", () => {
-    const models = Array.from({ length: 6 }, (_, i) =>
+  it("handles up to 3 model tags (desktop max) without overflow", () => {
+    const models = Array.from({ length: 3 }, (_, i) =>
       makeModel(`m${i}`, { company: "TestCo" })
     );
     render(
@@ -69,10 +71,24 @@ describe("CompareBar — E2E 难测的交互", () => {
         selectedModels={models}
         onRemoveModel={vi.fn()}
         onClear={vi.fn()}
+        maxCompare={3}
       />
     );
-    for (let i = 0; i < 6; i++) {
-      expect(screen.getByText(`m${i}`)).toBeInTheDocument();
+    // Each model name appears in BOTH the mobile and desktop bar trees.
+    for (let i = 0; i < 3; i++) {
+      expect(screen.getAllByText(`m${i}`).length).toBeGreaterThanOrEqual(1);
     }
+  });
+
+  it("displays the responsive max counter", () => {
+    render(
+      <CompareBar
+        selectedModels={[makeModel("a", { company: "X" })]}
+        onRemoveModel={vi.fn()}
+        onClear={vi.fn()}
+        maxCompare={2}
+      />
+    );
+    expect(screen.getByText("/ 2")).toBeInTheDocument();
   });
 });

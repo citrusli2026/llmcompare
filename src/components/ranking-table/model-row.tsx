@@ -27,7 +27,7 @@ interface ModelRowProps {
 
 export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVisibilityClass, percentiles, globalMax }: ModelRowProps) {
   const { t } = useTranslation();
-  const { isInCompare, toggleCompare } = useCompareIds();
+  const { isInCompare, toggleCompare, isAtMax } = useCompareIds();
 
   const handleToggleCompare = useCallback(
     (e: React.MouseEvent) => {
@@ -49,14 +49,17 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
       <TableCell className="w-16 sm:w-20">
         <button
           onClick={handleToggleCompare}
+          disabled={!isInCompare(model.id) && isAtMax}
           className={cn(
             "inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40 focus-visible:ring-offset-1 focus-visible:ring-offset-surface-card",
             isInCompare(model.id)
               ? "bg-accent-violet/10 text-accent-violet border border-accent-violet/30"
-              : "text-text-muted border border-surface-border hover:border-accent-violet/50 hover:text-accent-violet hover:bg-accent-violet/5"
+              : isAtMax
+                ? "text-text-muted/50 border border-surface-border cursor-not-allowed"
+                : "text-text-muted border border-surface-border hover:border-accent-violet/50 hover:text-accent-violet hover:bg-accent-violet/5"
           )}
-          aria-label={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
-          title={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
+          aria-label={isInCompare(model.id) ? t("compare.remove") : isAtMax ? t("compare.maxReached") : t("compare.addToCompare")}
+          title={isInCompare(model.id) ? t("compare.remove") : isAtMax ? t("compare.maxReached") : t("compare.addToCompare")}
         >
           {isInCompare(model.id) ? (
             <span className="flex items-center gap-1">
@@ -102,7 +105,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
               onClick={(e) => e.stopPropagation()}
               data-cta="row-console"
               title={t("models.rowTryCta")}
-              className="inline-flex items-center justify-center h-5 w-5 rounded text-text-muted hover:text-accent-violet hover:bg-accent-violet/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40 shrink-0"
+              className="hidden sm:inline-flex items-center justify-center h-5 w-5 rounded text-text-muted opacity-30 hover:opacity-100 hover:text-accent-violet hover:bg-accent-violet/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40 shrink-0"
             >
               <ExternalLink className="h-3 w-3" />
             </a>

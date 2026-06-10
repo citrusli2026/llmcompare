@@ -119,8 +119,8 @@
   },
   "product": {
     "backLink": "Back to Model Directory",
-            "benchmarkTitle": "Benchmarks",
-            "benchmarkSubtitle": "Detailed benchmark scores covering multiple evaluation dimensions",
+    "benchmarkTitle": "Benchmarks",
+    "benchmarkSubtitle": "Detailed benchmark scores covering multiple evaluation dimensions",
     "intelligence": "Intelligence",
     "coding": "Coding",
     "agentic": "Agent",
@@ -252,7 +252,7 @@
     "selected": "{n} models selected",
     "compareNow": "Compare ({n})",
     "noModels": "Select models to compare",
-    "noModelsDesc": "Check models from the directory to compare them side by side (max 6).",
+    "noModelsDesc": "Check models from the directory to compare them side by side (max 3).",
     "colName": "Metric",
     "intelligence": "Intelligence",
     "coding": "Coding",
@@ -276,7 +276,9 @@
     "select": "Select",
     "addMore": "Add More Models",
     "priceInput": "Input",
-    "priceOutput": "Output"
+    "priceOutput": "Output",
+    "maxReached": "Compare list full",
+    "compareNowShort": "Go ({n})"
   },
   "theme": {}
 }

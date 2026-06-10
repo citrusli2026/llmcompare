@@ -37,7 +37,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
   }, [router, model.id]);
 
   // ── Compare logic ──
-  const { isInCompare, toggleCompare } = useCompareIds();
+  const { isInCompare, toggleCompare, isAtMax } = useCompareIds();
 
   const handleToggleCompare = useCallback(
     (e: React.MouseEvent) => {
@@ -94,14 +94,17 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         )}
         <button
           onClick={handleToggleCompare}
+          disabled={!isInCompare(model.id) && isAtMax}
           className={cn(
             "flex items-center justify-center w-8 h-8 rounded-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
             isInCompare(model.id)
               ? "bg-accent-violet text-white"
-              : "bg-surface-elevated text-text-muted border border-surface-border hover:border-accent-violet/50 hover:text-accent-violet"
+              : isAtMax
+                ? "bg-surface-elevated text-text-muted/50 border border-surface-border cursor-not-allowed"
+                : "bg-surface-elevated text-text-muted border border-surface-border hover:border-accent-violet/50 hover:text-accent-violet"
           )}
-          aria-label={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
-          title={isInCompare(model.id) ? t("compare.remove") : t("compare.addToCompare")}
+          aria-label={isInCompare(model.id) ? t("compare.remove") : isAtMax ? t("compare.maxReached") : t("compare.addToCompare")}
+          title={isInCompare(model.id) ? t("compare.remove") : isAtMax ? t("compare.maxReached") : t("compare.addToCompare")}
         >
           {isInCompare(model.id) ? (
             <span className="text-xs font-bold">✓</span>
