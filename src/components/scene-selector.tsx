@@ -28,6 +28,30 @@ interface SceneDef {
   secondaryInfo: (m: ModelWithScores) => string | null;
 }
 
+// ── 场景专属打分函数:4 个不同维度,避免 Top 5 重叠 ──
+// Coding: 代码实战(coding 分 + Arena Code 实战得分)
+// Agent:  OpenRouter 真实流量(代表生产中被大量使用)
+// Reasoning: 硬推理基准(hle + gpqa)
+// Value:  性价比(intelligence / blended)
+const SCORE_FNS: Record<SceneKey, (m: ModelWithScores) => number | null> = {
+  coding: (m) => {
+    if (m.raw.coding == null) return null;
+    return m.raw.coding * 1000 + (m.raw.arena_code ?? 0);
+  },
+  agent: (m) => m.raw.openrouter_weekly_tokens ?? null,
+  reasoning: (m) => {
+    const hle = m.raw.benchmarks.hle;
+    if (!hle) return null;
+    return hle * 1000 + (m.raw.benchmarks.gpqa ?? 0);
+  },
+  value: (m) => {
+    if (m.raw.blended && m.raw.blended > 0 && m.raw.intelligence >= 30) {
+      return m.raw.intelligence / (m.raw.blended * 100);
+    }
+    return null;
+  },
+};
+
 const SCENES: SceneDef[] = [
   {
     key: "coding",
@@ -36,8 +60,8 @@ const SCENES: SceneDef[] = [
     labelKey: "home.sceneCoding",
     descKey: "home.sceneCodingDesc",
     metricLabelKey: "models.colCoding",
-    filter: (m) => m.raw.coding != null,
-    sorter: (a, b) => (b.raw.coding ?? 0) - (a.raw.coding ?? 0),
+    filter: (m) => SCORE_FNS.coding(m) != null,
+    sorter: (a, b) => (SCORE_FNS.coding(b) ?? 0) - (SCORE_FNS.coding(a) ?? 0),
     displayScore: (m) => (m.raw.coding != null ? m.raw.coding.toFixed(1) : null),
     secondaryInfo: (m) => m.type,
   },
@@ -48,9 +72,13 @@ const SCENES: SceneDef[] = [
     labelKey: "home.sceneAgent",
     descKey: "home.sceneAgentDesc",
     metricLabelKey: "models.colAgentic",
-    filter: (m) => m.raw.agentic != null,
-    sorter: (a, b) => (b.raw.agentic ?? 0) - (a.raw.agentic ?? 0),
-    displayScore: (m) => (m.raw.agentic != null ? m.raw.agentic.toFixed(1) : null),
+    filter: (m) => SCORE_FNS.agent(m) != null,
+    sorter: (a, b) => (SCORE_FNS.agent(b) ?? 0) - (SCORE_FNS.agent(a) ?? 0),
+    displayScore: (m) => {
+      const t = m.raw.openrouter_weekly_tokens;
+      if (!t) return null;
+      return t >= 1e9 ? `${(t / 1e9).toFixed(1)}B` : `${(t / 1e6).toFixed(0)}M`;
+    },
     secondaryInfo: (m) => {
       const price = m.raw.display;
       return price && price !== "—" ? `${price}/M` : m.type;
@@ -63,12 +91,8 @@ const SCENES: SceneDef[] = [
     labelKey: "home.sceneValue",
     descKey: "home.sceneValueDesc",
     metricLabelKey: "models.colIntelligence",
-    filter: (m) => m.raw.intelligence != null && m.raw.intelligence >= 30 && m.raw.blended != null && m.raw.blended > 0,
-    sorter: (a, b) => {
-      const ratioA = a.raw.blended ? (a.raw.intelligence ?? 0) / (a.raw.blended * 100) : 0;
-      const ratioB = b.raw.blended ? (b.raw.intelligence ?? 0) / (b.raw.blended * 100) : 0;
-      return ratioB - ratioA;
-    },
+    filter: (m) => SCORE_FNS.value(m) != null,
+    sorter: (a, b) => (SCORE_FNS.value(b) ?? 0) - (SCORE_FNS.value(a) ?? 0),
     displayScore: (m) => (m.raw.intelligence != null ? m.raw.intelligence.toFixed(1) : null),
     secondaryInfo: (m) => {
       if (m.raw.blended != null) return `$${m.raw.blended.toFixed(2)}/M`;
@@ -82,14 +106,31 @@ const SCENES: SceneDef[] = [
     labelKey: "home.sceneReasoning",
     descKey: "home.sceneReasoningDesc",
     metricLabelKey: "models.colIntelligence",
-    filter: (m) => m.flags.reasoning === true,
-    sorter: (a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0),
-    displayScore: (m) => (m.raw.intelligence != null ? m.raw.intelligence.toFixed(1) : null),
+    filter: (m) => SCORE_FNS.reasoning(m) != null,
+    sorter: (a, b) => (SCORE_FNS.reasoning(b) ?? 0) - (SCORE_FNS.reasoning(a) ?? 0),
+    displayScore: (m) => {
+      const h = m.raw.benchmarks.hle;
+      return h != null ? h.toFixed(3) : null;
+    },
     secondaryInfo: (m) => m.type,
   },
 ];
 
-const TOP_N = 4;
+const TOP_N = 5;
+
+/** 反聚簇:排序后逐个加入,同 company 出现 ≥ 1 次时跳过,留给后面 */
+function pickTopN(items: ModelWithScores[], n: number): ModelWithScores[] {
+  const out: ModelWithScores[] = [];
+  const seenCo = new Map<string, number>();
+  for (const m of items) {
+    if (out.length >= n) break;
+    const c = m.company;
+    if ((seenCo.get(c) ?? 0) >= 1) continue;
+    out.push(m);
+    seenCo.set(c, 1);
+  }
+  return out;
+}
 
 /** Map scene keys to /models sort params for seamless context transfer */
 const SCENE_SORT_MAP: Record<SceneKey, string> = {
@@ -109,14 +150,13 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
 
-  // Precompute top models for each scene
+  // Precompute top models for each scene (反聚簇:每公司最多 1 个)
   const sceneModels = useMemo(() => {
     const result: Record<SceneKey, ModelWithScores[]> = {} as Record<SceneKey, ModelWithScores[]>;
     for (const scene of SCENES) {
-      result[scene.key] = allModels
-        .filter(scene.filter)
-        .sort(scene.sorter)
-        .slice(0, TOP_N);
+      const filtered = allModels.filter(scene.filter);
+      const sorted = [...filtered].sort(scene.sorter);
+      result[scene.key] = pickTopN(sorted, TOP_N);
     }
     return result;
   }, [allModels]);
