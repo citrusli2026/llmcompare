@@ -24,14 +24,16 @@ test.describe("V2 — Scene Cards on Homepage", () => {
   });
 });
 
-test.describe("V2 — Top Picks Cards", () => {
-  test("shows top 5 recommendation cards", async ({ page }) => {
+test.describe("V2 — Scene Card Recommendations", () => {
+  test("scene card 展开后展示 5 个 model 链接", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // Top Picks section with 5 cards linking to product pages
-    const recommendationCards = page.locator("section").filter({ hasText: /热门推荐|Top Picks/ }).locator("a[href^='/models/']");
-    await expect(recommendationCards).not.toHaveCount(0);
+    // 默认展开的 coding 场景卡,展开区有 5 个 model 链接
+    const cards = page.locator(".animate-in a[href^='/models/']");
+    await expect(cards.first()).toBeVisible();
+    const count = await cards.count();
+    expect(count).toBeGreaterThanOrEqual(3);
   });
 });
 
@@ -132,13 +134,17 @@ test.describe("V3 — UX Enhancements", () => {
     }
   });
 
-  test("top picks section shows multiple recommendation cards", async ({ page }) => {
+  test("scene card 切换不同场景后展示新模型", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // Top Picks 区有至少 3 个模型链接
-    const topPicks = page.locator("section").filter({ hasText: /热门推荐|Top Picks/ });
-    const cards = topPicks.locator("a[href^='/models/']");
+    // 切到性价比场景
+    const valueBtn = page.locator("button").filter({ hasText: /性价比|Value/ }).first();
+    await valueBtn.click();
+    await page.waitForTimeout(200);
+
+    // 展开区有 model 链接
+    const cards = page.locator(".animate-in a[href^='/models/']");
     const count = await cards.count();
     expect(count).toBeGreaterThanOrEqual(3);
   });
