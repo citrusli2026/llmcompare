@@ -6,7 +6,7 @@
     "brand": "LLMCompare"
   },
   "home": {
-    "badge": "Updated Jun 6, 2026",
+    "badge": "Updated Jun 10, 2026",
     "heroTitle": "Find Your Perfect AI Model",
     "heroDesc": "60+ global AI models — get personalized recommendations based on your use case",
     "statsModels": "Models",
@@ -16,7 +16,7 @@
     "statsNewCount": "{n} models",
     "statsUpdated": "Updated",
     "statsUpdatedDesc": "Daily",
-    "statsUpdatedValue": "06-06",
+    "statsUpdatedValue": "06-10",
     "rankingTitle": "Model Directory",
     "rankingViewAll": "View all",
     "cardsTitle": "Frontier Models",
