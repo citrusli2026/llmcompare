@@ -116,7 +116,7 @@ const SCENES: SceneDef[] = [
   },
 ];
 
-const TOP_N = 5;
+const TOP_N = 4;
 
 /** 反聚簇:排序后逐个加入,同 company 出现 ≥ 1 次时跳过,留给后面 */
 function pickTopN(items: ModelWithScores[], n: number): ModelWithScores[] {

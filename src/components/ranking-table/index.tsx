@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ArrowUpDown, ArrowUp, ArrowDown, DollarSign, Brain, Code, Bot, Calendar } from "lucide-react";
+import { ArrowUpDown, ArrowUp, ArrowDown, DollarSign, Brain, Code, Bot, Calendar, Activity } from "lucide-react";
 import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
@@ -22,6 +22,7 @@ const HEADERS: HeaderDef[] = [
   { key: "coding", labelKey: "models.colCoding", icon: Code, mobile: false, desktop: true },
   { key: "agentic", labelKey: "models.colAgentic", icon: Bot, mobile: false, desktop: true },
   { key: "cost", labelKey: "models.colCost", icon: DollarSign, mobile: false, desktop: true },
+  { key: "tokens", labelKey: "models.colTokens", icon: Activity, mobile: true, desktop: true },
 ];
 
 const MOBILE_METRIC_ORDER: ScoreKey[] = ["intelligence", "cost", "tokens"];
@@ -59,6 +60,7 @@ export function RankingTable({ models, initialSortKey, initialSortDesc }: Rankin
     agentic: computePercentiles(models.map((m) => m.raw.agentic)),
     // cost 用 OR completion 价，与移动端展示一致；桌面双值列 prompt/completion 高度相关，排序结果近似
     cost: computePercentiles(models.map((m) => m.raw.openrouter_pricing?.completion ?? null)),
+    tokens: computePercentiles(models.map((m) => m.raw.openrouter_weekly_tokens ?? null)),
   }), [models]);
 
   // 全局数据集最大值，供 ScoreBar 以满进度渲染

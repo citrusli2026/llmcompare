@@ -4,13 +4,12 @@
     "models": "Model Directory",
     "favorites": "My Favorites",
     "about": "About",
-    "brand": "LLMCompare",
-    "tryModels": "Try models"
+    "brand": "LLMCompare"
   },
   "home": {
     "badge": "Updated Jun 10, 2026",
-    "heroTitle": "Find Your Perfect AI Model",
-    "heroDesc": "60+ global AI models — get personalized recommendations based on your use case",
+    "heroTitle": "AI models by use case",
+    "heroDesc": "60+ global AI models — Coding / Agent / Reasoning / Value, 4 scenes with 4 picks from different angles",
     "rankingTitle": "Model Directory",
     "rankingViewAll": "View all",
     "cardsTitle": "Frontier Models",
