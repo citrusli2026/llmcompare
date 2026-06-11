@@ -45,7 +45,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
       {/* Favorite button — first column, visually prominent, replaces the old compare slot */}
       <TableCell className="w-16 sm:w-20">
         <span onClick={(e) => e.stopPropagation()} className="inline-flex">
-          <FavoriteButton modelId={model.id} size="lg" />
+          <FavoriteButton modelId={model.id} size="lg" ghost />
         </span>
       </TableCell>
 

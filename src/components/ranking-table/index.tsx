@@ -264,7 +264,7 @@ export function RankingTable({ models, initialSortKey, initialSortDesc }: Rankin
       </div>
 
       {/* 移动端卡片列表 */}
-      <div className="block sm:hidden space-y-2">
+      <div className="block sm:hidden space-y-2.5">
         {groups.map((group) =>
           group.items
             .map((model, idx) => (

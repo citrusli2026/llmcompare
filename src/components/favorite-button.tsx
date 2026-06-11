@@ -13,6 +13,8 @@ interface FavoriteButtonProps {
   className?: string;
   /** Whether to show a small "pulse" animation on toggle. */
   showPulse?: boolean;
+  /** Ghost variant: ultra-subtle in inactive state, only shows when active. */
+  ghost?: boolean;
 }
 
 const SIZE_CLASS = {
@@ -29,7 +31,7 @@ const ICON_CLASS = {
   icon: "h-4 w-4",
 } as const;
 
-export function FavoriteButton({ modelId, size = "md", className, showPulse = true }: FavoriteButtonProps) {
+export function FavoriteButton({ modelId, size = "md", className, showPulse = true, ghost = false }: FavoriteButtonProps) {
   const { t } = useTranslation();
   const { isFavorite, toggleFavorite } = useFavorites();
   const active = isFavorite(modelId);
@@ -70,9 +72,11 @@ export function FavoriteButton({ modelId, size = "md", className, showPulse = tr
         "inline-flex items-center justify-center rounded-lg transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-fuchsia/50",
         size === "lg" && "ring-1 ring-accent-fuchsia/20",
         SIZE_CLASS[size],
-        active
-          ? "bg-accent-fuchsia/10 text-accent-fuchsia border border-accent-fuchsia/40 shadow-[0_0_0_1px_rgba(217,70,239,0.15)]"
-          : "border border-accent-fuchsia/30 text-accent-fuchsia/70 bg-surface-card hover:bg-accent-fuchsia/10 hover:text-accent-fuchsia hover:border-accent-fuchsia/50",
+        ghost && !active
+          ? "border-transparent text-text-muted/40 bg-transparent hover:text-accent-fuchsia/50 hover:bg-accent-fuchsia/5"
+          : active
+            ? "bg-accent-fuchsia/10 text-accent-fuchsia border border-accent-fuchsia/40 shadow-[0_0_0_1px_rgba(217,70,239,0.15)]"
+            : "border border-accent-fuchsia/30 text-accent-fuchsia/70 bg-surface-card hover:bg-accent-fuchsia/10 hover:text-accent-fuchsia hover:border-accent-fuchsia/50",
         pulse && "scale-125",
         className,
       )}

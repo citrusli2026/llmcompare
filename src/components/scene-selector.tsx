@@ -141,7 +141,7 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                     {t(scene.labelKey)}
                   </span>
                 </div>
-                <p className="text-[10px] sm:text-xs text-text-muted">{t(scene.descKey)}</p>
+                <p className="text-xs text-text-muted leading-relaxed">{t(scene.descKey)}</p>
                 <div className="mt-1.5 flex items-center justify-end">
                   {isActive ? (
                     <Minus className="h-3.5 w-3.5 text-accent-violet" />
@@ -216,7 +216,10 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
 
                     {/* Score + secondary */}
                     <div className="text-right shrink-0">
-                      <div className="text-sm font-semibold text-text-primary">
+                      <div className={cn(
+                        "text-sm font-bold",
+                        scene.key === "intelligence" ? "text-accent-violet" : "text-amber-500"
+                      )}>
                         {scene.displayScore(model)}
                       </div>
                       <div className="text-xs text-text-muted">
