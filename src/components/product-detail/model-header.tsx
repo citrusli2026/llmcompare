@@ -30,11 +30,11 @@ export function ModelHeader({ model }: ModelHeaderProps) {
           <img
             src={model.logo}
             alt={model.name}
-            className="h-16 w-16 rounded-xl shrink-0 object-contain bg-surface-elevated border border-surface-border p-2"
+            className="h-12 w-12 sm:h-16 sm:w-16 rounded-xl shrink-0 object-contain bg-surface-elevated border border-surface-border p-1.5 sm:p-2"
             onError={() => setLogoError(true)}
           />
         ) : (
-          <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-surface-elevated border border-surface-border text-2xl font-semibold text-text-primary shrink-0">
+          <div className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-xl bg-surface-elevated border border-surface-border text-xl sm:text-2xl font-semibold text-text-primary shrink-0">
             {model.name.charAt(0)}
           </div>
         )}
@@ -69,22 +69,15 @@ export function ModelHeader({ model }: ModelHeaderProps) {
             </div>
           )}
 
+          {/* Feature badges — limit to 3 most important */}
           <div className="flex flex-wrap gap-1.5">
-            {f.frontier && (
-              <Badge className={cn(getFeatureBadgeClasses("frontier"), "text-xs")}>{t("common.frontier")}</Badge>
-            )}
-            {f.reasoning && (
-              <Badge className={cn(getFeatureBadgeClasses("reasoning"), "text-xs")}>{t("common.reasoning")}</Badge>
-            )}
-            {f.open_weights && (
-              <Badge className={cn(getFeatureBadgeClasses("open_weights"), "text-xs")}>{t("common.openWeights")}</Badge>
-            )}
-            {f.image_input && (
-              <Badge className={cn(getFeatureBadgeClasses("image_input"), "text-xs")}>{t("common.imageInput")}</Badge>
-            )}
-            {f.chinese_eval && (
-              <Badge className={cn(getFeatureBadgeClasses("chinese_eval"), "text-xs")}>{t("common.chineseEval")}</Badge>
-            )}
+            {[
+              f.frontier && <Badge key="frontier" className={cn(getFeatureBadgeClasses("frontier"), "text-xs")}>{t("common.frontier")}</Badge>,
+              f.reasoning && <Badge key="reasoning" className={cn(getFeatureBadgeClasses("reasoning"), "text-xs")}>{t("common.reasoning")}</Badge>,
+              f.open_weights && <Badge key="open_weights" className={cn(getFeatureBadgeClasses("open_weights"), "text-xs")}>{t("common.openWeights")}</Badge>,
+              f.image_input && <Badge key="image_input" className={cn(getFeatureBadgeClasses("image_input"), "text-xs")}>{t("common.imageInput")}</Badge>,
+              f.chinese_eval && <Badge key="chinese_eval" className={cn(getFeatureBadgeClasses("chinese_eval"), "text-xs")}>{t("common.chineseEval")}</Badge>,
+            ].filter(Boolean).slice(0, 3)}
           </div>
         </div>
       </div>

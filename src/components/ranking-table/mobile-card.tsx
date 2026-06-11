@@ -45,10 +45,10 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
 
   // Fixed widths for virtual table alignment across cards
   const COL = {
-    date: "w-[70px]",
-    intel: "w-[52px]",
-    cost: "w-[48px]",
-    token: "w-[52px]",
+    date: "w-[88px]",
+    intel: "w-[68px]",
+    cost: "w-[62px]",
+    token: "w-[64px]",
   };
 
   return (
@@ -75,7 +75,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
       <div className="flex items-center gap-1.5 min-h-6">
         {/* Favorite — tiny dot-style, matches nav icon feel */}
         <span onClick={(e) => e.stopPropagation()} className="shrink-0">
-          <FavoriteButton modelId={model.id} size="sm" showPulse={false} />
+          <FavoriteButton modelId={model.id} size="sm" showPulse={false} ghost />
         </span>
 
         {group.showRank && (
@@ -113,9 +113,10 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         </Badge>
       </div>
 
-      {/* Row 2: data row — date · intelligence · cost · tokens — fixed widths for alignment */}
-      <div className="flex items-center gap-1 mt-0.5 text-[11px] text-text-muted leading-tight pl-8">
+      {/* Row 2: data row — labeled columns for clarity */}
+      <div className="flex items-center gap-1.5 mt-0.5 text-[10px] text-text-muted leading-tight pl-8">
         <span className={cn("shrink-0 tabular-nums", COL.date)}>
+          <span className="opacity-50 mr-0.5">{t("table.date")}</span>
           {model.raw.release_date ?? "—"}
         </span>
         {intelScore != null ? (
@@ -124,15 +125,18 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
             COL.intel,
             getScoreColor(intelScore, "intelligence", percentiles)
           )}>
+            <span className="opacity-50 mr-0.5 font-normal">{t("models.colIntelligence")}</span>
             {intelScore.toFixed(1)}
           </span>
         ) : (
           <span className={cn("shrink-0", COL.intel)}>—</span>
         )}
         <span className={cn("shrink-0 tabular-nums", COL.cost)}>
+          <span className="opacity-50 mr-0.5">{t("models.colCost")}</span>
           {costStr ?? "—"}
         </span>
         <span className={cn("shrink-0 tabular-nums font-medium text-amber-500/80", COL.token)}>
+          <span className="opacity-50 mr-0.5 font-normal">{t("models.colTokens")}</span>
           {tokenStr ?? "—"}
         </span>
       </div>

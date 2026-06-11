@@ -21,29 +21,29 @@ function MetricBar({
   const pct = value == null ? 0 : Math.min((value / maxValue) * 100, 100);
   const fillPct = Math.min(pct, 100);
 
-  const color =
+  const { gradient, glow } =
     value == null
-      ? "bg-surface-border"
+      ? { gradient: "bg-surface-border", glow: "" }
       : fillPct >= 80
-        ? "bg-accent-lime"
+        ? { gradient: "bg-gradient-to-r from-emerald-500 to-accent-lime", glow: "shadow-[0_0_8px_rgba(16,185,129,0.3)]" }
         : fillPct >= 65
-          ? "bg-accent-violet"
+          ? { gradient: "bg-gradient-to-r from-violet-500 to-accent-violet", glow: "shadow-[0_0_6px_rgba(139,92,246,0.25)]" }
           : fillPct >= 50
-            ? "bg-accent-coral"
-            : "bg-text-muted";
+            ? { gradient: "bg-gradient-to-r from-orange-500 to-accent-coral", glow: "" }
+            : { gradient: "bg-text-muted/60", glow: "" };
 
   return (
-    <div className="flex items-center gap-3 min-w-0">
-      <span className="text-xs text-text-secondary w-20 shrink-0 truncate" title={label}>
+    <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+      <span className="text-xs text-text-secondary w-16 sm:w-20 shrink-0 truncate" title={label}>
         {label}
       </span>
-      <div className="flex-1 h-2 rounded-full bg-surface-border overflow-hidden min-w-0">
+      <div className="flex-1 h-2.5 rounded-full bg-surface-border overflow-hidden min-w-0">
         <div
-          className={cn("h-full rounded-full transition-all", color)}
+          className={cn("h-full rounded-full transition-all duration-500", gradient, glow)}
           style={{ width: `${fillPct}%` }}
         />
       </div>
-      <span className="text-sm font-medium text-text-primary min-w-[5rem] text-right tabular-nums shrink-0 flex items-center justify-end gap-0.5 whitespace-nowrap">
+      <span className="text-sm font-semibold text-text-primary min-w-[3.5rem] sm:min-w-[5rem] text-right tabular-nums shrink-0 flex items-center justify-end gap-0.5 whitespace-nowrap">
         {displayVal}{unit}
       </span>
     </div>
