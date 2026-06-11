@@ -118,7 +118,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
       </div>
 
       {/* Sub row: company · date · tokens · type badge */}
-      <div className="flex items-center gap-1 mt-0.5 text-[10px] text-text-muted leading-tight pl-8">
+      <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-text-muted leading-tight pl-8">
         <span className="truncate max-w-[35%]">{model.company}</span>
         {model.raw.release_date && (
           <>
@@ -129,7 +129,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         {tokenStr && (
           <>
             <span className="shrink-0">·</span>
-            <span className="shrink-0 tabular-nums">{tokenStr}</span>
+            <span className="shrink-0 tabular-nums font-medium text-text-secondary">{tokenStr}</span>
           </>
         )}
         {isValue && (
