@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { cn, getTypeBadgeClasses } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup } from "./types";
@@ -71,19 +71,6 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
             <span className="truncate">{model.name}</span>
             <ArrowUpRight className="h-3 w-3 text-text-muted transition-all duration-200 opacity-40 group-hover/link:opacity-100 group-hover/link:text-accent-violet group-hover/link:translate-x-0.5 shrink-0" />
           </Link>
-          {model.vendor_links?.console && (
-            <a
-              href={model.vendor_links.console}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              data-cta="row-console"
-              title={t("models.rowTryCta")}
-              className="hidden sm:inline-flex items-center justify-center h-5 w-5 rounded text-text-muted opacity-30 hover:opacity-100 hover:text-accent-violet hover:bg-accent-violet/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40 shrink-0"
-            >
-              <ExternalLink className="h-3 w-3" />
-            </a>
-          )}
           <Badge
             variant="secondary"
             className={cn("text-[10px] py-0 px-1.5 whitespace-nowrap shrink-0", getTypeBadgeClasses(model.type))}

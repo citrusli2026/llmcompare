@@ -2,13 +2,13 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Code, Bot, DollarSign, Brain, ArrowRight, Minus, Plus } from "lucide-react";
+import { Brain, Flame, ArrowRight, Minus, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { useTranslation } from "@/lib/i18n";
 
-type SceneKey = "coding" | "agent" | "value" | "reasoning";
+type SceneKey = "intelligence" | "hotness";
 
 interface SceneDef {
   key: SceneKey;
@@ -16,103 +16,44 @@ interface SceneDef {
   accentClass: string;
   labelKey: string;
   descKey: string;
-  /** The score label (e.g., "编程 59.1") */
-  metricLabelKey: string;
-  /** Sort function for this scene */
   sorter: (a: ModelWithScores, b: ModelWithScores) => number;
-  /** Filter — which models belong in this scene */
   filter: (m: ModelWithScores) => boolean;
-  /** What score to display for each model */
   displayScore: (m: ModelWithScores) => string | null;
-  /** Secondary info to display (e.g., price) */
   secondaryInfo: (m: ModelWithScores) => string | null;
 }
 
-// ── 场景专属打分函数:4 个不同维度,避免 Top 5 重叠 ──
-// Coding: 代码实战(coding 分 + Arena Code 实战得分)
-// Agent:  OpenRouter 真实流量(代表生产中被大量使用)
-// Reasoning: 硬推理基准(hle + gpqa)
-// Value:  性价比(intelligence / blended)
-const SCORE_FNS: Record<SceneKey, (m: ModelWithScores) => number | null> = {
-  coding: (m) => {
-    if (m.raw.coding == null) return null;
-    return m.raw.coding * 1000 + (m.raw.arena_code ?? 0);
-  },
-  agent: (m) => m.raw.openrouter_weekly_tokens ?? null,
-  reasoning: (m) => {
-    const hle = m.raw.benchmarks.hle;
-    if (!hle) return null;
-    return hle * 1000 + (m.raw.benchmarks.gpqa ?? 0);
-  },
-  value: (m) => {
-    if (m.raw.blended && m.raw.blended > 0 && m.raw.intelligence >= 30) {
-      return m.raw.intelligence / (m.raw.blended * 100);
-    }
-    return null;
-  },
-};
-
 const SCENES: SceneDef[] = [
   {
-    key: "coding",
-    icon: Code,
-    accentClass: "text-accent-lime border-accent-lime/30 bg-accent-lime/5",
-    labelKey: "home.sceneCoding",
-    descKey: "home.sceneCodingDesc",
-    metricLabelKey: "models.colCoding",
-    filter: (m) => SCORE_FNS.coding(m) != null,
-    sorter: (a, b) => (SCORE_FNS.coding(b) ?? 0) - (SCORE_FNS.coding(a) ?? 0),
-    displayScore: (m) => (m.raw.coding != null ? m.raw.coding.toFixed(1) : null),
-    secondaryInfo: (m) => m.type,
+    key: "intelligence",
+    icon: Brain,
+    accentClass: "text-accent-violet border-accent-violet/30 bg-accent-violet/5",
+    labelKey: "home.sceneIntelligence",
+    descKey: "home.sceneIntelligenceDesc",
+    filter: (m) => m.raw.intelligence != null,
+    sorter: (a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0),
+    displayScore: (m) => (m.raw.intelligence != null ? m.raw.intelligence.toFixed(1) : null),
+    secondaryInfo: (m) => {
+      const price = m.raw.blended;
+      return price != null ? (price === 0 ? "免费" : `$${price.toFixed(2)}/M`) : m.type;
+    },
   },
   {
-    key: "agent",
-    icon: Bot,
-    accentClass: "text-accent-violet border-accent-violet/30 bg-accent-violet/5",
-    labelKey: "home.sceneAgent",
-    descKey: "home.sceneAgentDesc",
-    metricLabelKey: "models.colAgentic",
-    filter: (m) => SCORE_FNS.agent(m) != null,
-    sorter: (a, b) => (SCORE_FNS.agent(b) ?? 0) - (SCORE_FNS.agent(a) ?? 0),
+    key: "hotness",
+    icon: Flame,
+    accentClass: "text-amber-500 border-amber-500/30 bg-amber-500/5",
+    labelKey: "home.sceneHotness",
+    descKey: "home.sceneHotnessDesc",
+    filter: (m) => m.raw.openrouter_weekly_tokens != null,
+    sorter: (a, b) => (b.raw.openrouter_weekly_tokens ?? 0) - (a.raw.openrouter_weekly_tokens ?? 0),
     displayScore: (m) => {
       const t = m.raw.openrouter_weekly_tokens;
       if (!t) return null;
       return t >= 1e9 ? `${(t / 1e9).toFixed(1)}B` : `${(t / 1e6).toFixed(0)}M`;
     },
     secondaryInfo: (m) => {
-      const price = m.raw.display;
-      return price && price !== "—" ? `${price}/M` : m.type;
+      const price = m.raw.blended;
+      return price != null ? (price === 0 ? "免费" : `$${price.toFixed(2)}/M`) : m.type;
     },
-  },
-  {
-    key: "value",
-    icon: DollarSign,
-    accentClass: "text-emerald-500 border-emerald-500/30 bg-emerald-500/5",
-    labelKey: "home.sceneValue",
-    descKey: "home.sceneValueDesc",
-    metricLabelKey: "models.colIntelligence",
-    filter: (m) => SCORE_FNS.value(m) != null,
-    sorter: (a, b) => (SCORE_FNS.value(b) ?? 0) - (SCORE_FNS.value(a) ?? 0),
-    displayScore: (m) => (m.raw.intelligence != null ? m.raw.intelligence.toFixed(1) : null),
-    secondaryInfo: (m) => {
-      if (m.raw.blended != null) return `$${m.raw.blended.toFixed(2)}/M`;
-      return m.type;
-    },
-  },
-  {
-    key: "reasoning",
-    icon: Brain,
-    accentClass: "text-amber-500 border-amber-500/30 bg-amber-500/5",
-    labelKey: "home.sceneReasoning",
-    descKey: "home.sceneReasoningDesc",
-    metricLabelKey: "models.colIntelligence",
-    filter: (m) => SCORE_FNS.reasoning(m) != null,
-    sorter: (a, b) => (SCORE_FNS.reasoning(b) ?? 0) - (SCORE_FNS.reasoning(a) ?? 0),
-    displayScore: (m) => {
-      const h = m.raw.benchmarks.hle;
-      return h != null ? h.toFixed(3) : null;
-    },
-    secondaryInfo: (m) => m.type,
   },
 ];
 
@@ -132,12 +73,9 @@ function pickTopN(items: ModelWithScores[], n: number): ModelWithScores[] {
   return out;
 }
 
-/** Map scene keys to /models sort params for seamless context transfer */
 const SCENE_SORT_MAP: Record<SceneKey, string> = {
-  coding: "coding",
-  agent: "agentic",
-  value: "cost",
-  reasoning: "intelligence",
+  intelligence: "intelligence",
+  hotness: "agentic",
 };
 
 interface SceneSelectorProps {
@@ -146,11 +84,10 @@ interface SceneSelectorProps {
 
 export function SceneSelector({ hideHeader }: SceneSelectorProps) {
   const { t } = useTranslation();
-  const [expanded, setExpanded] = useState<SceneKey | null>("coding");
+  const [expanded, setExpanded] = useState<SceneKey | null>("intelligence");
 
   const allModels = useMemo(() => getAllModelsUnfiltered(), []);
 
-  // Precompute top models for each scene (反聚簇:每公司最多 1 个)
   const sceneModels = useMemo(() => {
     const result: Record<SceneKey, ModelWithScores[]> = {} as Record<SceneKey, ModelWithScores[]>;
     for (const scene of SCENES) {
@@ -165,12 +102,9 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
     setExpanded((prev) => (prev === key ? null : key));
   };
 
-  const totalCount = allModels.length;
-
   return (
     <section className="px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
-        {/* Title — only shown when not integrated into hero */}
         {!hideHeader && (
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-text-primary">
@@ -182,8 +116,8 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
           </div>
         )}
 
-        {/* Scene Cards Grid — only the buttons, no expanded content inside grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        {/* Scene Cards Grid — 2 columns */}
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
           {SCENES.map((scene) => {
             const Icon = scene.icon;
             const isActive = expanded === scene.key;
@@ -219,7 +153,7 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
           })}
         </div>
 
-        {/* Expanded model list — full width below the entire grid */}
+        {/* Expanded model list */}
         {expanded && (() => {
           const scene = SCENES.find(s => s.key === expanded)!;
           const Icon = scene.icon;
@@ -227,7 +161,6 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
 
           return (
             <div className="mt-3 rounded-xl border border-surface-border bg-surface-elevated overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-              {/* Scene label header */}
               <div className="flex items-center gap-2 px-4 pt-3 pb-1">
                 <Icon className={cn("h-4 w-4", scene.accentClass.split(" ")[0])} />
                 <span className="text-sm font-semibold text-text-primary">
@@ -267,7 +200,6 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                       <div className="text-xs text-text-muted truncate">
                         {model.company}
                       </div>
-                      {/* Recommendation tag — why this model is recommended */}
                       {getRecommendationTags(model).length > 0 && (
                         <div className="mt-0.5">
                           <span className={cn(
@@ -281,7 +213,7 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                       )}
                     </div>
 
-                    {/* Score */}
+                    {/* Score + secondary */}
                     <div className="text-right shrink-0">
                       <div className="text-sm font-semibold text-text-primary">
                         {scene.displayScore(model)}
@@ -294,7 +226,6 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                 ))}
               </div>
 
-              {/* Browse all link — carries scene context as sort param */}
               <Link
                 href={`/models?sort=${SCENE_SORT_MAP[expanded]}`}
                 className="flex items-center justify-center gap-1 py-2.5 text-sm text-accent-violet hover:text-violet-500 border-t border-surface-border transition-colors"

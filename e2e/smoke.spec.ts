@@ -12,8 +12,8 @@ test.describe("Home Page", () => {
     // 核心元素可见 — 场景卡片取代了原有表格
     await expect(page.locator("header")).toBeVisible();
     await expect(page.locator("header a[href='/'] span").filter({ hasText: "模型图鉴" })).toBeVisible();
-    // 场景选择按钮可见（V2 改版后首页以场景选择为核心）
-    await expect(page.locator("button").filter({ hasText: /编程|Coding/ })).toBeVisible();
+    // 场景选择按钮可见（智能+热度）
+    await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ })).toBeVisible();
     // Top Picks 推荐卡片可见
     await expect(page.locator("a[href^='/models/']").first()).toBeVisible();
 
@@ -71,7 +71,7 @@ test.describe("Home Page", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 默认展开 coding 场景,验证 top 5 model 链接
+    // 默认展开智能场景,验证 model 链接
     const cards = page.locator(".animate-in a[href^='/models/']");
     const count = await cards.count();
     expect(count).toBeGreaterThanOrEqual(3);
@@ -101,7 +101,7 @@ test.describe("Home Page", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 默认展开的 coding 场景卡的第一项
+    // 默认展开的智能场景卡的第一项
     const firstCard = page.locator(".animate-in a[href^='/models/']").first();
     await expect(firstCard).toBeVisible();
     const href = await firstCard.getAttribute("href");
@@ -131,11 +131,9 @@ test.describe("Home Page", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 移动端显示场景卡片
-    await expect(page.locator("button").filter({ hasText: /编程|Coding/ })).toBeVisible();
-    // 场景卡片布局为 2×2 grid
-    const agents = page.locator("button").filter({ hasText: /Agent/ });
-    await expect(agents).toBeVisible();
+    // 移动端显示场景卡片（智能+热度）
+    await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ })).toBeVisible();
+    await expect(page.locator("button").filter({ hasText: /热度|Hotness/ })).toBeVisible();
 
     await page.screenshot({ path: `${SCREENSHOTS}/home-mobile.png`, fullPage: true });
   });
@@ -145,9 +143,9 @@ test.describe("Home Page", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 点击 Agent 场景卡(默认收起)展开
-    const agentButton = page.locator("button").filter({ hasText: /Agent/ }).first();
-    await agentButton.click();
+    // 点击热度场景卡(默认收起)展开
+    const hotnessButton = page.locator("button").filter({ hasText: /热度|Hotness/ }).first();
+    await hotnessButton.click();
     await page.waitForTimeout(300);
 
     // 展开后应有模型链接
