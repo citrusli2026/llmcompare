@@ -1,9 +1,9 @@
 "use client";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import { cn, getTypeBadgeClasses, isValuePick, formatTokenCount } from "@/lib/utils";
-import { getAllModels, type ModelWithScores } from "@/lib/scoring";
+import { cn, getTypeBadgeClasses, formatTokenCount } from "@/lib/utils";
+import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup, type ScoreKey } from "./types";
 import { getScoreColor } from "./utils";
 import { useTranslation } from "@/lib/i18n";
@@ -43,7 +43,13 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
 
   const intelScore = model.raw.intelligence;
 
-  const allModels = useMemo(() => getAllModels(), []);
+  // Fixed widths for virtual table alignment across cards
+  const COL = {
+    date: "w-[70px]",
+    intel: "w-[52px]",
+    cost: "w-[48px]",
+    token: "w-[52px]",
+  };
 
   return (
     <div
@@ -60,16 +66,16 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
       tabIndex={0}
       aria-label={t("models.expandHint")}
       className={cn(
-        "relative rounded-lg border border-surface-border bg-surface-card px-2 py-2 transition-all active:scale-[0.98] active:bg-surface-elevated cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
+        "relative rounded-lg border border-surface-border bg-surface-card px-2 py-1.5 transition-all active:scale-[0.98] active:bg-surface-elevated cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
         group.borderClass,
         group.rowBgClass
       )}
     >
-      {/* Main row: favorite + rank + logo + name + tokens + cost */}
-      <div className="flex items-center gap-1.5 min-h-8">
-        {/* Favorite button — left side */}
+      {/* Row 1: rank + logo + name + type badge */}
+      <div className="flex items-center gap-1.5 min-h-6">
+        {/* Favorite — tiny dot-style, matches nav icon feel */}
         <span onClick={(e) => e.stopPropagation()} className="shrink-0">
-          <FavoriteButton modelId={model.id} size="lg" />
+          <FavoriteButton modelId={model.id} size="sm" showPulse={false} />
         </span>
 
         {group.showRank && (
@@ -85,43 +91,9 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
             onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
           />
         )}
-        <span className="text-sm font-medium text-text-primary truncate min-w-0 flex-1">
+        <span className="text-[13px] font-medium text-text-primary truncate min-w-0 flex-1">
           {model.name}
         </span>
-        {/* Call volume (tokens) — primary metric, prominent */}
-        {tokenStr && (
-          <span className="text-sm font-bold tabular-nums shrink-0 ml-1 text-amber-500">
-            {tokenStr}
-          </span>
-        )}
-        {/* Cost */}
-        {costStr && (
-          <span className="text-[11px] tabular-nums shrink-0 text-text-secondary ml-1">
-            {costStr}
-          </span>
-        )}
-      </div>
-
-      {/* Sub row: company · date · intelligence · badge */}
-      <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-text-muted leading-tight pl-8">
-        <span className="truncate max-w-[35%]">{model.company}</span>
-        {model.raw.release_date && (
-          <>
-            <span className="shrink-0">·</span>
-            <span className="shrink-0">{model.raw.release_date}</span>
-          </>
-        )}
-        {intelScore != null && (
-          <>
-            <span className="shrink-0">·</span>
-            <span className={cn(
-              "shrink-0 tabular-nums font-medium",
-              getScoreColor(intelScore, "intelligence", percentiles)
-            )}>
-              {t("models.colIntelligence")} {intelScore.toFixed(1)}
-            </span>
-          </>
-        )}
         {isValue && (
           <Badge
             variant="secondary"
@@ -130,7 +102,6 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
             {t("models.valuePickShort")}
           </Badge>
         )}
-        <span className="flex-1 min-w-1" />
         <Badge
           variant="secondary"
           className={cn(
@@ -140,6 +111,30 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         >
           {t(model.type === "开源" ? "common.open" : "common.closed")}
         </Badge>
+      </div>
+
+      {/* Row 2: data row — date · intelligence · cost · tokens — fixed widths for alignment */}
+      <div className="flex items-center gap-1 mt-0.5 text-[11px] text-text-muted leading-tight pl-8">
+        <span className={cn("shrink-0 tabular-nums", COL.date)}>
+          {model.raw.release_date ?? "—"}
+        </span>
+        {intelScore != null ? (
+          <span className={cn(
+            "shrink-0 tabular-nums font-medium",
+            COL.intel,
+            getScoreColor(intelScore, "intelligence", percentiles)
+          )}>
+            {intelScore.toFixed(1)}
+          </span>
+        ) : (
+          <span className={cn("shrink-0", COL.intel)}>—</span>
+        )}
+        <span className={cn("shrink-0 tabular-nums", COL.cost)}>
+          {costStr ?? "—"}
+        </span>
+        <span className={cn("shrink-0 tabular-nums font-medium text-amber-500/80", COL.token)}>
+          {tokenStr ?? "—"}
+        </span>
       </div>
     </div>
   );
