@@ -5,20 +5,16 @@ test.describe("V2 — Scene Cards on Homepage", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // Scene cards should exist — they contain scene names
-    await expect(page.locator("button").filter({ hasText: /编程|Coding/ })).toBeVisible();
-    await expect(page.locator("button").filter({ hasText: /Agent/ })).toBeVisible();
-    await expect(page.locator("button").filter({ hasText: /性价比|Value/ })).toBeVisible();
-    await expect(page.locator("button").filter({ hasText: /推理|Reasoning/ })).toBeVisible();
+    // Scene cards should exist — 智能 + 热度
+    await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ })).toBeVisible();
+    await expect(page.locator("button").filter({ hasText: /热度|Hotness/ })).toBeVisible();
   });
 
-  test("expand coding scene shows model recommendations", async ({ page }) => {
+  test("expand intelligence scene shows model recommendations", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // Coding scene is expanded by default — model links should be visible
-    const sceneSection = page.locator("button").filter({ hasText: /编程|Coding/ }).locator("..");
-    // After clicking, the expanded area should contain model links
+    // Intelligence scene is expanded by default — model links should be visible
     const modelLinks = page.locator("a[href^='/models/']");
     await expect(modelLinks.first()).toBeVisible();
   });
@@ -29,7 +25,7 @@ test.describe("V2 — Scene Card Recommendations", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 默认展开的 coding 场景卡,展开区有 5 个 model 链接
+    // 默认展开的智能场景卡,展开区有 model 链接
     const cards = page.locator(".animate-in a[href^='/models/']");
     await expect(cards.first()).toBeVisible();
     const count = await cards.count();
@@ -124,23 +120,18 @@ test.describe("V3 — UX Enhancements", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 场景卡片在移动端应以 grid 布局显示
-    const sceneGrid = page.locator("button").filter({ hasText: /编程|Coding/ }).first();
-    await expect(sceneGrid).toBeVisible();
-    // 验证 4 个场景按钮都存在
-    const scenes = ["编程", "Agent", "性价比", "推理"];
-    for (const s of scenes) {
-      await expect(page.locator("button").filter({ hasText: new RegExp(s) }).first()).toBeVisible();
-    }
+    // 场景卡片在移动端应以 2-col grid 布局显示（智能+热度）
+    await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ }).first()).toBeVisible();
+    await expect(page.locator("button").filter({ hasText: /热度|Hotness/ }).first()).toBeVisible();
   });
 
   test("scene card 切换不同场景后展示新模型", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 切到性价比场景
-    const valueBtn = page.locator("button").filter({ hasText: /性价比|Value/ }).first();
-    await valueBtn.click();
+    // 切到热度场景
+    const hotnessBtn = page.locator("button").filter({ hasText: /热度|Hotness/ }).first();
+    await hotnessBtn.click();
     await page.waitForTimeout(200);
 
     // 展开区有 model 链接
