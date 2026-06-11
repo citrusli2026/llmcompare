@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { ArrowUpDown, ArrowUp, ArrowDown, DollarSign, Brain, Code, Bot, Calendar, Activity } from "lucide-react";
 import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
+import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "@/lib/i18n";
 import { type ScoreKey, type SortKey, type HeaderDef } from "./types";
 import { computePercentiles, formatScore } from "./utils";
@@ -94,7 +95,9 @@ export function RankingTable({ models, initialSortKey, initialSortDesc }: Rankin
             <span className="tabular-nums">${blended.toFixed(2)}</span>
             <span className="text-text-secondary text-[10px]">/M</span>
             {isValue && (
-              <span className="ml-0.5 inline-flex text-[10px]" title={t("models.colValueLabel")}>💎</span>
+              <Badge variant="secondary" className="text-[9px] py-0 px-1 h-[14px] leading-none bg-accent-lime/10 text-accent-lime border-accent-lime/20">
+                {t("models.valuePickShort")}
+              </Badge>
             )}
           </span>
         );
