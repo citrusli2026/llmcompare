@@ -137,7 +137,7 @@ test.describe("Interaction & Responsiveness", () => {
     await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    // 移动卡片的首张应有大号心形按钮
+    // 移动卡片的首张应有收藏心形按钮
     const firstCard = page.locator("[data-testid='mobile-model-card']").first();
     const favBtn = firstCard.locator("button[data-cta='favorite']");
     await expect(favBtn).toBeVisible();
