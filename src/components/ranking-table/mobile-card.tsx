@@ -2,7 +2,7 @@
 import { useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import { cn, getTypeBadgeClasses, isValuePick } from "@/lib/utils";
+import { cn, getTypeBadgeClasses, isValuePick, formatTokenCount } from "@/lib/utils";
 import { getAllModels, type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup, type ScoreKey } from "./types";
 import { getScoreColor } from "./utils";
@@ -19,18 +19,6 @@ interface MobileCardProps {
   renderMetric: (model: ModelWithScores, key: ScoreKey) => React.ReactNode;
   percentiles: Record<string, { p25: number; p50: number; p75: number } | null>;
   globalMax: Record<string, number>;
-}
-
-function scoreValue(model: ModelWithScores): number | null {
-  return model.raw.intelligence ?? null;
-}
-
-function formatTokenCount(val: number): { value: string; unit: string } {
-  if (val >= 1e12) return { value: (val / 1e12).toFixed(1), unit: "T" };
-  if (val >= 1e9) return { value: (val / 1e9).toFixed(1), unit: "B" };
-  if (val >= 1e6) return { value: (val / 1e6).toFixed(0), unit: "M" };
-  if (val >= 1e3) return { value: (val / 1e3).toFixed(0), unit: "K" };
-  return { value: String(val), unit: "" };
 }
 
 export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }: MobileCardProps) {
@@ -52,6 +40,8 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
     const { value, unit } = formatTokenCount(tokens);
     return `${value}${unit}`;
   })() : null;
+
+  const intelScore = model.raw.intelligence;
 
   const allModels = useMemo(() => getAllModels(), []);
 
@@ -75,7 +65,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         group.rowBgClass
       )}
     >
-      {/* Main row: favorite + rank + logo + name + score + cost */}
+      {/* Main row: favorite + rank + logo + name + tokens + cost */}
       <div className="flex items-center gap-1.5 min-h-8">
         {/* Favorite button — left side */}
         <span onClick={(e) => e.stopPropagation()} className="shrink-0">
@@ -98,15 +88,10 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         <span className="text-sm font-medium text-text-primary truncate min-w-0 flex-1">
           {model.name}
         </span>
-        {/* Intelligence score */}
-        {scoreValue(model) != null && (
-          <span
-            className={cn(
-              "text-sm font-bold tabular-nums shrink-0 ml-1",
-              getScoreColor(scoreValue(model), "intelligence", percentiles)
-            )}
-          >
-            {scoreValue(model)!.toFixed(1)}
+        {/* Call volume (tokens) — primary metric, prominent */}
+        {tokenStr && (
+          <span className="text-sm font-bold tabular-nums shrink-0 ml-1 text-amber-500">
+            {tokenStr}
           </span>
         )}
         {/* Cost */}
@@ -117,7 +102,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         )}
       </div>
 
-      {/* Sub row: company · date · tokens · type badge */}
+      {/* Sub row: company · date · intelligence · badge */}
       <div className="flex items-center gap-1.5 mt-0.5 text-[11px] text-text-muted leading-tight pl-8">
         <span className="truncate max-w-[35%]">{model.company}</span>
         {model.raw.release_date && (
@@ -126,10 +111,15 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
             <span className="shrink-0">{model.raw.release_date}</span>
           </>
         )}
-        {tokenStr && (
+        {intelScore != null && (
           <>
             <span className="shrink-0">·</span>
-            <span className="shrink-0 tabular-nums font-medium text-text-secondary">{tokenStr}</span>
+            <span className={cn(
+              "shrink-0 tabular-nums font-medium",
+              getScoreColor(intelScore, "intelligence", percentiles)
+            )}>
+              {t("models.colIntelligence")} {intelScore.toFixed(1)}
+            </span>
           </>
         )}
         {isValue && (

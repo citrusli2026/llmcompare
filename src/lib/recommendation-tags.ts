@@ -15,7 +15,7 @@ export interface RecommendationTag {
  * This transforms the detail page from "here's raw data" to
  * "here's why this model is good for X".
  */
-export function getRecommendationTags(model: ModelWithScores): RecommendationTag[] {
+export function getRecommendationTags(model: ModelWithScores, maxTags = 2): RecommendationTag[] {
   const allModels = getAllModels();
   const tags: RecommendationTag[] = [];
 
@@ -110,7 +110,7 @@ export function getRecommendationTags(model: ModelWithScores): RecommendationTag
     });
   }
 
-  return tags;
+  return tags.slice(0, maxTags);
 }
 
 /**

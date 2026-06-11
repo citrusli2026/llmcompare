@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Brain, Flame, ArrowRight, Minus, Plus } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { useTranslation } from "@/lib/i18n";
@@ -48,7 +48,8 @@ const SCENES: SceneDef[] = [
     displayScore: (m) => {
       const t = m.raw.openrouter_weekly_tokens;
       if (!t) return null;
-      return t >= 1e9 ? `${(t / 1e9).toFixed(1)}B` : `${(t / 1e6).toFixed(0)}M`;
+      const { value, unit } = formatTokenCount(t);
+      return `${value}${unit}`;
     },
     secondaryInfo: (m) => {
       const price = m.raw.blended;
