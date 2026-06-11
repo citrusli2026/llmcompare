@@ -65,7 +65,8 @@
     "top50": "Top 50%",
     "top75": "Bottom 50%",
     "bottom25": "Bottom 25%",
-    "colorByRank": "Colored by rank within current list, not absolute scores"
+    "colorByRank": "Colored by rank within current list, not absolute scores",
+    "valuePickShort": "Value"
   },
   "favorites": {
     "title": "My Favorites",

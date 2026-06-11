@@ -25,6 +25,14 @@ function scoreValue(model: ModelWithScores): number | null {
   return model.raw.intelligence ?? null;
 }
 
+function formatTokenCount(val: number): { value: string; unit: string } {
+  if (val >= 1e12) return { value: (val / 1e12).toFixed(1), unit: "T" };
+  if (val >= 1e9) return { value: (val / 1e9).toFixed(1), unit: "B" };
+  if (val >= 1e6) return { value: (val / 1e6).toFixed(0), unit: "M" };
+  if (val >= 1e3) return { value: (val / 1e3).toFixed(0), unit: "K" };
+  return { value: String(val), unit: "" };
+}
+
 export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }: MobileCardProps) {
   void _sortKey;
   const { t } = useTranslation();
@@ -37,9 +45,15 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
   // ── Data helpers ──
   const blended = model.raw.blended;
   const costStr = blended != null ? (blended === 0 ? t("common.free") : `$${blended.toFixed(2)}`) : null;
+  const isValue = blended != null && model.raw.intelligence != null && model.raw.intelligence >= 40 && blended < 1;
+
+  const tokens = model.raw.openrouter_weekly_tokens;
+  const tokenStr = tokens != null ? (() => {
+    const { value, unit } = formatTokenCount(tokens);
+    return `${value}${unit}`;
+  })() : null;
 
   const allModels = useMemo(() => getAllModels(), []);
-  const showValue = useMemo(() => isValuePick(model, allModels), [model, allModels]);
 
   return (
     <div
@@ -61,13 +75,13 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         group.rowBgClass
       )}
     >
-      {/* Top-right: favorite button */}
-      <div className="absolute top-1 right-1 z-10">
-        <FavoriteButton modelId={model.id} size="lg" />
-      </div>
+      {/* Main row: favorite + rank + logo + name + score + cost */}
+      <div className="flex items-center gap-1.5 min-h-8">
+        {/* Favorite button — left side */}
+        <span onClick={(e) => e.stopPropagation()} className="shrink-0">
+          <FavoriteButton modelId={model.id} size="lg" />
+        </span>
 
-      {/* Main row: rank + logo + name + intelligence score + cost */}
-      <div className="flex items-center gap-1.5 min-h-8 pr-10">
         {group.showRank && (
           <span className="text-[10px] text-text-muted tabular-nums w-5 shrink-0">
             #{group.rankOffset + idx + 1}
@@ -84,7 +98,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         <span className="text-sm font-medium text-text-primary truncate min-w-0 flex-1">
           {model.name}
         </span>
-        {/* Intelligence score — primary metric, always shown */}
+        {/* Intelligence score */}
         {scoreValue(model) != null && (
           <span
             className={cn(
@@ -95,23 +109,36 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
             {scoreValue(model)!.toFixed(1)}
           </span>
         )}
-        {/* Cost — secondary inline metric */}
+        {/* Cost */}
         {costStr && (
           <span className="text-[11px] tabular-nums shrink-0 text-text-secondary ml-1">
             {costStr}
-            {showValue && <span className="ml-0.5" title={t("models.colValueLabel")}>💎</span>}
           </span>
         )}
       </div>
 
-      {/* Sub row: company · type · date */}
-      <div className="flex items-center gap-1 mt-0.5 text-[10px] text-text-muted leading-tight pl-6">
-        <span className="truncate max-w-[40%]">{model.company}</span>
+      {/* Sub row: company · date · tokens · type badge */}
+      <div className="flex items-center gap-1 mt-0.5 text-[10px] text-text-muted leading-tight pl-8">
+        <span className="truncate max-w-[35%]">{model.company}</span>
         {model.raw.release_date && (
           <>
             <span className="shrink-0">·</span>
             <span className="shrink-0">{model.raw.release_date}</span>
           </>
+        )}
+        {tokenStr && (
+          <>
+            <span className="shrink-0">·</span>
+            <span className="shrink-0 tabular-nums">{tokenStr}</span>
+          </>
+        )}
+        {isValue && (
+          <Badge
+            variant="secondary"
+            className="text-[9px] py-0 px-1 h-[14px] leading-none shrink-0 bg-accent-lime/10 text-accent-lime border-accent-lime/20"
+          >
+            {t("models.valuePickShort")}
+          </Badge>
         )}
         <span className="flex-1 min-w-1" />
         <Badge

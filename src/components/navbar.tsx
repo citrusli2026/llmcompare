@@ -73,6 +73,18 @@ export function Navbar() {
 
         {/* Mobile Navigation */}
         <div className="flex sm:hidden items-center gap-1">
+          <Link
+            href="/favorites"
+            className={cn(
+              "flex items-center justify-center h-9 w-9 rounded-lg transition-colors",
+              pathname === "/favorites"
+                ? "text-accent-coral bg-accent-coral/10"
+                : "text-text-secondary hover:text-text-primary hover:bg-surface-card"
+            )}
+            aria-label={t("nav.favorites")}
+          >
+            <Heart className="h-5 w-5" />
+          </Link>
           <LanguageToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

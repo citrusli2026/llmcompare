@@ -65,7 +65,8 @@
     "top50": "前50%",
     "top75": "后50%",
     "bottom25": "后25%",
-    "colorByRank": "颜色按当前榜单相对排名，非绝对分数"
+    "colorByRank": "颜色按当前榜单相对排名，非绝对分数",
+    "valuePickShort": "性价比"
   },
   "favorites": {
     "title": "我的收藏",

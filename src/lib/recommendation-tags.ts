@@ -67,12 +67,12 @@ export function getRecommendationTags(model: ModelWithScores): RecommendationTag
     }
   }
 
-  // 3. 性价比之选 💎 — uses shared isValuePick definition
+  // 3. 性价比之选 — uses shared isValuePick definition
   if (isValuePick(model, allModels)) {
     tags.push({
       key: "badgeValue",
       labelKey: "product.badgeValue",
-      icon: "💎",
+      icon: "💰",
       colorClass: BADGE_PALETTE.value,
     });
   }
