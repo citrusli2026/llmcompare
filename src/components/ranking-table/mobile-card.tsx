@@ -43,14 +43,6 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
 
   const intelScore = model.raw.intelligence;
 
-  // Fixed widths for virtual table alignment across cards
-  const COL = {
-    date: "w-[88px]",
-    intel: "w-[68px]",
-    cost: "w-[62px]",
-    token: "w-[64px]",
-  };
-
   return (
     <div
       data-testid="mobile-model-card"
@@ -113,30 +105,30 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         </Badge>
       </div>
 
-      {/* Row 2: data row — labeled columns for clarity */}
-      <div className="flex items-center gap-1.5 mt-0.5 text-[10px] text-text-muted leading-tight pl-8">
-        <span className={cn("shrink-0 tabular-nums", COL.date)}>
-          <span className="opacity-50 mr-0.5">{t("table.date")}</span>
+      {/* Row 2: data row — clean values, consistent contrast */}
+      <div className="flex items-center gap-2 mt-0.5 text-[11px] leading-tight pl-8">
+        <span className="shrink-0 tabular-nums text-text-muted opacity-70">
           {model.raw.release_date ?? "—"}
         </span>
+        <span className="shrink-0 text-text-muted opacity-30">·</span>
         {intelScore != null ? (
           <span className={cn(
-            "shrink-0 tabular-nums font-medium",
-            COL.intel,
-            getScoreColor(intelScore, "intelligence", percentiles)
+            "shrink-0 tabular-nums font-semibold",
+            getScoreColor(intelScore, "intelligence", percentiles) === "text-accent-lime"
+              ? "text-accent-lime"
+              : "text-text-primary"
           )}>
-            <span className="opacity-50 mr-0.5 font-normal">{t("models.colIntelligence")}</span>
             {intelScore.toFixed(1)}
           </span>
         ) : (
-          <span className={cn("shrink-0", COL.intel)}>—</span>
+          <span className="shrink-0 text-text-muted">—</span>
         )}
-        <span className={cn("shrink-0 tabular-nums", COL.cost)}>
-          <span className="opacity-50 mr-0.5">{t("models.colCost")}</span>
+        <span className="shrink-0 text-text-muted opacity-30">·</span>
+        <span className="shrink-0 tabular-nums text-text-primary">
           {costStr ?? "—"}
         </span>
-        <span className={cn("shrink-0 tabular-nums font-medium text-amber-500/80", COL.token)}>
-          <span className="opacity-50 mr-0.5 font-normal">{t("models.colTokens")}</span>
+        <span className="shrink-0 text-text-muted opacity-30">·</span>
+        <span className="shrink-0 tabular-nums font-semibold text-amber-400">
           {tokenStr ?? "—"}
         </span>
       </div>
