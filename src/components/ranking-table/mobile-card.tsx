@@ -2,7 +2,6 @@
 import { useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink } from "lucide-react";
 import { cn, getTypeBadgeClasses, isValuePick } from "@/lib/utils";
 import { getAllModels, type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup, type ScoreKey } from "./types";
@@ -39,7 +38,6 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
   const blended = model.raw.blended;
   const costStr = blended != null ? (blended === 0 ? t("common.free") : `$${blended.toFixed(2)}`) : null;
 
-  const tryUrl = model.vendor_links?.console ?? model.vendor_links?.homepage;
   const allModels = useMemo(() => getAllModels(), []);
   const showValue = useMemo(() => isValuePick(model, allModels), [model, allModels]);
 
@@ -63,27 +61,13 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
         group.rowBgClass
       )}
     >
-      {/* Top-right: try CTA + favorite button (stacked) — favorite promoted to top-right slot */}
-      <div className="absolute top-1 right-1 flex items-center gap-0.5 z-10">
-        {tryUrl && (
-          <a
-            href={tryUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            data-cta="mobile-card-console"
-            title={t("models.rowTryCta")}
-            aria-label={t("models.rowTryCta")}
-            className="flex items-center justify-center w-8 h-8 rounded-md bg-accent-violet/10 text-accent-violet hover:bg-accent-violet/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40"
-          >
-            <ExternalLink className="h-3.5 w-3.5" />
-          </a>
-        )}
+      {/* Top-right: favorite button */}
+      <div className="absolute top-1 right-1 z-10">
         <FavoriteButton modelId={model.id} size="lg" />
       </div>
 
       {/* Main row: rank + logo + name + intelligence score + cost */}
-      <div className="flex items-center gap-1.5 min-h-8 pr-16">
+      <div className="flex items-center gap-1.5 min-h-8 pr-10">
         {group.showRank && (
           <span className="text-[10px] text-text-muted tabular-nums w-5 shrink-0">
             #{group.rankOffset + idx + 1}
