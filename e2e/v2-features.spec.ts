@@ -10,11 +10,11 @@ test.describe("V2 — Scene Cards on Homepage", () => {
     await expect(page.locator("button").filter({ hasText: /热度|Hotness/ })).toBeVisible();
   });
 
-  test("expand intelligence scene shows model recommendations", async ({ page }) => {
+  test("expand hotness scene shows model recommendations", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // Intelligence scene is expanded by default — model links should be visible
+    // Hotness scene is expanded by default — model links should be visible
     const modelLinks = page.locator("a[href^='/models/']");
     await expect(modelLinks.first()).toBeVisible();
   });
@@ -25,7 +25,7 @@ test.describe("V2 — Scene Card Recommendations", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 默认展开的智能场景卡,展开区有 model 链接
+    // 默认展开的热度场景卡,展开区有 model 链接
     const cards = page.locator(".animate-in a[href^='/models/']");
     await expect(cards.first()).toBeVisible();
     const count = await cards.count();

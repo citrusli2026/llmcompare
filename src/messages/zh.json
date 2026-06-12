@@ -97,10 +97,10 @@
     "title": "关于模型图鉴",
     "backLink": "返回首页",
     "backgroundTitle": "项目定位",
-    "backgroundDesc": "模型图鉴从数据收集站转型为选型助手——不再只是展示60+全球主流AI模型的数据，而是帮你找到最适合你的模型。",
-    "backgroundMission": "根据你的使用场景（编程、Agent、性价比、推理）推荐 Top 4 模型，详情页提供推荐标签与竞争对手对比，Compare 页给出快速定位建议。",
+    "backgroundDesc": "模型图鉴是 AI 模型选型助手——展示 59 个全球主流 AI 模型的数据，帮你找到最适合的模型。",
+    "backgroundMission": "提供「热度」和「智能」两个维度的场景推荐，详情页展示综合评分、定价和推荐标签，对比页支持多模型并排比较。",
     "backgroundContribute": "发现错误或想补充模型？欢迎提交",
-    "filterDesc": "从 Artificial Analysis 全球模型中按三档条件筛选：Large 尺寸、前沿标杆、或智能分≥30（补回高性价比中小模型），同系列旧代（如 Qwen3.5、GLM-4）自动排除。国内外模型统一构建，不再区分独立数据管线。活跃集默认保留 180 天内发布的模型（可由 pipeline.py --max-age-days 调整）。注入 Arena 排行榜与 OpenRouter 热度数据，覆盖头部厂商，按智能分统一排名。",
+    "filterDesc": "从 Artificial Analysis 全球模型中按三档条件筛选：Large 尺寸、前沿标杆、或智能分≥30（补回高性价比中小模型），同系列旧代自动排除。活跃集默认保留 180 天内发布的模型。注入 Arena 排行榜与 OpenRouter 热度数据，按智能分统一排名。",
     "sourceTitle": "数据来源",
     "sourcePriceTitle": "模型官网",
     "sourceDesc": "Artificial Analysis 是权威大模型评测机构，提供标准化基准测试，其 Intelligence Index 综合 MMLU、HumanEval、MATH 等基准，评估推理、编程和数学能力。",
@@ -108,7 +108,7 @@
     "arenaDesc": "lmarena.ai（原 Chatbot Arena）是全球最大的众测 LLM 排行榜，基于真人盲测投票生成 ELO 分数。本站采集其文本对话、编程和视觉三榜数据，作为第三方真实使用体验的参考。",
     "orDesc": "全球最大 LLM API 路由平台，提供统一 API 访问，每周公布各模型 Token 消耗排名。本站采集其公开的周度消耗排名和 API 定价，消耗量反映真实热度，定价反映市场行情。",
     "disclaimerDesc": "本图鉴仅供参考，不构成投资或使用建议。模型性能因场景而异，实际体验可能与数据有差异。",
-    "updateFreq": "数据每日更新"
+    "updateFreq": "数据定期更新"
   },
   "product": {
     "backLink": "返回模型目录",

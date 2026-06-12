@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Brain, Flame, ArrowRight, Minus, Plus } from "lucide-react";
+import { Brain, Flame, ArrowRight } from "lucide-react";
 import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores, getAllModels } from "@/lib/scoring";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
@@ -25,17 +25,6 @@ interface SceneDef {
 
 const SCENES: SceneDef[] = [
   {
-    key: "intelligence",
-    icon: Brain,
-    accentClass: "text-accent-violet border-accent-violet/30 bg-accent-violet/5",
-    labelKey: "home.sceneIntelligence",
-    descKey: "home.sceneIntelligenceDesc",
-    filter: (m) => m.raw.intelligence != null,
-    sorter: (a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0),
-    displayScore: (m) => (m.raw.intelligence != null ? m.raw.intelligence.toFixed(1) : null),
-    secondaryPrice: (m) => m.raw.blended ?? null,
-  },
-  {
     key: "hotness",
     icon: Flame,
     accentClass: "text-amber-500 border-amber-500/30 bg-amber-500/5",
@@ -49,6 +38,17 @@ const SCENES: SceneDef[] = [
       const { value, unit } = formatTokenCount(t);
       return `${value}${unit}`;
     },
+    secondaryPrice: (m) => m.raw.blended ?? null,
+  },
+  {
+    key: "intelligence",
+    icon: Brain,
+    accentClass: "text-accent-violet border-accent-violet/30 bg-accent-violet/5",
+    labelKey: "home.sceneIntelligence",
+    descKey: "home.sceneIntelligenceDesc",
+    filter: (m) => m.raw.intelligence != null,
+    sorter: (a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0),
+    displayScore: (m) => (m.raw.intelligence != null ? m.raw.intelligence.toFixed(1) : null),
     secondaryPrice: (m) => m.raw.blended ?? null,
   },
 ];
@@ -80,7 +80,7 @@ interface SceneSelectorProps {
 
 export function SceneSelector({ hideHeader }: SceneSelectorProps) {
   const { t } = useTranslation();
-  const [expanded, setExpanded] = useState<SceneKey | null>("intelligence");
+  const [expanded, setExpanded] = useState<SceneKey>("hotness");
 
   const allModels = useMemo(() => getAllModels(), []);
 
@@ -95,7 +95,7 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
   }, [allModels]);
 
   const toggle = (key: SceneKey) => {
-    setExpanded((prev) => (prev === key ? null : key));
+    setExpanded(key);
   };
 
   return (
@@ -137,13 +137,6 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                   </span>
                 </div>
                 <p className="text-xs text-text-muted leading-relaxed">{t(scene.descKey)}</p>
-                <div className="mt-1.5 flex items-center justify-end">
-                  {isActive ? (
-                    <Minus className="h-3.5 w-3.5 text-accent-violet" />
-                  ) : (
-                    <Plus className="h-3.5 w-3.5 text-text-muted" />
-                  )}
-                </div>
               </button>
             );
           })}
