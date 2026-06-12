@@ -71,7 +71,7 @@ test.describe("Home Page", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 默认展开智能场景,验证 model 链接
+    // 默认展开热度场景,验证 model 链接
     const cards = page.locator(".animate-in a[href^='/models/']");
     const count = await cards.count();
     expect(count).toBeGreaterThanOrEqual(3);
@@ -101,7 +101,7 @@ test.describe("Home Page", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 默认展开的智能场景卡的第一项
+    // 默认展开的热度场景卡的第一项
     const firstCard = page.locator(".animate-in a[href^='/models/']").first();
     await expect(firstCard).toBeVisible();
     const href = await firstCard.getAttribute("href");
