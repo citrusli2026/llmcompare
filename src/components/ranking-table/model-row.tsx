@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, GitCompare } from "lucide-react";
 import { cn, getTypeBadgeClasses } from "@/lib/utils";
 import { type ModelWithScores, ModelType } from "@/lib/scoring";
-import { type SortKey, type HeaderDef, type ModelGroup } from "./types";
+import { type SortKey, type HeaderDef, type ModelGroup, type CompareState } from "./types";
 import { getRawValue, getScoreColor, ScoreBar } from "./utils";
 import { useTranslation } from "@/lib/i18n";
 import { FavoriteButton } from "@/components/favorite-button";
@@ -24,9 +24,10 @@ interface ModelRowProps {
   colVisibilityClass: (h: HeaderDef) => string;
   percentiles: Record<string, { p25: number; p50: number; p75: number } | null>;
   globalMax: Record<string, number>;
+  compare?: CompareState;
 }
 
-export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVisibilityClass, percentiles, globalMax }: ModelRowProps) {
+export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVisibilityClass, percentiles, globalMax, compare }: ModelRowProps) {
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -43,10 +44,26 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
         group.borderClass,
       )}
     >
-      {/* Favorite button — first column, visually prominent, replaces the old compare slot */}
-      <TableCell className="w-16 sm:w-20">
-        <span onClick={(e) => e.stopPropagation()} className="inline-flex">
+      {/* Favorite + Compare — first column */}
+      <TableCell className="w-20 sm:w-24">
+        <span onClick={(e) => e.stopPropagation()} className="inline-flex items-center gap-1">
           <FavoriteButton modelId={model.id} size="lg" ghost />
+          {compare && (
+            <button
+              onClick={() => compare.onToggle(model.id)}
+              disabled={!compare.isInCompare(model.id) && compare.isAtMax}
+              className={cn(
+                "rounded-md p-1.5 transition-all",
+                compare.isInCompare(model.id)
+                  ? "bg-accent-violet/15 text-accent-violet border border-accent-violet/30"
+                  : "text-text-muted hover:text-accent-violet hover:bg-surface-hover border border-transparent",
+                !compare.isInCompare(model.id) && compare.isAtMax && "opacity-30 cursor-not-allowed",
+              )}
+              aria-label={t(compare.isInCompare(model.id) ? "compare.remove" : "compare.add")}
+            >
+              <GitCompare className="h-3.5 w-3.5" />
+            </button>
+          )}
         </span>
       </TableCell>
 

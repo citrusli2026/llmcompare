@@ -62,7 +62,31 @@
     "empty": "No favorite models yet",
     "emptyHint": "Click the ♡ on any model in the directory or detail page to add",
     "clear": "Clear all favorites",
-    "count": "{n} models favorited"
+    "count": "{n} models saved"
+  },
+  "compare": {
+    "title": "Model Comparison",
+    "add": "Add to compare",
+    "remove": "Remove",
+    "selected": "{n} models selected",
+    "compareNow": "Compare ({n})",
+    "compareNowShort": "Compare {n}",
+    "needTwo": "Select at least 2 models to compare",
+    "backToModels": "Back to Models",
+    "back": "Back",
+    "metric": "Metric",
+    "intelligence": "Intelligence",
+    "coding": "Coding",
+    "agentic": "Agentic",
+    "speed": "Speed",
+    "price": "Price",
+    "orWeeklyTokens": "Weekly Tokens",
+    "contextWindow": "Context Window",
+    "parameters": "Parameters",
+    "arenaVotes": "Arena Votes",
+    "releaseDate": "Release Date",
+    "benchmarkGpqa": "GPQA",
+    "benchmarkHle": "HLE"
   },
   "about": {
     "title": "About LLMCompare",

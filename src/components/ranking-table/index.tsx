@@ -6,7 +6,7 @@ import { cn, formatTokenCount, isValuePick } from "@/lib/utils";
 import { type ModelWithScores, getAllModels } from "@/lib/scoring";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "@/lib/i18n";
-import { type ScoreKey, type SortKey, type HeaderDef } from "./types";
+import { type ScoreKey, type SortKey, type HeaderDef, type CompareState } from "./types";
 import { computePercentiles, formatScore } from "./utils";
 import { useModelGroups } from "./use-model-groups";
 import { ModelRow } from "./model-row";
@@ -16,6 +16,7 @@ interface RankingTableProps {
   models: ModelWithScores[];
   initialSortKey?: SortKey;
   initialSortDesc?: boolean;
+  compare?: CompareState;
 }
 
 const HEADERS: HeaderDef[] = [
@@ -35,7 +36,7 @@ const MOBILE_SORT_OPTIONS: { key: SortKey | ""; labelKey: string }[] = [
   { key: "date", labelKey: "table.date" },
 ];
 
-export function RankingTable({ models, initialSortKey, initialSortDesc }: RankingTableProps) {
+export function RankingTable({ models, initialSortKey, initialSortDesc, compare }: RankingTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>(initialSortKey ?? "tokens");
   const [sortDesc, setSortDesc] = useState(initialSortDesc ?? true);
   const { t } = useTranslation();
@@ -222,6 +223,7 @@ export function RankingTable({ models, initialSortKey, initialSortDesc }: Rankin
                     colVisibilityClass={colVisibilityClass}
                     percentiles={percentiles}
                     globalMax={globalMax}
+                    compare={compare}
                   />
                 ))
               )}
@@ -263,6 +265,7 @@ export function RankingTable({ models, initialSortKey, initialSortDesc }: Rankin
                 idx={idx}
                 sortKey={sortKey}
                 percentiles={percentiles}
+                compare={compare}
               />
             ))
         )}
