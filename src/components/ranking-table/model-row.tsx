@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight, GitCompare } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { cn, getTypeBadgeClasses } from "@/lib/utils";
 import { type ModelWithScores, ModelType } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup, type CompareState } from "./types";
@@ -53,15 +53,19 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
               onClick={() => compare.onToggle(model.id)}
               disabled={!compare.isInCompare(model.id) && compare.isAtMax}
               className={cn(
-                "rounded-md p-1.5 transition-all",
+                "rounded-md p-1.5 transition-all border",
                 compare.isInCompare(model.id)
-                  ? "bg-accent-violet/15 text-accent-violet border border-accent-violet/30"
-                  : "text-text-muted hover:text-accent-violet hover:bg-surface-hover border border-transparent",
+                  ? "bg-accent-violet/15 text-accent-violet border-accent-violet/30"
+                  : "bg-transparent text-text-muted/50 border-surface-border hover:border-accent-violet/40 hover:text-accent-violet hover:bg-accent-violet/5",
                 !compare.isInCompare(model.id) && compare.isAtMax && "opacity-30 cursor-not-allowed",
               )}
               aria-label={t(compare.isInCompare(model.id) ? "compare.remove" : "compare.add")}
             >
-              <GitCompare className="h-3.5 w-3.5" />
+              {compare.isInCompare(model.id) ? (
+                <Check className="h-3.5 w-3.5" strokeWidth={3} />
+              ) : (
+                <span className="block h-3.5 w-3.5 rounded-sm border border-current" />
+              )}
             </button>
           )}
         </span>
