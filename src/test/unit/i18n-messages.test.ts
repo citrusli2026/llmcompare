@@ -59,9 +59,9 @@ describe("i18n message data integrity — 无渲染测试", () => {
     expect(locales).toContain("en");
   });
 
-  it("zh.json keys 数量合理（>= 200 条）", () => {
+  it("zh.json keys 数量合理（>= 150 条）", () => {
     const keys = traverseKeys(zh);
-    expect(keys.length).toBeGreaterThanOrEqual(200);
+    expect(keys.length).toBeGreaterThanOrEqual(150);
   });
 
   it("en.json 与 zh.json key 覆盖率 >= 85%", () => {

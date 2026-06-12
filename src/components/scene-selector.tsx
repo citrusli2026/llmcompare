@@ -19,7 +19,7 @@ interface SceneDef {
   sorter: (a: ModelWithScores, b: ModelWithScores) => number;
   filter: (m: ModelWithScores) => boolean;
   displayScore: (m: ModelWithScores) => string | null;
-  secondaryInfo: (m: ModelWithScores) => string | null;
+  secondaryPrice: (m: ModelWithScores) => number | null;
 }
 
 const SCENES: SceneDef[] = [
@@ -32,10 +32,7 @@ const SCENES: SceneDef[] = [
     filter: (m) => m.raw.intelligence != null,
     sorter: (a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0),
     displayScore: (m) => (m.raw.intelligence != null ? m.raw.intelligence.toFixed(1) : null),
-    secondaryInfo: (m) => {
-      const price = m.raw.blended;
-      return price != null ? (price === 0 ? "免费" : `$${price.toFixed(2)}/M`) : m.type;
-    },
+    secondaryPrice: (m) => m.raw.blended ?? null,
   },
   {
     key: "hotness",
@@ -51,10 +48,7 @@ const SCENES: SceneDef[] = [
       const { value, unit } = formatTokenCount(t);
       return `${value}${unit}`;
     },
-    secondaryInfo: (m) => {
-      const price = m.raw.blended;
-      return price != null ? (price === 0 ? "免费" : `$${price.toFixed(2)}/M`) : m.type;
-    },
+    secondaryPrice: (m) => m.raw.blended ?? null,
   },
 ];
 
@@ -223,7 +217,11 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                         {scene.displayScore(model)}
                       </div>
                       <div className="text-xs text-text-muted">
-                        {scene.secondaryInfo(model)}
+                        {(() => {
+                          const price = scene.secondaryPrice(model);
+                          if (price == null) return model.type;
+                          return price === 0 ? t("common.free") : `$${price.toFixed(2)}/M`;
+                        })()}
                       </div>
                     </div>
                   </Link>
