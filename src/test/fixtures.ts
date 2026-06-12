@@ -1,10 +1,10 @@
-import { type ModelWithScores } from "@/lib/scoring";
+import { type ModelWithScores, type ModelTypeValue } from "@/lib/scoring";
 
 export function makeModel(
   id: string,
   overrides: Partial<ModelWithScores["raw"]> & {
     flags?: Partial<ModelWithScores["flags"]>;
-    type?: "开源" | "闭源";
+    type?: ModelTypeValue;
     company?: string;
     vendor_links?: ModelWithScores["vendor_links"];
   } = {}

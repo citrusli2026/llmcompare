@@ -89,12 +89,17 @@ interface RawModel {
   license?: string | null;
 }
 
+// ── Model Type Constants ──
+// JSON data uses Chinese strings; map once here so all consumers use constants.
+export const ModelType = { Open: "开源", Closed: "闭源" } as const;
+export type ModelTypeValue = (typeof ModelType)[keyof typeof ModelType];
+
 // ── Public Types ──
 export interface ModelWithScores {
   id: string;
   name: string;
   company: string;
-  type: "开源" | "闭源";
+  type: ModelTypeValue;
   logo: string;
   url: string;
   vendor_links?: VendorLinks;
@@ -155,7 +160,7 @@ function initCache(): void {
       id: m.id,
       name: m.name,
       company: m.company,
-      type: m.type as "开源" | "闭源",
+      type: m.type as ModelTypeValue,
       logo: m.logo,
       url: m.url,
       vendor_links: m.vendor_links,
@@ -209,11 +214,7 @@ export function getAllModels(): ModelWithScores[] {
   return _cache!.models;
 }
 
-/**
- * 返回全量模型（同 getAllModels，保留兼容）
- * @deprecated 请使用 getAllModels
- */
-export const getAllModelsUnfiltered = getAllModels;
+
 
 export function getModelById(id: string): ModelWithScores | undefined {
   initCache();

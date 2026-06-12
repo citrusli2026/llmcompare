@@ -1,7 +1,7 @@
 "use client";
 
 import { type ModelWithScores } from "@/lib/scoring";
-import { type SortKey, type Percentiles, type ColoredKey } from "./types";
+import { type SortKey, type Percentiles, type ScoreKey } from "./types";
 import { Tooltip } from "@/components/tooltip";
 
 export const COLOR_BY_BUCKET = {
@@ -13,7 +13,7 @@ export const COLOR_BY_BUCKET = {
 } as const;
 
 // cost 是反向（数字越小越好），其他正向
-export const ASCENDING: Record<ColoredKey, boolean> = {
+export const ASCENDING: Record<ScoreKey, boolean> = {
   intelligence: true, coding: true, agentic: true, cost: false, tokens: true,
 };
 
@@ -63,7 +63,7 @@ export function getRawValue(model: ModelWithScores, key: SortKey): number | null
 export function getScoreColor(
   val: number | null | undefined,
   key: SortKey,
-  percentiles: Record<ColoredKey, Percentiles | null>
+  percentiles: Record<ScoreKey, Percentiles | null>
 ): string {
   if (val == null) return COLOR_BY_BUCKET.dim;
   if (key === "date") return "";

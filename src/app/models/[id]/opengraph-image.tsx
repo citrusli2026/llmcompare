@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getModelById, getAllModelsUnfiltered } from "@/lib/scoring";
+import { getModelById, getAllModels, ModelType } from "@/lib/scoring";
 
 export const alt = "LLMCompare — 模型图鉴";
 export const size = { width: 1200, height: 630 };
@@ -7,7 +7,7 @@ export const contentType = "image/png";
 export const dynamic = "force-static";
 
 export function generateStaticParams() {
-  return getAllModelsUnfiltered().map((m) => ({ id: m.id }));
+  return getAllModels().map((m) => ({ id: m.id }));
 }
 
 const VIOLET = "#7c3aed";
@@ -64,7 +64,7 @@ export default async function Image({ params }: { params: Promise<{ id: string }
   const coding = model.raw.coding;
   const agentic = model.raw.agentic;
   const releaseDate = model.raw.release_date;
-  const isOpen = model.type === "开源";
+  const isOpen = model.type === ModelType.Open;
   const context = model.raw.context_window;
   const blended = model.raw.blended;
 

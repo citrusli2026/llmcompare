@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { getAllModels, getAllModelsUnfiltered, getModelById } from "@/lib/scoring";
+import { getAllModels, getModelById, ModelType } from "@/lib/scoring";
 
 describe("scoring cache", () => {
   beforeEach(() => {
@@ -16,8 +16,8 @@ describe("scoring cache", () => {
     expect(models1).toStrictEqual(models2); // same content due to cache
   });
 
-  it("getAllModelsUnfiltered returns same models as getAllModels", () => {
-    const all = getAllModelsUnfiltered();
+  it("getAllModels returns same models as getAllModels", () => {
+    const all = getAllModels();
     const filtered = getAllModels();
     // data_complete 仅标记不做筛选，两者应返回相同数量
     expect(all.length).toBe(filtered.length);
@@ -51,7 +51,7 @@ describe("scoring cache", () => {
   });
 
   it("cached byId map covers all models", () => {
-    const all = getAllModelsUnfiltered();
+    const all = getAllModels();
     for (const m of all) {
       const found = getModelById(m.id);
       expect(found).toBeDefined();
@@ -60,7 +60,7 @@ describe("scoring cache", () => {
   });
 
   it("flags.data_complete is a marker, not a filter", () => {
-    const all = getAllModelsUnfiltered();
+    const all = getAllModels();
     const filtered = getAllModels();
     // data_complete 仅标记数据完整度，不做筛选条件
     expect(filtered.length).toBe(all.length);
@@ -84,7 +84,7 @@ describe("scoring cache", () => {
   it("type is either 开源 or 闭源", () => {
     const models = getAllModels();
     for (const m of models) {
-      expect(["开源", "闭源"]).toContain(m.type);
+      expect([ModelType.Open, ModelType.Closed]).toContain(m.type);
     }
   });
 

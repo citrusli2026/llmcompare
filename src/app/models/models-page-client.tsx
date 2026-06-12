@@ -4,20 +4,21 @@ import { useState, useMemo, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
-import { getAllModelsUnfiltered } from "@/lib/scoring";
+import { getAllModels, ModelType } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
 import type { SortKey } from "@/components/ranking-table/types";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
 import { useTranslation } from "@/lib/i18n";
 import { Bot, SearchX, X, Sparkles, Trophy, TrendingUp } from "lucide-react";
 import { ShareButton } from "@/components/share-button";
+import { ModelLogo } from "@/components/model-logo";
 
 type FilterKey = "all" | "open" | "closed";
 
 const FILTERS: { key: FilterKey; labelKey: string; matchValue: string | undefined }[] = [
   { key: "all", labelKey: "models.filterAll", matchValue: undefined },
-  { key: "open", labelKey: "models.filterOpen", matchValue: "开源" },
-  { key: "closed", labelKey: "models.filterClosed", matchValue: "闭源" },
+  { key: "open", labelKey: "models.filterOpen", matchValue: ModelType.Open },
+  { key: "closed", labelKey: "models.filterClosed", matchValue: ModelType.Closed },
 ];
 
 function isFilterKey(value: string): value is FilterKey {
@@ -66,7 +67,7 @@ export default function ModelsPageClient() {
     [t]
   );
 
-  const allModels = useMemo(() => getAllModelsUnfiltered(), []);
+  const allModels = useMemo(() => getAllModels(), []);
 
   const filteredModels = useMemo(() => {
     const filterMatchValue = matchValueFor(activeFilter);
@@ -163,15 +164,7 @@ export default function ModelsPageClient() {
                       href={`/models/${model.id}`}
                       className="flex items-center gap-2 rounded-lg border border-surface-border bg-surface-card p-2.5 transition-all hover:border-accent-violet/30 hover:shadow-sm hover:-translate-y-0.5 group"
                     >
-                      <div className="h-8 w-8 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
-                        {model.logo ? (
-                          <img src={model.logo} alt="" className="h-5 w-5 object-contain"
-                            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-                          />
-                        ) : (
-                          <span className="text-xs font-bold text-text-muted">{model.name.charAt(0)}</span>
-                        )}
-                      </div>
+                      <ModelLogo src={model.logo} name={model.name} size="md" />
                       <div className="min-w-0 flex-1 text-left">
                         <div className="text-xs font-medium text-text-primary truncate group-hover:text-accent-violet transition-colors">
                           {model.name}
@@ -202,15 +195,7 @@ export default function ModelsPageClient() {
                         href={`/models/${model.id}`}
                         className="flex items-center gap-2.5 rounded-lg bg-surface-card border border-surface-border px-3 py-2.5 transition-all hover:border-accent-violet/30 hover:shadow-sm hover:-translate-y-0.5 group"
                       >
-                        <div className="h-7 w-7 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
-                          {model.logo ? (
-                            <img src={model.logo} alt="" className="h-4 w-4 object-contain"
-                              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-                            />
-                          ) : (
-                            <span className="text-xs font-bold text-text-muted">{model.name.charAt(0)}</span>
-                          )}
-                        </div>
+                        <ModelLogo src={model.logo} name={model.name} size="sm" />
                         <div className="flex-1 min-w-0">
                           <div className="text-xs font-semibold text-text-primary truncate group-hover:text-accent-violet transition-colors">
                             {model.name}

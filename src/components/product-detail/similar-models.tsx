@@ -3,9 +3,10 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import { GitBranch } from "lucide-react";
-import { type ModelWithScores, getAllModels } from "@/lib/scoring";
+import { type ModelWithScores, ModelType, getAllModels } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { ModelLogo } from "@/components/model-logo";
 
 interface SimilarModelsProps {
   model: ModelWithScores;
@@ -106,22 +107,7 @@ export function SimilarModels({ model }: SimilarModelsProps) {
           >
             {/* Logo + Name row */}
             <div className="flex items-start gap-2.5 mb-2">
-              <div className="h-8 w-8 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
-                {m.logo ? (
-                  <img
-                    src={m.logo}
-                    alt=""
-                    className="h-6 w-6 object-contain"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = "none";
-                    }}
-                  />
-                ) : (
-                  <span className="text-xs font-bold text-text-muted">
-                    {m.name.charAt(0)}
-                  </span>
-                )}
-              </div>
+              <ModelLogo src={m.logo} name={m.name} size="md" />
               <div className="min-w-0 flex-1">
                 <div className="text-sm font-semibold text-text-primary truncate group-hover:text-accent-violet transition-colors">
                   {m.name}
@@ -144,7 +130,7 @@ export function SimilarModels({ model }: SimilarModelsProps) {
             <div className="mt-1.5">
               <span className={cn(
                 "inline-block text-[10px] font-medium px-1.5 py-0.5 rounded",
-                m.type === "开源"
+                m.type === ModelType.Open
                   ? "bg-accent-lime/10 text-accent-lime"
                   : "bg-accent-violet/10 text-accent-violet"
               )}>

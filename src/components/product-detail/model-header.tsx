@@ -1,14 +1,16 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { type ModelWithScores } from "@/lib/scoring";
 import { getTypeBadgeClasses, getFeatureBadgeClasses } from "@/lib/utils";
+import { ModelType } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { getRecommendationTags, getModelOneLiner } from "@/lib/recommendation-tags";
 import { ShareButton } from "@/components/share-button";
 import { FavoriteButton } from "@/components/favorite-button";
+import { ModelLogo } from "@/components/model-logo";
 
 interface ModelHeaderProps {
   model: ModelWithScores;
@@ -17,7 +19,6 @@ interface ModelHeaderProps {
 export function ModelHeader({ model }: ModelHeaderProps) {
   const { t } = useTranslation();
   const f = model.flags;
-  const [logoError, setLogoError] = useState(false);
 
   // Recommendation Tags — turns raw data into decision guidance
   const recommendationTags = useMemo(() => getRecommendationTags(model), [model]);
@@ -26,26 +27,15 @@ export function ModelHeader({ model }: ModelHeaderProps) {
   return (
     <div className="flex items-start justify-between gap-4 mb-6">
       <div className="flex items-start gap-4 min-w-0 flex-1">
-        {model.logo && !logoError ? (
-          <img
-            src={model.logo}
-            alt={model.name}
-            className="h-12 w-12 sm:h-16 sm:w-16 rounded-xl shrink-0 object-contain bg-surface-elevated border border-surface-border p-1.5 sm:p-2"
-            onError={() => setLogoError(true)}
-          />
-        ) : (
-          <div className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-xl bg-surface-elevated border border-surface-border text-xl sm:text-2xl font-semibold text-text-primary shrink-0">
-            {model.name.charAt(0)}
-          </div>
-        )}
+        <ModelLogo src={model.logo} name={model.name} size="lg" />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 mb-2 flex-wrap">
             <h1 className="text-2xl sm:text-3xl font-bold text-text-primary">{model.name}</h1>
             <Badge
-              variant={model.type === "开源" ? "default" : "secondary"}
+              variant={model.type === ModelType.Open ? "default" : "secondary"}
               className={getTypeBadgeClasses(model.type)}
             >
-              {t(model.type === "开源" ? "common.open" : "common.closed")}
+              {t(model.type === ModelType.Open ? "common.open" : "common.closed")}
             </Badge>
           </div>
 

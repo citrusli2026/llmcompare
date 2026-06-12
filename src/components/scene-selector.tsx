@@ -4,9 +4,10 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Brain, Flame, ArrowRight, Minus, Plus } from "lucide-react";
 import { cn, formatTokenCount } from "@/lib/utils";
-import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
+import { type ModelWithScores, getAllModels } from "@/lib/scoring";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { useTranslation } from "@/lib/i18n";
+import { ModelLogo } from "@/components/model-logo";
 
 type SceneKey = "intelligence" | "hotness";
 
@@ -70,7 +71,7 @@ function pickTopN(items: ModelWithScores[], n: number): ModelWithScores[] {
 
 const SCENE_SORT_MAP: Record<SceneKey, string> = {
   intelligence: "intelligence",
-  hotness: "agentic",
+  hotness: "tokens",
 };
 
 interface SceneSelectorProps {
@@ -81,7 +82,7 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState<SceneKey | null>("intelligence");
 
-  const allModels = useMemo(() => getAllModelsUnfiltered(), []);
+  const allModels = useMemo(() => getAllModels(), []);
 
   const sceneModels = useMemo(() => {
     const result: Record<SceneKey, ModelWithScores[]> = {} as Record<SceneKey, ModelWithScores[]>;
@@ -170,22 +171,7 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
                     className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-base transition-colors group"
                   >
                     {/* Logo */}
-                    <div className="h-7 w-7 rounded shrink-0 bg-surface-base flex items-center justify-center overflow-hidden">
-                      {model.logo ? (
-                        <img
-                          src={model.logo}
-                          alt=""
-                          className="h-5 w-5 object-contain"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).style.display = "none";
-                          }}
-                        />
-                      ) : (
-                        <span className="text-xs font-bold text-text-muted">
-                          {model.name.charAt(0)}
-                        </span>
-                      )}
-                    </div>
+                    <ModelLogo src={model.logo} name={model.name} size="sm" />
 
                     {/* Name + Company */}
                     <div className="flex-1 min-w-0">

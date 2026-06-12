@@ -7,11 +7,12 @@ import { TableCell, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
 import { cn, getTypeBadgeClasses } from "@/lib/utils";
-import { type ModelWithScores } from "@/lib/scoring";
+import { type ModelWithScores, ModelType } from "@/lib/scoring";
 import { type SortKey, type HeaderDef, type ModelGroup } from "./types";
 import { getRawValue, getScoreColor, ScoreBar } from "./utils";
 import { useTranslation } from "@/lib/i18n";
 import { FavoriteButton } from "@/components/favorite-button";
+import { ModelLogo } from "@/components/model-logo";
 
 interface ModelRowProps {
   model: ModelWithScores;
@@ -55,14 +56,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
           {group.showRank && (
             <span className="text-text-muted text-xs mr-0.5">#{group.rankOffset + idx + 1}</span>
           )}
-          {model.logo && (
-            <img
-              src={model.logo}
-              alt=""
-              className="h-4 w-4 rounded shrink-0"
-              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-            />
-          )}
+          <ModelLogo src={model.logo} name={model.name} size="xs" />
           <Link
             href={`/models/${model.id}`}
             className="inline-flex items-center gap-1.5 group/link"
@@ -75,7 +69,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
             variant="secondary"
             className={cn("text-[10px] py-0 px-1.5 whitespace-nowrap shrink-0", getTypeBadgeClasses(model.type))}
           >
-            {t(model.type === "开源" ? "common.open" : "common.closed")}
+            {t(model.type === ModelType.Open ? "common.open" : "common.closed")}
           </Badge>
         </div>
       </TableCell>
