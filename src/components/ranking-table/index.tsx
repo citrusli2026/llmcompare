@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { ArrowUpDown, ArrowUp, ArrowDown, DollarSign, Brain, Code, Bot, Calendar, Activity } from "lucide-react";
-import { cn, formatTokenCount } from "@/lib/utils";
-import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
+import { cn, formatTokenCount, isValuePick } from "@/lib/utils";
+import { type ModelWithScores, getAllModels } from "@/lib/scoring";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "@/lib/i18n";
 import { type ScoreKey, type SortKey, type HeaderDef } from "./types";
@@ -26,7 +26,6 @@ const HEADERS: HeaderDef[] = [
   { key: "tokens", labelKey: "models.colTokens", icon: Activity, mobile: true, desktop: true },
 ];
 
-const MOBILE_METRIC_ORDER: ScoreKey[] = ["intelligence", "cost", "tokens"];
 
 const MOBILE_SORT_OPTIONS: { key: SortKey | ""; labelKey: string }[] = [
   { key: "", labelKey: "models.sortBy" },
@@ -66,7 +65,7 @@ export function RankingTable({ models, initialSortKey, initialSortDesc }: Rankin
 
   // 全局数据集最大值，供 ScoreBar 以满进度渲染
   const globalMax = useMemo(() => {
-    const all = getAllModelsUnfiltered();
+    const all = getAllModels();
     return {
       intelligence: Math.max(...all.map((m) => m.raw.intelligence ?? 0), 1),
       coding: Math.max(...all.map((m) => m.raw.coding ?? 0), 1),
@@ -89,7 +88,7 @@ export function RankingTable({ models, initialSortKey, initialSortDesc }: Rankin
       if (blended != null) {
         if (blended === 0) return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
         // Value indicator: smart model at low price
-        const isValue = m.raw.intelligence >= 40 && blended < 1;
+        const isValue = isValuePick(m);
         return (
           <span className="inline-flex items-center gap-0.5">
             <span className="tabular-nums">${blended.toFixed(2)}</span>
@@ -112,17 +111,6 @@ export function RankingTable({ models, initialSortKey, initialSortDesc }: Rankin
     },
   };
 
-  const renderMetric = (model: ModelWithScores, key: ScoreKey) => {
-    if (key === "cost") {
-      const blended = model.raw.blended;
-      if (blended != null) {
-        if (blended === 0) return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
-        return <span>${blended.toFixed(2)}<span className="text-text-secondary text-[10px]">/M</span></span>;
-      }
-      return <span className="text-text-dim text-xs">—</span>;
-    }
-    return renderers[key](model);
-  };
 
   const handleMobileSortChange = (value: string) => {
     if (value === "" || value === "date") {
@@ -274,11 +262,7 @@ export function RankingTable({ models, initialSortKey, initialSortDesc }: Rankin
                 group={group}
                 idx={idx}
                 sortKey={sortKey}
-                headers={headers}
-                metricOrder={MOBILE_METRIC_ORDER}
-                renderMetric={renderMetric}
                 percentiles={percentiles}
-                globalMax={globalMax}
               />
             ))
         )}

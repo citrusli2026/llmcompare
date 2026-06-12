@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { getAllModels, getAllModelsUnfiltered, getModelById } from "@/lib/scoring";
+import { getAllModels, getModelById } from "@/lib/scoring";
 
 describe("scoring", () => {
   beforeEach(() => {
@@ -10,12 +10,12 @@ describe("scoring", () => {
     const models = getAllModels();
     expect(models.length).toBeGreaterThan(0);
     // data_complete 仅标记，不做筛选，所有模型都应返回
-    const all = getAllModelsUnfiltered();
+    const all = getAllModels();
     expect(models.length).toBe(all.length);
   });
 
-  it("getAllModelsUnfiltered returns all models", () => {
-    const all = getAllModelsUnfiltered();
+  it("getAllModels returns all models", () => {
+    const all = getAllModels();
     const filtered = getAllModels();
     expect(all.length).toBeGreaterThanOrEqual(filtered.length);
   });

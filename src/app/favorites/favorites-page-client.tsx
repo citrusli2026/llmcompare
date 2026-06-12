@@ -6,7 +6,7 @@ import { Navbar } from "@/components/navbar";
 import { RankingTable } from "@/components/ranking-table";
 import { FavoriteButton } from "@/components/favorite-button";
 import { useFavorites } from "@/hooks/use-favorites";
-import { getAllModelsUnfiltered } from "@/lib/scoring";
+import { getAllModels } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { Heart, SearchX, Trash2 } from "lucide-react";
 
@@ -14,7 +14,7 @@ export default function FavoritesPageClient() {
   const { t } = useTranslation();
   const { favorites, clearFavorites } = useFavorites();
 
-  const allModels = useMemo(() => getAllModelsUnfiltered(), []);
+  const allModels = useMemo(() => getAllModels(), []);
   const favoritedModels = useMemo(
     () => favorites
       .map((id) => allModels.find((m) => m.id === id))

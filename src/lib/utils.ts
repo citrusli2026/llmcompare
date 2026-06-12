@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { getAllModels, type ModelWithScores } from "@/lib/scoring"
+import { getAllModels, type ModelWithScores, ModelType, type ModelTypeValue } from "@/lib/scoring"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -43,8 +43,8 @@ export const BADGE_PALETTE = {
   neutral: "bg-surface-elevated text-text-secondary border border-surface-border",
 } as const;
 
-export function getTypeBadgeClasses(type: "开源" | "闭源"): string {
-  return type === "开源" ? BADGE_PALETTE.open : BADGE_PALETTE.closed;
+export function getTypeBadgeClasses(type: ModelTypeValue): string {
+  return type === ModelType.Open ? BADGE_PALETTE.open : BADGE_PALETTE.closed;
 }
 
 export function getFeatureBadgeClasses(feature: "frontier" | "reasoning" | "open_weights" | "image_input" | "chinese_eval"): string {

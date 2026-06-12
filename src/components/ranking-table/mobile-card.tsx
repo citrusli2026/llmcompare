@@ -2,27 +2,23 @@
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import { cn, getTypeBadgeClasses, formatTokenCount } from "@/lib/utils";
-import { type ModelWithScores } from "@/lib/scoring";
-import { type SortKey, type HeaderDef, type ModelGroup, type ScoreKey } from "./types";
+import { cn, getTypeBadgeClasses, formatTokenCount, isValuePick } from "@/lib/utils";
+import { type ModelWithScores, ModelType } from "@/lib/scoring";
+import { type SortKey, type ModelGroup, type ScoreKey } from "./types";
 import { getScoreColor } from "./utils";
 import { useTranslation } from "@/lib/i18n";
 import { FavoriteButton } from "@/components/favorite-button";
+import { ModelLogo } from "@/components/model-logo";
 
 interface MobileCardProps {
   model: ModelWithScores;
   group: ModelGroup;
   idx: number;
   sortKey: SortKey;
-  headers: HeaderDef[];
-  metricOrder: ScoreKey[];
-  renderMetric: (model: ModelWithScores, key: ScoreKey) => React.ReactNode;
-  percentiles: Record<string, { p25: number; p50: number; p75: number } | null>;
-  globalMax: Record<string, number>;
+  percentiles: Record<ScoreKey, { p25: number; p50: number; p75: number } | null>;
 }
 
-export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }: MobileCardProps) {
-  void _sortKey;
+export function MobileCard({ model, group, idx, percentiles }: MobileCardProps) {
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -33,7 +29,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
   // ── Data helpers ──
   const blended = model.raw.blended;
   const costStr = blended != null ? (blended === 0 ? t("common.free") : `$${blended.toFixed(2)}`) : null;
-  const isValue = blended != null && model.raw.intelligence != null && model.raw.intelligence >= 40 && blended < 1;
+  const isValue = isValuePick(model);
 
   const tokens = model.raw.openrouter_weekly_tokens;
   const tokenStr = tokens != null ? (() => {
@@ -75,14 +71,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
             #{group.rankOffset + idx + 1}
           </span>
         )}
-        {model.logo && (
-          <img
-            src={model.logo}
-            alt=""
-            className="h-4 w-4 rounded shrink-0"
-            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-          />
-        )}
+        <ModelLogo src={model.logo} name={model.name} size="xs" />
         <span className="text-[13px] font-medium text-text-primary truncate min-w-0 flex-1">
           {model.name}
         </span>
@@ -101,7 +90,7 @@ export function MobileCard({ model, group, idx, sortKey: _sortKey, percentiles }
             getTypeBadgeClasses(model.type)
           )}
         >
-          {t(model.type === "开源" ? "common.open" : "common.closed")}
+          {t(model.type === ModelType.Open ? "common.open" : "common.closed")}
         </Badge>
       </div>
 

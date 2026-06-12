@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { DetailSkeleton } from "@/components/skeletons";
 import { ProductDetailClient } from "@/components/product-detail";
-import { getModelById, getAllModelsUnfiltered } from "@/lib/scoring";
+import { getModelById, getAllModels, ModelType } from "@/lib/scoring";
 
 const BASE_URL = "https://www.llmcompare.cc";
 
@@ -17,13 +17,13 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   if (!model) return { title: "未找到" };
   return {
     title: `${model.name} - ${model.company}`,
-    description: `${model.company} ${model.name} 的智能评分、速度性能与定价详情。${model.type === "开源" ? "开源" : "闭源"}模型。`,
+    description: `${model.company} ${model.name} 的智能评分、速度性能与定价详情。${model.type === ModelType.Open ? "开源" : "闭源"}模型。`,
     alternates: { canonical: `${BASE_URL}/models/${model.id}` },
   };
 }
 
 export function generateStaticParams() {
-  return getAllModelsUnfiltered().map((model) => ({
+  return getAllModels().map((model) => ({
     id: model.id,
   }));
 }

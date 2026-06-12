@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { BarChart3 } from "lucide-react";
-import { type ModelWithScores, getAllModelsUnfiltered } from "@/lib/scoring";
+import { type ModelWithScores, getAllModels } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -61,7 +61,7 @@ export function ScoreOverview({ model }: ScoreOverviewProps) {
   // Compute dynamic max values from the full dataset for consistent scaling
   // Use percentile cap to prevent extreme outliers from compressing other bars
   const { maxSpeed } = useMemo(() => {
-    const all = getAllModelsUnfiltered();
+    const all = getAllModels();
 
     // Speed: sort and use P90 (clips top ~3 outliers: 418, 420, 224)
     const speeds = all

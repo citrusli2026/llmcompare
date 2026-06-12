@@ -1,7 +1,7 @@
 "use client";
 
 import { Calendar, Building2, Cpu, BookOpen, Scale } from "lucide-react";
-import { type ModelWithScores } from "@/lib/scoring";
+import { type ModelWithScores, ModelType } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { FieldTip } from "@/components/field-tip";
 import { formatParameters } from "@/lib/utils";
@@ -55,7 +55,7 @@ export function QuickFacts({ model }: QuickFactsProps) {
         <div className="min-w-0">
           <p className="text-[10px] uppercase tracking-wider text-text-muted">{t("product.license")}</p>
           <p className="text-sm font-medium text-text-primary break-words leading-tight">
-            {r.license ?? (model.type === "闭源" ? t("product.licenseProprietary") : "—")}
+            {r.license ?? (model.type === ModelType.Closed ? t("product.licenseProprietary") : "—")}
           </p>
         </div>
       </div>
