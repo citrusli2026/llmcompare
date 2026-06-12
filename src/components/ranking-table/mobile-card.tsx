@@ -9,7 +9,6 @@ import { getScoreColor } from "./utils";
 import { useTranslation } from "@/lib/i18n";
 import { FavoriteButton } from "@/components/favorite-button";
 import { ModelLogo } from "@/components/model-logo";
-import { Check } from "lucide-react";
 
 interface MobileCardProps {
   model: ModelWithScores;
@@ -24,9 +23,15 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
   const { t } = useTranslation();
   const router = useRouter();
 
+  const isSelected = compare?.active && compare.isInCompare(model.id);
+
   const handleCardClick = useCallback(() => {
-    router.push(`/models/${model.id}`);
-  }, [router, model.id]);
+    if (compare?.active) {
+      compare.onToggle(model.id);
+    } else {
+      router.push(`/models/${model.id}`);
+    }
+  }, [router, model.id, compare]);
 
   // ── Data helpers ──
   const blended = model.raw.blended;
@@ -58,34 +63,16 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
       className={cn(
         "relative rounded-lg border border-surface-border bg-surface-card px-2 py-1.5 transition-all active:scale-[0.98] active:bg-surface-elevated cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
         group.borderClass,
-        group.rowBgClass
+        group.rowBgClass,
+        isSelected && "ring-1 ring-accent-violet/40 bg-accent-violet/5",
+        compare?.active && !isSelected && compare.isAtMax && "opacity-50",
       )}
     >
       {/* Row 1: rank + logo + name + type badge */}
       <div className="flex items-center gap-1.5 min-h-6">
-        {/* Favorite + Compare */}
-        <span onClick={(e) => e.stopPropagation()} className="shrink-0 inline-flex items-center gap-1">
+        {/* Favorite */}
+        <span onClick={(e) => e.stopPropagation()} className="shrink-0 inline-flex items-center">
           <FavoriteButton modelId={model.id} size="sm" showPulse={false} ghost />
-          {compare && (
-            <button
-              onClick={() => compare.onToggle(model.id)}
-              disabled={!compare.isInCompare(model.id) && compare.isAtMax}
-              className={cn(
-                "rounded p-1.5 transition-all border min-w-[28px] min-h-[28px] flex items-center justify-center",
-                compare.isInCompare(model.id)
-                  ? "bg-accent-violet/15 text-accent-violet border-accent-violet/30"
-                  : "bg-transparent text-text-muted/50 border-surface-border hover:border-accent-violet/40 hover:text-accent-violet",
-                !compare.isInCompare(model.id) && compare.isAtMax && "opacity-30 cursor-not-allowed",
-              )}
-              aria-label={t(compare.isInCompare(model.id) ? "compare.remove" : "compare.add")}
-            >
-              {compare.isInCompare(model.id) ? (
-                <Check className="h-3.5 w-3.5" strokeWidth={3} />
-              ) : (
-                <span className="block h-3.5 w-3.5 rounded-sm border border-current" />
-              )}
-            </button>
-          )}
         </span>
 
         {group.showRank && (

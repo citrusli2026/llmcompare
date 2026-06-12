@@ -86,7 +86,12 @@
     "arenaVotes": "Arena Votes",
     "releaseDate": "Release Date",
     "benchmarkGpqa": "GPQA",
-    "benchmarkHle": "HLE"
+    "benchmarkHle": "HLE",
+    "startCompare": "Compare",
+    "modeOn": "Compare Mode",
+    "tapToSelect": "Tap cards to select",
+    "clickToSelect": "Click any model to compare",
+    "clear": "Clear"
   },
   "about": {
     "title": "About LLMCompare",
