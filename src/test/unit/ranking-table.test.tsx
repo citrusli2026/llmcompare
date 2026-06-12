@@ -26,7 +26,7 @@ describe("RankingTable — E2E 难测的交互", () => {
     ];
 
     render(<RankingTable models={models} />);
-    const select = screen.getByDisplayValue("table.date");
+    const select = screen.getByDisplayValue("models.colTokens");
     fireEvent.change(select, { target: { value: "intelligence" } });
     // After change, the select should show the new value
     expect(screen.getByDisplayValue("models.colIntelligence")).toBeInTheDocument();
@@ -38,7 +38,7 @@ describe("RankingTable — E2E 难测的交互", () => {
     ];
 
     render(<RankingTable models={models} />);
-    const select = screen.getByDisplayValue("table.date");
+    const select = screen.getByDisplayValue("models.colTokens");
     fireEvent.change(select, { target: { value: "" } });
     // Empty string maps to "date" in handleMobileSortChange
     expect(screen.getByDisplayValue("table.date")).toBeInTheDocument();

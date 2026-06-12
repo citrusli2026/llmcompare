@@ -37,7 +37,7 @@ const MOBILE_SORT_OPTIONS: { key: SortKey | ""; labelKey: string }[] = [
 ];
 
 export function RankingTable({ models, initialSortKey, initialSortDesc }: RankingTableProps) {
-  const [sortKey, setSortKey] = useState<SortKey>(initialSortKey ?? "date");
+  const [sortKey, setSortKey] = useState<SortKey>(initialSortKey ?? "tokens");
   const [sortDesc, setSortDesc] = useState(initialSortDesc ?? true);
   const { t } = useTranslation();
 

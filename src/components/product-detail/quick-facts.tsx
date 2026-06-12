@@ -53,7 +53,7 @@ export function QuickFacts({ model }: QuickFactsProps) {
       <div className="flex items-center gap-3">
         <Scale className="h-4 w-4 text-text-muted shrink-0" />
         <div className="min-w-0">
-          <p className="text-[10px] uppercase tracking-wider text-text-muted"><FieldTip tip={t("tip.license")}>{t("product.license")}</FieldTip></p>
+          <p className="text-[10px] uppercase tracking-wider text-text-muted">{t("product.license")}</p>
           <p className="text-sm font-medium text-text-primary break-words leading-tight">
             {r.license ?? (model.type === "闭源" ? t("product.licenseProprietary") : "—")}
           </p>
