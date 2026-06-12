@@ -41,7 +41,7 @@
     "shareCopied": "Link copied",
     "shareFailed": "Copy failed",
     "count": "{count} models",
-    "recommendTitle": "🏆 Top Pick",
+    "recommendTitle": "🏆 Picks",
     "recommendDesc": "Top 3 by intelligence in current filter",
     "recommendFirstLoadDesc": "Top 3 by intelligence — discover top picks",
     "recommendView": "View details →",
