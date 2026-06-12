@@ -264,7 +264,9 @@ export function ComparePageClient() {
                               highlight ? "font-bold text-accent-lime" : "text-text-primary",
                             )}
                           >
-                            {val}
+                            <span className="inline-flex items-center justify-center min-h-[1.25rem]">
+                              {val}
+                            </span>
                           </td>
                         );
                       })}

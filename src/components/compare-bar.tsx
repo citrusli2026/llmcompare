@@ -31,10 +31,10 @@ export function CompareBar({ selectedModels, onRemoveModel, onClear, maxCompare 
 
   return (
     <>
-      {/* Mobile: sticky top */}
+      {/* Mobile: fixed bottom */}
       <div
         data-testid="compare-bar"
-        className="sm:hidden fixed top-14 left-0 right-0 z-50 border-b border-surface-border bg-surface-base/95 backdrop-blur-xl shadow-lg"
+        className="sm:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-surface-border bg-surface-base/95 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.12)]"
       >
         <div className="px-3 py-2 flex items-center gap-2">
           <BarChart3 className="h-4 w-4 text-accent-violet shrink-0" />

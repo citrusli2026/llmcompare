@@ -9,7 +9,7 @@ import { getScoreColor } from "./utils";
 import { useTranslation } from "@/lib/i18n";
 import { FavoriteButton } from "@/components/favorite-button";
 import { ModelLogo } from "@/components/model-logo";
-import { GitCompare } from "lucide-react";
+import { Check } from "lucide-react";
 
 interface MobileCardProps {
   model: ModelWithScores;
@@ -64,22 +64,26 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
       {/* Row 1: rank + logo + name + type badge */}
       <div className="flex items-center gap-1.5 min-h-6">
         {/* Favorite + Compare */}
-        <span onClick={(e) => e.stopPropagation()} className="shrink-0 inline-flex items-center gap-0.5">
+        <span onClick={(e) => e.stopPropagation()} className="shrink-0 inline-flex items-center gap-1">
           <FavoriteButton modelId={model.id} size="sm" showPulse={false} ghost />
           {compare && (
             <button
               onClick={() => compare.onToggle(model.id)}
               disabled={!compare.isInCompare(model.id) && compare.isAtMax}
               className={cn(
-                "rounded p-1 transition-all",
+                "rounded p-1.5 transition-all border min-w-[28px] min-h-[28px] flex items-center justify-center",
                 compare.isInCompare(model.id)
-                  ? "bg-accent-violet/15 text-accent-violet"
-                  : "text-text-muted hover:text-accent-violet",
+                  ? "bg-accent-violet/15 text-accent-violet border-accent-violet/30"
+                  : "bg-transparent text-text-muted/50 border-surface-border hover:border-accent-violet/40 hover:text-accent-violet",
                 !compare.isInCompare(model.id) && compare.isAtMax && "opacity-30 cursor-not-allowed",
               )}
               aria-label={t(compare.isInCompare(model.id) ? "compare.remove" : "compare.add")}
             >
-              <GitCompare className="h-3 w-3" />
+              {compare.isInCompare(model.id) ? (
+                <Check className="h-3.5 w-3.5" strokeWidth={3} />
+              ) : (
+                <span className="block h-3.5 w-3.5 rounded-sm border border-current" />
+              )}
             </button>
           )}
         </span>
