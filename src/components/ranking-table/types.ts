@@ -24,3 +24,10 @@ export interface ModelGroup {
   rankOffset: number;
   items: ModelWithScores[];
 }
+
+/** Optional compare selection state — passed from page to row/card */
+export interface CompareState {
+  isInCompare: (id: string) => boolean;
+  isAtMax: boolean;
+  onToggle: (id: string) => void;
+}

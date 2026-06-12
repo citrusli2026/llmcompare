@@ -4,11 +4,12 @@ import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { cn, getTypeBadgeClasses, formatTokenCount, isValuePick } from "@/lib/utils";
 import { type ModelWithScores, ModelType } from "@/lib/scoring";
-import { type SortKey, type ModelGroup, type ScoreKey } from "./types";
+import { type SortKey, type ModelGroup, type ScoreKey, type CompareState } from "./types";
 import { getScoreColor } from "./utils";
 import { useTranslation } from "@/lib/i18n";
 import { FavoriteButton } from "@/components/favorite-button";
 import { ModelLogo } from "@/components/model-logo";
+import { GitCompare } from "lucide-react";
 
 interface MobileCardProps {
   model: ModelWithScores;
@@ -16,9 +17,10 @@ interface MobileCardProps {
   idx: number;
   sortKey: SortKey;
   percentiles: Record<ScoreKey, { p25: number; p50: number; p75: number } | null>;
+  compare?: CompareState;
 }
 
-export function MobileCard({ model, group, idx, percentiles }: MobileCardProps) {
+export function MobileCard({ model, group, idx, percentiles, compare }: MobileCardProps) {
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -61,9 +63,25 @@ export function MobileCard({ model, group, idx, percentiles }: MobileCardProps) 
     >
       {/* Row 1: rank + logo + name + type badge */}
       <div className="flex items-center gap-1.5 min-h-6">
-        {/* Favorite — tiny dot-style, matches nav icon feel */}
-        <span onClick={(e) => e.stopPropagation()} className="shrink-0">
+        {/* Favorite + Compare */}
+        <span onClick={(e) => e.stopPropagation()} className="shrink-0 inline-flex items-center gap-0.5">
           <FavoriteButton modelId={model.id} size="sm" showPulse={false} ghost />
+          {compare && (
+            <button
+              onClick={() => compare.onToggle(model.id)}
+              disabled={!compare.isInCompare(model.id) && compare.isAtMax}
+              className={cn(
+                "rounded p-1 transition-all",
+                compare.isInCompare(model.id)
+                  ? "bg-accent-violet/15 text-accent-violet"
+                  : "text-text-muted hover:text-accent-violet",
+                !compare.isInCompare(model.id) && compare.isAtMax && "opacity-30 cursor-not-allowed",
+              )}
+              aria-label={t(compare.isInCompare(model.id) ? "compare.remove" : "compare.add")}
+            >
+              <GitCompare className="h-3 w-3" />
+            </button>
+          )}
         </span>
 
         {group.showRank && (

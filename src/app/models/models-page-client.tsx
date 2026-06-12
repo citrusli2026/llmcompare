@@ -12,6 +12,8 @@ import { useTranslation } from "@/lib/i18n";
 import { Bot, SearchX, X, Sparkles, Trophy, TrendingUp } from "lucide-react";
 import { ShareButton } from "@/components/share-button";
 import { ModelLogo } from "@/components/model-logo";
+import { useCompareIds } from "@/hooks/use-compare-ids";
+import { CompareBar } from "@/components/compare-bar";
 
 type FilterKey = "all" | "open" | "closed";
 
@@ -39,6 +41,9 @@ export default function ModelsPageClient() {
   const initialSort = searchParams.get("sort") as SortKey | null;
 
   const [activeFilter, setActiveFilter] = useState<FilterKey>(initialFilter);
+
+  // Compare feature
+  const { selectedModels, isInCompare, isAtMax, toggleCompare, removeCompare, clearCompare, maxCompare } = useCompareIds();
 
   const updateUrl = useCallback(
     (filter: FilterKey) => {
@@ -211,7 +216,11 @@ export default function ModelsPageClient() {
                 </div>
               )}
 
-              <RankingTable models={filteredModels} initialSortKey={initialSort ?? undefined} />
+              <RankingTable
+                models={filteredModels}
+                initialSortKey={initialSort ?? undefined}
+                compare={{ isInCompare, isAtMax, onToggle: toggleCompare }}
+              />
               <div className="mt-8 text-center text-sm text-text-muted">
                 {t("models.count", { count: String(filteredModels.length) })}
               </div>
@@ -219,6 +228,12 @@ export default function ModelsPageClient() {
           )}
         </div>
       </div>
+      <CompareBar
+        selectedModels={selectedModels}
+        onRemoveModel={removeCompare}
+        onClear={clearCompare}
+        maxCompare={maxCompare}
+      />
     </div>
   );
 }
