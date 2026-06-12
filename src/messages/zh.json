@@ -86,7 +86,12 @@
     "arenaVotes": "Arena 票数",
     "releaseDate": "发布日期",
     "benchmarkGpqa": "GPQA",
-    "benchmarkHle": "HLE"
+    "benchmarkHle": "HLE",
+    "startCompare": "对比",
+    "modeOn": "对比模式",
+    "tapToSelect": "点击卡片选择模型",
+    "clickToSelect": "点击任意模型加入对比",
+    "clear": "清空"
   },
   "about": {
     "title": "关于模型图鉴",

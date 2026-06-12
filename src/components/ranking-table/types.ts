@@ -30,4 +30,5 @@ export interface CompareState {
   isInCompare: (id: string) => boolean;
   isAtMax: boolean;
   onToggle: (id: string) => void;
+  active: boolean;
 }

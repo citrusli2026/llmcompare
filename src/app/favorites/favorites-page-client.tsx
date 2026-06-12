@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { RankingTable } from "@/components/ranking-table";
@@ -10,12 +10,21 @@ import { useFavorites } from "@/hooks/use-favorites";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { getAllModels } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
-import { Heart, SearchX, Trash2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Heart, SearchX, Trash2, ArrowLeftRight } from "lucide-react";
 
 export default function FavoritesPageClient() {
   const { t } = useTranslation();
   const { favorites, clearFavorites } = useFavorites();
+  const [compareActive, setCompareActive] = useState(false);
   const { selectedModels, isInCompare, isAtMax, toggleCompare, removeCompare, clearCompare, maxCompare } = useCompareIds();
+
+  const handleToggleCompareMode = useCallback(() => {
+    setCompareActive((prev) => {
+      if (prev) clearCompare();
+      return !prev;
+    });
+  }, [clearCompare]);
 
   const allModels = useMemo(() => getAllModels(), []);
   const favoritedModels = useMemo(
@@ -45,15 +54,29 @@ export default function FavoritesPageClient() {
               </p>
             </div>
             {favoritedModels.length > 0 && (
-              <button
-                onClick={() => {
-                  if (confirm(t("favorites.clear") + "?")) clearFavorites();
-                }}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-surface-border bg-surface-card px-3 py-2 text-xs font-medium text-text-secondary hover:border-accent-fuchsia/30 hover:text-accent-fuchsia hover:bg-accent-fuchsia/5 transition-all shrink-0 mt-1"
-              >
-                <Trash2 className="h-3.5 w-3.5" />
-                {t("favorites.clear")}
-              </button>
+              <div className="flex items-center gap-2 shrink-0 mt-1">
+                <button
+                  onClick={handleToggleCompareMode}
+                  className={cn(
+                    "inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium border transition-all",
+                    compareActive
+                      ? "border-accent-violet bg-accent-violet/10 text-accent-violet"
+                      : "border-surface-border bg-surface-card text-text-secondary hover:border-accent-violet/30 hover:text-accent-violet"
+                  )}
+                >
+                  <ArrowLeftRight className="h-3.5 w-3.5" />
+                  {t(compareActive ? "compare.modeOn" : "compare.startCompare")}
+                </button>
+                <button
+                  onClick={() => {
+                    if (confirm(t("favorites.clear") + "?")) clearFavorites();
+                  }}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-surface-border bg-surface-card px-3 py-2 text-xs font-medium text-text-secondary hover:border-accent-fuchsia/30 hover:text-accent-fuchsia hover:bg-accent-fuchsia/5 transition-all"
+                >
+                  <Trash2 className="h-3.5 w-3.5" />
+                  {t("favorites.clear")}
+                </button>
+              </div>
             )}
           </div>
 
@@ -93,7 +116,7 @@ export default function FavoritesPageClient() {
               <RankingTable
                 models={favoritedModels}
                 initialSortKey="intelligence"
-                compare={{ isInCompare, isAtMax, onToggle: toggleCompare }}
+                compare={{ isInCompare, isAtMax, onToggle: toggleCompare, active: compareActive }}
               />
             </>
           )}
@@ -105,6 +128,8 @@ export default function FavoritesPageClient() {
         onRemoveModel={removeCompare}
         onClear={clearCompare}
         maxCompare={maxCompare}
+        active={compareActive}
+        onToggleActive={handleToggleCompareMode}
       />
     </div>
   );

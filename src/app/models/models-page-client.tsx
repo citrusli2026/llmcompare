@@ -9,7 +9,8 @@ import { RankingTable } from "@/components/ranking-table";
 import type { SortKey } from "@/components/ranking-table/types";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
 import { useTranslation } from "@/lib/i18n";
-import { Bot, SearchX, X, Sparkles, Trophy, TrendingUp } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Bot, SearchX, X, Sparkles, Trophy, TrendingUp, ArrowLeftRight } from "lucide-react";
 import { ShareButton } from "@/components/share-button";
 import { ModelLogo } from "@/components/model-logo";
 import { useCompareIds } from "@/hooks/use-compare-ids";
@@ -43,7 +44,18 @@ export default function ModelsPageClient() {
   const [activeFilter, setActiveFilter] = useState<FilterKey>(initialFilter);
 
   // Compare feature
+  const [compareActive, setCompareActive] = useState(false);
   const { selectedModels, isInCompare, isAtMax, toggleCompare, removeCompare, clearCompare, maxCompare } = useCompareIds();
+
+  const handleToggleCompareMode = useCallback(() => {
+    setCompareActive((prev) => {
+      if (prev) {
+        // Exiting compare mode — clear selections
+        clearCompare();
+      }
+      return !prev;
+    });
+  }, [clearCompare]);
 
   const updateUrl = useCallback(
     (filter: FilterKey) => {
@@ -128,13 +140,25 @@ export default function ModelsPageClient() {
             <ShareButton size="sm" variant="ghost" className="shrink-0 mt-1" />
           </div>
 
-          {/* 筛选条件 — 全部/开源/闭源 */}
+          {/* 筛选条件 — 全部/开源/闭源 + 对比模式 */}
           <div className="mb-4 sm:mb-6 flex flex-wrap items-center gap-2">
             <FilterBar
               options={filterOptions}
               activeKey={activeFilter}
               onFilterChange={handleFilterChange}
             />
+            <button
+              onClick={handleToggleCompareMode}
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium border transition-all",
+                compareActive
+                  ? "border-accent-violet bg-accent-violet/10 text-accent-violet"
+                  : "border-surface-border bg-surface-card text-text-secondary hover:border-accent-violet/30 hover:text-accent-violet"
+              )}
+            >
+              <ArrowLeftRight className="h-3.5 w-3.5" />
+              {t(compareActive ? "compare.modeOn" : "compare.startCompare")}
+            </button>
           </div>
 
           {isEmpty ? (
@@ -219,7 +243,7 @@ export default function ModelsPageClient() {
               <RankingTable
                 models={filteredModels}
                 initialSortKey={initialSort ?? undefined}
-                compare={{ isInCompare, isAtMax, onToggle: toggleCompare }}
+                compare={{ isInCompare, isAtMax, onToggle: toggleCompare, active: compareActive }}
               />
               <div className="mt-8 text-center text-sm text-text-muted">
                 {t("models.count", { count: String(filteredModels.length) })}
@@ -233,6 +257,8 @@ export default function ModelsPageClient() {
         onRemoveModel={removeCompare}
         onClear={clearCompare}
         maxCompare={maxCompare}
+        active={compareActive}
+        onToggleActive={handleToggleCompareMode}
       />
     </div>
   );
