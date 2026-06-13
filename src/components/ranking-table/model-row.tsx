@@ -48,7 +48,7 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
       className={cn(
         "border-surface-border hover:bg-surface-hover transition-colors even:bg-surface-elevated/40 cursor-pointer",
         group.borderClass,
-        isSelected && "ring-1 ring-accent-violet/40 bg-accent-violet/5",
+        isSelected && "ring-2 ring-accent-violet bg-accent-violet/10 border-l-4 border-l-accent-violet",
         compare?.active && !isSelected && compare.isAtMax && "opacity-50",
       )}
     >
