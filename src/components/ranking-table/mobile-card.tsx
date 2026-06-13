@@ -92,15 +92,6 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
             {t("models.valuePickShort")}
           </Badge>
         )}
-        <Badge
-          variant="secondary"
-          className={cn(
-            "text-[9px] py-0 px-1 h-[14px] leading-none shrink-0",
-            getTypeBadgeClasses(model.type)
-          )}
-        >
-          {t(model.type === ModelType.Open ? "common.open" : "common.closed")}
-        </Badge>
       </div>
 
       {/* Row 2: data row — clean values, consistent contrast */}
@@ -112,9 +103,7 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
         {intelScore != null ? (
           <span className={cn(
             "shrink-0 tabular-nums font-semibold",
-            getScoreColor(intelScore, "intelligence", percentiles) === "text-accent-lime"
-              ? "text-accent-lime"
-              : "text-text-primary"
+            getScoreColor(intelScore, "intelligence", percentiles)
           )}>
             {intelScore.toFixed(1)}
           </span>
@@ -122,11 +111,17 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
           <span className="shrink-0 text-text-muted">—</span>
         )}
         <span className="shrink-0 text-text-muted opacity-30">·</span>
-        <span className="shrink-0 tabular-nums text-text-primary">
+        <span className={cn(
+          "shrink-0 tabular-nums font-semibold",
+          getScoreColor(blended, "cost", percentiles)
+        )}>
           {costStr ?? "—"}
         </span>
         <span className="shrink-0 text-text-muted opacity-30">·</span>
-        <span className="shrink-0 tabular-nums font-semibold text-amber-400">
+        <span className={cn(
+          "shrink-0 tabular-nums font-semibold",
+          getScoreColor(tokens, "tokens", percentiles)
+        )}>
           {tokenStr ?? "—"}
         </span>
       </div>

@@ -9,17 +9,16 @@ import { RankingTable } from "@/components/ranking-table";
 import type { SortKey } from "@/components/ranking-table/types";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
 import { useTranslation } from "@/lib/i18n";
-import { cn } from "@/lib/utils";
+import { cn, formatTokenCount } from "@/lib/utils";
 import { Bot, SearchX, X, Sparkles, Trophy, TrendingUp, ArrowLeftRight } from "lucide-react";
 import { ShareButton } from "@/components/share-button";
 import { ModelLogo } from "@/components/model-logo";
 import { useCompareIds } from "@/hooks/use-compare-ids";
 import { CompareBar } from "@/components/compare-bar";
 
-type FilterKey = "all" | "open" | "closed";
+type FilterKey = "open" | "closed";
 
 const FILTERS: { key: FilterKey; labelKey: string; matchValue: string | undefined }[] = [
-  { key: "all", labelKey: "models.filterAll", matchValue: undefined },
   { key: "open", labelKey: "models.filterOpen", matchValue: ModelType.Open },
   { key: "closed", labelKey: "models.filterClosed", matchValue: ModelType.Closed },
 ];
@@ -37,8 +36,8 @@ export default function ModelsPageClient() {
   const searchParams = useSearchParams();
   const { t } = useTranslation();
 
-  const initialFilterRaw = searchParams.get("filter") ?? "all";
-  const initialFilter: FilterKey = isFilterKey(initialFilterRaw) ? initialFilterRaw : "all";
+  const initialFilterRaw = searchParams.get("filter") ?? "closed";
+  const initialFilter: FilterKey = isFilterKey(initialFilterRaw) ? initialFilterRaw : "closed";
   const initialSort = searchParams.get("sort") as SortKey | null;
 
   const [activeFilter, setActiveFilter] = useState<FilterKey>(initialFilter);
@@ -60,11 +59,7 @@ export default function ModelsPageClient() {
   const updateUrl = useCallback(
     (filter: FilterKey) => {
       const params = new URLSearchParams(searchParams.toString());
-      if (filter !== "all") {
-        params.set("filter", filter);
-      } else {
-        params.delete("filter");
-      }
+      params.set("filter", filter);
       router.replace(`?${params.toString()}`, { scroll: false });
     },
     [router, searchParams]
@@ -88,14 +83,12 @@ export default function ModelsPageClient() {
 
   const filteredModels = useMemo(() => {
     const filterMatchValue = matchValueFor(activeFilter);
-    return allModels.filter((m) =>
-      activeFilter === "all" ? true : m.type === filterMatchValue
-    );
+    return allModels.filter((m) => m.type === filterMatchValue);
   }, [allModels, activeFilter]);
 
   // Clear all filters
   const handleClearAll = useCallback(() => {
-    setActiveFilter("all");
+    setActiveFilter("closed");
     router.replace("/models", { scroll: false });
   }, [router]);
 
@@ -108,16 +101,16 @@ export default function ModelsPageClient() {
   }, [allModels]);
 
   // Detect if any filter is active
-  const hasActiveFilters = activeFilter !== "all";
+  const hasActiveFilters = true;
 
   const isEmpty = filteredModels.length === 0;
 
-  // Top picks from filtered results — top 3 by intelligence
+  // Top picks from filtered results — top 3 by weekly usage
   const topPicks = useMemo(() => {
     if (isEmpty) return [];
     return [...filteredModels]
-      .filter((m) => m.raw.intelligence != null)
-      .sort((a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0))
+      .filter((m) => m.raw.openrouter_weekly_tokens != null)
+      .sort((a, b) => (b.raw.openrouter_weekly_tokens ?? 0) - (a.raw.openrouter_weekly_tokens ?? 0))
       .slice(0, 3);
   }, [filteredModels, isEmpty]);
 
@@ -156,8 +149,8 @@ export default function ModelsPageClient() {
                   : "border-surface-border bg-surface-card text-text-secondary hover:border-accent-violet/30 hover:text-accent-violet"
               )}
             >
-              <ArrowLeftRight className="h-3.5 w-3.5" />
               {t(compareActive ? "compare.modeOn" : "compare.startCompare")}
+              <ArrowLeftRight className="h-3.5 w-3.5" />
             </button>
           </div>
 
@@ -213,7 +206,6 @@ export default function ModelsPageClient() {
               {topPicks.length > 0 && (
                 <div className="mb-4 rounded-xl border border-accent-violet/20 bg-accent-violet/5 p-4 sm:p-5">
                   <div className="flex items-center gap-2 mb-3">
-                    <Trophy className="h-4 w-4 text-accent-violet" />
                     <span className="text-sm font-semibold text-text-primary">{t("models.recommendTitle")}</span>
                     <span className="text-xs text-text-muted">{t(hasActiveFilters ? "models.recommendDesc" : "models.recommendFirstLoadDesc")}</span>
                   </div>
@@ -230,7 +222,12 @@ export default function ModelsPageClient() {
                             {model.name}
                           </div>
                           <div className="text-[10px] text-text-muted truncate">
-                            {t("models.colIntelligence")} {model.raw.intelligence?.toFixed(1) ?? "—"}
+                            {(() => {
+                              const tokens = model.raw.openrouter_weekly_tokens;
+                              if (tokens == null) return "—";
+                              const { value, unit } = formatTokenCount(tokens);
+                              return `${value}${unit}`;
+                            })()}
                           </div>
                         </div>
                         <TrendingUp className="h-3 w-3 text-text-muted shrink-0" />

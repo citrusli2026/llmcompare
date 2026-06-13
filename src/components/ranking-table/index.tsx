@@ -140,7 +140,7 @@ export function RankingTable({ models, initialSortKey, initialSortDesc, compare 
                 <option key={opt.key} value={opt.key}>{t(opt.labelKey)}</option>
               ))}
             </select>
-            <ArrowUpDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+            <ArrowDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
           </div>
           {sortKey && (
             <button
