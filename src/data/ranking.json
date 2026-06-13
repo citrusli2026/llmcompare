@@ -136,7 +136,7 @@
       "pricing_doc": "https://www.anthropic.com/pricing"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 1103526705429,
     "openrouter_pricing": {
       "prompt": 10.0,
       "completion": 50.0
@@ -159,7 +159,7 @@
       }
     },
     "arena_votes": 9644,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 88.7
   },
   {
     "id": "gpt-5-5",
@@ -293,7 +293,7 @@
       "pricing_doc": "https://www.anthropic.com/pricing"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 5106251346,
     "openrouter_pricing": {
       "prompt": 30.0,
       "completion": 150.0
@@ -316,7 +316,7 @@
       }
     },
     "arena_votes": 29924,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 88.7
   },
   {
     "id": "gemini-3-1-pro-preview",
@@ -537,7 +537,7 @@
       "output": 10.0,
       "source": "bailian.console.aliyun.com (参考 Qwen3 Max 定价)"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 227912888795,
     "openrouter_pricing": {
       "prompt": 1.25,
       "completion": 3.75
@@ -555,7 +555,7 @@
       }
     },
     "arena_votes": 3744,
-    "data_completeness_pct": 94.0
+    "data_completeness_pct": 96.2
   },
   {
     "id": "gemini-3-5-flash",
@@ -613,7 +613,7 @@
       "pricing_doc": "https://ai.google.dev/pricing"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 580897837628,
     "openrouter_pricing": {
       "prompt": 1.5,
       "completion": 9.0
@@ -631,7 +631,7 @@
       }
     },
     "arena_votes": 10113,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 88.7
   },
   {
     "id": "minimax-m3",
@@ -774,7 +774,7 @@
       "output": 27.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 403008045847,
     "openrouter_pricing": {
       "prompt": 0.68,
       "completion": 3.41
@@ -792,7 +792,7 @@
       }
     },
     "arena_votes": 11045,
-    "data_completeness_pct": 97.7
+    "data_completeness_pct": 100.0
   },
   {
     "id": "mimo-v2-5-pro",
@@ -854,7 +854,7 @@
       "output": 21.0,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 2631935684710,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
@@ -872,7 +872,7 @@
       }
     },
     "arena_votes": 5966,
-    "data_completeness_pct": 97.7
+    "data_completeness_pct": 100.0
   },
   {
     "id": "gpt-5-3-codex",
@@ -997,14 +997,14 @@
     },
     "license": null,
     "cn_pricing": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 17339265953,
     "openrouter_pricing": {
       "prompt": 0.32,
       "completion": 1.28
     },
     "arena_rankings": {},
     "arena_votes": 3923,
-    "data_completeness_pct": 78.9
+    "data_completeness_pct": 81.2
   },
   {
     "id": "grok-4-3",
@@ -1063,7 +1063,7 @@
       "pricing_doc": "https://docs.x.ai/docs/models"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 88797729649,
     "openrouter_pricing": {
       "prompt": 1.25,
       "completion": 2.5
@@ -1076,7 +1076,7 @@
       }
     },
     "arena_votes": 9992,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 88.7
   },
   {
     "id": "claude-opus-4-6",
@@ -1134,7 +1134,7 @@
       "pricing_doc": "https://www.anthropic.com/pricing"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 1745192194,
     "openrouter_pricing": {
       "prompt": 30.0,
       "completion": 150.0
@@ -1157,7 +1157,7 @@
       }
     },
     "arena_votes": 45808,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 88.7
   },
   {
     "id": "muse-spark",
@@ -1298,7 +1298,7 @@
       "output": 54,
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 3072250841,
     "openrouter_pricing": {
       "prompt": 1.04,
       "completion": 6.24
@@ -1316,7 +1316,7 @@
       }
     },
     "arena_votes": 2503,
-    "data_completeness_pct": 94.0
+    "data_completeness_pct": 96.2
   },
   {
     "id": "claude-sonnet-4-6",
@@ -1374,7 +1374,7 @@
       "pricing_doc": "https://www.anthropic.com/pricing"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 2020403577615,
     "openrouter_pricing": {
       "prompt": 3.0,
       "completion": 15.0
@@ -1392,7 +1392,7 @@
       }
     },
     "arena_votes": 17336,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 88.7
   },
   {
     "id": "deepseek-v4-pro",
@@ -1456,7 +1456,7 @@
       "output": 24,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 1634887356442,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
@@ -1469,7 +1469,7 @@
       }
     },
     "arena_votes": 5311,
-    "data_completeness_pct": 97.7
+    "data_completeness_pct": 100.0
   },
   {
     "id": "glm-5-1",
@@ -1829,14 +1829,14 @@
       "pricing_doc": "https://openai.com/api/pricing"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 189452316529,
     "openrouter_pricing": {
       "prompt": 0.75,
       "completion": 4.5
     },
     "arena_rankings": {},
     "arena_votes": 15692,
-    "data_completeness_pct": 78.9
+    "data_completeness_pct": 81.2
   },
   {
     "id": "grok-4-20-0309",
@@ -1961,14 +1961,14 @@
       "pricing_doc": "https://build.nvidia.com/pricing"
     },
     "license": "NVIDIA Open License",
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 85531499886,
     "openrouter_pricing": {
       "prompt": 0.5,
       "completion": 2.5
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 85.0
   },
   {
     "id": "kimi-k2-5",
@@ -2031,7 +2031,7 @@
       "output": 21.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 168065575207,
     "openrouter_pricing": {
       "prompt": 0.38,
       "completion": 2.02
@@ -2049,7 +2049,7 @@
       }
     },
     "arena_votes": 19904,
-    "data_completeness_pct": 97.7
+    "data_completeness_pct": 100.0
   },
   {
     "id": "glm-5-turbo",
@@ -2179,14 +2179,14 @@
       "output": 2,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 3486919393628,
     "openrouter_pricing": {
       "prompt": 0.1,
       "completion": 0.2
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 90.2
+    "data_completeness_pct": 92.5
   },
   {
     "id": "gemini-3-flash",
@@ -2324,14 +2324,14 @@
     },
     "license": "Apache 2.0",
     "cn_pricing": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 36251907683,
     "openrouter_pricing": {
       "prompt": 0.29,
       "completion": 3.17
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 85.0
   },
   {
     "id": "mimo-v2-omni-0327",
@@ -2465,14 +2465,14 @@
       "pricing_doc": "https://openai.com/api/pricing"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 104714950777,
     "openrouter_pricing": {
       "prompt": 0.2,
       "completion": 1.25
     },
     "arena_rankings": {},
     "arena_votes": 12444,
-    "data_completeness_pct": 78.9
+    "data_completeness_pct": 81.2
   },
   {
     "id": "kat-coder-pro-v2",
@@ -2525,14 +2525,14 @@
     "vendor_links": {},
     "license": null,
     "cn_pricing": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 3161099381,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 75.2
+    "data_completeness_pct": 77.4
   },
   {
     "id": "qwen3-6-35b-a3b",
@@ -2592,14 +2592,14 @@
     },
     "license": "Apache 2.0",
     "cn_pricing": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 46067854030,
     "openrouter_pricing": {
       "prompt": 0.15,
       "completion": 1.0
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 85.0
   },
   {
     "id": "mimo-v2-omni",
@@ -2810,14 +2810,14 @@
       "output": 8,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 646200665348,
     "openrouter_pricing": {
       "prompt": 0.2,
       "completion": 1.15
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 90.2
+    "data_completeness_pct": 92.5
   },
   {
     "id": "hy3-preview",
@@ -3025,7 +3025,7 @@
       "output": 2.1,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 73821671009,
     "openrouter_pricing": {
       "prompt": 0.1,
       "completion": 0.3
@@ -3043,7 +3043,7 @@
       }
     },
     "arena_votes": 5966,
-    "data_completeness_pct": 97.7
+    "data_completeness_pct": 100.0
   },
   {
     "id": "qwen3-max-thinking",
@@ -3107,7 +3107,7 @@
       "output": 10,
       "source": "bailian.console.aliyun.com"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 589676876,
     "openrouter_pricing": {
       "prompt": 0.78,
       "completion": 3.9
@@ -3125,7 +3125,7 @@
       }
     },
     "arena_votes": 2503,
-    "data_completeness_pct": 94.0
+    "data_completeness_pct": 96.2
   },
   {
     "id": "mistral-medium-3-5",
@@ -3184,14 +3184,14 @@
       "pricing_doc": "https://mistral.ai/pricing"
     },
     "license": "MRL (Mistral Research License)",
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 9233342751,
     "openrouter_pricing": {
       "prompt": 1.5,
       "completion": 7.5
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 85.0
   },
   {
     "id": "gemma-4-31b",
@@ -3249,7 +3249,7 @@
       "pricing_doc": "https://ai.google.dev/pricing"
     },
     "license": "Gemma License",
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 403299870105,
     "openrouter_pricing": {
       "prompt": 0.12,
       "completion": 0.35
@@ -3267,7 +3267,7 @@
       }
     },
     "arena_votes": 27035,
-    "data_completeness_pct": 90.2
+    "data_completeness_pct": 92.5
   },
   {
     "id": "step-3-5-flash-2603",
@@ -3326,14 +3326,14 @@
     },
     "license": null,
     "cn_pricing": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 17751634640,
     "openrouter_pricing": {
       "prompt": 0.09,
       "completion": 0.3
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 78.9
+    "data_completeness_pct": 81.2
   },
   {
     "id": "ring-2-6-1t",
@@ -3393,14 +3393,14 @@
       "output": 0,
       "source": "开源可自部署"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 23844252834,
     "openrouter_pricing": {
       "prompt": 0.07,
       "completion": 0.62
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 90.2
+    "data_completeness_pct": 92.5
   },
   {
     "id": "step-3-5-flash",
@@ -3463,7 +3463,7 @@
       "output": 2.1,
       "source": "platform.stepfun.com/docs"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 17751634640,
     "openrouter_pricing": {
       "prompt": 0.09,
       "completion": 0.3
@@ -3476,7 +3476,7 @@
       }
     },
     "arena_votes": 7454,
-    "data_completeness_pct": 97.7
+    "data_completeness_pct": 100.0
   },
   {
     "id": "command-a",
@@ -3724,7 +3724,7 @@
       "output": 18.0,
       "source": "AA (无国内官价, ¥按$×7.2折算)"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 2543406854,
     "openrouter_pricing": {
       "prompt": 0.07,
       "completion": 0.62
@@ -3737,7 +3737,7 @@
       }
     },
     "arena_votes": 7454,
-    "data_completeness_pct": 97.7
+    "data_completeness_pct": 100.0
   },
   {
     "id": "gemini-3-1-flash-lite",
@@ -3854,14 +3854,14 @@
     "url": "https://artificialanalysis.ai/models/mercury-2",
     "vendor_links": {},
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 4231280095,
     "openrouter_pricing": {
       "prompt": 0.25,
       "completion": 0.75
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 75.2
+    "data_completeness_pct": 77.4
   },
   {
     "id": "k-exaone",
@@ -3978,14 +3978,14 @@
       "pricing_doc": "https://arcee.ai/pricing"
     },
     "license": "Apache 2.0",
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 2743686625,
     "openrouter_pricing": {
       "prompt": 0.22,
       "completion": 0.85
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 85.0
   },
   {
     "id": "gemma-4-26b-a4b",
@@ -4043,7 +4043,7 @@
       "pricing_doc": "https://ai.google.dev/pricing"
     },
     "license": "Gemma License",
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 279184279060,
     "openrouter_pricing": {
       "prompt": 0.06,
       "completion": 0.33
@@ -4056,7 +4056,7 @@
       }
     },
     "arena_votes": 16970,
-    "data_completeness_pct": 90.2
+    "data_completeness_pct": 92.5
   },
   {
     "id": "exaone-4-5-33b",
@@ -4173,14 +4173,14 @@
       "pricing_doc": "https://openai.com/api/pricing"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 3165602819,
     "openrouter_pricing": {
       "prompt": 30.0,
       "completion": 180.0
     },
     "arena_rankings": {},
     "arena_votes": 25255,
-    "data_completeness_pct": 56.4
+    "data_completeness_pct": 58.6
   },
   {
     "id": "gpt-5-4-pro",
@@ -4238,13 +4238,13 @@
       "pricing_doc": "https://openai.com/api/pricing"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 156756434,
     "openrouter_pricing": {
       "prompt": 30.0,
       "completion": 180.0
     },
     "arena_rankings": {},
     "arena_votes": 12444,
-    "data_completeness_pct": 56.4
+    "data_completeness_pct": 58.6
   }
 ]
