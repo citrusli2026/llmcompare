@@ -260,7 +260,7 @@ export function ComparePageClient() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-surface-border">
-                  <th className="text-left px-3 sm:px-4 py-2.5 text-text-muted font-medium w-[140px] sm:w-[180px]">
+                  <th className="text-left px-2 sm:px-4 py-2.5 text-text-muted font-medium w-[110px] sm:w-[180px] text-xs sm:text-sm">
                     {t("compare.metric")}
                   </th>
                   {models.map((m) => (
@@ -276,13 +276,13 @@ export function ComparePageClient() {
                   const numericVals = row.getNumeric ? models.map(row.getNumeric) : [];
                   return (
                     <tr key={row.labelKey} className={cn("border-surface-border", i < rows.length - 1 && "border-b")}>
-                      <td className="px-3 sm:px-4 py-2.5 text-text-secondary">
-                        <div className="flex items-center gap-1.5">
-                          <Icon className="h-3.5 w-3.5 text-text-muted shrink-0" />
+                      <td className="px-2 sm:px-4 py-2.5 text-text-secondary">
+                        <div className="flex items-center gap-1 sm:gap-1.5">
+                          <Icon className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-text-muted shrink-0" />
                           {row.tipKey ? (
-                            <Tooltip content={t(row.tipKey)}><span>{t(row.labelKey)}</span></Tooltip>
+                            <Tooltip content={t(row.tipKey)}><span className="text-xs sm:text-sm">{t(row.labelKey)}</span></Tooltip>
                           ) : (
-                            <span>{t(row.labelKey)}</span>
+                            <span className="text-xs sm:text-sm">{t(row.labelKey)}</span>
                           )}
                         </div>
                       </td>
