@@ -48,10 +48,9 @@ export default function ModelsPageClient() {
 
   const handleToggleCompareMode = useCallback(() => {
     setCompareActive((prev) => {
-      if (prev) {
-        // Exiting compare mode — clear selections
-        clearCompare();
-      }
+      // When turning OFF compare mode, clear selections
+      // Use queueMicrotask to avoid setState-during-render warning
+      if (prev) queueMicrotask(() => clearCompare());
       return !prev;
     });
   }, [clearCompare]);
