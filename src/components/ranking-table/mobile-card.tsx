@@ -73,8 +73,8 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
       <div className="flex items-center gap-1.5 min-h-6">
         {/* Favorite or Selected indicator */}
         {isSelected ? (
-          <span className="shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-accent-violet">
-            <Check className="h-3 w-3 text-white" strokeWidth={3} />
+          <span className="shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-lg bg-accent-violet">
+            <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />
           </span>
         ) : (
           <span onClick={(e) => e.stopPropagation()} className="shrink-0 inline-flex items-center">
