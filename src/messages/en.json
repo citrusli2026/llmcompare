@@ -87,6 +87,12 @@
     "releaseDate": "Release Date",
     "benchmarkGpqa": "GPQA",
     "benchmarkHle": "HLE",
+    "benchmarkMmluPro": "MMLU-Pro",
+    "ttft": "Time to First Token",
+    "e2e": "End-to-End Latency",
+    "inputPrice": "Input Price",
+    "outputPrice": "Output Price",
+    "maxOutput": "Max Output",
     "startCompare": "Compare",
     "modeOn": "Compare Mode",
     "tapToSelect": "Tap cards to select",
@@ -200,18 +206,26 @@
     "models": "Models"
   },
   "tip": {
+    "intelligence": "Artificial Analysis Intelligence Index — combines MMLU, HumanEval, MATH and more to assess reasoning, coding, and math. 0-100, higher is better.",
+    "coding": "Artificial Analysis Coding score — based on code generation and understanding tasks. 0-100, higher is better.",
+    "agentic": "Artificial Analysis Agentic score — evaluates tool use, multi-step reasoning, and task completion. 0-100, higher is better.",
     "mmluPro": "Massive Multitask Language Understanding benchmark — measures broad knowledge across 57 subjects. Range 0-100, higher is better.",
+    "gpqa": "Graduate-Level Google-Proof Q&A benchmark — tests high-difficulty science questions. 0-100, higher is better.",
+    "hle": "Humanity's Last Exam benchmark — tests extreme reasoning capabilities. 0-100, higher is better.",
     "speed": "Tokens Per Second — how many tokens the model processes per second. Higher is faster.",
     "p5": "P5 speed — the processing speed of the fastest 5% of samples, reflecting peak performance.",
     "p95": "P95 speed — the processing speed of the slowest 5% of samples, reflecting worst-case performance.",
     "ttft": "Time to First Token — delay from sending a request to receiving the first token. Lower is better.",
     "e2e": "End-to-End Latency — total time to complete a full request. Lower is better.",
     "blended": "Weighted average of input and output pricing, calculated at a typical 60% input / 40% output ratio.",
+    "inputPrice": "Input price — cost per million input tokens. Lower is cheaper.",
+    "outputPrice": "Output price — cost per million output tokens. Lower is cheaper.",
     "parameters": "Number of model parameters (B = Billion). Generally larger models are more capable but cost more to run.",
     "orWeeklyTokens": "Real weekly token consumption on OpenRouter, reflecting real-world usage popularity.",
     "arenaVotes": "Cumulative blind human evaluation votes from lmarena.ai (Chatbot Arena). More votes = more reliable ranking.",
     "elo": "ELO rating from paired battle results on lmarena.ai. Typical range 1200-1600, higher ranks higher.",
-    "contextWindow": "Maximum number of tokens the model can process in a single request (input + output combined). Larger = can handle longer content."
+    "contextWindow": "Maximum number of tokens the model can process in a single request (input + output combined). Larger = can handle longer content.",
+    "maxOutput": "Maximum tokens the model can generate in a single request. Larger = can produce longer content."
   },
   "theme": {}
 }

@@ -87,6 +87,12 @@
     "releaseDate": "发布日期",
     "benchmarkGpqa": "GPQA",
     "benchmarkHle": "HLE",
+    "benchmarkMmluPro": "MMLU-Pro",
+    "ttft": "首Token延迟",
+    "e2e": "端到端延迟",
+    "inputPrice": "输入价格",
+    "outputPrice": "输出价格",
+    "maxOutput": "最大输出",
     "startCompare": "对比",
     "modeOn": "对比模式",
     "tapToSelect": "点击卡片选择模型",
@@ -200,18 +206,26 @@
     "models": "模型"
   },
   "tip": {
+    "intelligence": "Artificial Analysis 综合智能指数，整合 MMLU、HumanEval、MATH 等基准测试，评估推理、编程和数学能力。0-100 分，越高越好。",
+    "coding": "Artificial Analysis 编程能力评分，基于代码生成和理解任务的表现。0-100 分，越高越好。",
+    "agentic": "Artificial Analysis Agent 能力评分，评估工具调用、多步推理和任务完成能力。0-100 分，越高越好。",
     "mmluPro": "大规模多任务语言理解基准测试（MMLU-Pro），覆盖 57 个学科的综合知识。0-100 分，越高越好。",
+    "gpqa": "研究生级别问答基准（GPQA），测试高难度科学问题。0-100 分，越高越好。",
+    "hle": "人类最后考试基准（HLE），测试极限推理能力。0-100 分，越高越好。",
     "speed": "每秒处理的 Token 数（Tokens Per Second），吞吐速度。越高越快。",
     "p5": "最快 5% 样本的处理速度，反映模型的最佳峰值性能。",
     "p95": "最慢 5% 样本的处理速度，反映模型的低谷性能。",
     "ttft": "首 Token 延迟 — 从发送请求到收到第一个 Token 的时间。越低越好。",
     "e2e": "端到端延迟 — 完成完整请求的总时间。越低越好。",
     "blended": "Input 和 Output 的加权混合价，按典型 60% Input / 40% Output 比例计算。",
+    "inputPrice": "输入价格 — 每百万输入 Token 的价格。越低越便宜。",
+    "outputPrice": "输出价格 — 每百万输出 Token 的价格。越低越便宜。",
     "parameters": "模型参数量（B = 十亿）。通常参数量越大能力越强，但推理成本也更高。",
     "orWeeklyTokens": "OpenRouter 平台过去一周的真实 Token 消耗量，反映模型的实际使用热度。",
     "arenaVotes": "lmarena.ai（原 Chatbot Arena）平台上真人匿名盲测的累计投票数。票数越多排名越可靠。",
     "elo": "ELO 评分系统，基于配对对战结果计算。常见范围 1200-1600，越高排名越靠前。",
-    "contextWindow": "模型单次请求能处理的最大 Token 数（输入 + 输出合计）。越大越能处理长文本。"
+    "contextWindow": "模型单次请求能处理的最大 Token 数（输入 + 输出合计）。越大越能处理长文本。",
+    "maxOutput": "模型单次请求能生成的最大 Token 数。越大越能生成长内容。"
   },
   "theme": {}
 }
