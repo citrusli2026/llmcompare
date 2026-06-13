@@ -102,12 +102,11 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
       </div>
 
       {/* Row 2: data row — with metric type indicators */}
-      <div className="flex items-center gap-2 mt-0.5 text-[11px] leading-tight pl-8">
+      <div className="flex items-center gap-1.5 mt-0.5 text-[11px] leading-tight pl-7">
         <span className="shrink-0 inline-flex items-center gap-0.5 text-text-muted opacity-60">
           <Calendar className="h-2.5 w-2.5" />
           <span className="tabular-nums">{model.raw.release_date ?? "—"}</span>
         </span>
-        <span className="shrink-0 text-text-muted opacity-20">·</span>
         <span className="shrink-0 inline-flex items-center gap-0.5">
           <Brain className="h-2.5 w-2.5 text-accent-violet/50" />
           {intelScore != null ? (
@@ -121,7 +120,6 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
             <span className="text-text-muted">—</span>
           )}
         </span>
-        <span className="shrink-0 text-text-muted opacity-20">·</span>
         <span className="shrink-0 inline-flex items-center gap-0.5">
           <DollarSign className="h-2.5 w-2.5 text-accent-lime/60" />
           <span className={cn(
@@ -131,7 +129,6 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
             {costStr ?? "—"}
           </span>
         </span>
-        <span className="shrink-0 text-text-muted opacity-20">·</span>
         <span className="shrink-0 inline-flex items-center gap-0.5">
           <Zap className="h-2.5 w-2.5 text-accent-amber/60" />
           <span className={cn(
