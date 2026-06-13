@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { cn, getTypeBadgeClasses, formatTokenCount, isValuePick } from "@/lib/utils";
-import { Check } from "lucide-react";
+import { Check, Calendar, Brain, DollarSign, Zap } from "lucide-react";
 import { type ModelWithScores, ModelType } from "@/lib/scoring";
 import { type SortKey, type ModelGroup, type ScoreKey, type CompareState } from "./types";
 import { getScoreColor } from "./utils";
@@ -62,7 +62,7 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
       tabIndex={0}
       aria-label={t("models.expandHint")}
       className={cn(
-        "relative rounded-lg border border-surface-border bg-surface-card px-2 py-1 transition-all active:scale-[0.98] active:bg-surface-elevated cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
+        "relative rounded-lg border border-surface-border bg-surface-card px-2 py-1.5 transition-all active:scale-[0.98] active:bg-surface-elevated cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
         group.borderClass,
         group.rowBgClass,
         isSelected && "ring-2 ring-accent-violet bg-accent-violet/10",
@@ -101,35 +101,45 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
         )}
       </div>
 
-      {/* Row 2: data row — clean values, consistent contrast */}
-      <div className="flex items-center gap-2 mt-0 text-[11px] leading-tight pl-8">
-        <span className="shrink-0 tabular-nums text-text-muted opacity-70">
-          {model.raw.release_date ?? "—"}
+      {/* Row 2: data row — with metric type indicators */}
+      <div className="flex items-center gap-2 mt-0.5 text-[11px] leading-tight pl-8">
+        <span className="shrink-0 inline-flex items-center gap-0.5 text-text-muted opacity-60">
+          <Calendar className="h-2.5 w-2.5" />
+          <span className="tabular-nums">{model.raw.release_date ?? "—"}</span>
         </span>
-        <span className="shrink-0 text-text-muted opacity-30">·</span>
-        {intelScore != null ? (
+        <span className="shrink-0 text-text-muted opacity-20">·</span>
+        <span className="shrink-0 inline-flex items-center gap-0.5">
+          <Brain className="h-2.5 w-2.5 text-accent-violet/50" />
+          {intelScore != null ? (
+            <span className={cn(
+              "tabular-nums font-semibold",
+              getScoreColor(intelScore, "intelligence", percentiles)
+            )}>
+              {intelScore.toFixed(1)}
+            </span>
+          ) : (
+            <span className="text-text-muted">—</span>
+          )}
+        </span>
+        <span className="shrink-0 text-text-muted opacity-20">·</span>
+        <span className="shrink-0 inline-flex items-center gap-0.5">
+          <DollarSign className="h-2.5 w-2.5 text-accent-lime/60" />
           <span className={cn(
-            "shrink-0 tabular-nums font-semibold",
-            getScoreColor(intelScore, "intelligence", percentiles)
+            "tabular-nums font-semibold",
+            getScoreColor(blended, "cost", percentiles)
           )}>
-            {intelScore.toFixed(1)}
+            {costStr ?? "—"}
           </span>
-        ) : (
-          <span className="shrink-0 text-text-muted">—</span>
-        )}
-        <span className="shrink-0 text-text-muted opacity-30">·</span>
-        <span className={cn(
-          "shrink-0 tabular-nums font-semibold",
-          getScoreColor(blended, "cost", percentiles)
-        )}>
-          {costStr ?? "—"}
         </span>
-        <span className="shrink-0 text-text-muted opacity-30">·</span>
-        <span className={cn(
-          "shrink-0 tabular-nums font-semibold",
-          getScoreColor(tokens, "tokens", percentiles)
-        )}>
-          {tokenStr ?? "—"}
+        <span className="shrink-0 text-text-muted opacity-20">·</span>
+        <span className="shrink-0 inline-flex items-center gap-0.5">
+          <Zap className="h-2.5 w-2.5 text-accent-amber/60" />
+          <span className={cn(
+            "tabular-nums font-semibold",
+            getScoreColor(tokens, "tokens", percentiles)
+          )}>
+            {tokenStr ?? "—"}
+          </span>
         </span>
       </div>
     </div>

@@ -9,8 +9,8 @@ import { RankingTable } from "@/components/ranking-table";
 import type { SortKey } from "@/components/ranking-table/types";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
 import { useTranslation } from "@/lib/i18n";
-import { cn, formatTokenCount } from "@/lib/utils";
-import { Bot, SearchX, X, Sparkles, Trophy, TrendingUp, ArrowLeftRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Bot, SearchX, X, Sparkles, ArrowLeftRight } from "lucide-react";
 import { ShareButton } from "@/components/share-button";
 import { ModelLogo } from "@/components/model-logo";
 import { useCompareIds } from "@/hooks/use-compare-ids";
@@ -104,15 +104,6 @@ export default function ModelsPageClient() {
 
   const isEmpty = filteredModels.length === 0;
 
-  // Top picks from filtered results — top 3 by weekly usage
-  const topPicks = useMemo(() => {
-    if (isEmpty) return [];
-    return [...filteredModels]
-      .filter((m) => m.raw.openrouter_weekly_tokens != null)
-      .sort((a, b) => (b.raw.openrouter_weekly_tokens ?? 0) - (a.raw.openrouter_weekly_tokens ?? 0))
-      .slice(0, 3);
-  }, [filteredModels, isEmpty]);
-
   return (
     <div className="min-h-screen bg-surface-base">
       <Navbar />
@@ -201,40 +192,6 @@ export default function ModelsPageClient() {
             </div>
           ) : (
             <>
-              {/* Recommendation banner — top 3 picks when results exist */}
-              {topPicks.length > 0 && (
-                <div className="mb-4 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 sm:p-5">
-                  <div className="mb-3">
-                    <span className="text-sm font-semibold text-text-primary">{t("models.recommendTitle")}</span>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                    {topPicks.map((model) => (
-                      <Link
-                        key={model.id}
-                        href={`/models/${model.id}`}
-                        className="flex items-center gap-2.5 rounded-lg bg-surface-card border border-surface-border px-3 py-2.5 transition-all hover:border-accent-violet/30 hover:shadow-sm hover:-translate-y-0.5 group"
-                      >
-                        <ModelLogo src={model.logo} name={model.name} size="sm" />
-                        <div className="flex-1 min-w-0">
-                          <div className="text-xs font-semibold text-text-primary truncate group-hover:text-accent-violet transition-colors">
-                            {model.name}
-                          </div>
-                          <div className="text-[10px] text-text-muted truncate">
-                            {(() => {
-                              const tokens = model.raw.openrouter_weekly_tokens;
-                              if (tokens == null) return "—";
-                              const { value, unit } = formatTokenCount(tokens);
-                              return `${value}${unit}`;
-                            })()}
-                          </div>
-                        </div>
-                        <TrendingUp className="h-3 w-3 text-text-muted shrink-0" />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-
               <RankingTable
                 models={filteredModels}
                 initialSortKey={initialSort ?? undefined}
