@@ -83,6 +83,12 @@ export function ComparePageClient() {
     { labelKey: "compare.speed", icon: Zap,
       getValue: (m) => m.raw.median_tps != null ? `${m.raw.median_tps.toFixed(1)} t/s` : "—",
       getNumeric: (m) => m.raw.median_tps, higherIsBetter: true, tipKey: "tip.speed" },
+    { labelKey: "compare.ttft", icon: Zap,
+      getValue: (m) => m.raw.ttft_seconds != null ? `${m.raw.ttft_seconds.toFixed(2)}s` : "—",
+      getNumeric: (m) => m.raw.ttft_seconds, higherIsBetter: false, tipKey: "tip.ttft" },
+    { labelKey: "compare.e2e", icon: Zap,
+      getValue: (m) => m.raw.e2e_seconds != null ? `${m.raw.e2e_seconds.toFixed(2)}s` : "—",
+      getNumeric: (m) => m.raw.e2e_seconds, higherIsBetter: false, tipKey: "tip.e2e" },
     { labelKey: "compare.price", icon: DollarSign,
       getValue: (m) => {
         const b = m.raw.blended;
@@ -93,6 +99,26 @@ export function ComparePageClient() {
         return "—";
       },
       getNumeric: (m) => m.raw.blended, higherIsBetter: false, tipKey: "tip.blended" },
+    { labelKey: "compare.inputPrice", icon: DollarSign,
+      getValue: (m) => {
+        const v = m.raw.input;
+        if (v != null) {
+          if (v === 0) return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
+          return <span className="tabular-nums">${v.toFixed(2)}<span className="text-text-secondary text-[10px]">/M</span></span>;
+        }
+        return "—";
+      },
+      getNumeric: (m) => m.raw.input, higherIsBetter: false, tipKey: "tip.inputPrice" },
+    { labelKey: "compare.outputPrice", icon: DollarSign,
+      getValue: (m) => {
+        const v = m.raw.output;
+        if (v != null) {
+          if (v === 0) return <span className="text-accent-lime font-medium">{t("common.free")}</span>;
+          return <span className="tabular-nums">${v.toFixed(2)}<span className="text-text-secondary text-[10px]">/M</span></span>;
+        }
+        return "—";
+      },
+      getNumeric: (m) => m.raw.output, higherIsBetter: false, tipKey: "tip.outputPrice" },
     { labelKey: "compare.orWeeklyTokens", icon: TrendingUp,
       getValue: (m) => {
         const v = m.raw.openrouter_weekly_tokens;
@@ -100,7 +126,7 @@ export function ComparePageClient() {
         const f = formatTokenCount(v);
         return `${f.value}${f.unit}`;
       },
-      getNumeric: (m) => m.raw.openrouter_weekly_tokens, higherIsBetter: true },
+      getNumeric: (m) => m.raw.openrouter_weekly_tokens, higherIsBetter: true, tipKey: "tip.orWeeklyTokens" },
     { labelKey: "compare.contextWindow", icon: Layers,
       getValue: (m) => {
         const v = m.raw.context_window;
@@ -108,18 +134,27 @@ export function ComparePageClient() {
         return v >= 1_000_000 ? `${(v / 1_000_000).toFixed(0)}M` : v >= 1_000 ? `${(v / 1_000).toFixed(0)}K` : String(v);
       },
       getNumeric: (m) => m.raw.context_window, higherIsBetter: true, tipKey: "tip.contextWindow" },
+    { labelKey: "compare.maxOutput", icon: Layers,
+      getValue: (m) => {
+        const v = m.raw.output_tokens;
+        if (v == null) return "—";
+        return v >= 1_000_000 ? `${(v / 1_000_000).toFixed(0)}M` : v >= 1_000 ? `${(v / 1_000).toFixed(0)}K` : String(v);
+      },
+      getNumeric: (m) => m.raw.output_tokens, higherIsBetter: true, tipKey: "tip.maxOutput" },
     { labelKey: "compare.parameters", icon: Weight,
       getValue: (m) => m.raw.parameters != null ? formatParameters(m.raw.parameters) : "—",
       tipKey: "tip.parameters" },
     { labelKey: "compare.arenaVotes", icon: Trophy,
       getValue: (m) => m.raw.arena_votes != null ? m.raw.arena_votes.toLocaleString() : "—",
-      getNumeric: (m) => m.raw.arena_votes, higherIsBetter: true },
-    { labelKey: "compare.releaseDate", icon: Calendar,
-      getValue: (m) => m.raw.release_date ?? "—" },
+      getNumeric: (m) => m.raw.arena_votes, higherIsBetter: true, tipKey: "tip.arenaVotes" },
     { labelKey: "compare.benchmarkGpqa", icon: Brain,
       getValue: (m) => fmt(m.raw.benchmarks.gpqa), getNumeric: (m) => m.raw.benchmarks.gpqa, higherIsBetter: true, tipKey: "tip.gpqa" },
     { labelKey: "compare.benchmarkHle", icon: Brain,
       getValue: (m) => fmt(m.raw.benchmarks.hle), getNumeric: (m) => m.raw.benchmarks.hle, higherIsBetter: true, tipKey: "tip.hle" },
+    { labelKey: "compare.benchmarkMmluPro", icon: Brain,
+      getValue: (m) => fmt(m.raw.benchmarks.mmlu_pro), getNumeric: (m) => m.raw.benchmarks.mmlu_pro, higherIsBetter: true, tipKey: "tip.mmluPro" },
+    { labelKey: "compare.releaseDate", icon: Calendar,
+      getValue: (m) => m.raw.release_date ?? "—" },
     { labelKey: "common.reasoning", icon: MessageSquare,
       getValue: (m) => m.flags.reasoning ? <Check className="h-4 w-4 text-accent-lime" /> : <X className="h-4 w-4 text-text-muted" /> },
     { labelKey: "common.imageInput", icon: Eye,
