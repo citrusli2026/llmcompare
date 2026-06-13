@@ -36,8 +36,8 @@ export default function ModelsPageClient() {
   const searchParams = useSearchParams();
   const { t } = useTranslation();
 
-  const initialFilterRaw = searchParams.get("filter") ?? "closed";
-  const initialFilter: FilterKey = isFilterKey(initialFilterRaw) ? initialFilterRaw : "closed";
+  const initialFilterRaw = searchParams.get("filter") ?? "open";
+  const initialFilter: FilterKey = isFilterKey(initialFilterRaw) ? initialFilterRaw : "open";
   const initialSort = searchParams.get("sort") as SortKey | null;
 
   const [activeFilter, setActiveFilter] = useState<FilterKey>(initialFilter);
@@ -88,7 +88,7 @@ export default function ModelsPageClient() {
 
   // Clear all filters
   const handleClearAll = useCallback(() => {
-    setActiveFilter("closed");
+    setActiveFilter("open");
     router.replace("/models", { scroll: false });
   }, [router]);
 
@@ -204,10 +204,9 @@ export default function ModelsPageClient() {
             <>
               {/* Recommendation banner — top 3 picks when results exist */}
               {topPicks.length > 0 && (
-                <div className="mb-4 rounded-xl border border-accent-violet/20 bg-accent-violet/5 p-4 sm:p-5">
-                  <div className="flex items-center gap-2 mb-3">
+                <div className="mb-4 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 sm:p-5">
+                  <div className="mb-3">
                     <span className="text-sm font-semibold text-text-primary">{t("models.recommendTitle")}</span>
-                    <span className="text-xs text-text-muted">{t(hasActiveFilters ? "models.recommendDesc" : "models.recommendFirstLoadDesc")}</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                     {topPicks.map((model) => (
