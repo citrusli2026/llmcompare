@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { cn, getTypeBadgeClasses, formatTokenCount, isValuePick } from "@/lib/utils";
+import { Check } from "lucide-react";
 import { type ModelWithScores, ModelType } from "@/lib/scoring";
 import { type SortKey, type ModelGroup, type ScoreKey, type CompareState } from "./types";
 import { getScoreColor } from "./utils";
@@ -61,19 +62,25 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
       tabIndex={0}
       aria-label={t("models.expandHint")}
       className={cn(
-        "relative rounded-lg border border-surface-border bg-surface-card px-2 py-1.5 transition-all active:scale-[0.98] active:bg-surface-elevated cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
+        "relative rounded-lg border border-surface-border bg-surface-card px-2 py-1 transition-all active:scale-[0.98] active:bg-surface-elevated cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
         group.borderClass,
         group.rowBgClass,
-        isSelected && "ring-2 ring-accent-violet bg-accent-violet/10 border-l-4 border-l-accent-violet",
+        isSelected && "ring-2 ring-accent-violet bg-accent-violet/10",
         compare?.active && !isSelected && compare.isAtMax && "opacity-50",
       )}
     >
       {/* Row 1: rank + logo + name + type badge */}
       <div className="flex items-center gap-1.5 min-h-6">
-        {/* Favorite */}
-        <span onClick={(e) => e.stopPropagation()} className="shrink-0 inline-flex items-center">
-          <FavoriteButton modelId={model.id} size="sm" showPulse={false} ghost />
-        </span>
+        {/* Favorite or Selected indicator */}
+        {isSelected ? (
+          <span className="shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-accent-violet">
+            <Check className="h-3 w-3 text-white" strokeWidth={3} />
+          </span>
+        ) : (
+          <span onClick={(e) => e.stopPropagation()} className="shrink-0 inline-flex items-center">
+            <FavoriteButton modelId={model.id} size="sm" showPulse={false} ghost />
+          </span>
+        )}
 
         {group.showRank && (
           <span className="text-[10px] text-text-muted tabular-nums w-5 shrink-0">
@@ -95,7 +102,7 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
       </div>
 
       {/* Row 2: data row — clean values, consistent contrast */}
-      <div className="flex items-center gap-2 mt-0.5 text-[11px] leading-tight pl-8">
+      <div className="flex items-center gap-2 mt-0 text-[11px] leading-tight pl-8">
         <span className="shrink-0 tabular-nums text-text-muted opacity-70">
           {model.raw.release_date ?? "—"}
         </span>
