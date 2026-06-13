@@ -254,7 +254,7 @@ export function RankingTable({ models, initialSortKey, initialSortDesc, compare 
       </div>
 
       {/* 移动端卡片列表 */}
-      <div className="block sm:hidden space-y-2.5">
+      <div className="block sm:hidden space-y-2">
         {groups.map((group) =>
           group.items
             .map((model, idx) => (

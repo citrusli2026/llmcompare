@@ -62,7 +62,7 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
       tabIndex={0}
       aria-label={t("models.expandHint")}
       className={cn(
-        "relative rounded-lg border border-surface-border bg-surface-card px-2 py-1.5 transition-all active:scale-[0.98] active:bg-surface-elevated cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
+        "relative rounded-lg border border-surface-border bg-surface-card px-2 py-1 transition-all active:scale-[0.98] active:bg-surface-elevated cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
         group.borderClass,
         group.rowBgClass,
         isSelected && "ring-2 ring-accent-violet bg-accent-violet/10",
@@ -102,7 +102,7 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
       </div>
 
       {/* Row 2: data row — clean values, consistent contrast */}
-      <div className="flex items-center gap-2 mt-0.5 text-[11px] leading-tight pl-8">
+      <div className="flex items-center gap-2 mt-0 text-[11px] leading-tight pl-8">
         <span className="shrink-0 tabular-nums text-text-muted opacity-70">
           {model.raw.release_date ?? "—"}
         </span>
