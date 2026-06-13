@@ -74,12 +74,6 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
             <span className="truncate">{model.name}</span>
             <ArrowUpRight className="h-3 w-3 text-text-muted transition-all duration-200 opacity-40 group-hover/link:opacity-100 group-hover/link:text-accent-violet group-hover/link:translate-x-0.5 shrink-0" />
           </Link>
-          <Badge
-            variant="secondary"
-            className={cn("text-[10px] py-0 px-1.5 whitespace-nowrap shrink-0", getTypeBadgeClasses(model.type))}
-          >
-            {t(model.type === ModelType.Open ? "common.open" : "common.closed")}
-          </Badge>
         </div>
       </TableCell>
       <TableCell className="text-text-secondary hidden sm:table-cell">{model.company}</TableCell>

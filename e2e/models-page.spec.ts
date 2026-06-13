@@ -50,19 +50,19 @@ test.describe("Models Page — 筛选与搜索功能", () => {
     await expect(page.locator("body")).not.toHaveText(/Error/);
   });
 
-  test("desktop: 重置筛选恢复全部模型", async ({ page }, testInfo) => {
+  test("desktop: 切换筛选恢复模型列表", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
     // 先筛选：选"开源"
-    const openFilter = page.locator("button").filter({ hasText: /^开源$|^Open Source$/ }).first();
+    const openFilter = page.locator("button").filter({ hasText: /^开源$|^Open$/ }).first();
     await openFilter.click();
     await page.waitForTimeout(300);
 
-    // 选"全部"恢复
-    const allFilter = page.locator("button").filter({ hasText: /^全部$|^All$/ }).first();
-    await allFilter.click();
+    // 切换到"闭源"
+    const closedFilter = page.locator("button").filter({ hasText: /^闭源$|^Closed$/ }).first();
+    await closedFilter.click();
     await page.waitForTimeout(300);
 
     // 验证有结果
