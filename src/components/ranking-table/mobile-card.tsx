@@ -64,7 +64,7 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
         "relative rounded-lg border border-surface-border bg-surface-card px-2 py-1.5 transition-all active:scale-[0.98] active:bg-surface-elevated cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
         group.borderClass,
         group.rowBgClass,
-        isSelected && "ring-1 ring-accent-violet/40 bg-accent-violet/5",
+        isSelected && "ring-2 ring-accent-violet bg-accent-violet/10 border-l-4 border-l-accent-violet",
         compare?.active && !isSelected && compare.isAtMax && "opacity-50",
       )}
     >
