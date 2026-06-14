@@ -185,8 +185,6 @@ export function ComparePageClient() {
     );
   }
 
-  const shareUrl = `https://www.llmcompare.cc/compare?models=${models.map((m) => m.id).join(",")}`;
-
   return (
     <div className="min-h-screen bg-surface-base">
       <Navbar />
