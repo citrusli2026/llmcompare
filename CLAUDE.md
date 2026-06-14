@@ -115,13 +115,15 @@ cd ../data && python3 pipeline.py --dry-run      # 演练，不写盘
 
 `pipeline.py` 会自动完成：
 1. `app/` 切日期分支、`data/` 保持 main
-2. 抓取 AA / OR / Arena（带 12h 缓存）
-3. 跑 4 步处理管线
+2. 抓取 AA / OR / Arena（带 6h 缓存）
+3. 跑 3 步处理管线
 4. `data/` 本地提交 + 调用 `scripts/diff-ranking.py` 生成 PR 摘要
 5. 同步 `4-final/ranking.json` → `app/src/data/ranking.json`
 6. 更新 `src/messages/{zh,en}.json` 的三个日期 key：`about.badge`、`about.backgroundDesc`、`home.statsUpdatedValue`
 7. 跑 vitest + build + lint + `validate-data.py`，任一失败立即停止
-8. `app/` 提交并 `gh pr create`，最后切回 main
+8. `app/` 提交并 `gh pr create`
+9. 注册 10 分钟后的一次性 cron job 自动监控并合并 PR
+10. 最后切回 main
 
 如果只想**手工**执行某一步，仍可单独跑：
 
