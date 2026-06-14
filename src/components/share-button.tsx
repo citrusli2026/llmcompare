@@ -60,7 +60,6 @@ export function ShareButton({ className, size = "md", variant = "outline", showL
     ? t("models.shareCopied")
     : t("models.share");
 
-  const Icon = copied ? Check : size === "sm" ? Link2 : Share2;
   const sizeClass = size === "sm" ? "h-7 px-2 text-[11px]" : "h-9 px-3 text-xs";
   const iconClass = size === "sm" ? "h-3 w-3" : "h-3.5 w-3.5";
 

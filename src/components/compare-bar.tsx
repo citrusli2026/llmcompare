@@ -2,7 +2,6 @@
 
 import { X, ArrowLeftRight, ArrowRight, CheckSquare } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 import { type ModelWithScores } from "@/lib/scoring";
 import { ModelLogo } from "@/components/model-logo";

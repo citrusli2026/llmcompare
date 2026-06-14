@@ -2,9 +2,9 @@
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import { cn, getTypeBadgeClasses, formatTokenCount, isValuePick } from "@/lib/utils";
+import { cn, formatTokenCount, isValuePick } from "@/lib/utils";
 import { Check, Calendar, Brain, DollarSign, Zap } from "lucide-react";
-import { type ModelWithScores, ModelType } from "@/lib/scoring";
+import { type ModelWithScores } from "@/lib/scoring";
 import { type SortKey, type ModelGroup, type ScoreKey, type CompareState } from "./types";
 import { getScoreColor } from "./utils";
 import { useTranslation } from "@/lib/i18n";

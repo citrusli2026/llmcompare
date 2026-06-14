@@ -27,6 +27,7 @@ export function ModelLogo({ src, name, size = "sm", className }: ModelLogoProps)
   if (size === "xs") {
     // Inline minimal variant — no container wrapper
     return src ? (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src={src}
         alt=""
@@ -44,6 +45,7 @@ export function ModelLogo({ src, name, size = "sm", className }: ModelLogoProps)
       className,
     )}>
       {src ? (
+        // eslint-disable-next-line @next/next/no-img-element
         <img
           src={src}
           alt=""

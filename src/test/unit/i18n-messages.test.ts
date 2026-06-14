@@ -2,8 +2,6 @@ import { describe, it, expect } from "vitest";
 import zh from "@/messages/zh.json";
 import en from "@/messages/en.json";
 
-type Messages = Record<string, unknown>;
-
 /** Deep-compare two message objects — recurse into nested objects */
 function traverseKeys(obj: unknown, prefix = ""): string[] {
   if (typeof obj !== "object" || obj === null) return [prefix];

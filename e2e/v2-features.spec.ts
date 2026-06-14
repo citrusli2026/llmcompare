@@ -108,7 +108,6 @@ test.describe("V3 — UX Enhancements", () => {
     await page.waitForLoadState("networkidle");
 
     // 初始按钮应不可见（opacity-0 or hidden）
-    const backBtn = page.locator("button").filter({ hasText: "" }).and(page.locator("[class*='fixed']")).filter({ has: page.locator("svg.lucide-arrow-up") });
     // 滚动到底部
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     await page.waitForTimeout(500);

@@ -12,6 +12,7 @@ import { getAllModels } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { Heart, SearchX, Trash2, ArrowLeftRight } from "lucide-react";
+import { ModelLogo } from "@/components/model-logo";
 
 export default function FavoritesPageClient() {
   const { t } = useTranslation();
@@ -105,7 +106,7 @@ export default function FavoritesPageClient() {
                     className="group inline-flex items-center gap-1.5 rounded-full border border-surface-border bg-surface-card pl-1.5 pr-2 py-1 text-xs transition-all hover:border-accent-fuchsia/30 hover:bg-accent-fuchsia/5"
                   >
                     {m.logo && (
-                      <img src={m.logo} alt="" className="h-4 w-4 rounded shrink-0" />
+                      <ModelLogo src={m.logo} name={m.name} size="xs" />
                     )}
                     <span className="font-medium text-text-primary group-hover:text-accent-fuchsia">{m.name}</span>
                     <FavoriteButton modelId={m.id} size="sm" className="h-5 w-5 border-0 bg-transparent hover:bg-transparent" />
