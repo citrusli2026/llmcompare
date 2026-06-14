@@ -3,6 +3,7 @@ import { Rubik, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { BackToTop } from "@/components/back-to-top";
 import { TrackCtaClicks } from "@/components/track-cta-clicks";
 import "./globals.css";
@@ -80,6 +81,7 @@ export default function RootLayout({
             <BackToTop />
             <TrackCtaClicks />
             <Analytics />
+            <SpeedInsights />
           </ThemeProvider>
         </LanguageProvider>
       </body>
