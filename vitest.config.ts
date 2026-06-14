@@ -17,6 +17,8 @@ export default defineConfig({
         "src/test/",
         "**/*.d.ts",
         "**/*.config.*",
+        "src/data/ranking.json",
+        "src/messages/*.json",
       ],
     },
   },
