@@ -7,7 +7,7 @@
     "brand": "LLMCompare"
   },
   "home": {
-    "badge": "Updated Jun 14, 2026",
+    "badge": "Updated Jun 15, 2026",
     "heroTitle": "AI Model Finder",
     "heroDesc": "60+ global AI models — intelligence ranking / hot picks, help you choose",
     "footer": "AI Model Finder — models ranked by intelligence and API call volume",
@@ -100,7 +100,7 @@
     "title": "About LLMCompare",
     "backLink": "Back to Home",
     "backgroundTitle": "Our Mission",
-    "backgroundDesc": "LLM Compare is an AI model selection assistant — showcasing 59 global AI models to help you find the best fit.",
+    "backgroundDesc": "LLM Compare is an AI model selection assistant — showcasing 58 global AI models to help you find the best fit.",
     "backgroundMission": "Provides scene-based recommendations by 'Hotness' and 'Intelligence'. Detail pages show comprehensive scores, pricing, and recommendation tags. The compare page supports side-by-side multi-model comparison.",
     "backgroundContribute": "Found an error or want to add a model? Submit via",
     "filterDesc": "Filtered from Artificial Analysis global models using three criteria: Large size class, frontier status, or intelligence score ≥30 (to include high value smaller models). Outdated model versions are automatically excluded. Active set retains models published within 180 days. Arena rankings and OpenRouter popularity data are integrated, ranked by intelligence score.",
