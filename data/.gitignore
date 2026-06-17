@@ -1,0 +1,20 @@
+# 抓取缓存（只读，由 1-fetch/ 脚本生成）
+2-raw/*
+!2-raw/README.md
+
+# 中间产物（由 filter_cn_models.py 生成）
+3-process/cn_models_filtered.json
+3-process/cn_models_filtered.json.prev
+
+# Python 编译缓存
+__pycache__/
+*.pyc
+
+# 历史/方法论用全量数据，不进 git（前端只消费 ranking.json）
+4-final/ranking_all.json
+
+# select_fields.py 产物 (独立工具, 跑一次 5000+ 行 diff, 同上理由)
+4-final/models.json
+4-final/models_full.json
+
+.DS_Store

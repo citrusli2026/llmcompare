@@ -1,0 +1,552 @@
+{
+  "_meta": {
+    "description": "厂商链接 + 国内官价 + 开源协议映射表。管线重跑后用 enrich_models.py 合并回 ranking.json。",
+    "updated": "2026-06-10",
+    "model_count": 71
+  },
+  "license": {
+    "_note": "仅开源模型登记 license；闭源模型为商业授权（不显示具体 license 名称）。键名使用 clean_name 规范后的模型名（去除末尾括号变体）。",
+    "Gemma 4 31B": "Gemma License",
+    "Gemma 4 26B A4B": "Gemma License",
+    "DeepSeek V4 Pro": "DeepSeek License",
+    "DeepSeek V4 Flash": "DeepSeek License",
+    "Qwen3.6 27B": "Apache 2.0",
+    "Qwen3.6 35B A3B": "Apache 2.0",
+    "GLM-5.1": "MIT",
+    "MiMo-V2.5-Pro": "XiaomiMiMo License",
+    "MiMo-V2.5": "XiaomiMiMo License",
+    "MiMo-V2-Flash": "XiaomiMiMo License",
+    "Nemotron 3 Ultra": "NVIDIA Open License",
+    "NVIDIA Nemotron 3 Super": "NVIDIA Open License",
+    "Kimi K2.6": "MIT",
+    "Kimi K2.5": "MIT",
+    "Step 3.7 Flash": "StepFun License",
+    "Step 3.5 Flash": "StepFun License",
+    "Mistral Medium 3.5": "MRL (Mistral Research License)",
+    "Hy3-preview": "Tencent License",
+    "Ring-2.6-1T": "Apache 2.0",
+    "Ling-2.6-1T": "Apache 2.0",
+    "Command A+": "CC-BY-NC",
+    "K-EXAONE": "EXAONE License",
+    "EXAONE 4.5 33B": "EXAONE License",
+    "Trinity Large Thinking": "Apache 2.0"
+  },
+  "vendor_links": {
+    "Kimi": {
+      "homepage": "https://www.moonshot.cn",
+      "api_docs": "https://platform.moonshot.cn",
+      "console": "https://platform.moonshot.cn",
+      "huggingface": "https://huggingface.co/moonshotai",
+      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
+    },
+    "Xiaomi": {
+      "homepage": "https://huggingface.co/XiaomiMiMo",
+      "huggingface": "https://huggingface.co/XiaomiMiMo",
+      "pricing_doc": "小米开放平台控制台（需登录）",
+      "pricing_note": "2026-05-02 登录实测"
+    },
+    "Alibaba": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "DeepSeek": {
+      "homepage": "https://www.deepseek.com",
+      "api_docs": "https://api-docs.deepseek.com",
+      "console": "https://platform.deepseek.com",
+      "github": "https://github.com/deepseek-ai",
+      "huggingface": "https://huggingface.co/deepseek-ai",
+      "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    "Z AI": {
+      "homepage": "https://z.ai",
+      "api_docs": "https://open.bigmodel.cn",
+      "github": "https://github.com/zai-org",
+      "huggingface": "https://huggingface.co/zai-org",
+      "pricing_doc": "https://open.bigmodel.cn/pricing"
+    },
+    "MiniMax": {
+      "homepage": "https://www.minimaxi.com",
+      "api_docs": "https://platform.minimaxi.com",
+      "huggingface": "https://huggingface.co/MiniMaxAI",
+      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing"
+    },
+    "Tencent": {
+      "homepage": "https://cloud.tencent.com",
+      "api_docs": "https://cloud.tencent.com/document/product/1772",
+      "console": "https://console.cloud.tencent.com",
+      "pricing_doc": "https://cloud.tencent.com/document/product/1772/115963"
+    },
+    "OpenAI": {
+      "homepage": "https://openai.com",
+      "api_docs": "https://platform.openai.com/docs",
+      "console": "https://platform.openai.com",
+      "github": "https://github.com/openai",
+      "pricing_doc": "https://openai.com/api/pricing"
+    },
+    "Anthropic": {
+      "homepage": "https://www.anthropic.com",
+      "api_docs": "https://docs.anthropic.com",
+      "console": "https://console.anthropic.com",
+      "github": "https://github.com/anthropics",
+      "pricing_doc": "https://www.anthropic.com/pricing"
+    },
+    "Google": {
+      "homepage": "https://ai.google.dev",
+      "api_docs": "https://ai.google.dev/gemini-api/docs",
+      "console": "https://aistudio.google.com",
+      "github": "https://github.com/google-gemini",
+      "pricing_doc": "https://ai.google.dev/pricing"
+    },
+    "01.AI": {
+      "homepage": "https://www.01.ai",
+      "api_docs": "https://platform.01.ai",
+      "pricing_doc": "https://platform.01.ai/pricing"
+    },
+    "StepFun": {
+      "homepage": "https://www.stepfun.com",
+      "api_docs": "https://platform.stepfun.com/docs",
+      "console": "https://platform.stepfun.com",
+      "huggingface": "https://huggingface.co/stepfun-ai",
+      "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details"
+    },
+    "InclusionAI": {
+      "homepage": "https://www.inclusion-ai.org",
+      "huggingface": "https://huggingface.co/inclusionAI"
+    },
+    "Baidu": {
+      "homepage": "https://yiyan.baidu.com",
+      "api_docs": "https://cloud.baidu.com/doc/WENXINWORKSHOP",
+      "console": "https://cloud.baidu.com/product/wenxinworkshop",
+      "pricing_doc": "https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya"
+    },
+    "xAI": {
+      "homepage": "https://x.ai",
+      "api_docs": "https://docs.x.ai",
+      "console": "https://console.x.ai",
+      "github": "https://github.com/xai-org",
+      "huggingface": "https://huggingface.co/xai-org",
+      "pricing_doc": "https://docs.x.ai/docs/models"
+    },
+    "NVIDIA": {
+      "homepage": "https://www.nvidia.com",
+      "api_docs": "https://docs.nvidia.com",
+      "console": "https://build.nvidia.com",
+      "github": "https://github.com/NVIDIA",
+      "huggingface": "https://huggingface.co/nvidia",
+      "pricing_doc": "https://build.nvidia.com/pricing"
+    },
+    "Meta": {
+      "homepage": "https://ai.meta.com",
+      "github": "https://github.com/meta-llama",
+      "huggingface": "https://huggingface.co/meta-llama",
+      "pricing_doc": "https://ai.meta.com/llama"
+    },
+    "Mistral": {
+      "homepage": "https://mistral.ai",
+      "api_docs": "https://docs.mistral.ai",
+      "console": "https://console.mistral.ai",
+      "github": "https://github.com/mistralai",
+      "huggingface": "https://huggingface.co/mistralai",
+      "pricing_doc": "https://mistral.ai/pricing"
+    },
+    "Cohere": {
+      "homepage": "https://cohere.com",
+      "api_docs": "https://docs.cohere.com",
+      "console": "https://dashboard.cohere.com",
+      "github": "https://github.com/cohere-ai",
+      "huggingface": "https://huggingface.co/CohereForAI",
+      "pricing_doc": "https://cohere.com/pricing"
+    },
+    "AI21 Labs": {
+      "homepage": "https://www.ai21.com",
+      "api_docs": "https://docs.ai21.com",
+      "console": "https://studio.ai21.com",
+      "github": "https://github.com/ai21labs",
+      "huggingface": "https://huggingface.co/ai21labs",
+      "pricing_doc": "https://www.ai21.com/pricing"
+    },
+    "Amazon": {
+      "homepage": "https://aws.amazon.com/bedrock",
+      "api_docs": "https://docs.aws.amazon.com/bedrock",
+      "console": "https://console.aws.amazon.com/bedrock",
+      "pricing_doc": "https://aws.amazon.com/bedrock/pricing"
+    },
+    "Perplexity": {
+      "homepage": "https://www.perplexity.ai",
+      "api_docs": "https://docs.perplexity.ai",
+      "pricing_doc": "https://docs.perplexity.ai/guides/pricing"
+    },
+    "Arcee AI": {
+      "homepage": "https://arcee.ai",
+      "api_docs": "https://docs.arcee.ai",
+      "github": "https://github.com/arcee-ai",
+      "huggingface": "https://huggingface.co/arcee-ai",
+      "pricing_doc": "https://arcee.ai/pricing"
+    },
+    "Deep Cogito": {
+      "homepage": "https://deepcogito.com",
+      "github": "https://github.com/deepcogito",
+      "huggingface": "https://huggingface.co/deepcogito"
+    },
+    "LG AI Research": {
+      "homepage": "https://www.lgresearch.ai",
+      "huggingface": "https://huggingface.co/lgresearch"
+    },
+    "Snowflake": {
+      "homepage": "https://www.snowflake.com/en/data-cloud/cortex",
+      "api_docs": "https://docs.snowflake.com/en/user-guide/snowflake-cortex",
+      "pricing_doc": "https://www.snowflake.com/en/data-cloud/pricing-options"
+    },
+    "Nous Research": {
+      "homepage": "https://nousresearch.com",
+      "github": "https://github.com/NousResearch",
+      "huggingface": "https://huggingface.co/NousResearch"
+    },
+    "Allen Institute for AI": {
+      "homepage": "https://allenai.org",
+      "github": "https://github.com/allenai",
+      "huggingface": "https://huggingface.co/allenai"
+    }
+  },
+  "cn_pricing": {
+    "Kimi K2.6": {
+      "input": 6.5,
+      "output": 27.0,
+      "cache_hit": 1.1,
+      "source": "platform.kimi.com"
+    },
+    "MiMo-V2.5-Pro": {
+      "input": 7.0,
+      "output": 21.0,
+      "cache_hit": 1.4,
+      "condition": "≤256K",
+      "source": "小米开放平台控制台"
+    },
+    "Qwen3.6 Max Preview": {
+      "input": 9,
+      "output": 54,
+      "condition": "≤128K",
+      "source": "bailian.console.aliyun.com"
+    },
+    "GLM-5.1": {
+      "input": 6,
+      "output": 24,
+      "cache_hit": 1.3,
+      "condition": "<32K",
+      "source": "open.bigmodel.cn/pricing"
+    },
+    "Qwen3.6 Plus": {
+      "input": 2,
+      "output": 12,
+      "condition": "≤256K",
+      "source": "bailian.console.aliyun.com"
+    },
+    "GLM-5": {
+      "input": 4,
+      "output": 18,
+      "cache_hit": 1,
+      "condition": "<32K",
+      "source": "open.bigmodel.cn/pricing"
+    },
+    "MiniMax-M2.7": {
+      "input": 2.1,
+      "output": 8.4,
+      "cache_hit": 0.42,
+      "source": "platform.minimaxi.com"
+    },
+    "MiMo-V2-Pro": {
+      "input": 7.0,
+      "output": 21.0,
+      "cache_hit": 1.4,
+      "condition": "≤256K",
+      "source": "小米开放平台控制台"
+    },
+    "Kimi K2.5": {
+      "input": 4.0,
+      "output": 21.0,
+      "cache_hit": 0.7,
+      "source": "platform.kimi.com"
+    },
+    "Qwen3.5 397B A17B": {
+      "input": 1.2,
+      "output": 7.2,
+      "condition": "≤128K",
+      "source": "bailian.console.aliyun.com"
+    },
+    "GLM-4.7": {
+      "input": 2,
+      "output": 8,
+      "cache_hit": 0.4,
+      "condition": "<32K",
+      "source": "open.bigmodel.cn/pricing"
+    },
+    "MiniMax-M2.5": {
+      "input": 2.1,
+      "output": 8.4,
+      "cache_hit": 0.21,
+      "source": "platform.minimaxi.com"
+    },
+    "Hy3-preview": {
+      "input": 3.975,
+      "output": 15.9,
+      "condition": "≤32K",
+      "source": "cloud.tencent.com/doc/1729/97731"
+    },
+    "DeepSeek V3.2": {
+      "input": 2,
+      "output": 3,
+      "condition": "≤32K",
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
+    "MiMo-V2-Flash": {
+      "input": 0.7,
+      "output": 2.1,
+      "cache_hit": 0.07,
+      "condition": "≤256K",
+      "source": "小米开放平台控制台"
+    },
+    "MiMo-V2.5": {
+      "input": 1,
+      "output": 2,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "DeepSeek V4 Flash": {
+      "input": 1,
+      "output": 2,
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
+    "Step 3.7 Flash": {
+      "input": 1.5,
+      "output": 8,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Kimi K2 Thinking": {
+      "input": 4.0,
+      "output": 16.0,
+      "cache_hit": 1.0,
+      "source": "platform.kimi.com"
+    },
+    "Qwen3 Max Thinking": {
+      "input": 2.5,
+      "output": 10,
+      "condition": "≤32K",
+      "source": "bailian.console.aliyun.com"
+    },
+    "MiniMax-M2.1": {
+      "input": 2.1,
+      "output": 8.4,
+      "source": "platform.minimaxi.com"
+    },
+    "DeepSeek V4 Pro": {
+      "input": 12,
+      "output": 24,
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
+    "Qwen3.5 Omni Plus": {
+      "input": 7,
+      "output": 40,
+      "condition": "文本",
+      "source": "bailian.console.aliyun.com"
+    },
+    "Step 3.5 Flash": {
+      "input": 0.7,
+      "output": 2.1,
+      "cache_hit": 0.14,
+      "source": "platform.stepfun.com/docs"
+    },
+    "MiniMax-M2": {
+      "input": 2.1,
+      "output": 8.4,
+      "source": "platform.minimaxi.com"
+    },
+    "DeepSeek V3.1 Terminus": {
+      "input": 4,
+      "output": 12,
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
+    "Ling-2.6-1T": {
+      "input": 2.16,
+      "output": 18.0,
+      "source": "AA (无国内官价, ¥按$×7.2折算)",
+      "aa_only": true
+    },
+    "DeepSeek V3.2 Exp": {
+      "input": 2,
+      "output": 3,
+      "condition": "≤32K",
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
+    "GLM-4.6": {
+      "input": 3,
+      "output": 14,
+      "condition": "<32K",
+      "source": "open.bigmodel.cn/pricing"
+    },
+    "Qwen3 Max": {
+      "input": 2.5,
+      "output": 10,
+      "condition": "≤32K",
+      "source": "bailian.console.aliyun.com"
+    },
+    "Kimi K2 0905": {
+      "input": 4.0,
+      "output": 16.0,
+      "cache_hit": 1.0,
+      "source": "platform.kimi.com"
+    },
+    "Qwen3 235B A22B 2507": {
+      "input": 2,
+      "output": 8,
+      "condition": "非思考",
+      "source": "bailian.console.aliyun.com"
+    },
+    "DeepSeek V3.2 Speciale": {
+      "input": 0,
+      "output": 0,
+      "source": "开源",
+      "note": "开源可自部署"
+    },
+    "ERNIE 5.0 Thinking Preview": {
+      "input": 6,
+      "output": 24,
+      "condition": "≤32K",
+      "source": "cloud.baidu.com/doc/qianfan"
+    },
+    "DeepSeek V3.1": {
+      "input": 4,
+      "output": 12,
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
+    "Qwen3 VL 235B A22B": {
+      "input": 2,
+      "output": 8,
+      "condition": "非思考",
+      "source": "bailian.console.aliyun.com"
+    },
+    "DeepSeek R1 0528": {
+      "input": 4,
+      "output": 16,
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
+    "GLM-4.5": {
+      "input": 0.8,
+      "output": 2,
+      "condition": "<32K",
+      "source": "open.bigmodel.cn/pricing"
+    },
+    "Kimi K2": {
+      "input": 4.0,
+      "output": 16.0,
+      "cache_hit": 1.0,
+      "source": "platform.kimi.com"
+    },
+    "Qwen3 235B 2507": {
+      "input": 2,
+      "output": 8,
+      "condition": "非思考",
+      "source": "bailian.console.aliyun.com"
+    },
+    "Qwen3 Coder 480B": {
+      "input": 6,
+      "output": 24,
+      "condition": "≤32K",
+      "source": "bailian.console.aliyun.com"
+    },
+    "MiniMax M1 80k": {
+      "input": 0.55,
+      "output": 2.2,
+      "source": "platform.minimaxi.com"
+    },
+    "Ring-1T": {
+      "input": 0,
+      "output": 0,
+      "source": "开源可自部署"
+    },
+    "DeepSeek V3 0324": {
+      "input": 2,
+      "output": 8,
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
+    "MiniMax M1 40k": {
+      "input": 0,
+      "output": 0,
+      "source": "platform.minimaxi.com",
+      "note": "历史模型"
+    },
+    "Qwen3 235B": {
+      "input": 2,
+      "output": 8,
+      "condition": "非思考",
+      "source": "bailian.console.aliyun.com"
+    },
+    "Ling-1T": {
+      "input": 0,
+      "output": 0,
+      "source": "开源可自部署"
+    },
+    "DeepSeek R1 (Jan)": {
+      "input": 4,
+      "output": 16,
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
+    "DeepSeek V3 (Dec)": {
+      "input": 2,
+      "output": 8,
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
+    "Qwen2.5 Max": {
+      "input": 2.4,
+      "output": 9.6,
+      "source": "bailian.console.aliyun.com"
+    },
+    "ERNIE 4.5 300B A47B": {
+      "input": 0.8,
+      "output": 3.2,
+      "cache_hit": 0.2,
+      "source": "cloud.baidu.com/doc/qianfan"
+    },
+    "DeepSeek-V2.5": {
+      "input": 0,
+      "output": 0,
+      "source": "开源",
+      "note": "开源可自部署"
+    },
+    "DeepSeek-Coder-V2": {
+      "input": 0,
+      "output": 0,
+      "source": "开源",
+      "note": "开源可自部署"
+    },
+    "DeepSeek-V2": {
+      "input": 0,
+      "output": 0,
+      "source": "开源",
+      "note": "开源可自部署"
+    },
+    "Qwen3.7 Max": {
+      "input": 2.5,
+      "output": 10.0,
+      "condition": "≤32K",
+      "source": "bailian.console.aliyun.com (参考 Qwen3 Max 定价)"
+    },
+    "Ring-2.6-1T": {
+      "input": 0,
+      "output": 0,
+      "source": "开源可自部署"
+    },
+    "MiniMax-M3": {
+      "input": 4.2,
+      "output": 16.8,
+      "cache_hit": 0.84,
+      "condition": "≤512K",
+      "source": "platform.minimaxi.com",
+      "note": "2026-06-01首发5折7天: input¥2.10/output¥8.40/cache¥0.42"
+    }
+  }
+}

@@ -1,0 +1,3601 @@
+[
+  {
+    "id": "claude-fable-5",
+    "name": "Claude Fable 5",
+    "company": "Anthropic",
+    "type": "闭源",
+    "logo": "/logos/anthropic.svg",
+    "scores": {
+      "intelligence": 59.8606463217303,
+      "coding": 61.9809203142537,
+      "agentic": 80.5951184513855
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.926262626262626,
+      "hle": 0.53336422613531,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 10,
+      "output": 50,
+      "blended": 20.0,
+      "display": "$10/$50 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-06-09",
+      "omniscience": 40.15
+    },
+    "url": "https://artificialanalysis.ai/models/claude-fable-5",
+    "vendor_links": {
+      "homepage": "https://www.anthropic.com",
+      "api_docs": "https://docs.anthropic.com",
+      "console": "https://console.anthropic.com",
+      "github": "https://github.com/anthropics",
+      "pricing_doc": "https://www.anthropic.com/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 10.0,
+      "completion": 50.0
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 1,
+        "score": 1508,
+        "votes": 4297
+      },
+      "code": {
+        "rank": 1,
+        "score": 1654,
+        "votes": 2094
+      },
+      "vision": {
+        "rank": 2,
+        "score": 1307,
+        "votes": 1785
+      }
+    },
+    "arena_votes": 4297,
+    "data_completeness_pct": 86.5
+  },
+  {
+    "id": "claude-opus-4-8",
+    "name": "Claude Opus 4.8",
+    "company": "Anthropic",
+    "type": "闭源",
+    "logo": "/logos/anthropic.svg",
+    "scores": {
+      "intelligence": 55.6920406995495,
+      "coding": 56.712962962963,
+      "agentic": 77.8082777543421
+    },
+    "speed": {
+      "median_tps": 61.8605670221249,
+      "ttft_seconds": 35.3718257064999,
+      "e2e_seconds": 43.45451915839101,
+      "p05_tps": 43.2772736388715,
+      "p95_tps": 77.7128905143568
+    },
+    "benchmarks": {
+      "gpqa": 0.92020202020202,
+      "hle": 0.457367933271548,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 5,
+      "output": 25,
+      "blended": 10.0,
+      "display": "$5/$25 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-05-28",
+      "omniscience": 27.4333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/claude-opus-4-8",
+    "vendor_links": {
+      "homepage": "https://www.anthropic.com",
+      "api_docs": "https://docs.anthropic.com",
+      "console": "https://console.anthropic.com",
+      "github": "https://github.com/anthropics",
+      "pricing_doc": "https://www.anthropic.com/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 1103526705429,
+    "openrouter_pricing": {
+      "prompt": 10.0,
+      "completion": 50.0
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 4,
+        "score": 1499,
+        "votes": 49596
+      },
+      "code": {
+        "rank": 5,
+        "score": 1556,
+        "votes": 6799
+      },
+      "vision": {
+        "rank": 4,
+        "score": 1301,
+        "votes": 13669
+      }
+    },
+    "arena_votes": 13316,
+    "data_completeness_pct": 88.7
+  },
+  {
+    "id": "gpt-5-5",
+    "name": "GPT-5.5",
+    "company": "OpenAI",
+    "type": "闭源",
+    "logo": "/logos/openai.svg",
+    "scores": {
+      "intelligence": 54.8375984166433,
+      "coding": 59.1154601571268,
+      "agentic": 74.1229617920152
+    },
+    "speed": {
+      "median_tps": 61.1407376698715,
+      "ttft_seconds": 117.1071442405,
+      "e2e_seconds": 125.28499781334602,
+      "p05_tps": 41.9838242901519,
+      "p95_tps": 83.1409744055996
+    },
+    "benchmarks": {
+      "gpqa": 0.935353535353535,
+      "hle": 0.443002780352178,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 5,
+      "output": 30,
+      "blended": 11.25,
+      "display": "$5/$30 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 922000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-04-23",
+      "omniscience": 20.0666666666667
+    },
+    "url": "https://artificialanalysis.ai/models/gpt-5-5",
+    "vendor_links": {
+      "homepage": "https://openai.com",
+      "api_docs": "https://platform.openai.com/docs",
+      "console": "https://platform.openai.com",
+      "github": "https://github.com/openai",
+      "pricing_doc": "https://openai.com/api/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 5.0,
+      "completion": 30.0
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 16,
+        "score": 1475,
+        "votes": 29071
+      },
+      "vision": {
+        "rank": 11,
+        "score": 1283,
+        "votes": 10947
+      }
+    },
+    "arena_votes": 29071,
+    "data_completeness_pct": 86.5
+  },
+  {
+    "id": "claude-opus-4-7",
+    "name": "Claude Opus 4.7",
+    "company": "Anthropic",
+    "type": "闭源",
+    "logo": "/logos/anthropic.svg",
+    "scores": {
+      "intelligence": 53.5296569524586,
+      "coding": 52.5147306397306,
+      "agentic": 71.288187135722
+    },
+    "speed": {
+      "median_tps": 50.2529538332014,
+      "ttft_seconds": 18.0787761290001,
+      "e2e_seconds": 28.028440016611363,
+      "p05_tps": 37.9375597666777,
+      "p95_tps": 64.4227171475239
+    },
+    "benchmarks": {
+      "gpqa": 0.914141414141414,
+      "hle": 0.396200185356812,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 5,
+      "output": 25,
+      "blended": 10.0,
+      "display": "$5/$25 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-04-16",
+      "omniscience": 26.1666666666667
+    },
+    "url": "https://artificialanalysis.ai/models/claude-opus-4-7",
+    "vendor_links": {
+      "homepage": "https://www.anthropic.com",
+      "api_docs": "https://docs.anthropic.com",
+      "console": "https://console.anthropic.com",
+      "github": "https://github.com/anthropics",
+      "pricing_doc": "https://www.anthropic.com/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 5106251346,
+    "openrouter_pricing": {
+      "prompt": 30.0,
+      "completion": 150.0
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 4,
+        "score": 1499,
+        "votes": 49596
+      },
+      "code": {
+        "rank": 5,
+        "score": 1556,
+        "votes": 6799
+      },
+      "vision": {
+        "rank": 4,
+        "score": 1301,
+        "votes": 13669
+      }
+    },
+    "arena_votes": 33793,
+    "data_completeness_pct": 88.7
+  },
+  {
+    "id": "gpt-5-4",
+    "name": "GPT-5.4",
+    "company": "OpenAI",
+    "type": "闭源",
+    "logo": "/logos/openai.svg",
+    "scores": {
+      "intelligence": 51.4012420630147,
+      "coding": 57.2495791245791,
+      "agentic": 67.9578711253417
+    },
+    "speed": {
+      "median_tps": 147.9545626486,
+      "ttft_seconds": 118.203896351,
+      "e2e_seconds": 121.5833122409143,
+      "p05_tps": 110.265270026927,
+      "p95_tps": 186.342763765514
+    },
+    "benchmarks": {
+      "gpqa": 0.92020202020202,
+      "hle": 0.416126042632067,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 2.5,
+      "output": 15,
+      "blended": 5.625,
+      "display": "$2.5/$15 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1050000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-03-05",
+      "omniscience": 5.65
+    },
+    "url": "https://artificialanalysis.ai/models/gpt-5-4",
+    "vendor_links": {
+      "homepage": "https://openai.com",
+      "api_docs": "https://platform.openai.com/docs",
+      "console": "https://platform.openai.com",
+      "github": "https://github.com/openai",
+      "pricing_doc": "https://openai.com/api/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 2.5,
+      "completion": 15.0
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 27,
+        "score": 1468,
+        "votes": 43382
+      },
+      "vision": {
+        "rank": 17,
+        "score": 1275,
+        "votes": 12444
+      }
+    },
+    "arena_votes": 43382,
+    "data_completeness_pct": 86.5
+  },
+  {
+    "id": "glm-5-2",
+    "name": "GLM-5.2",
+    "company": "Z AI",
+    "type": "开源",
+    "logo": "/logos/z-ai.svg",
+    "scores": {
+      "intelligence": 50.6663591160109,
+      "coding": 50.6593714927048,
+      "agentic": 75.897339583091
+    },
+    "speed": {
+      "median_tps": 112.36297404101,
+      "ttft_seconds": 20.20242385094746,
+      "e2e_seconds": 24.65228826818433,
+      "p05_tps": 58.0659607830771,
+      "p95_tps": 184.590708013055
+    },
+    "benchmarks": {
+      "gpqa": 0.894949494949495,
+      "hle": 0.40129749768304,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 1.4,
+      "output": 4.4,
+      "blended": 2.15,
+      "display": "$1.4/$4.4 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": 753,
+      "output_tokens": 163840,
+      "release_date": "2026-06-16",
+      "omniscience": 3.96666666666667
+    },
+    "url": "https://artificialanalysis.ai/models/glm-5-2",
+    "vendor_links": {
+      "homepage": "https://z.ai",
+      "api_docs": "https://open.bigmodel.cn",
+      "github": "https://github.com/zai-org",
+      "huggingface": "https://huggingface.co/zai-org",
+      "pricing_doc": "https://open.bigmodel.cn/pricing"
+    },
+    "license": null,
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 1.4,
+      "completion": 4.4
+    },
+    "arena_rankings": {},
+    "arena_votes": 3357,
+    "data_completeness_pct": 82.7
+  },
+  {
+    "id": "gemini-3-5-flash",
+    "name": "Gemini 3.5 Flash",
+    "company": "Google",
+    "type": "闭源",
+    "logo": "/logos/google.svg",
+    "scores": {
+      "intelligence": 50.2034858842254,
+      "coding": 44.9810606060606,
+      "agentic": 70.2973305457412
+    },
+    "speed": {
+      "median_tps": 153.434676307496,
+      "ttft_seconds": 19.2156505385001,
+      "e2e_seconds": 22.474366312748927,
+      "p05_tps": 127.576713487812,
+      "p95_tps": 244.18325531534
+    },
+    "benchmarks": {
+      "gpqa": 0.922222222222222,
+      "hle": 0.409638554216867,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 1.5,
+      "output": 9,
+      "blended": 3.375,
+      "display": "$1.5/$9 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 64000,
+      "release_date": "2026-05-19",
+      "omniscience": 22.6833333333333
+    },
+    "url": "https://artificialanalysis.ai/models/gemini-3-5-flash",
+    "vendor_links": {
+      "homepage": "https://ai.google.dev",
+      "api_docs": "https://ai.google.dev/gemini-api/docs",
+      "console": "https://aistudio.google.com",
+      "github": "https://github.com/google-gemini",
+      "pricing_doc": "https://ai.google.dev/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 580897837628,
+    "openrouter_pricing": {
+      "prompt": 1.5,
+      "completion": 9.0
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 13,
+        "score": 1476,
+        "votes": 10171
+      },
+      "code": {
+        "rank": 15,
+        "score": 1506,
+        "votes": 2214
+      }
+    },
+    "arena_votes": 10171,
+    "data_completeness_pct": 88.7
+  },
+  {
+    "id": "claude-sonnet-4-6",
+    "name": "Claude Sonnet 4.6",
+    "company": "Anthropic",
+    "type": "闭源",
+    "logo": "/logos/anthropic.svg",
+    "scores": {
+      "intelligence": 47.2100024360452,
+      "coding": 50.9399551066218,
+      "agentic": 62.9991597010475
+    },
+    "speed": {
+      "median_tps": 50.4849402260428,
+      "ttft_seconds": 110.246771335,
+      "e2e_seconds": 120.15071492216254,
+      "p05_tps": 39.7858069386671,
+      "p95_tps": 69.3751094744916
+    },
+    "benchmarks": {
+      "gpqa": 0.874747474747475,
+      "hle": 0.299814643188137,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 3,
+      "output": 15,
+      "blended": 6.0,
+      "display": "$3/$15 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-02-17",
+      "omniscience": 12.3666666666667
+    },
+    "url": "https://artificialanalysis.ai/models/claude-sonnet-4-6-adaptive",
+    "vendor_links": {
+      "homepage": "https://www.anthropic.com",
+      "api_docs": "https://docs.anthropic.com",
+      "console": "https://console.anthropic.com",
+      "github": "https://github.com/anthropics",
+      "pricing_doc": "https://www.anthropic.com/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 2020403577615,
+    "openrouter_pricing": {
+      "prompt": 3.0,
+      "completion": 15.0
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 24,
+        "score": 1472,
+        "votes": 39561
+      },
+      "code": {
+        "rank": 11,
+        "score": 1522,
+        "votes": 13175
+      },
+      "vision": {
+        "rank": 15,
+        "score": 1278,
+        "votes": 17336
+      }
+    },
+    "arena_votes": 39561,
+    "data_completeness_pct": 88.7
+  },
+  {
+    "id": "gemini-3-1-pro-preview",
+    "name": "Gemini 3.1 Pro Preview",
+    "company": "Google",
+    "type": "闭源",
+    "logo": "/logos/google.svg",
+    "scores": {
+      "intelligence": 46.4594206066426,
+      "coding": 55.4959315375982,
+      "agentic": 59.0860006638396
+    },
+    "speed": {
+      "median_tps": 122.183382355414,
+      "ttft_seconds": 23.0186566695,
+      "e2e_seconds": 27.11086618573005,
+      "p05_tps": 97.7442756138454,
+      "p95_tps": 158.114410702309
+    },
+    "benchmarks": {
+      "gpqa": 0.941414141414141,
+      "hle": 0.447173308619092,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 2,
+      "output": 12,
+      "blended": 4.5,
+      "display": "$2/$12 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 64000,
+      "release_date": "2026-02-19",
+      "omniscience": 32.9333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+    "vendor_links": {
+      "homepage": "https://ai.google.dev",
+      "api_docs": "https://ai.google.dev/gemini-api/docs",
+      "console": "https://aistudio.google.com",
+      "github": "https://github.com/google-gemini",
+      "pricing_doc": "https://ai.google.dev/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 2.0,
+      "completion": 12.0
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 7,
+        "score": 1486,
+        "votes": 60640
+      },
+      "vision": {
+        "rank": 13,
+        "score": 1280,
+        "votes": 26478
+      }
+    },
+    "arena_votes": 60640,
+    "data_completeness_pct": 86.5
+  },
+  {
+    "id": "qwen3-7-max",
+    "name": "Qwen3.7 Max",
+    "company": "Alibaba",
+    "type": "闭源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 45.9937184770221,
+      "coding": 50.1192480359147,
+      "agentic": 66.5557245964551
+    },
+    "speed": {
+      "median_tps": 110.665978510727,
+      "ttft_seconds": 24.51862078339201,
+      "e2e_seconds": 29.036721167346364,
+      "p05_tps": 68.5853546796332,
+      "p95_tps": 201.472796943196
+    },
+    "benchmarks": {
+      "gpqa": 0.923232323232323,
+      "hle": 0.380908248378128,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 2.5,
+      "output": 7.5,
+      "blended": 3.75,
+      "display": "¥2.5/¥10.0 (≤32K)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 65536,
+      "release_date": "2026-05-19",
+      "omniscience": 14.0833333333333
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-7-max",
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "license": null,
+    "cn_pricing": {
+      "input": 2.5,
+      "output": 10.0,
+      "source": "bailian.console.aliyun.com (参考 Qwen3 Max 定价)"
+    },
+    "openrouter_weekly_tokens": 227912888795,
+    "openrouter_pricing": {
+      "prompt": 1.25,
+      "completion": 3.75
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 17,
+        "score": 1475,
+        "votes": 3740
+      }
+    },
+    "arena_votes": 3740,
+    "data_completeness_pct": 96.2
+  },
+  {
+    "id": "minimax-m3",
+    "name": "MiniMax-M3",
+    "company": "MiniMax",
+    "type": "开源",
+    "logo": "/logos/minimax.svg",
+    "scores": {
+      "intelligence": 44.4372686326056,
+      "coding": 43.4062850729517,
+      "agentic": 68.6216536717383
+    },
+    "speed": {
+      "median_tps": 62.1736744760263,
+      "ttft_seconds": 35.06655121645844,
+      "e2e_seconds": 43.10854011632307,
+      "p05_tps": 41.4491478856197,
+      "p95_tps": 86.4951039217327
+    },
+    "benchmarks": {
+      "gpqa": 0.929292929292929,
+      "hle": 0.371177015755329,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 1.2,
+      "blended": 0.525,
+      "display": "¥4.2/¥16.8 (≤512K)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": 428,
+      "output_tokens": 511999,
+      "release_date": "2026-06-01",
+      "omniscience": 1.36666666666667
+    },
+    "url": "https://artificialanalysis.ai/models/minimax-m3",
+    "vendor_links": {
+      "homepage": "https://www.minimaxi.com",
+      "api_docs": "https://platform.minimaxi.com",
+      "huggingface": "https://huggingface.co/MiniMaxAI",
+      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing"
+    },
+    "license": null,
+    "cn_pricing": {
+      "input": 4.2,
+      "output": 16.8,
+      "source": "platform.minimaxi.com"
+    },
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.3,
+      "completion": 1.2
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 13,
+        "score": 1511,
+        "votes": 2754
+      },
+      "vision": {
+        "rank": 32,
+        "score": 1246,
+        "votes": 3676
+      }
+    },
+    "arena_votes": 3676,
+    "data_completeness_pct": 97.7
+  },
+  {
+    "id": "deepseek-v4-pro",
+    "name": "DeepSeek V4 Pro",
+    "company": "DeepSeek",
+    "type": "开源",
+    "logo": "/logos/deepseek.svg",
+    "scores": {
+      "intelligence": 44.2735554261611,
+      "coding": 47.4747474747475,
+      "agentic": 67.1926607607022
+    },
+    "speed": {
+      "median_tps": 61.7056147687357,
+      "ttft_seconds": 72.70796017751245,
+      "e2e_seconds": 80.81095051111389,
+      "p05_tps": 43.5906663798936,
+      "p95_tps": 88.8206937380785
+    },
+    "benchmarks": {
+      "gpqa": 0.887878787878788,
+      "hle": 0.358665430954588,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.435,
+      "output": 0.87,
+      "blended": 0.5437,
+      "display": "¥12/¥24"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": 1600,
+      "output_tokens": 393216,
+      "release_date": "2026-04-24",
+      "omniscience": -10.0166666666667
+    },
+    "url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+    "vendor_links": {
+      "homepage": "https://www.deepseek.com",
+      "api_docs": "https://api-docs.deepseek.com",
+      "console": "https://platform.deepseek.com",
+      "github": "https://github.com/deepseek-ai",
+      "huggingface": "https://huggingface.co/deepseek-ai",
+      "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    "license": "DeepSeek License",
+    "cn_pricing": {
+      "input": 12,
+      "output": 24,
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
+    "openrouter_weekly_tokens": 1634887356442,
+    "openrouter_pricing": {
+      "prompt": 0.43,
+      "completion": 0.87
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 92.5
+  },
+  {
+    "id": "gpt-5-3-codex",
+    "name": "GPT-5.3 Codex",
+    "company": "OpenAI",
+    "type": "闭源",
+    "logo": "/logos/openai.svg",
+    "scores": {
+      "intelligence": 44.2682925707506,
+      "coding": 53.1004489337823,
+      "agentic": 60.535128949109
+    },
+    "speed": {
+      "median_tps": 78.6635436655836,
+      "ttft_seconds": 109.474462273501,
+      "e2e_seconds": 115.83064681211793,
+      "p05_tps": 57.2270392553873,
+      "p95_tps": 120.382716161403
+    },
+    "benchmarks": {
+      "gpqa": 0.915151515151515,
+      "hle": 0.398980537534754,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 1.75,
+      "output": 14,
+      "blended": 4.8125,
+      "display": "$1.75/$14 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 400000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-02-05",
+      "omniscience": 9.88333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/gpt-5-3-codex",
+    "vendor_links": {
+      "homepage": "https://openai.com",
+      "api_docs": "https://platform.openai.com/docs",
+      "console": "https://platform.openai.com",
+      "github": "https://github.com/openai",
+      "pricing_doc": "https://openai.com/api/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 1.75,
+      "completion": 14.0
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 78.9
+  },
+  {
+    "id": "claude-opus-4-6",
+    "name": "Claude Opus 4.6",
+    "company": "Anthropic",
+    "type": "闭源",
+    "logo": "/logos/anthropic.svg",
+    "scores": {
+      "intelligence": 43.7100998174865,
+      "coding": 48.0920314253648,
+      "agentic": 67.5823408682488
+    },
+    "speed": {
+      "median_tps": 42.9381969308017,
+      "ttft_seconds": 21.1637849034998,
+      "e2e_seconds": 32.80842850150159,
+      "p05_tps": 35.7627906383123,
+      "p95_tps": 65.8038973229785
+    },
+    "benchmarks": {
+      "gpqa": 0.895959595959596,
+      "hle": 0.367365967365967,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 5,
+      "output": 25,
+      "blended": 10.0,
+      "display": "$5/$25 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-02-05",
+      "omniscience": 13.5
+    },
+    "url": "https://artificialanalysis.ai/models/claude-opus-4-6-adaptive",
+    "vendor_links": {
+      "homepage": "https://www.anthropic.com",
+      "api_docs": "https://docs.anthropic.com",
+      "console": "https://console.anthropic.com",
+      "github": "https://github.com/anthropics",
+      "pricing_doc": "https://www.anthropic.com/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 1745192194,
+    "openrouter_pricing": {
+      "prompt": 30.0,
+      "completion": 150.0
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 4,
+        "score": 1499,
+        "votes": 49596
+      },
+      "code": {
+        "rank": 5,
+        "score": 1556,
+        "votes": 6799
+      },
+      "vision": {
+        "rank": 4,
+        "score": 1301,
+        "votes": 13669
+      }
+    },
+    "arena_votes": 49596,
+    "data_completeness_pct": 88.7
+  },
+  {
+    "id": "muse-spark",
+    "name": "Muse Spark",
+    "company": "Meta",
+    "type": "闭源",
+    "logo": "/logos/meta.svg",
+    "scores": {
+      "intelligence": 43.0555563074727,
+      "coding": 47.4712401795735,
+      "agentic": 61.9891630048953
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.883838383838384,
+      "hle": 0.399443929564411,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": null,
+      "parameters": null,
+      "output_tokens": 131072,
+      "release_date": "2026-04-08",
+      "omniscience": 4.08333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/muse-spark",
+    "vendor_links": {
+      "homepage": "https://ai.meta.com",
+      "github": "https://github.com/meta-llama",
+      "huggingface": "https://huggingface.co/meta-llama",
+      "pricing_doc": "https://ai.meta.com/llama"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": null,
+    "arena_rankings": {
+      "text": {
+        "rank": 6,
+        "score": 1487,
+        "votes": 13607
+      },
+      "code": {
+        "rank": 14,
+        "score": 1507,
+        "votes": 1628
+      },
+      "vision": {
+        "rank": 6,
+        "score": 1295,
+        "votes": 5613
+      }
+    },
+    "arena_votes": 13607,
+    "data_completeness_pct": 82.7
+  },
+  {
+    "id": "kimi-k2-6",
+    "name": "Kimi K2.6",
+    "company": "Kimi",
+    "type": "开源",
+    "logo": "/logos/kimi.svg",
+    "scores": {
+      "intelligence": 42.8413910763059,
+      "coding": 47.1170033670034,
+      "agentic": 65.9688109161793
+    },
+    "speed": {
+      "median_tps": 46.4810690878955,
+      "ttft_seconds": 98.25583731544378,
+      "e2e_seconds": 109.0129048659879,
+      "p05_tps": 24.6007722093395,
+      "p95_tps": 84.5745890513307
+    },
+    "benchmarks": {
+      "gpqa": 0.911111111111111,
+      "hle": 0.359128822984245,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.95,
+      "output": 4,
+      "blended": 1.7125,
+      "display": "¥6.5/¥27.0"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "parameters": 1000,
+      "output_tokens": 256000,
+      "release_date": "2026-04-20",
+      "omniscience": 6.41666666666667
+    },
+    "url": "https://artificialanalysis.ai/models/kimi-k2-6",
+    "vendor_links": {
+      "homepage": "https://www.moonshot.cn",
+      "api_docs": "https://platform.moonshot.cn",
+      "console": "https://platform.moonshot.cn",
+      "huggingface": "https://huggingface.co/moonshotai",
+      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
+    },
+    "license": "MIT",
+    "cn_pricing": {
+      "input": 6.5,
+      "output": 27.0,
+      "source": "platform.kimi.com"
+    },
+    "openrouter_weekly_tokens": 403008045847,
+    "openrouter_pricing": {
+      "prompt": 0.68,
+      "completion": 3.41
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 12,
+        "score": 1513,
+        "votes": 5607
+      },
+      "vision": {
+        "rank": 19,
+        "score": 1264,
+        "votes": 11045
+      }
+    },
+    "arena_votes": 11045,
+    "data_completeness_pct": 100.0
+  },
+  {
+    "id": "mimo-v2-5-pro",
+    "name": "MiMo-V2.5-Pro",
+    "company": "Xiaomi",
+    "type": "开源",
+    "logo": "/logos/xiaomi.svg",
+    "scores": {
+      "intelligence": 42.2394366693508,
+      "coding": 45.5317059483726,
+      "agentic": 67.4384766534619
+    },
+    "speed": {
+      "median_tps": 33.9005597770828,
+      "ttft_seconds": 61.96639790598813,
+      "e2e_seconds": 76.71541689823516,
+      "p05_tps": 24.2071253162632,
+      "p95_tps": 59.5517881629565
+    },
+    "benchmarks": {
+      "gpqa": 0.865656565656566,
+      "hle": 0.337812789620019,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.435,
+      "output": 0.87,
+      "blended": 0.5437,
+      "display": "¥7.0/¥21.0 (≤256K)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": 1023,
+      "output_tokens": 131072,
+      "release_date": "2026-04-22",
+      "omniscience": 3.6
+    },
+    "url": "https://artificialanalysis.ai/models/mimo-v2-5-pro",
+    "vendor_links": {
+      "homepage": "https://huggingface.co/XiaomiMiMo",
+      "huggingface": "https://huggingface.co/XiaomiMiMo",
+      "pricing_doc": "小米开放平台控制台（需登录）",
+      "pricing_note": "2026-05-02 登录实测"
+    },
+    "license": "XiaomiMiMo License",
+    "cn_pricing": {
+      "input": 7.0,
+      "output": 21.0,
+      "source": "小米开放平台控制台"
+    },
+    "openrouter_weekly_tokens": 2631935684710,
+    "openrouter_pricing": {
+      "prompt": 0.43,
+      "completion": 0.87
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 29,
+        "score": 1466,
+        "votes": 26563
+      },
+      "vision": {
+        "rank": 38,
+        "score": 1237,
+        "votes": 13813
+      }
+    },
+    "arena_votes": 26563,
+    "data_completeness_pct": 100.0
+  },
+  {
+    "id": "kimi-k2-7-code",
+    "name": "Kimi K2.7 Code",
+    "company": "Kimi",
+    "type": "开源",
+    "logo": "/logos/kimi.svg",
+    "scores": {
+      "intelligence": 41.9493685067994,
+      "coding": 45.6158810325477,
+      "agentic": 61.9328857504722
+    },
+    "speed": {
+      "median_tps": 48.5076184280757,
+      "ttft_seconds": 43.60989474025496,
+      "e2e_seconds": 53.91755395344373,
+      "p05_tps": 32.9488071596887,
+      "p95_tps": 74.8744372794236
+    },
+    "benchmarks": {
+      "gpqa": 0.895959595959596,
+      "hle": 0.327618164967563,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.95,
+      "output": 4,
+      "blended": 1.7125,
+      "display": "$0.95/$4 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "parameters": 1000,
+      "output_tokens": 256000,
+      "release_date": "2026-06-12",
+      "omniscience": -10.7
+    },
+    "url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
+    "vendor_links": {
+      "homepage": "https://www.moonshot.cn",
+      "api_docs": "https://platform.moonshot.cn",
+      "console": "https://platform.moonshot.cn",
+      "huggingface": "https://huggingface.co/moonshotai",
+      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
+    },
+    "license": null,
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 403008045847,
+    "openrouter_pricing": {
+      "prompt": 0.74,
+      "completion": 3.5
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 12,
+        "score": 1513,
+        "votes": 5607
+      },
+      "vision": {
+        "rank": 19,
+        "score": 1264,
+        "votes": 11045
+      }
+    },
+    "arena_votes": null,
+    "data_completeness_pct": 92.5
+  },
+  {
+    "id": "deepseek-v4-flash",
+    "name": "DeepSeek V4 Flash",
+    "company": "DeepSeek",
+    "type": "开源",
+    "logo": "/logos/deepseek.svg",
+    "scores": {
+      "intelligence": 40.2825017625236,
+      "coding": 38.7065095398429,
+      "agentic": 61.280477661017
+    },
+    "speed": {
+      "median_tps": 101.455190513863,
+      "ttft_seconds": 56.73156934220994,
+      "e2e_seconds": 61.659853419816386,
+      "p05_tps": 68.7881977807071,
+      "p95_tps": 125.992495929621
+    },
+    "benchmarks": {
+      "gpqa": 0.893939393939394,
+      "hle": 0.320667284522706,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.14,
+      "output": 0.28,
+      "blended": 0.175,
+      "display": "¥1/¥2"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": 284,
+      "output_tokens": 64000,
+      "release_date": "2026-04-24",
+      "omniscience": -22.9
+    },
+    "url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+    "vendor_links": {
+      "homepage": "https://www.deepseek.com",
+      "api_docs": "https://api-docs.deepseek.com",
+      "console": "https://platform.deepseek.com",
+      "github": "https://github.com/deepseek-ai",
+      "huggingface": "https://huggingface.co/deepseek-ai",
+      "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
+    },
+    "license": "DeepSeek License",
+    "cn_pricing": {
+      "input": 1,
+      "output": 2,
+      "source": "bailian.console.aliyun.com (百炼)"
+    },
+    "openrouter_weekly_tokens": 3486919393628,
+    "openrouter_pricing": {
+      "prompt": 0.09,
+      "completion": 0.18
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 92.5
+  },
+  {
+    "id": "glm-5-1",
+    "name": "GLM-5.1",
+    "company": "Z AI",
+    "type": "开源",
+    "logo": "/logos/z-ai.svg",
+    "scores": {
+      "intelligence": 40.1570857627689,
+      "coding": 43.3712121212121,
+      "agentic": 67.054629905181
+    },
+    "speed": {
+      "median_tps": 68.7234445135387,
+      "ttft_seconds": 56.49446947513831,
+      "e2e_seconds": 63.77000700878884,
+      "p05_tps": 22.8564967840614,
+      "p95_tps": 205.240779636504
+    },
+    "benchmarks": {
+      "gpqa": 0.867676767676768,
+      "hle": 0.280352177942539,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 1.4,
+      "output": 4.4,
+      "blended": 2.15,
+      "display": "¥6/¥24 (<32K)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 200000,
+      "size_class": "Large",
+      "parameters": 744,
+      "output_tokens": 131000,
+      "release_date": "2026-04-07",
+      "omniscience": 1.93333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/glm-5-1",
+    "vendor_links": {
+      "homepage": "https://z.ai",
+      "api_docs": "https://open.bigmodel.cn",
+      "github": "https://github.com/zai-org",
+      "huggingface": "https://huggingface.co/zai-org",
+      "pricing_doc": "https://open.bigmodel.cn/pricing"
+    },
+    "license": "MIT",
+    "cn_pricing": {
+      "input": 6,
+      "output": 24,
+      "source": "open.bigmodel.cn/pricing"
+    },
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.98,
+      "completion": 3.08
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 15,
+        "score": 1475,
+        "votes": 16101
+      },
+      "code": {
+        "rank": 9,
+        "score": 1531,
+        "votes": 3607
+      }
+    },
+    "arena_votes": 16101,
+    "data_completeness_pct": 97.7
+  },
+  {
+    "id": "mimo-v2-5",
+    "name": "MiMo-V2.5",
+    "company": "Xiaomi",
+    "type": "开源",
+    "logo": "/logos/xiaomi.svg",
+    "scores": {
+      "intelligence": 40.1358548646523,
+      "coding": 42.1296296296296,
+      "agentic": 65.5299139777991
+    },
+    "speed": {
+      "median_tps": 74.3339137209016,
+      "ttft_seconds": 30.40487161040492,
+      "e2e_seconds": 37.13127649038109,
+      "p05_tps": 64.9761918470484,
+      "p95_tps": 90.0759480350116
+    },
+    "benchmarks": {
+      "gpqa": 0.84949494949495,
+      "hle": 0.2516218721038,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.14,
+      "output": 0.28,
+      "blended": 0.175,
+      "display": "¥1/¥2 (估算)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": 310,
+      "output_tokens": 131072,
+      "release_date": "2026-04-22",
+      "omniscience": -9.33333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
+    "vendor_links": {
+      "homepage": "https://huggingface.co/XiaomiMiMo",
+      "huggingface": "https://huggingface.co/XiaomiMiMo",
+      "pricing_doc": "小米开放平台控制台（需登录）",
+      "pricing_note": "2026-05-02 登录实测"
+    },
+    "license": "XiaomiMiMo License",
+    "cn_pricing": {
+      "input": 1,
+      "output": 2,
+      "source": "OR (无国内官价, ¥按$×7折算)"
+    },
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.14,
+      "completion": 0.28
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 29,
+        "score": 1466,
+        "votes": 26563
+      },
+      "vision": {
+        "rank": 38,
+        "score": 1237,
+        "votes": 13813
+      }
+    },
+    "arena_votes": 26563,
+    "data_completeness_pct": 97.7
+  },
+  {
+    "id": "qwen3-6-max-preview",
+    "name": "Qwen3.6 Max Preview",
+    "company": "Alibaba",
+    "type": "闭源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 40,
+      "coding": 44.9179292929293,
+      "agentic": 64.8295054241687
+    },
+    "speed": {
+      "median_tps": 44.7851542187167,
+      "ttft_seconds": 48.00262664623977,
+      "e2e_seconds": 59.16704058479977,
+      "p05_tps": 36.6638544941142,
+      "p95_tps": 50.0305122266223
+    },
+    "benchmarks": {
+      "gpqa": 0.887878787878788,
+      "hle": 0.288693234476367,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 1.3,
+      "output": 7.8,
+      "blended": 2.925,
+      "display": "¥9/¥54 (≤128K)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 65536,
+      "release_date": "2026-04-20",
+      "omniscience": 10.2
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-6-max",
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "license": null,
+    "cn_pricing": {
+      "input": 9,
+      "output": 54,
+      "source": "bailian.console.aliyun.com"
+    },
+    "openrouter_weekly_tokens": 3072250841,
+    "openrouter_pricing": {
+      "prompt": 1.04,
+      "completion": 6.24
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 17,
+        "score": 1475,
+        "votes": 3740
+      }
+    },
+    "arena_votes": null,
+    "data_completeness_pct": 96.2
+  },
+  {
+    "id": "gpt-5-4-mini",
+    "name": "GPT-5.4 mini",
+    "company": "OpenAI",
+    "type": "闭源",
+    "logo": "/logos/openai.svg",
+    "scores": {
+      "intelligence": 39.9783061419024,
+      "coding": 51.4765712682379,
+      "agentic": 58.8785663257088
+    },
+    "speed": {
+      "median_tps": 170.527565825851,
+      "ttft_seconds": 8.85488665500014,
+      "e2e_seconds": 11.786963926956384,
+      "p05_tps": 135.252877247769,
+      "p95_tps": 200.089973910977
+    },
+    "benchmarks": {
+      "gpqa": 0.874747474747475,
+      "hle": 0.266450417052827,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.75,
+      "output": 4.5,
+      "blended": 1.6875,
+      "display": "$0.75/$4.5 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 400000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-03-17",
+      "omniscience": -18.6833333333333
+    },
+    "url": "https://artificialanalysis.ai/models/gpt-5-4-mini",
+    "vendor_links": {
+      "homepage": "https://openai.com",
+      "api_docs": "https://platform.openai.com/docs",
+      "console": "https://platform.openai.com",
+      "github": "https://github.com/openai",
+      "pricing_doc": "https://openai.com/api/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 189452316529,
+    "openrouter_pricing": {
+      "prompt": 0.75,
+      "completion": 4.5
+    },
+    "arena_rankings": {},
+    "arena_votes": 15692,
+    "data_completeness_pct": 81.2
+  },
+  {
+    "id": "qwen3-7-plus",
+    "name": "Qwen3.7 Plus",
+    "company": "Alibaba",
+    "type": "闭源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 38.9772279786141,
+      "coding": 46.4751683501684,
+      "agentic": 65.128458771159
+    },
+    "speed": {
+      "median_tps": 52.8591138936529,
+      "ttft_seconds": 40.11932245352144,
+      "e2e_seconds": 49.578429184026774,
+      "p05_tps": 49.5074058542328,
+      "p95_tps": 53.7951741410543
+    },
+    "benchmarks": {
+      "gpqa": 0.9,
+      "hle": 0.334105653382762,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.4,
+      "output": 1.16,
+      "blended": 0.59,
+      "display": "$0.4/$1.16 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Medium",
+      "parameters": null,
+      "output_tokens": 65536,
+      "release_date": "2026-06-01",
+      "omniscience": 2.36666666666667
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-7-plus",
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "license": null,
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 17339265953,
+    "openrouter_pricing": {
+      "prompt": 0.32,
+      "completion": 1.28
+    },
+    "arena_rankings": {},
+    "arena_votes": 3923,
+    "data_completeness_pct": 81.2
+  },
+  {
+    "id": "gpt-5-4-nano",
+    "name": "GPT-5.4 nano",
+    "company": "OpenAI",
+    "type": "闭源",
+    "logo": "/logos/openai.svg",
+    "scores": {
+      "intelligence": 38.2417263132715,
+      "coding": 43.9078282828283,
+      "agentic": 47.6017479407774
+    },
+    "speed": {
+      "median_tps": 150.721194659629,
+      "ttft_seconds": 5.58583958799998,
+      "e2e_seconds": 8.903223059708395,
+      "p05_tps": 113.486327051323,
+      "p95_tps": 173.236135441968
+    },
+    "benchmarks": {
+      "gpqa": 0.817171717171717,
+      "hle": 0.264596848934198,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.2,
+      "output": 1.25,
+      "blended": 0.4625,
+      "display": "$0.2/$1.25 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 400000,
+      "size_class": "Medium",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-03-17",
+      "omniscience": -29.55
+    },
+    "url": "https://artificialanalysis.ai/models/gpt-5-4-nano",
+    "vendor_links": {
+      "homepage": "https://openai.com",
+      "api_docs": "https://platform.openai.com/docs",
+      "console": "https://platform.openai.com",
+      "github": "https://github.com/openai",
+      "pricing_doc": "https://openai.com/api/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 104714950777,
+    "openrouter_pricing": {
+      "prompt": 0.2,
+      "completion": 1.25
+    },
+    "arena_rankings": {},
+    "arena_votes": 43382,
+    "data_completeness_pct": 81.2
+  },
+  {
+    "id": "minimax-m2-7",
+    "name": "MiniMax-M2.7",
+    "company": "MiniMax",
+    "type": "开源",
+    "logo": "/logos/minimax.svg",
+    "scores": {
+      "intelligence": 38.1344947250387,
+      "coding": 41.9262065095398,
+      "agentic": 61.489494916941
+    },
+    "speed": {
+      "median_tps": 44.4245904576837,
+      "ttft_seconds": 57.65362916715952,
+      "e2e_seconds": 68.90865695354444,
+      "p05_tps": 37.5717868322916,
+      "p95_tps": 67.7313921817423
+    },
+    "benchmarks": {
+      "gpqa": 0.873737373737374,
+      "hle": 0.280815569972196,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 1.2,
+      "blended": 0.525,
+      "display": "¥2.1/¥8.4"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 204800,
+      "size_class": "Large",
+      "parameters": 230,
+      "output_tokens": 196608,
+      "release_date": "2026-03-18",
+      "omniscience": 0.683333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/minimax-m2-7",
+    "vendor_links": {
+      "homepage": "https://www.minimaxi.com",
+      "api_docs": "https://platform.minimaxi.com",
+      "huggingface": "https://huggingface.co/MiniMaxAI",
+      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing"
+    },
+    "license": null,
+    "cn_pricing": {
+      "input": 2.1,
+      "output": 8.4,
+      "source": "platform.minimaxi.com"
+    },
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.25,
+      "completion": 1.0
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 90.2
+  },
+  {
+    "id": "kimi-k2-5",
+    "name": "Kimi K2.5",
+    "company": "Kimi",
+    "type": "开源",
+    "logo": "/logos/kimi.svg",
+    "scores": {
+      "intelligence": 38.1072025858264,
+      "coding": 39.5517676767677,
+      "agentic": 58.9406156983764
+    },
+    "speed": {
+      "median_tps": 52.0440584729241,
+      "ttft_seconds": 60.025308726842,
+      "e2e_seconds": 69.63255333210515,
+      "p05_tps": 31.0771809853241,
+      "p95_tps": 75.9816879620535
+    },
+    "benchmarks": {
+      "gpqa": 0.878787878787879,
+      "hle": 0.293790546802595,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.58,
+      "output": 3,
+      "blended": 1.185,
+      "display": "¥4.0/¥21.0"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "parameters": 1000,
+      "output_tokens": 256000,
+      "release_date": "2026-01-27",
+      "omniscience": -8.11666666666667
+    },
+    "url": "https://artificialanalysis.ai/models/kimi-k2-5",
+    "vendor_links": {
+      "homepage": "https://www.moonshot.cn",
+      "api_docs": "https://platform.moonshot.cn",
+      "console": "https://platform.moonshot.cn",
+      "huggingface": "https://huggingface.co/moonshotai",
+      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
+    },
+    "license": "MIT",
+    "cn_pricing": {
+      "input": 4.0,
+      "output": 21.0,
+      "source": "platform.kimi.com"
+    },
+    "openrouter_weekly_tokens": 168065575207,
+    "openrouter_pricing": {
+      "prompt": 0.38,
+      "completion": 2.02
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 12,
+        "score": 1513,
+        "votes": 5607
+      },
+      "vision": {
+        "rank": 30,
+        "score": 1247,
+        "votes": 19904
+      }
+    },
+    "arena_votes": 19904,
+    "data_completeness_pct": 100.0
+  },
+  {
+    "id": "glm-5-turbo",
+    "name": "GLM-5-Turbo",
+    "company": "Z AI",
+    "type": "闭源",
+    "logo": "/logos/z-ai.svg",
+    "scores": {
+      "intelligence": 38.0574061409517,
+      "coding": 36.766975308642,
+      "agentic": 66.1267582785957
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.847474747474747,
+      "hle": 0.253938832252085,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 200000,
+      "size_class": null,
+      "parameters": null,
+      "output_tokens": 131000,
+      "release_date": "2026-03-15",
+      "omniscience": -15.0833333333333
+    },
+    "url": "https://artificialanalysis.ai/models/glm-5-turbo",
+    "vendor_links": {
+      "homepage": "https://z.ai",
+      "api_docs": "https://open.bigmodel.cn",
+      "github": "https://github.com/zai-org",
+      "huggingface": "https://huggingface.co/zai-org",
+      "pricing_doc": "https://open.bigmodel.cn/pricing"
+    },
+    "license": null,
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 1.2,
+      "completion": 4.0
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 78.9
+  },
+  {
+    "id": "nemotron-3-ultra",
+    "name": "Nemotron 3 Ultra",
+    "company": "NVIDIA",
+    "type": "开源",
+    "logo": "/logos/nvidia.svg",
+    "scores": {
+      "intelligence": 37.7619546243905,
+      "coding": 37.5526094276094,
+      "agentic": 57.0647000199381
+    },
+    "speed": {
+      "median_tps": 169.658386617961,
+      "ttft_seconds": 14.496328184492203,
+      "e2e_seconds": 17.443426821743227,
+      "p05_tps": 65.6571278858922,
+      "p95_tps": 308.81713386102
+    },
+    "benchmarks": {
+      "gpqa": 0.866666666666667,
+      "hle": 0.265523632993513,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.675,
+      "output": 2.675,
+      "blended": 1.175,
+      "display": "$0.675/$2.675 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": "Large",
+      "parameters": 550,
+      "output_tokens": 262144,
+      "release_date": "2026-06-04",
+      "omniscience": -0.833333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+    "vendor_links": {
+      "homepage": "https://www.nvidia.com",
+      "api_docs": "https://docs.nvidia.com",
+      "console": "https://build.nvidia.com",
+      "github": "https://github.com/NVIDIA",
+      "huggingface": "https://huggingface.co/nvidia",
+      "pricing_doc": "https://build.nvidia.com/pricing"
+    },
+    "license": "NVIDIA Open License",
+    "openrouter_weekly_tokens": 85531499886,
+    "openrouter_pricing": {
+      "prompt": 0.5,
+      "completion": 2.2
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 85.0
+  },
+  {
+    "id": "grok-4-3",
+    "name": "Grok 4.3",
+    "company": "xAI",
+    "type": "闭源",
+    "logo": "/logos/xai.svg",
+    "scores": {
+      "intelligence": 37.5766393431307,
+      "coding": 41.0318462401796,
+      "agentic": 65.8880297791428
+    },
+    "speed": {
+      "median_tps": 164.734662011568,
+      "ttft_seconds": 13.6132473500001,
+      "e2e_seconds": 16.648431286971963,
+      "p05_tps": 82.6606851552208,
+      "p95_tps": 229.441800479951
+    },
+    "benchmarks": {
+      "gpqa": 0.901010101010101,
+      "hle": 0.35032437442076,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 1.25,
+      "output": 2.5,
+      "blended": 1.5625,
+      "display": "$1.25/$2.5 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 131072,
+      "release_date": "2026-04-30",
+      "omniscience": 18.3166666666667
+    },
+    "url": "https://artificialanalysis.ai/models/grok-4-3",
+    "vendor_links": {
+      "homepage": "https://x.ai",
+      "api_docs": "https://docs.x.ai",
+      "console": "https://console.x.ai",
+      "github": "https://github.com/xai-org",
+      "huggingface": "https://huggingface.co/xai-org",
+      "pricing_doc": "https://docs.x.ai/docs/models"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 88797729649,
+    "openrouter_pricing": {
+      "prompt": 1.25,
+      "completion": 2.5
+    },
+    "arena_rankings": {
+      "vision": {
+        "rank": 28,
+        "score": 1249,
+        "votes": 9992
+      }
+    },
+    "arena_votes": 9992,
+    "data_completeness_pct": 88.7
+  },
+  {
+    "id": "qwen3-6-27b",
+    "name": "Qwen3.6 27B",
+    "company": "Alibaba",
+    "type": "开源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 37.0516798775037,
+      "coding": 36.5039281705948,
+      "agentic": 62.8548249439456
+    },
+    "speed": {
+      "median_tps": 55.6158641418432,
+      "ttft_seconds": 105.85058084655657,
+      "e2e_seconds": 114.8408214499354,
+      "p05_tps": 41.7316632215495,
+      "p95_tps": 65.8008194184756
+    },
+    "benchmarks": {
+      "gpqa": 0.842424242424242,
+      "hle": 0.215940685820204,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.6,
+      "output": 3.6,
+      "blended": 1.35,
+      "display": "$0.6/$3.6 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": "Small",
+      "parameters": 27.8,
+      "output_tokens": 81920,
+      "release_date": "2026-04-22",
+      "omniscience": -19.7833333333333
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-6-27b",
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "license": "Apache 2.0",
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 36251907683,
+    "openrouter_pricing": {
+      "prompt": 0.29,
+      "completion": 3.17
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 85.0
+  },
+  {
+    "id": "grok-4-20-0309-v2",
+    "name": "Grok 4.20 0309 v2",
+    "company": "xAI",
+    "type": "闭源",
+    "logo": "/logos/xai.svg",
+    "scores": {
+      "intelligence": 37,
+      "coding": 40.4531425364759,
+      "agentic": 53.8572278392907
+    },
+    "speed": {
+      "median_tps": 132.880456653666,
+      "ttft_seconds": 18.015435107,
+      "e2e_seconds": 21.778215673770468,
+      "p05_tps": 88.7116472781976,
+      "p95_tps": 172.753761557846
+    },
+    "benchmarks": {
+      "gpqa": 0.911111111111111,
+      "hle": 0.322057460611678,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 2,
+      "output": 6,
+      "blended": 3.0,
+      "display": "$2/$6 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 2000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 131072,
+      "release_date": "2026-04-07",
+      "omniscience": 15.35
+    },
+    "url": "https://artificialanalysis.ai/models/grok-4-20",
+    "vendor_links": {
+      "homepage": "https://x.ai",
+      "api_docs": "https://docs.x.ai",
+      "console": "https://console.x.ai",
+      "github": "https://github.com/xai-org",
+      "huggingface": "https://huggingface.co/xai-org",
+      "pricing_doc": "https://docs.x.ai/docs/models"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 1.25,
+      "completion": 2.5
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 78.9
+  },
+  {
+    "id": "grok-4-20-0309",
+    "name": "Grok 4.20 0309",
+    "company": "xAI",
+    "type": "闭源",
+    "logo": "/logos/xai.svg",
+    "scores": {
+      "intelligence": 36.5,
+      "coding": 42.1647025813692,
+      "agentic": 50.883690027477
+    },
+    "speed": {
+      "median_tps": 127.729130673158,
+      "ttft_seconds": 16.2602410954999,
+      "e2e_seconds": 20.17477490125666,
+      "p05_tps": 86.8538189559978,
+      "p95_tps": 218.851863499684
+    },
+    "benchmarks": {
+      "gpqa": 0.884848484848485,
+      "hle": 0.300278035217794,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 2,
+      "output": 6,
+      "blended": 3.0,
+      "display": "$2/$6 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 2000000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 131072,
+      "release_date": "2026-03-10",
+      "omniscience": 13.3666666666667
+    },
+    "url": "https://artificialanalysis.ai/models/grok-4-20-0309",
+    "vendor_links": {
+      "homepage": "https://x.ai",
+      "api_docs": "https://docs.x.ai",
+      "console": "https://console.x.ai",
+      "github": "https://github.com/xai-org",
+      "huggingface": "https://huggingface.co/xai-org",
+      "pricing_doc": "https://docs.x.ai/docs/models"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 1.25,
+      "completion": 2.5
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 78.9
+  },
+  {
+    "id": "mimo-v2-omni-0327",
+    "name": "MiMo-V2-Omni-0327",
+    "company": "Xiaomi",
+    "type": "闭源",
+    "logo": "/logos/xiaomi.svg",
+    "scores": {
+      "intelligence": 36.390250149454,
+      "coding": 36.8932379349046,
+      "agentic": 58.6321532931964
+    },
+    "speed": {
+      "median_tps": 74.7858420178131,
+      "ttft_seconds": 29.5761964802619,
+      "e2e_seconds": 36.26195392457744,
+      "p05_tps": 62.127464345534,
+      "p95_tps": 89.6083518666303
+    },
+    "benchmarks": {
+      "gpqa": 0.854545454545455,
+      "hle": 0.204355885078777,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.4,
+      "output": 2,
+      "blended": 0.8,
+      "display": "$0.4/$2 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Medium",
+      "parameters": null,
+      "output_tokens": 131072,
+      "release_date": "2026-03-27",
+      "omniscience": -14.0166666666667
+    },
+    "url": "https://artificialanalysis.ai/models/mimo-v2-omni-0327",
+    "vendor_links": {
+      "homepage": "https://huggingface.co/XiaomiMiMo",
+      "huggingface": "https://huggingface.co/XiaomiMiMo",
+      "pricing_doc": "小米开放平台控制台（需登录）",
+      "pricing_note": "2026-05-02 登录实测"
+    },
+    "license": null,
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.14,
+      "completion": 0.28
+    },
+    "arena_rankings": {
+      "vision": {
+        "rank": 38,
+        "score": 1237,
+        "votes": 13813
+      }
+    },
+    "arena_votes": 10216,
+    "data_completeness_pct": 86.5
+  },
+  {
+    "id": "kat-coder-pro-v2",
+    "name": "KAT-Coder-Pro V2",
+    "company": "KwaiKAT",
+    "type": "闭源",
+    "logo": "/logos/kwaikat.svg",
+    "scores": {
+      "intelligence": 35.387251233418,
+      "coding": 45.5983445566779,
+      "agentic": 50.6777451579024
+    },
+    "speed": {
+      "median_tps": 108.66287394304,
+      "ttft_seconds": 1.18522650250042,
+      "e2e_seconds": 5.7866140956731815,
+      "p05_tps": 92.4903384369746,
+      "p95_tps": 120.53671235495
+    },
+    "benchmarks": {
+      "gpqa": 0.854545454545454,
+      "hle": 0.159870250231696,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 1.2,
+      "blended": 0.525,
+      "display": "$0.3/$1.2 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Medium",
+      "parameters": null,
+      "output_tokens": 80000,
+      "release_date": "2026-03-27",
+      "omniscience": -21.6
+    },
+    "url": "https://artificialanalysis.ai/models/kat-coder-pro-v2",
+    "vendor_links": {},
+    "license": null,
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 3161099381,
+    "openrouter_pricing": {
+      "prompt": 0.3,
+      "completion": 1.2
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 77.4
+  },
+  {
+    "id": "mimo-v2-omni",
+    "name": "MiMo-V2-Omni",
+    "company": "Xiaomi",
+    "type": "闭源",
+    "logo": "/logos/xiaomi.svg",
+    "scores": {
+      "intelligence": 34.9910417939545,
+      "coding": 35.4622615039282,
+      "agentic": 58.5619269235444
+    },
+    "speed": {
+      "median_tps": 73.4442834823053,
+      "ttft_seconds": 30.097239379619964,
+      "e2e_seconds": 36.905121168274945,
+      "p05_tps": 61.6187678596135,
+      "p95_tps": 99.8942139102292
+    },
+    "benchmarks": {
+      "gpqa": 0.828282828282828,
+      "hle": 0.199258572752549,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": null,
+      "parameters": null,
+      "output_tokens": 131072,
+      "release_date": "2026-03-19",
+      "omniscience": -17.4333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/mimo-v2-omni",
+    "vendor_links": {
+      "homepage": "https://huggingface.co/XiaomiMiMo",
+      "huggingface": "https://huggingface.co/XiaomiMiMo",
+      "pricing_doc": "小米开放平台控制台（需登录）",
+      "pricing_note": "2026-05-02 登录实测"
+    },
+    "license": null,
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.14,
+      "completion": 0.28
+    },
+    "arena_rankings": {
+      "vision": {
+        "rank": 38,
+        "score": 1237,
+        "votes": 13813
+      }
+    },
+    "arena_votes": 10216,
+    "data_completeness_pct": 86.5
+  },
+  {
+    "id": "glm-5v-turbo",
+    "name": "GLM 5V Turbo",
+    "company": "Z AI",
+    "type": "闭源",
+    "logo": "/logos/z-ai.svg",
+    "scores": {
+      "intelligence": 34.4926006493217,
+      "coding": 36.2233445566779,
+      "agentic": 61.0657924284304
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.809090909090909,
+      "hle": 0.158480074142725,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 200000,
+      "size_class": null,
+      "parameters": null,
+      "output_tokens": 131100,
+      "release_date": "2026-04-01",
+      "omniscience": -18.9833333333333
+    },
+    "url": "https://artificialanalysis.ai/models/glm-5v-turbo",
+    "vendor_links": {
+      "homepage": "https://z.ai",
+      "api_docs": "https://open.bigmodel.cn",
+      "github": "https://github.com/zai-org",
+      "huggingface": "https://huggingface.co/zai-org",
+      "pricing_doc": "https://open.bigmodel.cn/pricing"
+    },
+    "license": null,
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.6,
+      "completion": 1.8
+    },
+    "arena_rankings": {
+      "vision": {
+        "rank": 40,
+        "score": 1232,
+        "votes": 16521
+      }
+    },
+    "arena_votes": 16521,
+    "data_completeness_pct": 86.5
+  },
+  {
+    "id": "hy3-preview",
+    "name": "Hy3-preview",
+    "company": "Tencent",
+    "type": "开源",
+    "logo": "/logos/tencent.svg",
+    "scores": {
+      "intelligence": 33.578853562193,
+      "coding": 36.4618406285073,
+      "agentic": 55.6654097734737
+    },
+    "speed": {
+      "median_tps": 124.464432754569,
+      "ttft_seconds": 19.77208026851761,
+      "e2e_seconds": 23.789292165397004,
+      "p05_tps": 56.3898097790147,
+      "p95_tps": 183.683552386019
+    },
+    "benchmarks": {
+      "gpqa": 0.866666666666667,
+      "hle": 0.255329008341057,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.123,
+      "output": 0.43,
+      "blended": 0.1997,
+      "display": "¥3.975/¥15.9 (≤32K)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "parameters": 295,
+      "output_tokens": 256000,
+      "release_date": "2026-04-23",
+      "omniscience": -34.6333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/hy3",
+    "vendor_links": {
+      "homepage": "https://cloud.tencent.com",
+      "api_docs": "https://cloud.tencent.com/document/product/1772",
+      "console": "https://console.cloud.tencent.com",
+      "pricing_doc": "https://cloud.tencent.com/document/product/1772/115963"
+    },
+    "license": "Tencent License",
+    "cn_pricing": {
+      "input": 3.975,
+      "output": 15.9,
+      "source": "cloud.tencent.com/doc/1729/97731"
+    },
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.07,
+      "completion": 0.26
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 90.2
+  },
+  {
+    "id": "gpt-5-5-instant",
+    "name": "GPT-5.5 Instant",
+    "company": "OpenAI",
+    "type": "闭源",
+    "logo": "/logos/openai.svg",
+    "scores": {
+      "intelligence": 33.5183896507769,
+      "coding": 45.0652356902357,
+      "agentic": 38.0771548704135
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.846464646464646,
+      "hle": 0.202965708989805,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 5,
+      "output": 30,
+      "blended": 11.25,
+      "display": "$5/$30 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 400000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-05-05",
+      "omniscience": 10.3333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/gpt-5-5-instant-05-26",
+    "vendor_links": {
+      "homepage": "https://openai.com",
+      "api_docs": "https://platform.openai.com/docs",
+      "console": "https://platform.openai.com",
+      "github": "https://github.com/openai",
+      "pricing_doc": "https://openai.com/api/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 5.0,
+      "completion": 30.0
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 22,
+        "score": 1473,
+        "votes": 26254
+      },
+      "vision": {
+        "rank": 16,
+        "score": 1276,
+        "votes": 7319
+      }
+    },
+    "arena_votes": 26254,
+    "data_completeness_pct": 86.5
+  },
+  {
+    "id": "qwen3-6-35b-a3b",
+    "name": "Qwen3.6 35B A3B",
+    "company": "Alibaba",
+    "type": "开源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 33,
+      "coding": 35.1536195286195,
+      "agentic": 58.3372775083472
+    },
+    "speed": {
+      "median_tps": 164.38398489185,
+      "ttft_seconds": 35.21381978104147,
+      "e2e_seconds": 38.25547861617043,
+      "p05_tps": 143.390134498237,
+      "p95_tps": 201.284813515301
+    },
+    "benchmarks": {
+      "gpqa": 0.841414141414142,
+      "hle": 0.201575532900834,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.248,
+      "output": 1.485,
+      "blended": 0.5573,
+      "display": "$0.248/$1.485 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": "Small",
+      "parameters": 36,
+      "output_tokens": 65536,
+      "release_date": "2026-04-16",
+      "omniscience": -21.4333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "license": "Apache 2.0",
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 46067854030,
+    "openrouter_pricing": {
+      "prompt": 0.15,
+      "completion": 1.0
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 85.0
+  },
+  {
+    "id": "qwen3-max-thinking",
+    "name": "Qwen3 Max Thinking",
+    "company": "Alibaba",
+    "type": "闭源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 31.7491243522325,
+      "coding": 30.513468013468,
+      "agentic": 50.1296390792743
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.860606060606061,
+      "hle": 0.261816496756256,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 1.2,
+      "output": 6,
+      "blended": 2.4,
+      "display": "¥2.5/¥10 (≤32K)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 32000,
+      "release_date": "2026-01-26",
+      "omniscience": -34.4166666666667
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-max-thinking",
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "api_docs": "https://dashscope.aliyun.com",
+      "console": "https://bailian.aliyun.com",
+      "github": "https://github.com/QwenLM",
+      "huggingface": "https://huggingface.co/Qwen",
+      "pricing_doc": "https://bailian.console.aliyun.com"
+    },
+    "license": null,
+    "cn_pricing": {
+      "input": 2.5,
+      "output": 10,
+      "source": "bailian.console.aliyun.com"
+    },
+    "openrouter_weekly_tokens": 589676876,
+    "openrouter_pricing": {
+      "prompt": 0.78,
+      "completion": 3.9
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 17,
+        "score": 1475,
+        "votes": 3740
+      }
+    },
+    "arena_votes": null,
+    "data_completeness_pct": 96.2
+  },
+  {
+    "id": "ring-2-6-1t",
+    "name": "Ring-2.6-1T",
+    "company": "InclusionAI",
+    "type": "开源",
+    "logo": "/logos/inclusionai.svg",
+    "scores": {
+      "intelligence": 30.5727263188268,
+      "coding": 33.3122895622896,
+      "agentic": 51.5100263514655
+    },
+    "speed": {
+      "median_tps": 128.282028837646,
+      "ttft_seconds": 18.840389661393935,
+      "e2e_seconds": 22.738051746492395,
+      "p05_tps": 120.87124429911,
+      "p95_tps": 146.626969707837
+    },
+    "benchmarks": {
+      "gpqa": 0.856565656565657,
+      "hle": 0.182576459684893,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 2.5,
+      "blended": 0.85,
+      "display": "¥0/¥0"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": "Large",
+      "parameters": 1000,
+      "output_tokens": 65536,
+      "release_date": "2026-05-08",
+      "omniscience": -37.75
+    },
+    "url": "https://artificialanalysis.ai/models/ring-2-6-1t",
+    "vendor_links": {
+      "homepage": "https://www.inclusion-ai.org",
+      "huggingface": "https://huggingface.co/inclusionAI"
+    },
+    "license": "Apache 2.0",
+    "cn_pricing": {
+      "input": 0,
+      "output": 0,
+      "source": "开源可自部署"
+    },
+    "openrouter_weekly_tokens": 23844252834,
+    "openrouter_pricing": {
+      "prompt": 0.07,
+      "completion": 0.62
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 92.5
+  },
+  {
+    "id": "step-3-7-flash",
+    "name": "Step 3.7 Flash",
+    "company": "StepFun",
+    "type": "开源",
+    "logo": "/logos/stepfun.svg",
+    "scores": {
+      "intelligence": 29.7283976225226,
+      "coding": 37.0861391694725,
+      "agentic": 59.5263667488411
+    },
+    "speed": {
+      "median_tps": 363.344853907316,
+      "ttft_seconds": 6.478774847537863,
+      "e2e_seconds": 7.854878003047374,
+      "p05_tps": 268.344313957551,
+      "p95_tps": 436.525754758044
+    },
+    "benchmarks": {
+      "gpqa": 0.809090909090909,
+      "hle": 0.199258572752549,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.2,
+      "output": 1.15,
+      "blended": 0.4375,
+      "display": "¥1.5/¥8 (估算)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "parameters": 198,
+      "output_tokens": 256000,
+      "release_date": "2026-05-29",
+      "omniscience": -37.55
+    },
+    "url": "https://artificialanalysis.ai/models/step-3-7-flash",
+    "vendor_links": {
+      "homepage": "https://www.stepfun.com",
+      "api_docs": "https://platform.stepfun.com/docs",
+      "console": "https://platform.stepfun.com",
+      "huggingface": "https://huggingface.co/stepfun-ai",
+      "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details"
+    },
+    "license": "StepFun License",
+    "cn_pricing": {
+      "input": 1.5,
+      "output": 8,
+      "source": "OR (无国内官价, ¥按$×7折算)"
+    },
+    "openrouter_weekly_tokens": 646200665348,
+    "openrouter_pricing": {
+      "prompt": 0.2,
+      "completion": 1.15
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 92.5
+  },
+  {
+    "id": "command-a",
+    "name": "Command A+",
+    "company": "Cohere",
+    "type": "开源",
+    "logo": "/logos/cohere.svg",
+    "scores": {
+      "intelligence": 29.2913824199774,
+      "coding": 29.2824074074074,
+      "agentic": 40.9029269938621
+    },
+    "speed": {
+      "median_tps": 195.734257078483,
+      "ttft_seconds": 10.606074483635666,
+      "e2e_seconds": 13.160558340794694,
+      "p05_tps": 140.805497854364,
+      "p95_tps": 217.151811931353
+    },
+    "benchmarks": {
+      "gpqa": 0.760606060606061,
+      "hle": 0.113531047265987,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 192000,
+      "size_class": "Large",
+      "parameters": 218,
+      "output_tokens": 65536,
+      "release_date": "2026-05-20",
+      "omniscience": -3.98333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/command-a-plus",
+    "vendor_links": {
+      "homepage": "https://cohere.com",
+      "api_docs": "https://docs.cohere.com",
+      "console": "https://dashboard.cohere.com",
+      "github": "https://github.com/cohere-ai",
+      "huggingface": "https://huggingface.co/CohereForAI",
+      "pricing_doc": "https://cohere.com/pricing"
+    },
+    "license": "CC-BY-NC",
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 2.5,
+      "completion": 10.0
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 82.7
+  },
+  {
+    "id": "ling-2-6-1t",
+    "name": "Ling-2.6-1T",
+    "company": "InclusionAI",
+    "type": "开源",
+    "logo": "/logos/inclusionai.svg",
+    "scores": {
+      "intelligence": 26.0516751710776,
+      "coding": 33.0527497194164,
+      "agentic": 48.2096467905633
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.751515151515151,
+      "hle": 0.082483781278962,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 2.5,
+      "blended": 0.85,
+      "display": "¥2.16/¥18.0 (估算)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": "Large",
+      "parameters": 1026,
+      "output_tokens": 32768,
+      "release_date": "2026-04-23",
+      "omniscience": -51
+    },
+    "url": "https://artificialanalysis.ai/models/ling-2-6-1t",
+    "vendor_links": {
+      "homepage": "https://www.inclusion-ai.org",
+      "huggingface": "https://huggingface.co/inclusionAI"
+    },
+    "license": "Apache 2.0",
+    "cn_pricing": {
+      "input": 2.16,
+      "output": 18.0,
+      "source": "AA (无国内官价, ¥按$×7.2折算)"
+    },
+    "openrouter_weekly_tokens": 2543406854,
+    "openrouter_pricing": {
+      "prompt": 0.07,
+      "completion": 0.62
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 92.5
+  },
+  {
+    "id": "step-3-5-flash",
+    "name": "Step 3.5 Flash",
+    "company": "StepFun",
+    "type": "开源",
+    "logo": "/logos/stepfun.svg",
+    "scores": {
+      "intelligence": 25.5,
+      "coding": 31.6400604031293,
+      "agentic": 52.0038785700216
+    },
+    "speed": {
+      "median_tps": 198.60309401294,
+      "ttft_seconds": 11.29961374221201,
+      "e2e_seconds": 13.81719788401507,
+      "p05_tps": 130.65292319752,
+      "p95_tps": 242.237964477572
+    },
+    "benchmarks": {
+      "gpqa": 0.831313131313131,
+      "hle": 0.191380908248378,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.1,
+      "output": 0.3,
+      "blended": 0.15,
+      "display": "¥0.7/¥2.1"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "parameters": 196,
+      "output_tokens": 250000,
+      "release_date": "2026-02-02",
+      "omniscience": -40.9
+    },
+    "url": "https://artificialanalysis.ai/models/step-3-5-flash-0202",
+    "vendor_links": {
+      "homepage": "https://www.stepfun.com",
+      "api_docs": "https://platform.stepfun.com/docs",
+      "console": "https://platform.stepfun.com",
+      "huggingface": "https://huggingface.co/stepfun-ai",
+      "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details"
+    },
+    "license": "StepFun License",
+    "cn_pricing": {
+      "input": 0.7,
+      "output": 2.1,
+      "source": "platform.stepfun.com/docs"
+    },
+    "openrouter_weekly_tokens": 17751634640,
+    "openrouter_pricing": {
+      "prompt": 0.09,
+      "completion": 0.3
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 92.5
+  },
+  {
+    "id": "k-exaone",
+    "name": "K-EXAONE",
+    "company": "LG AI Research",
+    "type": "开源",
+    "logo": "/logos/lg-ai-research.svg",
+    "scores": {
+      "intelligence": 24.6957602344937,
+      "coding": 27.0342312008979,
+      "agentic": 38.140512441246
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": 0.782828282828283,
+      "hle": 0.130676552363299,
+      "mmlu_pro": 0.837516622340426
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "Large",
+      "parameters": 236,
+      "output_tokens": 130000,
+      "release_date": "2025-12-31",
+      "omniscience": -57.9333333333333
+    },
+    "url": "https://artificialanalysis.ai/models/k-exaone",
+    "vendor_links": {
+      "homepage": "https://www.lgresearch.ai",
+      "huggingface": "https://huggingface.co/lgresearch"
+    },
+    "license": "EXAONE License",
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": null,
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 78.9
+  },
+  {
+    "id": "trinity-large-thinking",
+    "name": "Trinity Large Thinking",
+    "company": "Arcee AI",
+    "type": "开源",
+    "logo": "/logos/arcee-ai.svg",
+    "scores": {
+      "intelligence": 24.4651372124901,
+      "coding": 27.1885521885522,
+      "agentic": 42.6071412068343
+    },
+    "speed": {
+      "median_tps": 193.538875712021,
+      "ttft_seconds": 11.394349664052536,
+      "e2e_seconds": 13.977809954190743,
+      "p05_tps": 119.474642832458,
+      "p95_tps": 316.249752653824
+    },
+    "benchmarks": {
+      "gpqa": 0.751515151515151,
+      "hle": 0.146895273401297,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0.235,
+      "output": 0.875,
+      "blended": 0.395,
+      "display": "$0.235/$0.875 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": true,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true
+    },
+    "meta": {
+      "context_window": 512000,
+      "size_class": "Large",
+      "parameters": 399,
+      "output_tokens": 80000,
+      "release_date": "2026-04-01",
+      "omniscience": -44.1833333333333
+    },
+    "url": "https://artificialanalysis.ai/models/trinity-large-thinking",
+    "vendor_links": {
+      "homepage": "https://arcee.ai",
+      "api_docs": "https://docs.arcee.ai",
+      "github": "https://github.com/arcee-ai",
+      "huggingface": "https://huggingface.co/arcee-ai",
+      "pricing_doc": "https://arcee.ai/pricing"
+    },
+    "license": "Apache 2.0",
+    "openrouter_weekly_tokens": 2743686625,
+    "openrouter_pricing": {
+      "prompt": 0.22,
+      "completion": 0.85
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 85.0
+  },
+  {
+    "id": "gpt-5-5-pro",
+    "name": "GPT-5.5 Pro",
+    "company": "OpenAI",
+    "type": "闭源",
+    "logo": "/logos/openai.svg",
+    "scores": {
+      "intelligence": null,
+      "coding": null,
+      "agentic": null
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": null,
+      "hle": null,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": null,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": false
+    },
+    "meta": {
+      "context_window": 922000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-04-23",
+      "omniscience": null
+    },
+    "url": "https://artificialanalysis.ai/models/gpt-5-5-pro",
+    "vendor_links": {
+      "homepage": "https://openai.com",
+      "api_docs": "https://platform.openai.com/docs",
+      "console": "https://platform.openai.com",
+      "github": "https://github.com/openai",
+      "pricing_doc": "https://openai.com/api/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 3165602819,
+    "openrouter_pricing": {
+      "prompt": 30.0,
+      "completion": 180.0
+    },
+    "arena_rankings": {},
+    "arena_votes": 29071,
+    "data_completeness_pct": 58.6
+  },
+  {
+    "id": "gpt-5-4-pro",
+    "name": "GPT-5.4 Pro",
+    "company": "OpenAI",
+    "type": "闭源",
+    "logo": "/logos/openai.svg",
+    "scores": {
+      "intelligence": null,
+      "coding": null,
+      "agentic": null
+    },
+    "speed": {
+      "median_tps": 0,
+      "ttft_seconds": 0,
+      "e2e_seconds": 0,
+      "p05_tps": 0,
+      "p95_tps": 0
+    },
+    "benchmarks": {
+      "gpqa": null,
+      "hle": null,
+      "mmlu_pro": null
+    },
+    "pricing": {
+      "input": 30,
+      "output": 180,
+      "blended": 67.5,
+      "display": "$30/$180 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": null,
+      "open_weights": false,
+      "reasoning": true,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": false
+    },
+    "meta": {
+      "context_window": 1050000,
+      "size_class": "Large",
+      "parameters": null,
+      "output_tokens": 128000,
+      "release_date": "2026-03-05",
+      "omniscience": null
+    },
+    "url": "https://artificialanalysis.ai/models/gpt-5-4-pro",
+    "vendor_links": {
+      "homepage": "https://openai.com",
+      "api_docs": "https://platform.openai.com/docs",
+      "console": "https://platform.openai.com",
+      "github": "https://github.com/openai",
+      "pricing_doc": "https://openai.com/api/pricing"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 156756434,
+    "openrouter_pricing": {
+      "prompt": 30.0,
+      "completion": 180.0
+    },
+    "arena_rankings": {},
+    "arena_votes": 43382,
+    "data_completeness_pct": 58.6
+  }
+]
