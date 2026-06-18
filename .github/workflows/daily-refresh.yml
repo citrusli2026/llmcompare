@@ -24,10 +24,12 @@ jobs:
         with:
           node-version: '24'
           cache: 'npm'
-          cache-dependency-path: package-lock.json
+          cache-dependency-path: app/package-lock.json
 
       - name: Install app dependencies
-        run: npm ci
+        run: |
+          cd app
+          npm ci
 
       - name: Run data pipeline
         run: |
@@ -39,7 +41,7 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet src/data/ranking.json 2>/dev/null; then
+          if git diff --quiet app/src/data/ranking.json 2>/dev/null; then
             echo "has_changes=false" >> "$GITHUB_OUTPUT"
           else
             echo "has_changes=true" >> "$GITHUB_OUTPUT"
@@ -55,7 +57,7 @@ jobs:
           git config user.name "llmcompare-bot"
           git config user.email "bot@llmcompare.cc"
           git checkout -b "$BRANCH"
-          git add src/data/ranking.json
+          git add app/src/data/ranking.json
           git commit -m "data: refresh ranking ${DATE}"
           git push origin "$BRANCH"
           gh pr create --base main --head "$BRANCH" \
