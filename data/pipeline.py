@@ -266,10 +266,17 @@ else:
 
 # 5d. 数据质量验证
 print("  Validation: python3.11 scripts/validate-data.py")
-out, rc = run("python3.11 scripts/validate-data.py", cwd=str(APP / "app"), exit_on_error=False)
+import subprocess as _sp
+_val = _sp.run("python3.11 scripts/validate-data.py", shell=True, cwd=str(APP / "app"),
+               capture_output=True, text=True, timeout=300)
+out = _val.stdout.strip()
+rc = _val.returncode
 if rc != 0:
     fail("数据质量验证失败")
-    print(out)  # 完整输出，不截断
+    print(out)
+    if _val.stderr.strip():
+        print("--- STDERR ---")
+        print(_val.stderr.strip())
     all_passed = False
 else:
     ok("数据质量验证通过")
