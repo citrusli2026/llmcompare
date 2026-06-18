@@ -21,33 +21,48 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
+          cache-dependency-path: app/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          cd app
+          npm ci
 
       - name: Lint
-        run: npm run lint
+        run: |
+          cd app
+          npm run lint
 
       - name: Security audit
-        run: npm audit --audit-level=high || true
+        run: |
+          cd app
+          npm audit --audit-level=high || true
 
       - name: Unit & Integration Tests
-        run: npm test -- --run
+        run: |
+          cd app
+          npm test -- --run
 
       - name: Data Quality Validation
-        run: python3 scripts/validate-data.py
+        run: |
+          cd app
+          python3 scripts/validate-data.py
 
       - name: Data Validation Unit Tests
-        run: python3 scripts/test_validate_data.py
+        run: |
+          cd app
+          python3 scripts/test_validate_data.py
 
       - name: Build
-        run: npm run build
+        run: |
+          cd app
+          npm run build
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist/
+          path: app/dist/
           retention-days: 1
 
   e2e:
@@ -61,28 +76,35 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
+          cache-dependency-path: app/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          cd app
+          npm ci
 
       - name: Install Playwright
-        run: npx playwright install --with-deps chromium
+        run: |
+          cd app
+          npx playwright install --with-deps chromium
 
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: dist/
+          path: app/dist/
 
       - name: Run E2E tests
-        run: npx playwright test
+        run: |
+          cd app
+          npx playwright test
 
       - name: Upload screenshots
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: e2e-screenshots
-          path: e2e/screenshots/
+          path: app/e2e/screenshots/
 
   lighthouse:
     runs-on: ubuntu-latest
@@ -95,18 +117,22 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
+          cache-dependency-path: app/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          cd app
+          npm ci
 
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: dist/
+          path: app/dist/
 
       - name: Run Lighthouse CI
         run: |
+          cd app
           npm install -g @lhci/cli@0.14.x
           lhci autorun || echo "Lighthouse completed with warnings"
         env:
@@ -117,4 +143,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: lighthouse-reports
-          path: .lighthouseci/
+          path: app/.lighthouseci/
