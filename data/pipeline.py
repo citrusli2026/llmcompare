@@ -266,17 +266,10 @@ else:
 
 # 5d. 数据质量验证
 print("  Validation: python3.11 scripts/validate-data.py")
-import subprocess as _sp
-_val = _sp.run("python3.11 scripts/validate-data.py", shell=True, cwd=str(APP / "app"),
-               capture_output=True, text=True, timeout=300)
-out = _val.stdout.strip()
-rc = _val.returncode
+out, rc = run("python3.11 scripts/validate-data.py", cwd=str(APP / "app"), exit_on_error=False)
 if rc != 0:
     fail("数据质量验证失败")
-    print(out)
-    if _val.stderr.strip():
-        print("--- STDERR ---")
-        print(_val.stderr.strip())
+    print(out[-2000:])
     all_passed = False
 else:
     ok("数据质量验证通过")
@@ -292,13 +285,9 @@ if not all_passed:
 # ══════════════════════════════════════════════
 step("Phase 6: 提交 PR")
 
-# GitHub Actions 环境下跳过 PR 创建（由 workflow 自己处理 commit/push）
-if os.environ.get("GITHUB_ACTIONS"):
-    warn("GitHub Actions 环境，跳过 PR 创建（由 workflow 处理）")
-else:
-    run("git add -A", cwd=str(APP / "app"))
-    run('git commit -m "data: 刷新模型排名数据（' + TODAY + '）"', cwd=str(APP / "app"))
-    run("git push -u origin " + BRANCH, cwd=str(APP / "app"))
+run("git add -A", cwd=str(APP / "app"))
+run('git commit -m "data: 刷新模型排名数据（' + TODAY + '）"', cwd=str(APP / "app"))
+run("git push -u origin " + BRANCH, cwd=str(APP / "app"))
 
 # 从 diff 中提取关键指标
 diff_text = diff_content or "（无变化摘要）"
