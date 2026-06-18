@@ -234,9 +234,10 @@ def check_ranking_consistency(models):
 
     # frontier 模型 intelligence 应 >= 30
     for m in models:
-        if m["flags"].get("frontier") and m["scores"]["intelligence"] < 30:
+        intel = m.get("scores", {}).get("intelligence")
+        if m["flags"].get("frontier") and intel is not None and intel < 30:
             issues.append(
-                f"{m['id']}: frontier=true but intelligence={m['scores']['intelligence']:.1f} < 30"
+                f"{m['id']}: frontier=true but intelligence={intel:.1f} < 30"
             )
 
     # 国际模型不应有国内定价（改为警告，因为我们现在主动为国际模型添加人民币参考价）
@@ -323,14 +324,14 @@ def check_against_previous(current, previous):
                 f"model count changed {prev_count} -> {curr_count} ({change*100:.0f}%), threshold={MAX_CHANGE_RATIO*100:.0f}%"
             )
 
-    # Top3 排名剧烈变化检查（所有模型参与）
+    # Top3 排名剧烈变化检查（只看有 intelligence 分数的模型）
     curr_sorted = sorted(
-        current,
+        [m for m in current if m.get("scores", {}).get("intelligence") is not None],
         key=lambda x: x["scores"]["intelligence"],
         reverse=True,
     )
     prev_sorted = sorted(
-        previous,
+        [m for m in previous if m.get("scores", {}).get("intelligence") is not None],
         key=lambda x: x["scores"]["intelligence"],
         reverse=True,
     )
