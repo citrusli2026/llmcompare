@@ -184,15 +184,15 @@ if diff_content:
 step("Phase 4: 同步到前端")
 
 # ranking.json
-run("cp 4-final/ranking.json ../src/data/ranking.json", cwd=str(DATA))
+run("cp 4-final/ranking.json ../app/src/data/ranking.json", cwd=str(DATA))
 
 # 验证 cp
 src_count, _ = run('python3.11 -c "import json;print(len(json.load(open(\'4-final/ranking.json\'))))"', cwd=str(DATA))
-dst_count, _ = run('python3.11 -c "import json;print(len(json.load(open(\'src/data/ranking.json\'))))"', cwd=str(APP))
+dst_count, _ = run('python3.11 -c "import json;print(len(json.load(open(\'src/data/ranking.json\'))))"', cwd=str(APP / "app"))
 if src_count != dst_count:
     warn(f"cp 不完整! data/={src_count} app/={dst_count}，重试...")
-    run("cp 4-final/ranking.json ../src/data/ranking.json", cwd=str(DATA))
-    dst_count, _ = run('python3.11 -c "import json;print(len(json.load(open(\'src/data/ranking.json\'))))"', cwd=str(APP))
+    run("cp 4-final/ranking.json ../app/src/data/ranking.json", cwd=str(DATA))
+    dst_count, _ = run('python3.11 -c "import json;print(len(json.load(open(\'src/data/ranking.json\'))))"', cwd=str(APP / "app"))
 ok(f"ranking.json: {src_count} 模型 → app/({dst_count})")
 
 # 日期文案 - 使用整行替换避免累积
@@ -208,8 +208,8 @@ def sed_replace(filepath, pattern, replacement):
     content = re.sub(pattern, replacement, content)
     p.write_text(content)
 
-zh_json = str(APP / "src/messages/zh.json")
-en_json = str(APP / "src/messages/en.json")
+zh_json = str(APP / "app" / "src/messages/zh.json")
+en_json = str(APP / "app" / "src/messages/en.json")
 
 # zh.json — 替换整个 badge 值
 sed_replace(zh_json, r'"badge": "[^"]*"', f'"badge": "{today_cn}最新数据"')
@@ -236,7 +236,7 @@ all_passed = True
 
 # 5a. 测试
 print("  Test: npm test -- --run")
-out, rc = run("npm test -- --run", cwd=str(APP), exit_on_error=False)
+out, rc = run("npm test -- --run", cwd=str(APP / "app"), exit_on_error=False)
 if rc != 0:
     fail(f"测试失败 ({rc})")
     print(out[-500:])
@@ -246,7 +246,7 @@ else:
 
 # 5b. 构建
 print("  Build: npm run build")
-out, rc = run("npm run build", cwd=str(APP), exit_on_error=False)
+out, rc = run("npm run build", cwd=str(APP / "app"), exit_on_error=False)
 if rc != 0:
     fail(f"构建失败 ({rc})")
     print(out[-500:])
@@ -256,7 +256,7 @@ else:
 
 # 5c. Lint
 print("  Lint: npm run lint")
-out, rc = run("npm run lint", cwd=str(APP), exit_on_error=False)
+out, rc = run("npm run lint", cwd=str(APP / "app"), exit_on_error=False)
 if rc != 0:
     fail(f"Lint 失败 ({rc})")
     print(out[-500:])
@@ -266,7 +266,7 @@ else:
 
 # 5d. 数据质量验证
 print("  Validation: python3.11 scripts/validate-data.py")
-out, rc = run("python3.11 scripts/validate-data.py", cwd=str(APP), exit_on_error=False)
+out, rc = run("python3.11 scripts/validate-data.py", cwd=str(APP / "app"), exit_on_error=False)
 if rc != 0:
     fail("数据质量验证失败")
     print(out[-500:])
@@ -289,9 +289,9 @@ step("Phase 6: 提交 PR")
 if os.environ.get("GITHUB_ACTIONS"):
     warn("GitHub Actions 环境，跳过 PR 创建（由 workflow 处理）")
 else:
-    run("git add -A", cwd=str(APP))
-    run('git commit -m "data: 刷新模型排名数据（' + TODAY + '）"', cwd=str(APP))
-    run("git push -u origin " + BRANCH, cwd=str(APP))
+    run("git add -A", cwd=str(APP / "app"))
+    run('git commit -m "data: 刷新模型排名数据（' + TODAY + '）"', cwd=str(APP / "app"))
+    run("git push -u origin " + BRANCH, cwd=str(APP / "app"))
 
 # 从 diff 中提取关键指标
 diff_text = diff_content or "（无变化摘要）"
