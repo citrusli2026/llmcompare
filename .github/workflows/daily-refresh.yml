@@ -32,38 +32,13 @@ jobs:
           npm ci
 
       - name: Run data pipeline
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "llmcompare-bot"
           git config --global user.email "bot@llmcompare.cc"
           cd data
           python3.11 pipeline.py --cache-hours 0
-
-      - name: Check for changes
-        id: changes
-        run: |
-          if git diff --quiet app/src/data/ranking.json 2>/dev/null; then
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_changes=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Create PR
-        if: steps.changes.outputs.has_changes == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          DATE=$(date +%Y-%m-%d)
-          BRANCH="data/refresh-${DATE}"
-          git config user.name "llmcompare-bot"
-          git config user.email "bot@llmcompare.cc"
-          git checkout -b "$BRANCH"
-          git add app/src/data/ranking.json
-          git commit -m "data: refresh ranking ${DATE}"
-          git push origin "$BRANCH"
-          gh pr create --base main --head "$BRANCH" \
-            --title "data: refresh ranking ${DATE}" \
-            --body "Automated data refresh for ${DATE}" \
-            --label "data-refresh" || true
 
       - name: Summary
         if: always()
@@ -71,4 +46,3 @@ jobs:
           echo "## 📊 Data Refresh Report" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "- **Time:** $(date -u)" >> "$GITHUB_STEP_SUMMARY"
-          echo "- **Changes:** ${{ steps.changes.outputs.has_changes }}" >> "$GITHUB_STEP_SUMMARY"
