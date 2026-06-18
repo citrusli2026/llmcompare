@@ -239,7 +239,7 @@ print("  Test: npm test -- --run")
 out, rc = run("npm test -- --run", cwd=str(APP / "app"), exit_on_error=False)
 if rc != 0:
     fail(f"测试失败 ({rc})")
-    print(out[-500:])
+    print(out[-2000:])
     all_passed = False
 else:
     ok("测试通过")
@@ -249,7 +249,7 @@ print("  Build: npm run build")
 out, rc = run("npm run build", cwd=str(APP / "app"), exit_on_error=False)
 if rc != 0:
     fail(f"构建失败 ({rc})")
-    print(out[-500:])
+    print(out[-2000:])
     all_passed = False
 else:
     ok("构建成功")
@@ -259,7 +259,7 @@ print("  Lint: npm run lint")
 out, rc = run("npm run lint", cwd=str(APP / "app"), exit_on_error=False)
 if rc != 0:
     fail(f"Lint 失败 ({rc})")
-    print(out[-500:])
+    print(out[-2000:])
     all_passed = False
 else:
     ok("Lint 通过")
@@ -269,7 +269,7 @@ print("  Validation: python3.11 scripts/validate-data.py")
 out, rc = run("python3.11 scripts/validate-data.py", cwd=str(APP / "app"), exit_on_error=False)
 if rc != 0:
     fail("数据质量验证失败")
-    print(out[-500:])
+    print(out[-2000:])
     all_passed = False
 else:
     ok("数据质量验证通过")
@@ -285,13 +285,9 @@ if not all_passed:
 # ══════════════════════════════════════════════
 step("Phase 6: 提交 PR")
 
-# GitHub Actions 环境下跳过 PR 创建（由 workflow 自己处理 commit/push）
-if os.environ.get("GITHUB_ACTIONS"):
-    warn("GitHub Actions 环境，跳过 PR 创建（由 workflow 处理）")
-else:
-    run("git add -A", cwd=str(APP / "app"))
-    run('git commit -m "data: 刷新模型排名数据（' + TODAY + '）"', cwd=str(APP / "app"))
-    run("git push -u origin " + BRANCH, cwd=str(APP / "app"))
+run("git add -A", cwd=str(APP / "app"))
+run('git commit -m "data: 刷新模型排名数据（' + TODAY + '）"', cwd=str(APP / "app"))
+run("git push -u origin " + BRANCH, cwd=str(APP / "app"))
 
 # 从 diff 中提取关键指标
 diff_text = diff_content or "（无变化摘要）"
