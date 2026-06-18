@@ -269,7 +269,7 @@ print("  Validation: python3.11 scripts/validate-data.py")
 out, rc = run("python3.11 scripts/validate-data.py", cwd=str(APP / "app"), exit_on_error=False)
 if rc != 0:
     fail("数据质量验证失败")
-    print(out[-2000:])
+    print(out)  # 完整输出，不截断
     all_passed = False
 else:
     ok("数据质量验证通过")
