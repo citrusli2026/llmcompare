@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   refresh:
@@ -26,16 +27,11 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Install app dependencies
-        run: |
-          npm ci
+        run: npm ci
 
       - name: Run data pipeline
         run: |
-          git config --global user.name "llmcompare-bot"
-          git config --global user.email "bot@llmcompare.cc"
           cd data
-          git config user.name "llmcompare-bot"
-          git config user.email "bot@llmcompare.cc"
           python3.11 pipeline.py --cache-hours 0
 
       - name: Check for changes
@@ -47,15 +43,23 @@ jobs:
             echo "has_changes=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Commit and push
+      - name: Create PR
         if: steps.changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          DATE=$(date +%Y-%m-%d)
+          BRANCH="data/refresh-${DATE}"
           git config user.name "llmcompare-bot"
           git config user.email "bot@llmcompare.cc"
+          git checkout -b "$BRANCH"
           git add src/data/ranking.json
-          DATE=$(date +%Y-%m-%d)
           git commit -m "data: refresh ranking ${DATE}"
-          git push
+          git push origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" \
+            --title "data: refresh ranking ${DATE}" \
+            --body "Automated data refresh for ${DATE}" \
+            --label "data-refresh" || true
 
       - name: Summary
         if: always()
