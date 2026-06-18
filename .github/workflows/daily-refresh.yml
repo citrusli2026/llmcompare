@@ -1,0 +1,66 @@
+name: Daily Data Refresh
+
+on:
+  schedule:
+    - cron: '0 4 * * *'  # UTC 4:00 = 北京 12:00
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install app dependencies
+        run: |
+          npm ci
+
+      - name: Run data pipeline
+        run: |
+          git config --global user.name "llmcompare-bot"
+          git config --global user.email "bot@llmcompare.cc"
+          cd data
+          git config user.name "llmcompare-bot"
+          git config user.email "bot@llmcompare.cc"
+          python3.11 pipeline.py --cache-hours 0
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet src/data/ranking.json 2>/dev/null; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "llmcompare-bot"
+          git config user.email "bot@llmcompare.cc"
+          git add src/data/ranking.json
+          DATE=$(date +%Y-%m-%d)
+          git commit -m "data: refresh ranking ${DATE}"
+          git push
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## 📊 Data Refresh Report" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Time:** $(date -u)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Changes:** ${{ steps.changes.outputs.has_changes }}" >> "$GITHUB_STEP_SUMMARY"
