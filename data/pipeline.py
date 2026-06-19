@@ -195,6 +195,13 @@ if src_count != dst_count:
     dst_count, _ = run('python3.11 -c "import json;print(len(json.load(open(\'src/data/ranking.json\'))))"', cwd=str(APP / "app"))
 ok(f"ranking.json: {src_count} 模型 → app/({dst_count})")
 
+# metadata.json — 写入更新时间戳，前端关于页读取
+from datetime import datetime, timezone
+metadata = {"updated_at": datetime.now(timezone.utc).isoformat()}
+metadata_path = APP / "app" / "src" / "data" / "metadata.json"
+metadata_path.write_text(json.dumps(metadata, indent=2))
+ok(f"metadata.json: updated_at={metadata['updated_at']}")
+
 # 日期文案 - 使用整行替换避免累积
 today_cn = f"{date.today().year}年{date.today().month}月{date.today().day}日"
 today_dot = date.today().strftime("%Y.%m.%d")

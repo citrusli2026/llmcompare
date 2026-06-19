@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
-import { ArrowLeft, Brain, DollarSign, TrendingUp, Trophy, Database, ExternalLink } from "lucide-react";
+import { ArrowLeft, Brain, DollarSign, TrendingUp, Trophy, Database, ExternalLink, Calendar } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
+import metadataData from "@/data/metadata.json";
 
 export default function AboutPageClient() {
   const { t } = useTranslation();
@@ -62,6 +63,10 @@ export default function AboutPageClient() {
                 <div className="flex items-center gap-2 mb-3">
                   <span className="inline-flex items-center gap-1 rounded-full bg-accent-lime/10 px-2.5 py-0.5 text-[10px] font-medium text-accent-lime">
                     <Database className="h-3 w-3" /> {t("about.updateFreq")}
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-xs text-text-dim">
+                    <Calendar className="h-3 w-3" />
+                    {t("about.lastUpdated")}: {new Date(metadataData.updated_at).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" })}
                   </span>
                 </div>
                 <div className="rounded-lg bg-surface-hover p-4">
