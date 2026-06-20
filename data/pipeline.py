@@ -326,6 +326,14 @@ if rc == 0:
 else:
     warn(f"PR 创建失败: {out[:300]}")
 
+# Debug: also try capturing stderr
+import subprocess as _sp
+_dbg = _sp.run(f"gh pr create --title \"data: 刷新模型排名数据（{TODAY}）\" --body-file /tmp/pr-body.md",
+               shell=True, cwd=str(APP), capture_output=True, text=True, timeout=60)
+if _dbg.returncode != 0:
+    warn(f"  stderr: {_dbg.stderr[:300]}")
+    warn(f"  stdout: {_dbg.stdout[:200]}")
+
 # ══════════════════════════════════════════════
 # Phase 7: 清理 — 切回 main
 # ══════════════════════════════════════════════
