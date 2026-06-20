@@ -292,9 +292,37 @@ if not all_passed:
 # ══════════════════════════════════════════════
 step("Phase 6: 提交 PR")
 
-run("git add -A", cwd=str(APP / "app"))
-run('git commit -m "data: 刷新模型排名数据（' + TODAY + '）"', cwd=str(APP / "app"))
-run("git push -u origin " + BRANCH, cwd=str(APP / "app"))
+# Stage from repo root to capture all changes (metadata.json, ranking.json, etc.)
+run("git add -A", cwd=str(APP))
+
+# Check if there are staged changes
+staged_diff, _ = run("git diff --cached --stat", cwd=str(APP), exit_on_error=False)
+if staged_diff.strip():
+    run('git commit -m "data: 刷新模型排名数据（' + TODAY + '）"', cwd=str(APP))
+    ok("提交完成")
+else:
+    warn("无变更可提交")
+
+# Check if branch has any commits vs main
+branch_diff, _ = run(f"git log main..{BRANCH} --oneline", cwd=str(APP), exit_on_error=False)
+if not branch_diff.strip():
+    warn("分支与 main 无差异，跳过 PR 创建")
+    # Clean up: delete remote branch if it exists
+    run(f"git push origin --delete {BRANCH}", cwd=str(APP), exit_on_error=False)
+    run("git checkout main", cwd=str(APP))
+    ok("已切回 main，无 PR 创建")
+    # Print summary without PR
+    print()
+    print(f"🔄 LLMCompare 数据刷新完成（{TODAY}）")
+    print()
+    print(f"📊 模型数: {src_count}")
+    print()
+    print("⚠️ 数据无变化，未创建 PR")
+    print()
+    sys.exit(0)
+
+run("git push -u origin " + BRANCH, cwd=str(APP))
+ok("推送完成")
 
 # 从 diff 中提取关键指标
 diff_text = diff_content or "（无变化摘要）"
