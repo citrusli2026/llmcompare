@@ -282,25 +282,14 @@ if not all_passed:
 # ══════════════════════════════════════════════
 step("Phase 6: 提交 PR")
 
-# DEBUG: show git state
-branch_now, _ = run("git branch --show-current", cwd=str(APP), exit_on_error=False)
-warn(f"[DEBUG] 当前分支: {branch_now}")
-run("git status --short", cwd=str(APP), exit_on_error=False)
-warn(f"[DEBUG] APP={APP} DATA={DATA}")
-
 # Stage from repo root to capture all changes (metadata.json, ranking.json, etc.)
 run("git add -A", cwd=str(APP))
 
 # Check if there are staged changes
 staged_diff, _ = run("git diff --cached --stat", cwd=str(APP), exit_on_error=False)
-warn(f"[DEBUG] staged_diff={staged_diff[:300]}")
 if staged_diff.strip():
     run('git commit -m "data: 刷新模型排名数据（' + TODAY + '）"', cwd=str(APP))
     ok("提交完成")
-    # DEBUG: verify commit
-    commit_sha, _ = run("git rev-parse HEAD", cwd=str(APP), exit_on_error=False)
-    main_sha, _ = run("git rev-parse main", cwd=str(APP), exit_on_error=False)
-    warn(f"[DEBUG] HEAD={commit_sha} main={main_sha} same={commit_sha == main_sha}")
 else:
     warn("无变更可提交")
 
