@@ -158,19 +158,9 @@ for subdir, script in pipeline_scripts:
     ok(f"Step {pipeline_step} 完成")
 
 # ══════════════════════════════════════════════
-# Phase 3: data/ 本地提交 + 变化摘要
+# Phase 3: 变化摘要（不提交，留给 Phase 6 统一处理）
 # ══════════════════════════════════════════════
-step("Phase 3: data/ 本地提交 + 变化摘要")
-
-run("git add -A", cwd=str(DATA))
-
-# 检查是否有变更
-diff_check, _ = run("git diff --cached --stat", cwd=str(DATA), exit_on_error=False)
-if not diff_check.strip():
-    warn("data/ 无变更，跳过提交")
-else:
-    run('git commit -m "chore: 全量刷新数据 ' + TODAY + '"', cwd=str(DATA))
-    ok("data/ 本地提交完成")
+step("Phase 3: 变化摘要")
 
 # diff 摘要
 run("python3.11 scripts/diff-ranking.py > /tmp/data-diff.md", cwd=str(DATA), exit_on_error=False)
