@@ -113,8 +113,8 @@ if not DRY_RUN:
         fail(f"分支切换失败！当前在 {current_branch}，期望 {BRANCH}")
         sys.exit(2)
 
-# data/ — 保持在 main
-run("git checkout main", cwd=str(DATA), exit_on_error=False)
+# data/ — 无需单独切分支，和 APP 共享同一个 git repo
+# (Previously this ran "git checkout main" which UNDID the branch switch above!)
 
 # ══════════════════════════════════════════════
 # Phase 2: 数据抓取 + 处理管线
@@ -282,14 +282,25 @@ if not all_passed:
 # ══════════════════════════════════════════════
 step("Phase 6: 提交 PR")
 
+# DEBUG: show git state
+branch_now, _ = run("git branch --show-current", cwd=str(APP), exit_on_error=False)
+warn(f"[DEBUG] 当前分支: {branch_now}")
+run("git status --short", cwd=str(APP), exit_on_error=False)
+warn(f"[DEBUG] APP={APP} DATA={DATA}")
+
 # Stage from repo root to capture all changes (metadata.json, ranking.json, etc.)
 run("git add -A", cwd=str(APP))
 
 # Check if there are staged changes
 staged_diff, _ = run("git diff --cached --stat", cwd=str(APP), exit_on_error=False)
+warn(f"[DEBUG] staged_diff={staged_diff[:300]}")
 if staged_diff.strip():
     run('git commit -m "data: 刷新模型排名数据（' + TODAY + '）"', cwd=str(APP))
     ok("提交完成")
+    # DEBUG: verify commit
+    commit_sha, _ = run("git rev-parse HEAD", cwd=str(APP), exit_on_error=False)
+    main_sha, _ = run("git rev-parse main", cwd=str(APP), exit_on_error=False)
+    warn(f"[DEBUG] HEAD={commit_sha} main={main_sha} same={commit_sha == main_sha}")
 else:
     warn("无变更可提交")
 
