@@ -7,8 +7,8 @@
     "logo": "/logos/anthropic.svg",
     "scores": {
       "intelligence": 59.8606463217303,
-      "coding": 61.9809203142537,
-      "agentic": 80.5951184513855
+      "coding": 76.4911915660979,
+      "agentic": 52.8147079037801
     },
     "speed": {
       "median_tps": 0,
@@ -88,15 +88,15 @@
     "logo": "/logos/anthropic.svg",
     "scores": {
       "intelligence": 55.6920406995495,
-      "coding": 56.712962962963,
-      "agentic": 77.8082777543421
+      "coding": 74.2535372451103,
+      "agentic": 47.1756219931271
     },
     "speed": {
-      "median_tps": 63.4171979207725,
-      "ttft_seconds": 27.9056397699997,
-      "e2e_seconds": 35.78993640235254,
-      "p05_tps": 41.3483869939715,
-      "p95_tps": 77.7864727880656
+      "median_tps": 57.8155142019279,
+      "ttft_seconds": 17.8732019080004,
+      "e2e_seconds": 26.521399660833445,
+      "p05_tps": 40.7523500838334,
+      "p95_tps": 77.0475067889555
     },
     "benchmarks": {
       "gpqa": 0.92020202020202,
@@ -169,15 +169,15 @@
     "logo": "/logos/openai.svg",
     "scores": {
       "intelligence": 54.8375984166433,
-      "coding": 59.1154601571268,
-      "agentic": 74.1229617920152
+      "coding": 74.8911950339853,
+      "agentic": 44.8710687285223
     },
     "speed": {
-      "median_tps": 59.9061092252227,
-      "ttft_seconds": 115.787267625,
-      "e2e_seconds": 124.1336617818998,
-      "p05_tps": 42.0465540973856,
-      "p95_tps": 84.8368656317829
+      "median_tps": 63.0627377747138,
+      "ttft_seconds": 47.5927278814997,
+      "e2e_seconds": 55.52134020699383,
+      "p05_tps": 47.6977931244505,
+      "p95_tps": 94.4811923313499
     },
     "benchmarks": {
       "gpqa": 0.935353535353535,
@@ -245,15 +245,15 @@
     "logo": "/logos/anthropic.svg",
     "scores": {
       "intelligence": 53.5296569524586,
-      "coding": 52.5147306397306,
-      "agentic": 71.288187135722
+      "coding": 73.6020079067832,
+      "agentic": 44.3863264604811
     },
     "speed": {
-      "median_tps": 51.2898444845208,
-      "ttft_seconds": 18.0787761290001,
-      "e2e_seconds": 27.827294671513897,
-      "p05_tps": 37.6974883182373,
-      "p95_tps": 65.3129907781675
+      "median_tps": 48.3375737261654,
+      "ttft_seconds": 22.0217154320001,
+      "e2e_seconds": 32.36563552266338,
+      "p05_tps": 36.4250385555146,
+      "p95_tps": 69.3483943653905
     },
     "benchmarks": {
       "gpqa": 0.914141414141414,
@@ -326,15 +326,15 @@
     "logo": "/logos/openai.svg",
     "scores": {
       "intelligence": 51.4012420630147,
-      "coding": 57.2495791245791,
-      "agentic": 67.9578711253417
+      "coding": 71.0505097794423,
+      "agentic": 41.0770927835052
     },
     "speed": {
-      "median_tps": 145.662438975645,
-      "ttft_seconds": 117.157399662,
-      "e2e_seconds": 120.58999356552239,
-      "p05_tps": 95.9185544708002,
-      "p95_tps": 185.256411825119
+      "median_tps": 145.621049539972,
+      "ttft_seconds": 85.8220814610004,
+      "e2e_seconds": 89.2556510004285,
+      "p05_tps": 102.014223614629,
+      "p95_tps": 199.042843864675
     },
     "benchmarks": {
       "gpqa": 0.92020202020202,
@@ -401,16 +401,16 @@
     "type": "开源",
     "logo": "/logos/z-ai.svg",
     "scores": {
-      "intelligence": 50.6663591160109,
-      "coding": 50.6593714927048,
-      "agentic": 75.897339583091
+      "intelligence": 51.0858347714416,
+      "coding": 68.7560688028853,
+      "agentic": 43.0557079037801
     },
     "speed": {
-      "median_tps": 111.229528690019,
-      "ttft_seconds": 20.2235773935807,
-      "e2e_seconds": 24.718786587475872,
-      "p05_tps": 42.4891572366434,
-      "p95_tps": 201.880334563647
+      "median_tps": 95.1665504534418,
+      "ttft_seconds": 22.459024928894287,
+      "e2e_seconds": 27.712971800117852,
+      "p05_tps": 32.7122616198436,
+      "p95_tps": 261.375169210754
     },
     "benchmarks": {
       "gpqa": 0.894949494949495,
@@ -453,8 +453,8 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 1.4,
-      "completion": 4.4
+      "prompt": 1.2,
+      "completion": 4.1
     },
     "arena_rankings": {},
     "arena_votes": 3357,
@@ -468,15 +468,15 @@
     "logo": "/logos/google.svg",
     "scores": {
       "intelligence": 50.2034858842254,
-      "coding": 44.9810606060606,
-      "agentic": 70.2973305457412
+      "coding": 70.1427902621723,
+      "agentic": 37.4466082474227
     },
     "speed": {
-      "median_tps": 151.560522730607,
-      "ttft_seconds": 18.7724419910001,
-      "e2e_seconds": 22.071454101750938,
-      "p05_tps": 126.438773729198,
-      "p95_tps": 239.041144030809
+      "median_tps": 158.97212398022,
+      "ttft_seconds": 21.342620733,
+      "e2e_seconds": 24.48782624124503,
+      "p05_tps": 129.49960857206,
+      "p95_tps": 247.781799497741
     },
     "benchmarks": {
       "gpqa": 0.922222222222222,
@@ -528,7 +528,7 @@
         "votes": 10171
       },
       "code": {
-        "rank": 15,
+        "rank": 14,
         "score": 1506,
         "votes": 2214
       }
@@ -544,15 +544,15 @@
     "logo": "/logos/anthropic.svg",
     "scores": {
       "intelligence": 47.2100024360452,
-      "coding": 50.9399551066218,
-      "agentic": 62.9991597010475
+      "coding": 63.0271188791788,
+      "agentic": 40.7694879725086
     },
     "speed": {
-      "median_tps": 54.4109062164714,
-      "ttft_seconds": 100.3344459645,
-      "e2e_seconds": 109.52378013972532,
-      "p05_tps": 39.6726398766962,
-      "p95_tps": 71.6080297332746
+      "median_tps": 48.4852084775471,
+      "ttft_seconds": 105.850977845,
+      "e2e_seconds": 116.16340127680898,
+      "p05_tps": 38.9291933701792,
+      "p95_tps": 79.9528389278048
     },
     "benchmarks": {
       "gpqa": 0.874747474747475,
@@ -625,15 +625,15 @@
     "logo": "/logos/google.svg",
     "scores": {
       "intelligence": 46.4594206066426,
-      "coding": 55.4959315375982,
-      "agentic": 59.0860006638396
+      "coding": 68.825860036066,
+      "agentic": 21.3959484536082
     },
     "speed": {
-      "median_tps": 122.474796676923,
-      "ttft_seconds": 23.9683897875,
-      "e2e_seconds": 28.050862374239237,
-      "p05_tps": 97.7462002382817,
-      "p95_tps": 149.609089685986
+      "median_tps": 116.206567483766,
+      "ttft_seconds": 29.1201966225,
+      "e2e_seconds": 33.422879429733335,
+      "p05_tps": 99.7400708907494,
+      "p95_tps": 181.878977612267
     },
     "benchmarks": {
       "gpqa": 0.941414141414141,
@@ -701,15 +701,15 @@
     "logo": "/logos/alibaba.svg",
     "scores": {
       "intelligence": 45.9937184770221,
-      "coding": 50.1192480359147,
-      "agentic": 66.5557245964551
+      "coding": 65.9687543348592,
+      "agentic": 30.5882783505155
     },
     "speed": {
-      "median_tps": 91.2951520851792,
-      "ttft_seconds": 29.193415033074512,
-      "e2e_seconds": 34.67015710075293,
-      "p05_tps": 68.5853546796332,
-      "p95_tps": 135.664318108765
+      "median_tps": 196.820078529308,
+      "ttft_seconds": 14.935416030266538,
+      "e2e_seconds": 17.475807253235928,
+      "p05_tps": 85.1899073400126,
+      "p95_tps": 240.685431962992
     },
     "benchmarks": {
       "gpqa": 0.923232323232323,
@@ -765,6 +765,11 @@
         "rank": 17,
         "score": 1475,
         "votes": 3740
+      },
+      "code": {
+        "rank": 17,
+        "score": 1484,
+        "votes": 2503
       }
     },
     "arena_votes": 3740,
@@ -778,15 +783,15 @@
     "logo": "/logos/minimax.svg",
     "scores": {
       "intelligence": 44.4372686326056,
-      "coding": 43.4062850729517,
-      "agentic": 68.6216536717383
+      "coding": 58.5691496740186,
+      "agentic": 35.3635635738832
     },
     "speed": {
-      "median_tps": 62.9493539545616,
-      "ttft_seconds": 35.03250968884537,
-      "e2e_seconds": 42.975402960806704,
-      "p05_tps": 39.5109712500869,
-      "p95_tps": 90.5986423035588
+      "median_tps": 55.4006821262795,
+      "ttft_seconds": 39.39280690139979,
+      "e2e_seconds": 48.417966534999735,
+      "p05_tps": 33.411056471583,
+      "p95_tps": 121.541571219776
     },
     "benchmarks": {
       "gpqa": 0.929292929292929,
@@ -858,15 +863,15 @@
     "logo": "/logos/deepseek.svg",
     "scores": {
       "intelligence": 44.2735554261611,
-      "coding": 47.4747474747475,
-      "agentic": 67.1926607607022
+      "coding": 59.3632958801498,
+      "agentic": 36.3637319587629
     },
     "speed": {
-      "median_tps": 63.9640305219972,
-      "ttft_seconds": 70.14792417824252,
-      "e2e_seconds": 77.96481745278453,
-      "p05_tps": 43.6558076152608,
-      "p95_tps": 117.156707824956
+      "median_tps": 92.1729809678403,
+      "ttft_seconds": 49.14175129933645,
+      "e2e_seconds": 54.56633445537491,
+      "p05_tps": 57.3989384060571,
+      "p95_tps": 121.668258396746
     },
     "benchmarks": {
       "gpqa": 0.887878787878788,
@@ -929,15 +934,15 @@
     "logo": "/logos/openai.svg",
     "scores": {
       "intelligence": 44.2682925707506,
-      "coding": 53.1004489337823,
-      "agentic": 60.535128949109
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 74.3813671659499,
-      "ttft_seconds": 119.087339679,
-      "e2e_seconds": 125.80945328151641,
-      "p05_tps": 54.3380004314595,
-      "p95_tps": 118.515145646312
+      "median_tps": 76.9382837194,
+      "ttft_seconds": 76.8909175905001,
+      "e2e_seconds": 83.38963287018504,
+      "p05_tps": 58.0028010041758,
+      "p95_tps": 150.065918278069
     },
     "benchmarks": {
       "gpqa": 0.915151515151515,
@@ -958,7 +963,7 @@
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 400000,
@@ -984,7 +989,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 78.9
+    "data_completeness_pct": 63.9
   },
   {
     "id": "claude-opus-4-6",
@@ -994,15 +999,15 @@
     "logo": "/logos/anthropic.svg",
     "scores": {
       "intelligence": 43.7100998174865,
-      "coding": 48.0920314253648,
-      "agentic": 67.5823408682488
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 43.8422195508045,
-      "ttft_seconds": 21.1637849034998,
-      "e2e_seconds": 32.568316998883304,
-      "p05_tps": 35.4670027910967,
-      "p95_tps": 68.1427766936956
+      "median_tps": 38.5495662316054,
+      "ttft_seconds": 15.9392605879998,
+      "e2e_seconds": 28.909575143447846,
+      "p05_tps": 34.0416867119684,
+      "p95_tps": 57.5824371977863
     },
     "benchmarks": {
       "gpqa": 0.895959595959596,
@@ -1023,7 +1028,7 @@
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 1000000,
@@ -1065,7 +1070,7 @@
       }
     },
     "arena_votes": 49596,
-    "data_completeness_pct": 88.7
+    "data_completeness_pct": 73.7
   },
   {
     "id": "muse-spark",
@@ -1075,8 +1080,8 @@
     "logo": "/logos/meta.svg",
     "scores": {
       "intelligence": 43.0555563074727,
-      "coding": 47.4712401795735,
-      "agentic": 61.9891630048953
+      "coding": 58.6163996393397,
+      "agentic": 28.6868762886598
     },
     "speed": {
       "median_tps": 0,
@@ -1130,11 +1135,6 @@
         "score": 1487,
         "votes": 13607
       },
-      "code": {
-        "rank": 14,
-        "score": 1507,
-        "votes": 1628
-      },
       "vision": {
         "rank": 6,
         "score": 1295,
@@ -1152,15 +1152,15 @@
     "logo": "/logos/kimi.svg",
     "scores": {
       "intelligence": 42.8413910763059,
-      "coding": 47.1170033670034,
-      "agentic": 65.9688109161793
+      "coding": 56.0263212650853,
+      "agentic": 30.2685189003436
     },
     "speed": {
-      "median_tps": 44.1408300937647,
-      "ttft_seconds": 103.14618247711775,
-      "e2e_seconds": 114.47356347421027,
-      "p05_tps": 25.070919091255,
-      "p95_tps": 75.1833415726908
+      "median_tps": 48.861308785372,
+      "ttft_seconds": 93.83336397953079,
+      "e2e_seconds": 104.06640956159447,
+      "p05_tps": 24.5616643413368,
+      "p95_tps": 99.8248307940664
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
@@ -1207,8 +1207,8 @@
     },
     "openrouter_weekly_tokens": 403008045847,
     "openrouter_pricing": {
-      "prompt": 0.68,
-      "completion": 3.41
+      "prompt": 0.66,
+      "completion": 3.5
     },
     "arena_rankings": {
       "code": {
@@ -1233,15 +1233,15 @@
     "logo": "/logos/xiaomi.svg",
     "scores": {
       "intelligence": 42.2394366693508,
-      "coding": 45.5317059483726,
-      "agentic": 67.4384766534619
+      "coding": 60.189520044389,
+      "agentic": 29.1125979381443
     },
     "speed": {
-      "median_tps": 33.7800397816312,
-      "ttft_seconds": 62.08400776700431,
-      "e2e_seconds": 76.88564812125541,
-      "p05_tps": 24.1436045928723,
-      "p95_tps": 61.1640679646177
+      "median_tps": 52.8322078298686,
+      "ttft_seconds": 40.35503657969012,
+      "e2e_seconds": 49.818960586237615,
+      "p05_tps": 39.8147454840169,
+      "p95_tps": 67.9488982729769
     },
     "benchmarks": {
       "gpqa": 0.865656565656566,
@@ -1296,6 +1296,11 @@
         "score": 1466,
         "votes": 26563
       },
+      "code": {
+        "rank": 20,
+        "score": 1470,
+        "votes": 6488
+      },
       "vision": {
         "rank": 38,
         "score": 1237,
@@ -1313,15 +1318,15 @@
     "logo": "/logos/kimi.svg",
     "scores": {
       "intelligence": 41.9493685067994,
-      "coding": 45.6158810325477,
-      "agentic": 61.9328857504722
+      "coding": 60.761721459287,
+      "agentic": 29.5911099656357
     },
     "speed": {
-      "median_tps": 52.2677159265777,
-      "ttft_seconds": 40.6956181930339,
-      "e2e_seconds": 50.26175268229239,
-      "p05_tps": 33.1237585967601,
-      "p95_tps": 75.0550986220899
+      "median_tps": 56.3219473157545,
+      "ttft_seconds": 41.7987990545555,
+      "e2e_seconds": 50.67633301475185,
+      "p05_tps": 44.3486046690212,
+      "p95_tps": 75.3855256011806
     },
     "benchmarks": {
       "gpqa": 0.895959595959596,
@@ -1364,8 +1369,8 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": 403008045847,
     "openrouter_pricing": {
-      "prompt": 0.74,
-      "completion": 3.5
+      "prompt": 0.61,
+      "completion": 3.07
     },
     "arena_rankings": {
       "code": {
@@ -1379,7 +1384,7 @@
         "votes": 11045
       }
     },
-    "arena_votes": null,
+    "arena_votes": 1869,
     "data_completeness_pct": 92.5
   },
   {
@@ -1390,15 +1395,15 @@
     "logo": "/logos/deepseek.svg",
     "scores": {
       "intelligence": 40.2825017625236,
-      "coding": 38.7065095398429,
-      "agentic": 61.280477661017
+      "coding": 56.1676376751283,
+      "agentic": 31.0645326460481
     },
     "speed": {
-      "median_tps": 91.6377690225351,
-      "ttft_seconds": 62.64336768021757,
-      "e2e_seconds": 68.09963320624803,
-      "p05_tps": 68.5245792940384,
-      "p95_tps": 125.206300381924
+      "median_tps": 108.315194663107,
+      "ttft_seconds": 53.247333820220106,
+      "e2e_seconds": 57.86349133676385,
+      "p05_tps": 73.2518864617768,
+      "p95_tps": 135.986044676412
     },
     "benchmarks": {
       "gpqa": 0.893939393939394,
@@ -1461,15 +1466,15 @@
     "logo": "/logos/z-ai.svg",
     "scores": {
       "intelligence": 40.1570857627689,
-      "coding": 43.3712121212121,
-      "agentic": 67.054629905181
+      "coding": 55.7818352059925,
+      "agentic": 29.8734639175258
     },
     "speed": {
-      "median_tps": 64.9861231030623,
-      "ttft_seconds": 59.70755068171899,
-      "e2e_seconds": 67.40150096102775,
-      "p05_tps": 20.900832330925,
-      "p95_tps": 207.973489342648
+      "median_tps": 94.9500161913608,
+      "ttft_seconds": 41.40053806895604,
+      "e2e_seconds": 46.666466607528456,
+      "p05_tps": 35.0776288420839,
+      "p95_tps": 209.669375400562
     },
     "benchmarks": {
       "gpqa": 0.867676767676768,
@@ -1542,15 +1547,15 @@
     "logo": "/logos/xiaomi.svg",
     "scores": {
       "intelligence": 40.1358548646523,
-      "coding": 42.1296296296296,
-      "agentic": 65.5299139777991
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 76.3980992476035,
-      "ttft_seconds": 28.915147590032966,
-      "e2e_seconds": 35.45981303229113,
-      "p05_tps": 64.586272427224,
-      "p95_tps": 95.3643804186947
+      "median_tps": 80.1339976712653,
+      "ttft_seconds": 27.58533328663345,
+      "e2e_seconds": 33.82488222379189,
+      "p05_tps": 60.5924676530074,
+      "p95_tps": 95.4597040192988
     },
     "benchmarks": {
       "gpqa": 0.84949494949495,
@@ -1571,7 +1576,7 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 1000000,
@@ -1605,6 +1610,11 @@
         "score": 1466,
         "votes": 26563
       },
+      "code": {
+        "rank": 20,
+        "score": 1470,
+        "votes": 6488
+      },
       "vision": {
         "rank": 38,
         "score": 1237,
@@ -1612,7 +1622,7 @@
       }
     },
     "arena_votes": 26563,
-    "data_completeness_pct": 97.7
+    "data_completeness_pct": 82.7
   },
   {
     "id": "qwen3-6-max-preview",
@@ -1622,15 +1632,15 @@
     "logo": "/logos/alibaba.svg",
     "scores": {
       "intelligence": 40,
-      "coding": 44.9179292929293,
-      "agentic": 64.8295054241687
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 44.097982065846,
-      "ttft_seconds": 48.7136547111424,
-      "e2e_seconds": 60.05204201542794,
-      "p05_tps": 36.1184494838797,
-      "p95_tps": 48.8786915802901
+      "median_tps": 41.613724528621,
+      "ttft_seconds": 51.45924674386743,
+      "e2e_seconds": 63.474513477709316,
+      "p05_tps": 37.9830026106463,
+      "p95_tps": 52.9169882740381
     },
     "benchmarks": {
       "gpqa": 0.887878787878788,
@@ -1651,7 +1661,7 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 256000,
@@ -1686,10 +1696,15 @@
         "rank": 17,
         "score": 1475,
         "votes": 3740
+      },
+      "code": {
+        "rank": 17,
+        "score": 1484,
+        "votes": 2503
       }
     },
-    "arena_votes": null,
-    "data_completeness_pct": 96.2
+    "arena_votes": 2503,
+    "data_completeness_pct": 81.2
   },
   {
     "id": "gpt-5-4-mini",
@@ -1699,15 +1714,15 @@
     "logo": "/logos/openai.svg",
     "scores": {
       "intelligence": 39.9783061419024,
-      "coding": 51.4765712682379,
-      "agentic": 58.8785663257088
+      "coding": 56.0787730614509,
+      "agentic": 30.1670996563574
     },
     "speed": {
-      "median_tps": 167.499975050443,
-      "ttft_seconds": 10.104597877,
-      "e2e_seconds": 13.089672948500302,
-      "p05_tps": 130.31456818333,
-      "p95_tps": 199.644765167523
+      "median_tps": 174.333905599614,
+      "ttft_seconds": 5.07428702800033,
+      "e2e_seconds": 7.942346446965742,
+      "p05_tps": 145.265388319557,
+      "p95_tps": 236.937191023679
     },
     "benchmarks": {
       "gpqa": 0.874747474747475,
@@ -1764,15 +1779,15 @@
     "logo": "/logos/alibaba.svg",
     "scores": {
       "intelligence": 38.9772279786141,
-      "coding": 46.4751683501684,
-      "agentic": 65.128458771159
+      "coding": 55.8611631294216,
+      "agentic": 20.8054719358534
     },
     "speed": {
-      "median_tps": 52.1632459449925,
-      "ttft_seconds": 40.66436755183344,
-      "e2e_seconds": 50.24966062441683,
-      "p05_tps": 45.0824453084495,
-      "p95_tps": 53.7322373520363
+      "median_tps": 52.0671994652158,
+      "ttft_seconds": 41.19284563320018,
+      "e2e_seconds": 50.79582034925019,
+      "p05_tps": 37.8156856358866,
+      "p95_tps": 54.0082578148296
     },
     "benchmarks": {
       "gpqa": 0.9,
@@ -1831,15 +1846,15 @@
     "logo": "/logos/openai.svg",
     "scores": {
       "intelligence": 38.2417263132715,
-      "coding": 43.9078282828283,
-      "agentic": 47.6017479407774
+      "coding": 56.0744382022472,
+      "agentic": 27.5439759450172
     },
     "speed": {
-      "median_tps": 156.888443999347,
-      "ttft_seconds": 5.28235777400002,
-      "e2e_seconds": 8.469335649834399,
-      "p05_tps": 114.076482466288,
-      "p95_tps": 173.349300690725
+      "median_tps": 164.634068815505,
+      "ttft_seconds": 4.85413334499992,
+      "e2e_seconds": 7.891171812173555,
+      "p05_tps": 145.839129349345,
+      "p95_tps": 188.280632812504
     },
     "benchmarks": {
       "gpqa": 0.817171717171717,
@@ -1896,15 +1911,15 @@
     "logo": "/logos/minimax.svg",
     "scores": {
       "intelligence": 38.1344947250387,
-      "coding": 41.9262065095398,
-      "agentic": 61.489494916941
+      "coding": 52.6173879872382,
+      "agentic": 25.5759931271478
     },
     "speed": {
-      "median_tps": 42.598185984119,
-      "ttft_seconds": 59.97868501883517,
-      "e2e_seconds": 71.71627403697798,
-      "p05_tps": 31.5006758337605,
-      "p95_tps": 60.2458802983484
+      "median_tps": 47.3434458414596,
+      "ttft_seconds": 54.32937946461779,
+      "e2e_seconds": 64.89050341986103,
+      "p05_tps": 34.5139816153524,
+      "p95_tps": 68.4706339186666
     },
     "benchmarks": {
       "gpqa": 0.873737373737374,
@@ -1965,15 +1980,15 @@
     "logo": "/logos/kimi.svg",
     "scores": {
       "intelligence": 38.1072025858264,
-      "coding": 39.5517676767677,
-      "agentic": 58.9406156983764
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 52.0440584729241,
-      "ttft_seconds": 60.09369126384215,
-      "e2e_seconds": 69.70093586910531,
-      "p05_tps": 31.0771809853241,
-      "p95_tps": 70.8184519876717
+      "median_tps": 56.3991756881461,
+      "ttft_seconds": 55.50064076545981,
+      "e2e_seconds": 64.3660185639706,
+      "p05_tps": 33.0916375497669,
+      "p95_tps": 83.3854468805275
     },
     "benchmarks": {
       "gpqa": 0.878787878787879,
@@ -1994,7 +2009,7 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 256000,
@@ -2036,7 +2051,7 @@
       }
     },
     "arena_votes": 19904,
-    "data_completeness_pct": 100.0
+    "data_completeness_pct": 85.0
   },
   {
     "id": "glm-5-turbo",
@@ -2046,8 +2061,8 @@
     "logo": "/logos/z-ai.svg",
     "scores": {
       "intelligence": 38.0574061409517,
-      "coding": 36.766975308642,
-      "agentic": 66.1267582785957
+      "coding": null,
+      "agentic": null
     },
     "speed": {
       "median_tps": 0,
@@ -2075,7 +2090,7 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 200000,
@@ -2102,7 +2117,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 78.9
+    "data_completeness_pct": 63.9
   },
   {
     "id": "nemotron-3-ultra",
@@ -2112,15 +2127,15 @@
     "logo": "/logos/nvidia.svg",
     "scores": {
       "intelligence": 37.7619546243905,
-      "coding": 37.5526094276094,
-      "agentic": 57.0647000199381
+      "coding": 49.2652413649605,
+      "agentic": 27.3604776632302
     },
     "speed": {
-      "median_tps": 155.338012055213,
-      "ttft_seconds": 15.744592367155207,
-      "e2e_seconds": 18.963379535760666,
-      "p05_tps": 60.1963580125642,
-      "p95_tps": 355.579545024528
+      "median_tps": 174.644352868706,
+      "ttft_seconds": 14.173496324561214,
+      "e2e_seconds": 17.036457489849447,
+      "p05_tps": 58.1715531136882,
+      "p95_tps": 461.801976093759
     },
     "benchmarks": {
       "gpqa": 0.866666666666667,
@@ -2178,15 +2193,15 @@
     "logo": "/logos/xai.svg",
     "scores": {
       "intelligence": 37.5766393431307,
-      "coding": 41.0318462401796,
-      "agentic": 65.8880297791428
+      "coding": 42.2462373422111,
+      "agentic": 24.0959828178694
     },
     "speed": {
-      "median_tps": 172.656974575175,
-      "ttft_seconds": 12.6058683329998,
-      "e2e_seconds": 15.50178378171108,
-      "p05_tps": 84.0155349002592,
-      "p95_tps": 243.401968441077
+      "median_tps": 136.597184187058,
+      "ttft_seconds": 14.0606139564999,
+      "e2e_seconds": 17.72101151868752,
+      "p05_tps": 60.7766820895227,
+      "p95_tps": 231.762352911033
     },
     "benchmarks": {
       "gpqa": 0.901010101010101,
@@ -2250,15 +2265,15 @@
     "logo": "/logos/alibaba.svg",
     "scores": {
       "intelligence": 37.0516798775037,
-      "coding": 36.5039281705948,
-      "agentic": 62.8548249439456
+      "coding": 53.7210431405188,
+      "agentic": 27.0255773195876
     },
     "speed": {
-      "median_tps": 56.4025022337673,
-      "ttft_seconds": 104.4368719921014,
-      "e2e_seconds": 113.3017269222548,
-      "p05_tps": 43.5046546170004,
-      "p95_tps": 65.7971249600487
+      "median_tps": 56.2280628869885,
+      "ttft_seconds": 104.57136442629965,
+      "e2e_seconds": 113.46372127318122,
+      "p05_tps": 47.3460379830594,
+      "p95_tps": 71.4611048942263
     },
     "benchmarks": {
       "gpqa": 0.842424242424242,
@@ -2317,15 +2332,15 @@
     "logo": "/logos/xai.svg",
     "scores": {
       "intelligence": 37,
-      "coding": 40.4531425364759,
-      "agentic": 53.8572278392907
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 132.306279589809,
-      "ttft_seconds": 18.015435107,
-      "e2e_seconds": 21.794545225961524,
-      "p05_tps": 88.7116472781976,
-      "p95_tps": 170.917884786999
+      "median_tps": 226.059789822522,
+      "ttft_seconds": 8.42422913499996,
+      "e2e_seconds": 10.636033367820607,
+      "p05_tps": 151.735410036364,
+      "p95_tps": 296.069642142681
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
@@ -2346,7 +2361,7 @@
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 2000000,
@@ -2373,7 +2388,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 78.9
+    "data_completeness_pct": 63.9
   },
   {
     "id": "grok-4-20-0309",
@@ -2383,15 +2398,15 @@
     "logo": "/logos/xai.svg",
     "scores": {
       "intelligence": 36.5,
-      "coding": 42.1647025813692,
-      "agentic": 50.883690027477
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 127.729130673158,
-      "ttft_seconds": 16.8127177495003,
-      "e2e_seconds": 20.727251555257062,
-      "p05_tps": 86.8538189559978,
-      "p95_tps": 183.833902518858
+      "median_tps": 226.193864080674,
+      "ttft_seconds": 8.67018582599997,
+      "e2e_seconds": 10.880679032931837,
+      "p05_tps": 156.384616689689,
+      "p95_tps": 293.451098254847
     },
     "benchmarks": {
       "gpqa": 0.884848484848485,
@@ -2412,7 +2427,7 @@
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 2000000,
@@ -2439,7 +2454,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 78.9
+    "data_completeness_pct": 63.9
   },
   {
     "id": "mimo-v2-omni-0327",
@@ -2449,15 +2464,15 @@
     "logo": "/logos/xiaomi.svg",
     "scores": {
       "intelligence": 36.390250149454,
-      "coding": 36.8932379349046,
-      "agentic": 58.6321532931964
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 70.7788696381563,
-      "ttft_seconds": 31.086399359161483,
-      "e2e_seconds": 38.1506545889519,
-      "p05_tps": 62.1845968386576,
-      "p95_tps": 92.7470349926423
+      "median_tps": 78.1637644275962,
+      "ttft_seconds": 28.40371378093992,
+      "e2e_seconds": 34.800539773924875,
+      "p05_tps": 60.9688738638619,
+      "p95_tps": 103.119662880488
     },
     "benchmarks": {
       "gpqa": 0.854545454545455,
@@ -2478,7 +2493,7 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 256000,
@@ -2510,7 +2525,7 @@
       }
     },
     "arena_votes": 10216,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 71.4
   },
   {
     "id": "kat-coder-pro-v2",
@@ -2520,15 +2535,15 @@
     "logo": "/logos/kwaikat.svg",
     "scores": {
       "intelligence": 35.387251233418,
-      "coding": 45.5983445566779,
-      "agentic": 50.6777451579024
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 106.746400335918,
-      "ttft_seconds": 1.1869155195003,
-      "e2e_seconds": 5.870914215723879,
-      "p05_tps": 70.1027557411821,
-      "p95_tps": 119.221234775174
+      "median_tps": 114.904677798361,
+      "ttft_seconds": 1.25087667749994,
+      "e2e_seconds": 5.602309618092825,
+      "p05_tps": 90.3714036311843,
+      "p95_tps": 134.685120840691
     },
     "benchmarks": {
       "gpqa": 0.854545454545454,
@@ -2549,7 +2564,7 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 256000,
@@ -2570,7 +2585,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 77.4
+    "data_completeness_pct": 62.4
   },
   {
     "id": "mimo-v2-omni",
@@ -2580,15 +2595,15 @@
     "logo": "/logos/xiaomi.svg",
     "scores": {
       "intelligence": 34.9910417939545,
-      "coding": 35.4622615039282,
-      "agentic": 58.5619269235444
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 69.2822855424377,
-      "ttft_seconds": 31.789614884332337,
-      "e2e_seconds": 39.006466870165475,
-      "p05_tps": 58.5677050746284,
-      "p95_tps": 95.7766114998185
+      "median_tps": 81.7731885476943,
+      "ttft_seconds": 27.02782979914378,
+      "e2e_seconds": 33.14230336780467,
+      "p05_tps": 59.0179149710578,
+      "p95_tps": 101.80437881898
     },
     "benchmarks": {
       "gpqa": 0.828282828282828,
@@ -2609,7 +2624,7 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 256000,
@@ -2641,7 +2656,7 @@
       }
     },
     "arena_votes": 10216,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 71.4
   },
   {
     "id": "glm-5v-turbo",
@@ -2651,8 +2666,8 @@
     "logo": "/logos/z-ai.svg",
     "scores": {
       "intelligence": 34.4926006493217,
-      "coding": 36.2233445566779,
-      "agentic": 61.0657924284304
+      "coding": null,
+      "agentic": null
     },
     "speed": {
       "median_tps": 0,
@@ -2680,7 +2695,7 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 200000,
@@ -2713,7 +2728,7 @@
       }
     },
     "arena_votes": 16521,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 71.4
   },
   {
     "id": "hy3-preview",
@@ -2723,15 +2738,15 @@
     "logo": "/logos/tencent.svg",
     "scores": {
       "intelligence": 33.578853562193,
-      "coding": 36.4618406285073,
-      "agentic": 55.6654097734737
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 123.817841989428,
-      "ttft_seconds": 19.911990384770007,
-      "e2e_seconds": 23.950180616212513,
-      "p05_tps": 56.3898097790147,
-      "p95_tps": 184.378705067944
+      "median_tps": 113.756403147064,
+      "ttft_seconds": 21.319395775178467,
+      "e2e_seconds": 25.71475274997312,
+      "p05_tps": 49.4834130322278,
+      "p95_tps": 182.196924092251
     },
     "benchmarks": {
       "gpqa": 0.866666666666667,
@@ -2752,7 +2767,7 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 256000,
@@ -2777,12 +2792,12 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.07,
-      "completion": 0.26
+      "prompt": 0.06,
+      "completion": 0.21
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 90.2
+    "data_completeness_pct": 75.2
   },
   {
     "id": "gpt-5-5-instant",
@@ -2792,8 +2807,8 @@
     "logo": "/logos/openai.svg",
     "scores": {
       "intelligence": 33.5183896507769,
-      "coding": 45.0652356902357,
-      "agentic": 38.0771548704135
+      "coding": null,
+      "agentic": null
     },
     "speed": {
       "median_tps": 0,
@@ -2821,7 +2836,7 @@
       "chinese_eval": false,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 400000,
@@ -2858,7 +2873,7 @@
       }
     },
     "arena_votes": 26254,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 71.4
   },
   {
     "id": "qwen3-max-thinking",
@@ -2868,8 +2883,8 @@
     "logo": "/logos/alibaba.svg",
     "scores": {
       "intelligence": 31.7491243522325,
-      "coding": 30.513468013468,
-      "agentic": 50.1296390792743
+      "coding": null,
+      "agentic": null
     },
     "speed": {
       "median_tps": 0,
@@ -2897,7 +2912,7 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 256000,
@@ -2932,10 +2947,15 @@
         "rank": 17,
         "score": 1475,
         "votes": 3740
+      },
+      "code": {
+        "rank": 17,
+        "score": 1484,
+        "votes": 2503
       }
     },
-    "arena_votes": null,
-    "data_completeness_pct": 96.2
+    "arena_votes": 2503,
+    "data_completeness_pct": 81.2
   },
   {
     "id": "qwen3-6-35b-a3b",
@@ -2945,15 +2965,15 @@
     "logo": "/logos/alibaba.svg",
     "scores": {
       "intelligence": 31.649611240178,
-      "coding": 35.1536195286195,
-      "agentic": 58.3372775083472
+      "coding": 41.8838431127757,
+      "agentic": 21.413264604811
     },
     "speed": {
-      "median_tps": 169.211300154604,
-      "ttft_seconds": 34.265613819201086,
-      "e2e_seconds": 37.22049921718079,
-      "p05_tps": 126.898157449028,
-      "p95_tps": 202.360158308481
+      "median_tps": 170.044061475115,
+      "ttft_seconds": 34.1807012320803,
+      "e2e_seconds": 37.12111559093854,
+      "p05_tps": 130.848700987781,
+      "p95_tps": 204.993767602509
     },
     "benchmarks": {
       "gpqa": 0.841414141414142,
@@ -2997,7 +3017,7 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": 46067854030,
     "openrouter_pricing": {
-      "prompt": 0.15,
+      "prompt": 0.14,
       "completion": 1.0
     },
     "arena_rankings": {},
@@ -3012,15 +3032,15 @@
     "logo": "/logos/inclusionai.svg",
     "scores": {
       "intelligence": 30.5727263188268,
-      "coding": 33.3122895622896,
-      "agentic": 51.5100263514655
+      "coding": 42.8344777361631,
+      "agentic": 18.8602680412371
     },
     "speed": {
-      "median_tps": 130.699527052367,
-      "ttft_seconds": 18.579286398141672,
-      "e2e_seconds": 22.404854946677172,
-      "p05_tps": 106.432691773202,
-      "p95_tps": 146.944423119211
+      "median_tps": 127.886035389151,
+      "ttft_seconds": 19.047247693955473,
+      "e2e_seconds": 22.95697871719444,
+      "p05_tps": 117.060391820079,
+      "p95_tps": 152.994564966783
     },
     "benchmarks": {
       "gpqa": 0.856565656565657,
@@ -3079,15 +3099,15 @@
     "logo": "/logos/stepfun.svg",
     "scores": {
       "intelligence": 29.7283976225226,
-      "coding": 37.0861391694725,
-      "agentic": 59.5263667488411
+      "coding": 37.3188028852823,
+      "agentic": 21.5294020618557
     },
     "speed": {
-      "median_tps": 360.818498558235,
-      "ttft_seconds": 6.495132346093321,
-      "e2e_seconds": 7.880870610616645,
-      "p05_tps": 264.065495414456,
-      "p95_tps": 443.052392589115
+      "median_tps": 394.594003506526,
+      "ttft_seconds": 6.037790685111004,
+      "e2e_seconds": 7.304915870888772,
+      "p05_tps": 337.92229547247,
+      "p95_tps": 471.131139390234
     },
     "benchmarks": {
       "gpqa": 0.809090909090909,
@@ -3149,15 +3169,15 @@
     "logo": "/logos/cohere.svg",
     "scores": {
       "intelligence": 29.2913824199774,
-      "coding": 29.2824074074074,
-      "agentic": 40.9029269938621
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 197.558244073182,
-      "ttft_seconds": 10.502540828971087,
-      "e2e_seconds": 13.03344001946391,
-      "p05_tps": 140.88025079762,
-      "p95_tps": 219.58855384062
+      "median_tps": 200.379098697474,
+      "ttft_seconds": 10.374964476107705,
+      "e2e_seconds": 12.870234707634618,
+      "p05_tps": 165.796031045686,
+      "p95_tps": 216.40633200519
     },
     "benchmarks": {
       "gpqa": 0.760606060606061,
@@ -3178,7 +3198,7 @@
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 192000,
@@ -3205,7 +3225,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 67.7
   },
   {
     "id": "ling-2-6-1t",
@@ -3215,8 +3235,8 @@
     "logo": "/logos/inclusionai.svg",
     "scores": {
       "intelligence": 26.0516751710776,
-      "coding": 33.0527497194164,
-      "agentic": 48.2096467905633
+      "coding": null,
+      "agentic": null
     },
     "speed": {
       "median_tps": 0,
@@ -3244,7 +3264,7 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 262144,
@@ -3272,7 +3292,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 92.5
+    "data_completeness_pct": 77.4
   },
   {
     "id": "step-3-5-flash",
@@ -3282,15 +3302,15 @@
     "logo": "/logos/stepfun.svg",
     "scores": {
       "intelligence": 25.5,
-      "coding": 31.6400604031293,
-      "agentic": 52.0038785700216
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 206.500772267902,
-      "ttft_seconds": 10.858513686062697,
-      "e2e_seconds": 13.279812136953376,
-      "p05_tps": 159.3899830093,
-      "p95_tps": 249.671450204312
+      "median_tps": 200.305714892988,
+      "ttft_seconds": 11.321225143088348,
+      "e2e_seconds": 13.817409539360426,
+      "p05_tps": 132.206594425393,
+      "p95_tps": 294.539931071588
     },
     "benchmarks": {
       "gpqa": 0.831313131313131,
@@ -3311,7 +3331,7 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 256000,
@@ -3342,7 +3362,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 92.5
+    "data_completeness_pct": 77.4
   },
   {
     "id": "k-exaone",
@@ -3352,8 +3372,8 @@
     "logo": "/logos/lg-ai-research.svg",
     "scores": {
       "intelligence": 24.6957602344937,
-      "coding": 27.0342312008979,
-      "agentic": 38.140512441246
+      "coding": null,
+      "agentic": null
     },
     "speed": {
       "median_tps": 0,
@@ -3381,7 +3401,7 @@
       "chinese_eval": false,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 256000,
@@ -3401,7 +3421,7 @@
     "openrouter_pricing": null,
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 78.9
+    "data_completeness_pct": 63.9
   },
   {
     "id": "trinity-large-thinking",
@@ -3411,15 +3431,15 @@
     "logo": "/logos/arcee-ai.svg",
     "scores": {
       "intelligence": 24.4651372124901,
-      "coding": 27.1885521885522,
-      "agentic": 42.6071412068343
+      "coding": null,
+      "agentic": null
     },
     "speed": {
-      "median_tps": 184.032450553462,
-      "ttft_seconds": 11.949298076373516,
-      "e2e_seconds": 14.666210221466908,
-      "p05_tps": 110.840511578887,
-      "p95_tps": 325.074116489803
+      "median_tps": 245.501714966456,
+      "ttft_seconds": 9.2398898083799,
+      "e2e_seconds": 11.276535458974712,
+      "p05_tps": 108.660557694194,
+      "p95_tps": 304.116194770938
     },
     "benchmarks": {
       "gpqa": 0.751515151515151,
@@ -3440,7 +3460,7 @@
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": false
     },
     "meta": {
       "context_window": 512000,
@@ -3461,12 +3481,12 @@
     "license": "Apache 2.0",
     "openrouter_weekly_tokens": 2743686625,
     "openrouter_pricing": {
-      "prompt": 0.22,
-      "completion": 0.85
+      "prompt": 0.25,
+      "completion": 0.8
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 85.0
+    "data_completeness_pct": 69.9
   },
   {
     "id": "gpt-5-5-pro",
