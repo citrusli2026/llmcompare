@@ -35,17 +35,16 @@ interface ChangesData {
 
 // Lazy-load the static JSON
 let _cache: ChangesData | null = null;
-function loadChanges(): ChangesData | null {
+function loadChanges(): ChangesData {
   if (_cache) return _cache;
   try {
-    // Dynamic import doesn't work well with static JSON, use require
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     _cache = require("@/data/changes.json") as ChangesData;
     return _cache;
   } catch {
     return null;
   }
 }
-
 const TYPE_COLORS: Record<string, string> = {
   new: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
   dropped: "bg-red-500/10 text-red-600 dark:text-red-400",
