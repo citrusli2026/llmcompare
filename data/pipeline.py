@@ -192,6 +192,39 @@ metadata_path = APP / "app" / "src" / "data" / "metadata.json"
 metadata_path.write_text(json.dumps(metadata, indent=2))
 ok(f"metadata.json: updated_at={metadata['updated_at']}")
 
+# 保存当日 ranking 快照到 5-history/（用于变化对比）
+import shutil
+HISTORY_DIR = DATA / "5-history"
+HISTORY_DIR.mkdir(exist_ok=True)
+snapshot_path = HISTORY_DIR / f"{TODAY}.json"
+shutil.copy(DATA / "4-final" / "ranking.json", snapshot_path)
+ok(f"快照: {snapshot_path.name} ({src_count} 模型)")
+# 清理 30 天前的快照
+from datetime import timedelta
+cutoff = date.today() - timedelta(days=30)
+for old in sorted(HISTORY_DIR.glob("*.json")):
+    try:
+        old_date = date.fromisoformat(old.stem)
+        if old_date < cutoff:
+            old.unlink()
+    except ValueError:
+        pass
+
+# 生成变化对比 changes.json
+print("  Step 4/4: build_changes.py")
+out, rc = run("python3.11 3-process/build_changes.py", cwd=str(DATA), exit_on_error=False)
+if rc == 0:
+    ok("Step 4 完成")
+    # 同步到前端
+    changes_src = DATA / "4-final" / "changes.json"
+    changes_dst = APP / "app" / "src" / "data" / "changes.json"
+    if changes_src.exists():
+        import shutil
+        shutil.copy(changes_src, changes_dst)
+        ok("changes.json 已同步到前端")
+else:
+    warn(f"Step 4 跳过: {out[:200]}")
+
 # 日期文案 - 使用整行替换避免累积
 today_cn = f"{date.today().year}年{date.today().month}月{date.today().day}日"
 today_dot = date.today().strftime("%Y.%m.%d")

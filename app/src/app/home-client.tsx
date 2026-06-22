@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp } from "lucide-react";
 import { SceneSelector } from "@/components/scene-selector";
+import { ChangesCard } from "@/components/changes-card";
 import { useTranslation } from "@/lib/i18n";
 
 export default function HomeClient() {
@@ -54,6 +55,9 @@ export default function HomeClient() {
         {/* Scene Selection Cards — inline in hero */}
         <SceneSelector hideHeader />
       </section>
+
+      {/* Daily Changes */}
+      <ChangesCard />
 
       {/* Footer */}
       <footer className="border-t border-surface-border bg-surface-elevated px-4 py-8 sm:px-6 lg:px-8 pb-20">

@@ -225,5 +225,12 @@
     "contextWindow": "Maximum number of tokens the model can process in a single request (input + output combined). Larger = can handle longer content.",
     "maxOutput": "Maximum tokens the model can generate in a single request. Larger = can produce longer content."
   },
-  "theme": {}
+  "theme": {},
+  "changes": {
+    "title": "Today's Changes",
+    "new": "new",
+    "dropped": "dropped",
+    "price": "price changes",
+    "ranking": "ranking moves"
+  }
 }
