@@ -35,7 +35,7 @@ interface ChangesData {
 
 // Lazy-load the static JSON
 let _cache: ChangesData | null = null;
-function loadChanges(): ChangesData {
+function loadChanges(): ChangesData | null {
   if (_cache) return _cache;
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
