@@ -225,5 +225,12 @@
     "contextWindow": "模型单次请求能处理的最大 Token 数（输入 + 输出合计）。越大越能处理长文本。",
     "maxOutput": "模型单次请求能生成的最大 Token 数。越大越能生成长内容。"
   },
-  "theme": {}
+  "theme": {},
+  "changes": {
+    "title": "今日变化",
+    "new": "新上榜",
+    "dropped": "下榜",
+    "price": "价格变动",
+    "ranking": "排名变动"
+  }
 }
