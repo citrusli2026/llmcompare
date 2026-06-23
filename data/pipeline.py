@@ -342,18 +342,37 @@ if not branch_diff.strip():
     print()
     sys.exit(0)
 
-# Merge to main and push directly (no PR, no CI approval needed)
-run("git checkout main", cwd=str(APP))
-run("git merge " + BRANCH + " --no-edit", cwd=str(APP))
-run("git push origin main", cwd=str(APP))
-ok("已直接推送到 main")
+# Push branch and create PR (workflow will auto-approve & merge)
+diff_text = diff_content or "（无变化摘要）"
 
-# Clean up remote branch
-run("git push origin --delete " + BRANCH, cwd=str(APP), exit_on_error=False)
+run("git push origin " + BRANCH + " --force", cwd=str(APP))
+ok("分支已推送")
+
+# Create PR via gh CLI
+import shutil
+gh = shutil.which("gh")
+if gh:
+    pr_body = f"""## 📊 数据刷新 {TODAY}
+
+**模型数**: {src_count}
+
+{diff_text[:500]}
+
+---
+🤖 Hermes Agent 自动创建"""
+    pr_out, _ = run(
+        f'gh pr create --base main --head {BRANCH} --title "data: 刷新模型排名数据（{TODAY}）" --body "{pr_body}"',
+        cwd=str(APP), exit_on_error=False
+    )
+    ok("PR 已创建: " + (pr_out.strip() if pr_out else ""))
+else:
+    warn("gh CLI 未安装，请手动创建 PR")
+
+# Clean up local branch
+run("git checkout main", cwd=str(APP))
 run("git branch -d " + BRANCH, cwd=str(APP), exit_on_error=False)
 
-# 从 diff 中提取关键指标
-diff_text = diff_content or "（无变化摘要）"
+# 从 diff 中提取关键指标（已提前到 PR 创建前）
 
 # ══════════════════════════════════════════════
 # Phase 7: 清理 — 切回 main

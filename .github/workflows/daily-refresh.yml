@@ -40,9 +40,31 @@ jobs:
           cd data
           python3.11 pipeline.py --cache-hours 0
 
+      - name: Auto-approve and merge PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Find the latest open PR from llmcompare-bot
+          PR_URL=$(gh pr list --state open --author "app/llmcompare-bot" --json url,number --jq '.[0].url' 2>/dev/null || echo "")
+          if [ -z "$PR_URL" ]; then
+            echo "No open PR found, skipping auto-merge"
+            exit 0
+          fi
+          PR_NUM=$(echo "$PR_URL" | grep -o '[0-9]*$')
+          echo "Found PR #$PR_NUM: $PR_URL"
+
+          # Approve
+          gh pr review $PR_NUM --approve --body "🤖 Auto-approved by data-refresh workflow"
+          echo "✅ Approved PR #$PR_NUM"
+
+          # Merge (squash)
+          gh pr merge $PR_NUM --squash --auto
+          echo "✅ PR #$PR_NUM set to auto-merge"
+
       - name: Summary
         if: always()
         run: |
           echo "## 📊 Data Refresh Report" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "- **Time:** $(date -u)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Status:** ${{ job.status }}" >> "$GITHUB_STEP_SUMMARY"
