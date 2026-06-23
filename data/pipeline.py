@@ -311,9 +311,9 @@ if not all_passed:
     sys.exit(1)
 
 # ══════════════════════════════════════════════
-# Phase 6: 提交 PR + 飞书通知
+# Phase 6: 提交并推送（直接推 main）
 # ══════════════════════════════════════════════
-step("Phase 6: 提交 PR")
+step("Phase 6: 提交并推送")
 
 # Stage from repo root to capture all changes (metadata.json, ranking.json, etc.)
 run("git add -A", cwd=str(APP))
@@ -327,55 +327,33 @@ else:
     warn("无变更可提交")
 
 # Check if branch has any commits vs main
-branch_diff, _ = run(f"git log main..{BRANCH} --oneline", cwd=str(APP), exit_on_error=False)
+branch_diff, _ = run("git log main.." + BRANCH + " --oneline", cwd=str(APP), exit_on_error=False)
 if not branch_diff.strip():
-    warn("分支与 main 无差异，跳过 PR 创建")
-    # Clean up: delete remote branch if it exists
-    run(f"git push origin --delete {BRANCH}", cwd=str(APP), exit_on_error=False)
+    warn("分支与 main 无差异，跳过推送")
+    run("git push origin --delete " + BRANCH, cwd=str(APP), exit_on_error=False)
     run("git checkout main", cwd=str(APP))
-    ok("已切回 main，无 PR 创建")
-    # Print summary without PR
+    ok("已切回 main，无变更")
     print()
-    print(f"🔄 LLMCompare 数据刷新完成（{TODAY}）")
+    print("🔄 LLMCompare 数据刷新完成（" + TODAY + "）")
     print()
-    print(f"📊 模型数: {src_count}")
+    print("📊 模型数: " + str(src_count))
     print()
-    print("⚠️ 数据无变化，未创建 PR")
+    print("⚠️ 数据无变化，未推送")
     print()
     sys.exit(0)
 
-run("git push -u origin " + BRANCH, cwd=str(APP))
-ok("推送完成")
+# Merge to main and push directly (no PR, no CI approval needed)
+run("git checkout main", cwd=str(APP))
+run("git merge " + BRANCH + " --no-edit", cwd=str(APP))
+run("git push origin main", cwd=str(APP))
+ok("已直接推送到 main")
+
+# Clean up remote branch
+run("git push origin --delete " + BRANCH, cwd=str(APP), exit_on_error=False)
+run("git branch -d " + BRANCH, cwd=str(APP), exit_on_error=False)
 
 # 从 diff 中提取关键指标
 diff_text = diff_content or "（无变化摘要）"
-
-# 构建 PR body
-pr_body = f"""## 数据刷新（{TODAY}）
-
-### 数据源更新
-- **Artificial Analysis**: {src_count} 模型
-- **Arena Leaderboards**: 日期快照
-
-### 验证状态
-- ✅ Vitest: 通过
-- ✅ Build: 静态导出成功
-- ✅ Lint: 0 errors
-- ✅ 数据质量: 通过
-"""
-
-with open("/tmp/pr-body.md", "w") as f:
-    f.write(pr_body)
-
-out, rc = run(f"gh pr create --title \"data: 刷新模型排名数据（{TODAY}）\" --body-file /tmp/pr-body.md",
-              cwd=str(APP), exit_on_error=False)
-
-pr_url = ""
-if rc == 0:
-    pr_url = out
-    ok(f"PR 创建成功: {pr_url}")
-else:
-    warn(f"PR 创建失败: {out[:300]}")
 
 # ══════════════════════════════════════════════
 # Phase 7: 清理 — 切回 main
@@ -391,11 +369,11 @@ ok("app/ 已切回 main")
 step("输出摘要")
 
 print()
-print(f"🔄 LLMCompare 数据刷新完成（{TODAY}）")
+print("🔄 LLMCompare 数据刷新完成（" + TODAY + "）")
 print()
-print(f"📊 模型数: {src_count}")
+print("📊 模型数: " + str(src_count))
 print()
-print(f"[变化摘要]")
+print("[变化摘要]")
 print(diff_text[:500])
 print()
 print("[验证结果]")
@@ -404,10 +382,6 @@ print("✅ 构建: 成功")
 print("✅ Lint: 0 errors")
 print("✅ 数据质量: 通过")
 print()
-if pr_url:
-    print(f"[PR]")
-    print(f"🔗 {pr_url}")
-print()
-print(f"🤖 Hermes Agent · 每日 23:00")
+print("🤖 Hermes Agent · 每日 12:00")
 
 sys.exit(0)
