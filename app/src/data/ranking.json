@@ -92,11 +92,11 @@
       "agentic": 47.1756219931271
     },
     "speed": {
-      "median_tps": 66.7294315870151,
-      "ttft_seconds": 32.5965152125,
-      "e2e_seconds": 40.08946080050491,
-      "p05_tps": 41.1671982826629,
-      "p95_tps": 87.842097187217
+      "median_tps": 69.0849129474566,
+      "ttft_seconds": 32.1583452909999,
+      "e2e_seconds": 39.39581550942923,
+      "p05_tps": 42.2209434985532,
+      "p95_tps": 87.9596530666655
     },
     "benchmarks": {
       "gpqa": 0.92020202020202,
@@ -173,11 +173,11 @@
       "agentic": 44.8710687285223
     },
     "speed": {
-      "median_tps": 67.9397577387394,
-      "ttft_seconds": 108.551911691,
-      "e2e_seconds": 115.91137272886147,
-      "p05_tps": 36.8156209233115,
-      "p95_tps": 99.7703282746215
+      "median_tps": 67.5974663585563,
+      "ttft_seconds": 90.7096699140002,
+      "e2e_seconds": 98.10639684675027,
+      "p05_tps": 37.0451463110754,
+      "p95_tps": 100.38717133498
     },
     "benchmarks": {
       "gpqa": 0.935353535353535,
@@ -249,11 +249,11 @@
       "agentic": 44.3863264604811
     },
     "speed": {
-      "median_tps": 50.2251174108125,
+      "median_tps": 50.0795829421749,
       "ttft_seconds": 13.9298752109998,
-      "e2e_seconds": 23.88505353164539,
-      "p05_tps": 36.6693684198596,
-      "p95_tps": 81.9691629139739
+      "e2e_seconds": 23.913983916084906,
+      "p05_tps": 36.0963924746618,
+      "p95_tps": 82.6665121690735
     },
     "benchmarks": {
       "gpqa": 0.914141414141414,
@@ -330,11 +330,11 @@
       "agentic": 41.0770927835052
     },
     "speed": {
-      "median_tps": 166.301872371525,
-      "ttft_seconds": 121.305892377,
-      "e2e_seconds": 124.31247307792549,
-      "p05_tps": 133.55799219671,
-      "p95_tps": 207.265971992148
+      "median_tps": 163.782328232936,
+      "ttft_seconds": 122.23842149,
+      "e2e_seconds": 125.29125390113097,
+      "p05_tps": 127.499078676859,
+      "p95_tps": 208.246021265397
     },
     "benchmarks": {
       "gpqa": 0.92020202020202,
@@ -380,13 +380,18 @@
       "completion": 15.0
     },
     "arena_rankings": {
+      "text": {
+        "rank": 27,
+        "score": 1468,
+        "votes": 43382
+      },
       "vision": {
         "rank": 17,
         "score": 1275,
         "votes": 12444
       }
     },
-    "arena_votes": 12444,
+    "arena_votes": 43382,
     "data_completeness_pct": 86.5
   },
   {
@@ -401,11 +406,11 @@
       "agentic": 43.0557079037801
     },
     "speed": {
-      "median_tps": 117.982582981045,
-      "ttft_seconds": 18.328569724052166,
-      "e2e_seconds": 22.566483383565195,
-      "p05_tps": 37.3059240433904,
-      "p95_tps": 292.01651060903
+      "median_tps": 138.690335461121,
+      "ttft_seconds": 15.912911550481029,
+      "e2e_seconds": 19.51806542322629,
+      "p05_tps": 38.4617031662625,
+      "p95_tps": 292.049698174807
     },
     "benchmarks": {
       "gpqa": 0.894949494949495,
@@ -448,11 +453,11 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.98,
-      "completion": 3.08
+      "prompt": 0.95,
+      "completion": 3.0
     },
     "arena_rankings": {},
-    "arena_votes": 1994,
+    "arena_votes": 3357,
     "data_completeness_pct": 82.7
   },
   {
@@ -467,11 +472,11 @@
       "agentic": 37.4466082474227
     },
     "speed": {
-      "median_tps": 172.797191972089,
-      "ttft_seconds": 21.013955013,
-      "e2e_seconds": 23.907520552425908,
-      "p05_tps": 125.891966539108,
-      "p95_tps": 246.047538116279
+      "median_tps": 183.913713385306,
+      "ttft_seconds": 23.6063454339999,
+      "e2e_seconds": 26.325011654133693,
+      "p05_tps": 127.545696609821,
+      "p95_tps": 269.834967664209
     },
     "benchmarks": {
       "gpqa": 0.922222222222222,
@@ -543,11 +548,11 @@
       "agentic": 40.7694879725086
     },
     "speed": {
-      "median_tps": 52.7459915555905,
-      "ttft_seconds": 110.429831889,
-      "e2e_seconds": 119.90922520883238,
-      "p05_tps": 41.0912086948981,
-      "p95_tps": 73.0507193586578
+      "median_tps": 53.1646432379507,
+      "ttft_seconds": 117.099004131,
+      "e2e_seconds": 126.50375077365373,
+      "p05_tps": 41.4719095287098,
+      "p95_tps": 67.9073101538799
     },
     "benchmarks": {
       "gpqa": 0.874747474747475,
@@ -561,7 +566,7 @@
       "display": "$3/$15 (USD/百万token)"
     },
     "flags": {
-      "frontier": true,
+      "frontier": false,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -593,6 +598,11 @@
       "completion": 15.0
     },
     "arena_rankings": {
+      "text": {
+        "rank": 24,
+        "score": 1472,
+        "votes": 39561
+      },
       "code": {
         "rank": 12,
         "score": 1521,
@@ -604,7 +614,7 @@
         "votes": 17336
       }
     },
-    "arena_votes": 17336,
+    "arena_votes": 39561,
     "data_completeness_pct": 88.7
   },
   {
@@ -619,11 +629,11 @@
       "agentic": 21.3959484536082
     },
     "speed": {
-      "median_tps": 133.57914219243,
-      "ttft_seconds": 29.8704086745001,
-      "e2e_seconds": 33.61350802214912,
-      "p05_tps": 95.8697614855237,
-      "p95_tps": 188.253364000519
+      "median_tps": 137.745400506507,
+      "ttft_seconds": 35.495698275,
+      "e2e_seconds": 39.12558354275804,
+      "p05_tps": 95.9273778215829,
+      "p95_tps": 207.764012440692
     },
     "benchmarks": {
       "gpqa": 0.941414141414141,
@@ -637,7 +647,7 @@
       "display": "$2/$12 (USD/百万token)"
     },
     "flags": {
-      "frontier": true,
+      "frontier": false,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -700,11 +710,11 @@
       "agentic": 30.5882783505155
     },
     "speed": {
-      "median_tps": 198.250251229465,
-      "ttft_seconds": 14.689219379178883,
-      "e2e_seconds": 17.21128427896695,
-      "p05_tps": 182.053784660536,
-      "p95_tps": 242.525833709767
+      "median_tps": 200.331848881495,
+      "ttft_seconds": 14.557112746174088,
+      "e2e_seconds": 17.052971506484194,
+      "p05_tps": 169.643395886999,
+      "p95_tps": 237.219656183462
     },
     "benchmarks": {
       "gpqa": 0.923232323232323,
@@ -718,7 +728,7 @@
       "display": "¥2.5/¥10.0 (≤32K)"
     },
     "flags": {
-      "frontier": true,
+      "frontier": false,
       "open_weights": false,
       "reasoning": true,
       "image_input": false,
@@ -760,6 +770,11 @@
         "rank": 17,
         "score": 1475,
         "votes": 3740
+      },
+      "code": {
+        "rank": 19,
+        "score": 1483,
+        "votes": 2507
       }
     },
     "arena_votes": 3740,
@@ -777,11 +792,11 @@
       "agentic": 35.3635635738832
     },
     "speed": {
-      "median_tps": 90.3555605712189,
-      "ttft_seconds": 26.013495062110685,
-      "e2e_seconds": 31.547188803138347,
-      "p05_tps": 32.161750588279,
-      "p95_tps": 138.784848038133
+      "median_tps": 86.8852934595941,
+      "ttft_seconds": 26.143641081809044,
+      "e2e_seconds": 31.89835491301138,
+      "p05_tps": 31.5048812296796,
+      "p95_tps": 140.775829558331
     },
     "benchmarks": {
       "gpqa": 0.929292929292929,
@@ -795,7 +810,7 @@
       "display": "¥4.2/¥16.8 (≤512K)"
     },
     "flags": {
-      "frontier": true,
+      "frontier": false,
       "open_weights": true,
       "reasoning": true,
       "image_input": true,
@@ -831,13 +846,18 @@
       "completion": 1.2
     },
     "arena_rankings": {
+      "text": {
+        "rank": 49,
+        "score": 1448,
+        "votes": 11264
+      },
       "code": {
         "rank": 15,
         "score": 1505,
         "votes": 3236
       }
     },
-    "arena_votes": 3236,
+    "arena_votes": 11264,
     "data_completeness_pct": 97.7
   },
   {
@@ -852,11 +872,11 @@
       "agentic": 36.3637319587629
     },
     "speed": {
-      "median_tps": 87.4161820450086,
-      "ttft_seconds": 51.75550407875977,
-      "e2e_seconds": 57.47526886718946,
-      "p05_tps": 65.2239823238234,
-      "p95_tps": 136.263228345208
+      "median_tps": 77.1388388458886,
+      "ttft_seconds": 58.47845171634846,
+      "e2e_seconds": 64.96027082953115,
+      "p05_tps": 64.5308296445598,
+      "p95_tps": 138.71760168702
     },
     "benchmarks": {
       "gpqa": 0.887878787878788,
@@ -870,7 +890,7 @@
       "display": "¥12/¥24"
     },
     "flags": {
-      "frontier": true,
+      "frontier": false,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
@@ -907,9 +927,15 @@
       "prompt": 0.43,
       "completion": 0.87
     },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 92.5
+    "arena_rankings": {
+      "text": {
+        "rank": 36,
+        "score": 1458,
+        "votes": 26928
+      }
+    },
+    "arena_votes": 26928,
+    "data_completeness_pct": 100.0
   },
   {
     "id": "gpt-5-3-codex",
@@ -923,11 +949,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 89.0313330162356,
-      "ttft_seconds": 82.7572755650003,
-      "e2e_seconds": 88.37327594442651,
-      "p05_tps": 68.9522717733125,
-      "p95_tps": 145.425784705947
+      "median_tps": 87.8462037560711,
+      "ttft_seconds": 85.7343130469999,
+      "e2e_seconds": 91.42607863983515,
+      "p05_tps": 67.3445697092064,
+      "p95_tps": 134.559226538993
     },
     "benchmarks": {
       "gpqa": 0.915151515151515,
@@ -941,7 +967,7 @@
       "display": "$1.75/$14 (USD/百万token)"
     },
     "flags": {
-      "frontier": true,
+      "frontier": null,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -988,10 +1014,10 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 44.8913279121262,
-      "ttft_seconds": 21.528404828,
-      "e2e_seconds": 32.666413509292276,
-      "p05_tps": 35.0939158196163,
+      "median_tps": 44.7386392673585,
+      "ttft_seconds": 20.925635264,
+      "e2e_seconds": 32.101656890674775,
+      "p05_tps": 29.7453715027891,
       "p95_tps": 66.3392673182542
     },
     "benchmarks": {
@@ -1006,7 +1032,7 @@
       "display": "$5/$25 (USD/百万token)"
     },
     "flags": {
-      "frontier": true,
+      "frontier": null,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -1087,7 +1113,7 @@
       "display": "$?/$? (USD/百万token)"
     },
     "flags": {
-      "frontier": true,
+      "frontier": false,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -1141,11 +1167,11 @@
       "agentic": 30.2685189003436
     },
     "speed": {
-      "median_tps": 73.4663979117531,
-      "ttft_seconds": 63.364101214790324,
-      "e2e_seconds": 70.16993373431298,
-      "p05_tps": 27.4873751670193,
-      "p95_tps": 109.747606742916
+      "median_tps": 69.2923721426826,
+      "ttft_seconds": 67.05741410090893,
+      "e2e_seconds": 74.27321555984052,
+      "p05_tps": 26.0646205354709,
+      "p95_tps": 104.677725908852
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
@@ -1159,7 +1185,7 @@
       "display": "¥6.5/¥27.0"
     },
     "flags": {
-      "frontier": true,
+      "frontier": false,
       "open_weights": true,
       "reasoning": true,
       "image_input": true,
@@ -1196,6 +1222,11 @@
       "completion": 3.41
     },
     "arena_rankings": {
+      "text": {
+        "rank": 34,
+        "score": 1460,
+        "votes": 25456
+      },
       "code": {
         "rank": 13,
         "score": 1513,
@@ -1207,7 +1238,7 @@
         "votes": 11045
       }
     },
-    "arena_votes": 11045,
+    "arena_votes": 25456,
     "data_completeness_pct": 100.0
   },
   {
@@ -1222,11 +1253,11 @@
       "agentic": 29.1125979381443
     },
     "speed": {
-      "median_tps": 46.1370896328191,
-      "ttft_seconds": 45.96606611062957,
-      "e2e_seconds": 56.803334000287066,
-      "p05_tps": 37.700666926087,
-      "p95_tps": 69.9366895883275
+      "median_tps": 45.7062094001258,
+      "ttft_seconds": 46.54240325280508,
+      "e2e_seconds": 57.48183591550635,
+      "p05_tps": 37.4422107855428,
+      "p95_tps": 73.1690024164153
     },
     "benchmarks": {
       "gpqa": 0.865656565656566,
@@ -1240,7 +1271,7 @@
       "display": "¥7.0/¥21.0 (≤256K)"
     },
     "flags": {
-      "frontier": true,
+      "frontier": false,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
@@ -1275,9 +1306,15 @@
       "prompt": 0.43,
       "completion": 0.87
     },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 92.5
+    "arena_rankings": {
+      "text": {
+        "rank": 29,
+        "score": 1466,
+        "votes": 26563
+      }
+    },
+    "arena_votes": 26563,
+    "data_completeness_pct": 100.0
   },
   {
     "id": "kimi-k2-7-code",
@@ -1291,11 +1328,11 @@
       "agentic": 29.5911099656357
     },
     "speed": {
-      "median_tps": 52.0917900874399,
-      "ttft_seconds": 45.080704719436376,
-      "e2e_seconds": 54.67914622357193,
-      "p05_tps": 38.4946955171617,
-      "p95_tps": 90.1588014019251
+      "median_tps": 51.9247813206187,
+      "ttft_seconds": 45.24159554672873,
+      "e2e_seconds": 54.870909089960854,
+      "p05_tps": 38.1937955058067,
+      "p95_tps": 90.6868776667198
     },
     "benchmarks": {
       "gpqa": 0.895959595959596,
@@ -1338,10 +1375,15 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": 403008045847,
     "openrouter_pricing": {
-      "prompt": 0.68,
-      "completion": 3.41
+      "prompt": 0.74,
+      "completion": 3.5
     },
     "arena_rankings": {
+      "text": {
+        "rank": 34,
+        "score": 1460,
+        "votes": 25456
+      },
       "code": {
         "rank": 13,
         "score": 1513,
@@ -1353,7 +1395,7 @@
         "votes": 11045
       }
     },
-    "arena_votes": null,
+    "arena_votes": 2281,
     "data_completeness_pct": 92.5
   },
   {
@@ -1369,10 +1411,10 @@
     },
     "speed": {
       "median_tps": 104.708015692536,
-      "ttft_seconds": 55.05330405012495,
-      "e2e_seconds": 59.82848765658539,
-      "p05_tps": 81.4807188682281,
-      "p95_tps": 152.377364091001
+      "ttft_seconds": 55.11813260212486,
+      "e2e_seconds": 59.8933162085853,
+      "p05_tps": 81.5097250727735,
+      "p95_tps": 152.453997621818
     },
     "benchmarks": {
       "gpqa": 0.893939393939394,
@@ -1439,11 +1481,11 @@
       "agentic": 29.8734639175258
     },
     "speed": {
-      "median_tps": 96.601237731027,
-      "ttft_seconds": 40.817073647303125,
-      "e2e_seconds": 45.992990765385834,
-      "p05_tps": 32.6240728850968,
-      "p95_tps": 232.429417271198
+      "median_tps": 93.8427112243338,
+      "ttft_seconds": 41.944225744338894,
+      "e2e_seconds": 47.27229004977797,
+      "p05_tps": 32.6076353852586,
+      "p95_tps": 237.030634075659
     },
     "benchmarks": {
       "gpqa": 0.867676767676768,
@@ -1457,7 +1499,7 @@
       "display": "¥6/¥24 (<32K)"
     },
     "flags": {
-      "frontier": true,
+      "frontier": false,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
@@ -1520,11 +1562,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 65.6937812151359,
-      "ttft_seconds": 33.73537961488824,
-      "e2e_seconds": 41.346450111235306,
-      "p05_tps": 45.053085444432,
-      "p95_tps": 103.006122903149
+      "median_tps": 67.1811174392095,
+      "ttft_seconds": 33.560943498577195,
+      "e2e_seconds": 41.00351097972154,
+      "p05_tps": 45.3437858311882,
+      "p95_tps": 108.142937519608
     },
     "benchmarks": {
       "gpqa": 0.84949494949495,
@@ -1538,7 +1580,7 @@
       "display": "¥1/¥2 (估算)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": true,
       "reasoning": true,
       "image_input": true,
@@ -1570,12 +1612,18 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.14,
+      "prompt": 0.1,
       "completion": 0.28
     },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 75.2
+    "arena_rankings": {
+      "text": {
+        "rank": 29,
+        "score": 1466,
+        "votes": 26563
+      }
+    },
+    "arena_votes": 26563,
+    "data_completeness_pct": 82.7
   },
   {
     "id": "qwen3-6-max-preview",
@@ -1589,11 +1637,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 44.2073630517007,
-      "ttft_seconds": 48.565955120371264,
-      "e2e_seconds": 59.87628818446395,
-      "p05_tps": 36.3485828693658,
-      "p95_tps": 52.4647201651502
+      "median_tps": 44.2409079040633,
+      "ttft_seconds": 48.53277044569767,
+      "e2e_seconds": 59.83452765837182,
+      "p05_tps": 35.706783703247,
+      "p95_tps": 51.4105116540374
     },
     "benchmarks": {
       "gpqa": 0.887878787878788,
@@ -1607,7 +1655,7 @@
       "display": "¥9/¥54 (≤128K)"
     },
     "flags": {
-      "frontier": true,
+      "frontier": null,
       "open_weights": false,
       "reasoning": true,
       "image_input": false,
@@ -1649,9 +1697,14 @@
         "rank": 17,
         "score": 1475,
         "votes": 3740
+      },
+      "code": {
+        "rank": 19,
+        "score": 1483,
+        "votes": 2507
       }
     },
-    "arena_votes": null,
+    "arena_votes": 5216,
     "data_completeness_pct": 81.2
   },
   {
@@ -1666,11 +1719,11 @@
       "agentic": 30.1670996563574
     },
     "speed": {
-      "median_tps": 185.123388242118,
-      "ttft_seconds": 11.3483486805,
-      "e2e_seconds": 14.049249980696942,
-      "p05_tps": 140.648837121658,
-      "p95_tps": 264.628880861432
+      "median_tps": 182.800928403376,
+      "ttft_seconds": 11.3361918840001,
+      "e2e_seconds": 14.071407751704445,
+      "p05_tps": 141.046653472157,
+      "p95_tps": 263.160460472951
     },
     "benchmarks": {
       "gpqa": 0.874747474747475,
@@ -1716,7 +1769,7 @@
       "completion": 4.5
     },
     "arena_rankings": {},
-    "arena_votes": 12444,
+    "arena_votes": 39525,
     "data_completeness_pct": 81.2
   },
   {
@@ -1731,11 +1784,11 @@
       "agentic": 20.8054719358534
     },
     "speed": {
-      "median_tps": 48.031926725736,
-      "ttft_seconds": 44.41963473457512,
-      "e2e_seconds": 54.829377463718956,
-      "p05_tps": 40.6962073394297,
-      "p95_tps": 56.4604881833528
+      "median_tps": 48.4244596700404,
+      "ttft_seconds": 44.11228039203255,
+      "e2e_seconds": 54.43764082779067,
+      "p05_tps": 40.7691489248551,
+      "p95_tps": 63.7128369850189
     },
     "benchmarks": {
       "gpqa": 0.9,
@@ -1749,7 +1802,7 @@
       "display": "$0.4/$1.16 (USD/百万token)"
     },
     "flags": {
-      "frontier": true,
+      "frontier": false,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -1798,11 +1851,11 @@
       "agentic": 27.5439759450172
     },
     "speed": {
-      "median_tps": 170.181668733672,
-      "ttft_seconds": 7.55680601899985,
-      "e2e_seconds": 10.494842787122517,
-      "p05_tps": 147.678377582268,
-      "p95_tps": 189.876576646922
+      "median_tps": 164.164304611968,
+      "ttft_seconds": 5.10501820000003,
+      "e2e_seconds": 8.150747301596388,
+      "p05_tps": 141.680723863582,
+      "p95_tps": 186.893410762569
     },
     "benchmarks": {
       "gpqa": 0.817171717171717,
@@ -1848,7 +1901,7 @@
       "completion": 1.25
     },
     "arena_rankings": {},
-    "arena_votes": 12444,
+    "arena_votes": 43382,
     "data_completeness_pct": 81.2
   },
   {
@@ -1863,9 +1916,9 @@
       "agentic": 25.5759931271478
     },
     "speed": {
-      "median_tps": 48.2152163049009,
-      "ttft_seconds": 53.38626570659961,
-      "e2e_seconds": 63.756435920876484,
+      "median_tps": 51.5180935736013,
+      "ttft_seconds": 50.21039151095688,
+      "e2e_seconds": 59.91571958730884,
       "p05_tps": 34.4852897538821,
       "p95_tps": 82.2101421974053
     },
@@ -1913,8 +1966,8 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.25,
-      "completion": 1.0
+      "prompt": 0.24,
+      "completion": 0.96
     },
     "arena_rankings": {},
     "arena_votes": null,
@@ -1932,11 +1985,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 49.1039641525496,
-      "ttft_seconds": 63.35308744071137,
-      "e2e_seconds": 73.53556473412635,
-      "p05_tps": 32.9292478891037,
-      "p95_tps": 82.1151828846567
+      "median_tps": 48.1153078254077,
+      "ttft_seconds": 64.64600109464246,
+      "e2e_seconds": 75.03770433001011,
+      "p05_tps": 32.8424708296133,
+      "p95_tps": 80.4851530631771
     },
     "benchmarks": {
       "gpqa": 0.878787878787879,
@@ -1950,7 +2003,7 @@
       "display": "¥4.0/¥21.0"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": true,
       "reasoning": true,
       "image_input": true,
@@ -1987,6 +2040,11 @@
       "completion": 2.02
     },
     "arena_rankings": {
+      "text": {
+        "rank": 44,
+        "score": 1450,
+        "votes": 47780
+      },
       "code": {
         "rank": 13,
         "score": 1513,
@@ -1998,7 +2056,7 @@
         "votes": 11045
       }
     },
-    "arena_votes": null,
+    "arena_votes": 47780,
     "data_completeness_pct": 85.0
   },
   {
@@ -2031,7 +2089,7 @@
       "display": "$?/$? (USD/百万token)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": false,
       "reasoning": true,
       "image_input": false,
@@ -2064,7 +2122,7 @@
       "completion": 4.0
     },
     "arena_rankings": {},
-    "arena_votes": null,
+    "arena_votes": 23246,
     "data_completeness_pct": 63.9
   },
   {
@@ -2079,11 +2137,11 @@
       "agentic": 27.3604776632302
     },
     "speed": {
-      "median_tps": 138.37624662918,
-      "ttft_seconds": 17.62406404081882,
-      "e2e_seconds": 21.23740095506464,
-      "p05_tps": 57.6834592783429,
-      "p95_tps": 375.858023893189
+      "median_tps": 135.856566278975,
+      "ttft_seconds": 17.941886708370276,
+      "e2e_seconds": 21.62223881570437,
+      "p05_tps": 54.9189194726895,
+      "p95_tps": 328.397898067735
     },
     "benchmarks": {
       "gpqa": 0.866666666666667,
@@ -2145,10 +2203,10 @@
       "agentic": 24.0959828178694
     },
     "speed": {
-      "median_tps": 177.146582912168,
-      "ttft_seconds": 15.2411931585,
-      "e2e_seconds": 18.063714438788583,
-      "p05_tps": 108.387267332885,
+      "median_tps": 164.875281101415,
+      "ttft_seconds": 14.2740542740002,
+      "e2e_seconds": 17.3066495585077,
+      "p05_tps": 84.1874826432714,
       "p95_tps": 257.261587615822
     },
     "benchmarks": {
@@ -2163,7 +2221,7 @@
       "display": "$1.25/$2.5 (USD/百万token)"
     },
     "flags": {
-      "frontier": true,
+      "frontier": false,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -2211,11 +2269,11 @@
       "agentic": 27.0255773195876
     },
     "speed": {
-      "median_tps": 61.3211437540757,
-      "ttft_seconds": 96.2440709474184,
-      "e2e_seconds": 104.39786537116913,
-      "p05_tps": 44.8746035561011,
-      "p95_tps": 67.4350238033313
+      "median_tps": 62.2616598763253,
+      "ttft_seconds": 94.86474230947562,
+      "e2e_seconds": 102.89536662937304,
+      "p05_tps": 47.9173934443065,
+      "p95_tps": 69.3381254433128
     },
     "benchmarks": {
       "gpqa": 0.842424242424242,
@@ -2278,10 +2336,10 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 257.007275181246,
+      "median_tps": 253.755898519776,
       "ttft_seconds": 12.9521307165002,
-      "e2e_seconds": 14.897600935766917,
-      "p05_tps": 168.011314775695,
+      "e2e_seconds": 14.922528263578435,
+      "p05_tps": 181.567771845625,
       "p95_tps": 334.670166077994
     },
     "benchmarks": {
@@ -2296,7 +2354,7 @@
       "display": "$2/$6 (USD/百万token)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -2344,11 +2402,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 251.899814613907,
-      "ttft_seconds": 9.45096624450014,
-      "e2e_seconds": 11.435882353971527,
-      "p05_tps": 164.422508977758,
-      "p95_tps": 334.398600724286
+      "median_tps": 244.437577668283,
+      "ttft_seconds": 9.9602696209995,
+      "e2e_seconds": 12.00578162766212,
+      "p05_tps": 164.026742090852,
+      "p95_tps": 334.889011023565
     },
     "benchmarks": {
       "gpqa": 0.884848484848485,
@@ -2362,7 +2420,7 @@
       "display": "$2/$6 (USD/百万token)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -2410,11 +2468,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 68.9291231355344,
-      "ttft_seconds": 32.39290429876812,
-      "e2e_seconds": 39.64673224921015,
+      "median_tps": 72.4239980863501,
+      "ttft_seconds": 31.81644238534367,
+      "e2e_seconds": 38.72023136705464,
       "p05_tps": 42.2572326185481,
-      "p95_tps": 97.5114878735282
+      "p95_tps": 97.7420848320108
     },
     "benchmarks": {
       "gpqa": 0.854545454545455,
@@ -2428,7 +2486,7 @@
       "display": "$0.4/$2 (USD/百万token)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -2456,7 +2514,7 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.14,
+      "prompt": 0.1,
       "completion": 0.28
     },
     "arena_rankings": {},
@@ -2475,11 +2533,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 111.650522122057,
-      "ttft_seconds": 1.18619324849987,
-      "e2e_seconds": 5.6644526466368275,
-      "p05_tps": 87.3494280736421,
-      "p95_tps": 131.333124898041
+      "median_tps": 113.475922392544,
+      "ttft_seconds": 1.16179317500018,
+      "e2e_seconds": 5.568014243381227,
+      "p05_tps": 93.2370767379659,
+      "p95_tps": 132.081175865423
     },
     "benchmarks": {
       "gpqa": 0.854545454545454,
@@ -2493,7 +2551,7 @@
       "display": "$0.3/$1.2 (USD/百万token)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": false,
       "reasoning": false,
       "image_input": false,
@@ -2535,11 +2593,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 71.6262015867482,
-      "ttft_seconds": 31.246492738611412,
-      "e2e_seconds": 38.22717842238927,
-      "p05_tps": 41.4035044872429,
-      "p95_tps": 96.6292565289449
+      "median_tps": 73.6545786705332,
+      "ttft_seconds": 30.36494307731701,
+      "e2e_seconds": 37.15338731289627,
+      "p05_tps": 41.2285256140309,
+      "p95_tps": 96.7069701996611
     },
     "benchmarks": {
       "gpqa": 0.828282828282828,
@@ -2553,7 +2611,7 @@
       "display": "$?/$? (USD/百万token)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -2581,7 +2639,7 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.14,
+      "prompt": 0.1,
       "completion": 0.28
     },
     "arena_rankings": {},
@@ -2618,7 +2676,7 @@
       "display": "$?/$? (USD/百万token)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -2651,7 +2709,7 @@
       "completion": 4.0
     },
     "arena_rankings": {},
-    "arena_votes": null,
+    "arena_votes": 23246,
     "data_completeness_pct": 63.9
   },
   {
@@ -2666,11 +2724,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 107.198933950524,
-      "ttft_seconds": 22.377276931811092,
-      "e2e_seconds": 27.041502419638867,
-      "p05_tps": 52.7073403983898,
-      "p95_tps": 185.417247231991
+      "median_tps": 99.5225309148964,
+      "ttft_seconds": 23.868188089956615,
+      "e2e_seconds": 28.892176079445743,
+      "p05_tps": 53.2585797569246,
+      "p95_tps": 170.865504629386
     },
     "benchmarks": {
       "gpqa": 0.866666666666667,
@@ -2684,7 +2742,7 @@
       "display": "¥3.975/¥15.9 (≤32K)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
@@ -2753,7 +2811,7 @@
       "display": "$5/$30 (USD/百万token)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": false,
       "reasoning": true,
       "image_input": true,
@@ -2785,13 +2843,18 @@
       "completion": 30.0
     },
     "arena_rankings": {
+      "text": {
+        "rank": 22,
+        "score": 1473,
+        "votes": 26254
+      },
       "vision": {
         "rank": 16,
         "score": 1276,
         "votes": 7319
       }
     },
-    "arena_votes": 7319,
+    "arena_votes": 26254,
     "data_completeness_pct": 71.4
   },
   {
@@ -2824,7 +2887,7 @@
       "display": "¥2.5/¥10 (≤32K)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": false,
       "reasoning": true,
       "image_input": false,
@@ -2866,9 +2929,14 @@
         "rank": 17,
         "score": 1475,
         "votes": 3740
+      },
+      "code": {
+        "rank": 19,
+        "score": 1483,
+        "votes": 2507
       }
     },
-    "arena_votes": null,
+    "arena_votes": 5216,
     "data_completeness_pct": 81.2
   },
   {
@@ -2883,11 +2951,11 @@
       "agentic": 21.413264604811
     },
     "speed": {
-      "median_tps": 177.503635206645,
-      "ttft_seconds": 32.734064644673715,
-      "e2e_seconds": 35.550908364059595,
-      "p05_tps": 135.334167823117,
-      "p95_tps": 222.080547770914
+      "median_tps": 175.071183852232,
+      "ttft_seconds": 33.13604909747468,
+      "e2e_seconds": 35.99203024181893,
+      "p05_tps": 135.091579949346,
+      "p95_tps": 213.320978320458
     },
     "benchmarks": {
       "gpqa": 0.841414141414142,
@@ -2950,11 +3018,11 @@
       "agentic": 18.8602680412371
     },
     "speed": {
-      "median_tps": 132.362905821558,
-      "ttft_seconds": 18.493833408935302,
-      "e2e_seconds": 22.27132678516915,
-      "p05_tps": 121.679007949078,
-      "p95_tps": 146.289680316504
+      "median_tps": 132.821878987411,
+      "ttft_seconds": 18.4434084721164,
+      "e2e_seconds": 22.2078485162705,
+      "p05_tps": 121.543084158062,
+      "p95_tps": 146.325774757533
     },
     "benchmarks": {
       "gpqa": 0.856565656565657,
@@ -3017,10 +3085,10 @@
       "agentic": 21.5294020618557
     },
     "speed": {
-      "median_tps": 409.731992547633,
-      "ttft_seconds": 5.904891580601649,
-      "e2e_seconds": 7.125201463877051,
-      "p05_tps": 334.798984214397,
+      "median_tps": 412.857849432727,
+      "ttft_seconds": 5.830949907795189,
+      "e2e_seconds": 7.04202049949402,
+      "p05_tps": 337.833849324882,
       "p95_tps": 467.539538597731
     },
     "benchmarks": {
@@ -3088,10 +3156,10 @@
     },
     "speed": {
       "median_tps": 199.448198442072,
-      "ttft_seconds": 10.435819331736601,
-      "e2e_seconds": 12.942735934170695,
-      "p05_tps": 179.545007597229,
-      "p95_tps": 223.309107563098
+      "ttft_seconds": 10.418958447736221,
+      "e2e_seconds": 12.925875050170315,
+      "p05_tps": 179.66324394263,
+      "p95_tps": 250.491501550703
     },
     "benchmarks": {
       "gpqa": 0.760606060606061,
@@ -3105,7 +3173,7 @@
       "display": "$?/$? (USD/百万token)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": true,
       "reasoning": true,
       "image_input": true,
@@ -3171,7 +3239,7 @@
       "display": "¥2.16/¥18.0 (估算)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": true,
       "reasoning": false,
       "image_input": false,
@@ -3220,11 +3288,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 199.213481301319,
-      "ttft_seconds": 11.22039058293764,
-      "e2e_seconds": 13.730260882547174,
-      "p05_tps": 158.089876548422,
-      "p95_tps": 251.823685264367
+      "median_tps": 197.857339882704,
+      "ttft_seconds": 11.22795188028882,
+      "e2e_seconds": 13.75502517611103,
+      "p05_tps": 159.856597023304,
+      "p95_tps": 235.285382277707
     },
     "benchmarks": {
       "gpqa": 0.831313131313131,
@@ -3238,7 +3306,7 @@
       "display": "¥0.7/¥2.1"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
@@ -3349,11 +3417,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 265.79088913642,
-      "ttft_seconds": 8.596080214164282,
-      "e2e_seconds": 10.477258314830365,
-      "p05_tps": 154.60986052897,
-      "p95_tps": 345.074535552342
+      "median_tps": 254.280894699624,
+      "ttft_seconds": 8.919226407060327,
+      "e2e_seconds": 10.885555810575436,
+      "p05_tps": 144.119976144062,
+      "p95_tps": 342.5326593638
     },
     "benchmarks": {
       "gpqa": 0.751515151515151,
@@ -3367,7 +3435,7 @@
       "display": "$0.235/$0.875 (USD/百万token)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": null,
       "open_weights": true,
       "reasoning": true,
       "image_input": false,
@@ -3529,7 +3597,7 @@
       "completion": 180.0
     },
     "arena_rankings": {},
-    "arena_votes": 12444,
+    "arena_votes": 43382,
     "data_completeness_pct": 58.6
   }
 ]
