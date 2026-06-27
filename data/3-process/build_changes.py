@@ -19,6 +19,24 @@ def load_ranking(day: date) -> list[dict] | None:
     return json.loads(path.read_text())
 
 
+def load_all_first_seen() -> dict[str, str]:
+    """Scan all history snapshots to find the earliest date each model ID appeared."""
+    first_seen: dict[str, str] = {}
+    if not HISTORY.exists():
+        return first_seen
+    for f in sorted(HISTORY.glob("*.json")):
+        date_str = f.stem  # e.g. "2026-06-20"
+        try:
+            models = json.loads(f.read_text())
+            for m in models:
+                mid = m["id"]
+                if mid not in first_seen:
+                    first_seen[mid] = date_str
+        except Exception:
+            continue
+    return first_seen
+
+
 def build_model_map(models: list[dict]) -> dict[str, dict]:
     """id → model dict"""
     return {m["id"]: m for m in models}
@@ -37,7 +55,7 @@ def pct_change(old: float, new: float) -> float | None:
     return round((new - old) / abs(old) * 100, 1)
 
 
-def build_changes(today_models: list[dict], yesterday_models: list[dict]) -> dict:
+def build_changes(today_models: list[dict], yesterday_models: list[dict], first_seen_map: dict[str, str] | None = None) -> dict:
     today_map = build_model_map(today_models)
     yesterday_map = build_model_map(yesterday_models)
 
@@ -53,7 +71,7 @@ def build_changes(today_models: list[dict], yesterday_models: list[dict]) -> dic
 
     changes = []
 
-    # New models
+    # New models — with first_seen date from history
     for mid in sorted(new_ids, key=lambda x: today_ranks.get(x, 999)):
         m = today_map[mid]
         intel = m.get("scores", {}).get("intelligence")
@@ -66,11 +84,13 @@ def build_changes(today_models: list[dict], yesterday_models: list[dict]) -> dic
             parts.append(f"{speed:.0f} TPS")
         if price_in is not None:
             parts.append(f"${price_in}/M")
+        first_seen = (first_seen_map or {}).get(mid, TODAY.isoformat())
         changes.append({
             "type": "new",
             "model": m["name"],
             "id": mid,
             "rank": today_ranks.get(mid),
+            "first_seen": first_seen,
             "detail": " · ".join(parts) if parts else "",
             "icon": "🆕",
         })
@@ -186,7 +206,8 @@ def main():
         return
 
     yesterday_models = load_ranking(yesterday)
-    result = build_changes(today_models, yesterday_models)
+    first_seen_map = load_all_first_seen()
+    result = build_changes(today_models, yesterday_models, first_seen_map)
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2))
