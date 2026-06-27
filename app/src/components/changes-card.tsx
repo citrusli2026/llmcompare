@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import Link from "next/link";
 import { useTranslation } from "@/lib/i18n";
 import { ArrowUp, ArrowDown, Sparkles, TrendingDown, DollarSign, Brain } from "lucide-react";
 
@@ -17,6 +18,7 @@ interface Change {
   old?: number;
   new?: number;
   change_pct?: number;
+  first_seen?: string;
 }
 
 interface ChangesData {
@@ -120,10 +122,16 @@ export function ChangesCard() {
                 {TYPE_ICONS[c.type] || c.icon}
               </span>
               <div className="flex-1 min-w-0">
-                <span className="text-sm font-medium text-text-primary truncate">
+                <Link
+                  href={`/models/${c.id}`}
+                  className="text-sm font-medium text-text-primary hover:text-accent-violet transition-colors truncate"
+                >
                   {c.model}
-                </span>
+                </Link>
                 <span className="text-xs text-text-muted ml-2">{c.detail}</span>
+                {c.type === "new" && c.first_seen && c.first_seen !== data.date && (
+                  <span className="text-xs text-amber-500 ml-2">首次出现 {c.first_seen}</span>
+                )}
               </div>
             </div>
           ))}
