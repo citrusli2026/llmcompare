@@ -64,7 +64,7 @@
       "text": {
         "rank": 1,
         "score": 1508,
-        "votes": 4297
+        "votes": 4366
       },
       "code": {
         "rank": 1,
@@ -72,12 +72,12 @@
         "votes": 2095
       },
       "vision": {
-        "rank": 2,
-        "score": 1307,
-        "votes": 1785
+        "rank": 1,
+        "score": 1311,
+        "votes": 2392
       }
     },
-    "arena_votes": 4297,
+    "arena_votes": 4366,
     "data_completeness_pct": 86.5
   },
   {
@@ -92,11 +92,11 @@
       "agentic": 47.1756219931271
     },
     "speed": {
-      "median_tps": 64.8087619584716,
-      "ttft_seconds": 32.1017226285001,
-      "e2e_seconds": 39.81672882350181,
-      "p05_tps": 41.5328792922105,
-      "p95_tps": 86.1454707225358
+      "median_tps": 66.0415519833707,
+      "ttft_seconds": 32.1361878120001,
+      "e2e_seconds": 39.707178877229765,
+      "p05_tps": 41.3039196244815,
+      "p95_tps": 86.515559562714
     },
     "benchmarks": {
       "gpqa": 0.92020202020202,
@@ -145,7 +145,7 @@
       "text": {
         "rank": 4,
         "score": 1499,
-        "votes": 49596
+        "votes": 55027
       },
       "code": {
         "rank": 5,
@@ -154,11 +154,11 @@
       },
       "vision": {
         "rank": 4,
-        "score": 1301,
-        "votes": 13669
+        "score": 1298,
+        "votes": 16554
       }
     },
-    "arena_votes": 13316,
+    "arena_votes": 19038,
     "data_completeness_pct": 88.7
   },
   {
@@ -173,11 +173,11 @@
       "agentic": 44.8710687285223
     },
     "speed": {
-      "median_tps": 80.1494912248041,
-      "ttft_seconds": 74.910583033,
-      "e2e_seconds": 81.14892581421111,
-      "p05_tps": 61.5108712095938,
-      "p95_tps": 138.574652586557
+      "median_tps": 79.762382774517,
+      "ttft_seconds": 76.6902565485,
+      "e2e_seconds": 82.95887569712131,
+      "p05_tps": 61.2626674887621,
+      "p95_tps": 138.801843707308
     },
     "benchmarks": {
       "gpqa": 0.935353535353535,
@@ -224,17 +224,17 @@
     },
     "arena_rankings": {
       "text": {
-        "rank": 16,
+        "rank": 17,
         "score": 1475,
-        "votes": 29071
+        "votes": 34794
       },
       "vision": {
-        "rank": 11,
-        "score": 1283,
-        "votes": 10947
+        "rank": 9,
+        "score": 1285,
+        "votes": 14009
       }
     },
-    "arena_votes": 29071,
+    "arena_votes": 34794,
     "data_completeness_pct": 86.5
   },
   {
@@ -302,7 +302,7 @@
       "text": {
         "rank": 4,
         "score": 1499,
-        "votes": 49596
+        "votes": 55027
       },
       "code": {
         "rank": 5,
@@ -311,11 +311,11 @@
       },
       "vision": {
         "rank": 4,
-        "score": 1301,
-        "votes": 13669
+        "score": 1298,
+        "votes": 16554
       }
     },
-    "arena_votes": 33793,
+    "arena_votes": 39550,
     "data_completeness_pct": 88.7
   },
   {
@@ -330,11 +330,11 @@
       "agentic": 41.0770927835052
     },
     "speed": {
-      "median_tps": 152.178199109694,
-      "ttft_seconds": 105.8146294735,
-      "e2e_seconds": 109.1002512177788,
-      "p05_tps": 122.431467226847,
-      "p95_tps": 239.988273079887
+      "median_tps": 154.767744784346,
+      "ttft_seconds": 111.463785324,
+      "e2e_seconds": 114.69443264458157,
+      "p05_tps": 124.153745697583,
+      "p95_tps": 241.05689684152
     },
     "benchmarks": {
       "gpqa": 0.92020202020202,
@@ -381,12 +381,12 @@
     },
     "arena_rankings": {
       "vision": {
-        "rank": 17,
-        "score": 1275,
-        "votes": 12444
+        "rank": 16,
+        "score": 1276,
+        "votes": 15600
       }
     },
-    "arena_votes": 12444,
+    "arena_votes": 15600,
     "data_completeness_pct": 86.5
   },
   {
@@ -401,11 +401,11 @@
       "agentic": 43.0557079037801
     },
     "speed": {
-      "median_tps": 142.3238358723,
-      "ttft_seconds": 15.454046789226574,
-      "e2e_seconds": 18.96716177053318,
-      "p05_tps": 32.4249381855208,
-      "p95_tps": 408.928685094101
+      "median_tps": 142.530574001767,
+      "ttft_seconds": 15.398857397443354,
+      "e2e_seconds": 18.906876666304232,
+      "p05_tps": 32.840479010363,
+      "p95_tps": 408.471221920307
     },
     "benchmarks": {
       "gpqa": 0.894949494949495,
@@ -448,8 +448,8 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.98,
-      "completion": 3.08
+      "prompt": 0.94,
+      "completion": 3.0
     },
     "arena_rankings": {},
     "arena_votes": 1994,
@@ -467,11 +467,11 @@
       "agentic": 37.4466082474227
     },
     "speed": {
-      "median_tps": 172.714232900526,
-      "ttft_seconds": 23.1637321784999,
-      "e2e_seconds": 26.058687571596963,
-      "p05_tps": 121.580603212413,
-      "p95_tps": 219.984433734439
+      "median_tps": 170.546035404141,
+      "ttft_seconds": 24.0780899239999,
+      "e2e_seconds": 27.009849661569618,
+      "p05_tps": 121.594649192404,
+      "p95_tps": 219.148886867498
     },
     "benchmarks": {
       "gpqa": 0.922222222222222,
@@ -520,7 +520,7 @@
       "text": {
         "rank": 13,
         "score": 1476,
-        "votes": 10171
+        "votes": 10159
       },
       "code": {
         "rank": 14,
@@ -528,7 +528,7 @@
         "votes": 2217
       }
     },
-    "arena_votes": 10171,
+    "arena_votes": 10159,
     "data_completeness_pct": 88.7
   },
   {
@@ -543,11 +543,11 @@
       "agentic": 40.7694879725086
     },
     "speed": {
-      "median_tps": 58.5774186756841,
-      "ttft_seconds": 110.277026481,
-      "e2e_seconds": 118.81273889892451,
-      "p05_tps": 40.1102562044393,
-      "p95_tps": 82.2121522312626
+      "median_tps": 57.5518477198211,
+      "ttft_seconds": 110.707337091,
+      "e2e_seconds": 119.39515546364623,
+      "p05_tps": 40.1491447925234,
+      "p95_tps": 81.803257924311
     },
     "benchmarks": {
       "gpqa": 0.874747474747475,
@@ -601,10 +601,10 @@
       "vision": {
         "rank": 15,
         "score": 1278,
-        "votes": 17336
+        "votes": 20672
       }
     },
-    "arena_votes": 17336,
+    "arena_votes": 20672,
     "data_completeness_pct": 88.7
   },
   {
@@ -672,7 +672,7 @@
       "text": {
         "rank": 7,
         "score": 1486,
-        "votes": 60640
+        "votes": 68291
       },
       "code": {
         "rank": 8,
@@ -682,10 +682,10 @@
       "vision": {
         "rank": 13,
         "score": 1280,
-        "votes": 26478
+        "votes": 31372
       }
     },
-    "arena_votes": 60640,
+    "arena_votes": 68291,
     "data_completeness_pct": 86.5
   },
   {
@@ -757,12 +757,17 @@
     },
     "arena_rankings": {
       "text": {
-        "rank": 17,
+        "rank": 16,
         "score": 1475,
-        "votes": 3740
+        "votes": 3731
+      },
+      "code": {
+        "rank": 19,
+        "score": 1483,
+        "votes": 2507
       }
     },
-    "arena_votes": 3740,
+    "arena_votes": 3731,
     "data_completeness_pct": 96.2
   },
   {
@@ -852,9 +857,9 @@
       "agentic": 36.3637319587629
     },
     "speed": {
-      "median_tps": 92.2007350761343,
-      "ttft_seconds": 49.1614333239601,
-      "e2e_seconds": 54.584383581212684,
+      "median_tps": 90.6812124860788,
+      "ttft_seconds": 49.95655485965517,
+      "e2e_seconds": 55.470376149558625,
       "p05_tps": 51.4042074808796,
       "p95_tps": 115.690272208466
     },
@@ -923,11 +928,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 101.592358876061,
-      "ttft_seconds": 83.3280443094998,
-      "e2e_seconds": 88.24967429753839,
-      "p05_tps": 78.0592057657653,
-      "p95_tps": 137.463593813449
+      "median_tps": 101.823738355721,
+      "ttft_seconds": 83.506079325,
+      "e2e_seconds": 88.41652563225746,
+      "p05_tps": 78.0256043044243,
+      "p95_tps": 137.852557736379
     },
     "benchmarks": {
       "gpqa": 0.915151515151515,
@@ -1034,14 +1039,14 @@
     "license": null,
     "openrouter_weekly_tokens": 1745192194,
     "openrouter_pricing": {
-      "prompt": 30.0,
-      "completion": 150.0
+      "prompt": 5.0,
+      "completion": 25.0
     },
     "arena_rankings": {
       "text": {
         "rank": 4,
         "score": 1499,
-        "votes": 49596
+        "votes": 55027
       },
       "code": {
         "rank": 5,
@@ -1050,11 +1055,11 @@
       },
       "vision": {
         "rank": 4,
-        "score": 1301,
-        "votes": 13669
+        "score": 1298,
+        "votes": 16554
       }
     },
-    "arena_votes": 49596,
+    "arena_votes": 55027,
     "data_completeness_pct": 73.7
   },
   {
@@ -1118,15 +1123,15 @@
       "text": {
         "rank": 6,
         "score": 1487,
-        "votes": 13607
+        "votes": 13598
       },
       "vision": {
         "rank": 6,
-        "score": 1295,
-        "votes": 5613
+        "score": 1294,
+        "votes": 5643
       }
     },
-    "arena_votes": 13607,
+    "arena_votes": 13598,
     "data_completeness_pct": 82.7
   },
   {
@@ -1145,7 +1150,7 @@
       "ttft_seconds": 58.15936338992563,
       "e2e_seconds": 64.38120518530033,
       "p05_tps": 31.545659539776,
-      "p95_tps": 106.690501946225
+      "p95_tps": 109.676962042011
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
@@ -1192,8 +1197,8 @@
     },
     "openrouter_weekly_tokens": 403008045847,
     "openrouter_pricing": {
-      "prompt": 0.66,
-      "completion": 3.41
+      "prompt": 0.55,
+      "completion": 3.2
     },
     "arena_rankings": {
       "code": {
@@ -1202,12 +1207,12 @@
         "votes": 5953
       },
       "vision": {
-        "rank": 19,
-        "score": 1264,
-        "votes": 11045
+        "rank": 20,
+        "score": 1265,
+        "votes": 13338
       }
     },
-    "arena_votes": 11045,
+    "arena_votes": 13338,
     "data_completeness_pct": 100.0
   },
   {
@@ -1291,11 +1296,11 @@
       "agentic": 29.5911099656357
     },
     "speed": {
-      "median_tps": 61.5619239757268,
-      "ttft_seconds": 38.49566670461786,
-      "e2e_seconds": 46.617570110319484,
-      "p05_tps": 42.0696489876156,
-      "p95_tps": 113.468437235737
+      "median_tps": 61.616421836165,
+      "ttft_seconds": 38.46049424691003,
+      "e2e_seconds": 46.57521407483959,
+      "p05_tps": 42.2287832207503,
+      "p95_tps": 113.460263397341
     },
     "benchmarks": {
       "gpqa": 0.895959595959596,
@@ -1338,8 +1343,8 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": 403008045847,
     "openrouter_pricing": {
-      "prompt": 0.68,
-      "completion": 3.41
+      "prompt": 0.74,
+      "completion": 3.5
     },
     "arena_rankings": {
       "code": {
@@ -1348,12 +1353,12 @@
         "votes": 5953
       },
       "vision": {
-        "rank": 19,
-        "score": 1264,
-        "votes": 11045
+        "rank": 20,
+        "score": 1265,
+        "votes": 13338
       }
     },
-    "arena_votes": null,
+    "arena_votes": 2281,
     "data_completeness_pct": 92.5
   },
   {
@@ -1427,11 +1432,11 @@
       "agentic": 31.0645326460481
     },
     "speed": {
-      "median_tps": 109.955351306642,
-      "ttft_seconds": 52.455846024313395,
-      "e2e_seconds": 57.003146306276086,
-      "p05_tps": 81.2619748141711,
-      "p95_tps": 139.518821069618
+      "median_tps": 109.834234534157,
+      "ttft_seconds": 52.516807500934604,
+      "e2e_seconds": 57.06912219699147,
+      "p05_tps": 81.4366609755509,
+      "p95_tps": 139.419834356398
     },
     "benchmarks": {
       "gpqa": 0.893939393939394,
@@ -1498,11 +1503,11 @@
       "agentic": 29.8734639175258
     },
     "speed": {
-      "median_tps": 69.1572064828598,
-      "ttft_seconds": 56.231052153035435,
-      "e2e_seconds": 63.460956676780505,
-      "p05_tps": 37.2333461935623,
-      "p95_tps": 213.748773668427
+      "median_tps": 68.9594363891306,
+      "ttft_seconds": 56.39118788730223,
+      "e2e_seconds": 63.64182719326399,
+      "p05_tps": 37.9299979751232,
+      "p95_tps": 213.928570825562
     },
     "benchmarks": {
       "gpqa": 0.867676767676768,
@@ -1549,14 +1554,14 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.98,
-      "completion": 3.08
+      "prompt": 0.97,
+      "completion": 4.3
     },
     "arena_rankings": {
       "text": {
-        "rank": 15,
-        "score": 1475,
-        "votes": 16101
+        "rank": 19,
+        "score": 1473,
+        "votes": 19620
       },
       "code": {
         "rank": 11,
@@ -1564,7 +1569,7 @@
         "votes": 3760
       }
     },
-    "arena_votes": 16101,
+    "arena_votes": 19620,
     "data_completeness_pct": 97.7
   },
   {
@@ -1579,11 +1584,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 87.1649715273085,
-      "ttft_seconds": 25.942969215490407,
-      "e2e_seconds": 31.679218436237893,
-      "p05_tps": 68.5835070110004,
-      "p95_tps": 110.703413134311
+      "median_tps": 87.6129282758031,
+      "ttft_seconds": 25.763285511325126,
+      "e2e_seconds": 31.470205823656357,
+      "p05_tps": 68.6901648865654,
+      "p95_tps": 110.388102638439
     },
     "benchmarks": {
       "gpqa": 0.84949494949495,
@@ -1629,7 +1634,7 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.14,
+      "prompt": 0.1,
       "completion": 0.28
     },
     "arena_rankings": {},
@@ -1648,11 +1653,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 35.8493517677372,
-      "ttft_seconds": 59.09527850668433,
-      "e2e_seconds": 73.04253209273041,
-      "p05_tps": 30.6212931832114,
-      "p95_tps": 46.0527125237384
+      "median_tps": 36.0540345324273,
+      "ttft_seconds": 58.812698309784416,
+      "e2e_seconds": 72.68077178573051,
+      "p05_tps": 31.1722878405896,
+      "p95_tps": 46.1234359868932
     },
     "benchmarks": {
       "gpqa": 0.887878787878788,
@@ -1705,12 +1710,17 @@
     },
     "arena_rankings": {
       "text": {
-        "rank": 17,
+        "rank": 16,
         "score": 1475,
-        "votes": 3740
+        "votes": 3731
+      },
+      "code": {
+        "rank": 19,
+        "score": 1483,
+        "votes": 2507
       }
     },
-    "arena_votes": null,
+    "arena_votes": 2507,
     "data_completeness_pct": 81.2
   },
   {
@@ -1775,7 +1785,7 @@
       "completion": 4.5
     },
     "arena_rankings": {},
-    "arena_votes": 12444,
+    "arena_votes": 15600,
     "data_completeness_pct": 81.2
   },
   {
@@ -1790,11 +1800,11 @@
       "agentic": 20.8054719358534
     },
     "speed": {
-      "median_tps": 47.2326848333683,
-      "ttft_seconds": 45.12915391458455,
-      "e2e_seconds": 55.71504378648035,
-      "p05_tps": 40.0285932005133,
-      "p95_tps": 53.0711210607027
+      "median_tps": 47.3399160919203,
+      "ttft_seconds": 45.031789955786024,
+      "e2e_seconds": 55.59370136748236,
+      "p05_tps": 40.0362650280694,
+      "p95_tps": 53.0656900670959
     },
     "benchmarks": {
       "gpqa": 0.9,
@@ -1841,9 +1851,15 @@
       "prompt": 0.32,
       "completion": 1.28
     },
-    "arena_rankings": {},
-    "arena_votes": 3923,
-    "data_completeness_pct": 81.2
+    "arena_rankings": {
+      "vision": {
+        "rank": 19,
+        "score": 1266,
+        "votes": 3586
+      }
+    },
+    "arena_votes": 3586,
+    "data_completeness_pct": 88.7
   },
   {
     "id": "gpt-5-4-nano",
@@ -1857,11 +1873,11 @@
       "agentic": 27.5439759450172
     },
     "speed": {
-      "median_tps": 158.23729203956,
-      "ttft_seconds": 4.82788781299996,
-      "e2e_seconds": 7.987699217475953,
-      "p05_tps": 115.541180506679,
-      "p95_tps": 204.36435739687
+      "median_tps": 156.112366239853,
+      "ttft_seconds": 4.74495433550033,
+      "e2e_seconds": 7.947775560000852,
+      "p05_tps": 115.548615713341,
+      "p95_tps": 203.641015952348
     },
     "benchmarks": {
       "gpqa": 0.817171717171717,
@@ -1907,7 +1923,7 @@
       "completion": 1.25
     },
     "arena_rankings": {},
-    "arena_votes": 12444,
+    "arena_votes": 15600,
     "data_completeness_pct": 81.2
   },
   {
@@ -1922,11 +1938,11 @@
       "agentic": 25.5759931271478
     },
     "speed": {
-      "median_tps": 46.2134666333118,
-      "ttft_seconds": 56.000868423332435,
-      "e2e_seconds": 66.82022555936662,
-      "p05_tps": 17.2782495305919,
-      "p95_tps": 69.139762616142
+      "median_tps": 47.7444402006018,
+      "ttft_seconds": 54.36450085055821,
+      "e2e_seconds": 64.83692440184947,
+      "p05_tps": 17.1265564409667,
+      "p95_tps": 69.2881825977964
     },
     "benchmarks": {
       "gpqa": 0.873737373737374,
@@ -1972,8 +1988,8 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.25,
-      "completion": 1.0
+      "prompt": 0.18,
+      "completion": 0.72
     },
     "arena_rankings": {},
     "arena_votes": null,
@@ -2052,9 +2068,9 @@
         "votes": 5953
       },
       "vision": {
-        "rank": 19,
-        "score": 1264,
-        "votes": 11045
+        "rank": 20,
+        "score": 1265,
+        "votes": 13338
       }
     },
     "arena_votes": null,
@@ -2138,11 +2154,11 @@
       "agentic": 27.3604776632302
     },
     "speed": {
-      "median_tps": 170.403417908112,
-      "ttft_seconds": 14.723171256921862,
-      "e2e_seconds": 17.65738470250908,
-      "p05_tps": 70.6741327318995,
-      "p95_tps": 500.929798012363
+      "median_tps": 170.602736090341,
+      "ttft_seconds": 14.704853570075011,
+      "e2e_seconds": 17.635638922399195,
+      "p05_tps": 65.850056628472,
+      "p95_tps": 499.625727468789
     },
     "benchmarks": {
       "gpqa": 0.866666666666667,
@@ -2270,11 +2286,11 @@
       "agentic": 27.0255773195876
     },
     "speed": {
-      "median_tps": 58.5212308341942,
-      "ttft_seconds": 100.71861158867598,
-      "e2e_seconds": 109.26251937859635,
-      "p05_tps": 40.0589921410709,
-      "p95_tps": 64.9165573219799
+      "median_tps": 58.329095821009,
+      "ttft_seconds": 101.0387170474716,
+      "e2e_seconds": 109.61076831900716,
+      "p05_tps": 39.7989419270529,
+      "p95_tps": 64.8770381981511
     },
     "benchmarks": {
       "gpqa": 0.842424242424242,
@@ -2318,8 +2334,8 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": 36251907683,
     "openrouter_pricing": {
-      "prompt": 0.29,
-      "completion": 3.17
+      "prompt": 0.26,
+      "completion": 2.39
     },
     "arena_rankings": {},
     "arena_votes": null,
@@ -2337,11 +2353,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 221.590486508084,
-      "ttft_seconds": 9.92717409499996,
-      "e2e_seconds": 12.183588654484033,
-      "p05_tps": 166.054262590841,
-      "p95_tps": 311.889486510563
+      "median_tps": 221.588081108607,
+      "ttft_seconds": 9.67659481700002,
+      "e2e_seconds": 11.933033870483834,
+      "p05_tps": 166.289712149544,
+      "p95_tps": 311.527292459037
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
@@ -2403,11 +2419,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 214.05300760665,
-      "ttft_seconds": 9.90956368350031,
-      "e2e_seconds": 12.245433688741322,
-      "p05_tps": 178.428712249984,
-      "p95_tps": 281.924742789432
+      "median_tps": 215.446063011218,
+      "ttft_seconds": 10.0090837920006,
+      "e2e_seconds": 12.329850266039003,
+      "p05_tps": 178.392875144616,
+      "p95_tps": 282.021899305141
     },
     "benchmarks": {
       "gpqa": 0.884848484848485,
@@ -2515,7 +2531,7 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.14,
+      "prompt": 0.1,
       "completion": 0.28
     },
     "arena_rankings": {},
@@ -2594,11 +2610,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 89.2871801991718,
-      "ttft_seconds": 24.943968368669815,
-      "e2e_seconds": 30.54387642808726,
-      "p05_tps": 77.8913221345468,
-      "p95_tps": 108.133882019236
+      "median_tps": 89.1254852525437,
+      "ttft_seconds": 25.011750931928585,
+      "e2e_seconds": 30.621818563910757,
+      "p05_tps": 77.8483299200276,
+      "p95_tps": 108.175418808532
     },
     "benchmarks": {
       "gpqa": 0.828282828282828,
@@ -2640,7 +2656,7 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.14,
+      "prompt": 0.1,
       "completion": 0.28
     },
     "arena_rankings": {},
@@ -2725,11 +2741,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 157.62424423907,
-      "ttft_seconds": 15.796416374543568,
-      "e2e_seconds": 18.968517230054385,
-      "p05_tps": 101.658336149133,
-      "p95_tps": 182.618436968191
+      "median_tps": 154.52540091431,
+      "ttft_seconds": 16.040465943908885,
+      "e2e_seconds": 19.27617992388599,
+      "p05_tps": 101.300429777242,
+      "p95_tps": 182.87463484662
     },
     "benchmarks": {
       "gpqa": 0.866666666666667,
@@ -2845,12 +2861,12 @@
     },
     "arena_rankings": {
       "vision": {
-        "rank": 16,
-        "score": 1276,
-        "votes": 7319
+        "rank": 17,
+        "score": 1275,
+        "votes": 7344
       }
     },
-    "arena_votes": 7319,
+    "arena_votes": 7344,
     "data_completeness_pct": 71.4
   },
   {
@@ -2922,12 +2938,17 @@
     },
     "arena_rankings": {
       "text": {
-        "rank": 17,
+        "rank": 16,
         "score": 1475,
-        "votes": 3740
+        "votes": 3731
+      },
+      "code": {
+        "rank": 19,
+        "score": 1483,
+        "votes": 2507
       }
     },
-    "arena_votes": null,
+    "arena_votes": 2507,
     "data_completeness_pct": 81.2
   },
   {
@@ -3010,8 +3031,8 @@
     },
     "speed": {
       "median_tps": 129.67860779278,
-      "ttft_seconds": 18.86235136730158,
-      "e2e_seconds": 22.718037424627052,
+      "ttft_seconds": 18.851272864801903,
+      "e2e_seconds": 22.706958922127374,
       "p05_tps": 98.7400558444071,
       "p95_tps": 150.435498564522
     },
@@ -3146,11 +3167,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 158.573858957761,
-      "ttft_seconds": 13.032680239080756,
-      "e2e_seconds": 16.185785065350917,
-      "p05_tps": 97.0034830481678,
-      "p95_tps": 196.124433916379
+      "median_tps": 158.782146955676,
+      "ttft_seconds": 13.015705161857886,
+      "e2e_seconds": 16.164673793322322,
+      "p05_tps": 98.4136061484312,
+      "p95_tps": 195.948082273934
     },
     "benchmarks": {
       "gpqa": 0.760606060606061,
@@ -3279,11 +3300,11 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 195.240620040912,
-      "ttft_seconds": 11.417593270442833,
-      "e2e_seconds": 13.978535762303526,
-      "p05_tps": 146.86831644159,
-      "p95_tps": 242.798142663116
+      "median_tps": 193.244543733159,
+      "ttft_seconds": 11.534189000959865,
+      "e2e_seconds": 14.121584175699821,
+      "p05_tps": 146.133330470534,
+      "p95_tps": 221.400434312855
     },
     "benchmarks": {
       "gpqa": 0.831313131313131,
@@ -3330,7 +3351,7 @@
     },
     "openrouter_weekly_tokens": 17751634640,
     "openrouter_pricing": {
-      "prompt": 0.09,
+      "prompt": 0.1,
       "completion": 0.3
     },
     "arena_rankings": {},
@@ -3352,8 +3373,8 @@
       "median_tps": 202.648543120087,
       "ttft_seconds": 10.88905659799962,
       "e2e_seconds": 13.356382502749431,
-      "p05_tps": 144.099655303152,
-      "p95_tps": 321.967064624891
+      "p05_tps": 144.878887567308,
+      "p95_tps": 320.995587553677
     },
     "benchmarks": {
       "gpqa": 0.751515151515151,
@@ -3464,7 +3485,7 @@
       "completion": 180.0
     },
     "arena_rankings": {},
-    "arena_votes": 29071,
+    "arena_votes": 34794,
     "data_completeness_pct": 58.6
   },
   {
@@ -3529,7 +3550,7 @@
       "completion": 180.0
     },
     "arena_rankings": {},
-    "arena_votes": 12444,
+    "arena_votes": 15600,
     "data_completeness_pct": 58.6
   }
 ]

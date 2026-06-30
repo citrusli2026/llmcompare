@@ -1,13 +1,22 @@
 {
-  "generated_at": "2026-06-28",
-  "date": "2026-06-28",
-  "compare_with": "2026-06-27",
+  "generated_at": "2026-06-30",
+  "date": "2026-06-30",
+  "compare_with": "2026-06-29",
   "summary": {
     "new_models": 0,
-    "dropped_models": 0,
+    "dropped_models": 1,
     "price_changes": 0,
     "ranking_changes": 0,
     "intel_changes": 0
   },
-  "changes": []
+  "changes": [
+    {
+      "type": "dropped",
+      "model": "K-EXAONE",
+      "id": "k-exaone",
+      "old_rank": 48,
+      "detail": "",
+      "icon": "📉"
+    }
+  ]
 }
