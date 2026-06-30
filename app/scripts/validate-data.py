@@ -22,7 +22,7 @@ DATA_PATH = Path(__file__).parent.parent / "src" / "data" / "ranking.json"
 THRESHOLDS = {
     "total_models": (15, 70),     # 24→60 模型（策略 C + 去旧），宽上限
     "data_complete": (20, 60),    # 21→58 完整
-    "frontier": (5, 25),          # 9→21 frontier
+    "frontier": (5, 35),          # 9→21 frontier, 已改为 size_class+智商推导, 上限放宽至35
     "intl": (5, 40),              # 3→33 国际模型
     "has_arena": (15, 35),        # 16→27 arena
     "has_cn_price": (10, 30),     # 21→18 国内定价
