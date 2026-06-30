@@ -62,6 +62,12 @@ def build_model(m: dict) -> dict:
     else:
         display = None
 
+    # frontier: AA 已移除 frontier_model 字段，改用 size_class + 智商推导
+    is_frontier = (
+        m.get('size_class') == 'Large'
+        and (m.get('intelligence_index') or 0) >= 40
+    )
+
     return {
         # ── 身份 ──
         'id': make_id(display_name),
@@ -103,7 +109,7 @@ def build_model(m: dict) -> dict:
 
         # ── 布尔标记 ──
         'flags': {
-            'frontier': m.get('frontier', False),
+            'frontier': is_frontier,
             'open_weights': open_w,
             'reasoning': m.get('reasoning', False),
             'image_input': m.get('input_image', False),
