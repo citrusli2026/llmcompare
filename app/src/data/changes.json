@@ -4,31 +4,19 @@
   "compare_with": "2026-07-02",
   "summary": {
     "new_models": 0,
-    "dropped_models": 0,
+    "dropped_models": 1,
     "price_changes": 0,
-    "ranking_changes": 1,
-    "intel_changes": 1
+    "ranking_changes": 0,
+    "intel_changes": 0
   },
   "changes": [
     {
-      "type": "ranking_down",
-      "model": "Command A+",
-      "id": "command-a",
-      "old_rank": 46,
-      "new_rank": 49,
-      "change": -3,
-      "detail": "#46 → #49",
-      "icon": "🔻"
-    },
-    {
-      "type": "intel_change",
-      "model": "Command A+",
-      "id": "command-a",
-      "old": 29.3,
-      "new": 22.5,
-      "change": -6.8,
-      "detail": "智商 29→23 (-6.8)",
-      "icon": "🧠"
+      "type": "dropped",
+      "model": "Claude Sonnet 5",
+      "id": "claude-sonnet-5",
+      "old_rank": 5,
+      "detail": "",
+      "icon": "📉"
     }
   ]
 }
