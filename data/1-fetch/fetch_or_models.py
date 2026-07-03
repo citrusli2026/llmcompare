@@ -4,9 +4,10 @@ Fetch OpenRouter models + pricing.
 
 Source:
   - /api/v1/models  → models with pricing (public API, stable)
+  - /api/v1/datasets/rankings-daily → weekly token usage (requires API key, read-only)
 
 Note: The old /api/frontend/models/find endpoint returned 404 permanently.
-Analytics (weekly_tokens) are no longer available from OR — replaced by Arena votes.
+Analytics (weekly_tokens) now sourced from Datasets API instead of backfill.
 
 Outputs:
   2-raw/or_models.json       → raw response (kept for debug)
@@ -20,8 +21,10 @@ Usage:
 from __future__ import annotations
 
 import json
+import os
 import sys
 import urllib.request
+from datetime import datetime, timedelta
 from pathlib import Path
 
 API_URL = "https://openrouter.ai/api/v1/models"
@@ -122,6 +125,89 @@ def backfill_analytics_from_ranking(or_models: list[dict]) -> dict[str, dict]:
     return analytics
 
 
+def fetch_datasets_analytics(or_models: list[dict]) -> dict[str, dict]:
+    """Fetch weekly token usage from OpenRouter Datasets API.
+
+    GET /api/v1/datasets/rankings-daily — returns daily token counts per model.
+    We aggregate the last 7 days into weekly totals.
+    Requires OPENROUTER_API_KEY env var (read-only, no credit consumption).
+
+    Returns: {model_name_lower: {total_prompt_tokens, total_completion_tokens, count}}
+    """
+    api_key = os.environ.get("OPENROUTER_API_KEY", "").strip()
+    if not api_key:
+        print("  [DATASETS] OPENROUTER_API_KEY not set, skipping Datasets API")
+        return {}
+
+    # Date range: last 7 days
+    end = datetime.utcnow().strftime("%Y-%m-%d")
+    start = (datetime.utcnow() - timedelta(days=7)).strftime("%Y-%m-%d")
+    url = f"https://openrouter.ai/api/v1/datasets/rankings-daily?start_date={start}&end_date={end}"
+
+    print(f"\n[DATASETS] GET {url}")
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"Bearer {api_key}",
+        "User-Agent": "llmcompare/1.0",
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            raw = json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        print(f"  [DATASETS] ERROR: {e}")
+        return {}
+
+    records = raw.get("data", [])
+    print(f"  [DATASETS] {len(records)} daily records ({start} ~ {end})")
+
+    if not records:
+        return {}
+
+    # Aggregate by model_permaslug → total_tokens
+    slug_tokens: dict[str, int] = {}
+    for rec in records:
+        slug = rec.get("model_permaslug", "")
+        tokens = int(rec.get("total_tokens", 0))
+        if slug and tokens > 0:
+            slug_tokens[slug] = slug_tokens.get(slug, 0) + tokens
+
+    print(f"  [DATASETS] {len(slug_tokens)} unique models with token data")
+
+    # Build name lookup: or model name → name (for matching)
+    or_name_map = {}
+    for m in or_models:
+        name = m.get("name", "").strip()
+        # Try permaslug and canonical_slug as keys
+        for key in [m.get("permaslug", ""), m.get("canonical_slug", ""), m.get("id", ""), name]:
+            if key:
+                or_name_map[key.lower()] = name.lower()
+
+    analytics: dict[str, dict] = {}
+    matched = 0
+    for slug, total_tokens in slug_tokens.items():
+        # Match slug to OR model name
+        name_lower = or_name_map.get(slug.lower())
+        if not name_lower:
+            # Try partial match: slug contains model id
+            for or_key, or_name in or_name_map.items():
+                if slug.lower() in or_key or or_key in slug.lower():
+                    name_lower = or_name
+                    break
+        if not name_lower:
+            continue
+
+        # Split 50/50 as prompt/completion approximation (Datasets API only gives total)
+        half = total_tokens // 2
+        analytics[name_lower] = {
+            "total_prompt_tokens": half,
+            "total_completion_tokens": total_tokens - half,
+            "count": 0,
+        }
+        matched += 1
+
+    print(f"  [DATASETS] Matched {matched}/{len(slug_tokens)} models to OR names")
+    return analytics
+
+
 def main():
     print("=" * 60)
     print("Fetching OpenRouter models...")
@@ -136,11 +222,13 @@ def main():
     raw_models = resp.get("data", [])
     models = transform_models(raw_models)
 
-    # Analytics no longer available from OR API.
-    # Backfill from previous ranking.json to preserve weekly_tokens for hotness scene.
-    analytics = backfill_analytics_from_ranking(models)
+    # Analytics: prefer Datasets API (real data), fall back to backfill from previous ranking
+    analytics = fetch_datasets_analytics(models)
+    if not analytics:
+        print("  [DATASETS] No data from Datasets API, falling back to backfill")
+        analytics = backfill_analytics_from_ranking(models)
 
-    print(f"  ✓ {len(models)} models (analytics: {len(analytics)} backfilled from previous ranking)")
+    print(f"  ✓ {len(models)} models (analytics: {len(analytics)} from Datasets API)" if analytics else f"  ✓ {len(models)} models (analytics: 0 — no token data)")
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 

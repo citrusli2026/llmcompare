@@ -7,9 +7,19 @@ import { TrendingUp } from "lucide-react";
 import { SceneSelector } from "@/components/scene-selector";
 import { ChangesCard } from "@/components/changes-card";
 import { useTranslation } from "@/lib/i18n";
+import metadataData from "@/data/metadata.json";
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleString("zh-CN", {
+    timeZone: "Asia/Shanghai",
+    month: "2-digit",
+    day: "2-digit",
+  });
+}
 
 export default function HomeClient() {
   const { t } = useTranslation();
+  const updatedDate = formatDate(metadataData.updated_at);
 
   return (
     <div className="min-h-screen bg-surface-base">
@@ -29,7 +39,7 @@ export default function HomeClient() {
               className="mb-4 bg-accent-lime/10 text-accent-lime hover:bg-accent-lime/20 border-accent-lime/20 cursor-pointer"
             >
               <TrendingUp className="mr-1 h-3 w-3" />
-              {t("home.badge")}
+              {t("home.badge", { date: updatedDate })}
             </Badge>
           </Link>
 
