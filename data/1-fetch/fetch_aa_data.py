@@ -3,7 +3,9 @@
 Artificial Analysis 数据抓取脚本
 
 从 https://artificialanalysis.ai/models 提取全量模型数据，
-输出 aa_all_full.json (512模型) 和 aa_top64_full.json (前64)。
+输出 aa_all_full.json 和 aa_top64_full.json。
+
+2026-07-09: 适配 AA 新 RSC 格式 (initialModels 数组, camelCase 字段)
 
 用法:
     python3 fetch_aa_data.py                          # 下载+解析，输出到当前目录
@@ -33,8 +35,8 @@ CURL_TIMEOUT = 120  # 秒
 
 # ── JSON 对象提取 ─────────────────────────────────────
 
-def extract_json_object(text: str, start: int) -> Optional[str]:
-    """括号平衡匹配，提取从 start 位置开始的完整 JSON 对象"""
+def extract_json_array(text: str, start: int) -> Optional[str]:
+    """括号平衡匹配，提取从 start 位置开始的完整 JSON 数组"""
     depth = 0
     in_string = False
     escape = False
@@ -50,9 +52,9 @@ def extract_json_object(text: str, start: int) -> Optional[str]:
         elif ch == '"':
             in_string = not in_string
         elif not in_string:
-            if ch == '{':
+            if ch == '[':
                 depth += 1
-            elif ch == '}':
+            elif ch == ']':
                 depth -= 1
                 if depth == 0:
                     return text[start:i + 1]
@@ -65,15 +67,129 @@ def safe_dict(val) -> dict:
     return val if isinstance(val, dict) else {}
 
 
-# ── 模型解析 ──────────────────────────────────────────
+# ── 模型解析 (新格式 2026-07) ────────────────────────
 
-def parse_models(content: str) -> List[dict]:
-    """从 RSC 载荷解析所有模型对象"""
-    model_starts = [m.start() for m in re.finditer(r'\{"additional_text":', content)]
+def parse_models_new(content: str) -> List[dict]:
+    """从 RSC 载荷的 initialModels 数组解析所有模型对象 (camelCase 格式)"""
+    # 找到 initialModels 数组的开始
+    match = re.search(r'initialModels":\[', content)
+    if not match:
+        print("  ⚠️ 未找到 initialModels 数组")
+        return []
+
+    start = match.end() - 1  # 包含 [
+    json_str = extract_json_array(content, start)
+    if not json_str:
+        print("  ⚠️ 无法提取 initialModels JSON 数组")
+        return []
+
+    try:
+        raw_models = json.loads(json_str)
+    except json.JSONDecodeError as e:
+        print(f"  ⚠️ JSON 解析错误: {e}")
+        return []
+
     models = []
+    for obj in raw_models:
+        creator = safe_dict(obj.get('creator'))
+        ts = safe_dict(obj.get('timescaleData'))
+        e2e = safe_dict(obj.get('endToEndResponseTime'))
+        ttft = safe_dict(obj.get('timeToFirstAnswerToken'))
+        perf = safe_dict(obj.get('performanceByPromptType'))
 
+        # 获取各 prompt 长度的性能数据
+        long_perf = safe_dict(perf.get('long'))
+        medium_perf = safe_dict(perf.get('medium'))
+        short_perf = safe_dict(perf.get('short'))
+
+        model = {
+            # Identity
+            'short_name': obj.get('shortName', ''),
+            'company': creator.get('name', ''),
+            'slug': obj.get('slug', ''),
+            'model_url': f"https://artificialanalysis.ai/models/{obj.get('slug', '')}",
+            'logo': creator.get('logo', ''),
+            'color': creator.get('color', ''),
+            'release_date': obj.get('releaseDate'),
+
+            # Main Indices
+            'intelligence_index': obj.get('intelligenceIndex'),
+            'coding_index': obj.get('codingIndex'),
+            'agentic_index': obj.get('agenticIndex'),
+            'omniscience': obj.get('omniscience'),
+
+            # Benchmarks (14)
+            'gpqa': obj.get('gpqa'),
+            'aime': obj.get('aime'),
+            'aime25': obj.get('aime25'),
+            'hle': obj.get('hle'),
+            'mmlu_pro': obj.get('mmluPro'),
+            'livecodebench': obj.get('livecodebench'),
+            'math_500': obj.get('math500'),
+            'mmmu_pro': obj.get('mmmuPro'),
+            'scicode': obj.get('scicode'),
+            'ifbench': obj.get('ifbench'),
+            'humaneval': obj.get('humaneval'),
+            'critpt': obj.get('critpt'),
+            'lcr': obj.get('lcr'),
+            'tau2': obj.get('tau2'),
+            'terminalbench_hard': obj.get('terminalbenchHard'),
+            'gdpval': obj.get('gdpval'),
+
+            # Pricing ($/M tokens)
+            'price_input': obj.get('price1mInputTokens'),
+            'price_output': obj.get('price1mOutputTokens'),
+            'index_compute': obj.get('intelligenceIndexCost'),
+            'index_tokens_total': obj.get('canonicalIntelligenceIndexTokenCount'),
+
+            # Speed (tokens/s)
+            'speed_median_tps': ts.get('medianOutputSpeed'),
+            'speed_p05_tps': None,  # 新格式中未提供
+            'speed_p95_tps': None,  # 新格式中未提供
+            'speed_short_tps': short_perf.get('medianOutputSpeed') if short_perf else None,
+            'speed_medium_tps': medium_perf.get('medianOutputSpeed') if medium_perf else None,
+            'speed_long_tps': long_perf.get('medianOutputSpeed') if long_perf else None,
+
+            # Latency (seconds)
+            'ttft_seconds': ttft.get('total'),
+            'e2e_total_seconds': e2e.get('total'),
+            'e2e_answer_seconds': e2e.get('answer'),
+            'e2e_reasoning_seconds': e2e.get('reasoning'),
+
+            # Specs
+            'context_window': str(obj.get('contextWindowTokens', '')),
+            'context_window_tokens': obj.get('contextWindowTokens'),
+            'parameters': obj.get('parameters'),
+            'active_params_billions': obj.get('inferenceParametersActiveBillions'),
+            'size_class': obj.get('sizeClass'),
+            'output_tokens': None,  # 新格式中未提供
+
+            # Type flags
+            'open_weights': obj.get('isOpenWeights', False),
+            'reasoning_model': obj.get('isReasoning', False),
+            'frontier_model': None,  # 新格式中已移除，需推导
+
+            # Meta
+            'knowledge_cutoff': obj.get('knowledgeCutoffDate'),
+            'license': obj.get('licenseName'),
+            'deprecated': obj.get('deprecated', False),
+        }
+        models.append(model)
+
+    return models
+
+
+# ── 旧格式解析 (兼容) ────────────────────────────────
+
+def parse_models_old(content: str) -> List[dict]:
+    """从 RSC 载荷解析所有模型对象 (旧格式, additional_text)"""
+    model_starts = [m.start() for m in re.finditer(r'\{"additional_text":', content)]
+    if not model_starts:
+        return []
+
+    models = []
     for start in model_starts:
-        obj_str = extract_json_object(content, start)
+        obj_str = extract_json_array(content, start)
         if not obj_str:
             continue
         try:
@@ -85,9 +201,6 @@ def parse_models(content: str) -> List[dict]:
         ts = safe_dict(obj.get('timescaleData'))
         e2e = safe_dict(obj.get('end_to_end_response_time_metrics'))
         ttft = safe_dict(obj.get('time_to_first_answer_token_metrics'))
-        intel_cost = safe_dict(obj.get('intelligence_index_cost'))
-        intel_tokens = safe_dict(obj.get('intelligence_index_token_counts'))
-        multi = safe_dict(obj.get('multilingual_aa'))
         perf = obj.get('performanceByPromptLength', []) or []
 
         perf_by_len = {p['prompt_length_type']: p for p in perf if isinstance(p, dict) and 'prompt_length_type' in p}
@@ -96,7 +209,6 @@ def parse_models(content: str) -> List[dict]:
         short_perf = perf_by_len.get('short', {})
 
         model = {
-            # Identity
             'short_name': obj.get('short_name', ''),
             'company': creator.get('name', ''),
             'slug': obj.get('slug', ''),
@@ -104,14 +216,10 @@ def parse_models(content: str) -> List[dict]:
             'logo': creator.get('logo_small_url', ''),
             'color': creator.get('color', ''),
             'release_date': obj.get('release_date'),
-
-            # Main Indices
             'intelligence_index': obj.get('intelligence_index'),
             'coding_index': obj.get('coding_index'),
             'agentic_index': obj.get('agentic_index'),
             'omniscience': obj.get('omniscience'),
-
-            # Benchmarks (14)
             'gpqa': obj.get('gpqa'),
             'aime': obj.get('aime'),
             'aime25': obj.get('aime25'),
@@ -128,75 +236,60 @@ def parse_models(content: str) -> List[dict]:
             'tau2': obj.get('tau2'),
             'terminalbench_hard': obj.get('terminalbench_hard'),
             'gdpval': obj.get('gdpval'),
-
-            # Pricing ($/M tokens)
             'price_input': obj.get('price_1m_input_tokens'),
             'price_output': obj.get('price_1m_output_tokens'),
             'index_compute': obj.get('indexCompute'),
             'index_tokens_total': obj.get('indexTokensTotal'),
-
-            # Speed (tokens/s)
             'speed_median_tps': ts.get('median_output_speed'),
             'speed_p05_tps': ts.get('percentile_05_output_speed'),
             'speed_p95_tps': ts.get('percentile_95_output_speed'),
             'speed_short_tps': short_perf.get('median_output_speed') if short_perf else None,
             'speed_medium_tps': medium_perf.get('median_output_speed') if medium_perf else None,
             'speed_long_tps': long_perf.get('median_output_speed') if long_perf else None,
-
-            # Latency (seconds)
             'ttft_seconds': ttft.get('total_time'),
             'e2e_total_seconds': e2e.get('total_time'),
             'e2e_answer_seconds': e2e.get('answer_time'),
             'e2e_reasoning_seconds': e2e.get('reasoning_time'),
-
-            # Specs
             'context_window': obj.get('contextWindowFormatted') or str(obj.get('context_window_tokens', '')),
             'context_window_tokens': obj.get('context_window_tokens'),
             'parameters': obj.get('parameters'),
             'active_params_billions': obj.get('inference_parameters_active_billions'),
             'size_class': obj.get('size_class'),
             'output_tokens': obj.get('output_tokens'),
-
-            # Modality
-            'input_text': obj.get('input_modality_text'),
-            'input_image': obj.get('input_modality_image'),
-            'input_audio': obj.get('input_modality_speech'),
-            'input_video': obj.get('input_modality_video'),
-            'output_text': obj.get('output_modality_text'),
-            'output_image': obj.get('output_modality_image'),
-            'output_audio': obj.get('output_modality_speech'),
-            'output_video': obj.get('output_modality_video'),
-
-            # Tags & License
-            'reasoning': obj.get('reasoning_model', False),
             'open_weights': obj.get('is_open_weights', False),
-            'open_source_category': obj.get('open_source_categorization'),
-            'commercial_allowed': obj.get('commercial_allowed'),
-            'license': obj.get('license_name'),
-            'frontier': obj.get('frontier_model', False),
+            'reasoning_model': obj.get('reasoning_model', False),
+            'frontier_model': obj.get('frontier_model'),
             'knowledge_cutoff': obj.get('knowledge_cutoff_date'),
-
-            # Multilingual (top languages)
-            'multilingual_en': multi.get('en', {}).get('score') if isinstance(multi.get('en'), dict) else None,
-            'multilingual_zh': multi.get('zh', {}).get('score') if isinstance(multi.get('zh'), dict) else None,
-            'multilingual_ja': multi.get('ja', {}).get('score') if isinstance(multi.get('ja'), dict) else None,
-
-            # Eval cost metadata
-            'eval_input_cost': intel_cost.get('input_cost'),
-            'eval_output_cost': intel_cost.get('output_cost'),
-            'eval_total_cost': intel_cost.get('total_cost'),
-            'eval_input_tokens': intel_tokens.get('input_tokens'),
-            'eval_output_tokens': intel_tokens.get('output_tokens'),
+            'license': obj.get('license_name'),
+            'deprecated': obj.get('deprecated', False),
         }
         models.append(model)
 
     return models
 
 
-# ── 下载 RSC 载荷 ─────────────────────────────────────
+def parse_models(content: str) -> List[dict]:
+    """解析 RSC 载荷，优先尝试新格式，回退到旧格式"""
+    # 尝试新格式 (initialModels)
+    models = parse_models_new(content)
+    if models:
+        print(f"  ✅ 使用新格式 (initialModels): {len(models)} 模型")
+        return models
+
+    # 回退旧格式 (additional_text)
+    models = parse_models_old(content)
+    if models:
+        print(f"  ✅ 使用旧格式 (additional_text): {len(models)} 模型")
+        return models
+
+    print("  ⚠️ 新旧格式均未匹配到模型数据")
+    return []
+
+
+# ── RSC 下载 ──────────────────────────────────────────
 
 def fetch_rsc(url: str, output_path: str) -> bool:
-    """使用 curl 下载 RSC 载荷"""
+    """下载 RSC 载荷"""
     cmd = [
         "curl", "-sL", "--max-time", str(CURL_TIMEOUT),
         *RSC_HEADERS,
