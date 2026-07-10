@@ -26,7 +26,8 @@ from typing import Optional, List
 
 # ── 配置 ──────────────────────────────────────────────
 
-AA_MODELS_URL = "https://artificialanalysis.ai/models"
+# 单模型详情页包含全量 models 数组（570+），列表页 initialModels 仅 28 个
+AA_MODELS_URL = "https://artificialanalysis.ai/models/gpt-5-5"
 RSC_HEADERS = [
     "-H", "RSC: 1",
     "-H", "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
@@ -69,28 +70,71 @@ def safe_dict(val) -> dict:
 
 # ── 模型解析 (新格式 2026-07) ────────────────────────
 
+def _extract_json_array_at(text: str, start: int) -> Optional[str]:
+    """括号平衡匹配，提取从 start 位置开始的完整 JSON 数组（start 指向 [）"""
+    depth = 0
+    in_string = False
+    escape = False
+    i = start
+    while i < len(text):
+        ch = text[i]
+        if escape:
+            escape = False
+            i += 1
+            continue
+        if ch == '\\':
+            escape = True
+        elif ch == '"':
+            in_string = not in_string
+        elif not in_string:
+            if ch == '[':
+                depth += 1
+            elif ch == ']':
+                depth -= 1
+                if depth == 0:
+                    return text[start:i + 1]
+        i += 1
+    return None
+
+
 def parse_models_new(content: str) -> List[dict]:
-    """从 RSC 载荷的 initialModels 数组解析所有模型对象 (camelCase 格式)"""
-    # 找到 initialModels 数组的开始
-    match = re.search(r'initialModels":\[', content)
-    if not match:
-        print("  ⚠️ 未找到 initialModels 数组")
+    """从 RSC 载荷的 models 数组解析所有模型对象 (camelCase 格式)
+
+    策略: 遍历所有 \"models\":[...] 数组，选包含 intelligenceIndex 字段的那个
+    （即全量模型数据，而非仅有 slug/name 的轻量索引）
+    """
+    # 找所有 "models":[ 位置
+    candidates = list(re.finditer(r'"models":\[', content))
+    if not candidates:
+        print("  ⚠️ 未找到 models 数组")
         return []
 
-    start = match.end() - 1  # 包含 [
-    json_str = extract_json_array(content, start)
-    if not json_str:
-        print("  ⚠️ 无法提取 initialModels JSON 数组")
-        return []
+    best_models = []
+    for cand in candidates:
+        start = cand.end() - 1  # 包含 [
+        json_str = _extract_json_array_at(content, start)
+        if not json_str:
+            continue
+        try:
+            raw = json.loads(json_str)
+        except json.JSONDecodeError:
+            continue
+        # 过滤 RSC 引用字符串（如 "$c:props:..."）
+        dicts = [o for o in raw if isinstance(o, dict)]
+        if not dicts:
+            continue
+        # 检查是否有 intelligenceIndex → 全量数据
+        has_intel = sum(1 for o in dicts if o.get('intelligenceIndex') is not None)
+        if has_intel > len(best_models):
+            best_models = dicts
+            print(f"  候选 models 数组: {len(dicts)} 项, {has_intel} 有 intelligenceIndex")
 
-    try:
-        raw_models = json.loads(json_str)
-    except json.JSONDecodeError as e:
-        print(f"  ⚠️ JSON 解析错误: {e}")
+    if not best_models:
+        print("  ⚠️ 未找到含 intelligenceIndex 的 models 数组")
         return []
 
     models = []
-    for obj in raw_models:
+    for obj in best_models:
         creator = safe_dict(obj.get('creator'))
         ts = safe_dict(obj.get('timescaleData'))
         e2e = safe_dict(obj.get('endToEndResponseTime'))
@@ -273,7 +317,7 @@ def parse_models(content: str) -> List[dict]:
     # 尝试新格式 (initialModels)
     models = parse_models_new(content)
     if models:
-        print(f"  ✅ 使用新格式 (initialModels): {len(models)} 模型")
+        print(f"  ✅ 使用 models 数组 (详情页全量): {len(models)} 模型")
         return models
 
     # 回退旧格式 (additional_text)
