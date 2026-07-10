@@ -64,7 +64,7 @@ def build_model(m: dict) -> dict:
 
     # frontier: AA 已移除 frontier_model 字段，改用 size_class + 智商推导
     is_frontier = (
-        m.get('size_class') == 'Large'
+        m.get('size_class') == 'large'
         and (m.get('intelligence_index') or 0) >= 40
     )
 
@@ -148,8 +148,7 @@ def main():
     # 排除同系列旧代 (Qwen3.5→3.6, GLM-4→5), 避免多代并存显乱
     EXCLUDED_PATTERNS = ['Qwen3.5', 'GLM-4']
     filtered = [m for m in all_models
-                if (m.get('size_class') == 'Large'
-                    or m.get('frontier')
+                if (m.get('size_class') == 'large'
                     or (m.get('intelligence_index') or 0) >= 30)
                 and not any(p in m.get('short_name', '') for p in EXCLUDED_PATTERNS)]
     print(f'Large / 前沿模型: {len(filtered)} 个')
