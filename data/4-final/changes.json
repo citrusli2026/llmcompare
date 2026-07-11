@@ -1,306 +1,32 @@
 {
-  "generated_at": "2026-07-10",
-  "date": "2026-07-10",
-  "compare_with": "2026-07-09",
+  "generated_at": "2026-07-11",
+  "date": "2026-07-11",
+  "compare_with": "2026-07-10",
   "summary": {
-    "new_models": 5,
-    "dropped_models": 1,
-    "price_changes": 3,
-    "ranking_changes": 45,
+    "new_models": 1,
+    "dropped_models": 0,
+    "price_changes": 0,
+    "ranking_changes": 1,
     "intel_changes": 0
   },
   "changes": [
     {
       "type": "new",
-      "model": "GPT-5.6 Sol",
-      "id": "gpt-5-6-sol",
-      "rank": 2,
-      "first_seen": "2026-07-10",
-      "detail": "智商 59 · 78 TPS · $5/M",
+      "model": "Muse Spark 1.1",
+      "id": "muse-spark-1-1",
+      "rank": 12,
+      "first_seen": "2026-07-11",
+      "detail": "智商 51 · 116 TPS · $1.25/M",
       "icon": "🆕"
     },
     {
-      "type": "new",
-      "model": "GPT-5.6 Terra",
-      "id": "gpt-5-6-terra",
-      "rank": 4,
-      "first_seen": "2026-07-10",
-      "detail": "智商 55 · 153 TPS · $2.5/M",
-      "icon": "🆕"
-    },
-    {
-      "type": "new",
-      "model": "Grok 4.5",
-      "id": "grok-4-5",
-      "rank": 5,
-      "first_seen": "2026-07-10",
-      "detail": "智商 54 · 88 TPS · $2/M",
-      "icon": "🆕"
-    },
-    {
-      "type": "new",
-      "model": "GPT-5.6 Luna",
-      "id": "gpt-5-6-luna",
-      "rank": 10,
-      "first_seen": "2026-07-10",
-      "detail": "智商 51 · 206 TPS · $1/M",
-      "icon": "🆕"
-    },
-    {
-      "type": "new",
-      "model": "JT-4.1 Flash 236B A21B",
-      "id": "jt-4-1-flash-236b-a21b",
-      "rank": 31,
-      "first_seen": "2026-07-10",
-      "detail": "智商 39",
-      "icon": "🆕"
-    },
-    {
-      "type": "dropped",
-      "model": "GPT-5.5 Pro",
-      "id": "gpt-5-5-pro",
-      "old_rank": 50,
-      "detail": "",
-      "icon": "📉"
-    },
-    {
       "type": "ranking_down",
-      "model": "Command A+",
-      "id": "command-a",
-      "old_rank": 49,
-      "new_rank": 54,
-      "change": -5,
-      "detail": "#49 → #54",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "MiMo-V2-Omni",
-      "id": "mimo-v2-omni",
-      "old_rank": 38,
-      "new_rank": 43,
-      "change": -5,
-      "detail": "#38 → #43",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Ring-2.6-1T",
-      "id": "ring-2-6-1t",
-      "old_rank": 44,
-      "new_rank": 49,
-      "change": -5,
-      "detail": "#44 → #49",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Nemotron 3 Ultra",
-      "id": "nemotron-3-ultra",
-      "old_rank": 31,
-      "new_rank": 36,
-      "change": -5,
-      "detail": "#31 → #36",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Step 3.7 Flash",
-      "id": "step-3-7-flash",
-      "old_rank": 45,
-      "new_rank": 50,
-      "change": -5,
-      "detail": "#45 → #50",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Hy3-preview",
-      "id": "hy3-preview",
-      "old_rank": 40,
-      "new_rank": 45,
-      "change": -5,
-      "detail": "#40 → #45",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "GPT-5.5 Instant",
-      "id": "gpt-5-5-instant",
-      "old_rank": 41,
-      "new_rank": 46,
-      "change": -5,
-      "detail": "#41 → #46",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Grok 4.20 0309 v2",
-      "id": "grok-4-20-0309-v2",
-      "old_rank": 34,
-      "new_rank": 39,
-      "change": -5,
-      "detail": "#34 → #39",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Grok 4.3",
-      "id": "grok-4-3",
-      "old_rank": 32,
-      "new_rank": 37,
-      "change": -5,
-      "detail": "#32 → #37",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "GLM 5V Turbo",
-      "id": "glm-5v-turbo",
-      "old_rank": 39,
-      "new_rank": 44,
-      "change": -5,
-      "detail": "#39 → #44",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "MiniMax-M2.7",
-      "id": "minimax-m2-7",
-      "old_rank": 28,
-      "new_rank": 33,
-      "change": -5,
-      "detail": "#28 → #33",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "GLM-5-Turbo",
-      "id": "glm-5-turbo",
-      "old_rank": 30,
-      "new_rank": 35,
-      "change": -5,
-      "detail": "#30 → #35",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Step 3.5 Flash",
-      "id": "step-3-5-flash",
-      "old_rank": 47,
-      "new_rank": 52,
-      "change": -5,
-      "detail": "#47 → #52",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Claude Opus 4.6",
-      "id": "claude-opus-4-6",
-      "old_rank": 15,
-      "new_rank": 20,
-      "change": -5,
-      "detail": "#15 → #20",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Qwen3.6 27B",
-      "id": "qwen3-6-27b",
-      "old_rank": 33,
-      "new_rank": 38,
-      "change": -5,
-      "detail": "#33 → #38",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Trinity Large Thinking",
-      "id": "trinity-large-thinking",
-      "old_rank": 48,
-      "new_rank": 53,
-      "change": -5,
-      "detail": "#48 → #53",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Grok 4.20 0309",
-      "id": "grok-4-20-0309",
-      "old_rank": 35,
-      "new_rank": 40,
-      "change": -5,
-      "detail": "#35 → #40",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Qwen3.6 35B A3B",
-      "id": "qwen3-6-35b-a3b",
-      "old_rank": 43,
-      "new_rank": 48,
-      "change": -5,
-      "detail": "#43 → #48",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Muse Spark",
-      "id": "muse-spark",
-      "old_rank": 16,
-      "new_rank": 21,
-      "change": -5,
-      "detail": "#16 → #21",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Ling-2.6-1T",
-      "id": "ling-2-6-1t",
-      "old_rank": 46,
-      "new_rank": 51,
-      "change": -5,
-      "detail": "#46 → #51",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Qwen3 Max Thinking",
-      "id": "qwen3-max-thinking",
-      "old_rank": 42,
-      "new_rank": 47,
-      "change": -5,
-      "detail": "#42 → #47",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "GPT-5.4 nano",
-      "id": "gpt-5-4-nano",
+      "model": "MiMo-V2.5",
+      "id": "mimo-v2-5",
       "old_rank": 27,
-      "new_rank": 32,
-      "change": -5,
-      "detail": "#27 → #32",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "MiMo-V2-Omni-0327",
-      "id": "mimo-v2-omni-0327",
-      "old_rank": 36,
-      "new_rank": 41,
-      "change": -5,
-      "detail": "#36 → #41",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "KAT-Coder-Pro V2",
-      "id": "kat-coder-pro-v2",
-      "old_rank": 37,
-      "new_rank": 42,
-      "change": -5,
-      "detail": "#37 → #42",
+      "new_rank": 38,
+      "change": -11,
+      "detail": "#27 → #38",
       "icon": "🔻"
     }
   ]
