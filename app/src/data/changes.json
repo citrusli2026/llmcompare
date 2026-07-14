@@ -1,13 +1,33 @@
 {
-  "generated_at": "2026-07-13",
-  "date": "2026-07-13",
-  "compare_with": "2026-07-12",
+  "generated_at": "2026-07-14",
+  "date": "2026-07-14",
+  "compare_with": "2026-07-13",
   "summary": {
-    "new_models": 0,
+    "new_models": 1,
     "dropped_models": 0,
     "price_changes": 0,
-    "ranking_changes": 0,
+    "ranking_changes": 1,
     "intel_changes": 0
   },
-  "changes": []
+  "changes": [
+    {
+      "type": "new",
+      "model": "Hy3",
+      "id": "hy3",
+      "rank": 25,
+      "first_seen": "2026-07-14",
+      "detail": "智商 41 · 53 TPS · $0/M",
+      "icon": "🆕"
+    },
+    {
+      "type": "ranking_down",
+      "model": "KAT-Coder-Pro V2",
+      "id": "kat-coder-pro-v2",
+      "old_rank": 43,
+      "new_rank": 46,
+      "change": -3,
+      "detail": "#43 → #46",
+      "icon": "🔻"
+    }
+  ]
 }
