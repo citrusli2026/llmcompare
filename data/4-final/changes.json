@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-14",
-  "date": "2026-07-14",
-  "compare_with": "2026-07-13",
+  "generated_at": "2026-07-15",
+  "date": "2026-07-15",
+  "compare_with": "2026-07-14",
   "summary": {
     "new_models": 1,
     "dropped_models": 0,
@@ -12,21 +12,21 @@
   "changes": [
     {
       "type": "new",
-      "model": "Hy3",
-      "id": "hy3",
-      "rank": 25,
-      "first_seen": "2026-07-14",
-      "detail": "智商 41 · 53 TPS · $0/M",
+      "model": "LongCat 2.0",
+      "id": "longcat-2-0",
+      "rank": 49,
+      "first_seen": "2026-07-15",
+      "detail": "智商 33",
       "icon": "🆕"
     },
     {
       "type": "ranking_down",
-      "model": "KAT-Coder-Pro V2",
-      "id": "kat-coder-pro-v2",
-      "old_rank": 43,
-      "new_rank": 46,
-      "change": -3,
-      "detail": "#43 → #46",
+      "model": "Kimi K2.5",
+      "id": "kimi-k2-5",
+      "old_rank": 35,
+      "new_rank": 43,
+      "change": -8,
+      "detail": "#35 → #43",
       "icon": "🔻"
     }
   ]
