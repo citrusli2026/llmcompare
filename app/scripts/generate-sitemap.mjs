@@ -14,6 +14,7 @@ const models = JSON.parse(readFileSync(dataPath, "utf-8"));
 const staticPages = [
   { loc: `${BASE}/`, lastmod: today, priority: "1.0" },
   { loc: `${BASE}/models`, lastmod: today, priority: "0.9" },
+  { loc: `${BASE}/compare`, lastmod: today, priority: "0.6" },
   { loc: `${BASE}/about`, lastmod: today, priority: "0.5" },
 ];
 

@@ -38,6 +38,12 @@ export const metadata: Metadata = {
     description: "收集整理了全球 AI 模型的智能评分、API 速度与官方定价数据。",
     type: "website",
     locale: "zh_CN",
+    siteName: "模型图鉴",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "模型图鉴 - 全球 AI 模型数据一览",
+    description: "收集整理了全球 AI 模型的智能评分、API 速度与官方定价数据。",
   },
   verification: {
     google: "Wf7Oa2cKQLQZ6rZkQnzemhakueMXBQtENt5vI6rofa8",
@@ -72,6 +78,18 @@ export default function RootLayout({
               name: "模型图鉴",
               description: "收集整理了全球 AI 模型的智能评分、API 速度与官方定价数据，涵盖头部厂商的最新模型，为开发者和研究者提供参考。",
               url: "https://www.llmcompare.cc",
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "模型图鉴",
+              url: "https://www.llmcompare.cc",
+              description: "全球 AI 模型数据一站式查询平台",
             }),
           }}
         />

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getModelById, getAllModels, ModelType } from "@/lib/scoring";
 
-export const alt = "LLMCompare — 模型图鉴";
+export const alt = "模型图鉴 - 全球 AI 模型智能评分、速度与定价数据";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const dynamic = "force-static";

@@ -30,7 +30,7 @@ export function ModelLogo({ src, name, size = "sm", className }: ModelLogoProps)
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={src}
-        alt=""
+        alt={name}
         className={cn(s.img, "shrink-0", className)}
         onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
       />
@@ -48,7 +48,7 @@ export function ModelLogo({ src, name, size = "sm", className }: ModelLogoProps)
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={src}
-          alt=""
+          alt={name}
           className={s.img}
           onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
         />

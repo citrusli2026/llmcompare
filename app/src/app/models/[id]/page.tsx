@@ -15,10 +15,24 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const { id } = await params;
   const model = getModelById(id);
   if (!model) return { title: "未找到" };
+  const description = `${model.company} ${model.name} 的智能评分、速度性能与定价详情。${model.type === ModelType.Open ? "开源" : "闭源"}模型。`;
+  const url = `${BASE_URL}/models/${model.id}`;
   return {
     title: `${model.name} - ${model.company}`,
-    description: `${model.company} ${model.name} 的智能评分、速度性能与定价详情。${model.type === ModelType.Open ? "开源" : "闭源"}模型。`,
-    alternates: { canonical: `${BASE_URL}/models/${model.id}` },
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${model.name} - ${model.company}`,
+      description,
+      url,
+      type: "website",
+      locale: "zh_CN",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${model.name} - ${model.company}`,
+      description,
+    },
   };
 }
 
