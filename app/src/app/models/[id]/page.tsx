@@ -47,12 +47,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
     url,
     ...(model.company && { manufacturer: { "@type": "Organization", name: model.company } }),
     ...(model.raw.release_date && { datePublished: model.raw.release_date }),
-    ...(model.raw.intelligence != null && {
+    ...(model.raw.intelligence != null && model.raw.arena_votes != null && model.raw.arena_votes > 0 && {
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: Math.round(model.raw.intelligence * 10) / 10,
         bestRating: 100,
         worstRating: 0,
+        ratingCount: model.raw.arena_votes,
       },
     }),
     ...(model.raw.input != null && {
