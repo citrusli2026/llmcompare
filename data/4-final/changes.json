@@ -1,33 +1,23 @@
 {
-  "generated_at": "2026-07-15",
-  "date": "2026-07-15",
-  "compare_with": "2026-07-14",
+  "generated_at": "2026-07-16",
+  "date": "2026-07-16",
+  "compare_with": "2026-07-15",
   "summary": {
     "new_models": 1,
     "dropped_models": 0,
     "price_changes": 0,
-    "ranking_changes": 1,
+    "ranking_changes": 0,
     "intel_changes": 0
   },
   "changes": [
     {
       "type": "new",
-      "model": "LongCat 2.0",
-      "id": "longcat-2-0",
-      "rank": 49,
-      "first_seen": "2026-07-15",
-      "detail": "智商 33",
+      "model": "Inkling",
+      "id": "inkling",
+      "rank": 27,
+      "first_seen": "2026-07-16",
+      "detail": "智商 41 · 73 TPS · $1.87/M",
       "icon": "🆕"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Kimi K2.5",
-      "id": "kimi-k2-5",
-      "old_rank": 35,
-      "new_rank": 43,
-      "change": -8,
-      "detail": "#35 → #43",
-      "icon": "🔻"
     }
   ]
 }
