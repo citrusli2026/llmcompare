@@ -52,7 +52,8 @@
       "api_docs": "https://docs.anthropic.com",
       "console": "https://console.anthropic.com",
       "github": "https://github.com/anthropics",
-      "pricing_doc": "https://www.anthropic.com/pricing"
+      "pricing_doc": "https://www.anthropic.com/pricing",
+      "huggingface": "https://huggingface.co/anthropics"
     },
     "license": null,
     "openrouter_weekly_tokens": 375285408732,
@@ -133,17 +134,18 @@
       "api_docs": "https://platform.openai.com/docs",
       "console": "https://platform.openai.com",
       "github": "https://github.com/openai",
-      "pricing_doc": "https://openai.com/api/pricing"
+      "pricing_doc": "https://openai.com/api/pricing",
+      "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
-    "openrouter_weekly_tokens": 411249519808,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
     },
     "arena_rankings": {},
     "arena_votes": 4095,
-    "data_completeness_pct": 77.4
+    "data_completeness_pct": 75.2
   },
   {
     "id": "kimi-k3",
@@ -172,7 +174,7 @@
       "input": 3,
       "output": 15,
       "blended": 6.0,
-      "display": "$3/$15 (USD/百万token)"
+      "display": "¥20.0/¥100.0"
     },
     "flags": {
       "frontier": true,
@@ -198,10 +200,15 @@
       "api_docs": "https://platform.moonshot.cn",
       "console": "https://platform.moonshot.cn",
       "huggingface": "https://huggingface.co/moonshotai",
-      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
+      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat",
+      "github": "https://github.com/moonshotai"
     },
     "license": null,
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 20.0,
+      "output": 100.0,
+      "source": "platform.kimi.com"
+    },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 3.0,
@@ -220,7 +227,7 @@
       }
     },
     "arena_votes": 3024,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 94.0
   },
   {
     "id": "claude-opus-4-8",
@@ -275,7 +282,8 @@
       "api_docs": "https://docs.anthropic.com",
       "console": "https://console.anthropic.com",
       "github": "https://github.com/anthropics",
-      "pricing_doc": "https://www.anthropic.com/pricing"
+      "pricing_doc": "https://www.anthropic.com/pricing",
+      "huggingface": "https://huggingface.co/anthropics"
     },
     "license": null,
     "openrouter_weekly_tokens": 2195918000173,
@@ -356,17 +364,18 @@
       "api_docs": "https://platform.openai.com/docs",
       "console": "https://platform.openai.com",
       "github": "https://github.com/openai",
-      "pricing_doc": "https://openai.com/api/pricing"
+      "pricing_doc": "https://openai.com/api/pricing",
+      "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
-    "openrouter_weekly_tokens": 71517331653,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 2.5,
       "completion": 15.0
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 77.4
+    "data_completeness_pct": 75.2
   },
   {
     "id": "grok-4-5",
@@ -416,7 +425,14 @@
       "omniscience": 26.3833333333333
     },
     "url": "https://artificialanalysis.ai/models/grok-4-5",
-    "vendor_links": {},
+    "vendor_links": {
+      "homepage": "https://x.ai",
+      "api_docs": "https://docs.x.ai",
+      "console": "https://console.x.ai",
+      "github": "https://github.com/xai-org",
+      "huggingface": "https://huggingface.co/xai-org",
+      "pricing_doc": "https://docs.x.ai/docs/models"
+    },
     "license": null,
     "openrouter_weekly_tokens": 336085799788,
     "openrouter_pricing": {
@@ -431,7 +447,7 @@
       }
     },
     "arena_votes": 2214,
-    "data_completeness_pct": 81.2
+    "data_completeness_pct": 85.0
   },
   {
     "id": "claude-opus-4-7",
@@ -486,7 +502,8 @@
       "api_docs": "https://docs.anthropic.com",
       "console": "https://console.anthropic.com",
       "github": "https://github.com/anthropics",
-      "pricing_doc": "https://www.anthropic.com/pricing"
+      "pricing_doc": "https://www.anthropic.com/pricing",
+      "huggingface": "https://huggingface.co/anthropics"
     },
     "license": null,
     "openrouter_weekly_tokens": 2107276822808,
@@ -567,7 +584,8 @@
       "api_docs": "https://docs.anthropic.com",
       "console": "https://console.anthropic.com",
       "github": "https://github.com/anthropics",
-      "pricing_doc": "https://www.anthropic.com/pricing"
+      "pricing_doc": "https://www.anthropic.com/pricing",
+      "huggingface": "https://huggingface.co/anthropics"
     },
     "license": null,
     "openrouter_weekly_tokens": 936723011167,
@@ -643,10 +661,11 @@
       "api_docs": "https://platform.openai.com/docs",
       "console": "https://platform.openai.com",
       "github": "https://github.com/openai",
-      "pricing_doc": "https://openai.com/api/pricing"
+      "pricing_doc": "https://openai.com/api/pricing",
+      "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
-    "openrouter_weekly_tokens": 677882959419,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -664,7 +683,7 @@
       }
     },
     "arena_votes": 44872,
-    "data_completeness_pct": 85.0
+    "data_completeness_pct": 82.7
   },
   {
     "id": "gpt-5-4",
@@ -719,10 +738,11 @@
       "api_docs": "https://platform.openai.com/docs",
       "console": "https://platform.openai.com",
       "github": "https://github.com/openai",
-      "pricing_doc": "https://openai.com/api/pricing"
+      "pricing_doc": "https://openai.com/api/pricing",
+      "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
-    "openrouter_weekly_tokens": 403143407446,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 2.5,
       "completion": 15.0
@@ -735,7 +755,7 @@
       }
     },
     "arena_votes": 18333,
-    "data_completeness_pct": 85.0
+    "data_completeness_pct": 82.7
   },
   {
     "id": "gpt-5-6-luna",
@@ -790,17 +810,18 @@
       "api_docs": "https://platform.openai.com/docs",
       "console": "https://platform.openai.com",
       "github": "https://github.com/openai",
-      "pricing_doc": "https://openai.com/api/pricing"
+      "pricing_doc": "https://openai.com/api/pricing",
+      "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
-    "openrouter_weekly_tokens": 226475409919,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 1.0,
       "completion": 6.0
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 77.4
+    "data_completeness_pct": 75.2
   },
   {
     "id": "glm-5-2",
@@ -829,7 +850,7 @@
       "input": 1.4,
       "output": 4.4,
       "blended": 2.15,
-      "display": "$1.4/$4.4 (USD/百万token)"
+      "display": "¥8.0/¥28.0 (<32K)"
     },
     "flags": {
       "frontier": true,
@@ -855,18 +876,23 @@
       "api_docs": "https://open.bigmodel.cn",
       "github": "https://github.com/zai-org",
       "huggingface": "https://huggingface.co/zai-org",
-      "pricing_doc": "https://open.bigmodel.cn/pricing"
+      "pricing_doc": "https://open.bigmodel.cn/pricing",
+      "console": "https://open.bigmodel.cn/"
     },
     "license": null,
-    "cn_pricing": null,
-    "openrouter_weekly_tokens": 3515340760024,
+    "cn_pricing": {
+      "input": 8.0,
+      "output": 28.0,
+      "source": "open.bigmodel.cn/pricing"
+    },
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.93,
       "completion": 2.92
     },
     "arena_rankings": {},
     "arena_votes": 4722,
-    "data_completeness_pct": 81.2
+    "data_completeness_pct": 86.5
   },
   {
     "id": "muse-spark-1-1",
@@ -920,7 +946,8 @@
       "homepage": "https://ai.meta.com",
       "github": "https://github.com/meta-llama",
       "huggingface": "https://huggingface.co/meta-llama",
-      "pricing_doc": "https://ai.meta.com/llama"
+      "pricing_doc": "https://ai.meta.com/llama",
+      "api_docs": "https://llama.meta.com/docs/"
     },
     "license": null,
     "openrouter_weekly_tokens": null,
@@ -1001,7 +1028,8 @@
       "api_docs": "https://ai.google.dev/gemini-api/docs",
       "console": "https://aistudio.google.com",
       "github": "https://github.com/google-gemini",
-      "pricing_doc": "https://ai.google.dev/pricing"
+      "pricing_doc": "https://ai.google.dev/pricing",
+      "huggingface": "https://huggingface.co/google"
     },
     "license": null,
     "openrouter_weekly_tokens": 300366376853,
@@ -1066,7 +1094,8 @@
       "api_docs": "https://docs.anthropic.com",
       "console": "https://console.anthropic.com",
       "github": "https://github.com/anthropics",
-      "pricing_doc": "https://www.anthropic.com/pricing"
+      "pricing_doc": "https://www.anthropic.com/pricing",
+      "huggingface": "https://huggingface.co/anthropics"
     },
     "license": null,
     "openrouter_weekly_tokens": 942074231914,
@@ -1142,10 +1171,11 @@
       "api_docs": "https://ai.google.dev/gemini-api/docs",
       "console": "https://aistudio.google.com",
       "github": "https://github.com/google-gemini",
-      "pricing_doc": "https://ai.google.dev/pricing"
+      "pricing_doc": "https://ai.google.dev/pricing",
+      "huggingface": "https://huggingface.co/google"
     },
     "license": null,
-    "openrouter_weekly_tokens": 187952969447,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 12.0
@@ -1168,7 +1198,7 @@
       }
     },
     "arena_votes": 81473,
-    "data_completeness_pct": 85.0
+    "data_completeness_pct": 82.7
   },
   {
     "id": "qwen3-7-max",
@@ -1304,7 +1334,9 @@
       "homepage": "https://www.minimaxi.com",
       "api_docs": "https://platform.minimaxi.com",
       "huggingface": "https://huggingface.co/MiniMaxAI",
-      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing"
+      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing",
+      "console": "https://platform.minimaxi.com/",
+      "github": "https://github.com/MiniMax-AI"
     },
     "license": null,
     "cn_pricing": {
@@ -1312,7 +1344,7 @@
       "output": 16.8,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": 3951536497593,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
@@ -1325,7 +1357,7 @@
       }
     },
     "arena_votes": 6302,
-    "data_completeness_pct": 96.2
+    "data_completeness_pct": 94.0
   },
   {
     "id": "deepseek-v4-pro",
@@ -1457,7 +1489,8 @@
       "api_docs": "https://platform.openai.com/docs",
       "console": "https://platform.openai.com",
       "github": "https://github.com/openai",
-      "pricing_doc": "https://openai.com/api/pricing"
+      "pricing_doc": "https://openai.com/api/pricing",
+      "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
     "openrouter_weekly_tokens": null,
@@ -1522,7 +1555,8 @@
       "api_docs": "https://platform.moonshot.cn",
       "console": "https://platform.moonshot.cn",
       "huggingface": "https://huggingface.co/moonshotai",
-      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
+      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat",
+      "github": "https://github.com/moonshotai"
     },
     "license": "MIT",
     "cn_pricing": {
@@ -1603,7 +1637,8 @@
       "api_docs": "https://docs.anthropic.com",
       "console": "https://console.anthropic.com",
       "github": "https://github.com/anthropics",
-      "pricing_doc": "https://www.anthropic.com/pricing"
+      "pricing_doc": "https://www.anthropic.com/pricing",
+      "huggingface": "https://huggingface.co/anthropics"
     },
     "license": null,
     "openrouter_weekly_tokens": 213332688955,
@@ -1683,7 +1718,8 @@
       "homepage": "https://ai.meta.com",
       "github": "https://github.com/meta-llama",
       "huggingface": "https://huggingface.co/meta-llama",
-      "pricing_doc": "https://ai.meta.com/llama"
+      "pricing_doc": "https://ai.meta.com/llama",
+      "api_docs": "https://llama.meta.com/docs/"
     },
     "license": null,
     "openrouter_weekly_tokens": null,
@@ -1763,7 +1799,10 @@
       "homepage": "https://huggingface.co/XiaomiMiMo",
       "huggingface": "https://huggingface.co/XiaomiMiMo",
       "pricing_doc": "小米开放平台控制台（需登录）",
-      "pricing_note": "2026-05-02 登录实测"
+      "pricing_note": "2026-05-02 登录实测",
+      "api_docs": "https://platform.xiaomimimo.com/",
+      "console": "https://platform.xiaomimimo.com/",
+      "github": "https://github.com/XiaomiMiMo"
     },
     "license": "XiaomiMiMo License",
     "cn_pricing": {
@@ -1771,7 +1810,7 @@
       "output": 21.0,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": 633766561443,
+    "openrouter_weekly_tokens": 8676656451532,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
@@ -1839,7 +1878,8 @@
       "api_docs": "https://platform.moonshot.cn",
       "console": "https://platform.moonshot.cn",
       "huggingface": "https://huggingface.co/moonshotai",
-      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
+      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat",
+      "github": "https://github.com/moonshotai"
     },
     "license": null,
     "cn_pricing": null,
@@ -1915,7 +1955,9 @@
       "homepage": "https://cloud.tencent.com",
       "api_docs": "https://cloud.tencent.com/document/product/1772",
       "console": "https://console.cloud.tencent.com",
-      "pricing_doc": "https://cloud.tencent.com/document/product/1772/115963"
+      "pricing_doc": "https://cloud.tencent.com/document/product/1772/115963",
+      "github": "https://github.com/Tencent",
+      "huggingface": "https://huggingface.co/tencent"
     },
     "license": null,
     "cn_pricing": null,
@@ -1976,7 +2018,11 @@
       "omniscience": -27.6166666666667
     },
     "url": "https://artificialanalysis.ai/models/nex-n2-pro",
-    "vendor_links": {},
+    "vendor_links": {
+      "homepage": "https://nex-agi.com",
+      "github": "https://github.com/nex-agi",
+      "huggingface": "https://huggingface.co/nex-agi"
+    },
     "license": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
@@ -1985,7 +2031,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 75.2
+    "data_completeness_pct": 78.9
   },
   {
     "id": "inkling",
@@ -2035,13 +2081,16 @@
       "omniscience": 2.05
     },
     "url": "https://artificialanalysis.ai/models/inkling",
-    "vendor_links": {},
+    "vendor_links": {
+      "homepage": "https://thinkingmachines.ai/",
+      "huggingface": "https://huggingface.co/thinkingmachineslab"
+    },
     "license": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 71.4
+    "data_completeness_pct": 75.2
   },
   {
     "id": "deepseek-v4-flash",
@@ -2167,7 +2216,8 @@
       "api_docs": "https://open.bigmodel.cn",
       "github": "https://github.com/zai-org",
       "huggingface": "https://huggingface.co/zai-org",
-      "pricing_doc": "https://open.bigmodel.cn/pricing"
+      "pricing_doc": "https://open.bigmodel.cn/pricing",
+      "console": "https://open.bigmodel.cn/"
     },
     "license": "MIT",
     "cn_pricing": {
@@ -2175,7 +2225,7 @@
       "output": 24,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 122523979698,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.97,
       "completion": 3.04
@@ -2188,7 +2238,7 @@
       }
     },
     "arena_votes": 5870,
-    "data_completeness_pct": 96.2
+    "data_completeness_pct": 94.0
   },
   {
     "id": "qwen3-6-max-preview",
@@ -2325,7 +2375,8 @@
       "api_docs": "https://platform.openai.com/docs",
       "console": "https://platform.openai.com",
       "github": "https://github.com/openai",
-      "pricing_doc": "https://openai.com/api/pricing"
+      "pricing_doc": "https://openai.com/api/pricing",
+      "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
     "openrouter_weekly_tokens": 190488763281,
@@ -2364,7 +2415,7 @@
       "input": 0.4,
       "output": 1.6,
       "blended": 0.7,
-      "display": "$0.4/$1.6 (USD/百万token)"
+      "display": "¥1.6/¥6.4"
     },
     "flags": {
       "frontier": false,
@@ -2394,7 +2445,11 @@
       "pricing_doc": "https://bailian.console.aliyun.com"
     },
     "license": null,
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 1.6,
+      "output": 6.4,
+      "source": "bailian.console.aliyun.com (限时8折)"
+    },
     "openrouter_weekly_tokens": 126334989483,
     "openrouter_pricing": {
       "prompt": 0.32,
@@ -2408,7 +2463,7 @@
       }
     },
     "arena_votes": 5541,
-    "data_completeness_pct": 85.0
+    "data_completeness_pct": 92.5
   },
   {
     "id": "jt-4-1-flash-236b-a21b",
@@ -2458,13 +2513,18 @@
       "omniscience": -10.1166666666667
     },
     "url": "https://artificialanalysis.ai/models/jt-4-1-flash-236b-a21b",
-    "vendor_links": {},
+    "vendor_links": {
+      "homepage": "https://ecloud.10086.cn/",
+      "api_docs": "https://ecloud.10086.cn/",
+      "console": "https://ecloud.10086.cn/",
+      "pricing_doc": "https://ecloud.10086.cn/"
+    },
     "license": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 37.6
+    "data_completeness_pct": 41.4
   },
   {
     "id": "gpt-5-4-nano",
@@ -2519,7 +2579,8 @@
       "api_docs": "https://platform.openai.com/docs",
       "console": "https://platform.openai.com",
       "github": "https://github.com/openai",
-      "pricing_doc": "https://openai.com/api/pricing"
+      "pricing_doc": "https://openai.com/api/pricing",
+      "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
     "openrouter_weekly_tokens": 151161667415,
@@ -2583,7 +2644,9 @@
       "homepage": "https://www.minimaxi.com",
       "api_docs": "https://platform.minimaxi.com",
       "huggingface": "https://huggingface.co/MiniMaxAI",
-      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing"
+      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing",
+      "console": "https://platform.minimaxi.com/",
+      "github": "https://github.com/MiniMax-AI"
     },
     "license": null,
     "cn_pricing": {
@@ -2591,14 +2654,14 @@
       "output": 8.4,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": 82925415353,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.25,
       "completion": 1.0
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 88.7
+    "data_completeness_pct": 86.5
   },
   {
     "id": "glm-5-turbo",
@@ -2627,7 +2690,7 @@
       "input": null,
       "output": null,
       "blended": null,
-      "display": null
+      "display": "¥5.0/¥22.0 (<32K)"
     },
     "flags": {
       "frontier": false,
@@ -2653,18 +2716,23 @@
       "api_docs": "https://open.bigmodel.cn",
       "github": "https://github.com/zai-org",
       "huggingface": "https://huggingface.co/zai-org",
-      "pricing_doc": "https://open.bigmodel.cn/pricing"
+      "pricing_doc": "https://open.bigmodel.cn/pricing",
+      "console": "https://open.bigmodel.cn/"
     },
     "license": null,
-    "cn_pricing": null,
-    "openrouter_weekly_tokens": 300659543671,
+    "cn_pricing": {
+      "input": 5.0,
+      "output": 22.0,
+      "source": "open.bigmodel.cn/pricing"
+    },
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 1.2,
       "completion": 4.0
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 32.3
+    "data_completeness_pct": 37.6
   },
   {
     "id": "nemotron-3-ultra",
@@ -2780,7 +2848,14 @@
       "omniscience": 18.3166666666667
     },
     "url": "https://artificialanalysis.ai/models/grok-4-3",
-    "vendor_links": {},
+    "vendor_links": {
+      "homepage": "https://x.ai",
+      "api_docs": "https://docs.x.ai",
+      "console": "https://console.x.ai",
+      "github": "https://github.com/xai-org",
+      "huggingface": "https://huggingface.co/xai-org",
+      "pricing_doc": "https://docs.x.ai/docs/models"
+    },
     "license": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
@@ -2789,7 +2864,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 71.4
+    "data_completeness_pct": 75.2
   },
   {
     "id": "mimo-v2-5",
@@ -2843,7 +2918,10 @@
       "homepage": "https://huggingface.co/XiaomiMiMo",
       "huggingface": "https://huggingface.co/XiaomiMiMo",
       "pricing_doc": "小米开放平台控制台（需登录）",
-      "pricing_note": "2026-05-02 登录实测"
+      "pricing_note": "2026-05-02 登录实测",
+      "api_docs": "https://platform.xiaomimimo.com/",
+      "console": "https://platform.xiaomimimo.com/",
+      "github": "https://github.com/XiaomiMiMo"
     },
     "license": "XiaomiMiMo License",
     "cn_pricing": {
@@ -2851,7 +2929,7 @@
       "output": 2,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 8676656451532,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -2864,7 +2942,7 @@
       }
     },
     "arena_votes": 9525,
-    "data_completeness_pct": 96.2
+    "data_completeness_pct": 94.0
   },
   {
     "id": "qwen3-6-27b",
@@ -2981,7 +3059,14 @@
       "omniscience": 15.35
     },
     "url": "https://artificialanalysis.ai/models/grok-4-20",
-    "vendor_links": {},
+    "vendor_links": {
+      "homepage": "https://x.ai",
+      "api_docs": "https://docs.x.ai",
+      "console": "https://console.x.ai",
+      "github": "https://github.com/xai-org",
+      "huggingface": "https://huggingface.co/xai-org",
+      "pricing_doc": "https://docs.x.ai/docs/models"
+    },
     "license": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
@@ -2990,7 +3075,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 56.4
+    "data_completeness_pct": 60.2
   },
   {
     "id": "grok-4-20-0309",
@@ -3040,7 +3125,14 @@
       "omniscience": 13.3666666666667
     },
     "url": "https://artificialanalysis.ai/models/grok-4-20-0309",
-    "vendor_links": {},
+    "vendor_links": {
+      "homepage": "https://x.ai",
+      "api_docs": "https://docs.x.ai",
+      "console": "https://console.x.ai",
+      "github": "https://github.com/xai-org",
+      "huggingface": "https://huggingface.co/xai-org",
+      "pricing_doc": "https://docs.x.ai/docs/models"
+    },
     "license": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
@@ -3049,7 +3141,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 41.4
+    "data_completeness_pct": 45.1
   },
   {
     "id": "mimo-v2-omni-0327",
@@ -3078,7 +3170,7 @@
       "input": null,
       "output": null,
       "blended": null,
-      "display": null
+      "display": "¥2.8/¥14.0 (估算)"
     },
     "flags": {
       "frontier": false,
@@ -3103,18 +3195,25 @@
       "homepage": "https://huggingface.co/XiaomiMiMo",
       "huggingface": "https://huggingface.co/XiaomiMiMo",
       "pricing_doc": "小米开放平台控制台（需登录）",
-      "pricing_note": "2026-05-02 登录实测"
+      "pricing_note": "2026-05-02 登录实测",
+      "api_docs": "https://platform.xiaomimimo.com/",
+      "console": "https://platform.xiaomimimo.com/",
+      "github": "https://github.com/XiaomiMiMo"
     },
     "license": null,
-    "cn_pricing": null,
-    "openrouter_weekly_tokens": 8676656451532,
+    "cn_pricing": {
+      "input": 2.8,
+      "output": 14.0,
+      "source": "OR (无国内官价, ¥按$×7折算)"
+    },
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 32.3
+    "data_completeness_pct": 37.6
   },
   {
     "id": "kimi-k2-5",
@@ -3169,7 +3268,8 @@
       "api_docs": "https://platform.moonshot.cn",
       "console": "https://platform.moonshot.cn",
       "huggingface": "https://huggingface.co/moonshotai",
-      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
+      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat",
+      "github": "https://github.com/moonshotai"
     },
     "license": "MIT",
     "cn_pricing": {
@@ -3224,7 +3324,7 @@
       "input": null,
       "output": null,
       "blended": null,
-      "display": null
+      "display": "¥2.8/¥14.0 (估算)"
     },
     "flags": {
       "frontier": false,
@@ -3249,18 +3349,25 @@
       "homepage": "https://huggingface.co/XiaomiMiMo",
       "huggingface": "https://huggingface.co/XiaomiMiMo",
       "pricing_doc": "小米开放平台控制台（需登录）",
-      "pricing_note": "2026-05-02 登录实测"
+      "pricing_note": "2026-05-02 登录实测",
+      "api_docs": "https://platform.xiaomimimo.com/",
+      "console": "https://platform.xiaomimimo.com/",
+      "github": "https://github.com/XiaomiMiMo"
     },
     "license": null,
-    "cn_pricing": null,
-    "openrouter_weekly_tokens": 8676656451532,
+    "cn_pricing": {
+      "input": 2.8,
+      "output": 14.0,
+      "source": "OR (无国内官价, ¥按$×7折算)"
+    },
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 32.3
+    "data_completeness_pct": 37.6
   },
   {
     "id": "glm-5v-turbo",
@@ -3289,7 +3396,7 @@
       "input": null,
       "output": null,
       "blended": null,
-      "display": null
+      "display": "¥8.4/¥28.0 (估算)"
     },
     "flags": {
       "frontier": false,
@@ -3315,10 +3422,15 @@
       "api_docs": "https://open.bigmodel.cn",
       "github": "https://github.com/zai-org",
       "huggingface": "https://huggingface.co/zai-org",
-      "pricing_doc": "https://open.bigmodel.cn/pricing"
+      "pricing_doc": "https://open.bigmodel.cn/pricing",
+      "console": "https://open.bigmodel.cn/"
     },
     "license": null,
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 8.4,
+      "output": 28.0,
+      "source": "OR (无国内官价, ¥按$×7折算)"
+    },
     "openrouter_weekly_tokens": 300659543671,
     "openrouter_pricing": {
       "prompt": 1.2,
@@ -3326,7 +3438,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 32.3
+    "data_completeness_pct": 39.8
   },
   {
     "id": "kat-coder-pro-v2",
@@ -3355,7 +3467,7 @@
       "input": 0.3,
       "output": 1.2,
       "blended": 0.525,
-      "display": "$0.3/$1.2 (USD/百万token)"
+      "display": "¥2.1/¥8.4"
     },
     "flags": {
       "frontier": false,
@@ -3376,9 +3488,18 @@
       "omniscience": -21.6
     },
     "url": "https://artificialanalysis.ai/models/kat-coder-pro-v2",
-    "vendor_links": {},
+    "vendor_links": {
+      "homepage": "https://www.streamlake.com/",
+      "api_docs": "https://wanqing.streamlakeapi.com/",
+      "console": "https://console.streamlake.com/",
+      "pricing_doc": "https://www.streamlake.com/product/wanqing"
+    },
     "license": null,
-    "cn_pricing": null,
+    "cn_pricing": {
+      "input": 2.1,
+      "output": 8.4,
+      "source": "console.streamlake.com"
+    },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.3,
@@ -3386,7 +3507,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 56.4
+    "data_completeness_pct": 67.7
   },
   {
     "id": "hy3-preview",
@@ -3440,7 +3561,9 @@
       "homepage": "https://cloud.tencent.com",
       "api_docs": "https://cloud.tencent.com/document/product/1772",
       "console": "https://console.cloud.tencent.com",
-      "pricing_doc": "https://cloud.tencent.com/document/product/1772/115963"
+      "pricing_doc": "https://cloud.tencent.com/document/product/1772/115963",
+      "github": "https://github.com/Tencent",
+      "huggingface": "https://huggingface.co/tencent"
     },
     "license": "Tencent License",
     "cn_pricing": {
@@ -3516,10 +3639,11 @@
       "api_docs": "https://platform.openai.com/docs",
       "console": "https://platform.openai.com",
       "github": "https://github.com/openai",
-      "pricing_doc": "https://openai.com/api/pricing"
+      "pricing_doc": "https://openai.com/api/pricing",
+      "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
-    "openrouter_weekly_tokens": 677882959419,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -3532,7 +3656,7 @@
       }
     },
     "arena_votes": 7300,
-    "data_completeness_pct": 54.9
+    "data_completeness_pct": 52.6
   },
   {
     "id": "longcat-2-0",
@@ -3582,14 +3706,18 @@
       "omniscience": -22.6333333333333
     },
     "url": "https://artificialanalysis.ai/models/longcat-2-0",
-    "vendor_links": {},
+    "vendor_links": {
+      "homepage": "https://www.longcatai.org/",
+      "github": "https://github.com/meituan/LongCat-2.0",
+      "huggingface": "https://huggingface.co/meituan"
+    },
     "license": null,
     "cn_pricing": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 41.4
+    "data_completeness_pct": 45.1
   },
   {
     "id": "qwen3-max-thinking",
@@ -3790,7 +3918,8 @@
     "url": "https://artificialanalysis.ai/models/ring-2-6-1t",
     "vendor_links": {
       "homepage": "https://www.inclusion-ai.org",
-      "huggingface": "https://huggingface.co/inclusionAI"
+      "huggingface": "https://huggingface.co/inclusionAI",
+      "github": "https://github.com/inclusionAI"
     },
     "license": "Apache 2.0",
     "cn_pricing": {
@@ -3860,7 +3989,8 @@
       "api_docs": "https://platform.stepfun.com/docs",
       "console": "https://platform.stepfun.com",
       "huggingface": "https://huggingface.co/stepfun-ai",
-      "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details"
+      "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details",
+      "github": "https://github.com/stepfun-ai"
     },
     "license": "StepFun License",
     "cn_pricing": {
@@ -3927,7 +4057,8 @@
     "url": "https://artificialanalysis.ai/models/ling-2-6-1t",
     "vendor_links": {
       "homepage": "https://www.inclusion-ai.org",
-      "huggingface": "https://huggingface.co/inclusionAI"
+      "huggingface": "https://huggingface.co/inclusionAI",
+      "github": "https://github.com/inclusionAI"
     },
     "license": "Apache 2.0",
     "cn_pricing": {
@@ -4003,7 +4134,8 @@
       "api_docs": "https://platform.stepfun.com/docs",
       "console": "https://platform.stepfun.com",
       "huggingface": "https://huggingface.co/stepfun-ai",
-      "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details"
+      "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details",
+      "github": "https://github.com/stepfun-ai"
     },
     "license": "StepFun License",
     "cn_pricing": {
@@ -4079,7 +4211,8 @@
       "api_docs": "https://docs.arcee.ai",
       "github": "https://github.com/arcee-ai",
       "huggingface": "https://huggingface.co/arcee-ai",
-      "pricing_doc": "https://arcee.ai/pricing"
+      "pricing_doc": "https://arcee.ai/pricing",
+      "console": "https://app.arcee.ai/"
     },
     "license": "Apache 2.0",
     "openrouter_weekly_tokens": null,
@@ -4210,7 +4343,8 @@
       "api_docs": "https://platform.openai.com/docs",
       "console": "https://platform.openai.com",
       "github": "https://github.com/openai",
-      "pricing_doc": "https://openai.com/api/pricing"
+      "pricing_doc": "https://openai.com/api/pricing",
+      "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
     "openrouter_weekly_tokens": 403143407446,
