@@ -138,14 +138,14 @@
       "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 411249519808,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
     },
     "arena_rankings": {},
     "arena_votes": 4095,
-    "data_completeness_pct": 75.2
+    "data_completeness_pct": 77.4
   },
   {
     "id": "kimi-k3",
@@ -368,14 +368,14 @@
       "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 71517331653,
     "openrouter_pricing": {
       "prompt": 2.5,
       "completion": 15.0
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 75.2
+    "data_completeness_pct": 77.4
   },
   {
     "id": "grok-4-5",
@@ -665,7 +665,7 @@
       "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 677882959419,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -683,7 +683,7 @@
       }
     },
     "arena_votes": 44872,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 85.0
   },
   {
     "id": "gpt-5-4",
@@ -742,7 +742,7 @@
       "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 403143407446,
     "openrouter_pricing": {
       "prompt": 2.5,
       "completion": 15.0
@@ -755,7 +755,7 @@
       }
     },
     "arena_votes": 18333,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 85.0
   },
   {
     "id": "gpt-5-6-luna",
@@ -814,14 +814,14 @@
       "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 226475409919,
     "openrouter_pricing": {
       "prompt": 1.0,
       "completion": 6.0
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 75.2
+    "data_completeness_pct": 77.4
   },
   {
     "id": "glm-5-2",
@@ -885,14 +885,14 @@
       "output": 28.0,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 3515340760024,
     "openrouter_pricing": {
       "prompt": 0.93,
       "completion": 2.92
     },
     "arena_rankings": {},
     "arena_votes": 4722,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 88.7
   },
   {
     "id": "muse-spark-1-1",
@@ -1175,7 +1175,7 @@
       "huggingface": "https://huggingface.co/google"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 187952969447,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 12.0
@@ -1198,7 +1198,7 @@
       }
     },
     "arena_votes": 81473,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 85.0
   },
   {
     "id": "qwen3-7-max",
@@ -1344,7 +1344,7 @@
       "output": 16.8,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 3951536497593,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
@@ -1357,7 +1357,7 @@
       }
     },
     "arena_votes": 6302,
-    "data_completeness_pct": 94.0
+    "data_completeness_pct": 96.2
   },
   {
     "id": "deepseek-v4-pro",
@@ -1810,7 +1810,7 @@
       "output": 21.0,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": 8676656451532,
+    "openrouter_weekly_tokens": 633766561443,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
@@ -2225,7 +2225,7 @@
       "output": 24,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 122523979698,
     "openrouter_pricing": {
       "prompt": 0.97,
       "completion": 3.04
@@ -2238,7 +2238,7 @@
       }
     },
     "arena_votes": 5870,
-    "data_completeness_pct": 94.0
+    "data_completeness_pct": 96.2
   },
   {
     "id": "qwen3-6-max-preview",
@@ -2654,14 +2654,14 @@
       "output": 8.4,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 82925415353,
     "openrouter_pricing": {
       "prompt": 0.25,
       "completion": 1.0
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 88.7
   },
   {
     "id": "glm-5-turbo",
@@ -2725,14 +2725,14 @@
       "output": 22.0,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 300659543671,
     "openrouter_pricing": {
       "prompt": 1.2,
       "completion": 4.0
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 37.6
+    "data_completeness_pct": 39.8
   },
   {
     "id": "nemotron-3-ultra",
@@ -2929,7 +2929,7 @@
       "output": 2,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 8676656451532,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -2942,7 +2942,7 @@
       }
     },
     "arena_votes": 9525,
-    "data_completeness_pct": 94.0
+    "data_completeness_pct": 96.2
   },
   {
     "id": "qwen3-6-27b",
@@ -3206,14 +3206,14 @@
       "output": 14.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 8676656451532,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 37.6
+    "data_completeness_pct": 39.8
   },
   {
     "id": "kimi-k2-5",
@@ -3360,14 +3360,14 @@
       "output": 14.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 8676656451532,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 37.6
+    "data_completeness_pct": 39.8
   },
   {
     "id": "glm-5v-turbo",
@@ -3643,7 +3643,7 @@
       "huggingface": "https://huggingface.co/openai"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 677882959419,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -3656,7 +3656,7 @@
       }
     },
     "arena_votes": 7300,
-    "data_completeness_pct": 52.6
+    "data_completeness_pct": 54.9
   },
   {
     "id": "longcat-2-0",
