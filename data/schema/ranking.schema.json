@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LLMCompare Ranking Schema",
+  "description": "Schema for app/src/data/ranking.json",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "name", "company", "type", "logo", "scores", "flags"],
+    "properties": {
+      "id": {"type": "string", "minLength": 1},
+      "name": {"type": "string", "minLength": 1},
+      "company": {"type": "string", "minLength": 1},
+      "type": {"type": "string", "enum": ["开源", "闭源"]},
+      "logo": {"type": "string"},
+      "url": {"type": ["string", "null"]},
+      "scores": {
+        "type": "object",
+        "required": ["intelligence"],
+        "properties": {
+          "intelligence": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+          "coding": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+          "agentic": {"type": ["number", "null"], "minimum": 0, "maximum": 100}
+        }
+      },
+      "speed": {
+        "type": ["object", "null"],
+        "properties": {
+          "median_tps": {"type": ["number", "null"]},
+          "ttft_seconds": {"type": ["number", "null"]},
+          "e2e_seconds": {"type": ["number", "null"]},
+          "p05_tps": {"type": ["number", "null"]},
+          "p95_tps": {"type": ["number", "null"]}
+        }
+      },
+      "pricing": {
+        "type": ["object", "null"],
+        "properties": {
+          "input": {"type": ["number", "null"]},
+          "output": {"type": ["number", "null"]},
+          "blended": {"type": ["number", "null"]},
+          "display": {"type": ["string", "null"]}
+        }
+      },
+      "benchmarks": {
+        "type": ["object", "null"],
+        "properties": {
+          "gpqa": {"type": ["number", "null"]},
+          "hle": {"type": ["number", "null"]},
+          "mmlu_pro": {"type": ["number", "null"]}
+        }
+      },
+      "vendor_links": {
+        "type": ["object", "null"],
+        "properties": {
+          "homepage": {"type": ["string", "null"]},
+          "api_docs": {"type": ["string", "null"]},
+          "console": {"type": ["string", "null"]},
+          "huggingface": {"type": ["string", "null"]},
+          "github": {"type": ["string", "null"]},
+          "pricing_doc": {"type": ["string", "null"]}
+        }
+      },
+      "cn_pricing": {
+        "type": ["object", "null"],
+        "properties": {
+          "input": {"type": "number"},
+          "output": {"type": "number"},
+          "source": {"type": "string"}
+        }
+      },
+      "flags": {
+        "type": "object",
+        "required": ["frontier", "open_weights", "reasoning", "image_input", "chinese_eval", "has_speed", "has_pricing", "data_complete"],
+        "properties": {
+          "frontier": {"type": "boolean"},
+          "open_weights": {"type": "boolean"},
+          "reasoning": {"type": "boolean"},
+          "image_input": {"type": "boolean"},
+          "chinese_eval": {"type": "boolean"},
+          "has_speed": {"type": "boolean"},
+          "has_pricing": {"type": "boolean"},
+          "data_complete": {"type": "boolean"}
+        }
+      },
+      "arena_votes": {"type": ["integer", "null"]},
+      "openrouter_weekly_tokens": {"type": ["integer", "null"]},
+      "openrouter_pricing": {
+        "type": ["object", "null"],
+        "properties": {
+          "prompt": {"type": "number"},
+          "completion": {"type": "number"}
+        }
+      },
+      "arena_rankings": {"type": ["object", "null"]},
+      "data_completeness_pct": {"type": ["number", "null"]},
+      "meta": {
+        "type": ["object", "null"],
+        "properties": {
+          "context_window": {"type": ["integer", "null"]},
+          "parameters": {"type": ["number", "null"]},
+          "output_tokens": {"type": ["integer", "null"]},
+          "release_date": {"type": ["string", "null"]},
+          "omniscience": {"type": ["number", "null"]}
+        }
+      },
+      "license": {"type": ["string", "null"]}
+    }
+  }
+}

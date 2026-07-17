@@ -24,58 +24,44 @@ from __future__ import annotations
 
 import json
 import sys
-import urllib.request
 from pathlib import Path
 from datetime import datetime, timezone
+
+from fetch_utils import fetch_json, write_json, load_previous_raw
 
 BASE_URL = (
     "https://raw.githubusercontent.com/oolong-tea-2026/arena-ai-leaderboards"
     "/main/data"
 )
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "2-raw"
+OUTPUT_PATH = OUTPUT_DIR / "arena_leaderboards.json"
 LEADERBOARDS = ["text", "code", "vision"]
-
-
-def fetch_json(url: str) -> dict | None:
-    """Fetch JSON from URL, return None on failure."""
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=90) as resp:
-            return json.loads(resp.read().decode("utf-8"))
-    except Exception as e:
-        print(f"  [WARN] Failed to fetch {url}: {e}")
-        return None
 
 
 def get_latest_date() -> str | None:
     """Get the latest available snapshot date from the repo."""
-    latest = fetch_json(f"{BASE_URL}/latest.json")
+    latest = fetch_json(f"{BASE_URL}/latest.json", timeout=90, retries=3)
     if latest and "date" in latest:
         return latest["date"]
     return None
 
 
-def main():
-    print("=" * 60)
-    print("Fetching Arena Leaderboard snapshots...")
-
-    date = get_latest_date()
-    if not date:
-        print("[ERROR] Could not determine latest snapshot date")
-        sys.exit(1)
-    print(f"Latest snapshot date: {date}")
-
+def fetch_leaderboards(date: str) -> dict:
+    """Fetch all leaderboard snapshots for the given date."""
     result = {
         "date": date,
         "fetched_at": datetime.now(timezone.utc).isoformat(),
         "leaderboards": {},
+        "partial": False,
     }
 
     total_models = 0
+    failed_boards = []
     for lb in LEADERBOARDS:
         url = f"{BASE_URL}/{date}/{lb}.json"
-        data = fetch_json(url)
+        data = fetch_json(url, timeout=90, retries=3)
         if not data:
+            failed_boards.append(lb)
             continue
 
         meta = data.get("meta", {})
@@ -88,16 +74,44 @@ def main():
         result["leaderboards"][lb] = models
         total_models += len(models)
 
-    if total_models == 0:
-        print("[ERROR] No leaderboard data fetched")
+    if failed_boards:
+        result["partial"] = True
+        result["failed_boards"] = failed_boards
+        print(f"  [WARN] Arena 榜单获取不完整: {failed_boards}")
+
+    result["total_models"] = total_models
+    return result
+
+
+def main():
+    print("=" * 60)
+    print("Fetching Arena Leaderboard snapshots...")
+
+    snapshot_date = get_latest_date()
+    if not snapshot_date:
+        print("[ERROR] Could not determine latest snapshot date")
+        # 尝试使用缓存
+        cached = load_previous_raw(OUTPUT_PATH.name, OUTPUT_DIR)
+        if cached:
+            print(f"[OK] 使用缓存 Arena 数据（{OUTPUT_PATH}）")
+            sys.exit(0)
         sys.exit(1)
 
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    output_path = OUTPUT_DIR / "arena_leaderboards.json"
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(result, f, indent=2, ensure_ascii=False)
+    print(f"Latest snapshot date: {snapshot_date}")
 
-    print(f"\n[OK] Saved {total_models} total entries to {output_path}")
+    result = fetch_leaderboards(snapshot_date)
+    total_models = result.get("total_models", 0)
+
+    if total_models == 0:
+        print("[ERROR] No leaderboard data fetched")
+        cached = load_previous_raw(OUTPUT_PATH.name, OUTPUT_DIR)
+        if cached:
+            print(f"[OK] 使用缓存 Arena 数据（{OUTPUT_PATH}）")
+            sys.exit(0)
+        sys.exit(1)
+
+    write_json(OUTPUT_PATH, result)
+    print(f"\n[OK] Saved {total_models} total entries to {OUTPUT_PATH}")
 
     # Print CN model summary
     cn_vendors = {

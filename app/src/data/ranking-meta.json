@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-07-17T16:34:33.489839+00:00",
+  "version": "1.0",
+  "partial_update": false,
+  "sources": {
+    "artificial_analysis": {
+      "ok": true,
+      "cached": false,
+      "error": null,
+      "coverage": 0.983
+    },
+    "openrouter": {
+      "ok": true,
+      "cached": false,
+      "error": null,
+      "coverage": 0.667,
+      "pricing_coverage": 0.95
+    },
+    "arena": {
+      "ok": true,
+      "cached": false,
+      "error": null,
+      "coverage": 0.483
+    }
+  },
+  "stats": {
+    "total_models": 60,
+    "data_complete": 40,
+    "frontier": 30,
+    "open_weights": 25
+  }
+}

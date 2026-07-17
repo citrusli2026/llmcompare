@@ -12,56 +12,109 @@ LLMCompare 数据质量验证脚本
 import json
 import sys
 import math
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from pathlib import Path
 from collections import Counter
 
 DATA_PATH = Path(__file__).parent.parent / "src" / "data" / "ranking.json"
+META_PATH = Path(__file__).parent.parent / "src" / "data" / "ranking-meta.json"
+PROJECT_ROOT = Path(__file__).parent.parent.parent
+HISTORY_DIR = PROJECT_ROOT / "data" / "5-history"
+VALIDATION_CONFIG_PATH = PROJECT_ROOT / "data" / "0-refer" / "validation_config.json"
 
-# ── 阈值配置（基于历史数据，留出合理波动） ──
-THRESHOLDS = {
-    "total_models": (15, 70),     # 24→60 模型（策略 C + 去旧），宽上限
-    "data_complete": (20, 60),    # 21→58 完整
-    "frontier": (5, 55),          # 48 frontier (size_class=large + intel>=40)
-    "intl": (5, 40),              # 3→33 国际模型
-    "has_arena": (15, 35),        # 16→27 arena
-    "has_cn_price": (10, 30),     # 21→18 国内定价
-    "has_speed": (20, 55),        # 20→48 速度数据
+
+def load_validation_config() -> dict:
+    """加载共享验证配置，失败时返回空配置（后续使用硬编码兜底）。"""
+    try:
+        with open(VALIDATION_CONFIG_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"[WARN] 无法加载 {VALIDATION_CONFIG_PATH}: {e}，使用内置默认")
+        return {}
+
+
+VALIDATION_CONFIG = load_validation_config()
+
+# ── Schema 校验 ──
+SCHEMA_PATH = PROJECT_ROOT / "data" / "schema" / "ranking.schema.json"
+
+
+def load_schema() -> dict | None:
+    try:
+        with open(SCHEMA_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
+def validate_schema(models) -> list[str]:
+    """使用 JSON Schema 校验 ranking.json，若 jsonschema 未安装则跳过。"""
+    schema = load_schema()
+    if schema is None:
+        return []
+    try:
+        import jsonschema
+        jsonschema.validate(instance=models, schema=schema)
+        return []
+    except ImportError:
+        return []
+    except jsonschema.ValidationError as e:
+        return [f"Schema validation failed: {e.message} (path: {list(e.path)}))"]
+
+
+# ── 阈值配置 ──
+# 默认阈值（硬编码兜底），可被历史动态阈值覆盖
+DEFAULT_THRESHOLDS = {
+    "total_models": (15, 70),
+    "data_complete": (20, 60),
+    "frontier": (5, 55),
+    "intl": (5, 40),
+    "has_arena": (15, 35),
+    "has_cn_price": (10, 30),
+    "has_speed": (20, 55),
 }
+
+THRESHOLDS = {}
+for key, (low, high) in DEFAULT_THRESHOLDS.items():
+    cfg = VALIDATION_CONFIG.get("threshold_defaults", {}).get(key)
+    if isinstance(cfg, (list, tuple)) and len(cfg) == 2:
+        THRESHOLDS[key] = tuple(cfg)
+    else:
+        THRESHOLDS[key] = (low, high)
+
+HISTORY_THRESHOLD_CFG = VALIDATION_CONFIG.get("history_based_thresholds", {})
+HISTORY_THRESHOLDS_ENABLED = HISTORY_THRESHOLD_CFG.get("enabled", True)
+HISTORY_LOOKBACK_DAYS = HISTORY_THRESHOLD_CFG.get("lookback_days", 7)
+HISTORY_TOLERANCE = HISTORY_THRESHOLD_CFG.get("tolerance", 0.4)
+HISTORY_MIN_LOWER = HISTORY_THRESHOLD_CFG.get("min_lower_bound", 5)
+
+# 异常检测配置
+ANOMALY_CFG = VALIDATION_CONFIG.get("anomaly_detection", {})
 
 # 与上次数据对比的最大允许变化率
 MAX_CHANGE_RATIO = 0.50
 
 # ── 数据完整度计算配置 ──
-# 定义哪些字段参与完整度计算，以及权重
-COMPLETENESS_FIELDS = {
-    # 核心字段（必须有）
+COMPLETENESS_FIELDS = VALIDATION_CONFIG.get("completeness_fields", {
     "scores.intelligence": 1.0,
     "scores.coding": 1.0,
     "scores.agentic": 1.0,
-    # 速度数据
     "speed.median_tps": 1.0,
     "speed.ttft_seconds": 0.5,
     "speed.e2e_seconds": 0.5,
-    # 定价
     "pricing.input": 1.0,
     "pricing.output": 1.0,
-    # 元数据
     "meta.context_window": 0.5,
     "meta.parameters": 0.5,
     "meta.output_tokens": 0.5,
     "meta.release_date": 0.5,
-    # 链接
     "url": 1.0,
     "vendor_links.homepage": 0.5,
-    # OR 数据
     "openrouter_pricing": 0.5,
     "openrouter_weekly_tokens": 0.3,
-    # Arena
     "arena_rankings": 1.0,
-    # 国内定价
     "cn_pricing": 1.0,
-}
+})
 
 
 def get_nested_value(obj, path):
@@ -132,6 +185,150 @@ def load_previous_data():
     except Exception:
         pass
     return None
+
+
+def load_history_stats() -> dict[str, list]:
+    """加载最近 N 天的历史 ranking.json 快照，返回各指标的历史序列。"""
+    stats_history: dict[str, list] = {
+        "total_models": [],
+        "data_complete": [],
+        "frontier": [],
+        "intl": [],
+        "has_arena": [],
+        "has_cn_price": [],
+        "has_speed": [],
+    }
+    if not HISTORY_DIR.exists():
+        return stats_history
+
+    cutoff = date.today() - timedelta(days=HISTORY_LOOKBACK_DAYS)
+    for f in sorted(HISTORY_DIR.glob("*.json")):
+        try:
+            day = date.fromisoformat(f.stem)
+            if day < cutoff:
+                continue
+            with open(f, "r", encoding="utf-8") as fh:
+                models = json.load(fh)
+            stats_history["total_models"].append(len(models))
+            stats_history["data_complete"].append(
+                sum(1 for m in models if m.get("flags", {}).get("data_complete"))
+            )
+            stats_history["frontier"].append(
+                sum(1 for m in models if m.get("flags", {}).get("frontier"))
+            )
+            stats_history["intl"].append(
+                sum(1 for m in models if not m.get("flags", {}).get("chinese_eval"))
+            )
+            stats_history["has_arena"].append(
+                sum(1 for m in models if m.get("arena_rankings"))
+            )
+            stats_history["has_cn_price"].append(
+                sum(1 for m in models if m.get("cn_pricing"))
+            )
+            stats_history["has_speed"].append(
+                sum(
+                    1
+                    for m in models
+                    if m.get("speed")
+                    and m["speed"].get("median_tps")
+                    and m["speed"]["median_tps"] != 0
+                )
+            )
+        except Exception:
+            continue
+    return stats_history
+
+
+def compute_dynamic_thresholds() -> dict[str, tuple]:
+    """基于历史数据计算动态阈值，历史不足时使用默认阈值。"""
+    if not HISTORY_THRESHOLDS_ENABLED:
+        return THRESHOLDS
+
+    history = load_history_stats()
+    dynamic = {}
+    for key, (default_low, default_high) in THRESHOLDS.items():
+        values = history.get(key, [])
+        if len(values) >= 3:
+            avg = sum(values) / len(values)
+            # 允许在平均值上下 tolerance 范围内波动
+            margin = max(avg * HISTORY_TOLERANCE, 3)  # 至少保留 3 的缓冲
+            low = max(int(round(avg - margin)), HISTORY_MIN_LOWER)
+            high = int(round(avg + margin))
+            dynamic[key] = (low, high)
+        else:
+            dynamic[key] = (default_low, default_high)
+    return dynamic
+
+
+def check_source_health(models):
+    """检查 ranking-meta.json 中的数据血缘元数据，评估各源健康度。"""
+    issues = []
+    warnings = []
+    try:
+        with open(META_PATH, "r", encoding="utf-8") as f:
+            meta = json.load(f)
+    except Exception:
+        warnings.append("ranking-meta.json 数据血缘信息缺失或无法读取")
+        return issues, warnings
+
+    sources = meta.get("sources", {})
+    for source_name, source_info in sources.items():
+        coverage = source_info.get("coverage")
+        if coverage is not None and coverage < 0.3:
+            # 覆盖率低于 30% 才报错；30%-50% 只告警
+            if coverage < 0.3:
+                issues.append(f"{source_name} 覆盖率严重过低: {coverage:.0%}")
+            else:
+                warnings.append(f"{source_name} 覆盖率偏低: {coverage:.0%}")
+        if source_info.get("error"):
+            warnings.append(f"{source_name} 抓取异常: {source_info['error']}")
+
+    if meta.get("partial_update"):
+        warnings.append("本次为部分更新（partial_update=true），部分数据源可能缺失")
+
+    return issues, warnings
+
+
+def check_anomalies(current, previous):
+    """检测异常数据变化。"""
+    issues = []
+    if previous is None:
+        return issues
+
+    max_price_drop = ANOMALY_CFG.get("max_price_drop_to_zero_count", 3)
+    max_intel_change = ANOMALY_CFG.get("max_intelligence_day_change", 10)
+
+    prev_map = {m["id"]: m for m in previous}
+    curr_map = {m["id"]: m for m in current}
+
+    # 价格突降为 0 的模型数
+    price_drop_to_zero = 0
+    for mid, c in curr_map.items():
+        if mid not in prev_map:
+            continue
+        p_price = prev_map[mid].get("pricing", {}).get("blended")
+        c_price = c.get("pricing", {}).get("blended")
+        if p_price and p_price > 0 and c_price == 0:
+            price_drop_to_zero += 1
+    if price_drop_to_zero > max_price_drop:
+        issues.append(f"价格突降为 0 的模型数: {price_drop_to_zero} > {max_price_drop}")
+
+    # intelligence 单日剧变
+    intel_jumps = []
+    for mid, c in curr_map.items():
+        if mid not in prev_map:
+            continue
+        p_intel = prev_map[mid].get("scores", {}).get("intelligence")
+        c_intel = c.get("scores", {}).get("intelligence")
+        if p_intel is not None and c_intel is not None:
+            diff = abs(c_intel - p_intel)
+            if diff > max_intel_change:
+                intel_jumps.append(f"{mid}: {p_intel:.1f}→{c_intel:.1f}")
+    if intel_jumps:
+        # 只报前 5 个避免日志过长
+        issues.append(f"intelligence 单日变化>{max_intel_change} 的模型: {', '.join(intel_jumps[:5])}")
+
+    return issues
 
 
 def check_required_fields(models):
@@ -249,7 +446,7 @@ def check_ranking_consistency(models):
 
 
 def check_thresholds(models):
-    """统计量阈值检查"""
+    """统计量阈值检查（优先使用基于历史数据的动态阈值）。"""
     issues = []
     stats = {
         "total_models": len(models),
@@ -267,12 +464,13 @@ def check_thresholds(models):
         ),
     }
 
+    dynamic_thresholds = compute_dynamic_thresholds()
     for key, val in stats.items():
-        low, high = THRESHOLDS[key]
+        low, high = dynamic_thresholds[key]
         if not (low <= val <= high):
             issues.append(f"{key}={val} out of threshold [{low}, {high}]")
 
-    return issues, stats
+    return issues, stats, dynamic_thresholds
 
 
 def check_score_distribution(models):
@@ -403,8 +601,14 @@ def main():
     all_issues = []
     all_warnings = []
 
+    # 0. JSON Schema 校验
+    print("[0/11] JSON Schema 校验...")
+    issues = validate_schema(models)
+    all_issues.extend(issues)
+    print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
+
     # 1. 全局字段检查（首页显示需要）
-    print("[1/8] 全局字段完整性...")
+    print("[1/11] 全局字段完整性...")
     issues = check_required_fields(models)
     all_issues.extend(issues)
     print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
@@ -434,36 +638,37 @@ def main():
     print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
 
     # 6. 排名页一致性（所有模型）
-    print("[6/8] 排名页一致性...")
+    print("[6/11] 排名页一致性...")
     issues, consistency_warnings = check_ranking_consistency(models)
     all_issues.extend(issues)
     all_warnings.extend(consistency_warnings)
     print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
 
-    # 7. 统计量阈值
-    print("[7/8] 统计量阈值检查...")
-    issues, stats = check_thresholds(models)
+    # 7. 统计量阈值（动态）
+    print("[7/11] 统计量阈值检查...")
+    issues, stats, dynamic_thresholds = check_thresholds(models)
     all_issues.extend(issues)
     print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
     for key, val in stats.items():
-        low, high = THRESHOLDS[key]
+        low, high = dynamic_thresholds[key]
         status = "✓" if low <= val <= high else "✗"
-        print(f"    {status} {key}: {val} (阈值: {low}-{high})")
+        source = "dynamic" if HISTORY_THRESHOLDS_ENABLED else "default"
+        print(f"    {status} {key}: {val} (阈值: {low}-{high}, {source})")
 
     # 8. 分数分布
-    print("[8/8] 分数分布合理性...")
+    print("[8/11] 分数分布合理性...")
     issues = check_score_distribution(models)
     all_issues.extend(issues)
     print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
 
     # 9. url 一致性（仅告警）
-    print("[9/8] url 一致性检查...")
+    print("[9/11] url 一致性检查...")
     warnings = check_url_consistency(models)
     all_warnings.extend(warnings)
     print(f"  {'✓' if not warnings else '△'} {len(warnings)} warnings")
 
     # 10. 与上次数据对比（如果有）
-    print("[10/8] 与上次数据对比...")
+    print("[10/11] 与上次数据对比...")
     previous = load_previous_data()
     if previous:
         issues = check_against_previous(models, previous)
@@ -471,6 +676,16 @@ def main():
         print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
     else:
         print("  - 无历史数据，跳过对比")
+
+    # 11. 数据源健康度 + 异常检测
+    print("[11/11] 数据源健康度与异常检测...")
+    issues, health_warnings = check_source_health(models)
+    all_issues.extend(issues)
+    all_warnings.extend(health_warnings)
+    if previous:
+        issues = check_anomalies(models, previous)
+        all_issues.extend(issues)
+    print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
 
     # 数据完整度报告
     print_completeness_report(models)

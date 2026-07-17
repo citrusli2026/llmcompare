@@ -23,20 +23,20 @@ from __future__ import annotations
 import json
 import os
 import sys
-import urllib.request
 from datetime import datetime, timedelta
 from pathlib import Path
 
+from fetch_utils import fetch_json as _fetch_json, write_json, load_previous_raw
+
 API_URL = "https://openrouter.ai/api/v1/models"
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "2-raw"
+FULL_PATH = OUTPUT_DIR / "or_models_full.json"
+RAW_PATH = OUTPUT_DIR / "or_models.json"
 
 
-def fetch_json(url: str) -> dict:
-    req = urllib.request.Request(url, headers={
-        "User-Agent": "Mozilla/5.0",
-    })
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+def fetch_json(url: str, timeout: int = 60, retries: int = 3) -> dict | None:
+    """Fetch JSON with retry."""
+    return _fetch_json(url, timeout=timeout, retries=retries)
 
 
 def transform_models(raw_models: list[dict]) -> list[dict]:
@@ -145,15 +145,17 @@ def fetch_datasets_analytics(or_models: list[dict]) -> dict[str, dict]:
     url = f"https://openrouter.ai/api/v1/datasets/rankings-daily?start_date={start}&end_date={end}"
 
     print(f"\n[DATASETS] GET {url}")
-    req = urllib.request.Request(url, headers={
-        "Authorization": f"Bearer {api_key}",
-        "User-Agent": "llmcompare/1.0",
-    })
-    try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            raw = json.loads(resp.read().decode("utf-8"))
-    except Exception as e:
-        print(f"  [DATASETS] ERROR: {e}")
+    raw = _fetch_json(
+        url,
+        timeout=60,
+        retries=3,
+        headers={
+            "Authorization": f"Bearer {api_key}",
+            "User-Agent": "llmcompare/1.0",
+        },
+    )
+    if raw is None:
+        print("  [DATASETS] ERROR: Failed to fetch after retries")
         return {}
 
     records = raw.get("data", [])
@@ -213,10 +215,14 @@ def main():
     print("Fetching OpenRouter models...")
 
     print(f"\n[1/1] GET {API_URL}")
-    try:
-        resp = fetch_json(API_URL)
-    except Exception as e:
-        print(f"ERROR fetching: {e}")
+    resp = fetch_json(API_URL, timeout=60, retries=3)
+    if resp is None:
+        print("ERROR fetching OpenRouter models after retries")
+        cached = load_previous_raw(FULL_PATH.name, FULL_PATH.parent)
+        if cached:
+            print(f"[OK] 使用缓存 OpenRouter 数据（{FULL_PATH}）")
+            write_json(FULL_PATH, cached)
+            sys.exit(0)
         sys.exit(1)
 
     raw_models = resp.get("data", [])
@@ -224,31 +230,35 @@ def main():
 
     # Analytics: prefer Datasets API (real data), fall back to backfill from previous ranking
     analytics = fetch_datasets_analytics(models)
+    datasets_failed = False
     if not analytics:
+        datasets_failed = True
         print("  [DATASETS] No data from Datasets API, falling back to backfill")
         analytics = backfill_analytics_from_ranking(models)
 
-    print(f"  ✓ {len(models)} models (analytics: {len(analytics)} from Datasets API)" if analytics else f"  ✓ {len(models)} models (analytics: 0 — no token data)")
+    analytics_source = "Datasets API" if not datasets_failed else "backfill"
+    print(f"  ✓ {len(models)} models (analytics: {len(analytics)} from {analytics_source})" if analytics else f"  ✓ {len(models)} models (analytics: 0 — no token data)")
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     # Save raw response (for debug / future re-parsing)
-    raw_path = OUTPUT_DIR / "or_models.json"
-    with open(raw_path, "w", encoding="utf-8") as f:
-        json.dump(resp, f, indent=2, ensure_ascii=False)
-    print(f"  → {raw_path}")
+    write_json(RAW_PATH, resp)
+    print(f"  → {RAW_PATH}")
 
     # Build the file enrich_models.py reads: {"data": {"models": [...], "analytics": {}}}
-    full_data = {"data": {"models": models, "analytics": analytics}}
-    full_path = OUTPUT_DIR / "or_models_full.json"
-    with open(full_path, "w", encoding="utf-8") as f:
-        json.dump(full_data, f, indent=2, ensure_ascii=False)
-    print(f"  → {full_path}")
+    full_data = {
+        "data": {
+            "models": models,
+            "analytics": analytics,
+            "partial": datasets_failed,
+        }
+    }
+    write_json(FULL_PATH, full_data)
+    print(f"  → {FULL_PATH}")
 
     # or_rankings.json: empty (no analytics)
     rankings_path = OUTPUT_DIR / "or_rankings.json"
-    with open(rankings_path, "w", encoding="utf-8") as f:
-        json.dump([], f)
+    write_json(rankings_path, [])
     print(f"  → {rankings_path} (empty — analytics unavailable)")
 
     # ── Summary ──

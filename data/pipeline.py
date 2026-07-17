@@ -127,16 +127,35 @@ fetches = [
     ("Arena",       "2-raw/arena_leaderboards.json", "python3.11 1-fetch/fetch_arena_leaderboards.py"),
 ]
 
+fetch_status = {"AA": {"ok": False, "cached": False, "error": None},
+                "OpenRouter": {"ok": False, "cached": False, "error": None},
+                "Arena": {"ok": False, "cached": False, "error": None}}
+
 if SKIP_FETCH:
     ok("--skip-fetch 标记, 跳过所有抓取")
 else:
     for name, cache_rel, cmd in fetches:
         if is_cache_fresh(DATA / cache_rel):
             ok(f"{name} 缓存有效 ({CACHE_FRESH_HOURS}h内), 跳过抓取")
-        else:
-            warn(f"{name} 缓存过期, 执行抓取...")
-            run(cmd, cwd=str(DATA))
+            fetch_status[name]["ok"] = True
+            fetch_status[name]["cached"] = True
+            continue
+
+        warn(f"{name} 缓存过期, 执行抓取...")
+        out, rc = run(cmd, cwd=str(DATA), exit_on_error=False)
+        if rc == 0:
             ok(f"{name} 数据抓取完成")
+            fetch_status[name]["ok"] = True
+        else:
+            fail(f"{name} 数据抓取失败")
+            fetch_status[name]["error"] = out[:500]
+            # 如果存在缓存文件，允许继续（降级模式）
+            if (DATA / cache_rel).exists():
+                warn(f"{name} 将使用缓存数据继续执行")
+                fetch_status[name]["cached"] = True
+            else:
+                fail(f"{name} 无缓存可用，管线终止")
+                sys.exit(2)
 
 # Process pipeline
 pipeline_step = 0
@@ -158,11 +177,47 @@ for subdir, script in pipeline_scripts:
     ok(f"Step {pipeline_step} 完成")
 
 # ══════════════════════════════════════════════
-# Phase 3: 变化摘要（不提交，留给 Phase 6 统一处理）
+# Phase 3: 保存快照 + 生成变化摘要
 # ══════════════════════════════════════════════
-step("Phase 3: 变化摘要")
+step("Phase 3: 保存快照并生成变化摘要")
 
-# diff 摘要
+# 保存当日 ranking 快照到 5-history/（用于变化对比）
+import shutil
+HISTORY_DIR = DATA / "5-history"
+HISTORY_DIR.mkdir(exist_ok=True)
+snapshot_path = HISTORY_DIR / f"{TODAY}.json"
+src_count, _ = run('python3.11 -c "import json;print(len(json.load(open(\'4-final/ranking.json\'))))"', cwd=str(DATA))
+shutil.copy(DATA / "4-final" / "ranking.json", snapshot_path)
+ok(f"快照: {snapshot_path.name} ({src_count} 模型)")
+# 清理 30 天前的快照
+from datetime import timedelta
+cutoff = date.today() - timedelta(days=30)
+for old in sorted(HISTORY_DIR.glob("*.json")):
+    try:
+        old_date = date.fromisoformat(old.stem)
+        if old_date < cutoff:
+            old.unlink()
+    except ValueError:
+        pass
+
+# 生成变化对比 changes.json
+print("  Step 1/3: build_changes.py")
+out, rc = run("python3.11 3-process/build_changes.py", cwd=str(DATA), exit_on_error=False)
+if rc == 0:
+    ok("build_changes.py 完成")
+else:
+    warn(f"build_changes.py 跳过: {out[:200]}")
+
+# 生成历史趋势 trends.json
+print("  Step 2/3: build_trends.py")
+out, rc = run("python3.11 3-process/build_trends.py", cwd=str(DATA), exit_on_error=False)
+if rc == 0:
+    ok("build_trends.py 完成")
+else:
+    warn(f"build_trends.py 跳过: {out[:200]}")
+
+# diff 摘要（基于 changes.json + ranking 对比）
+print("  Step 3/3: diff-ranking.py")
 run("python3.11 scripts/diff-ranking.py > /tmp/data-diff.md", cwd=str(DATA), exit_on_error=False)
 diff_content, _ = run("cat /tmp/data-diff.md", exit_on_error=False)
 if diff_content:
@@ -185,76 +240,103 @@ if src_count != dst_count:
     dst_count, _ = run('python3.11 -c "import json;print(len(json.load(open(\'src/data/ranking.json\'))))"', cwd=str(APP / "app"))
 ok(f"ranking.json: {src_count} 模型 → app/({dst_count})")
 
-# metadata.json — 写入更新时间戳，前端关于页读取
+# 注入数据血缘元数据到独立文件 ranking-meta.json
 from datetime import datetime, timezone
+
+def write_ranking_meta():
+    ranking_path = APP / "app" / "src" / "data" / "ranking.json"
+    meta_path = APP / "app" / "src" / "data" / "ranking-meta.json"
+    try:
+        with open(ranking_path, "r", encoding="utf-8") as f:
+            ranking = json.load(f)
+        n = len(ranking)
+        meta = {
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "version": "1.0",
+            "partial_update": any(
+                not s["ok"] or s["cached"] for s in fetch_status.values()
+            ),
+            "sources": {
+                "artificial_analysis": {
+                    "ok": fetch_status["AA"]["ok"],
+                    "cached": fetch_status["AA"]["cached"],
+                    "error": fetch_status["AA"]["error"],
+                    "coverage": round(sum(1 for m in ranking if m.get("scores", {}).get("intelligence") is not None) / max(n, 1), 3),
+                },
+                "openrouter": {
+                    "ok": fetch_status["OpenRouter"]["ok"],
+                    "cached": fetch_status["OpenRouter"]["cached"],
+                    "error": fetch_status["OpenRouter"]["error"],
+                    "coverage": round(sum(1 for m in ranking if m.get("openrouter_weekly_tokens") is not None) / max(n, 1), 3),
+                    "pricing_coverage": round(sum(1 for m in ranking if m.get("openrouter_pricing") is not None) / max(n, 1), 3),
+                },
+                "arena": {
+                    "ok": fetch_status["Arena"]["ok"],
+                    "cached": fetch_status["Arena"]["cached"],
+                    "error": fetch_status["Arena"]["error"],
+                    "coverage": round(sum(1 for m in ranking if m.get("arena_rankings")) / max(n, 1), 3),
+                },
+            },
+            "stats": {
+                "total_models": n,
+                "data_complete": sum(1 for m in ranking if m.get("flags", {}).get("data_complete")),
+                "frontier": sum(1 for m in ranking if m.get("flags", {}).get("frontier")),
+                "open_weights": sum(1 for m in ranking if m.get("flags", {}).get("open_weights")),
+            },
+        }
+        with open(meta_path, "w", encoding="utf-8") as f:
+            json.dump(meta, f, indent=2, ensure_ascii=False)
+        ok(f"ranking-meta.json 已写入数据血缘元数据")
+    except Exception as e:
+        warn(f"写入 ranking-meta.json 失败: {e}")
+
+write_ranking_meta()
+
+# metadata.json — 写入更新时间戳，前端关于页读取
 metadata = {"updated_at": datetime.now(timezone.utc).isoformat()}
 metadata_path = APP / "app" / "src" / "data" / "metadata.json"
 metadata_path.write_text(json.dumps(metadata, indent=2))
 ok(f"metadata.json: updated_at={metadata['updated_at']}")
 
-# 保存当日 ranking 快照到 5-history/（用于变化对比）
-import shutil
-HISTORY_DIR = DATA / "5-history"
-HISTORY_DIR.mkdir(exist_ok=True)
-snapshot_path = HISTORY_DIR / f"{TODAY}.json"
-shutil.copy(DATA / "4-final" / "ranking.json", snapshot_path)
-ok(f"快照: {snapshot_path.name} ({src_count} 模型)")
-# 清理 30 天前的快照
-from datetime import timedelta
-cutoff = date.today() - timedelta(days=30)
-for old in sorted(HISTORY_DIR.glob("*.json")):
-    try:
-        old_date = date.fromisoformat(old.stem)
-        if old_date < cutoff:
-            old.unlink()
-    except ValueError:
-        pass
-
-# 生成变化对比 changes.json
-print("  Step 4/4: build_changes.py")
-out, rc = run("python3.11 3-process/build_changes.py", cwd=str(DATA), exit_on_error=False)
-if rc == 0:
-    ok("Step 4 完成")
-    # 同步到前端
-    changes_src = DATA / "4-final" / "changes.json"
-    changes_dst = APP / "app" / "src" / "data" / "changes.json"
-    if changes_src.exists():
+# 同步 changes.json / trends.json 到前端
+for filename in ["changes.json", "trends.json"]:
+    src = DATA / "4-final" / filename
+    dst = APP / "app" / "src" / "data" / filename
+    if src.exists():
         import shutil
-        shutil.copy(changes_src, changes_dst)
-        ok("changes.json 已同步到前端")
-else:
-    warn(f"Step 4 跳过: {out[:200]}")
+        shutil.copy(src, dst)
+        ok(f"{filename} 已同步到前端")
 
-# 日期文案 - 使用整行替换避免累积
-today_cn = f"{date.today().year}年{date.today().month}月{date.today().day}日"
-today_dot = date.today().strftime("%Y.%m.%d")
+# 日期文案 - 使用 JSON 操作避免正则误匹配
+def update_i18n_dates():
+    today_cn = f"{date.today().year}年{date.today().month}月{date.today().day}日"
+    today_en = date.today().strftime("%b %-d, %Y")
+    today_mmdd = date.today().strftime("%m-%d")
 
-import re
+    zh_path = APP / "app" / "src" / "messages" / "zh.json"
+    en_path = APP / "app" / "src" / "messages" / "en.json"
 
-def sed_replace(filepath, pattern, replacement):
-    """Cross-platform sed replacement using Python"""
-    p = Path(filepath)
-    content = p.read_text()
-    content = re.sub(pattern, replacement, content)
-    p.write_text(content)
+    for path, updates in [
+        (zh_path, {"home.badge": f"{today_cn}最新数据", "home.statsUpdatedValue": today_mmdd}),
+        (en_path, {"home.badge": f"Updated {today_en}", "home.statsUpdatedValue": today_mmdd}),
+    ]:
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            for dot_key, value in updates.items():
+                parts = dot_key.split(".")
+                target = data
+                for p in parts[:-1]:
+                    target = target.setdefault(p, {})
+                if parts[-1] in target:
+                    target[parts[-1]] = value
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+                f.write("\n")
+        except Exception as e:
+            warn(f"更新 {path.name} 日期文案失败: {e}")
 
-zh_json = str(APP / "app" / "src/messages/zh.json")
-en_json = str(APP / "app" / "src/messages/en.json")
-
-# zh.json — 替换整个 badge 值
-sed_replace(zh_json, r'"badge": "[^"]*"', f'"badge": "{today_cn}最新数据"')
-sed_replace(zh_json, r'上次更新：[0-9.]+', f'上次更新：{today_dot}')
-
-# en.json — 替换整个 badge 值
-today_en = date.today().strftime("%b %-d, %Y")
-today_dot_en = date.today().strftime("%Y.%m.%d")
-sed_replace(en_json, r'"badge": "[^"]*"', f'"badge": "Updated {today_en}"')
-sed_replace(en_json, r'Last updated: [0-9.]+', f'Last updated: {today_dot_en}')
-
-# stats-strip 更新日期（MM-DD 格式）
-today_mmdd = date.today().strftime("%m-%d")
-sed_replace(zh_json, r'"statsUpdatedValue": "[^"]*"', f'"statsUpdatedValue": "{today_mmdd}"')
-sed_replace(en_json, r'"statsUpdatedValue": "[^"]*"', f'"statsUpdatedValue": "{today_mmdd}"')
+update_i18n_dates()
 ok("日期文案已更新")
 
 # ══════════════════════════════════════════════

@@ -30,35 +30,21 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent  # data/
 DEFAULT_MAX_AGE_DAYS = 180
 
+
+def _load_validation_config() -> dict:
+    """加载共享验证配置，失败时返回最小默认配置。"""
+    path = PROJECT_ROOT / "0-refer" / "validation_config.json"
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"[WARN] 无法加载 {path}: {e}，使用默认配置")
+        return {"completeness_fields": {}}
+
+
+_VALIDATION_CONFIG = _load_validation_config()
 # ── 数据完整度计算配置 ──
-COMPLETENESS_FIELDS = {
-    # 核心字段（必须有）
-    "scores.intelligence": 1.0,
-    "scores.coding": 1.0,
-    "scores.agentic": 1.0,
-    # 速度数据
-    "speed.median_tps": 1.0,
-    "speed.ttft_seconds": 0.5,
-    "speed.e2e_seconds": 0.5,
-    # 定价
-    "pricing.input": 1.0,
-    "pricing.output": 1.0,
-    # 元数据
-    "meta.context_window": 0.5,
-    "meta.parameters": 0.5,
-    "meta.output_tokens": 0.5,
-    "meta.release_date": 0.5,
-    # 链接
-    "url": 1.0,
-    "vendor_links.homepage": 0.5,
-    # OR 数据
-    "openrouter_pricing": 0.5,
-    "openrouter_weekly_tokens": 0.3,
-    # Arena
-    "arena_rankings": 1.0,
-    # 国内定价
-    "cn_pricing": 1.0,
-}
+COMPLETENESS_FIELDS = _VALIDATION_CONFIG.get("completeness_fields", {})
 
 
 def _get_nested_value(obj, path):

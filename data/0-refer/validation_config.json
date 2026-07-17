@@ -1,0 +1,43 @@
+{
+  "completeness_fields": {
+    "scores.intelligence": 1.0,
+    "scores.coding": 1.0,
+    "scores.agentic": 1.0,
+    "speed.median_tps": 1.0,
+    "speed.ttft_seconds": 0.5,
+    "speed.e2e_seconds": 0.5,
+    "pricing.input": 1.0,
+    "pricing.output": 1.0,
+    "meta.context_window": 0.5,
+    "meta.parameters": 0.5,
+    "meta.output_tokens": 0.5,
+    "meta.release_date": 0.5,
+    "url": 1.0,
+    "vendor_links.homepage": 0.5,
+    "openrouter_pricing": 0.5,
+    "openrouter_weekly_tokens": 0.3,
+    "arena_rankings": 1.0,
+    "cn_pricing": 1.0
+  },
+  "threshold_defaults": {
+    "total_models": [15, 70],
+    "data_complete": [20, 60],
+    "frontier": [5, 55],
+    "intl": [5, 40],
+    "has_arena": [15, 35],
+    "has_cn_price": [10, 30],
+    "has_speed": [20, 55]
+  },
+  "history_based_thresholds": {
+    "enabled": true,
+    "lookback_days": 7,
+    "tolerance": 0.4,
+    "min_lower_bound": 5
+  },
+  "anomaly_detection": {
+    "max_intelligence_day_change": 10,
+    "max_price_drop_to_zero_count": 3,
+    "max_model_count_change_ratio": 0.5,
+    "max_top3_change_count": 2
+  }
+}

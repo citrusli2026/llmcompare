@@ -332,24 +332,27 @@ def parse_models(content: str) -> List[dict]:
 
 # ── RSC 下载 ──────────────────────────────────────────
 
-def fetch_rsc(url: str, output_path: str) -> bool:
-    """下载 RSC 载荷"""
+def fetch_rsc(url: str, output_path: str, retries: int = 3, backoff: float = 2.0) -> bool:
+    """下载 RSC 载荷，支持指数退避重试"""
     cmd = [
         "curl", "-sL", "--max-time", str(CURL_TIMEOUT),
         *RSC_HEADERS,
         url,
         "-o", output_path,
     ]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=CURL_TIMEOUT + 10)
-    if result.returncode != 0:
-        print(f"  ❌ curl failed (exit code {result.returncode})")
-        if result.stderr:
-            print(f"  stderr: {result.stderr[:200]}")
-        return False
-    if not os.path.exists(output_path) or os.path.getsize(output_path) == 0:
-        print(f"  ❌ Empty response file")
-        return False
-    return True
+    last_error = None
+    for attempt in range(retries):
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=CURL_TIMEOUT + 10)
+        if result.returncode == 0 and os.path.exists(output_path) and os.path.getsize(output_path) > 0:
+            return True
+        last_error = result.stderr[:200] if result.stderr else f"exit code {result.returncode}"
+        if attempt < retries - 1:
+            sleep_time = backoff * (2 ** attempt)
+            print(f"  ⚠️ curl attempt {attempt + 1}/{retries} failed: {last_error}. Retrying in {sleep_time:.0f}s...")
+            import time
+            time.sleep(sleep_time)
+    print(f"  ❌ curl failed after {retries} attempts: {last_error}")
+    return False
 
 
 # ── 主流程 ────────────────────────────────────────────
@@ -373,6 +376,10 @@ def main():
     print(f"  URL: {AA_MODELS_URL}")
     success = fetch_rsc(AA_MODELS_URL, rsc_path)
     if not success:
+        # 尝试使用缓存数据
+        if os.path.exists(all_path) and os.path.getsize(all_path) > 0:
+            print(f"  ⚠️ 抓取失败，使用缓存数据: {all_path}")
+            sys.exit(0)
         sys.exit(1)
     size_mb = os.path.getsize(rsc_path) / (1024 * 1024)
     print(f"  ✅ Downloaded {size_mb:.1f} MB")
