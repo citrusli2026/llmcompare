@@ -177,22 +177,22 @@ class TestCheckThresholds(unittest.TestCase):
         models = [
             make_model(
                 id=f"m{i}",
-                flags={"frontier": i < 12, "chinese_eval": i < 25, "data_complete": i < 25,
+                flags={"frontier": i < 20, "chinese_eval": i < 32, "data_complete": i < 35,
                         "open_weights": True, "reasoning": False, "image_input": False,
-                        "has_speed": i < 25, "has_pricing": i < 25},
-                speed={"median_tps": 50 if i < 25 else None, "ttft_seconds": None, "e2e_seconds": None},
-                arena_rankings={"text": {"elo": 1000}} if i < 20 else None,
+                        "has_speed": i < 30, "has_pricing": i < 25},
+                speed={"median_tps": 50 if i < 30 else None, "ttft_seconds": None, "e2e_seconds": None},
+                arena_rankings={"text": {"elo": 1000}} if i < 25 else None,
                 cn_pricing={"input": 10, "output": 20} if i < 25 else None,
             )
-            for i in range(30)
+            for i in range(50)
         ]
-        issues, stats = V.check_thresholds(models)
+        issues, stats, _ = V.check_thresholds(models)
         self.assertEqual(issues, [])
 
     def test_outside_threshold(self):
         """超出阈值时报错"""
         models = [make_model(id=f"m{i}") for i in range(200)]
-        issues, stats = V.check_thresholds(models)
+        issues, stats, _ = V.check_thresholds(models)
         self.assertTrue(any("total_models" in i for i in issues))
 
 
