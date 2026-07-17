@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-16",
-  "date": "2026-07-16",
-  "compare_with": "2026-07-15",
+  "generated_at": "2026-07-17",
+  "date": "2026-07-17",
+  "compare_with": "2026-07-16",
   "summary": {
     "new_models": 1,
     "dropped_models": 0,
@@ -12,11 +12,11 @@
   "changes": [
     {
       "type": "new",
-      "model": "Inkling",
-      "id": "inkling",
-      "rank": 27,
-      "first_seen": "2026-07-16",
-      "detail": "智商 41 · 73 TPS · $1.87/M",
+      "model": "Kimi K3",
+      "id": "kimi-k3",
+      "rank": 3,
+      "first_seen": "2026-07-17",
+      "detail": "智商 57 · 62 TPS · $3/M",
       "icon": "🆕"
     }
   ]
