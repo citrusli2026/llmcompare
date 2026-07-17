@@ -60,55 +60,7 @@ jobs:
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "- **Time:** $(date -u)" >> "$GITHUB_STEP_SUMMARY"
           echo "- **Status:** ${{ job.status }}" >> "$GITHUB_STEP_SUMMARY"
-
-          # 数据血缘摘要
-          if [ -f app/src/data/ranking-meta.json ]; then
-            echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "### 数据源健康度" >> "$GITHUB_STEP_SUMMARY"
-            python3 - <<'PY'
-          import json, sys
-          try:
-              with open('app/src/data/ranking-meta.json') as f:
-                  meta = json.load(f)
-              stats = meta.get('stats', {})
-              print(f"- **模型总数:** {stats.get('total_models', '-')}")
-              print(f"- **数据完整:** {stats.get('data_complete', '-')}")
-              print(f"- **Frontier:** {stats.get('frontier', '-')}")
-              print(f"- **开源权重:** {stats.get('open_weights', '-')}")
-              print(f"- **部分更新:** {'是' if meta.get('partial_update') else '否'}")
-              print("")
-              print("| 数据源 | 状态 | 覆盖率 |")
-              print("|---|---|---|")
-              for name, info in meta.get('sources', {}).items():
-                  status = '✅' if info.get('ok') else '⚠️'
-                  if info.get('cached'):
-                      status += ' (缓存)'
-                  cov = f"{info.get('coverage', 0):.0%}" if info.get('coverage') is not None else '-'
-                  print(f"| {name} | {status} | {cov} |")
-          except Exception as e:
-              print(f"- 无法读取 ranking-meta.json: {e}")
-          PY >> "$GITHUB_STEP_SUMMARY"
-          fi
-
-          # 今日变化摘要
-          if [ -f app/src/data/changes.json ]; then
-            echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "### 今日变化" >> "$GITHUB_STEP_SUMMARY"
-            python3 - <<'PY'
-          import json
-          try:
-              with open('app/src/data/changes.json') as f:
-                  data = json.load(f)
-              s = data.get('summary', {})
-              print(f"- 🆕 新上榜: {s.get('new_models', 0)}")
-              print(f"- 📉 下榜: {s.get('dropped_models', 0)}")
-              print(f"- 💰 价格变动: {s.get('price_changes', 0)}")
-              print(f"- 🏆 排名变动: {s.get('ranking_changes', 0)}")
-              print(f"- 🧠 分数变动: {s.get('intel_changes', 0)}")
-          except Exception:
-              pass
-          PY >> "$GITHUB_STEP_SUMMARY"
-          fi
+          python3.11 data/scripts/generate-workflow-summary.py
 
       - name: Create issue on failure
         if: failure()
@@ -118,4 +70,4 @@ jobs:
           gh issue create \
             --title "🚨 数据刷新失败 $(date -u +%Y-%m-%d)" \
             --body "自动数据刷新失败，请查看 [Actions 日志](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})。" \
-            --label "bug,data-pipeline" || true
+            --label "bug" || true
