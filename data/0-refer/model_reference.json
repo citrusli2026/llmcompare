@@ -1,8 +1,8 @@
 {
   "_meta": {
     "description": "厂商链接 + 国内官价 + 开源协议映射表。管线重跑后用 enrich_models.py 合并回 ranking.json。",
-    "updated": "2026-06-10",
-    "model_count": 71
+    "updated": "2026-07-17",
+    "model_count": 60
   },
   "license": {
     "_note": "仅开源模型登记 license；闭源模型为商业授权（不显示具体 license 名称）。键名使用 clean_name 规范后的模型名（去除末尾括号变体）。",
@@ -37,13 +37,17 @@
       "api_docs": "https://platform.moonshot.cn",
       "console": "https://platform.moonshot.cn",
       "huggingface": "https://huggingface.co/moonshotai",
-      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat"
+      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat",
+      "github": "https://github.com/moonshotai"
     },
     "Xiaomi": {
       "homepage": "https://huggingface.co/XiaomiMiMo",
       "huggingface": "https://huggingface.co/XiaomiMiMo",
       "pricing_doc": "小米开放平台控制台（需登录）",
-      "pricing_note": "2026-05-02 登录实测"
+      "pricing_note": "2026-05-02 登录实测",
+      "api_docs": "https://platform.xiaomimimo.com/",
+      "console": "https://platform.xiaomimimo.com/",
+      "github": "https://github.com/XiaomiMiMo"
     },
     "Alibaba": {
       "homepage": "https://tongyi.aliyun.com",
@@ -66,62 +70,77 @@
       "api_docs": "https://open.bigmodel.cn",
       "github": "https://github.com/zai-org",
       "huggingface": "https://huggingface.co/zai-org",
-      "pricing_doc": "https://open.bigmodel.cn/pricing"
+      "pricing_doc": "https://open.bigmodel.cn/pricing",
+      "console": "https://open.bigmodel.cn/"
     },
     "MiniMax": {
       "homepage": "https://www.minimaxi.com",
       "api_docs": "https://platform.minimaxi.com",
       "huggingface": "https://huggingface.co/MiniMaxAI",
-      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing"
+      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing",
+      "console": "https://platform.minimaxi.com/",
+      "github": "https://github.com/MiniMax-AI"
     },
     "Tencent": {
       "homepage": "https://cloud.tencent.com",
       "api_docs": "https://cloud.tencent.com/document/product/1772",
       "console": "https://console.cloud.tencent.com",
-      "pricing_doc": "https://cloud.tencent.com/document/product/1772/115963"
+      "pricing_doc": "https://cloud.tencent.com/document/product/1772/115963",
+      "github": "https://github.com/Tencent",
+      "huggingface": "https://huggingface.co/tencent"
     },
     "OpenAI": {
       "homepage": "https://openai.com",
       "api_docs": "https://platform.openai.com/docs",
       "console": "https://platform.openai.com",
       "github": "https://github.com/openai",
-      "pricing_doc": "https://openai.com/api/pricing"
+      "pricing_doc": "https://openai.com/api/pricing",
+      "huggingface": "https://huggingface.co/openai"
     },
     "Anthropic": {
       "homepage": "https://www.anthropic.com",
       "api_docs": "https://docs.anthropic.com",
       "console": "https://console.anthropic.com",
       "github": "https://github.com/anthropics",
-      "pricing_doc": "https://www.anthropic.com/pricing"
+      "pricing_doc": "https://www.anthropic.com/pricing",
+      "huggingface": "https://huggingface.co/anthropics"
     },
     "Google": {
       "homepage": "https://ai.google.dev",
       "api_docs": "https://ai.google.dev/gemini-api/docs",
       "console": "https://aistudio.google.com",
       "github": "https://github.com/google-gemini",
-      "pricing_doc": "https://ai.google.dev/pricing"
+      "pricing_doc": "https://ai.google.dev/pricing",
+      "huggingface": "https://huggingface.co/google"
     },
     "01.AI": {
       "homepage": "https://www.01.ai",
       "api_docs": "https://platform.01.ai",
-      "pricing_doc": "https://platform.01.ai/pricing"
+      "pricing_doc": "https://platform.01.ai/pricing",
+      "console": "https://platform.01.ai/",
+      "github": "https://github.com/01-ai",
+      "huggingface": "https://huggingface.co/01-ai"
     },
     "StepFun": {
       "homepage": "https://www.stepfun.com",
       "api_docs": "https://platform.stepfun.com/docs",
       "console": "https://platform.stepfun.com",
       "huggingface": "https://huggingface.co/stepfun-ai",
-      "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details"
+      "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details",
+      "github": "https://github.com/stepfun-ai"
     },
     "InclusionAI": {
       "homepage": "https://www.inclusion-ai.org",
-      "huggingface": "https://huggingface.co/inclusionAI"
+      "huggingface": "https://huggingface.co/inclusionAI",
+      "github": "https://github.com/inclusionAI"
     },
     "Baidu": {
       "homepage": "https://yiyan.baidu.com",
       "api_docs": "https://cloud.baidu.com/doc/WENXINWORKSHOP",
       "console": "https://cloud.baidu.com/product/wenxinworkshop",
-      "pricing_doc": "https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya"
+      "pricing_doc": "https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya",
+      "github": "https://github.com/baidu",
+      "huggingface": "https://huggingface.co/baidu"
     },
     "xAI": {
       "homepage": "https://x.ai",
@@ -143,7 +162,8 @@
       "homepage": "https://ai.meta.com",
       "github": "https://github.com/meta-llama",
       "huggingface": "https://huggingface.co/meta-llama",
-      "pricing_doc": "https://ai.meta.com/llama"
+      "pricing_doc": "https://ai.meta.com/llama",
+      "api_docs": "https://llama.meta.com/docs/"
     },
     "Mistral": {
       "homepage": "https://mistral.ai",
@@ -173,33 +193,40 @@
       "homepage": "https://aws.amazon.com/bedrock",
       "api_docs": "https://docs.aws.amazon.com/bedrock",
       "console": "https://console.aws.amazon.com/bedrock",
-      "pricing_doc": "https://aws.amazon.com/bedrock/pricing"
+      "pricing_doc": "https://aws.amazon.com/bedrock/pricing",
+      "github": "https://github.com/aws/amazon-bedrock",
+      "huggingface": "https://huggingface.co/aws"
     },
     "Perplexity": {
       "homepage": "https://www.perplexity.ai",
       "api_docs": "https://docs.perplexity.ai",
-      "pricing_doc": "https://docs.perplexity.ai/guides/pricing"
+      "pricing_doc": "https://docs.perplexity.ai/guides/pricing",
+      "console": "https://www.perplexity.ai/"
     },
     "Arcee AI": {
       "homepage": "https://arcee.ai",
       "api_docs": "https://docs.arcee.ai",
       "github": "https://github.com/arcee-ai",
       "huggingface": "https://huggingface.co/arcee-ai",
-      "pricing_doc": "https://arcee.ai/pricing"
+      "pricing_doc": "https://arcee.ai/pricing",
+      "console": "https://app.arcee.ai/"
     },
     "Deep Cogito": {
       "homepage": "https://deepcogito.com",
       "github": "https://github.com/deepcogito",
-      "huggingface": "https://huggingface.co/deepcogito"
+      "huggingface": "https://huggingface.co/deepcogito",
+      "api_docs": "https://docs.deepcogito.com"
     },
     "LG AI Research": {
       "homepage": "https://www.lgresearch.ai",
-      "huggingface": "https://huggingface.co/lgresearch"
+      "huggingface": "https://huggingface.co/lgresearch",
+      "github": "https://github.com/lgresearch"
     },
     "Snowflake": {
       "homepage": "https://www.snowflake.com/en/data-cloud/cortex",
       "api_docs": "https://docs.snowflake.com/en/user-guide/snowflake-cortex",
-      "pricing_doc": "https://www.snowflake.com/en/data-cloud/pricing-options"
+      "pricing_doc": "https://www.snowflake.com/en/data-cloud/pricing-options",
+      "github": "https://github.com/snowflake"
     },
     "Nous Research": {
       "homepage": "https://nousresearch.com",
@@ -209,7 +236,42 @@
     "Allen Institute for AI": {
       "homepage": "https://allenai.org",
       "github": "https://github.com/allenai",
-      "huggingface": "https://huggingface.co/allenai"
+      "huggingface": "https://huggingface.co/allenai",
+      "api_docs": "https://allenai.org/projects"
+    },
+    "China Mobile": {
+      "homepage": "https://ecloud.10086.cn/",
+      "api_docs": "https://ecloud.10086.cn/",
+      "console": "https://ecloud.10086.cn/",
+      "pricing_doc": "https://ecloud.10086.cn/"
+    },
+    "KwaiKAT": {
+      "homepage": "https://www.streamlake.com/",
+      "api_docs": "https://wanqing.streamlakeapi.com/",
+      "console": "https://console.streamlake.com/",
+      "pricing_doc": "https://www.streamlake.com/product/wanqing"
+    },
+    "LongCat": {
+      "homepage": "https://www.longcatai.org/",
+      "github": "https://github.com/meituan/LongCat-2.0",
+      "huggingface": "https://huggingface.co/meituan"
+    },
+    "Nex AGI": {
+      "homepage": "https://nex-agi.com",
+      "github": "https://github.com/nex-agi",
+      "huggingface": "https://huggingface.co/nex-agi"
+    },
+    "SpaceXAI": {
+      "homepage": "https://x.ai",
+      "api_docs": "https://docs.x.ai",
+      "console": "https://console.x.ai",
+      "github": "https://github.com/xai-org",
+      "huggingface": "https://huggingface.co/xai-org",
+      "pricing_doc": "https://docs.x.ai/docs/models"
+    },
+    "Thinking Machines": {
+      "homepage": "https://thinkingmachines.ai/",
+      "huggingface": "https://huggingface.co/thinkingmachineslab"
     }
   },
   "cn_pricing": {
@@ -547,6 +609,228 @@
       "condition": "≤512K",
       "source": "platform.minimaxi.com",
       "note": "2026-06-01首发5折7天: input¥2.10/output¥8.40/cache¥0.42"
+    },
+    "Claude Fable 5": {
+      "input": 70,
+      "output": 350,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "GPT-5.6 Sol": {
+      "input": 35,
+      "output": 210,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Claude Opus 4.8": {
+      "input": 35,
+      "output": 175,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "GPT-5.6 Terra": {
+      "input": 17.5,
+      "output": 105,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Grok 4.5": {
+      "input": 14,
+      "output": 42,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Claude Opus 4.7": {
+      "input": 35,
+      "output": 175,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Claude Sonnet 5": {
+      "input": 14,
+      "output": 70,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "GPT-5.5": {
+      "input": 35,
+      "output": 210,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "GPT-5.4": {
+      "input": 17.5,
+      "output": 105,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "GPT-5.6 Luna": {
+      "input": 7,
+      "output": 42,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Muse Spark 1.1": {
+      "input": 8.75,
+      "output": 29.75,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Gemini 3.5 Flash": {
+      "input": 10.5,
+      "output": 63,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Claude Sonnet 4.6": {
+      "input": 21,
+      "output": 105,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Gemini 3.1 Pro Preview": {
+      "input": 14,
+      "output": 84,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "GPT-5.3 Codex": {
+      "input": 12.25,
+      "output": 98,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Claude Opus 4.6": {
+      "input": 35,
+      "output": 175,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "GPT-5.4 mini": {
+      "input": 5.25,
+      "output": 31.5,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "GPT-5.4 nano": {
+      "input": 1.4,
+      "output": 8.75,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Grok 4.3": {
+      "input": 8.75,
+      "output": 17.5,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Grok 4.20 0309 v2": {
+      "input": 14,
+      "output": 42,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Grok 4.20 0309": {
+      "input": 14,
+      "output": 42,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "GPT-5.5 Instant": {
+      "input": 35,
+      "output": 210,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "GPT-5.4 Pro": {
+      "input": 210,
+      "output": 1260,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Nex-N2-Pro": {
+      "input": 3.5,
+      "output": 17.5,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Inkling": {
+      "input": 13.09,
+      "output": 32.76,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Trinity Large Thinking": {
+      "input": 1.65,
+      "output": 6.12,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Nemotron 3 Ultra": {
+      "input": 4.73,
+      "output": 18.72,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "Kimi K3": {
+      "input": 20.0,
+      "output": 100.0,
+      "cache_hit": 2.0,
+      "source": "platform.kimi.com"
+    },
+    "GLM-5.2": {
+      "input": 8.0,
+      "output": 28.0,
+      "cache_hit": 2.0,
+      "condition": "<32K",
+      "source": "open.bigmodel.cn/pricing"
+    },
+    "GLM-5-Turbo": {
+      "input": 5.0,
+      "output": 22.0,
+      "cache_hit": 1.2,
+      "condition": "<32K",
+      "source": "open.bigmodel.cn/pricing"
+    },
+    "Qwen3.7 Plus": {
+      "input": 1.6,
+      "output": 6.4,
+      "source": "bailian.console.aliyun.com (限时8折)"
+    },
+    "KAT-Coder-Pro V2": {
+      "input": 2.1,
+      "output": 8.4,
+      "cache_hit": 0.42,
+      "source": "console.streamlake.com"
+    },
+    "JT-4.1 Flash 236B A21B": {
+      "input": 0,
+      "output": 0,
+      "source": "暂无公开API定价（移动云）"
+    },
+    "Muse Spark": {
+      "input": 0,
+      "output": 0,
+      "source": "暂无公开API定价",
+      "aa_only": true
+    },
+    "MiMo-V2-Omni": {
+      "input": 2.8,
+      "output": 14.0,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "MiMo-V2-Omni-0327": {
+      "input": 2.8,
+      "output": 14.0,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
+    },
+    "GLM 5V Turbo": {
+      "input": 8.4,
+      "output": 28.0,
+      "source": "OR (无国内官价, ¥按$×7折算)",
+      "aa_only": true
     }
   }
 }
