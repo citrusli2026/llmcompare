@@ -5,32 +5,36 @@ import { BarChart3 } from "lucide-react";
 import { type ModelWithScores, getAllModels } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { computePercentiles } from "@/components/ranking-table/utils";
 
 function MetricBar({
   label,
   value,
   maxValue = 100,
   unit = "",
+  colorPercentiles,
 }: {
   label: string;
   value: number | null;
   maxValue?: number;
   unit?: string;
+  colorPercentiles?: { p25: number; p50: number; p75: number } | null;
 }) {
   const displayVal = value == null ? "—" : value % 1 === 0 ? String(value) : value.toFixed(1);
   const pct = value == null ? 0 : Math.min((value / maxValue) * 100, 100);
   const fillPct = Math.min(pct, 100);
 
-  const { gradient, glow } =
-    value == null
-      ? { gradient: "bg-surface-border", glow: "" }
-      : fillPct >= 80
-        ? { gradient: "bg-gradient-to-r from-emerald-500 to-accent-lime", glow: "shadow-[0_0_8px_rgba(16,185,129,0.3)]" }
-        : fillPct >= 65
-          ? { gradient: "bg-gradient-to-r from-violet-500 to-accent-violet", glow: "shadow-[0_0_6px_rgba(139,92,246,0.25)]" }
-          : fillPct >= 50
-            ? { gradient: "bg-gradient-to-r from-orange-500 to-accent-coral", glow: "" }
-            : { gradient: "bg-text-muted/60", glow: "" };
+  // 与列表页 ScoreBar 统一：按全局相对分位染色，而非绝对阈值
+  const color =
+    value == null || !colorPercentiles
+      ? "bg-surface-border"
+      : value >= colorPercentiles.p75
+        ? "bg-accent-lime"
+        : value >= colorPercentiles.p50
+          ? "bg-accent-violet"
+          : value >= colorPercentiles.p25
+            ? "bg-accent-coral"
+            : "bg-text-muted";
 
   return (
     <div className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -39,7 +43,7 @@ function MetricBar({
       </span>
       <div className="flex-1 h-2.5 rounded-full bg-surface-border overflow-hidden min-w-0">
         <div
-          className={cn("h-full rounded-full transition-all duration-500", gradient, glow)}
+          className={cn("h-full rounded-full transition-all duration-500", color)}
           style={{ width: `${fillPct}%` }}
         />
       </div>
@@ -58,9 +62,9 @@ export function ScoreOverview({ model }: ScoreOverviewProps) {
   const { t } = useTranslation();
   const r = model.raw;
 
-  // Compute dynamic max values from the full dataset for consistent scaling
-  // Use percentile cap to prevent extreme outliers from compressing other bars
-  const { maxSpeed } = useMemo(() => {
+  // Compute dynamic max values and global percentiles from the full dataset
+  // for consistent scaling and coloring across pages.
+  const { maxSpeed, percentiles } = useMemo(() => {
     const all = getAllModels();
 
     // Speed: sort and use P90 (clips top ~3 outliers: 418, 420, 224)
@@ -72,27 +76,39 @@ export function ScoreOverview({ model }: ScoreOverviewProps) {
       ? speeds[Math.min(Math.floor(speeds.length * 0.90), speeds.length - 1)]
       : 1;
 
-    return { maxSpeed: Math.max(speedCap, 1) };
+    return {
+      maxSpeed: Math.max(speedCap, 1),
+      percentiles: {
+        intelligence: computePercentiles(all.map((m) => m.raw.intelligence)),
+        coding: computePercentiles(all.map((m) => m.raw.coding)),
+        agentic: computePercentiles(all.map((m) => m.raw.agentic)),
+        speed: computePercentiles(speeds),
+      },
+    };
   }, []);
 
-  const metrics: { label: string; value: number | null; maxValue?: number; unit?: string }[] = [
+  const metrics: { label: string; value: number | null; maxValue?: number; unit?: string; percentileKey?: "intelligence" | "coding" | "agentic" | "speed" }[] = [
     {
       label: t("source.intelligenceLabel"),
       value: r.intelligence,
+      percentileKey: "intelligence",
     },
     {
       label: t("source.codingLabel"),
       value: r.coding,
+      percentileKey: "coding",
     },
     {
       label: t("source.agenticLabel"),
       value: r.agentic,
+      percentileKey: "agentic",
     },
     {
       label: t("source.speedLabel"),
       value: r.median_tps,
       maxValue: maxSpeed,
       unit: " t/s",
+      percentileKey: "speed",
     },
   ];
 
@@ -110,6 +126,7 @@ export function ScoreOverview({ model }: ScoreOverviewProps) {
             value={m.value}
             maxValue={m.maxValue ?? 100}
             unit={m.unit ?? ""}
+            colorPercentiles={m.percentileKey ? percentiles[m.percentileKey] : null}
           />
         ))}
       </div>

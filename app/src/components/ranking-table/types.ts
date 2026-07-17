@@ -25,6 +25,12 @@ export interface ModelGroup {
   items: ModelWithScores[];
 }
 
+export interface RankChangeInfo {
+  oldRank: number;
+  newRank: number;
+  change: number;
+}
+
 /** Optional compare selection state — passed from page to row/card */
 export interface CompareState {
   isInCompare: (id: string) => boolean;

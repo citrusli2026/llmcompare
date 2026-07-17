@@ -5,11 +5,12 @@ import { Badge } from "@/components/ui/badge";
 import { cn, formatTokenCount, isValuePick } from "@/lib/utils";
 import { Check, Calendar, Brain, DollarSign, Zap } from "lucide-react";
 import { type ModelWithScores } from "@/lib/scoring";
-import { type SortKey, type ModelGroup, type ScoreKey, type CompareState } from "./types";
+import { type SortKey, type ModelGroup, type ScoreKey, type CompareState, type RankChangeInfo } from "./types";
 import { getScoreColor } from "./utils";
 import { useTranslation } from "@/lib/i18n";
 import { FavoriteButton } from "@/components/favorite-button";
 import { ModelLogo } from "@/components/model-logo";
+import { RankChange } from "./rank-change";
 
 interface MobileCardProps {
   model: ModelWithScores;
@@ -18,9 +19,11 @@ interface MobileCardProps {
   sortKey: SortKey;
   percentiles: Record<ScoreKey, { p25: number; p50: number; p75: number } | null>;
   compare?: CompareState;
+  rankChange?: RankChangeInfo;
+  isNew?: boolean;
 }
 
-export function MobileCard({ model, group, idx, percentiles, compare }: MobileCardProps) {
+export function MobileCard({ model, group, idx, percentiles, compare, rankChange, isNew }: MobileCardProps) {
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -83,8 +86,13 @@ export function MobileCard({ model, group, idx, percentiles, compare }: MobileCa
         )}
 
         {group.showRank && (
-          <span className="text-[10px] text-text-muted tabular-nums w-5 shrink-0">
-            #{group.rankOffset + idx + 1}
+          <span className="w-14 shrink-0">
+            <RankChange
+              rank={group.rankOffset + idx + 1}
+              change={rankChange?.change}
+              isNew={isNew}
+              size="sm"
+            />
           </span>
         )}
         <ModelLogo src={model.logo} name={model.name} size="xs" />

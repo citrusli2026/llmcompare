@@ -6,11 +6,28 @@ import { cn, formatTokenCount, isValuePick } from "@/lib/utils";
 import { type ModelWithScores, getAllModels } from "@/lib/scoring";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "@/lib/i18n";
-import { type ScoreKey, type SortKey, type HeaderDef, type CompareState } from "./types";
+import { type ScoreKey, type SortKey, type HeaderDef, type CompareState, type RankChangeInfo } from "./types";
 import { computePercentiles, formatScore } from "./utils";
 import { useModelGroups } from "./use-model-groups";
 import { ModelRow } from "./model-row";
 import { MobileCard } from "./mobile-card";
+
+interface ChangesData {
+  generated_at: string;
+  date: string;
+  compare_with: string;
+  summary: {
+    new_models: number;
+    dropped_models: number;
+    price_changes: number;
+    ranking_changes: number;
+    intel_changes: number;
+  };
+  changes: Array<
+    | { type: "new"; id: string; rank?: number; first_seen?: string }
+    | { type: "ranking_up" | "ranking_down"; id: string; old_rank?: number; new_rank?: number; change?: number }
+  >;
+}
 
 interface RankingTableProps {
   models: ModelWithScores[];
@@ -42,6 +59,30 @@ export function RankingTable({ models, initialSortKey, initialSortDesc, compare 
   const { t } = useTranslation();
 
   const headers = HEADERS;
+
+  // Load daily changes to show rank trend and new-model badges in the ranking column.
+  const { rankChangeMap, newModelSet } = useMemo(() => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const data = require("@/data/changes.json") as ChangesData;
+      const rankMap: Record<string, RankChangeInfo> = {};
+      const newSet = new Set<string>();
+      for (const c of data.changes) {
+        if (c.type === "new") {
+          newSet.add(c.id);
+        } else if ((c.type === "ranking_up" || c.type === "ranking_down") && c.change != null) {
+          rankMap[c.id] = {
+            oldRank: c.old_rank ?? 0,
+            newRank: c.new_rank ?? 0,
+            change: c.change,
+          };
+        }
+      }
+      return { rankChangeMap: rankMap, newModelSet: newSet };
+    } catch {
+      return { rankChangeMap: {}, newModelSet: new Set<string>() };
+    }
+  }, []);
 
   const handleSort = (key: SortKey) => {
     if (sortKey === key) {
@@ -224,6 +265,8 @@ export function RankingTable({ models, initialSortKey, initialSortDesc, compare 
                     percentiles={percentiles}
                     globalMax={globalMax}
                     compare={compare}
+                    rankChange={rankChangeMap[model.id]}
+                    isNew={newModelSet.has(model.id)}
                   />
                 ))
               )}
@@ -266,6 +309,8 @@ export function RankingTable({ models, initialSortKey, initialSortDesc, compare 
                 sortKey={sortKey}
                 percentiles={percentiles}
                 compare={compare}
+                rankChange={rankChangeMap[model.id]}
+                isNew={newModelSet.has(model.id)}
               />
             ))
         )}

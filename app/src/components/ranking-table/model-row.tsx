@@ -7,11 +7,12 @@ import { TableCell, TableRow } from "@/components/ui/table";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { type ModelWithScores } from "@/lib/scoring";
-import { type SortKey, type HeaderDef, type ModelGroup, type CompareState } from "./types";
+import { type SortKey, type HeaderDef, type ModelGroup, type CompareState, type RankChangeInfo } from "./types";
 import { getRawValue, getScoreColor, ScoreBar } from "./utils";
 import { useTranslation } from "@/lib/i18n";
 import { FavoriteButton } from "@/components/favorite-button";
 import { ModelLogo } from "@/components/model-logo";
+import { RankChange } from "./rank-change";
 
 interface ModelRowProps {
   model: ModelWithScores;
@@ -24,9 +25,11 @@ interface ModelRowProps {
   percentiles: Record<string, { p25: number; p50: number; p75: number } | null>;
   globalMax: Record<string, number>;
   compare?: CompareState;
+  rankChange?: RankChangeInfo;
+  isNew?: boolean;
 }
 
-export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVisibilityClass, percentiles, globalMax, compare }: ModelRowProps) {
+export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVisibilityClass, percentiles, globalMax, compare, rankChange, isNew }: ModelRowProps) {
   const { t } = useTranslation();
   const router = useRouter();
 
@@ -62,7 +65,13 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
       <TableCell className="max-w-[220px]">
         <div className="inline-flex items-center gap-1.5 font-medium text-text-primary group truncate">
           {group.showRank && (
-            <span className="text-text-muted text-xs mr-0.5">#{group.rankOffset + idx + 1}</span>
+            <span className="text-text-muted mr-0.5">
+              <RankChange
+                rank={group.rankOffset + idx + 1}
+                change={rankChange?.change}
+                isNew={isNew}
+              />
+            </span>
           )}
           <ModelLogo src={model.logo} name={model.name} size="xs" />
           <Link
