@@ -42,6 +42,10 @@ export default function ModelsPageClient() {
 
   const [activeFilter, setActiveFilter] = useState<FilterKey>(initialFilter);
 
+  // 开源默认按用量（tokens），闭源默认按智能（intelligence）
+  const defaultSortKey: SortKey = activeFilter === "open" ? "tokens" : "intelligence";
+  const initialSortKey = initialSort ?? defaultSortKey;
+
   // Compare feature
   const [compareActive, setCompareActive] = useState(false);
   const { selectedModels, isInCompare, isAtMax, toggleCompare, removeCompare, clearCompare, maxCompare } = useCompareIds();
@@ -193,8 +197,9 @@ export default function ModelsPageClient() {
           ) : (
             <>
               <RankingTable
+                key={activeFilter}
                 models={filteredModels}
-                initialSortKey={initialSort ?? undefined}
+                initialSortKey={initialSortKey}
                 compare={{ isInCompare, isAtMax, onToggle: toggleCompare, active: compareActive }}
               />
               <div className="mt-8 text-center text-sm text-text-muted">
