@@ -28,7 +28,7 @@ export function CtaGroup({ model }: CtaGroupProps) {
           className="flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-accent-violet to-violet-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-accent-violet/25 hover:shadow-xl hover:shadow-accent-violet/30 hover:-translate-y-0.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base"
         >
           <LayoutDashboard className="h-4 w-4" />
-          {t("product.tryIt")}
+          {t("product.console")}
         </a>
       )}
       {secondary && (

@@ -3,7 +3,6 @@
 import { Target } from "lucide-react";
 import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
-import { FieldTip } from "@/components/field-tip";
 
 interface BenchmarkSectionProps {
   model: ModelWithScores;
