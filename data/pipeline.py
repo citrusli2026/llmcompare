@@ -429,8 +429,10 @@ diff_text = diff_content or "（无变化摘要）"
 import shutil
 
 if os.environ.get("CI"):
-    # GitHub Actions: merge to main and push (bypasses branch protection)
+    # GitHub Actions: rebase onto latest main, merge branch, then push
+    run("git fetch origin", cwd=str(APP))
     run("git checkout main", cwd=str(APP))
+    run("git pull origin main --rebase", cwd=str(APP))
     run("git merge " + BRANCH + " --no-edit", cwd=str(APP))
     run("git push origin main", cwd=str(APP))
     ok("已推送到 main（CI 模式）")

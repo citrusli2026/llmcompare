@@ -494,7 +494,7 @@
       }
     },
     "arena_votes": 49467,
-    "data_completeness_pct": 85.0
+    "data_completeness_pct": 88.7
   },
   {
     "id": "claude-sonnet-5",
@@ -705,7 +705,7 @@
       }
     },
     "arena_votes": 18333,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 86.5
   },
   {
     "id": "gpt-5-6-luna",
@@ -1400,7 +1400,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 60.2
+    "data_completeness_pct": 63.9
   },
   {
     "id": "kimi-k2-6",
@@ -2233,7 +2233,7 @@
     },
     "arena_rankings": {},
     "arena_votes": 21407,
-    "data_completeness_pct": 77.4
+    "data_completeness_pct": 81.2
   },
   {
     "id": "grok-build-0-1-0616",
@@ -2485,7 +2485,7 @@
     },
     "arena_rankings": {},
     "arena_votes": 18333,
-    "data_completeness_pct": 77.4
+    "data_completeness_pct": 81.2
   },
   {
     "id": "minimax-m2-7",
@@ -3475,7 +3475,7 @@
       }
     },
     "arena_votes": 7300,
-    "data_completeness_pct": 52.6
+    "data_completeness_pct": 56.4
   },
   {
     "id": "longcat-2-0",
@@ -4129,6 +4129,6 @@
     },
     "arena_rankings": {},
     "arena_votes": 18333,
-    "data_completeness_pct": 39.8
+    "data_completeness_pct": 43.6
   }
 ]

@@ -9,6 +9,7 @@ import { useTranslation } from "@/lib/i18n";
 import { ModelHeader } from "./model-header";
 import { CtaGroup } from "./cta-group";
 import { QuickFacts } from "./quick-facts";
+import { DataCompletionCallout } from "./data-completion-callout";
 import { BenchmarkSection } from "./benchmark-section";
 import { SpeedSection } from "./speed-section";
 import { PricingSection } from "./pricing-section";
@@ -41,6 +42,8 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
           <CtaGroup model={model} />
 
           <QuickFacts model={model} />
+
+          <DataCompletionCallout model={model} />
 
           <div className="mt-6">
             <ScoreOverview model={model} />

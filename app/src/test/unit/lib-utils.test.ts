@@ -96,8 +96,8 @@ describe("lib/utils", () => {
         isInternational: true,
         context_window: null,
         parameters: null,
-        output_tokens: null,
         release_date: null,
+        knowledge_cutoff: null,
         omniscience: null,
         arena_votes: null,
         openrouter_weekly_tokens: null,
@@ -106,7 +106,7 @@ describe("lib/utils", () => {
         arena_code: null,
         data_completeness_pct: 100,
         license: null,
-        benchmarks: { gpqa: null, hle: null, mmlu_pro: null },
+        benchmarks: { gpqa: null, hle: null },
       },
       flags: {
         frontier: false,

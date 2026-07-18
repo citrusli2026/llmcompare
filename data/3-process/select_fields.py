@@ -57,7 +57,6 @@ KEEP_SUGGESTED = [
     'speed.speed_p95_tps',          # P95 吞吐 → 高负载真实体验
     'benchmarks.gpqa',              # 研究生级科学推理
     'benchmarks.hle',               # Humanity's Last Exam
-    'benchmarks.mmlu_pro',          # 最经典语言理解 benchmark
     'url',                          # AA 详情页链接
     'meta.open_source_category',    # 开源分类（比 boolean 精确）
 ]

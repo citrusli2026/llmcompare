@@ -38,7 +38,7 @@ describe("ranking-table utils extended", () => {
       isInternational: false,
       context_window: null,
       parameters: null,
-      output_tokens: null,
+      knowledge_cutoff: null,
       release_date: "2024-01-01",
       omniscience: null,
       arena_votes: 1000,
@@ -48,7 +48,7 @@ describe("ranking-table utils extended", () => {
       arena_code: 1200,
       data_completeness_pct: 80,
       license: null,
-      benchmarks: { gpqa: null, hle: null, mmlu_pro: null },
+      benchmarks: { gpqa: null, hle: null },
       ...overrides,
     },
   });

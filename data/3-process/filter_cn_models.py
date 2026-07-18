@@ -50,8 +50,6 @@ def transform(m: dict) -> dict:
         'benchmarks': {
             'gpqa': m.get('gpqa'),
             'hle': m.get('hle'),
-            'mmlu_pro': m.get('mmlu_pro'),
-            'mmmu_pro': m.get('mmmu_pro'),
             'omniscience': m.get('omniscience'),
         },
         'multilingual_zh': m.get('multilingual_zh'),
@@ -59,7 +57,7 @@ def transform(m: dict) -> dict:
             'context_window': m.get('context_window_tokens'),
             'size_class': m.get('size_class'),
             'parameters': m.get('parameters'),
-            'output_tokens': m.get('output_tokens'),
+            'knowledge_cutoff': m.get('knowledge_cutoff'),
             'reasoning': m.get('reasoning') or False,
             'open_weights': m.get('open_weights') or False,
             'frontier': m.get('frontier') or False,

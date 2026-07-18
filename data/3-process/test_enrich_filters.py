@@ -185,7 +185,7 @@ class TestCalculateCompleteness(unittest.TestCase):
             "pricing": {"input": 1.0, "output": 2.0},
             "meta": {
                 "context_window": 128000, "parameters": 70,
-                "output_tokens": 8192, "release_date": "2026-01-01",
+                "knowledge_cutoff": "2026-01", "release_date": "2026-01-01",
             },
             "url": "https://example.com",
             "vendor_links": {"homepage": "https://example.com"},
