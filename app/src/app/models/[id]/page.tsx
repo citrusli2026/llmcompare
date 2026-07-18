@@ -15,11 +15,26 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const { id } = await params;
   const model = getModelById(id);
   if (!model) return { title: "未找到" };
-  const description = `${model.company} ${model.name} 的智能评分、速度性能与定价详情。${model.type === ModelType.Open ? "开源" : "闭源"}模型。`;
+  const typeLabel = model.type === ModelType.Open ? "开源" : "闭源";
+  const intel = model.raw.intelligence != null ? `智能分 ${Math.round(model.raw.intelligence * 10) / 10}` : "";
+  const price = model.raw.input != null ? `输入 $${model.raw.input}/M tokens` : "";
+  const metaParts = [intel, price].filter(Boolean).join(" · ");
+  const description = `${model.company} ${model.name} 的${metaParts ? `${metaParts}。` : "智能评分、速度性能与定价详情。"}${typeLabel}模型。查看 benchmarks、速度、定价与同类推荐。`;
   const url = `${BASE_URL}/models/${model.id}`;
+  const keywords = [
+    model.name,
+    model.company,
+    `${model.name} 评测`,
+    `${model.name} 定价`,
+    `${model.name} API`,
+    typeLabel === "开源" ? "开源模型" : "闭源模型",
+    "LLM",
+    "AI 模型",
+  ];
   return {
-    title: `${model.name} - ${model.company}`,
+    title: `${model.name} - ${model.company} | 智能评分与定价`,
     description,
+    keywords,
     alternates: { canonical: url },
     openGraph: {
       title: `${model.name} - ${model.company}`,

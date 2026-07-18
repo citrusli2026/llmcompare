@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
 User-agent: GPTBot
 Allow: /
@@ -22,4 +23,5 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+Host: https://www.llmcompare.cc
 Sitemap: https://www.llmcompare.cc/sitemap.xml
