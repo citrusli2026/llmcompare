@@ -110,7 +110,16 @@
     "orDesc": "The world's largest LLM API routing platform, providing unified API access and weekly token consumption rankings. We collect its public weekly rankings and API pricing — volume reflects real-world usage, pricing reflects market rates.",
     "disclaimerDesc": "This field guide is for reference only. Model performance varies by use case and may differ from the data presented.",
     "updateFreq": "Data updated periodically",
-    "lastUpdated": "Data updated"
+    "lastUpdated": "Data updated",
+    "fieldGuideTitle": "Field Guide",
+    "fieldGuideDesc": "Key metrics used across the site and what they mean.",
+    "fieldIntelligence": "Intelligence: Artificial Analysis composite index blending MMLU, HumanEval, MATH and more. 0-100 scale.",
+    "fieldCoding": "Coding: Task-specific score for code generation and understanding. 0-100 scale.",
+    "fieldAgentic": "Agentic: Measures multi-step reasoning, tool use and autonomous execution. 0-100 scale.",
+    "fieldSpeed": "Speed: Median TPS, time-to-first-token and end-to-end latency from standardized benchmarks.",
+    "fieldPricing": "Pricing: Blended price = input×75% + output×25%; table defaults to OpenRouter pricing for fair comparison.",
+    "fieldArena": "Arena: lmarena.ai ELO scores and vote counts from human blind tests, reflecting real-world experience.",
+    "fieldCompleteness": "Data Completeness: Weighted score over 18 core fields; closer to 100% means more complete data."
   },
   "product": {
     "backLink": "Back to Model Directory",
