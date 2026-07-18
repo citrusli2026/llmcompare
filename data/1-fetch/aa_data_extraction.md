@@ -210,6 +210,7 @@ def safe_dict(val):
 4. **重复模型**: 同一基础模型的不同推理 effort (low/medium/high/xhigh/max) 和不同 provider 算作独立条目
 5. **字段淘汰**: `aime`(旧版)、`humaneval`、`math_500` 在新模型上已不评测，为 null
 6. **速度短 prompt**: `speed_short_tps` 在 Top64 中完全缺失，数据仅在 performanceByPromptLength 的 "short" 类型中存在
+7. **前端消费字段**: 当前 `ranking.json` 仅保留 `gpqa` / `hle` 两个 benchmark 分数，`mmlu_pro` 已从前端移除；`output_tokens` 不再展示，详情页改用 `knowledge_cutoff` 表示知识截止日期
 
 ## 完整抓取脚本
 

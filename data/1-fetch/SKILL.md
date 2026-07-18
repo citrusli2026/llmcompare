@@ -59,6 +59,7 @@ Options:
 - Speed data null/zero for free/unreleased models
 - `aime`, `humaneval`, `math_500` deprecated on new models
 - `speed_short_tps` absent in Top64 (only in `performanceByPromptLength`)
+- 当前前端 `ranking.json` 仅消费 `gpqa` / `hle` 两个 benchmark，`mmlu_pro` 已移除；`output_tokens` 已替换为 `knowledge_cutoff`
 
 ## Reference
 

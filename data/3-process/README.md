@@ -115,6 +115,11 @@ interface Model {
     agentic: number|null;  // AA Agentic Index
   };
 
+  benchmarks: {            // 单项 benchmark 分数
+    gpqa: number|null;     // 研究生级别科学问答
+    hle: number|null;      // Humanity's Last Exam
+  };
+
   speed: {                 // AA 原始速度数据 (前端需自行归一化)
     median_tps: number|null;
     ttft_seconds: number|null;   // 首 Token 延迟
@@ -130,13 +135,9 @@ interface Model {
   };
 
   // === enrich_models.py 注入 (Step 3) ===
-  vendor_links?: {          // 厂商链接
-    homepage?: string;
-    api_docs?: string;
-    console?: string;
-    github?: string;
-    huggingface?: string;
-    pricing_doc?: string;   // 定价页链接
+  vendor_links?: {          // 厂商链接: 仅保留 homepage(官网) + console(控制台)
+    homepage?: string;      // 必须是官方自有站点, 不得使用 HuggingFace/GitHub/第三方聚合站
+    console?: string;       // 模型控制台 / 开发者平台
   };
 
   cn_pricing?: {            // 国内官价 (来自 0-refer/model_reference.json)
@@ -174,12 +175,16 @@ interface Model {
   };
 
   meta: {
-    context_window: number;
+    context_window: number;      // 上下文窗口 (tokens)
+    parameters: number|null;     // 参数量 (B), 缺失时用 active_params_billions 回填
+    knowledge_cutoff: string|null; // 训练知识截止日期, 如 "2026-01"
     size_class: string;
     release_date: string;
-    omniscience: number|null; // AA 幻觉控制分 (越低越好, -10≈极少幻觉, -89≈严重幻觉)
+    omniscience: number|null;    // AA 幻觉控制分 (越低越好, -10≈极少幻觉, -89≈严重幻觉)
   };
 
-  url: string;             // AA 详情页
+  license: string|null;    // 开源模型 License; 闭源显示 "商业授权"
+  url: string;             // 模型详情页, 默认取 vendor_links.homepage
+  data_completeness_pct: number; // 18 个核心字段的加权完整度
 }
 ```

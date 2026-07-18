@@ -17,7 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 | 命令 | 说明 |
 |------|------|
-|`python3.11 pipeline.py` | 全自动：分支准备 → 抓取 → 处理 → 同步 → 验证 → PR → 自动合并监控|
+|`python3.11 pipeline.py` | 全自动：分支准备 → 抓取 → 处理 → 同步 → 验证 → PR/推送 → 清理。CI 模式下会 rebase 到最新 main 再推送，避免并发提交冲突|
 |`python3.11 pipeline.py --skip-fetch` | 复用 `2-raw/` 缓存，跳过抓取 |
 |`python3.11 pipeline.py --dry-run` | 演练，不写盘、不推分支 |
 |`python3.11 pipeline.py --cache-hours N` | 自定义缓存新鲜度（默认 6h，`0` 强制重抓） |
@@ -94,6 +94,35 @@ scripts/   辅助脚本 (被 pipeline.py 调用)
   └── report.html        build_report.py 产出, 浏览器可视化报告
 ```
 
+## 字段与链接规范
+
+### 当前字段契约（2026-07-18 之后）
+
+- `meta.parameters`：优先取总参数量，缺失时用 `active_params_billions` 回填
+- `meta.knowledge_cutoff`：新增字段，模型训练知识截止日期（字符串，如 `"2026-01"`）
+- `meta.output_tokens`：已移除，详情页不再展示
+- `benchmarks`：仅保留 `gpqa`、`hle`，`mmlu_pro` 已移除
+- `vendor_links`：仅保留 `homepage`（官方自有官网）和 `console`（模型控制台）。不得放入 HuggingFace/GitHub/试用链接/定价文档链接；官网必须是厂商/模型官方自有域名，不能是第三方聚合站
+- `license`：开源模型显示具体 License，闭源模型显示 `"商业授权"`
+
+修改字段时同步更新：
+- `build_frontend_models.py` 的 `build_model()`
+- `enrich_models.py` 的 `enrich()`
+- `../app/src/lib/scoring.ts` 类型定义
+- `../app/src/test/fixtures.ts` 与相关单元测试
+- `../app/scripts/validate-data.py` 与 `../data/schema/ranking.schema.json`
+- 本文档与 `3-process/README.md` 的 schema 段落
+
+### 前端排序规则
+
+`/models` 默认排序：
+- 开源模型（`open_weights=true`）→ 按 `openrouter_weekly_tokens` 降序（热度优先）
+- 闭源模型 → 按 `scores.intelligence` 降序（智能优先）
+
+### 数据补全入口
+
+详情页对缺失的 `knowledge_cutoff` / `context_window` / `parameters` / `release_date` / `license` 会显示「提交数据补全」按钮，跳转 GitHub Issues 并预填充字段列表。
+
 ## 关键架构决策
 
 ### 为何 `enrich_models.py` 把所有数据源合并放在最后
@@ -145,12 +174,24 @@ EXCLUDED_PATTERNS = ['Qwen3.5', 'GLM-4']  # 同系列只保留最新代
 
 **新增多代系列时**，往 `EXCLUDED_PATTERNS` 加一行即可（如未来要清 Qwen3.4 → 加 `'Qwen3.4'`）。改完重跑 Step 2 + 后续。
 
-### `data_complete` 标志（统一标准）
+### `data_complete` 与数据完整度
 
 `data_complete` 在富化时**覆盖** `build_frontend_models.py` 设置的初始值。
 
 - 国内外统一标准：`intelligence + coding + agentic + speed(median_tps) + pricing` 五者齐全
+- `data_completeness_pct`：基于 `validation_config.json` 中 `completeness_fields` 的加权百分比
 - 详细逻辑见 `enrich_models.py` 中 `enrich()` 内的 `data_complete` 计算块
+
+### 数据质量验证
+
+`../app/scripts/validate-data.py` 在 `pipeline.py` Phase 5 运行，检查项包括：
+- JSON Schema 校验
+- 必需字段、intelligence 范围、type 有效性、重复 ID
+- 发布日期不能是未来
+- 排名一致性、统计量动态阈值、分数分布
+- 与上次数据对比（模型数剧变、Top3 剧变、价格突降为 0、intelligence 单日剧变）
+- 数据源健康度（coverage）
+- `vendor_links.homepage` 不得指向 HuggingFace/GitHub 等第三方聚合站（告警不阻断）
 
 ### 国内模型识别规则
 
