@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
-import { ArrowLeft, Brain, DollarSign, TrendingUp, Trophy, Database, ExternalLink, Calendar, BookOpen, Cpu, Bot, Zap, BarChart3, Award } from "lucide-react";
+import { ArrowLeft, Brain, DollarSign, TrendingUp, Trophy, Database, ExternalLink, Calendar, BookOpen, Cpu, Bot, Zap, BarChart3, Award, ListChecks, PieChart, History } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 import metadataData from "@/data/metadata.json";
+import rankingMeta from "@/data/ranking-meta.json";
+import changesData from "@/data/changes.json";
 
 export default function AboutPageClient() {
   const { t } = useTranslation();
@@ -158,6 +160,89 @@ export default function AboutPageClient() {
                   <p className="text-xs text-text-secondary">{t("about.fieldCompleteness")}</p>
                 </div>
               </div>
+            </section>
+
+            {/* Inclusion Criteria */}
+            <section className="rounded-xl border border-surface-border bg-surface-card p-6">
+              <h2 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
+                <ListChecks className="h-5 w-5 text-accent-emerald" />
+                {t("about.criteriaTitle")}
+              </h2>
+              <p className="text-sm text-text-secondary mb-4">{t("about.criteriaDesc")}</p>
+              <ul className="space-y-2 text-sm text-text-secondary">
+                <li className="flex items-start gap-2">
+                  <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-emerald/10 text-[10px] font-medium text-accent-emerald">1</span>
+                  {t("about.criteriaSize")}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-emerald/10 text-[10px] font-medium text-accent-emerald">2</span>
+                  {t("about.criteriaFresh")}
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-emerald/10 text-[10px] font-medium text-accent-emerald">3</span>
+                  {t("about.criteriaUnique")}
+                </li>
+              </ul>
+            </section>
+
+            {/* Data Coverage */}
+            <section className="rounded-xl border border-surface-border bg-surface-card p-6">
+              <h2 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
+                <PieChart className="h-5 w-5 text-accent-cyan" />
+                {t("about.coverageTitle")}
+              </h2>
+              <p className="text-sm text-text-secondary mb-4">{t("about.coverageDesc")}</p>
+              <div className="space-y-3">
+                {Object.entries(rankingMeta.sources).map(([key, source]) => {
+                  const coverage = Math.round((source.coverage ?? 0) * 100);
+                  const labels: Record<string, string> = {
+                    artificial_analysis: "Artificial Analysis",
+                    openrouter: "OpenRouter",
+                    arena: "Arena",
+                  };
+                  return (
+                    <div key={key} className="rounded-lg bg-surface-hover p-3">
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className="text-sm font-medium text-text-primary">{labels[key] ?? key}</span>
+                        <span className="text-xs text-text-secondary">{coverage}%</span>
+                      </div>
+                      <div className="h-2 w-full rounded-full bg-surface-border overflow-hidden">
+                        <div
+                          className="h-full rounded-full bg-accent-cyan transition-all"
+                          style={{ width: `${coverage}%` }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="text-xs text-text-muted mt-4">{t("about.coverageNote")}</p>
+            </section>
+
+            {/* Changelog */}
+            <section className="rounded-xl border border-surface-border bg-surface-card p-6">
+              <h2 className="text-xl font-semibold text-text-primary mb-4 flex items-center gap-2">
+                <History className="h-5 w-5 text-accent-amber" />
+                {t("about.changelogTitle")}
+              </h2>
+              <p className="text-sm text-text-secondary mb-4">
+                {t("about.changelogDesc", { date: changesData.date, total: rankingMeta.stats.total_models })}
+              </p>
+              {changesData.changes.length > 0 ? (
+                <ul className="space-y-2">
+                  {changesData.changes.map((change, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-text-secondary rounded-lg bg-surface-hover p-3">
+                      <span className="shrink-0">{change.icon}</span>
+                      <span>
+                        <span className="font-medium text-text-primary">{change.model}</span>
+                        {change.detail ? ` — ${change.detail}` : ""}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-sm text-text-secondary rounded-lg bg-surface-hover p-3">{t("about.changelogEmpty")}</p>
+              )}
             </section>
 
             <p className="text-xs text-text-muted text-center">{t("about.disclaimerDesc")}</p>
