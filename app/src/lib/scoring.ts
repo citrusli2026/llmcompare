@@ -3,11 +3,7 @@ import modelsRaw from "@/data/ranking.json";
 // ── Shared Types ──
 interface VendorLinks {
   homepage?: string;
-  api_docs?: string;
   console?: string;
-  huggingface?: string;
-  github?: string;
-  pricing_doc?: string;
 }
 
 interface ModelFlags {

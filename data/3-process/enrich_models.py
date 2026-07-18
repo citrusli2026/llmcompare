@@ -359,7 +359,12 @@ def enrich(
         if is_intl:
             intl_count += 1
 
-        m["vendor_links"] = vendor_links.get(company, {})
+        # 只保留官方官网（homepage）与模型控制台（console）两种静态信息
+        raw_links = vendor_links.get(company, {})
+        m["vendor_links"] = {
+            k: v for k, v in raw_links.items()
+            if k in ("homepage", "console") and v
+        }
 
         # Inject url from vendor_links homepage
         if not m.get("url") and m["vendor_links"].get("homepage"):

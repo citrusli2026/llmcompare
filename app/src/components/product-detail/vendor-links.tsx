@@ -13,11 +13,7 @@ export function VendorLinks({ model }: VendorLinksProps) {
 
   const links: [string | undefined, string][] = [
     [model.vendor_links?.homepage, t("product.homepage")],
-    [model.vendor_links?.api_docs, t("product.apiDocs")],
     [model.vendor_links?.console, t("product.console")],
-    [model.vendor_links?.huggingface, t("product.huggingface")],
-    [model.vendor_links?.github, t("product.github")],
-    [model.vendor_links?.pricing_doc, t("product.pricingDoc")],
   ];
 
   const visibleLinks = links.filter(([url]) => url);

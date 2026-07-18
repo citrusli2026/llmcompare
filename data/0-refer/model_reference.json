@@ -33,245 +33,130 @@
   },
   "vendor_links": {
     "Kimi": {
-      "homepage": "https://www.moonshot.cn",
-      "api_docs": "https://platform.moonshot.cn",
-      "console": "https://platform.moonshot.cn",
-      "huggingface": "https://huggingface.co/moonshotai",
-      "pricing_doc": "https://platform.kimi.com/docs/pricing/chat",
-      "github": "https://github.com/moonshotai"
+      "homepage": "https://kimi.moonshot.cn",
+      "console": "https://platform.moonshot.cn"
     },
     "Xiaomi": {
-      "homepage": "https://huggingface.co/XiaomiMiMo",
-      "huggingface": "https://huggingface.co/XiaomiMiMo",
-      "pricing_doc": "小米开放平台控制台（需登录）",
-      "pricing_note": "2026-05-02 登录实测",
-      "api_docs": "https://platform.xiaomimimo.com/",
-      "console": "https://platform.xiaomimimo.com/",
-      "github": "https://github.com/XiaomiMiMo"
+      "homepage": "https://mimo.mi.com",
+      "console": "https://platform.xiaomimimo.com"
     },
     "Alibaba": {
       "homepage": "https://tongyi.aliyun.com",
-      "api_docs": "https://dashscope.aliyun.com",
-      "console": "https://bailian.aliyun.com",
-      "github": "https://github.com/QwenLM",
-      "huggingface": "https://huggingface.co/Qwen",
-      "pricing_doc": "https://bailian.console.aliyun.com"
+      "console": "https://bailian.aliyun.com"
     },
     "DeepSeek": {
       "homepage": "https://www.deepseek.com",
-      "api_docs": "https://api-docs.deepseek.com",
-      "console": "https://platform.deepseek.com",
-      "github": "https://github.com/deepseek-ai",
-      "huggingface": "https://huggingface.co/deepseek-ai",
-      "pricing_doc": "https://api-docs.deepseek.com/quick_start/pricing"
+      "console": "https://platform.deepseek.com"
     },
     "Z AI": {
       "homepage": "https://z.ai",
-      "api_docs": "https://open.bigmodel.cn",
-      "github": "https://github.com/zai-org",
-      "huggingface": "https://huggingface.co/zai-org",
-      "pricing_doc": "https://open.bigmodel.cn/pricing",
-      "console": "https://open.bigmodel.cn/"
+      "console": "https://open.bigmodel.cn"
     },
     "MiniMax": {
       "homepage": "https://www.minimaxi.com",
-      "api_docs": "https://platform.minimaxi.com",
-      "huggingface": "https://huggingface.co/MiniMaxAI",
-      "pricing_doc": "https://platform.minimaxi.com/docs/guides/pricing",
-      "console": "https://platform.minimaxi.com/",
-      "github": "https://github.com/MiniMax-AI"
+      "console": "https://platform.minimaxi.com"
     },
     "Tencent": {
       "homepage": "https://cloud.tencent.com",
-      "api_docs": "https://cloud.tencent.com/document/product/1772",
-      "console": "https://console.cloud.tencent.com",
-      "pricing_doc": "https://cloud.tencent.com/document/product/1772/115963",
-      "github": "https://github.com/Tencent",
-      "huggingface": "https://huggingface.co/tencent"
+      "console": "https://console.cloud.tencent.com"
     },
     "OpenAI": {
       "homepage": "https://openai.com",
-      "api_docs": "https://platform.openai.com/docs",
-      "console": "https://platform.openai.com",
-      "github": "https://github.com/openai",
-      "pricing_doc": "https://openai.com/api/pricing",
-      "huggingface": "https://huggingface.co/openai"
+      "console": "https://platform.openai.com"
     },
     "Anthropic": {
       "homepage": "https://www.anthropic.com",
-      "api_docs": "https://docs.anthropic.com",
-      "console": "https://console.anthropic.com",
-      "github": "https://github.com/anthropics",
-      "pricing_doc": "https://www.anthropic.com/pricing",
-      "huggingface": "https://huggingface.co/anthropics"
+      "console": "https://console.anthropic.com"
     },
     "Google": {
-      "homepage": "https://ai.google.dev",
-      "api_docs": "https://ai.google.dev/gemini-api/docs",
-      "console": "https://aistudio.google.com",
-      "github": "https://github.com/google-gemini",
-      "pricing_doc": "https://ai.google.dev/pricing",
-      "huggingface": "https://huggingface.co/google"
+      "homepage": "https://gemini.google.com",
+      "console": "https://aistudio.google.com"
     },
     "01.AI": {
       "homepage": "https://www.01.ai",
-      "api_docs": "https://platform.01.ai",
-      "pricing_doc": "https://platform.01.ai/pricing",
-      "console": "https://platform.01.ai/",
-      "github": "https://github.com/01-ai",
-      "huggingface": "https://huggingface.co/01-ai"
+      "console": "https://platform.01.ai"
     },
     "StepFun": {
       "homepage": "https://www.stepfun.com",
-      "api_docs": "https://platform.stepfun.com/docs",
-      "console": "https://platform.stepfun.com",
-      "huggingface": "https://huggingface.co/stepfun-ai",
-      "pricing_doc": "https://platform.stepfun.com/docs/zh/guides/pricing/details",
-      "github": "https://github.com/stepfun-ai"
+      "console": "https://platform.stepfun.com"
     },
     "InclusionAI": {
-      "homepage": "https://www.inclusion-ai.org",
-      "huggingface": "https://huggingface.co/inclusionAI",
-      "github": "https://github.com/inclusionAI"
+      "homepage": "https://www.inclusion-ai.org"
     },
     "Baidu": {
       "homepage": "https://yiyan.baidu.com",
-      "api_docs": "https://cloud.baidu.com/doc/WENXINWORKSHOP",
-      "console": "https://cloud.baidu.com/product/wenxinworkshop",
-      "pricing_doc": "https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya",
-      "github": "https://github.com/baidu",
-      "huggingface": "https://huggingface.co/baidu"
+      "console": "https://qianfan.cloud.baidu.com"
     },
     "xAI": {
       "homepage": "https://x.ai",
-      "api_docs": "https://docs.x.ai",
-      "console": "https://console.x.ai",
-      "github": "https://github.com/xai-org",
-      "huggingface": "https://huggingface.co/xai-org",
-      "pricing_doc": "https://docs.x.ai/docs/models"
+      "console": "https://console.x.ai"
     },
     "NVIDIA": {
       "homepage": "https://www.nvidia.com",
-      "api_docs": "https://docs.nvidia.com",
-      "console": "https://build.nvidia.com",
-      "github": "https://github.com/NVIDIA",
-      "huggingface": "https://huggingface.co/nvidia",
-      "pricing_doc": "https://build.nvidia.com/pricing"
+      "console": "https://build.nvidia.com"
     },
     "Meta": {
-      "homepage": "https://ai.meta.com",
-      "github": "https://github.com/meta-llama",
-      "huggingface": "https://huggingface.co/meta-llama",
-      "pricing_doc": "https://ai.meta.com/llama",
-      "api_docs": "https://llama.meta.com/docs/"
+      "homepage": "https://ai.meta.com"
     },
     "Mistral": {
       "homepage": "https://mistral.ai",
-      "api_docs": "https://docs.mistral.ai",
-      "console": "https://console.mistral.ai",
-      "github": "https://github.com/mistralai",
-      "huggingface": "https://huggingface.co/mistralai",
-      "pricing_doc": "https://mistral.ai/pricing"
+      "console": "https://console.mistral.ai"
     },
     "Cohere": {
       "homepage": "https://cohere.com",
-      "api_docs": "https://docs.cohere.com",
-      "console": "https://dashboard.cohere.com",
-      "github": "https://github.com/cohere-ai",
-      "huggingface": "https://huggingface.co/CohereForAI",
-      "pricing_doc": "https://cohere.com/pricing"
+      "console": "https://dashboard.cohere.com"
     },
     "AI21 Labs": {
       "homepage": "https://www.ai21.com",
-      "api_docs": "https://docs.ai21.com",
-      "console": "https://studio.ai21.com",
-      "github": "https://github.com/ai21labs",
-      "huggingface": "https://huggingface.co/ai21labs",
-      "pricing_doc": "https://www.ai21.com/pricing"
+      "console": "https://studio.ai21.com"
     },
     "Amazon": {
       "homepage": "https://aws.amazon.com/bedrock",
-      "api_docs": "https://docs.aws.amazon.com/bedrock",
-      "console": "https://console.aws.amazon.com/bedrock",
-      "pricing_doc": "https://aws.amazon.com/bedrock/pricing",
-      "github": "https://github.com/aws/amazon-bedrock",
-      "huggingface": "https://huggingface.co/aws"
+      "console": "https://console.aws.amazon.com/bedrock"
     },
     "Perplexity": {
-      "homepage": "https://www.perplexity.ai",
-      "api_docs": "https://docs.perplexity.ai",
-      "pricing_doc": "https://docs.perplexity.ai/guides/pricing",
-      "console": "https://www.perplexity.ai/"
+      "homepage": "https://www.perplexity.ai"
     },
     "Arcee AI": {
       "homepage": "https://arcee.ai",
-      "api_docs": "https://docs.arcee.ai",
-      "github": "https://github.com/arcee-ai",
-      "huggingface": "https://huggingface.co/arcee-ai",
-      "pricing_doc": "https://arcee.ai/pricing",
-      "console": "https://app.arcee.ai/"
+      "console": "https://app.arcee.ai"
     },
     "Deep Cogito": {
-      "homepage": "https://deepcogito.com",
-      "github": "https://github.com/deepcogito",
-      "huggingface": "https://huggingface.co/deepcogito",
-      "api_docs": "https://docs.deepcogito.com"
+      "homepage": "https://deepcogito.com"
     },
     "LG AI Research": {
-      "homepage": "https://www.lgresearch.ai",
-      "huggingface": "https://huggingface.co/lgresearch",
-      "github": "https://github.com/lgresearch"
+      "homepage": "https://www.lgresearch.ai"
     },
     "Snowflake": {
       "homepage": "https://www.snowflake.com/en/data-cloud/cortex",
-      "api_docs": "https://docs.snowflake.com/en/user-guide/snowflake-cortex",
-      "pricing_doc": "https://www.snowflake.com/en/data-cloud/pricing-options",
-      "github": "https://github.com/snowflake"
+      "console": "https://app.snowflake.com"
     },
     "Nous Research": {
-      "homepage": "https://nousresearch.com",
-      "github": "https://github.com/NousResearch",
-      "huggingface": "https://huggingface.co/NousResearch"
+      "homepage": "https://nousresearch.com"
     },
     "Allen Institute for AI": {
-      "homepage": "https://allenai.org",
-      "github": "https://github.com/allenai",
-      "huggingface": "https://huggingface.co/allenai",
-      "api_docs": "https://allenai.org/projects"
+      "homepage": "https://allenai.org"
     },
     "China Mobile": {
-      "homepage": "https://ecloud.10086.cn/",
-      "api_docs": "https://ecloud.10086.cn/",
-      "console": "https://ecloud.10086.cn/",
-      "pricing_doc": "https://ecloud.10086.cn/"
+      "homepage": "https://ecloud.10086.cn",
+      "console": "https://ecloud.10086.cn"
     },
     "KwaiKAT": {
-      "homepage": "https://www.streamlake.com/",
-      "api_docs": "https://wanqing.streamlakeapi.com/",
-      "console": "https://console.streamlake.com/",
-      "pricing_doc": "https://www.streamlake.com/product/wanqing"
+      "homepage": "https://www.streamlake.com",
+      "console": "https://console.streamlake.com"
     },
     "LongCat": {
-      "homepage": "https://www.longcatai.org/",
-      "github": "https://github.com/meituan/LongCat-2.0",
-      "huggingface": "https://huggingface.co/meituan"
+      "homepage": "https://www.longcatai.org"
     },
     "Nex AGI": {
-      "homepage": "https://nex-agi.com",
-      "github": "https://github.com/nex-agi",
-      "huggingface": "https://huggingface.co/nex-agi"
+      "homepage": "https://nex-agi.com"
     },
     "SpaceXAI": {
       "homepage": "https://x.ai",
-      "api_docs": "https://docs.x.ai",
-      "console": "https://console.x.ai",
-      "github": "https://github.com/xai-org",
-      "huggingface": "https://huggingface.co/xai-org",
-      "pricing_doc": "https://docs.x.ai/docs/models"
+      "console": "https://console.x.ai"
     },
     "Thinking Machines": {
-      "homepage": "https://thinkingmachines.ai/",
-      "huggingface": "https://huggingface.co/thinkingmachineslab"
+      "homepage": "https://thinkingmachines.ai"
     }
   },
   "cn_pricing": {
