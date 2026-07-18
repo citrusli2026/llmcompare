@@ -106,7 +106,7 @@ COMPLETENESS_FIELDS = VALIDATION_CONFIG.get("completeness_fields", {
     "pricing.output": 1.0,
     "meta.context_window": 0.5,
     "meta.parameters": 0.5,
-    "meta.output_tokens": 0.5,
+    "meta.knowledge_cutoff": 0.5,
     "meta.release_date": 0.5,
     "url": 1.0,
     "vendor_links.homepage": 0.5,
@@ -560,6 +560,38 @@ def check_url_consistency(models):
     return warnings
 
 
+# 不应作为模型官网的域名/路径（开源站点、第三方聚合站等）
+_UNOFFICIAL_HOME_PATTERNS = (
+    "huggingface.co",
+    "github.com",
+    "huggingface.co/",
+    "github.com/",
+    "modelscope.cn",
+    "gitee.com",
+)
+
+
+def check_vendor_links(models):
+    """
+    vendor_links 检查：
+    - homepage 必须是厂商/模型官方自有站点，不能是开源仓库或第三方聚合站
+    - 仅告警（不阻断），因为部分历史模型可能只有开源链接
+    """
+    warnings = []
+    for m in models:
+        homepage = m.get("vendor_links", {}).get("homepage", "")
+        if not homepage:
+            continue
+        lower = homepage.lower()
+        for pattern in _UNOFFICIAL_HOME_PATTERNS:
+            if pattern in lower:
+                warnings.append(
+                    f"{m['id']}: homepage '{homepage}' looks like a community/aggregate site, not official"
+                )
+                break
+    return warnings
+
+
 def print_completeness_report(models):
     """打印数据完整度报告"""
     print("\n" + "=" * 50)
@@ -664,6 +696,12 @@ def main():
     # 9. url 一致性（仅告警）
     print("[9/11] url 一致性检查...")
     warnings = check_url_consistency(models)
+    all_warnings.extend(warnings)
+    print(f"  {'✓' if not warnings else '△'} {len(warnings)} warnings")
+
+    # 9b. vendor_links 合规性（homepage 须为官方站点，仅告警）
+    print("[9b/11] vendor_links 合规性检查...")
+    warnings = check_vendor_links(models)
     all_warnings.extend(warnings)
     print(f"  {'✓' if not warnings else '△'} {len(warnings)} warnings")
 

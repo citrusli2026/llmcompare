@@ -45,19 +45,14 @@
         "type": ["object", "null"],
         "properties": {
           "gpqa": {"type": ["number", "null"]},
-          "hle": {"type": ["number", "null"]},
-          "mmlu_pro": {"type": ["number", "null"]}
+          "hle": {"type": ["number", "null"]}
         }
       },
       "vendor_links": {
         "type": ["object", "null"],
         "properties": {
           "homepage": {"type": ["string", "null"]},
-          "api_docs": {"type": ["string", "null"]},
-          "console": {"type": ["string", "null"]},
-          "huggingface": {"type": ["string", "null"]},
-          "github": {"type": ["string", "null"]},
-          "pricing_doc": {"type": ["string", "null"]}
+          "console": {"type": ["string", "null"]}
         }
       },
       "cn_pricing": {
@@ -98,7 +93,7 @@
         "properties": {
           "context_window": {"type": ["integer", "null"]},
           "parameters": {"type": ["number", "null"]},
-          "output_tokens": {"type": ["integer", "null"]},
+          "knowledge_cutoff": {"type": ["string", "null"]},
           "release_date": {"type": ["string", "null"]},
           "omniscience": {"type": ["number", "null"]}
         }
