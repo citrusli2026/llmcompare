@@ -54,7 +54,7 @@ function makeModel(overrides: {
       isInternational: false,
       context_window: null,
       parameters: null,
-      output_tokens: null,
+      knowledge_cutoff: null,
       release_date: null,
       omniscience: null,
       arena_votes: null,
@@ -64,7 +64,7 @@ function makeModel(overrides: {
       arena_code: null,
       data_completeness_pct: 100,
       license: null,
-      benchmarks: { gpqa: null, hle: null, mmlu_pro: null },
+      benchmarks: { gpqa: null, hle: null },
     },
     flags: {
       frontier: false,

@@ -10,7 +10,7 @@
     "pricing.output": 1.0,
     "meta.context_window": 0.5,
     "meta.parameters": 0.5,
-    "meta.output_tokens": 0.5,
+    "meta.knowledge_cutoff": 0.5,
     "meta.release_date": 0.5,
     "url": 1.0,
     "vendor_links.homepage": 0.5,
