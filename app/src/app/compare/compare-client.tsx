@@ -134,13 +134,6 @@ export function ComparePageClient() {
         return v >= 1_000_000 ? `${(v / 1_000_000).toFixed(0)}M` : v >= 1_000 ? `${(v / 1_000).toFixed(0)}K` : String(v);
       },
       getNumeric: (m) => m.raw.context_window, higherIsBetter: true, tipKey: "tip.contextWindow" },
-    { labelKey: "compare.maxOutput", icon: Layers,
-      getValue: (m) => {
-        const v = m.raw.output_tokens;
-        if (v == null) return "—";
-        return v >= 1_000_000 ? `${(v / 1_000_000).toFixed(0)}M` : v >= 1_000 ? `${(v / 1_000).toFixed(0)}K` : String(v);
-      },
-      getNumeric: (m) => m.raw.output_tokens, higherIsBetter: true, tipKey: "tip.maxOutput" },
     { labelKey: "compare.parameters", icon: Weight,
       getValue: (m) => m.raw.parameters != null ? formatParameters(m.raw.parameters) : "—",
       tipKey: "tip.parameters" },
@@ -151,8 +144,6 @@ export function ComparePageClient() {
       getValue: (m) => fmt(m.raw.benchmarks.gpqa), getNumeric: (m) => m.raw.benchmarks.gpqa, higherIsBetter: true, tipKey: "tip.gpqa" },
     { labelKey: "compare.benchmarkHle", icon: Brain,
       getValue: (m) => fmt(m.raw.benchmarks.hle), getNumeric: (m) => m.raw.benchmarks.hle, higherIsBetter: true, tipKey: "tip.hle" },
-    { labelKey: "compare.benchmarkMmluPro", icon: Brain,
-      getValue: (m) => fmt(m.raw.benchmarks.mmlu_pro), getNumeric: (m) => m.raw.benchmarks.mmlu_pro, higherIsBetter: true, tipKey: "tip.mmluPro" },
     { labelKey: "compare.releaseDate", icon: Calendar,
       getValue: (m) => m.raw.release_date ?? "—" },
     { labelKey: "common.reasoning", icon: MessageSquare,

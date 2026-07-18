@@ -21,14 +21,8 @@ export function BenchmarkSection({ model }: BenchmarkSectionProps) {
       <p className="text-xs text-text-muted mb-5">{t("product.benchmarkSubtitle")}</p>
 
       {/* Detailed benchmark sub-scores */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="rounded-lg bg-surface-hover p-3">
-          <p className="text-xs text-text-muted"><FieldTip tip={t("tip.mmluPro")}>{t("product.benchmarkMmluPro")}</FieldTip></p>
-          <p className="text-base font-semibold text-text-primary tabular-nums">
-            {r.benchmarks.mmlu_pro != null ? r.benchmarks.mmlu_pro.toFixed(1) : "—"}
-          </p>
-        </div>
-        {r.omniscience != null && (
+      {r.omniscience != null && (
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <div className="rounded-lg bg-surface-hover p-3">
             <p className="text-xs text-text-muted">{t("product.hallucinationControl")}</p>
             <p className="text-base font-semibold text-text-primary tabular-nums">
@@ -36,8 +30,8 @@ export function BenchmarkSection({ model }: BenchmarkSectionProps) {
             </p>
             <p className="text-[10px] text-text-muted mt-0.5">{t("product.hallucinationNote")}</p>
           </div>
-        )}
-      </div>
+        </div>
+      )}
       <p className="mt-3 text-xs text-text-muted">{t("product.sourceAa")}</p>
     </div>
   );

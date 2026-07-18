@@ -53,9 +53,8 @@ describe("scoring", () => {
       expect(m.raw.benchmarks).toBeDefined();
       expect(m.raw.benchmarks).toHaveProperty("gpqa");
       expect(m.raw.benchmarks).toHaveProperty("hle");
-      expect(m.raw.benchmarks).toHaveProperty("mmlu_pro");
       // Values can be null or number
-      for (const key of ["gpqa", "hle", "mmlu_pro"] as const) {
+      for (const key of ["gpqa", "hle"] as const) {
         if (m.raw.benchmarks[key] !== null) {
           expect(typeof m.raw.benchmarks[key]).toBe("number");
         }

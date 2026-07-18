@@ -47,8 +47,8 @@ export function makeModel(
       isInternational: false,
       context_window: null,
       parameters: null,
-      output_tokens: null,
       release_date: "2024-01-01",
+      knowledge_cutoff: null,
       omniscience: null,
       arena_votes: null,
       openrouter_weekly_tokens: null,
@@ -60,7 +60,6 @@ export function makeModel(
       benchmarks: {
         gpqa: null,
         hle: null,
-        mmlu_pro: null,
       },
       ...rawOverrides,
     },

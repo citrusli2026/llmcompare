@@ -46,8 +46,8 @@ export function QuickFacts({ model }: QuickFactsProps) {
       <div className="flex items-center gap-3">
         <BookOpen className="h-4 w-4 text-text-muted shrink-0" />
         <div className="min-w-0">
-          <p className="text-[10px] uppercase tracking-wider text-text-muted">{t("product.outputTokens")}</p>
-          <p className="text-sm font-medium text-text-primary truncate">{r.output_tokens != null ? `${(r.output_tokens / 1000).toFixed(0)}K` : "—"}</p>
+          <p className="text-[10px] uppercase tracking-wider text-text-muted"><FieldTip tip={t("tip.knowledgeCutoff")}>{t("product.knowledgeCutoff")}</FieldTip></p>
+          <p className="text-sm font-medium text-text-primary truncate">{r.knowledge_cutoff ?? "—"}</p>
         </div>
       </div>
       <div className="flex items-center gap-3">
