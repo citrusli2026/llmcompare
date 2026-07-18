@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-07-17T17:01:37.474230+00:00",
+  "generated_at": "2026-07-18T01:08:56.435688+00:00",
   "version": "1.0",
-  "partial_update": true,
+  "partial_update": false,
   "sources": {
     "artificial_analysis": {
       "ok": true,
-      "cached": true,
+      "cached": false,
       "error": null,
-      "coverage": 0.983
+      "coverage": 0.984
     },
     "openrouter": {
       "ok": true,
-      "cached": true,
+      "cached": false,
       "error": null,
-      "coverage": 0.667,
-      "pricing_coverage": 0.95
+      "coverage": 0.672,
+      "pricing_coverage": 0.967
     },
     "arena": {
       "ok": true,
-      "cached": true,
+      "cached": false,
       "error": null,
-      "coverage": 0.483
+      "coverage": 0.475
     }
   },
   "stats": {
-    "total_models": 60,
-    "data_complete": 40,
+    "total_models": 61,
+    "data_complete": 41,
     "frontier": 30,
     "open_weights": 25
   }

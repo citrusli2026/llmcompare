@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-17",
-  "date": "2026-07-17",
-  "compare_with": "2026-07-16",
+  "generated_at": "2026-07-18",
+  "date": "2026-07-18",
+  "compare_with": "2026-07-17",
   "summary": {
     "new_models": 1,
     "dropped_models": 0,
@@ -12,11 +12,11 @@
   "changes": [
     {
       "type": "new",
-      "model": "Kimi K3",
-      "id": "kimi-k3",
-      "rank": 3,
-      "first_seen": "2026-07-17",
-      "detail": "智商 57 · 62 TPS · $3/M",
+      "model": "Grok Build 0.1 0616",
+      "id": "grok-build-0-1-0616",
+      "rank": 33,
+      "first_seen": "2026-07-18",
+      "detail": "智商 40 · 100 TPS · $1/M",
       "icon": "🆕"
     }
   ]
