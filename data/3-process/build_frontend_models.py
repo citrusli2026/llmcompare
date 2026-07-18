@@ -68,6 +68,11 @@ def build_model(m: dict) -> dict:
         and (m.get('intelligence_index') or 0) >= 40
     )
 
+    # parameters 优先取总参数量，缺失时用活跃参数量回填
+    params = m.get('parameters')
+    if params is None:
+        params = m.get('active_params_billions')
+
     return {
         # ── 身份 ──
         'id': make_id(display_name),
@@ -96,7 +101,6 @@ def build_model(m: dict) -> dict:
         'benchmarks': {
             'gpqa': m.get('gpqa'),
             'hle': m.get('hle'),
-            'mmlu_pro': m.get('mmlu_pro'),
         },
 
         # ── AA 原始定价 (美元) ──
@@ -123,9 +127,9 @@ def build_model(m: dict) -> dict:
         'meta': {
             'context_window': m.get('context_window_tokens'),
             'size_class': m.get('size_class'),
-            'parameters': m.get('parameters'),
-            'output_tokens': m.get('output_tokens'),
+            'parameters': params,
             'release_date': m.get('release_date'),
+            'knowledge_cutoff': m.get('knowledge_cutoff'),
             'omniscience': m.get('omniscience'),
         },
 

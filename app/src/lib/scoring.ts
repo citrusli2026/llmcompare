@@ -46,14 +46,13 @@ interface RawPricing {
 interface RawBenchmarks {
   gpqa: number | null;
   hle: number | null;
-  mmlu_pro: number | null;
 }
 
 interface RawMeta {
   context_window: number | null;
   parameters: number | null;
-  output_tokens: number | null;
   release_date: string | null;
+  knowledge_cutoff: string | null;
   omniscience: number | null;
 }
 
@@ -119,8 +118,8 @@ export interface ModelWithScores {
     isInternational: boolean;
     context_window: number | null;
     parameters: number | null;
-    output_tokens: number | null;
     release_date: string | null;
+    knowledge_cutoff: string | null;
     omniscience: number | null;
     arena_votes: number | null;
     openrouter_weekly_tokens: number | null;
@@ -132,7 +131,6 @@ export interface ModelWithScores {
     benchmarks: {
       gpqa: number | null;
       hle: number | null;
-      mmlu_pro: number | null;
     };
   };
 
@@ -179,8 +177,8 @@ function initCache(): void {
         isInternational: !m.flags.chinese_eval,
         context_window: m.meta?.context_window ?? null,
         parameters: m.meta?.parameters ?? null,
-        output_tokens: m.meta?.output_tokens ?? null,
         release_date: m.meta?.release_date ?? null,
+        knowledge_cutoff: m.meta?.knowledge_cutoff ?? null,
         omniscience: m.meta?.omniscience ?? null,
         arena_votes: m.arena_votes ?? null,
         openrouter_weekly_tokens: m.openrouter_weekly_tokens ?? null,
@@ -192,7 +190,6 @@ function initCache(): void {
         benchmarks: {
           gpqa: (m.benchmarks?.gpqa ?? null) as number | null,
           hle: (m.benchmarks?.hle ?? null) as number | null,
-          mmlu_pro: (m.benchmarks?.mmlu_pro ?? null) as number | null,
         },
       },
       flags: m.flags,

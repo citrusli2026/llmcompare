@@ -338,6 +338,7 @@ def enrich(
     vendor_links = ref.get("vendor_links", {})
     cn_pricing = ref.get("cn_pricing", {})
     license_map = {k: v for k, v in ref.get("license", {}).items() if not k.startswith("_")}
+    company_license_defaults = ref.get("license", {}).get("_company_defaults", {})
     or_tokens = or_tokens or {}
     or_pricing = or_pricing or {}
     arena_data = arena_data or {}
@@ -371,9 +372,11 @@ def enrich(
             m["url"] = m["vendor_links"]["homepage"]
 
         # Inject license — keyed by clean_name, only filled for open-weight models.
-        # Closed-source models get "商业授权" so the front-end has a stable display value.
+        # 如果按模型名未命中，再按厂商默认值兜底；闭源模型显示 "商业授权"。
         clean = clean_name(name)
         lic = license_map.get(clean)
+        if not lic and m.get("flags", {}).get("open_weights"):
+            lic = company_license_defaults.get(company)
         if lic:
             m["license"] = lic
             license_matched += 1
