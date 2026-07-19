@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-18T13:23:16.578376+00:00",
+  "generated_at": "2026-07-19T04:57:58.516945+00:00",
   "version": "1.0",
   "partial_update": false,
   "sources": {
@@ -13,19 +13,19 @@
       "ok": true,
       "cached": false,
       "error": null,
-      "coverage": 0.672,
+      "coverage": 0.689,
       "pricing_coverage": 0.967
     },
     "arena": {
       "ok": true,
       "cached": false,
       "error": null,
-      "coverage": 0.492
+      "coverage": 0.443
     }
   },
   "stats": {
     "total_models": 61,
-    "data_complete": 41,
+    "data_complete": 40,
     "frontier": 30,
     "open_weights": 25
   }

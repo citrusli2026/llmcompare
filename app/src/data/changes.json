@@ -1,23 +1,13 @@
 {
-  "generated_at": "2026-07-18",
-  "date": "2026-07-18",
-  "compare_with": "2026-07-17",
+  "generated_at": "2026-07-19",
+  "date": "2026-07-19",
+  "compare_with": "2026-07-18",
   "summary": {
-    "new_models": 1,
+    "new_models": 0,
     "dropped_models": 0,
     "price_changes": 0,
     "ranking_changes": 0,
     "intel_changes": 0
   },
-  "changes": [
-    {
-      "type": "new",
-      "model": "Grok Build 0.1 0616",
-      "id": "grok-build-0-1-0616",
-      "rank": 33,
-      "first_seen": "2026-07-18",
-      "detail": "智商 40 · 101 TPS · $1/M",
-      "icon": "🆕"
-    }
-  ]
+  "changes": []
 }
