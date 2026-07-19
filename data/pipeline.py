@@ -69,11 +69,13 @@ def run(cmd, cwd=None, exit_on_error=True):
         return "", 0
     result = subprocess.run(cmd, shell=True, cwd=cwd or str(BASE),
                             capture_output=True, text=True, timeout=300)
+    # 合并 stdout + stderr，确保构建/测试等命令的错误信息不会丢失
+    combined = (result.stdout or "") + (result.stderr or "")
     if result.returncode != 0 and exit_on_error:
         fail(f"命令失败 (exit={result.returncode}): {cmd}")
-        print(result.stderr[:500])
+        print(combined[-500:])
         sys.exit(2)
-    return result.stdout.strip(), result.returncode
+    return combined.strip(), result.returncode
 
 
 def is_cache_fresh(path: Path, hours: int = CACHE_FRESH_HOURS) -> bool:

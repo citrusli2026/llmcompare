@@ -21,7 +21,7 @@ interface Change {
   first_seen?: string;
 }
 
-interface ChangesData {
+export interface ChangesData {
   generated_at: string;
   date: string;
   compare_with: string;

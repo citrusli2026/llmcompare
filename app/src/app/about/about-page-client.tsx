@@ -6,7 +6,10 @@ import { ArrowLeft, Brain, DollarSign, TrendingUp, Trophy, Database, ExternalLin
 import { useTranslation } from "@/lib/i18n";
 import metadataData from "@/data/metadata.json";
 import rankingMeta from "@/data/ranking-meta.json";
-import changesData from "@/data/changes.json";
+import rawChangesData from "@/data/changes.json";
+import type { ChangesData } from "@/components/changes-card";
+
+const changesData = rawChangesData as ChangesData;
 
 export default function AboutPageClient() {
   const { t } = useTranslation();
