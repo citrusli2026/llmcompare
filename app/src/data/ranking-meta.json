@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-20T02:33:31.105169+00:00",
+  "generated_at": "2026-07-20T14:13:21.580729+00:00",
   "version": "1.0",
-  "partial_update": false,
+  "partial_update": true,
   "sources": {
     "artificial_analysis": {
       "ok": true,
@@ -14,13 +14,13 @@
       "cached": false,
       "error": null,
       "coverage": 0.689,
-      "pricing_coverage": 0.967
+      "pricing_coverage": 0.984
     },
     "arena": {
-      "ok": true,
-      "cached": false,
-      "error": null,
-      "coverage": 0.443
+      "ok": false,
+      "cached": true,
+      "error": "============================================================\nFetching Arena Leaderboard snapshots...\nLatest snapshot date: 2026-07-20\n  [text  ] 10 models, last updated Jul 16, 2026\n  [code  ] 99 models, last updated Jul 16, 2026\n  [vision] 50 models, last updated Jul 13, 2026\n\n[OK] Saved 159 total entries to /home/runner/work/llmcompare/llmcompare/data/2-raw/arena_leaderboards.json\n\n  [text] CN models (1):\n    # 9 kimi-k3                                  1486.0\nTraceback (most recent call last)",
+      "coverage": 0.623
     }
   },
   "stats": {
