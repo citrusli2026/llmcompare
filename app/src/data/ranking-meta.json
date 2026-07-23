@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-23T01:20:15.520863+00:00",
+  "generated_at": "2026-07-23T14:09:30.244759+00:00",
   "version": "1.0",
   "partial_update": false,
   "sources": {
@@ -20,7 +20,7 @@
       "ok": true,
       "cached": false,
       "error": null,
-      "coverage": 0.619
+      "coverage": 0.508
     }
   },
   "stats": {
