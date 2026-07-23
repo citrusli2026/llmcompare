@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-22T14:03:42.193557+00:00",
+  "generated_at": "2026-07-23T01:20:15.520863+00:00",
   "version": "1.0",
   "partial_update": false,
   "sources": {
@@ -13,7 +13,7 @@
       "ok": true,
       "cached": false,
       "error": null,
-      "coverage": 0.683,
+      "coverage": 0.698,
       "pricing_coverage": 0.984
     },
     "arena": {
