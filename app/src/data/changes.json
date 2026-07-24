@@ -3,7 +3,7 @@
   "date": "2026-07-24",
   "compare_with": "2026-07-23",
   "summary": {
-    "new_models": 1,
+    "new_models": 2,
     "dropped_models": 0,
     "price_changes": 0,
     "ranking_changes": 0,
@@ -17,6 +17,15 @@
       "rank": 23,
       "first_seen": "2026-07-24",
       "detail": "智商 44",
+      "icon": "🆕"
+    },
+    {
+      "type": "new",
+      "model": "Agnes 2.5 Pro Alpha",
+      "id": "agnes-2-5-pro-alpha",
+      "rank": 38,
+      "first_seen": "2026-07-24",
+      "detail": "智商 39 · 132 TPS · $0.45/M",
       "icon": "🆕"
     }
   ]
