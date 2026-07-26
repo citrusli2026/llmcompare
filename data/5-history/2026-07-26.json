@@ -11,9 +11,9 @@
       "agentic": 55.2554261168385
     },
     "speed": {
-      "median_tps": 52.281326098616,
-      "ttft_seconds": 66.3643280575052,
-      "e2e_seconds": 75.92797223624834,
+      "median_tps": 52.5621085016615,
+      "ttft_seconds": 68.0374437747526,
+      "e2e_seconds": 77.54999976333504,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -88,9 +88,9 @@
       "agentic": 52.8147079037801
     },
     "speed": {
-      "median_tps": 69.696861264329,
-      "ttft_seconds": 90.7002382159999,
-      "e2e_seconds": 97.87416242047338,
+      "median_tps": 71.3920852323737,
+      "ttft_seconds": 112.2485335425,
+      "e2e_seconds": 119.25211101712556,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -226,9 +226,9 @@
       "agentic": 50.0700206185567
     },
     "speed": {
-      "median_tps": 31.6649310613904,
-      "ttft_seconds": 268.68950610558846,
-      "e2e_seconds": 284.4798452359856,
+      "median_tps": 32.0810223990897,
+      "ttft_seconds": 252.11262051102182,
+      "e2e_seconds": 267.6981587080273,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -380,9 +380,9 @@
       "agentic": 47.3835257731959
     },
     "speed": {
-      "median_tps": 134.040768140303,
+      "median_tps": 135.702549951284,
       "ttft_seconds": 178.375254587,
-      "e2e_seconds": 182.1054629925251,
+      "e2e_seconds": 182.05978372944793,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -509,8 +509,8 @@
     },
     "speed": {
       "median_tps": 50.272922072117,
-      "ttft_seconds": 26.20063831,
-      "e2e_seconds": 36.146350223915505,
+      "ttft_seconds": 26.022593118,
+      "e2e_seconds": 35.968305031915506,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -730,8 +730,8 @@
     },
     "speed": {
       "median_tps": 133.754462720575,
-      "ttft_seconds": 148.6162718465,
-      "e2e_seconds": 152.3544648744556,
+      "ttft_seconds": 142.6259296075,
+      "e2e_seconds": 146.3641226354556,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -857,9 +857,9 @@
       "agentic": 43.0557079037801
     },
     "speed": {
-      "median_tps": 189.268570190032,
-      "ttft_seconds": 11.92080506934259,
-      "e2e_seconds": 14.562553773303229,
+      "median_tps": 191.105144284786,
+      "ttft_seconds": 11.81210579667948,
+      "e2e_seconds": 14.42846655384935,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -902,10 +902,10 @@
       "output": 28.0,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 3460245505694,
+    "openrouter_weekly_tokens": 3460245697256,
     "openrouter_pricing": {
-      "prompt": 0.73,
-      "completion": 2.28
+      "prompt": 0.67,
+      "completion": 2.11
     },
     "arena_rankings": {},
     "arena_votes": 5537,
@@ -1066,9 +1066,9 @@
       "agentic": 38.7246941580756
     },
     "speed": {
-      "median_tps": 237.054047493534,
-      "ttft_seconds": 19.0303242355,
-      "e2e_seconds": 21.139547871572436,
+      "median_tps": 231.428120698364,
+      "ttft_seconds": 18.5896125324999,
+      "e2e_seconds": 20.750110567445635,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1288,8 +1288,8 @@
     },
     "speed": {
       "median_tps": 197.381535949346,
-      "ttft_seconds": 14.839976237794012,
-      "e2e_seconds": 17.37314124532701,
+      "ttft_seconds": 14.82898997879397,
+      "e2e_seconds": 17.36215498632697,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1442,8 +1442,8 @@
     },
     "speed": {
       "median_tps": 66.5957601784574,
-      "ttft_seconds": 67.37739991995086,
-      "e2e_seconds": 74.88538539320238,
+      "ttft_seconds": 67.30354123795071,
+      "e2e_seconds": 74.81152671120223,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1574,9 +1574,9 @@
       "agentic": 30.2685189003436
     },
     "speed": {
-      "median_tps": 33.7257751627021,
-      "ttft_seconds": 134.95566949129667,
-      "e2e_seconds": 149.78112561759377,
+      "median_tps": 34.7145163371238,
+      "ttft_seconds": 131.12741003816055,
+      "e2e_seconds": 145.53060653222488,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1706,9 +1706,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 38.1746633166519,
-      "ttft_seconds": 17.8109081250001,
-      "e2e_seconds": 30.90860058799816,
+      "median_tps": 38.0364828100929,
+      "ttft_seconds": 17.374051564,
+      "e2e_seconds": 30.51932586542216,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1859,9 +1859,9 @@
       "agentic": 29.1125979381443
     },
     "speed": {
-      "median_tps": 69.6621167900017,
-      "ttft_seconds": 31.51152918600006,
-      "e2e_seconds": 38.689031436000064,
+      "median_tps": 68.7153749856097,
+      "ttft_seconds": 31.98396204978897,
+      "e2e_seconds": 39.26035397961122,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1937,8 +1937,8 @@
     },
     "speed": {
       "median_tps": 51.2631081280926,
-      "ttft_seconds": 46.31129074940124,
-      "e2e_seconds": 56.064893647427546,
+      "ttft_seconds": 46.301493171401276,
+      "e2e_seconds": 56.055096069427584,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1979,7 +1979,7 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": 82721428058,
     "openrouter_pricing": {
-      "prompt": 0.78,
+      "prompt": 0.75,
       "completion": 3.5
     },
     "arena_rankings": {
@@ -2009,9 +2009,9 @@
       "agentic": 30.7299140893471
     },
     "speed": {
-      "median_tps": 63.683535418943,
-      "ttft_seconds": 34.14268301277204,
-      "e2e_seconds": 41.99400591296505,
+      "median_tps": 61.6221890966597,
+      "ttft_seconds": 35.15381385023023,
+      "e2e_seconds": 43.26777421628777,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2137,9 +2137,9 @@
       "agentic": 32.3414467353952
     },
     "speed": {
-      "median_tps": 80.1662067240021,
-      "ttft_seconds": 26.743593787411463,
-      "e2e_seconds": 32.98063580838934,
+      "median_tps": 81.8907612782279,
+      "ttft_seconds": 26.21476648485352,
+      "e2e_seconds": 32.320461342191884,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2204,8 +2204,8 @@
     },
     "speed": {
       "median_tps": 121.442388964494,
-      "ttft_seconds": 47.393919431986255,
-      "e2e_seconds": 51.51109799099982,
+      "ttft_seconds": 47.375547486486305,
+      "e2e_seconds": 51.49272604549987,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2269,9 +2269,9 @@
       "agentic": 29.8734639175258
     },
     "speed": {
-      "median_tps": 63.351194725468,
-      "ttft_seconds": 61.66257993032442,
-      "e2e_seconds": 69.55509091084733,
+      "median_tps": 64.8483691000961,
+      "ttft_seconds": 60.276524430960926,
+      "e2e_seconds": 67.98681856693572,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2342,8 +2342,8 @@
     },
     "speed": {
       "median_tps": 49.5369020745182,
-      "ttft_seconds": 43.559347650577315,
-      "e2e_seconds": 53.65283309397165,
+      "ttft_seconds": 43.55309908557747,
+      "e2e_seconds": 53.64658452897181,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2541,8 +2541,8 @@
     },
     "speed": {
       "median_tps": 53.5442174362809,
-      "ttft_seconds": 40.26693749912557,
-      "e2e_seconds": 49.60501402615697,
+      "ttft_seconds": 40.24611975662558,
+      "e2e_seconds": 49.584196283656986,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2787,8 +2787,8 @@
     },
     "speed": {
       "median_tps": 57.9076455275696,
-      "ttft_seconds": 44.362183230926625,
-      "e2e_seconds": 52.99662166206526,
+      "ttft_seconds": 44.36871833642664,
+      "e2e_seconds": 53.00315676756527,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2980,8 +2980,8 @@
     },
     "speed": {
       "median_tps": 117.128299673438,
-      "ttft_seconds": 26.424831704,
-      "e2e_seconds": 30.693654878194753,
+      "ttft_seconds": 27.88279081,
+      "e2e_seconds": 32.15161398419475,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3123,9 +3123,9 @@
       "agentic": 27.0255773195876
     },
     "speed": {
-      "median_tps": 57.1101506054377,
-      "ttft_seconds": 103.08751581007705,
-      "e2e_seconds": 111.84252686676987,
+      "median_tps": 55.894777786513,
+      "ttft_seconds": 105.24857850674921,
+      "e2e_seconds": 114.19395801804671,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3185,9 +3185,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 140.605364055244,
+      "median_tps": 134.749216558785,
       "ttft_seconds": 17.5397413765001,
-      "e2e_seconds": 21.095793475647252,
+      "e2e_seconds": 21.250338089185792,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3307,9 +3307,9 @@
       "agentic": 26.8192817869416
     },
     "speed": {
-      "median_tps": 420.713785282372,
+      "median_tps": 399.365756385661,
       "ttft_seconds": 9.39762297449995,
-      "e2e_seconds": 10.586079396635995,
+      "e2e_seconds": 10.649608133480776,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3445,9 +3445,9 @@
       "agentic": 21.6932680412371
     },
     "speed": {
-      "median_tps": 53.4535419149307,
-      "ttft_seconds": 58.35444481023761,
-      "e2e_seconds": 67.70836191447236,
+      "median_tps": 55.3786477993356,
+      "ttft_seconds": 56.415861462823926,
+      "e2e_seconds": 65.44461207103215,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3743,8 +3743,8 @@
     },
     "speed": {
       "median_tps": 131.137544416273,
-      "ttft_seconds": 18.219147197455634,
-      "e2e_seconds": 22.03193782294453,
+      "ttft_seconds": 18.468580491955663,
+      "e2e_seconds": 22.281371117444564,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3943,8 +3943,8 @@
     },
     "speed": {
       "median_tps": 158.334651498993,
-      "ttft_seconds": 36.28891427071684,
-      "e2e_seconds": 39.446782717493186,
+      "ttft_seconds": 36.28835057521686,
+      "e2e_seconds": 39.44621902199321,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4070,8 +4070,8 @@
     },
     "speed": {
       "median_tps": 380.893582984026,
-      "ttft_seconds": 6.121419479087577,
-      "e2e_seconds": 7.434122087734489,
+      "ttft_seconds": 6.129489933587663,
+      "e2e_seconds": 7.442192542234575,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4278,9 +4278,9 @@
       "agentic": 9.15806529209622
     },
     "speed": {
-      "median_tps": 195.390035410083,
-      "ttft_seconds": 10.65996960961557,
-      "e2e_seconds": 13.218953740769466,
+      "median_tps": 196.496735650751,
+      "ttft_seconds": 10.597223194761838,
+      "e2e_seconds": 13.141794728452297,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4339,9 +4339,9 @@
       "agentic": 3.65033676975945
     },
     "speed": {
-      "median_tps": 172.806371409874,
-      "ttft_seconds": 12.489853112353485,
-      "e2e_seconds": 15.383264946191867,
+      "median_tps": 171.937705807627,
+      "ttft_seconds": 12.514400744996461,
+      "e2e_seconds": 15.422430706495579,
       "p05_tps": null,
       "p95_tps": null
     },
