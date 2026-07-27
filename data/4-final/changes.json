@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-26",
-  "date": "2026-07-26",
-  "compare_with": "2026-07-25",
+  "generated_at": "2026-07-27",
+  "date": "2026-07-27",
+  "compare_with": "2026-07-26",
   "summary": {
     "new_models": 0,
     "dropped_models": 1,
@@ -12,9 +12,9 @@
   "changes": [
     {
       "type": "dropped",
-      "model": "Qwen3 Max Thinking",
-      "id": "qwen3-max-thinking",
-      "old_rank": 58,
+      "model": "Kimi K2.5",
+      "id": "kimi-k2-5",
+      "old_rank": 51,
       "detail": "",
       "icon": "📉"
     }
