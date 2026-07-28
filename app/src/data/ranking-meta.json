@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28T01:11:30.484287+00:00",
+  "generated_at": "2026-07-28T14:15:47.385408+00:00",
   "version": "1.0",
   "partial_update": true,
   "sources": {
@@ -19,13 +19,13 @@
     "arena": {
       "ok": false,
       "cached": true,
-      "error": "============================================================\nFetching Arena Leaderboard snapshots...\nLatest snapshot date: 2026-07-27\n  [text  ] 20 models, last updated Jul 26, 2026\n  [code  ] 103 models, last updated Jul 26, 2026\n  [vision] 20 models, last updated Jul 26, 2026\n\n[OK] Saved 143 total entries to /home/runner/work/llmcompare/llmcompare/data/2-raw/arena_leaderboards.json\n\n  [text] CN models (2):\n    #11 kimi-k3                                  1485.0\n    #20 qwen3.7-max-preview     ",
-      "coverage": 0.594
+      "error": "============================================================\nFetching Arena Leaderboard snapshots...\nLatest snapshot date: 2026-07-28\n  [text  ] 20 models, last updated Jul 27, 2026\n  [code  ] 104 models, last updated Jul 27, 2026\n  [vision] 20 models, last updated Jul 26, 2026\n\n[OK] Saved 144 total entries to /home/runner/work/llmcompare/llmcompare/data/2-raw/arena_leaderboards.json\n\n  [text] CN models (1):\n    #11 kimi-k3-max                              1486.0\nTraceback (most recent call last",
+      "coverage": 0.578
     }
   },
   "stats": {
     "total_models": 64,
-    "data_complete": 46,
+    "data_complete": 47,
     "frontier": 33,
     "open_weights": 25
   }
