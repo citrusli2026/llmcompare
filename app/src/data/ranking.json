@@ -11,9 +11,9 @@
       "agentic": 55.2554261168385
     },
     "speed": {
-      "median_tps": 52.842890904707,
-      "ttft_seconds": 66.3643280575052,
-      "e2e_seconds": 75.82633877341519,
+      "median_tps": 54.7780191655243,
+      "ttft_seconds": 80.009202723,
+      "e2e_seconds": 89.13695154665015,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -51,7 +51,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 143881693970,
+    "openrouter_weekly_tokens": 259136899086,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 25.0
@@ -88,9 +88,9 @@
       "agentic": 52.8147079037801
     },
     "speed": {
-      "median_tps": 70.9104184791783,
-      "ttft_seconds": 141.4593630175,
-      "e2e_seconds": 148.51051305614794,
+      "median_tps": 73.0574896736593,
+      "ttft_seconds": 197.5897357185,
+      "e2e_seconds": 204.43366099205446,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -128,7 +128,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 325408858146,
+    "openrouter_weekly_tokens": 293347772840,
     "openrouter_pricing": {
       "prompt": 10.0,
       "completion": 50.0
@@ -165,9 +165,9 @@
       "agentic": 54.0035635738832
     },
     "speed": {
-      "median_tps": 77.1141912079386,
-      "ttft_seconds": 123.953832289,
-      "e2e_seconds": 130.4377231548427,
+      "median_tps": 80.6151009951743,
+      "ttft_seconds": 144.306234779,
+      "e2e_seconds": 150.5085466762453,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -205,7 +205,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 567004636508,
+    "openrouter_weekly_tokens": 539791238047,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -218,7 +218,7 @@
     "id": "kimi-k3",
     "name": "Kimi K3",
     "company": "Kimi",
-    "type": "闭源",
+    "type": "开源",
     "logo": "/logos/kimi.svg",
     "scores": {
       "intelligence": 57.1123394372091,
@@ -226,9 +226,9 @@
       "agentic": 50.0700206185567
     },
     "speed": {
-      "median_tps": 32.9636197582863,
-      "ttft_seconds": 219.57036578262222,
-      "e2e_seconds": 234.7386028775278,
+      "median_tps": 33.2787592437796,
+      "ttft_seconds": 204.43941657283042,
+      "e2e_seconds": 219.464015186538,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -244,7 +244,7 @@
     },
     "flags": {
       "frontier": true,
-      "open_weights": false,
+      "open_weights": true,
       "reasoning": false,
       "image_input": false,
       "chinese_eval": true,
@@ -265,13 +265,13 @@
       "homepage": "https://kimi.moonshot.cn",
       "console": "https://platform.moonshot.cn"
     },
-    "license": null,
+    "license": "MIT",
     "cn_pricing": {
       "input": 20.0,
       "output": 100.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_tokens": 1231313451500,
+    "openrouter_weekly_tokens": 1254368332286,
     "openrouter_pricing": {
       "prompt": 3.0,
       "completion": 15.0
@@ -303,9 +303,9 @@
       "agentic": 47.1756219931271
     },
     "speed": {
-      "median_tps": 55.3619103862837,
-      "ttft_seconds": 29.495520851,
-      "e2e_seconds": 38.52700109637604,
+      "median_tps": 56.4790400056396,
+      "ttft_seconds": 30.953946421,
+      "e2e_seconds": 39.80678811147621,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -343,7 +343,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 1443244380880,
+    "openrouter_weekly_tokens": 1331245255662,
     "openrouter_pricing": {
       "prompt": 10.0,
       "completion": 50.0
@@ -380,9 +380,9 @@
       "agentic": 47.3835257731959
     },
     "speed": {
-      "median_tps": 135.702549951284,
-      "ttft_seconds": 164.0782388395,
-      "e2e_seconds": 167.76276798194792,
+      "median_tps": 137.422288199346,
+      "ttft_seconds": 177.830089453,
+      "e2e_seconds": 181.46850943968147,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -420,10 +420,10 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 181820038340,
+    "openrouter_weekly_tokens": 185520438870,
     "openrouter_pricing": {
-      "prompt": 2.5,
-      "completion": 15.0
+      "prompt": 1.25,
+      "completion": 7.5
     },
     "arena_rankings": {},
     "arena_votes": null,
@@ -441,9 +441,9 @@
       "agentic": 45.6901065292096
     },
     "speed": {
-      "median_tps": 56.4229176618407,
-      "ttft_seconds": 8.3050674395,
-      "e2e_seconds": 17.16671481116994,
+      "median_tps": 60.3600350364165,
+      "ttft_seconds": 9.75891625749999,
+      "e2e_seconds": 18.042542993275397,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -481,7 +481,7 @@
       "console": "https://console.x.ai"
     },
     "license": null,
-    "openrouter_weekly_tokens": 571369723373,
+    "openrouter_weekly_tokens": 572596469671,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 6.0
@@ -513,9 +513,9 @@
       "agentic": 44.3863264604811
     },
     "speed": {
-      "median_tps": 45.4577122029057,
-      "ttft_seconds": 22.903684837,
-      "e2e_seconds": 33.902918537283746,
+      "median_tps": 49.2029132040759,
+      "ttft_seconds": 23.493226401,
+      "e2e_seconds": 33.65522632011415,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -553,7 +553,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 903743531882,
+    "openrouter_weekly_tokens": 713704766383,
     "openrouter_pricing": {
       "prompt": 30.0,
       "completion": 150.0
@@ -590,9 +590,9 @@
       "agentic": 46.6941408934708
     },
     "speed": {
-      "median_tps": 74.2187912842047,
-      "ttft_seconds": 187.5024402835,
-      "e2e_seconds": 194.23927864139455,
+      "median_tps": 73.6579445775538,
+      "ttft_seconds": 160.9971074005,
+      "e2e_seconds": 167.7852414282362,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -630,7 +630,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 1041158296995,
+    "openrouter_weekly_tokens": 1026821110305,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 10.0
@@ -657,9 +657,9 @@
       "agentic": 43.4581786941581
     },
     "speed": {
-      "median_tps": 77.3343425227003,
-      "ttft_seconds": 18.682291625,
-      "e2e_seconds": 25.147724493369353,
+      "median_tps": 80.0110351986829,
+      "ttft_seconds": 28.543558893,
+      "e2e_seconds": 34.79269688700799,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -697,7 +697,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 305616388740,
+    "openrouter_weekly_tokens": 242945372392,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -729,9 +729,9 @@
       "agentic": 41.0770927835052
     },
     "speed": {
-      "median_tps": 148.348626628852,
-      "ttft_seconds": 121.075405984,
-      "e2e_seconds": 124.44584500566302,
+      "median_tps": 153.500856349938,
+      "ttft_seconds": 138.629650807,
+      "e2e_seconds": 141.8869616252546,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -769,7 +769,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 314229683136,
+    "openrouter_weekly_tokens": 340688553324,
     "openrouter_pricing": {
       "prompt": 2.5,
       "completion": 15.0
@@ -801,9 +801,9 @@
       "agentic": 45.5974982817869
     },
     "speed": {
-      "median_tps": 188.201000291679,
-      "ttft_seconds": 110.300797631,
-      "e2e_seconds": 112.95753165061247,
+      "median_tps": 198.490539673097,
+      "ttft_seconds": 139.79341845,
+      "e2e_seconds": 142.31243019143346,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -841,10 +841,10 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 344049057850,
+    "openrouter_weekly_tokens": 340706478646,
     "openrouter_pricing": {
-      "prompt": 1.0,
-      "completion": 6.0
+      "prompt": 0.5,
+      "completion": 3.0
     },
     "arena_rankings": {},
     "arena_votes": null,
@@ -862,9 +862,9 @@
       "agentic": 43.0557079037801
     },
     "speed": {
-      "median_tps": 219.003568251476,
-      "ttft_seconds": 10.450090468705433,
-      "e2e_seconds": 12.733158292631769,
+      "median_tps": 219.856058043068,
+      "ttft_seconds": 10.421194783882946,
+      "e2e_seconds": 12.6954100338537,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -907,10 +907,10 @@
       "output": 28.0,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 3287642816286,
+    "openrouter_weekly_tokens": 3312150220237,
     "openrouter_pricing": {
-      "prompt": 0.78,
-      "completion": 2.46
+      "prompt": 0.73,
+      "completion": 2.31
     },
     "arena_rankings": {},
     "arena_votes": 5700,
@@ -928,9 +928,9 @@
       "agentic": 37.5402130584192
     },
     "speed": {
-      "median_tps": 127.60919729234,
-      "ttft_seconds": 17.086368410792282,
-      "e2e_seconds": 21.00458128736535,
+      "median_tps": 128.757361366519,
+      "ttft_seconds": 16.997174373675143,
+      "e2e_seconds": 20.880447490593923,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1004,9 +1004,9 @@
       "agentic": 37.4466082474227
     },
     "speed": {
-      "median_tps": 186.060833804067,
+      "median_tps": 187.613683339709,
       "ttft_seconds": 24.878417184,
-      "e2e_seconds": 27.565710311615074,
+      "e2e_seconds": 27.543468000654233,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1044,7 +1044,7 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 377150892743,
+    "openrouter_weekly_tokens": 349992798680,
     "openrouter_pricing": {
       "prompt": 1.5,
       "completion": 9.0
@@ -1071,9 +1071,9 @@
       "agentic": 38.7246941580756
     },
     "speed": {
-      "median_tps": 235.390579546055,
-      "ttft_seconds": 17.1478698304999,
-      "e2e_seconds": 19.271999015976387,
+      "median_tps": 240.087368959518,
+      "ttft_seconds": 18.3755273234999,
+      "e2e_seconds": 20.45810252171579,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1111,7 +1111,7 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 230223414269,
+    "openrouter_weekly_tokens": 284291946373,
     "openrouter_pricing": {
       "prompt": 1.5,
       "completion": 7.5
@@ -1148,9 +1148,9 @@
       "agentic": 40.7694879725086
     },
     "speed": {
-      "median_tps": 46.3342269904135,
+      "median_tps": 52.1762421564155,
       "ttft_seconds": 132.899025906,
-      "e2e_seconds": 143.69018467732144,
+      "e2e_seconds": 142.48193144567233,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1188,7 +1188,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 782813357317,
+    "openrouter_weekly_tokens": 787678070650,
     "openrouter_pricing": {
       "prompt": 3.0,
       "completion": 15.0
@@ -1215,9 +1215,9 @@
       "agentic": 21.3959484536082
     },
     "speed": {
-      "median_tps": 125.367672904152,
-      "ttft_seconds": 42.322104297,
-      "e2e_seconds": 46.31037326951469,
+      "median_tps": 129.467415302443,
+      "ttft_seconds": 41.2716912474999,
+      "e2e_seconds": 45.13366685604953,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1255,7 +1255,7 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 193265196092,
+    "openrouter_weekly_tokens": 196559634966,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 12.0
@@ -1292,9 +1292,9 @@
       "agentic": 30.5882783505155
     },
     "speed": {
-      "median_tps": 201.789494614334,
-      "ttft_seconds": 14.527198553777701,
-      "e2e_seconds": 17.005028239389503,
+      "median_tps": 201.970440744412,
+      "ttft_seconds": 14.541180012738085,
+      "e2e_seconds": 17.016789800770066,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1337,7 +1337,7 @@
       "output": 10.0,
       "source": "bailian.console.aliyun.com (参考 Qwen3 Max 定价)"
     },
-    "openrouter_weekly_tokens": 51089574184,
+    "openrouter_weekly_tokens": 56012435807,
     "openrouter_pricing": {
       "prompt": 1.48,
       "completion": 4.42
@@ -1369,9 +1369,9 @@
       "agentic": 35.3635635738832
     },
     "speed": {
-      "median_tps": 79.7880058165425,
-      "ttft_seconds": 26.688569285135394,
-      "e2e_seconds": 32.955175335544226,
+      "median_tps": 89.2551896672401,
+      "ttft_seconds": 24.041052893268017,
+      "e2e_seconds": 29.642968052085028,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1414,7 +1414,7 @@
       "output": 16.8,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": 2048490367495,
+    "openrouter_weekly_tokens": 2092744272075,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
@@ -1441,9 +1441,9 @@
       "agentic": 36.3637319587629
     },
     "speed": {
-      "median_tps": 63.4588246590188,
-      "ttft_seconds": 70.46747998823965,
-      "e2e_seconds": 78.34660480163848,
+      "median_tps": 73.2021261221429,
+      "ttft_seconds": 61.27587899970707,
+      "e2e_seconds": 68.10628170093072,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1486,7 +1486,7 @@
       "output": 24,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 3171917263266,
+    "openrouter_weekly_tokens": 3336257142540,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
@@ -1513,9 +1513,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 137.784928255994,
-      "ttft_seconds": 63.298841319,
-      "e2e_seconds": 66.92768524502823,
+      "median_tps": 140.182228763119,
+      "ttft_seconds": 77.398515429,
+      "e2e_seconds": 80.96530135052294,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1574,9 +1574,9 @@
       "agentic": 30.2685189003436
     },
     "speed": {
-      "median_tps": 43.5600051448411,
-      "ttft_seconds": 105.24934131465947,
-      "e2e_seconds": 116.72776052828108,
+      "median_tps": 43.9326469616358,
+      "ttft_seconds": 104.4024534744039,
+      "e2e_seconds": 115.78351140238682,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1619,7 +1619,7 @@
       "output": 27.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_tokens": 324753298956,
+    "openrouter_weekly_tokens": 275095027867,
     "openrouter_pricing": {
       "prompt": 0.65,
       "completion": 2.72
@@ -1701,9 +1701,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 37.898302303534,
-      "ttft_seconds": 12.2882898620001,
-      "e2e_seconds": 25.48149297688937,
+      "median_tps": 41.780325868692,
+      "ttft_seconds": 17.8109081250001,
+      "e2e_seconds": 29.77826332398561,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1741,7 +1741,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 180846603869,
+    "openrouter_weekly_tokens": 171843531716,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 25.0
@@ -1854,9 +1854,9 @@
       "agentic": 29.1125979381443
     },
     "speed": {
-      "median_tps": 63.8835087968477,
-      "ttft_seconds": 34.26225266649268,
-      "e2e_seconds": 42.08899871436587,
+      "median_tps": 70.5197848306268,
+      "ttft_seconds": 31.31610373284372,
+      "e2e_seconds": 38.40631254730468,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1899,7 +1899,7 @@
       "output": 21.0,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": 598047697494,
+    "openrouter_weekly_tokens": 626623351672,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
@@ -1926,9 +1926,9 @@
       "agentic": 29.5911099656357
     },
     "speed": {
-      "median_tps": 51.2631081280926,
-      "ttft_seconds": 46.26970428440133,
-      "e2e_seconds": 56.02330718242763,
+      "median_tps": 44.6347627477469,
+      "ttft_seconds": 52.75858605171592,
+      "e2e_seconds": 63.96061714182717,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1967,7 +1967,7 @@
     },
     "license": "MIT",
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 67590895543,
+    "openrouter_weekly_tokens": 50563301534,
     "openrouter_pricing": {
       "prompt": 0.73,
       "completion": 3.5
@@ -1994,9 +1994,9 @@
       "agentic": 30.7299140893471
     },
     "speed": {
-      "median_tps": 56.1368673834905,
-      "ttft_seconds": 38.15304072885819,
-      "e2e_seconds": 47.05984339357273,
+      "median_tps": 59.7483702680493,
+      "ttft_seconds": 35.95980898329839,
+      "e2e_seconds": 44.328238076122986,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2035,7 +2035,7 @@
     },
     "license": "Tencent License",
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 3937569231371,
+    "openrouter_weekly_tokens": 4757418288825,
     "openrouter_pricing": {
       "prompt": 0.13,
       "completion": 0.53
@@ -2062,9 +2062,9 @@
       "agentic": 31.0280721649485
     },
     "speed": {
-      "median_tps": 141.961522939454,
-      "ttft_seconds": 15.844918200128953,
-      "e2e_seconds": 19.36699932216121,
+      "median_tps": 135.684098525392,
+      "ttft_seconds": 16.496714490601846,
+      "e2e_seconds": 20.181744685252326,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2122,9 +2122,9 @@
       "agentic": 32.3414467353952
     },
     "speed": {
-      "median_tps": 88.4176464013743,
-      "ttft_seconds": 24.374009136604418,
-      "e2e_seconds": 30.028988887255508,
+      "median_tps": 87.4312292782539,
+      "ttft_seconds": 24.607956710244327,
+      "e2e_seconds": 30.32673710630541,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2188,9 +2188,9 @@
       "agentic": 31.0645326460481
     },
     "speed": {
-      "median_tps": 115.4926479392,
-      "ttft_seconds": 49.85056653040384,
-      "e2e_seconds": 54.17984643628339,
+      "median_tps": 118.176238351351,
+      "ttft_seconds": 48.74692820589444,
+      "e2e_seconds": 52.97789719742254,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2233,7 +2233,7 @@
       "output": 2,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 6370682795644,
+    "openrouter_weekly_tokens": 6731002621952,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -2254,9 +2254,9 @@
       "agentic": 29.8734639175258
     },
     "speed": {
-      "median_tps": 72.4582945498146,
-      "ttft_seconds": 54.09730567558706,
-      "e2e_seconds": 60.99782690792511,
+      "median_tps": 76.4735857072687,
+      "ttft_seconds": 51.29415512586301,
+      "e2e_seconds": 57.83236038164816,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2265,9 +2265,9 @@
       "hle": 0.280352177942539
     },
     "pricing": {
-      "input": 1.39,
+      "input": 1.38,
       "output": 4.4,
-      "blended": 2.1425,
+      "blended": 2.135,
       "display": "¥6/¥24 (<32K)"
     },
     "flags": {
@@ -2299,7 +2299,7 @@
       "output": 24,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 210817419378,
+    "openrouter_weekly_tokens": 218521110176,
     "openrouter_pricing": {
       "prompt": 0.97,
       "completion": 3.04
@@ -2326,9 +2326,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 54.9896646182218,
-      "ttft_seconds": 39.618007982232896,
-      "e2e_seconds": 48.710625721791104,
+      "median_tps": 58.170701943889,
+      "ttft_seconds": 37.71280957923379,
+      "e2e_seconds": 46.30820181779223,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2403,9 +2403,9 @@
       "agentic": 30.1670996563574
     },
     "speed": {
-      "median_tps": 164.821348519895,
-      "ttft_seconds": 8.00567809400013,
-      "e2e_seconds": 11.039265699550189,
+      "median_tps": 182.328918712815,
+      "ttft_seconds": 9.95592201700003,
+      "e2e_seconds": 12.698218760324366,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2443,7 +2443,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 205806846837,
+    "openrouter_weekly_tokens": 206781207810,
     "openrouter_pricing": {
       "prompt": 0.75,
       "completion": 4.5
@@ -2464,9 +2464,9 @@
       "agentic": 28.0356116838488
     },
     "speed": {
-      "median_tps": 81.8681542934241,
-      "ttft_seconds": 24.962688906615128,
-      "e2e_seconds": 31.0700697840189,
+      "median_tps": 83.7979747196825,
+      "ttft_seconds": 24.38274575708328,
+      "e2e_seconds": 30.349477073354098,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2525,9 +2525,9 @@
       "agentic": 20.8054719358534
     },
     "speed": {
-      "median_tps": 53.7973426090232,
-      "ttft_seconds": 40.11119421667119,
-      "e2e_seconds": 49.40533358771397,
+      "median_tps": 52.3288084616836,
+      "ttft_seconds": 41.086556240736165,
+      "e2e_seconds": 50.64152251454521,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2649,9 +2649,9 @@
       "agentic": 25.1684639175258
     },
     "speed": {
-      "median_tps": 122.328416432873,
-      "ttft_seconds": 18.009636869866387,
-      "e2e_seconds": 22.096994612082987,
+      "median_tps": 103.446234535917,
+      "ttft_seconds": 20.993920743037958,
+      "e2e_seconds": 25.827349453547452,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2704,9 +2704,9 @@
       "agentic": 27.5439759450172
     },
     "speed": {
-      "median_tps": 156.41088768044,
-      "ttft_seconds": 4.45387061999986,
-      "e2e_seconds": 7.650579029593059,
+      "median_tps": 154.269090916595,
+      "ttft_seconds": 4.91752838800001,
+      "e2e_seconds": 8.158618336927777,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2744,7 +2744,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 179996650697,
+    "openrouter_weekly_tokens": 182535196839,
     "openrouter_pricing": {
       "prompt": 0.2,
       "completion": 1.25
@@ -2765,9 +2765,9 @@
       "agentic": 25.5759931271478
     },
     "speed": {
-      "median_tps": 53.3474051382944,
-      "ttft_seconds": 47.970396440440105,
-      "e2e_seconds": 57.342923533441756,
+      "median_tps": 54.6469273018859,
+      "ttft_seconds": 46.844784183793614,
+      "e2e_seconds": 55.99442945548201,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2810,7 +2810,7 @@
       "output": 8.4,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": 37244382833,
+    "openrouter_weekly_tokens": 19554821108,
     "openrouter_pricing": {
       "prompt": 0.25,
       "completion": 1.0
@@ -2882,7 +2882,7 @@
       "output": 22.0,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 210817419378,
+    "openrouter_weekly_tokens": 218521110176,
     "openrouter_pricing": {
       "prompt": 1.2,
       "completion": 4.0
@@ -2903,9 +2903,9 @@
       "agentic": 27.3604776632302
     },
     "speed": {
-      "median_tps": 203.756098529961,
-      "ttft_seconds": 12.315210551024908,
-      "e2e_seconds": 14.769124831909503,
+      "median_tps": 199.978197510769,
+      "ttft_seconds": 12.518067767766992,
+      "e2e_seconds": 15.0183403285949,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2943,10 +2943,10 @@
       "console": "https://build.nvidia.com"
     },
     "license": "NVIDIA Open License",
-    "openrouter_weekly_tokens": 2339405617885,
+    "openrouter_weekly_tokens": 2480960523182,
     "openrouter_pricing": {
-      "prompt": 0.5,
-      "completion": 2.2
+      "prompt": 0.6,
+      "completion": 3.6
     },
     "arena_rankings": {},
     "arena_votes": null,
@@ -2964,9 +2964,9 @@
       "agentic": 24.0959828178694
     },
     "speed": {
-      "median_tps": 108.599292555991,
-      "ttft_seconds": 26.8880991475,
-      "e2e_seconds": 31.492180704865696,
+      "median_tps": 117.728143589697,
+      "ttft_seconds": 27.88279081,
+      "e2e_seconds": 32.1298636402876,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3031,9 +3031,9 @@
       "agentic": 23.7079793814433
     },
     "speed": {
-      "median_tps": 65.2027717436291,
-      "ttft_seconds": 35.04425369836165,
-      "e2e_seconds": 42.71263936095205,
+      "median_tps": 68.9462234058889,
+      "ttft_seconds": 33.396819341172936,
+      "e2e_seconds": 40.648848173216166,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3076,7 +3076,7 @@
       "output": 2,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 10463362117544,
+    "openrouter_weekly_tokens": 10775161128985,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -3103,9 +3103,9 @@
       "agentic": 27.0255773195876
     },
     "speed": {
-      "median_tps": 55.7437275691263,
-      "ttft_seconds": 105.48811799305824,
-      "e2e_seconds": 114.45773703010529,
+      "median_tps": 55.8306114646561,
+      "ttft_seconds": 105.32394073258405,
+      "e2e_seconds": 114.27960120061472,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3165,9 +3165,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 187.833788475785,
-      "ttft_seconds": 10.6207020045,
-      "e2e_seconds": 13.28262989328588,
+      "median_tps": 194.615490592721,
+      "ttft_seconds": 11.6248448300001,
+      "e2e_seconds": 14.19401339143989,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3288,8 +3288,8 @@
     },
     "speed": {
       "median_tps": 428.253825328169,
-      "ttft_seconds": 8.36823313749995,
-      "e2e_seconds": 9.5357650319713,
+      "ttft_seconds": 8.10960654599996,
+      "e2e_seconds": 9.27713844047131,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3327,7 +3327,7 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 154578938939,
+    "openrouter_weekly_tokens": 196622569204,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 2.5
@@ -3399,7 +3399,7 @@
       "output": 14.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 10463362117544,
+    "openrouter_weekly_tokens": 10775161128985,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -3471,7 +3471,7 @@
       "output": 14.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 10463362117544,
+    "openrouter_weekly_tokens": 10775161128985,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -3543,7 +3543,7 @@
       "output": 28.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 210817419378,
+    "openrouter_weekly_tokens": 218521110176,
     "openrouter_pricing": {
       "prompt": 1.2,
       "completion": 4.0
@@ -3570,9 +3570,9 @@
       "agentic": 15.5303986254295
     },
     "speed": {
-      "median_tps": 106.112200450976,
-      "ttft_seconds": 1.56094052700001,
-      "e2e_seconds": 6.272934038349356,
+      "median_tps": 102.967287729977,
+      "ttft_seconds": 1.56628786600004,
+      "e2e_seconds": 6.4221990104327045,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3636,9 +3636,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 149.022865551215,
-      "ttft_seconds": 17.09515750322301,
-      "e2e_seconds": 20.45034731352876,
+      "median_tps": 152.152332521067,
+      "ttft_seconds": 16.637551214682816,
+      "e2e_seconds": 19.923731529603522,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3681,7 +3681,7 @@
       "output": 15.9,
       "source": "cloud.tencent.com/doc/1729/97731"
     },
-    "openrouter_weekly_tokens": 3937569231371,
+    "openrouter_weekly_tokens": 4757418288825,
     "openrouter_pricing": {
       "prompt": 0.06,
       "completion": 0.21
@@ -3748,7 +3748,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 305616388740,
+    "openrouter_weekly_tokens": 242945372392,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -3830,9 +3830,9 @@
       "agentic": 21.413264604811
     },
     "speed": {
-      "median_tps": 156.069328061059,
-      "ttft_seconds": 36.78156720196583,
-      "e2e_seconds": 39.98527164672633,
+      "median_tps": 158.154960240781,
+      "ttft_seconds": 36.32841761482116,
+      "e2e_seconds": 39.48987394372025,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3898,9 +3898,9 @@
       "agentic": 18.8602680412371
     },
     "speed": {
-      "median_tps": 122.125236545768,
-      "ttft_seconds": 19.689059733715332,
-      "e2e_seconds": 23.78321761739418,
+      "median_tps": 125.527042676175,
+      "ttft_seconds": 19.321368376244667,
+      "e2e_seconds": 23.304573822180817,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3963,9 +3963,9 @@
       "agentic": 21.5294020618557
     },
     "speed": {
-      "median_tps": 382.431324506573,
-      "ttft_seconds": 6.1458944069924,
-      "e2e_seconds": 7.453318689365499,
+      "median_tps": 405.212207221314,
+      "ttft_seconds": 5.8518827389887385,
+      "e2e_seconds": 7.085804104360923,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4008,7 +4008,7 @@
       "output": 8,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 1918581048619,
+    "openrouter_weekly_tokens": 2022915336531,
     "openrouter_pricing": {
       "prompt": 0.2,
       "completion": 1.15
@@ -4100,9 +4100,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 283.856424951038,
-      "ttft_seconds": 8.080144010598778,
-      "e2e_seconds": 9.84159788674847,
+      "median_tps": 268.088284094334,
+      "ttft_seconds": 8.519236163479242,
+      "e2e_seconds": 10.384293421349046,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4172,9 +4172,9 @@
       "agentic": 9.15806529209622
     },
     "speed": {
-      "median_tps": 202.065756303349,
-      "ttft_seconds": 10.290971561130258,
-      "e2e_seconds": 12.76541359003782,
+      "median_tps": 203.213504202572,
+      "ttft_seconds": 10.239150015386958,
+      "e2e_seconds": 12.699616419733681,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4233,9 +4233,9 @@
       "agentic": 3.65033676975945
     },
     "speed": {
-      "median_tps": 172.806371409874,
-      "ttft_seconds": 12.473633809353528,
-      "e2e_seconds": 15.36704564319191,
+      "median_tps": 165.820927731414,
+      "ttft_seconds": 12.958518898845663,
+      "e2e_seconds": 15.973819843307075,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4340,7 +4340,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 314229683136,
+    "openrouter_weekly_tokens": 340688553324,
     "openrouter_pricing": {
       "prompt": 30.0,
       "completion": 180.0
