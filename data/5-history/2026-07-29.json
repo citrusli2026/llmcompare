@@ -11,9 +11,9 @@
       "agentic": 55.2554261168385
     },
     "speed": {
-      "median_tps": 60.3483360380253,
-      "ttft_seconds": 60.578047738,
-      "e2e_seconds": 68.8632803198056,
+      "median_tps": 54.3847116704495,
+      "ttft_seconds": 50.6055486995,
+      "e2e_seconds": 59.799308942816324,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -65,7 +65,7 @@
       "code": {
         "rank": 8,
         "score": 1560.0,
-        "votes": 11138
+        "votes": 11254
       },
       "vision": {
         "rank": 6,
@@ -88,9 +88,9 @@
       "agentic": 52.8147079037801
     },
     "speed": {
-      "median_tps": 73.9910036532909,
-      "ttft_seconds": 149.048494369,
-      "e2e_seconds": 155.8060726597732,
+      "median_tps": 73.4136719270447,
+      "ttft_seconds": 98.923720283,
+      "e2e_seconds": 105.73444077790833,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -141,8 +141,8 @@
       },
       "code": {
         "rank": 4,
-        "score": 1629.0,
-        "votes": 5801
+        "score": 1628.0,
+        "votes": 5887
       },
       "vision": {
         "rank": 1,
@@ -165,9 +165,9 @@
       "agentic": 54.0035635738832
     },
     "speed": {
-      "median_tps": 73.13197488479,
-      "ttft_seconds": 143.8528429405,
-      "e2e_seconds": 150.68979764858338,
+      "median_tps": 70.5789387642396,
+      "ttft_seconds": 136.7136178765,
+      "e2e_seconds": 143.7978842136603,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -227,8 +227,8 @@
     },
     "speed": {
       "median_tps": 32.8601230736226,
-      "ttft_seconds": 65.51917639065857,
-      "e2e_seconds": 80.73518756869821,
+      "ttft_seconds": 65.20090520415857,
+      "e2e_seconds": 80.41691638219821,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -292,9 +292,9 @@
       "agentic": 47.1756219931271
     },
     "speed": {
-      "median_tps": 62.2977754872013,
-      "ttft_seconds": 26.5407932015,
-      "e2e_seconds": 34.56676196346201,
+      "median_tps": 57.5929834666095,
+      "ttft_seconds": 11.5122128909999,
+      "e2e_seconds": 20.19382599565671,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -346,7 +346,7 @@
       "code": {
         "rank": 8,
         "score": 1560.0,
-        "votes": 11138
+        "votes": 11254
       },
       "vision": {
         "rank": 6,
@@ -369,9 +369,9 @@
       "agentic": 47.3835257731959
     },
     "speed": {
-      "median_tps": 142.740300191728,
-      "ttft_seconds": 153.6362962505,
-      "e2e_seconds": 157.139161239073,
+      "median_tps": 140.17156960847,
+      "ttft_seconds": 157.590468193,
+      "e2e_seconds": 161.15752534586352,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -430,9 +430,9 @@
       "agentic": 45.6901065292096
     },
     "speed": {
-      "median_tps": 57.2794597755633,
-      "ttft_seconds": 8.27093727099999,
-      "e2e_seconds": 17.00006987733283,
+      "median_tps": 52.048071469043,
+      "ttft_seconds": 7.94307437700006,
+      "e2e_seconds": 17.5495782471269,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -479,7 +479,7 @@
       "code": {
         "rank": 10,
         "score": 1550.0,
-        "votes": 3392
+        "votes": 3509
       },
       "vision": {
         "rank": 16,
@@ -487,7 +487,7 @@
         "votes": 2839
       }
     },
-    "arena_votes": 3392,
+    "arena_votes": 3509,
     "data_completeness_pct": 85.0
   },
   {
@@ -502,9 +502,9 @@
       "agentic": 44.3863264604811
     },
     "speed": {
-      "median_tps": 50.3915402930094,
-      "ttft_seconds": 20.1028980105,
-      "e2e_seconds": 30.025198402444218,
+      "median_tps": 49.8512431950467,
+      "ttft_seconds": 14.1147979095001,
+      "e2e_seconds": 24.14463804896689,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -556,7 +556,7 @@
       "code": {
         "rank": 8,
         "score": 1560.0,
-        "votes": 11138
+        "votes": 11254
       },
       "vision": {
         "rank": 6,
@@ -579,9 +579,9 @@
       "agentic": 46.6941408934708
     },
     "speed": {
-      "median_tps": 78.9558122394038,
-      "ttft_seconds": 155.548706243,
-      "e2e_seconds": 161.8813622669028,
+      "median_tps": 79.825179963759,
+      "ttft_seconds": 148.255586967,
+      "e2e_seconds": 154.51927469344173,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -627,11 +627,11 @@
     "arena_rankings": {
       "code": {
         "rank": 18,
-        "score": 1523.0,
-        "votes": 16840
+        "score": 1524.0,
+        "votes": 16915
       }
     },
-    "arena_votes": 4116,
+    "arena_votes": 4228,
     "data_completeness_pct": 85.0
   },
   {
@@ -646,9 +646,9 @@
       "agentic": 43.4581786941581
     },
     "speed": {
-      "median_tps": 79.7591715686403,
+      "median_tps": 74.2246130582405,
       "ttft_seconds": 17.869832965,
-      "e2e_seconds": 24.138704496215727,
+      "e2e_seconds": 24.606142922017547,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -718,9 +718,9 @@
       "agentic": 41.0770927835052
     },
     "speed": {
-      "median_tps": 144.472038325109,
-      "ttft_seconds": 114.755343863,
-      "e2e_seconds": 118.21622117736887,
+      "median_tps": 143.710715624714,
+      "ttft_seconds": 121.684776964,
+      "e2e_seconds": 125.1639886416156,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -764,11 +764,6 @@
       "completion": 15.0
     },
     "arena_rankings": {
-      "code": {
-        "rank": 59,
-        "score": 1390.0,
-        "votes": 1130
-      },
       "vision": {
         "rank": 18,
         "score": 1278.0,
@@ -790,9 +785,9 @@
       "agentic": 45.5974982817869
     },
     "speed": {
-      "median_tps": 196.645742949313,
+      "median_tps": 198.442753161221,
       "ttft_seconds": 118.4691750145,
-      "e2e_seconds": 121.01181841222093,
+      "e2e_seconds": 120.9887933529625,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -851,9 +846,9 @@
       "agentic": 43.0557079037801
     },
     "speed": {
-      "median_tps": 212.945887214002,
-      "ttft_seconds": 10.724169015686538,
-      "e2e_seconds": 13.072183370608172,
+      "median_tps": 183.200541809413,
+      "ttft_seconds": 12.286915023436494,
+      "e2e_seconds": 15.016164593670624,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -898,11 +893,11 @@
     },
     "openrouter_weekly_tokens": 3283938623127,
     "openrouter_pricing": {
-      "prompt": 0.76,
-      "completion": 2.4
+      "prompt": 0.73,
+      "completion": 2.28
     },
     "arena_rankings": {},
-    "arena_votes": 5779,
+    "arena_votes": 5865,
     "data_completeness_pct": 88.7
   },
   {
@@ -917,9 +912,9 @@
       "agentic": 37.5402130584192
     },
     "speed": {
-      "median_tps": 129.286395354065,
-      "ttft_seconds": 17.037694410727212,
-      "e2e_seconds": 20.905077352534,
+      "median_tps": 130.650271987075,
+      "ttft_seconds": 17.010893027294465,
+      "e2e_seconds": 20.83790381261808,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -969,8 +964,8 @@
       },
       "code": {
         "rank": 15,
-        "score": 1537.0,
-        "votes": 3303
+        "score": 1536.0,
+        "votes": 3397
       },
       "vision": {
         "rank": 7,
@@ -993,9 +988,9 @@
       "agentic": 37.4466082474227
     },
     "speed": {
-      "median_tps": 190.749861456032,
-      "ttft_seconds": 21.5679641915,
-      "e2e_seconds": 24.189198074363137,
+      "median_tps": 193.214777930936,
+      "ttft_seconds": 23.933937478,
+      "e2e_seconds": 26.52173125523749,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1041,11 +1036,11 @@
     "arena_rankings": {
       "code": {
         "rank": 26,
-        "score": 1493.0,
-        "votes": 2313
+        "score": 1492.0,
+        "votes": 2310
       }
     },
-    "arena_votes": 2313,
+    "arena_votes": 2310,
     "data_completeness_pct": 85.0
   },
   {
@@ -1060,9 +1055,9 @@
       "agentic": 38.7246941580756
     },
     "speed": {
-      "median_tps": 235.854592873567,
+      "median_tps": 234.016416489984,
       "ttft_seconds": 14.794860204,
-      "e2e_seconds": 16.914810440746216,
+      "e2e_seconds": 16.931462445413267,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1112,9 +1107,9 @@
         "votes": 6065
       },
       "code": {
-        "rank": 17,
-        "score": 1527.0,
-        "votes": 2653
+        "rank": 16,
+        "score": 1528.0,
+        "votes": 2768
       },
       "vision": {
         "rank": 3,
@@ -1138,8 +1133,8 @@
     },
     "speed": {
       "median_tps": 54.7450464436004,
-      "ttft_seconds": 118.616875635,
-      "e2e_seconds": 127.7501220651608,
+      "ttft_seconds": 132.899025906,
+      "e2e_seconds": 142.0322723361608,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1185,11 +1180,11 @@
     "arena_rankings": {
       "code": {
         "rank": 18,
-        "score": 1523.0,
-        "votes": 16840
+        "score": 1524.0,
+        "votes": 16915
       }
     },
-    "arena_votes": 16840,
+    "arena_votes": 16915,
     "data_completeness_pct": 85.0
   },
   {
@@ -1204,9 +1199,9 @@
       "agentic": 21.3959484536082
     },
     "speed": {
-      "median_tps": 129.467415302443,
-      "ttft_seconds": 27.3569515450001,
-      "e2e_seconds": 31.218927153549732,
+      "median_tps": 122.423121549236,
+      "ttft_seconds": 32.1365459475,
+      "e2e_seconds": 36.22074175685869,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1256,9 +1251,9 @@
         "votes": 86683
       },
       "code": {
-        "rank": 16,
-        "score": 1528.0,
-        "votes": 5005
+        "rank": 17,
+        "score": 1527.0,
+        "votes": 5092
       },
       "vision": {
         "rank": 20,
@@ -1281,9 +1276,9 @@
       "agentic": 30.5882783505155
     },
     "speed": {
-      "median_tps": 203.393114026845,
-      "ttft_seconds": 14.30030880192568,
-      "e2e_seconds": 16.758602448651633,
+      "median_tps": 202.317637418479,
+      "ttft_seconds": 14.393945391910504,
+      "e2e_seconds": 16.865306793614632,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1328,17 +1323,17 @@
     },
     "openrouter_weekly_tokens": 56012435807,
     "openrouter_pricing": {
-      "prompt": 1.25,
-      "completion": 3.75
+      "prompt": 1.48,
+      "completion": 4.42
     },
     "arena_rankings": {
       "code": {
         "rank": 29,
         "score": 1478.0,
-        "votes": 2546
+        "votes": 2539
       }
     },
-    "arena_votes": 7335,
+    "arena_votes": 7422,
     "data_completeness_pct": 92.5
   },
   {
@@ -1353,9 +1348,9 @@
       "agentic": 35.3635635738832
     },
     "speed": {
-      "median_tps": 83.0287830674007,
-      "ttft_seconds": 25.560005002345253,
-      "e2e_seconds": 31.58201305218157,
+      "median_tps": 69.7263978924145,
+      "ttft_seconds": 30.145218698273503,
+      "e2e_seconds": 37.31610397434188,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1406,11 +1401,11 @@
     "arena_rankings": {
       "code": {
         "rank": 25,
-        "score": 1493.0,
-        "votes": 7575
+        "score": 1494.0,
+        "votes": 7658
       }
     },
-    "arena_votes": 7575,
+    "arena_votes": 7658,
     "data_completeness_pct": 96.2
   },
   {
@@ -1425,9 +1420,9 @@
       "agentic": 36.3637319587629
     },
     "speed": {
-      "median_tps": 73.2021261221429,
-      "ttft_seconds": 61.291161506707006,
-      "e2e_seconds": 68.12156420793066,
+      "median_tps": 72.2843002015046,
+      "ttft_seconds": 62.07151963411474,
+      "e2e_seconds": 68.98865099744214,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1479,10 +1474,10 @@
       "code": {
         "rank": 33,
         "score": 1464.0,
-        "votes": 10108
+        "votes": 10200
       }
     },
-    "arena_votes": 10108,
+    "arena_votes": 10200,
     "data_completeness_pct": 96.2
   },
   {
@@ -1497,9 +1492,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 126.545551048537,
-      "ttft_seconds": 67.977763434,
-      "e2e_seconds": 71.92890984615812,
+      "median_tps": 121.865641339079,
+      "ttft_seconds": 73.700416981,
+      "e2e_seconds": 77.80329613960386,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1543,7 +1538,7 @@
       "completion": 14.0
     },
     "arena_rankings": {},
-    "arena_votes": 3425,
+    "arena_votes": null,
     "data_completeness_pct": 63.9
   },
   {
@@ -1558,9 +1553,9 @@
       "agentic": 30.2685189003436
     },
     "speed": {
-      "median_tps": 43.8451338047234,
-      "ttft_seconds": 104.37351583760977,
-      "e2e_seconds": 115.77728990811187,
+      "median_tps": 42.0720083253259,
+      "ttft_seconds": 108.68145936107764,
+      "e2e_seconds": 120.56584567640876,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1612,10 +1607,10 @@
       "code": {
         "rank": 22,
         "score": 1510.0,
-        "votes": 9266
+        "votes": 9255
       }
     },
-    "arena_votes": 9266,
+    "arena_votes": 9255,
     "data_completeness_pct": 96.2
   },
   {
@@ -1686,8 +1681,8 @@
     },
     "speed": {
       "median_tps": 42.5804614202749,
-      "ttft_seconds": 20.5061108725,
-      "e2e_seconds": 32.248585785228926,
+      "ttft_seconds": 18.916995277,
+      "e2e_seconds": 30.65947018972893,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1739,7 +1734,7 @@
       "code": {
         "rank": 8,
         "score": 1560.0,
-        "votes": 11138
+        "votes": 11254
       },
       "vision": {
         "rank": 6,
@@ -1814,8 +1809,8 @@
       },
       "code": {
         "rank": 15,
-        "score": 1537.0,
-        "votes": 3303
+        "score": 1536.0,
+        "votes": 3397
       },
       "vision": {
         "rank": 7,
@@ -1838,9 +1833,9 @@
       "agentic": 29.1125979381443
     },
     "speed": {
-      "median_tps": 63.8835087968477,
-      "ttft_seconds": 34.196742811492776,
-      "e2e_seconds": 42.02348885936597,
+      "median_tps": 63.7859604953054,
+      "ttft_seconds": 34.762352858525084,
+      "e2e_seconds": 42.60106840215634,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1892,10 +1887,10 @@
       "code": {
         "rank": 30,
         "score": 1474.0,
-        "votes": 10771
+        "votes": 10850
       }
     },
-    "arena_votes": 10771,
+    "arena_votes": 10850,
     "data_completeness_pct": 96.2
   },
   {
@@ -1910,9 +1905,9 @@
       "agentic": 29.5911099656357
     },
     "speed": {
-      "median_tps": 41.9963712426821,
-      "ttft_seconds": 55.978561233624816,
-      "e2e_seconds": 67.88435178659135,
+      "median_tps": 38.7296570387497,
+      "ttft_seconds": 60.486944532896615,
+      "e2e_seconds": 73.39694782829737,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1960,10 +1955,10 @@
       "code": {
         "rank": 22,
         "score": 1510.0,
-        "votes": 9266
+        "votes": 9255
       }
     },
-    "arena_votes": 4541,
+    "arena_votes": 4535,
     "data_completeness_pct": 88.7
   },
   {
@@ -1978,9 +1973,9 @@
       "agentic": 30.7299140893471
     },
     "speed": {
-      "median_tps": 60.7332650279351,
-      "ttft_seconds": 35.55259005264156,
-      "e2e_seconds": 43.78531061805194,
+      "median_tps": 61.8785764571384,
+      "ttft_seconds": 34.98922591948079,
+      "e2e_seconds": 43.06956694585098,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2027,11 +2022,11 @@
     "arena_rankings": {
       "code": {
         "rank": 20,
-        "score": 1518.0,
-        "votes": 1487
+        "score": 1517.0,
+        "votes": 1484
       }
     },
-    "arena_votes": 1487,
+    "arena_votes": 1484,
     "data_completeness_pct": 88.7
   },
   {
@@ -2047,8 +2042,8 @@
     },
     "speed": {
       "median_tps": 130.360458721362,
-      "ttft_seconds": 17.110557747130756,
-      "e2e_seconds": 20.946076622288455,
+      "ttft_seconds": 17.105256047630675,
+      "e2e_seconds": 20.940774922788375,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2106,9 +2101,9 @@
       "agentic": 32.3414467353952
     },
     "speed": {
-      "median_tps": 85.0040446932782,
-      "ttft_seconds": 25.286862727703245,
-      "e2e_seconds": 31.168935772629048,
+      "median_tps": 82.1777027071369,
+      "ttft_seconds": 26.084983499442426,
+      "e2e_seconds": 32.169358987303035,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2153,11 +2148,11 @@
     "arena_rankings": {
       "code": {
         "rank": 50,
-        "score": 1418.0,
-        "votes": 4138
+        "score": 1417.0,
+        "votes": 4243
       }
     },
-    "arena_votes": 4138,
+    "arena_votes": 4243,
     "data_completeness_pct": 86.5
   },
   {
@@ -2172,9 +2167,9 @@
       "agentic": 31.0645326460481
     },
     "speed": {
-      "median_tps": 119.92070352246,
-      "ttft_seconds": 48.03410972800721,
-      "e2e_seconds": 52.20353156521612,
+      "median_tps": 114.163435484539,
+      "ttft_seconds": 50.424994004818764,
+      "e2e_seconds": 54.80468000391183,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2238,9 +2233,9 @@
       "agentic": 29.8734639175258
     },
     "speed": {
-      "median_tps": 76.010477831048,
-      "ttft_seconds": 51.4843513872016,
-      "e2e_seconds": 58.062391866191525,
+      "median_tps": 71.0089465830175,
+      "ttft_seconds": 54.895451603286254,
+      "e2e_seconds": 61.936817854445096,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2292,10 +2287,10 @@
       "code": {
         "rank": 19,
         "score": 1518.0,
-        "votes": 6817
+        "votes": 6901
       }
     },
-    "arena_votes": 6817,
+    "arena_votes": 6901,
     "data_completeness_pct": 96.2
   },
   {
@@ -2310,9 +2305,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 56.4139270903176,
-      "ttft_seconds": 38.74588230973653,
-      "e2e_seconds": 47.60894194392065,
+      "median_tps": 54.2782038866039,
+      "ttft_seconds": 40.138486910703215,
+      "e2e_seconds": 49.35028767412903,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2357,17 +2352,17 @@
     },
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 1.04,
-      "completion": 6.24
+      "prompt": 1.03,
+      "completion": 6.16
     },
     "arena_rankings": {
       "code": {
         "rank": 29,
         "score": 1478.0,
-        "votes": 2546
+        "votes": 2539
       }
     },
-    "arena_votes": 2546,
+    "arena_votes": 2539,
     "data_completeness_pct": 75.2
   },
   {
@@ -2382,9 +2377,9 @@
       "agentic": 30.1670996563574
     },
     "speed": {
-      "median_tps": 177.947213424657,
-      "ttft_seconds": 10.228062851,
-      "e2e_seconds": 13.037884878427816,
+      "median_tps": 174.381533395469,
+      "ttft_seconds": 9.65990761499998,
+      "e2e_seconds": 12.527183697875575,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2428,7 +2423,7 @@
       "completion": 4.5
     },
     "arena_rankings": {},
-    "arena_votes": 10926,
+    "arena_votes": 19583,
     "data_completeness_pct": 81.2
   },
   {
@@ -2443,9 +2438,9 @@
       "agentic": 28.0356116838488
     },
     "speed": {
-      "median_tps": 102.100222461838,
-      "ttft_seconds": 20.10826632376542,
-      "e2e_seconds": 25.00541530095678,
+      "median_tps": 87.6354319558395,
+      "ttft_seconds": 23.34915402202397,
+      "e2e_seconds": 29.05460886877997,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2504,9 +2499,9 @@
       "agentic": 20.8054719358534
     },
     "speed": {
-      "median_tps": 52.4026688238486,
-      "ttft_seconds": 40.995893540270046,
-      "e2e_seconds": 50.53739230783756,
+      "median_tps": 52.965132491556,
+      "ttft_seconds": 40.61497259674748,
+      "e2e_seconds": 50.05514533830935,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2628,9 +2623,9 @@
       "agentic": 25.1684639175258
     },
     "speed": {
-      "median_tps": 96.6817850178718,
-      "ttft_seconds": 22.304124843851923,
-      "e2e_seconds": 27.4757298148149,
+      "median_tps": 99.1697235328101,
+      "ttft_seconds": 21.88564026347216,
+      "e2e_seconds": 26.92750165209019,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2684,8 +2679,8 @@
     },
     "speed": {
       "median_tps": 152.103335993348,
-      "ttft_seconds": 4.25353589200001,
-      "e2e_seconds": 7.540774772953066,
+      "ttft_seconds": 3.90508652500003,
+      "e2e_seconds": 7.192325405953087,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2744,9 +2739,9 @@
       "agentic": 25.5759931271478
     },
     "speed": {
-      "median_tps": 54.7483240541382,
-      "ttft_seconds": 46.739657525637234,
-      "e2e_seconds": 55.87235717696486,
+      "median_tps": 51.0803257038888,
+      "ttft_seconds": 49.95678786194662,
+      "e2e_seconds": 59.74529240082693,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2794,15 +2789,9 @@
       "prompt": 0.25,
       "completion": 1.0
     },
-    "arena_rankings": {
-      "code": {
-        "rank": 56,
-        "score": 1397.0,
-        "votes": 11426
-      }
-    },
-    "arena_votes": 11426,
-    "data_completeness_pct": 96.2
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 88.7
   },
   {
     "id": "glm-5-turbo",
@@ -2867,7 +2856,7 @@
       "completion": 4.0
     },
     "arena_rankings": {},
-    "arena_votes": 6970,
+    "arena_votes": 6967,
     "data_completeness_pct": 39.8
   },
   {
@@ -2882,9 +2871,9 @@
       "agentic": 27.3604776632302
     },
     "speed": {
-      "median_tps": 192.628603998077,
-      "ttft_seconds": 12.94750574652423,
-      "e2e_seconds": 15.543174248617468,
+      "median_tps": 190.513151244254,
+      "ttft_seconds": 13.10434868022045,
+      "e2e_seconds": 15.72883941345575,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2943,9 +2932,9 @@
       "agentic": 24.0959828178694
     },
     "speed": {
-      "median_tps": 124.391441734871,
-      "ttft_seconds": 22.177157487,
-      "e2e_seconds": 26.196726623160544,
+      "median_tps": 124.842692972199,
+      "ttft_seconds": 19.9865995375,
+      "e2e_seconds": 23.99163970522006,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2988,15 +2977,9 @@
       "prompt": 1.25,
       "completion": 2.5
     },
-    "arena_rankings": {
-      "code": {
-        "rank": 71,
-        "score": 1358.0,
-        "votes": 9565
-      }
-    },
-    "arena_votes": 9565,
-    "data_completeness_pct": 82.7
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 75.2
   },
   {
     "id": "mimo-v2-5",
@@ -3010,9 +2993,9 @@
       "agentic": 23.7079793814433
     },
     "speed": {
-      "median_tps": 75.4793675883348,
-      "ttft_seconds": 30.12523253867652,
-      "e2e_seconds": 36.74955937097068,
+      "median_tps": 73.6166671427184,
+      "ttft_seconds": 30.54585063802004,
+      "e2e_seconds": 37.337790825025046,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3064,10 +3047,10 @@
       "code": {
         "rank": 30,
         "score": 1474.0,
-        "votes": 10771
+        "votes": 10850
       }
     },
-    "arena_votes": 10771,
+    "arena_votes": 10850,
     "data_completeness_pct": 96.2
   },
   {
@@ -3082,9 +3065,9 @@
       "agentic": 27.0255773195876
     },
     "speed": {
-      "median_tps": 55.6667690987179,
-      "ttft_seconds": 105.61062498637763,
-      "e2e_seconds": 114.59264438673682,
+      "median_tps": 55.5311852107608,
+      "ttft_seconds": 105.87822666658184,
+      "e2e_seconds": 114.88217639505099,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3144,9 +3127,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 187.495859148332,
+      "median_tps": 189.424828237975,
       "ttft_seconds": 10.035854124,
-      "e2e_seconds": 12.702579684079913,
+      "e2e_seconds": 12.675423628436073,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3266,9 +3249,9 @@
       "agentic": 26.8192817869416
     },
     "speed": {
-      "median_tps": 409.529676525661,
-      "ttft_seconds": 7.78813289199991,
-      "e2e_seconds": 9.009045633273912,
+      "median_tps": 408.632378219648,
+      "ttft_seconds": 7.92157159400006,
+      "e2e_seconds": 9.145165285176533,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3314,11 +3297,11 @@
     "arena_rankings": {
       "code": {
         "rank": 37,
-        "score": 1453.0,
-        "votes": 214
+        "score": 1454.0,
+        "votes": 215
       }
     },
-    "arena_votes": 214,
+    "arena_votes": 215,
     "data_completeness_pct": 85.0
   },
   {
@@ -3385,9 +3368,9 @@
     },
     "arena_rankings": {
       "code": {
-        "rank": 43,
+        "rank": 44,
         "score": 1436.0,
-        "votes": 9723
+        "votes": 9807
       }
     },
     "arena_votes": null,
@@ -3457,9 +3440,9 @@
     },
     "arena_rankings": {
       "code": {
-        "rank": 43,
+        "rank": 44,
         "score": 1436.0,
-        "votes": 9723
+        "votes": 9807
       }
     },
     "arena_votes": null,
@@ -3527,15 +3510,9 @@
       "prompt": 1.2,
       "completion": 4.0
     },
-    "arena_rankings": {
-      "code": {
-        "rank": 53,
-        "score": 1401.0,
-        "votes": 2090
-      }
-    },
-    "arena_votes": 2090,
-    "data_completeness_pct": 47.4
+    "arena_rankings": {},
+    "arena_votes": 6967,
+    "data_completeness_pct": 39.8
   },
   {
     "id": "kat-coder-pro-v2",
@@ -3550,8 +3527,8 @@
     },
     "speed": {
       "median_tps": 103.996305640067,
-      "ttft_seconds": 1.46517779699996,
-      "e2e_seconds": 6.2730408929305845,
+      "ttft_seconds": 1.4961981175,
+      "e2e_seconds": 6.304061213430625,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3615,9 +3592,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 162.331686441273,
-      "ttft_seconds": 15.592276154643383,
-      "e2e_seconds": 18.672389538304223,
+      "median_tps": 153.799093064091,
+      "ttft_seconds": 16.25345248389006,
+      "e2e_seconds": 19.504446947112548,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3669,10 +3646,10 @@
       "code": {
         "rank": 35,
         "score": 1458.0,
-        "votes": 12904
+        "votes": 12998
       }
     },
-    "arena_votes": 12904,
+    "arena_votes": 12998,
     "data_completeness_pct": 81.2
   },
   {
@@ -3748,9 +3725,9 @@
       "agentic": 21.8205017182131
     },
     "speed": {
-      "median_tps": 42.1488032997167,
-      "ttft_seconds": 50.17231565614624,
-      "e2e_seconds": 62.03504866055779,
+      "median_tps": 41.1318626629699,
+      "ttft_seconds": 51.34548842042508,
+      "e2e_seconds": 63.501514615906345,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3809,9 +3786,9 @@
       "agentic": 21.413264604811
     },
     "speed": {
-      "median_tps": 158.154960240781,
-      "ttft_seconds": 36.33711203182118,
-      "e2e_seconds": 39.49856836072026,
+      "median_tps": 150.532940648996,
+      "ttft_seconds": 38.077667785165524,
+      "e2e_seconds": 41.399199921881504,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3855,15 +3832,9 @@
       "prompt": 0.14,
       "completion": 1.0
     },
-    "arena_rankings": {
-      "code": {
-        "rank": 91,
-        "score": 1250.0,
-        "votes": 1521
-      }
-    },
+    "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 78.9
   },
   {
     "id": "ring-2-6-1t",
@@ -3877,9 +3848,9 @@
       "agentic": 18.8602680412371
     },
     "speed": {
-      "median_tps": 125.527042676175,
-      "ttft_seconds": 19.139329586744747,
-      "e2e_seconds": 23.122535032680897,
+      "median_tps": 123.365245911429,
+      "ttft_seconds": 19.418529148427645,
+      "e2e_seconds": 23.47153448478452,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3942,9 +3913,9 @@
       "agentic": 21.5294020618557
     },
     "speed": {
-      "median_tps": 408.359672528762,
-      "ttft_seconds": 5.81358806234756,
-      "e2e_seconds": 7.0379988786844345,
+      "median_tps": 393.533627675508,
+      "ttft_seconds": 5.996315557553324,
+      "e2e_seconds": 7.266855010441654,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4061,10 +4032,10 @@
       "code": {
         "rank": 35,
         "score": 1458.0,
-        "votes": 12904
+        "votes": 12998
       }
     },
-    "arena_votes": 12904,
+    "arena_votes": 12998,
     "data_completeness_pct": 63.9
   },
   {
@@ -4079,9 +4050,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 264.810657191803,
-      "ttft_seconds": 8.598930399603343,
-      "e2e_seconds": 10.487071931754178,
+      "median_tps": 252.683311446415,
+      "ttft_seconds": 8.961410138301492,
+      "e2e_seconds": 10.940171605126862,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4133,10 +4104,10 @@
       "code": {
         "rank": 35,
         "score": 1458.0,
-        "votes": 12904
+        "votes": 12998
       }
     },
-    "arena_votes": 12904,
+    "arena_votes": 12998,
     "data_completeness_pct": 78.9
   },
   {
@@ -4151,9 +4122,9 @@
       "agentic": 9.15806529209622
     },
     "speed": {
-      "median_tps": 200.398035847321,
-      "ttft_seconds": 10.376913934597173,
-      "e2e_seconds": 12.871948368871466,
+      "median_tps": 198.666493908225,
+      "ttft_seconds": 10.477716572223812,
+      "e2e_seconds": 12.994497284279756,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4212,9 +4183,9 @@
       "agentic": 3.65033676975945
     },
     "speed": {
-      "median_tps": 176.221166385931,
-      "ttft_seconds": 12.302611399105025,
-      "e2e_seconds": 15.139955006881296,
+      "median_tps": 176.854093253652,
+      "ttft_seconds": 12.282688818058961,
+      "e2e_seconds": 15.1098781174487,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4257,15 +4228,9 @@
       "prompt": 0.22,
       "completion": 0.85
     },
-    "arena_rankings": {
-      "code": {
-        "rank": 94,
-        "score": 1239.0,
-        "votes": 1273
-      }
-    },
-    "arena_votes": 1273,
-    "data_completeness_pct": 86.5
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 78.9
   },
   {
     "id": "gpt-5-4-pro",
