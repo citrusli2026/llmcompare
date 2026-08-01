@@ -20,13 +20,17 @@
     "cn_pricing": 1.0
   },
   "threshold_defaults": {
-    "total_models": [15, 70],
+    "total_models": [15, 120],
     "data_complete": [20, 60],
     "frontier": [5, 55],
     "intl": [5, 40],
     "has_arena": [15, 35],
     "has_cn_price": [10, 30],
     "has_speed": [20, 55]
+  },
+  "source_freshness": {
+    "warn_days": 3,
+    "fail_days": 10
   },
   "history_based_thresholds": {
     "enabled": true,

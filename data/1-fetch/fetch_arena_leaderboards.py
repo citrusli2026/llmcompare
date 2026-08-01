@@ -94,7 +94,8 @@ def main():
         cached = load_previous_raw(OUTPUT_PATH.name, OUTPUT_DIR)
         if cached:
             print(f"[OK] 使用缓存 Arena 数据（{OUTPUT_PATH}）")
-            sys.exit(0)
+            # exit 3 = 降级使用缓存，让管线感知 degraded 状态
+            sys.exit(3)
         sys.exit(1)
 
     print(f"Latest snapshot date: {snapshot_date}")
@@ -107,7 +108,8 @@ def main():
         cached = load_previous_raw(OUTPUT_PATH.name, OUTPUT_DIR)
         if cached:
             print(f"[OK] 使用缓存 Arena 数据（{OUTPUT_PATH}）")
-            sys.exit(0)
+            # exit 3 = 降级使用缓存，让管线感知 degraded 状态
+            sys.exit(3)
         sys.exit(1)
 
     write_json(OUTPUT_PATH, result)
@@ -122,7 +124,7 @@ def main():
     }
     for lb in LEADERBOARDS:
         models = result["leaderboards"].get(lb, [])
-        cn = [m for m in models if m.get("vendor", "").lower() in cn_vendors]
+        cn = [m for m in models if (m.get("vendor") or "").lower() in cn_vendors]
         if cn:
             print(f"\n  [{lb}] CN models ({len(cn)}):")
             for m in cn[:5]:

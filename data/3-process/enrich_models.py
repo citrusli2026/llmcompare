@@ -85,11 +85,15 @@ def _calculate_completeness(model: dict) -> float:
     return round(actual / total * 100, 1) if total > 0 else 0.0
 
 
-def load_or_data(or_models_path: Path) -> tuple[dict[str, int], dict[str, dict]]:
-    """Load OR models+analytics, return ({name: weekly_tokens}, {name: {prompt, completion}})."""
+def load_or_data(or_models_path: Path) -> tuple[dict[str, int], dict[str, dict], dict[str, dict]]:
+    """Load OR models+analytics.
+
+    Returns ({name: weekly_tokens}, {name: {prompt, completion}},
+             {name: {"input": [...], "output": [...]}}).
+    """
     if not or_models_path.exists():
         print(f"[WARN] OR models not found: {or_models_path}, skipping")
-        return {}, {}
+        return {}, {}, {}
     with open(or_models_path) as f:
         data = json.load(f)
 
@@ -136,8 +140,19 @@ def load_or_data(or_models_path: Path) -> tuple[dict[str, int], dict[str, dict]]
                     "completion": round(completion * 1e6, 2),
                 }
 
-    print(f"[OK] Loaded {len(token_map)} OR token volumes, {len(price_map)} OR prices")
-    return token_map, price_map
+    # Extract input/output modalities (AA 新 RSC 格式不再提供 input_image，
+    # 用 OR architecture.input_modalities 回填多模态标记)
+    modalities_map = {}
+    for m in models:
+        name = m.get("name", "").lower().strip()
+        arch = m.get("architecture") or {}
+        input_mods = arch.get("input_modalities") or []
+        output_mods = arch.get("output_modalities") or []
+        if name and (input_mods or output_mods):
+            modalities_map[name] = {"input": input_mods, "output": output_mods}
+
+    print(f"[OK] Loaded {len(token_map)} OR token volumes, {len(price_map)} OR prices, {len(modalities_map)} OR modalities")
+    return token_map, price_map, modalities_map
 
 
 def load_arena_data(arena_path: Path) -> tuple[dict[str, list[dict]], dict[str, int]]:
@@ -333,6 +348,7 @@ def enrich(
     or_pricing: dict[str, dict] | None = None,
     arena_data: dict[str, list[dict]] | None = None,
     arena_votes: dict[str, int] | None = None,
+    or_modalities: dict[str, dict] | None = None,
 ) -> tuple[int, int, int]:
     """Inject vendor_links + cn_pricing + license + OR data + Arena data + Arena votes, then update flags."""
     vendor_links = ref.get("vendor_links", {})
@@ -341,12 +357,14 @@ def enrich(
     company_license_defaults = ref.get("license", {}).get("_company_defaults", {})
     or_tokens = or_tokens or {}
     or_pricing = or_pricing or {}
+    or_modalities = or_modalities or {}
     arena_data = arena_data or {}
     arena_votes = arena_votes or {}
 
     enriched = 0
     flag_updates = 0
     or_matched = 0
+    image_input_matched = 0
     arena_matched = {k: 0 for k in arena_data.keys()}
     intl_count = 0
     license_matched = 0
@@ -414,6 +432,16 @@ def enrich(
 
         m["openrouter_pricing"] = match_or_value(name, or_pricing)
 
+        # 多模态回填：AA 新 RSC 格式已无 input_image 字段，
+        # 用 OR architecture.input_modalities 修正 flags.image_input，
+        # 并把 OR 的 input/output modalities 记录到 meta.modalities
+        modalities = match_or_value(name, or_modalities)
+        m.setdefault("meta", {})["modalities"] = modalities
+        if modalities and "image" in modalities.get("input", []):
+            if not m["flags"].get("image_input"):
+                image_input_matched += 1
+            m["flags"]["image_input"] = True
+
         # Inject Arena leaderboard data (国内外都尝试)
         m["arena_rankings"] = {}
         # Load explicit mapping if available
@@ -458,6 +486,9 @@ def enrich(
 
     if or_matched:
         print(f"[OK] Matched OR requests for {or_matched}/{len(models)} models")
+
+    if image_input_matched:
+        print(f"[OK] Backfilled image_input=true for {image_input_matched} models from OR modalities")
     
     # Report Arena coverage
     total_models = len(models)
@@ -580,8 +611,8 @@ def main():
     with open(ranking_path) as f:
         models = json.load(f)
 
-    # Load OR tokens + pricing (both come from or_models_full.json, identical to or_models.json's pricing)
-    or_tokens, or_pricing = load_or_data(PROJECT_ROOT / "2-raw" / "or_models_full.json")
+    # Load OR tokens + pricing + modalities (both come from or_models_full.json, identical to or_models.json's pricing)
+    or_tokens, or_pricing, or_modalities = load_or_data(PROJECT_ROOT / "2-raw" / "or_models_full.json")
 
     # Load Arena leaderboard data
     arena_data, arena_votes = load_arena_data(PROJECT_ROOT / "2-raw" / "arena_leaderboards.json")
@@ -630,7 +661,7 @@ def main():
     ref["cn_pricing"] = cn_pricing_clean
 
     # Enrich + update flags (single pass)
-    enriched_count, flag_updates, arena_total = enrich(models, ref, or_tokens, or_pricing, arena_data, arena_votes)
+    enriched_count, flag_updates, arena_total = enrich(models, ref, or_tokens, or_pricing, arena_data, arena_votes, or_modalities)
 
     # Save full
     save(ranking_path, models)

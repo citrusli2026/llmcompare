@@ -43,6 +43,15 @@ jobs:
           cd app
           npm test -- --run
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          pip install jsonschema
+
       - name: Data Quality Validation
         run: |
           cd app

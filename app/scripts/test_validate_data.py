@@ -6,8 +6,13 @@ Usage:
     python3 scripts/test_validate_data.py
 """
 import sys
+import os
+import json
+import time
+import tempfile
 import unittest
 import importlib.util
+from datetime import date, timedelta
 from pathlib import Path
 
 SCRIPT_PATH = Path(__file__).resolve().parent.parent / "scripts" / "validate-data.py"
@@ -256,6 +261,112 @@ class TestCheckUrlConsistency(unittest.TestCase):
         m = make_model(flags={"data_complete": False}, url=None)
         warnings = V.check_url_consistency([m])
         self.assertEqual(warnings, [])
+
+
+class TestCheckSourceHealth(unittest.TestCase):
+    """check_source_health：覆盖率分级 + degraded 告警（读取 ranking-meta.json）。"""
+
+    def _run_with_meta(self, meta):
+        tmp = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8")
+        self.addCleanup(os.unlink, tmp.name)
+        with tmp:
+            json.dump(meta, tmp)
+        orig = V.META_PATH
+        V.META_PATH = Path(tmp.name)
+        try:
+            return V.check_source_health([])
+        finally:
+            V.META_PATH = orig
+
+    def test_low_coverage_is_issue(self):
+        """覆盖率 < 30% 报 issue"""
+        issues, warnings = self._run_with_meta({"sources": {"aa": {"coverage": 0.2}}})
+        self.assertTrue(any("覆盖率严重过低" in i for i in issues))
+
+    def test_mid_coverage_is_warning(self):
+        """覆盖率 30%-50% 报 warning（修复前该分支为死代码）"""
+        issues, warnings = self._run_with_meta({"sources": {"aa": {"coverage": 0.4}}})
+        self.assertEqual(issues, [])
+        self.assertTrue(any("覆盖率偏低" in w for w in warnings))
+
+    def test_high_coverage_quiet(self):
+        issues, warnings = self._run_with_meta({"sources": {"aa": {"coverage": 0.9}}})
+        self.assertEqual(issues, [])
+        self.assertEqual(warnings, [])
+
+    def test_degraded_is_warning(self):
+        """sources.*.degraded=true 报 warning（配合管线降级可见性）"""
+        issues, warnings = self._run_with_meta({"sources": {"aa": {"coverage": 0.9, "degraded": True}}})
+        self.assertEqual(issues, [])
+        self.assertTrue(any("degraded" in w for w in warnings))
+
+    def test_partial_update_is_warning(self):
+        issues, warnings = self._run_with_meta({"partial_update": True, "sources": {}})
+        self.assertTrue(any("partial_update" in w for w in warnings))
+
+
+class TestCheckSourceFreshness(unittest.TestCase):
+    """check_source_freshness：Arena 用内容快照日期，AA/OR 用文件 mtime。"""
+
+    def setUp(self):
+        self._orig_dir = V.RAW_DIR
+        self._orig_warn = V.FRESHNESS_WARN_DAYS
+        self._orig_fail = V.FRESHNESS_FAIL_DAYS
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.raw_dir = Path(self._tmp.name)
+        V.RAW_DIR = self.raw_dir
+        V.FRESHNESS_WARN_DAYS = 3
+        V.FRESHNESS_FAIL_DAYS = 10
+        # AA/OR 放置新鲜文件，默认只单独测 Arena
+        (self.raw_dir / "aa_all_full.json").write_text("[]")
+        (self.raw_dir / "or_models_full.json").write_text("{}")
+
+    def tearDown(self):
+        V.RAW_DIR = self._orig_dir
+        V.FRESHNESS_WARN_DAYS = self._orig_warn
+        V.FRESHNESS_FAIL_DAYS = self._orig_fail
+
+    def _write_arena(self, snapshot_date: str):
+        (self.raw_dir / "arena_leaderboards.json").write_text(
+            json.dumps({"date": snapshot_date, "leaderboards": {}})
+        )
+
+    def test_fresh_data_quiet(self):
+        self._write_arena(date.today().isoformat())
+        issues, warnings = V.check_source_freshness()
+        self.assertEqual(issues, [])
+        self.assertEqual(warnings, [])
+
+    def test_stale_arena_snapshot_is_warning(self):
+        """快照日期超 warn 阈值报 warning（mtime 无法发现的镜像滞后）"""
+        self._write_arena((date.today() - timedelta(days=5)).isoformat())
+        issues, warnings = V.check_source_freshness()
+        self.assertEqual(issues, [])
+        self.assertTrue(any("Arena" in w for w in warnings))
+
+    def test_very_stale_arena_snapshot_is_issue(self):
+        """快照日期超 fail 阈值报 issue（曾发生镜像落后 14 天无人发现）"""
+        self._write_arena((date.today() - timedelta(days=14)).isoformat())
+        issues, warnings = V.check_source_freshness()
+        self.assertTrue(any("Arena" in i for i in issues))
+
+    def test_stale_mtime_is_issue(self):
+        """AA/OR 用文件 mtime 兜底"""
+        self._write_arena(date.today().isoformat())
+        old = time.time() - 20 * 86400
+        p = self.raw_dir / "aa_all_full.json"
+        os.utime(p, (old, old))
+        issues, warnings = V.check_source_freshness()
+        self.assertTrue(any("AA" in i for i in issues))
+
+    def test_missing_raw_files_is_warning(self):
+        """原始数据缺失只告警不阻断"""
+        for f in self.raw_dir.iterdir():
+            f.unlink()
+        issues, warnings = V.check_source_freshness()
+        self.assertEqual(issues, [])
+        self.assertTrue(any("缺失" in w for w in warnings))
 
 
 class TestComputeCompleteness(unittest.TestCase):

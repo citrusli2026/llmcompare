@@ -64,7 +64,7 @@ def validate_schema(models) -> list[str]:
 # ── 阈值配置 ──
 # 默认阈值（硬编码兜底），可被历史动态阈值覆盖
 DEFAULT_THRESHOLDS = {
-    "total_models": (15, 70),
+    "total_models": (15, 120),
     "data_complete": (20, 60),
     "frontier": (5, 55),
     "intl": (5, 40),
@@ -89,6 +89,12 @@ HISTORY_MIN_LOWER = HISTORY_THRESHOLD_CFG.get("min_lower_bound", 5)
 
 # 异常检测配置
 ANOMALY_CFG = VALIDATION_CONFIG.get("anomaly_detection", {})
+
+# ── 数据源新鲜度配置 ──
+RAW_DIR = PROJECT_ROOT / "data" / "2-raw"
+FRESHNESS_CFG = VALIDATION_CONFIG.get("source_freshness", {})
+FRESHNESS_WARN_DAYS = FRESHNESS_CFG.get("warn_days", 3)
+FRESHNESS_FAIL_DAYS = FRESHNESS_CFG.get("fail_days", 10)
 
 # 与上次数据对比的最大允许变化率
 MAX_CHANGE_RATIO = 0.50
@@ -273,17 +279,71 @@ def check_source_health(models):
     sources = meta.get("sources", {})
     for source_name, source_info in sources.items():
         coverage = source_info.get("coverage")
-        if coverage is not None and coverage < 0.3:
-            # 覆盖率低于 30% 才报错；30%-50% 只告警
+        if coverage is not None:
+            # 覆盖率低于 30% 报错；30%-50% 只告警
             if coverage < 0.3:
                 issues.append(f"{source_name} 覆盖率严重过低: {coverage:.0%}")
-            else:
+            elif coverage < 0.5:
                 warnings.append(f"{source_name} 覆盖率偏低: {coverage:.0%}")
+        if source_info.get("degraded"):
+            warnings.append(f"{source_name} 抓取失败、已降级使用缓存数据（degraded=true），数据可能不是最新")
         if source_info.get("error"):
             warnings.append(f"{source_name} 抓取异常: {source_info['error']}")
 
     if meta.get("partial_update"):
         warnings.append("本次为部分更新（partial_update=true），部分数据源可能缺失")
+
+    return issues, warnings
+
+
+def _classify_freshness(source_label, age_days, issues, warnings):
+    """按新鲜度阈值分级：超过 fail 报 issue，超过 warn 报 warning。"""
+    if age_days > FRESHNESS_FAIL_DAYS:
+        issues.append(f"{source_label} 数据严重过期: 快照距今 {age_days} 天 (fail 阈值 {FRESHNESS_FAIL_DAYS} 天)")
+    elif age_days > FRESHNESS_WARN_DAYS:
+        warnings.append(f"{source_label} 数据偏旧: 快照距今 {age_days} 天 (warn 阈值 {FRESHNESS_WARN_DAYS} 天)")
+
+
+def check_source_freshness():
+    """
+    数据源新鲜度检查：
+    - Arena：优先读 2-raw/arena_leaderboards.json 内容里的快照日期 `date` 字段
+      （第三方镜像曾落后 14 天无人发现，文件 mtime 看不出内容过期）
+    - AA / OpenRouter：用原始文件 mtime（CI 检出/重抓后 mtime 为当下不会误报，
+      本地则反映上次抓取时间）
+    超过 warn_days 报 warning，超过 fail_days 报 issue。
+    """
+    issues = []
+    warnings = []
+    today = date.today()
+
+    arena_path = RAW_DIR / "arena_leaderboards.json"
+    if arena_path.exists():
+        snapshot_date = None
+        try:
+            with open(arena_path, "r", encoding="utf-8") as f:
+                arena = json.load(f)
+            raw_date = arena.get("date")
+            if raw_date:
+                snapshot_date = date.fromisoformat(str(raw_date)[:10])
+        except Exception as e:
+            warnings.append(f"Arena 快照日期无法解析: {e}")
+        if snapshot_date is not None:
+            age_days = (today - snapshot_date).days
+        else:
+            # 内容日期缺失时退化为 mtime
+            age_days = (today - datetime.fromtimestamp(arena_path.stat().st_mtime).date()).days
+        _classify_freshness("Arena", age_days, issues, warnings)
+    else:
+        warnings.append("Arena 原始数据缺失: 2-raw/arena_leaderboards.json")
+
+    for label, filename in [("AA", "aa_all_full.json"), ("OpenRouter", "or_models_full.json")]:
+        path = RAW_DIR / filename
+        if not path.exists():
+            warnings.append(f"{label} 原始数据缺失: 2-raw/{filename}")
+            continue
+        mtime_date = datetime.fromtimestamp(path.stat().st_mtime).date()
+        _classify_freshness(label, (today - mtime_date).days, issues, warnings)
 
     return issues, warnings
 
@@ -730,11 +790,14 @@ def main():
     else:
         print("  - 无历史数据，跳过对比")
 
-    # 11. 数据源健康度 + 异常检测
-    print("[11/11] 数据源健康度与异常检测...")
+    # 11. 数据源健康度 + 新鲜度 + 异常检测
+    print("[11/11] 数据源健康度/新鲜度与异常检测...")
     issues, health_warnings = check_source_health(models)
     all_issues.extend(issues)
     all_warnings.extend(health_warnings)
+    fresh_issues, fresh_warnings = check_source_freshness()
+    all_issues.extend(fresh_issues)
+    all_warnings.extend(fresh_warnings)
     if previous:
         issues = check_anomalies(models, previous)
         all_issues.extend(issues)

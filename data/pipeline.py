@@ -129,9 +129,9 @@ fetches = [
     ("Arena",       "2-raw/arena_leaderboards.json", "python3.11 1-fetch/fetch_arena_leaderboards.py"),
 ]
 
-fetch_status = {"AA": {"ok": False, "cached": False, "error": None},
-                "OpenRouter": {"ok": False, "cached": False, "error": None},
-                "Arena": {"ok": False, "cached": False, "error": None}}
+fetch_status = {"AA": {"ok": False, "cached": False, "degraded": False, "error": None},
+                "OpenRouter": {"ok": False, "cached": False, "degraded": False, "error": None},
+                "Arena": {"ok": False, "cached": False, "degraded": False, "error": None}}
 
 if SKIP_FETCH:
     ok("--skip-fetch 标记, 跳过所有抓取")
@@ -148,13 +148,20 @@ else:
         if rc == 0:
             ok(f"{name} 数据抓取完成")
             fetch_status[name]["ok"] = True
+        elif rc == 3:
+            # exit 3 = 抓取失败、脚本已降级使用缓存，继续管线但标记 degraded
+            warn(f"{name} 抓取失败，已降级使用缓存数据 (degraded)")
+            fetch_status[name]["cached"] = True
+            fetch_status[name]["degraded"] = True
+            fetch_status[name]["error"] = out[:500]
         else:
-            fail(f"{name} 数据抓取失败")
+            fail(f"{name} 数据抓取失败 (exit={rc})")
             fetch_status[name]["error"] = out[:500]
             # 如果存在缓存文件，允许继续（降级模式）
             if (DATA / cache_rel).exists():
                 warn(f"{name} 将使用缓存数据继续执行")
                 fetch_status[name]["cached"] = True
+                fetch_status[name]["degraded"] = True
             else:
                 fail(f"{name} 无缓存可用，管线终止")
                 sys.exit(2)
@@ -256,18 +263,21 @@ def write_ranking_meta():
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "version": "1.0",
             "partial_update": any(
-                not s["ok"] or s["cached"] for s in fetch_status.values()
+                not s["ok"] or s["cached"] or s.get("degraded", False)
+                for s in fetch_status.values()
             ),
             "sources": {
                 "artificial_analysis": {
                     "ok": fetch_status["AA"]["ok"],
                     "cached": fetch_status["AA"]["cached"],
+                    "degraded": fetch_status["AA"].get("degraded", False),
                     "error": fetch_status["AA"]["error"],
                     "coverage": round(sum(1 for m in ranking if m.get("scores", {}).get("intelligence") is not None) / max(n, 1), 3),
                 },
                 "openrouter": {
                     "ok": fetch_status["OpenRouter"]["ok"],
                     "cached": fetch_status["OpenRouter"]["cached"],
+                    "degraded": fetch_status["OpenRouter"].get("degraded", False),
                     "error": fetch_status["OpenRouter"]["error"],
                     "coverage": round(sum(1 for m in ranking if m.get("openrouter_weekly_tokens") is not None) / max(n, 1), 3),
                     "pricing_coverage": round(sum(1 for m in ranking if m.get("openrouter_pricing") is not None) / max(n, 1), 3),
@@ -275,6 +285,7 @@ def write_ranking_meta():
                 "arena": {
                     "ok": fetch_status["Arena"]["ok"],
                     "cached": fetch_status["Arena"]["cached"],
+                    "degraded": fetch_status["Arena"].get("degraded", False),
                     "error": fetch_status["Arena"]["error"],
                     "coverage": round(sum(1 for m in ranking if m.get("arena_rankings")) / max(n, 1), 3),
                 },
@@ -399,8 +410,9 @@ if not all_passed:
 # ══════════════════════════════════════════════
 step("Phase 6: 提交并推送")
 
-# Stage from repo root to capture all changes (metadata.json, ranking.json, etc.)
-run("git add -A", cwd=str(APP))
+# 只显式暂存数据产物路径，避免 -A 把无关变更一起提交
+# （无变化的路径 git add 不报错）
+run("git add app/src/data app/src/messages app/public/sitemap.xml data/4-final data/5-history", cwd=str(APP))
 
 # Check if there are staged changes
 staged_diff, _ = run("git diff --cached --stat", cwd=str(APP), exit_on_error=False)

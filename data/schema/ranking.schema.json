@@ -95,7 +95,14 @@
           "parameters": {"type": ["number", "null"]},
           "knowledge_cutoff": {"type": ["string", "null"]},
           "release_date": {"type": ["string", "null"]},
-          "omniscience": {"type": ["number", "null"]}
+          "omniscience": {"type": ["number", "null"]},
+          "modalities": {
+            "type": ["object", "null"],
+            "properties": {
+              "input": {"type": "array", "items": {"type": "string"}},
+              "output": {"type": "array", "items": {"type": "string"}}
+            }
+          }
         }
       },
       "license": {"type": ["string", "null"]}

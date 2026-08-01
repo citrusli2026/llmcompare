@@ -11,12 +11,18 @@ permissions:
   pull-requests: write
   issues: write
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # validate-data.py 需要 HEAD~1 对比历史数据
 
       - uses: actions/setup-python@v5
         with:
@@ -28,11 +34,15 @@ jobs:
           cache: 'npm'
           cache-dependency-path: app/package-lock.json
 
+      - name: Install Python dependencies
+        run: |
+          pip install jsonschema
+
       - name: Cache raw data
         uses: actions/cache@v5
         with:
           path: data/2-raw
-          key: raw-data-${{ github.run_id }}
+          key: raw-data-v2
           restore-keys: |
             raw-data-
 
@@ -67,7 +77,31 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh issue create \
-            --title "🚨 数据刷新失败 $(date -u +%Y-%m-%d)" \
-            --body "自动数据刷新失败，请查看 [Actions 日志](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})。" \
-            --label "bug" || true
+          TITLE="🚨 数据刷新失败 $(date -u +%Y-%m-%d)"
+          RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          # 去重：已有同标题 open issue 则改为评论追加，避免连开重复 issue
+          ISSUE_NUMBER=$(gh issue list --state open --search "$TITLE" --json number,title \
+            --jq '.[] | select(.title == "'"$TITLE"'") | .number' | head -n 1)
+          if [ -n "$ISSUE_NUMBER" ]; then
+            gh issue comment "$ISSUE_NUMBER" \
+              --body "再次失败，请查看 [Actions 日志]($RUN_URL)。" || true
+          else
+            gh issue create \
+              --title "$TITLE" \
+              --body "自动数据刷新失败，请查看 [Actions 日志]($RUN_URL)。" \
+              --label "bug" || true
+          fi
+
+      - name: Close stale failure issues on success
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 刷新成功后，自动关闭仍 open 的"数据刷新失败" issue
+          ISSUES=$(gh issue list --state open --search "数据刷新失败" --json number,title \
+            --jq '.[] | select(.title | contains("数据刷新失败")) | .number')
+          for ISSUE_NUMBER in $ISSUES; do
+            gh issue comment "$ISSUE_NUMBER" \
+              --body "数据刷新已恢复（[Actions 日志](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})），自动关闭。" || true
+            gh issue close "$ISSUE_NUMBER" || true
+          done

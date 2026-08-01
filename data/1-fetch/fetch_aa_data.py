@@ -26,8 +26,16 @@ from typing import Optional, List
 
 # ── 配置 ──────────────────────────────────────────────
 
-# 单模型详情页包含全量 models 数组（570+），列表页 initialModels 仅 28 个
-AA_MODELS_URL = "https://artificialanalysis.ai/models/gpt-5-5"
+# 单模型详情页包含全量 models 数组（570+），列表页 initialModels 仅 28 个。
+# 主 URL 失败或解析模型数不足时，依次尝试备用详情页
+# （备用 slug 取自 AA 当前排名前列、确实存在的模型详情页）。
+AA_MODELS_URLS = [
+    "https://artificialanalysis.ai/models/gpt-5-5",
+    "https://artificialanalysis.ai/models/claude-opus-5",
+    "https://artificialanalysis.ai/models/claude-fable-5",
+    "https://artificialanalysis.ai/models/gpt-5-6-sol",
+]
+MIN_MODELS = 100  # 解析模型数低于此值视为抓取异常，尝试下一个备用 URL
 RSC_HEADERS = [
     "-H", "RSC: 1",
     "-H", "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
@@ -70,33 +78,6 @@ def safe_dict(val) -> dict:
 
 # ── 模型解析 (新格式 2026-07) ────────────────────────
 
-def _extract_json_array_at(text: str, start: int) -> Optional[str]:
-    """括号平衡匹配，提取从 start 位置开始的完整 JSON 数组（start 指向 [）"""
-    depth = 0
-    in_string = False
-    escape = False
-    i = start
-    while i < len(text):
-        ch = text[i]
-        if escape:
-            escape = False
-            i += 1
-            continue
-        if ch == '\\':
-            escape = True
-        elif ch == '"':
-            in_string = not in_string
-        elif not in_string:
-            if ch == '[':
-                depth += 1
-            elif ch == ']':
-                depth -= 1
-                if depth == 0:
-                    return text[start:i + 1]
-        i += 1
-    return None
-
-
 def parse_models_new(content: str) -> List[dict]:
     """从 RSC 载荷的 models 数组解析所有模型对象 (camelCase 格式)
 
@@ -112,7 +93,7 @@ def parse_models_new(content: str) -> List[dict]:
     best_models = []
     for cand in candidates:
         start = cand.end() - 1  # 包含 [
-        json_str = _extract_json_array_at(content, start)
+        json_str = extract_json_array(content, start)
         if not json_str:
             continue
         try:
@@ -370,26 +351,35 @@ def main():
     all_path = os.path.join(out_dir, "aa_all_full.json")
     top64_path = os.path.join(out_dir, "aa_top64_full.json")
 
-    # ── Step 1: Download ──
+    # ── Step 1+2: Download & Parse（主 URL 失败或解析不足时依次尝试备用详情页）──
     print("=" * 60)
     print("Step 1/3: Downloading RSC payload...")
-    print(f"  URL: {AA_MODELS_URL}")
-    success = fetch_rsc(AA_MODELS_URL, rsc_path)
-    if not success:
-        # 尝试使用缓存数据
+    models = []
+    content = None
+    for url in AA_MODELS_URLS:
+        print(f"  URL: {url}")
+        if not fetch_rsc(url, rsc_path):
+            print(f"  ⚠️ 下载失败，尝试下一个备用 URL...")
+            continue
+        size_mb = os.path.getsize(rsc_path) / (1024 * 1024)
+        print(f"  ✅ Downloaded {size_mb:.1f} MB")
+
+        print("\nStep 2/3: Parsing model data...")
+        with open(rsc_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        models = parse_models(content)
+        if len(models) >= MIN_MODELS:
+            break
+        print(f"  ⚠️ 仅解析到 {len(models)} 个模型 (<{MIN_MODELS})，尝试下一个备用 URL...")
+
+    if len(models) < MIN_MODELS:
+        # 所有 URL 均抓取失败或解析不足，尝试降级使用缓存数据
         if os.path.exists(all_path) and os.path.getsize(all_path) > 0:
             print(f"  ⚠️ 抓取失败，使用缓存数据: {all_path}")
-            sys.exit(0)
+            # exit 3 = 降级使用缓存，让管线感知 degraded 状态
+            sys.exit(3)
         sys.exit(1)
-    size_mb = os.path.getsize(rsc_path) / (1024 * 1024)
-    print(f"  ✅ Downloaded {size_mb:.1f} MB")
 
-    # ── Step 2: Parse ──
-    print("\nStep 2/3: Parsing model data...")
-    with open(rsc_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-
-    models = parse_models(content)
     models.sort(key=lambda m: m['intelligence_index'] or 0, reverse=True)
 
     print(f"  ✅ Parsed {len(models)} models")

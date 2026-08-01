@@ -222,7 +222,8 @@ def main():
         if cached:
             print(f"[OK] 使用缓存 OpenRouter 数据（{FULL_PATH}）")
             write_json(FULL_PATH, cached)
-            sys.exit(0)
+            # exit 3 = 降级使用缓存，让管线感知 degraded 状态
+            sys.exit(3)
         sys.exit(1)
 
     raw_models = resp.get("data", [])
