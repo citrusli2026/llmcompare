@@ -170,6 +170,20 @@ class TestCheckScoreDistribution(unittest.TestCase):
         issues = V.check_score_distribution(models)
         self.assertEqual(issues, [])
 
+    def test_legit_extreme_low_score_not_flagged(self):
+        """真实存在的极低分新模型（如 celeris-1 ≈11.8）不应触发异常值报警"""
+        models = [make_model(id=f"m{i}", scores={"intelligence": 35.0 + i}) for i in range(30)]
+        models.append(make_model(id="tiny-model", scores={"intelligence": 11.8}))
+        issues = V.check_score_distribution(models)
+        self.assertFalse(any("outlier" in i for i in issues))
+
+    def test_corrupted_zero_score_flagged(self):
+        """数据损坏（intelligence=0）仍应被检测为异常值"""
+        models = [make_model(id=f"m{i}", scores={"intelligence": 35.0 + i}) for i in range(30)]
+        models.append(make_model(id="broken", scores={"intelligence": 0}))
+        issues = V.check_score_distribution(models)
+        self.assertTrue(any("broken" in i for i in issues))
+
 
 class TestCheckThresholds(unittest.TestCase):
     def test_within_threshold(self):

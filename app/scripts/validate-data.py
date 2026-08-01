@@ -11,7 +11,6 @@ LLMCompare 数据质量验证脚本
 
 import json
 import sys
-import math
 from datetime import datetime, date, timedelta
 from pathlib import Path
 from collections import Counter
@@ -484,22 +483,38 @@ def check_score_distribution(models):
     if len(ints) < 2:
         return issues
 
-    mean = sum(ints) / len(ints)
-    std = math.sqrt(sum((x - mean) ** 2 for x in ints) / len(ints))
+    sorted_ints = sorted(ints)
+    n = len(sorted_ints)
 
-    # 检查异常值 (>3σ) — 跳过 intelligence=null 的模型
-    outliers = [
-        m["id"]
-        for m in models
-        if m.get("scores", {}).get("intelligence") is not None
-        and abs(m["scores"]["intelligence"] - mean) > 3 * std
-    ]
+    # 检查异常值 — 使用中位数 + MAD 的修正 z-score（阈值 3.5），
+    # 而非 mean±3σ：后者会被真实存在的极低/极高分新模型（如 celeris-1，
+    # AA 上游 intelligence≈11.8 的 legit 数据）误伤，导致每日管线卡死。
+    # 修正 z-score 对合法极端值稳健，同时仍能识别数据损坏（如分数归 0）。
+    # 跳过 intelligence=null 的模型
+    median = sorted_ints[n // 2] if n % 2 else (sorted_ints[n // 2 - 1] + sorted_ints[n // 2]) / 2
+    deviations = sorted(abs(x - median) for x in ints)
+    mad = deviations[n // 2] if n % 2 else (deviations[n // 2 - 1] + deviations[n // 2]) / 2
+
+    if mad > 0:
+        outliers = [
+            m["id"]
+            for m in models
+            if m.get("scores", {}).get("intelligence") is not None
+            and abs(0.6745 * (m["scores"]["intelligence"] - median) / mad) > 3.5
+        ]
+    else:
+        # MAD=0（超过半数模型同分）：退化为绝对偏差检查
+        outliers = [
+            m["id"]
+            for m in models
+            if m.get("scores", {}).get("intelligence") is not None
+            and abs(m["scores"]["intelligence"] - median) > 15
+        ]
     if outliers:
-        issues.append(f"intelligence outliers (>3σ): {outliers}")
+        issues.append(f"intelligence outliers (modified z > 3.5): {outliers}")
 
     # 最大相邻差距不应超过 15（防止数据错误导致排名断层）
-    ints_sorted = sorted(ints)
-    max_gap = max(ints_sorted[i + 1] - ints_sorted[i] for i in range(len(ints_sorted) - 1))
+    max_gap = max(sorted_ints[i + 1] - sorted_ints[i] for i in range(n - 1))
     if max_gap > 15:
         issues.append(f"max intelligence gap={max_gap:.1f} > 15")
 
