@@ -271,14 +271,14 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 447372440113,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
     },
     "arena_rankings": {},
     "arena_votes": 8359,
-    "data_completeness_pct": 75.2
+    "data_completeness_pct": 77.4
   },
   {
     "id": "kimi-k3",
@@ -540,14 +540,14 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 380837798357,
     "openrouter_pricing": {
       "prompt": 1.0,
       "completion": 6.0
     },
     "arena_rankings": {},
     "arena_votes": 3056,
-    "data_completeness_pct": 75.2
+    "data_completeness_pct": 77.4
   },
   {
     "id": "grok-4-5",
@@ -910,7 +910,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 185323071456,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -928,7 +928,7 @@
       }
     },
     "arena_votes": 48792,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 85.0
   },
   {
     "id": "gpt-5-4",
@@ -1004,7 +1004,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 307642887863,
     "openrouter_pricing": {
       "prompt": 2.5,
       "completion": 15.0
@@ -1022,7 +1022,7 @@
       }
     },
     "arena_votes": 19583,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 88.7
   },
   {
     "id": "gpt-5-6-luna",
@@ -1098,14 +1098,14 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 834874002028,
     "openrouter_pricing": {
       "prompt": 0.1,
       "completion": 0.6
     },
     "arena_rankings": {},
     "arena_votes": 3116,
-    "data_completeness_pct": 75.2
+    "data_completeness_pct": 77.4
   },
   {
     "id": "glm-5-2",
@@ -1184,14 +1184,14 @@
       "output": 28.0,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 3057052084845,
     "openrouter_pricing": {
       "prompt": 0.76,
       "completion": 2.39
     },
     "arena_rankings": {},
     "arena_votes": 6294,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 88.7
   },
   {
     "id": "muse-spark-1-1",
@@ -1369,7 +1369,7 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 236182763261,
     "openrouter_pricing": {
       "prompt": 1.5,
       "completion": 9.0
@@ -1382,7 +1382,7 @@
       }
     },
     "arena_votes": 2312,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 85.0
   },
   {
     "id": "gemini-3-6-flash",
@@ -1558,7 +1558,7 @@
     },
     "license": "DeepSeek License",
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 7560806140560,
+    "openrouter_weekly_tokens": 117062075349,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -1737,7 +1737,7 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 188831073729,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 12.0
@@ -1760,7 +1760,7 @@
       }
     },
     "arena_votes": 86683,
-    "data_completeness_pct": 82.7
+    "data_completeness_pct": 85.0
   },
   {
     "id": "qwen3-7-max",
@@ -1933,7 +1933,7 @@
       "output": 16.8,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 2026856954997,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
@@ -1946,7 +1946,7 @@
       }
     },
     "arena_votes": 8069,
-    "data_completeness_pct": 94.0
+    "data_completeness_pct": 96.2
   },
   {
     "id": "deepseek-v4-pro",
@@ -2565,7 +2565,7 @@
       "output": 21.0,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": 8093457855675,
+    "openrouter_weekly_tokens": 634622786192,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
@@ -3008,14 +3008,14 @@
       "output": 2,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 7560806140560,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
     },
     "arena_rankings": {},
     "arena_votes": 921,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 88.7
   },
   {
     "id": "inkling-small",
@@ -3176,7 +3176,7 @@
       "output": 24,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 113610391085,
     "openrouter_pricing": {
       "prompt": 0.97,
       "completion": 3.04
@@ -3189,7 +3189,7 @@
       }
     },
     "arena_votes": 7290,
-    "data_completeness_pct": 94.0
+    "data_completeness_pct": 96.2
   },
   {
     "id": "qwen3-6-max-preview",
@@ -3841,7 +3841,7 @@
       "output": 8.4,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 91761333394,
     "openrouter_pricing": {
       "prompt": 0.25,
       "completion": 1.0
@@ -3854,7 +3854,7 @@
       }
     },
     "arena_votes": 11849,
-    "data_completeness_pct": 94.0
+    "data_completeness_pct": 96.2
   },
   {
     "id": "glm-5-turbo",
@@ -3933,14 +3933,14 @@
       "output": 22.0,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 113610391085,
     "openrouter_pricing": {
       "prompt": 1.2,
       "completion": 4.0
     },
     "arena_rankings": {},
     "arena_votes": 6969,
-    "data_completeness_pct": 37.6
+    "data_completeness_pct": 39.8
   },
   {
     "id": "nemotron-3-ultra",
@@ -4192,7 +4192,7 @@
       "output": 2,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 8093457855675,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -4205,7 +4205,7 @@
       }
     },
     "arena_votes": 11271,
-    "data_completeness_pct": 94.0
+    "data_completeness_pct": 96.2
   },
   {
     "id": "qwen3-6-27b",
@@ -4533,7 +4533,7 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 236182763261,
+    "openrouter_weekly_tokens": 241422430010,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 2.5
@@ -4633,7 +4633,7 @@
       "output": 14.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 8093457855675,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -4646,7 +4646,7 @@
       }
     },
     "arena_votes": null,
-    "data_completeness_pct": 45.1
+    "data_completeness_pct": 47.4
   },
   {
     "id": "mimo-v2-omni",
@@ -4728,7 +4728,7 @@
       "output": 14.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 8093457855675,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -4741,7 +4741,7 @@
       }
     },
     "arena_votes": null,
-    "data_completeness_pct": 45.1
+    "data_completeness_pct": 47.4
   },
   {
     "id": "glm-5v-turbo",
@@ -5089,7 +5089,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 185323071456,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -5102,7 +5102,7 @@
       }
     },
     "arena_votes": 7234,
-    "data_completeness_pct": 56.4
+    "data_completeness_pct": 58.6
   },
   {
     "id": "longcat-2-0",

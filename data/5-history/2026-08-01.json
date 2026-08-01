@@ -19,7 +19,17 @@
     },
     "benchmarks": {
       "gpqa": 0.932323232323232,
-      "hle": 0.525949953660797
+      "hle": 0.525949953660797,
+      "scicode": 0.556712962962963,
+      "lcr": 0.7,
+      "critpt": 0.291428571428571,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.847398843930636,
+      "gdpval": 1857.8,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 5,
@@ -31,11 +41,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -43,7 +54,18 @@
       "parameters": null,
       "release_date": "2026-07-24",
       "knowledge_cutoff": null,
-      "omniscience": 31.2666666666667
+      "omniscience": 31.2666666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/claude-opus-5",
     "vendor_links": {
@@ -96,7 +118,17 @@
     },
     "benchmarks": {
       "gpqa": 0.926262626262626,
-      "hle": 0.53336422613531
+      "hle": 0.53336422613531,
+      "scicode": 0.601851851851852,
+      "lcr": 0.7,
+      "critpt": 0.2857142857,
+      "ifbench": 0.63469387755102,
+      "tau2": 0.985380116959064,
+      "terminalbench_hard": 0.628787878787879,
+      "mmmu_pro": null,
+      "gdpval": 1746.06,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 10,
@@ -108,11 +140,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -120,7 +153,18 @@
       "parameters": null,
       "release_date": "2026-06-09",
       "knowledge_cutoff": null,
-      "omniscience": 40.15
+      "omniscience": 40.15,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/claude-fable-5",
     "vendor_links": {
@@ -173,7 +217,17 @@
     },
     "benchmarks": {
       "gpqa": 0.941414141414141,
-      "hle": 0.471733086190918
+      "hle": 0.471733086190918,
+      "scicode": 0.561342592592593,
+      "lcr": 0.736666666666667,
+      "critpt": 0.322857142857143,
+      "ifbench": 0.726530612244898,
+      "tau2": 0.850877192982456,
+      "terminalbench_hard": 0.659090909090909,
+      "mmmu_pro": 0.834104046242775,
+      "gdpval": 1732.5,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 5,
@@ -185,11 +239,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -197,7 +252,18 @@
       "parameters": null,
       "release_date": "2026-07-09",
       "knowledge_cutoff": null,
-      "omniscience": 21.7
+      "omniscience": 21.7,
+      "modalities": {
+        "input": [
+          "file",
+          "image",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
     "vendor_links": {
@@ -234,7 +300,17 @@
     },
     "benchmarks": {
       "gpqa": 0.935353535353535,
-      "hle": 0.443466172381835
+      "hle": 0.443466172381835,
+      "scicode": 0.586805555555556,
+      "lcr": 0.746666666666667,
+      "critpt": 0.234285714285714,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.805202312138728,
+      "gdpval": 1687.43,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 3,
@@ -246,11 +322,12 @@
       "frontier": true,
       "open_weights": true,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1048576,
@@ -258,7 +335,17 @@
       "parameters": 2800,
       "release_date": "2026-07-16",
       "knowledge_cutoff": null,
-      "omniscience": 18.4166666666667
+      "omniscience": 18.4166666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/kimi-k3",
     "vendor_links": {
@@ -300,7 +387,17 @@
     },
     "benchmarks": {
       "gpqa": 0.92020202020202,
-      "hle": 0.457367933271548
+      "hle": 0.457367933271548,
+      "scicode": 0.534722222222222,
+      "lcr": 0.676666666666667,
+      "critpt": 0.208571428571429,
+      "ifbench": 0.622448979591837,
+      "tau2": 0.944444444444445,
+      "terminalbench_hard": 0.583333333333333,
+      "mmmu_pro": null,
+      "gdpval": 1590.68,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 5,
@@ -312,11 +409,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -324,7 +422,18 @@
       "parameters": null,
       "release_date": "2026-05-28",
       "knowledge_cutoff": null,
-      "omniscience": 27.4333333333333
+      "omniscience": 27.4333333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/claude-opus-4-8",
     "vendor_links": {
@@ -377,7 +486,17 @@
     },
     "benchmarks": {
       "gpqa": 0.925252525252525,
-      "hle": 0.417979610750695
+      "hle": 0.417979610750695,
+      "scicode": 0.539351851851852,
+      "lcr": 0.74,
+      "critpt": 0.3,
+      "ifbench": 0.712244897959184,
+      "tau2": 0.862573099415205,
+      "terminalbench_hard": 0.575757575757576,
+      "mmmu_pro": 0.806936416184971,
+      "gdpval": 1582.7,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 2,
@@ -389,11 +508,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -401,7 +521,18 @@
       "parameters": null,
       "release_date": "2026-07-09",
       "knowledge_cutoff": null,
-      "omniscience": -0.216666666666667
+      "omniscience": -0.216666666666667,
+      "modalities": {
+        "input": [
+          "file",
+          "image",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
     "vendor_links": {
@@ -438,7 +569,17 @@
     },
     "benchmarks": {
       "gpqa": 0.931313131313131,
-      "hle": 0.402687673772011
+      "hle": 0.402687673772011,
+      "scicode": 0.540509259259259,
+      "lcr": 0.676666666666667,
+      "critpt": 0.154285714285714,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.804046242774566,
+      "gdpval": 1527.88,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 2,
@@ -450,11 +591,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 500000,
@@ -462,7 +604,18 @@
       "parameters": null,
       "release_date": "2026-07-08",
       "knowledge_cutoff": null,
-      "omniscience": 26.3833333333333
+      "omniscience": 26.3833333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/grok-4-5",
     "vendor_links": {
@@ -510,7 +663,17 @@
     },
     "benchmarks": {
       "gpqa": 0.914141414141414,
-      "hle": 0.396200185356812
+      "hle": 0.396200185356812,
+      "scicode": 0.545138888888889,
+      "lcr": 0.703333333333333,
+      "critpt": 0.12,
+      "ifbench": 0.586394557823129,
+      "tau2": 0.885964912280702,
+      "terminalbench_hard": 0.515151515151515,
+      "mmmu_pro": 0.788439306358382,
+      "gdpval": 1490.99,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 5,
@@ -522,11 +685,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -534,7 +698,18 @@
       "parameters": null,
       "release_date": "2026-04-16",
       "knowledge_cutoff": "2026-01-01",
-      "omniscience": 26.1666666666667
+      "omniscience": 26.1666666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/claude-opus-4-7",
     "vendor_links": {
@@ -587,7 +762,17 @@
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
-      "hle": 0.395736793327155
+      "hle": 0.395736793327155,
+      "scicode": 0.53587962962963,
+      "lcr": 0.706666666666667,
+      "critpt": 0.168571428571429,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.772832369942197,
+      "gdpval": 1601.22,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 2,
@@ -599,11 +784,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -611,7 +797,18 @@
       "parameters": null,
       "release_date": "2026-06-30",
       "knowledge_cutoff": null,
-      "omniscience": 15.3166666666667
+      "omniscience": 15.3166666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/claude-sonnet-5",
     "vendor_links": {
@@ -659,7 +856,17 @@
     },
     "benchmarks": {
       "gpqa": 0.932323232323232,
-      "hle": 0.430027803521779
+      "hle": 0.430027803521779,
+      "scicode": 0.559027777777778,
+      "lcr": 0.733333333333333,
+      "critpt": 0.254285714285714,
+      "ifbench": 0.716326530612245,
+      "tau2": 0.929824561403509,
+      "terminalbench_hard": 0.598484848484849,
+      "mmmu_pro": 0.810982658959538,
+      "gdpval": 1465.46,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 5,
@@ -671,11 +878,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 922000,
@@ -683,7 +891,18 @@
       "parameters": null,
       "release_date": "2026-04-23",
       "knowledge_cutoff": null,
-      "omniscience": 18.3666666666667
+      "omniscience": 18.3666666666667,
+      "modalities": {
+        "input": [
+          "file",
+          "image",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/gpt-5-5-high",
     "vendor_links": {
@@ -731,7 +950,17 @@
     },
     "benchmarks": {
       "gpqa": 0.92020202020202,
-      "hle": 0.416126042632067
+      "hle": 0.416126042632067,
+      "scicode": 0.565972222222222,
+      "lcr": 0.74,
+      "critpt": 0.2342857143,
+      "ifbench": 0.739455782312925,
+      "tau2": 0.871345029239766,
+      "terminalbench_hard": 0.575757575757576,
+      "mmmu_pro": 0.784393063583815,
+      "gdpval": 1391.49,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 2.5,
@@ -743,11 +972,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1050000,
@@ -755,7 +985,18 @@
       "parameters": null,
       "release_date": "2026-03-05",
       "knowledge_cutoff": "2025-08-31",
-      "omniscience": 5.65
+      "omniscience": 5.65,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/gpt-5-4",
     "vendor_links": {
@@ -803,7 +1044,17 @@
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
-      "hle": 0.372103799814643
+      "hle": 0.372103799814643,
+      "scicode": 0.525462962962963,
+      "lcr": 0.74,
+      "critpt": 0.205714285714286,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.785549132947977,
+      "gdpval": 1581.94,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.2,
@@ -815,11 +1066,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -827,7 +1079,18 @@
       "parameters": null,
       "release_date": "2026-07-09",
       "knowledge_cutoff": null,
-      "omniscience": -11.2333333333333
+      "omniscience": -11.2333333333333,
+      "modalities": {
+        "input": [
+          "file",
+          "image",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/gpt-5-6-luna",
     "vendor_links": {
@@ -864,7 +1127,17 @@
     },
     "benchmarks": {
       "gpqa": 0.894949494949495,
-      "hle": 0.40129749768304
+      "hle": 0.40129749768304,
+      "scicode": 0.50462962962963,
+      "lcr": 0.713333333333333,
+      "critpt": 0.208571428571429,
+      "ifbench": 0.733333333333333,
+      "tau2": 0.991228070175439,
+      "terminalbench_hard": 0.507575757575758,
+      "mmmu_pro": null,
+      "gdpval": 1509.95,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 1.4,
@@ -880,7 +1153,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -888,7 +1162,16 @@
       "parameters": 753,
       "release_date": "2026-06-16",
       "knowledge_cutoff": null,
-      "omniscience": 3.96666666666667
+      "omniscience": 3.96666666666667,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/glm-5-2",
     "vendor_links": {
@@ -930,7 +1213,17 @@
     },
     "benchmarks": {
       "gpqa": 0.897979797979798,
-      "hle": 0.450880444856348
+      "hle": 0.450880444856348,
+      "scicode": 0.582175925925926,
+      "lcr": 0.633333333333333,
+      "critpt": 0.151428571428571,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1375.06,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 1.25,
@@ -942,11 +1235,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1048576,
@@ -954,7 +1248,20 @@
       "parameters": null,
       "release_date": "2026-07-09",
       "knowledge_cutoff": null,
-      "omniscience": 18
+      "omniscience": 18,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video",
+          "file",
+          "audio"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/muse-spark-1-1",
     "vendor_links": {
@@ -1006,7 +1313,17 @@
     },
     "benchmarks": {
       "gpqa": 0.922222222222222,
-      "hle": 0.409638554216867
+      "hle": 0.409638554216867,
+      "scicode": 0.53125,
+      "lcr": 0.693333333333333,
+      "critpt": 0.131428571428571,
+      "ifbench": 0.763265306122449,
+      "tau2": 0.953216374269006,
+      "terminalbench_hard": 0.409090909090909,
+      "mmmu_pro": 0.842774566473988,
+      "gdpval": 1342.98,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 1.5,
@@ -1018,11 +1335,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -1030,7 +1348,20 @@
       "parameters": null,
       "release_date": "2026-05-19",
       "knowledge_cutoff": null,
-      "omniscience": 22.6833333333333
+      "omniscience": 22.6833333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video",
+          "file",
+          "audio"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 65536
     },
     "url": "https://artificialanalysis.ai/models/gemini-3-5-flash",
     "vendor_links": {
@@ -1073,7 +1404,17 @@
     },
     "benchmarks": {
       "gpqa": 0.928282828282828,
-      "hle": 0.382761816496756
+      "hle": 0.382761816496756,
+      "scicode": 0.52662037037037,
+      "lcr": 0.696666666666667,
+      "critpt": 0.105714285714286,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.832369942196532,
+      "gdpval": 1423.03,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 1.5,
@@ -1085,11 +1426,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -1097,7 +1439,20 @@
       "parameters": null,
       "release_date": "2026-07-21",
       "knowledge_cutoff": null,
-      "omniscience": 23.5333333333333
+      "omniscience": 23.5333333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video",
+          "file",
+          "audio"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 65536
     },
     "url": "https://artificialanalysis.ai/models/gemini-3-6-flash",
     "vendor_links": {
@@ -1150,7 +1505,17 @@
     },
     "benchmarks": {
       "gpqa": 0.908080808080808,
-      "hle": 0.368396663577386
+      "hle": 0.368396663577386,
+      "scicode": 0.498842592592593,
+      "lcr": 0.656666666666667,
+      "critpt": 0.165714285714286,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1558.61,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.14,
@@ -1166,7 +1531,8 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -1174,7 +1540,16 @@
       "parameters": 284,
       "release_date": "2026-07-31",
       "knowledge_cutoff": null,
-      "omniscience": -15.7166666666667
+      "omniscience": -15.7166666666667,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 384000
     },
     "url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
     "vendor_links": {
@@ -1212,7 +1587,17 @@
     },
     "benchmarks": {
       "gpqa": 0.874747474747475,
-      "hle": 0.299814643188137
+      "hle": 0.299814643188137,
+      "scicode": 0.467592592592593,
+      "lcr": 0.706666666666667,
+      "critpt": 0.0314285714285714,
+      "ifbench": 0.565986394557823,
+      "tau2": 0.757309941520468,
+      "terminalbench_hard": 0.53030303030303,
+      "mmmu_pro": 0.732947976878613,
+      "gdpval": 1375.65,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 3,
@@ -1224,11 +1609,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -1236,7 +1622,18 @@
       "parameters": null,
       "release_date": "2026-02-17",
       "knowledge_cutoff": null,
-      "omniscience": 12.3666666666667
+      "omniscience": 12.3666666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/claude-sonnet-4-6-adaptive",
     "vendor_links": {
@@ -1284,7 +1681,17 @@
     },
     "benchmarks": {
       "gpqa": 0.941414141414141,
-      "hle": 0.447173308619092
+      "hle": 0.447173308619092,
+      "scicode": 0.58912037037037,
+      "lcr": 0.726666666666667,
+      "critpt": 0.177142857142857,
+      "ifbench": 0.771428571428571,
+      "tau2": 0.956140350877193,
+      "terminalbench_hard": 0.537878787878788,
+      "mmmu_pro": 0.824277456647399,
+      "gdpval": 964.72,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 2,
@@ -1296,11 +1703,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -1308,7 +1716,20 @@
       "parameters": null,
       "release_date": "2026-02-19",
       "knowledge_cutoff": null,
-      "omniscience": 32.9333333333333
+      "omniscience": 32.9333333333333,
+      "modalities": {
+        "input": [
+          "audio",
+          "file",
+          "image",
+          "text",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 65536
     },
     "url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
     "vendor_links": {
@@ -1361,7 +1782,17 @@
     },
     "benchmarks": {
       "gpqa": 0.923232323232323,
-      "hle": 0.380908248378128
+      "hle": 0.380908248378128,
+      "scicode": 0.488425925925926,
+      "lcr": 0.69,
+      "critpt": 0.134285714285714,
+      "ifbench": 0.805442176870748,
+      "tau2": 0.947368421052632,
+      "terminalbench_hard": 0.507575757575758,
+      "mmmu_pro": null,
+      "gdpval": 1270.37,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 2.5,
@@ -1377,7 +1808,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -1385,7 +1817,16 @@
       "parameters": null,
       "release_date": "2026-05-19",
       "knowledge_cutoff": null,
-      "omniscience": 14.0833333333333
+      "omniscience": 14.0833333333333,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 131072
     },
     "url": "https://artificialanalysis.ai/models/qwen3-7-max",
     "vendor_links": {
@@ -1433,7 +1874,17 @@
     },
     "benchmarks": {
       "gpqa": 0.929292929292929,
-      "hle": 0.371177015755329
+      "hle": 0.371177015755329,
+      "scicode": 0.453703703703704,
+      "lcr": 0.74,
+      "critpt": 0.0371428571428571,
+      "ifbench": 0.828571428571429,
+      "tau2": 0.888888888888889,
+      "terminalbench_hard": 0.424242424242424,
+      "mmmu_pro": 0.785549132947977,
+      "gdpval": 1390.06,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.3,
@@ -1445,11 +1896,12 @@
       "frontier": true,
       "open_weights": true,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -1457,7 +1909,18 @@
       "parameters": 428,
       "release_date": "2026-06-01",
       "knowledge_cutoff": null,
-      "omniscience": 1.36666666666667
+      "omniscience": 1.36666666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 512000
     },
     "url": "https://artificialanalysis.ai/models/minimax-m3",
     "vendor_links": {
@@ -1505,7 +1968,17 @@
     },
     "benchmarks": {
       "gpqa": 0.887878787878788,
-      "hle": 0.358665430954588
+      "hle": 0.358665430954588,
+      "scicode": 0.5,
+      "lcr": 0.663333333333333,
+      "critpt": 0.128571428571429,
+      "ifbench": 0.764625850340136,
+      "tau2": 0.961988304093567,
+      "terminalbench_hard": 0.462121212121212,
+      "mmmu_pro": null,
+      "gdpval": 1304.49,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.435,
@@ -1521,7 +1994,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -1529,7 +2003,16 @@
       "parameters": 1600,
       "release_date": "2026-04-24",
       "knowledge_cutoff": null,
-      "omniscience": -10.0166666666667
+      "omniscience": -10.0166666666667,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 384000
     },
     "url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
     "vendor_links": {
@@ -1577,7 +2060,17 @@
     },
     "benchmarks": {
       "gpqa": 0.915151515151515,
-      "hle": 0.398980537534754
+      "hle": 0.398980537534754,
+      "scicode": 0.532407407407407,
+      "lcr": 0.74,
+      "critpt": 0.168571428571429,
+      "ifbench": 0.753741496598639,
+      "tau2": 0.859649122807018,
+      "terminalbench_hard": 0.53030303030303,
+      "mmmu_pro": 0.784971098265896,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 1.75,
@@ -1589,11 +2082,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 400000,
@@ -1601,7 +2095,18 @@
       "parameters": null,
       "release_date": "2026-02-05",
       "knowledge_cutoff": "2025-08-31",
-      "omniscience": 9.88333333333333
+      "omniscience": 9.88333333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/gpt-5-3-codex",
     "vendor_links": {
@@ -1638,7 +2143,17 @@
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
-      "hle": 0.359128822984245
+      "hle": 0.359128822984245,
+      "scicode": 0.534722222222222,
+      "lcr": 0.696666666666667,
+      "critpt": 0.08,
+      "ifbench": 0.759863945578231,
+      "tau2": 0.95906432748538,
+      "terminalbench_hard": 0.439393939393939,
+      "mmmu_pro": 0.79364161849711,
+      "gdpval": 1188.41,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.95,
@@ -1650,11 +2165,12 @@
       "frontier": true,
       "open_weights": true,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 256000,
@@ -1662,7 +2178,17 @@
       "parameters": 1000,
       "release_date": "2026-04-20",
       "knowledge_cutoff": null,
-      "omniscience": 6.41666666666667
+      "omniscience": 6.41666666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 262144
     },
     "url": "https://artificialanalysis.ai/models/kimi-k2-6",
     "vendor_links": {
@@ -1715,7 +2241,17 @@
     },
     "benchmarks": {
       "gpqa": 0.868686868686869,
-      "hle": 0.381835032437442
+      "hle": 0.381835032437442,
+      "scicode": 0.443287037037037,
+      "lcr": 0.613333333333333,
+      "critpt": 0.06,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1258.75,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": null,
@@ -1731,7 +2267,8 @@
       "chinese_eval": false,
       "has_speed": false,
       "has_pricing": false,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": null
     },
     "meta": {
       "context_window": 262144,
@@ -1739,7 +2276,9 @@
       "parameters": 314,
       "release_date": "2026-07-14",
       "knowledge_cutoff": null,
-      "omniscience": -17.2833333333333
+      "omniscience": -17.2833333333333,
+      "modalities": null,
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/motif-0714",
     "vendor_links": {},
@@ -1770,7 +2309,17 @@
     },
     "benchmarks": {
       "gpqa": 0.895959595959596,
-      "hle": 0.367365967365967
+      "hle": 0.367365967365967,
+      "scicode": 0.518518518518518,
+      "lcr": 0.706666666666667,
+      "critpt": 0.125714285714286,
+      "ifbench": 0.531292517006803,
+      "tau2": 0.921052631578947,
+      "terminalbench_hard": 0.462121212121212,
+      "mmmu_pro": 0.754335260115607,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 5,
@@ -1782,11 +2331,12 @@
       "frontier": true,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -1794,7 +2344,18 @@
       "parameters": null,
       "release_date": "2026-02-05",
       "knowledge_cutoff": null,
-      "omniscience": 13.5
+      "omniscience": 13.5,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/claude-opus-4-6-adaptive",
     "vendor_links": {
@@ -1847,7 +2408,17 @@
     },
     "benchmarks": {
       "gpqa": 0.883838383838384,
-      "hle": 0.399443929564411
+      "hle": 0.399443929564411,
+      "scicode": 0.515046296296296,
+      "lcr": 0.696666666666667,
+      "critpt": 0.11330612244898,
+      "ifbench": 0.759183673469388,
+      "tau2": 0.915204678362573,
+      "terminalbench_hard": 0.454545454545455,
+      "mmmu_pro": 0.805202312138728,
+      "gdpval": 1143.48,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": null,
@@ -1859,11 +2430,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": false,
       "has_pricing": false,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 262144,
@@ -1871,7 +2443,20 @@
       "parameters": null,
       "release_date": "2026-04-08",
       "knowledge_cutoff": null,
-      "omniscience": 4.08333333333333
+      "omniscience": 4.08333333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video",
+          "file",
+          "audio"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/muse-spark",
     "vendor_links": {
@@ -1923,7 +2508,17 @@
     },
     "benchmarks": {
       "gpqa": 0.865656565656566,
-      "hle": 0.337812789620019
+      "hle": 0.337812789620019,
+      "scicode": 0.502314814814815,
+      "lcr": 0.733333333333333,
+      "critpt": 0.04,
+      "ifbench": 0.798639455782313,
+      "tau2": 0.941520467836257,
+      "terminalbench_hard": 0.431818181818182,
+      "mmmu_pro": null,
+      "gdpval": 1264.46,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.435,
@@ -1939,7 +2534,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -1947,7 +2543,16 @@
       "parameters": 1023,
       "release_date": "2026-04-22",
       "knowledge_cutoff": null,
-      "omniscience": 3.6
+      "omniscience": 3.6,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 131072
     },
     "url": "https://artificialanalysis.ai/models/mimo-v2-5-pro",
     "vendor_links": {
@@ -1995,7 +2600,17 @@
     },
     "benchmarks": {
       "gpqa": 0.895959595959596,
-      "hle": 0.327618164967563
+      "hle": 0.327618164967563,
+      "scicode": 0.474537037037037,
+      "lcr": 0.663333333333333,
+      "critpt": 0.1,
+      "ifbench": 0.631292517006803,
+      "tau2": 0.900584795321637,
+      "terminalbench_hard": 0.446969696969697,
+      "mmmu_pro": null,
+      "gdpval": 1185.77,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.95,
@@ -2007,11 +2622,12 @@
       "frontier": true,
       "open_weights": true,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 256000,
@@ -2019,7 +2635,17 @@
       "parameters": 1000,
       "release_date": "2026-06-12",
       "knowledge_cutoff": null,
-      "omniscience": -10.7
+      "omniscience": -10.7,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 262144
     },
     "url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
     "vendor_links": {
@@ -2068,7 +2694,17 @@
     },
     "benchmarks": {
       "gpqa": 0.896969696969697,
-      "hle": 0.316033364226135
+      "hle": 0.316033364226135,
+      "scicode": 0.475694444444444,
+      "lcr": 0.666666666666667,
+      "critpt": 0.0485714285714286,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1215.3,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.136,
@@ -2084,7 +2720,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 256000,
@@ -2092,7 +2729,16 @@
       "parameters": 299,
       "release_date": "2026-07-06",
       "knowledge_cutoff": null,
-      "omniscience": -18.5
+      "omniscience": -18.5,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/hy3",
     "vendor_links": {
@@ -2136,7 +2782,17 @@
     },
     "benchmarks": {
       "gpqa": 0.891919191919192,
-      "hle": 0.323911028730306
+      "hle": 0.323911028730306,
+      "scicode": 0.417824074074074,
+      "lcr": 0.676666666666667,
+      "critpt": 0.0857142857142857,
+      "ifbench": 0.661904761904762,
+      "tau2": 0.815789473684211,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1250.29,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.5,
@@ -2148,11 +2804,12 @@
       "frontier": true,
       "open_weights": true,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 262000,
@@ -2160,7 +2817,17 @@
       "parameters": 397,
       "release_date": "2026-06-02",
       "knowledge_cutoff": null,
-      "omniscience": -27.6166666666667
+      "omniscience": -27.6166666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 262144
     },
     "url": "https://artificialanalysis.ai/models/nex-n2-pro",
     "vendor_links": {
@@ -2196,7 +2863,17 @@
     },
     "benchmarks": {
       "gpqa": 0.871717171717172,
-      "hle": 0.297034291010195
+      "hle": 0.297034291010195,
+      "scicode": 0.460648148148148,
+      "lcr": 0.633333333333333,
+      "critpt": 0.0542857142857143,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.734682080924856,
+      "gdpval": 1236.75,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 1.87,
@@ -2208,11 +2885,12 @@
       "frontier": true,
       "open_weights": true,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -2220,7 +2898,18 @@
       "parameters": 975,
       "release_date": "2026-07-15",
       "knowledge_cutoff": null,
-      "omniscience": 2.05
+      "omniscience": 2.05,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "audio"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/inkling",
     "vendor_links": {
@@ -2262,7 +2951,17 @@
     },
     "benchmarks": {
       "gpqa": 0.893939393939394,
-      "hle": 0.320667284522706
+      "hle": 0.320667284522706,
+      "scicode": 0.449074074074074,
+      "lcr": 0.63,
+      "critpt": 0.0714285714285714,
+      "ifbench": 0.791836734693877,
+      "tau2": 0.950292397660819,
+      "terminalbench_hard": 0.356060606060606,
+      "mmmu_pro": null,
+      "gdpval": 1189.04,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.14,
@@ -2278,7 +2977,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -2286,7 +2986,16 @@
       "parameters": 284,
       "release_date": "2026-04-24",
       "knowledge_cutoff": null,
-      "omniscience": -22.9
+      "omniscience": -22.9,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 393216
     },
     "url": "https://artificialanalysis.ai/models/deepseek-v4-flash-0420",
     "vendor_links": {
@@ -2328,7 +3037,17 @@
     },
     "benchmarks": {
       "gpqa": 0.894949494949495,
-      "hle": 0.316033364226135
+      "hle": 0.316033364226135,
+      "scicode": 0.487268518518519,
+      "lcr": 0.63,
+      "critpt": 0.0828571428571429,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.740462427745665,
+      "gdpval": 1268.47,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.3,
@@ -2340,11 +3059,12 @@
       "frontier": true,
       "open_weights": true,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -2352,7 +3072,18 @@
       "parameters": 266,
       "release_date": "2026-07-30",
       "knowledge_cutoff": null,
-      "omniscience": -8.96666666666667
+      "omniscience": -8.96666666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "audio"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/inkling-small",
     "vendor_links": {
@@ -2388,7 +3119,17 @@
     },
     "benchmarks": {
       "gpqa": 0.867676767676768,
-      "hle": 0.280352177942539
+      "hle": 0.280352177942539,
+      "scicode": 0.4375,
+      "lcr": 0.623333333333333,
+      "critpt": 0.0457142857142857,
+      "ifbench": 0.762585034013605,
+      "tau2": 0.976608187134503,
+      "terminalbench_hard": 0.431818181818182,
+      "mmmu_pro": null,
+      "gdpval": 1255.98,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 1.38,
@@ -2404,7 +3145,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 200000,
@@ -2412,7 +3154,16 @@
       "parameters": 744,
       "release_date": "2026-04-07",
       "knowledge_cutoff": null,
-      "omniscience": 1.93333333333333
+      "omniscience": 1.93333333333333,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/glm-5-1",
     "vendor_links": {
@@ -2460,7 +3211,17 @@
     },
     "benchmarks": {
       "gpqa": 0.887878787878788,
-      "hle": 0.288693234476367
+      "hle": 0.288693234476367,
+      "scicode": 0.46875,
+      "lcr": 0.696666666666667,
+      "critpt": 0.0370612244897959,
+      "ifbench": 0.765986394557823,
+      "tau2": 0.95906432748538,
+      "terminalbench_hard": 0.439393939393939,
+      "mmmu_pro": null,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 1.3,
@@ -2476,7 +3237,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 256000,
@@ -2484,7 +3246,16 @@
       "parameters": null,
       "release_date": "2026-04-20",
       "knowledge_cutoff": null,
-      "omniscience": 10.2
+      "omniscience": 10.2,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 65536
     },
     "url": "https://artificialanalysis.ai/models/qwen3-6-max",
     "vendor_links": {
@@ -2532,7 +3303,17 @@
     },
     "benchmarks": {
       "gpqa": 0.874747474747475,
-      "hle": 0.266450417052827
+      "hle": 0.266450417052827,
+      "scicode": 0.498842592592593,
+      "lcr": 0.693333333333333,
+      "critpt": 0.1,
+      "ifbench": 0.73265306122449,
+      "tau2": 0.833333333333333,
+      "terminalbench_hard": 0.522727272727273,
+      "mmmu_pro": 0.732947976878613,
+      "gdpval": 1169.62,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.75,
@@ -2544,11 +3325,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 400000,
@@ -2556,7 +3338,18 @@
       "parameters": null,
       "release_date": "2026-03-17",
       "knowledge_cutoff": "2025-08-31",
-      "omniscience": -18.6833333333333
+      "omniscience": -18.6833333333333,
+      "modalities": {
+        "input": [
+          "file",
+          "image",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/gpt-5-4-mini",
     "vendor_links": {
@@ -2593,7 +3386,17 @@
     },
     "benchmarks": {
       "gpqa": 0.894949494949495,
-      "hle": 0.359592215013902
+      "hle": 0.359592215013902,
+      "scicode": 0.502314814814815,
+      "lcr": 0.646666666666667,
+      "critpt": 0.0914285714285714,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.765317919075144,
+      "gdpval": 1213.62,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 1,
@@ -2605,11 +3408,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 256000,
@@ -2617,7 +3421,18 @@
       "parameters": null,
       "release_date": "2026-06-16",
       "knowledge_cutoff": null,
-      "omniscience": 7.43333333333333
+      "omniscience": 7.43333333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/grok-build-0-1-06-16",
     "vendor_links": {
@@ -2654,7 +3469,17 @@
     },
     "benchmarks": {
       "gpqa": 0.9,
-      "hle": 0.334105653382762
+      "hle": 0.334105653382762,
+      "scicode": 0.454861111111111,
+      "lcr": 0.65,
+      "critpt": 0.0914285714285714,
+      "ifbench": 0.779591836734694,
+      "tau2": 0.929824561403509,
+      "terminalbench_hard": 0.46969696969697,
+      "mmmu_pro": 0.804624277456647,
+      "gdpval": 943.05,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.4,
@@ -2666,11 +3491,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -2678,7 +3504,17 @@
       "parameters": null,
       "release_date": "2026-06-01",
       "knowledge_cutoff": null,
-      "omniscience": 2.36666666666667
+      "omniscience": 2.36666666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 131072
     },
     "url": "https://artificialanalysis.ai/models/qwen3-7-plus",
     "vendor_links": {
@@ -2726,7 +3562,17 @@
     },
     "benchmarks": {
       "gpqa": 0.845454545454545,
-      "hle": 0.161260426320667
+      "hle": 0.161260426320667,
+      "scicode": 0.381944444444444,
+      "lcr": 0.586666666666667,
+      "critpt": 0,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.641040462427746,
+      "gdpval": 1265.61,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": null,
@@ -2742,7 +3588,8 @@
       "chinese_eval": false,
       "has_speed": false,
       "has_pricing": false,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": null
     },
     "meta": {
       "context_window": 256000,
@@ -2750,7 +3597,9 @@
       "parameters": 236,
       "release_date": "2026-07-09",
       "knowledge_cutoff": null,
-      "omniscience": -10.1166666666667
+      "omniscience": -10.1166666666667,
+      "modalities": null,
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/jt-4-1-flash-236b-a21b",
     "vendor_links": {
@@ -2784,7 +3633,17 @@
     },
     "benchmarks": {
       "gpqa": 0.875757575757576,
-      "hle": 0.318813716404078
+      "hle": 0.318813716404078,
+      "scicode": 0.422453703703704,
+      "lcr": 0.636666666666667,
+      "critpt": 0.108571428571429,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1171.22,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.45,
@@ -2800,7 +3659,8 @@
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": null
     },
     "meta": {
       "context_window": 1000000,
@@ -2808,7 +3668,9 @@
       "parameters": null,
       "release_date": "2026-07-24",
       "knowledge_cutoff": null,
-      "omniscience": -26.3333333333333
+      "omniscience": -26.3333333333333,
+      "modalities": null,
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/agnes-2-5-pro-alpha",
     "vendor_links": {},
@@ -2839,7 +3701,17 @@
     },
     "benchmarks": {
       "gpqa": 0.817171717171717,
-      "hle": 0.264596848934198
+      "hle": 0.264596848934198,
+      "scicode": 0.46875,
+      "lcr": 0.66,
+      "critpt": 0.0925306122448979,
+      "ifbench": 0.759183673469388,
+      "tau2": 0.760233918128655,
+      "terminalbench_hard": 0.424242424242424,
+      "mmmu_pro": 0.653757225433526,
+      "gdpval": 1101.03,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.2,
@@ -2851,11 +3723,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 400000,
@@ -2863,7 +3736,18 @@
       "parameters": null,
       "release_date": "2026-03-17",
       "knowledge_cutoff": "2025-08-31",
-      "omniscience": -29.55
+      "omniscience": -29.55,
+      "modalities": {
+        "input": [
+          "file",
+          "image",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/gpt-5-4-nano",
     "vendor_links": {
@@ -2900,7 +3784,17 @@
     },
     "benchmarks": {
       "gpqa": 0.873737373737374,
-      "hle": 0.280815569972196
+      "hle": 0.280815569972196,
+      "scicode": 0.469907407407407,
+      "lcr": 0.686666666666667,
+      "critpt": 0.00571428571428571,
+      "ifbench": 0.757142857142857,
+      "tau2": 0.847953216374269,
+      "terminalbench_hard": 0.393939393939394,
+      "mmmu_pro": null,
+      "gdpval": 1157.56,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.3,
@@ -2916,7 +3810,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 204800,
@@ -2924,7 +3819,16 @@
       "parameters": 230,
       "release_date": "2026-03-18",
       "knowledge_cutoff": null,
-      "omniscience": 0.683333333333333
+      "omniscience": 0.683333333333333,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 131072
     },
     "url": "https://artificialanalysis.ai/models/minimax-m2-7",
     "vendor_links": {
@@ -2972,7 +3876,17 @@
     },
     "benchmarks": {
       "gpqa": 0.847474747474747,
-      "hle": 0.253938832252085
+      "hle": 0.253938832252085,
+      "scicode": 0.436342592592593,
+      "lcr": 0.606666666666667,
+      "critpt": 0.00285714285714286,
+      "ifbench": 0.731972789115646,
+      "tau2": 0.985380116959064,
+      "terminalbench_hard": 0.333333333333333,
+      "mmmu_pro": null,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": null,
@@ -2988,7 +3902,8 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": false,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 200000,
@@ -2996,7 +3911,16 @@
       "parameters": null,
       "release_date": "2026-03-15",
       "knowledge_cutoff": null,
-      "omniscience": -15.0833333333333
+      "omniscience": -15.0833333333333,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 131072
     },
     "url": "https://artificialanalysis.ai/models/glm-5-turbo",
     "vendor_links": {
@@ -3038,7 +3962,17 @@
     },
     "benchmarks": {
       "gpqa": 0.866666666666667,
-      "hle": 0.265523632993513
+      "hle": 0.265523632993513,
+      "scicode": 0.399305555555556,
+      "lcr": 0.67,
+      "critpt": 0.0314285714285714,
+      "ifbench": 0.813605442176871,
+      "tau2": 0.833333333333333,
+      "terminalbench_hard": 0.363636363636364,
+      "mmmu_pro": null,
+      "gdpval": 1161.96,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.675,
@@ -3054,7 +3988,8 @@
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 262144,
@@ -3062,7 +3997,16 @@
       "parameters": 550,
       "release_date": "2026-06-04",
       "knowledge_cutoff": null,
-      "omniscience": -0.833333333333333
+      "omniscience": -0.833333333333333,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 65536
     },
     "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
     "vendor_links": {
@@ -3099,7 +4043,17 @@
     },
     "benchmarks": {
       "gpqa": 0.901010101010101,
-      "hle": 0.35032437442076
+      "hle": 0.35032437442076,
+      "scicode": 0.47337962962963,
+      "lcr": 0.643333333333333,
+      "critpt": 0.08,
+      "ifbench": 0.812925170068027,
+      "tau2": 0.976608187134503,
+      "terminalbench_hard": 0.378787878787879,
+      "mmmu_pro": 0.78092485549133,
+      "gdpval": 1084.12,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 1.25,
@@ -3111,11 +4065,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -3123,7 +4078,18 @@
       "parameters": null,
       "release_date": "2026-04-30",
       "knowledge_cutoff": null,
-      "omniscience": 18.3166666666667
+      "omniscience": 18.3166666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/grok-4-3",
     "vendor_links": {
@@ -3166,7 +4132,17 @@
     },
     "benchmarks": {
       "gpqa": 0.84949494949495,
-      "hle": 0.2516218721038
+      "hle": 0.2516218721038,
+      "scicode": 0.430555555555556,
+      "lcr": 0.626666666666667,
+      "critpt": 0.0371428571428571,
+      "ifbench": 0.671428571428571,
+      "tau2": 0.906432748538012,
+      "terminalbench_hard": 0.416666666666667,
+      "mmmu_pro": 0.754335260115607,
+      "gdpval": 1144.67,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.14,
@@ -3178,11 +4154,12 @@
       "frontier": false,
       "open_weights": true,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -3190,7 +4167,19 @@
       "parameters": 310,
       "release_date": "2026-04-22",
       "knowledge_cutoff": null,
-      "omniscience": -9.33333333333333
+      "omniscience": -9.33333333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "audio",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 131072
     },
     "url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
     "vendor_links": {
@@ -3238,7 +4227,17 @@
     },
     "benchmarks": {
       "gpqa": 0.842424242424242,
-      "hle": 0.215940685820204
+      "hle": 0.215940685820204,
+      "scicode": 0.398148148148148,
+      "lcr": 0.686666666666667,
+      "critpt": 0.0114285714285714,
+      "ifbench": 0.675510204081633,
+      "tau2": 0.941520467836257,
+      "terminalbench_hard": 0.348484848484849,
+      "mmmu_pro": 0.746242774566474,
+      "gdpval": 1138.05,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.6,
@@ -3250,11 +4249,12 @@
       "frontier": false,
       "open_weights": true,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 262144,
@@ -3262,7 +4262,18 @@
       "parameters": 27.8,
       "release_date": "2026-04-22",
       "knowledge_cutoff": null,
-      "omniscience": -19.7833333333333
+      "omniscience": -19.7833333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 65536
     },
     "url": "https://artificialanalysis.ai/models/qwen3-6-27b",
     "vendor_links": {
@@ -3300,7 +4311,17 @@
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
-      "hle": 0.322057460611678
+      "hle": 0.322057460611678,
+      "scicode": 0.456018518518519,
+      "lcr": 0.58,
+      "critpt": 0.0657142857142857,
+      "ifbench": 0.812244897959184,
+      "tau2": 0.929824561403509,
+      "terminalbench_hard": 0.378787878787879,
+      "mmmu_pro": 0.745664739884393,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 2,
@@ -3312,11 +4333,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 2000000,
@@ -3324,7 +4346,18 @@
       "parameters": null,
       "release_date": "2026-04-07",
       "knowledge_cutoff": null,
-      "omniscience": 15.35
+      "omniscience": 15.35,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/grok-4-20",
     "vendor_links": {
@@ -3361,7 +4394,17 @@
     },
     "benchmarks": {
       "gpqa": 0.884848484848485,
-      "hle": 0.300278035217794
+      "hle": 0.300278035217794,
+      "scicode": 0.446759259259259,
+      "lcr": 0.59,
+      "critpt": 0.06,
+      "ifbench": 0.829251700680272,
+      "tau2": 0.964912280701754,
+      "terminalbench_hard": 0.409090909090909,
+      "mmmu_pro": 0.731791907514451,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 2,
@@ -3373,11 +4416,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 2000000,
@@ -3385,7 +4429,18 @@
       "parameters": null,
       "release_date": "2026-03-10",
       "knowledge_cutoff": null,
-      "omniscience": 13.3666666666667
+      "omniscience": 13.3666666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/grok-4-20-0309",
     "vendor_links": {
@@ -3422,7 +4477,17 @@
     },
     "benchmarks": {
       "gpqa": 0.838383838383838,
-      "hle": 0.17516218721038
+      "hle": 0.17516218721038,
+      "scicode": 0.408564814814815,
+      "lcr": 0.62,
+      "critpt": 0,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.790173410404624,
+      "gdpval": 1138.05,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.3,
@@ -3434,11 +4499,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -3446,7 +4512,20 @@
       "parameters": null,
       "release_date": "2026-07-21",
       "knowledge_cutoff": null,
-      "omniscience": 6.91666666666667
+      "omniscience": 6.91666666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video",
+          "file",
+          "audio"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 65536
     },
     "url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
     "vendor_links": {
@@ -3494,7 +4573,17 @@
     },
     "benchmarks": {
       "gpqa": 0.854545454545455,
-      "hle": 0.204355885078777
+      "hle": 0.204355885078777,
+      "scicode": 0.394675925925926,
+      "lcr": 0.636666666666667,
+      "critpt": 0.00857142857142857,
+      "ifbench": 0.673469387755102,
+      "tau2": 0.880116959064328,
+      "terminalbench_hard": 0.356060606060606,
+      "mmmu_pro": 0.739306358381503,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": null,
@@ -3506,11 +4595,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": false,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 256000,
@@ -3518,7 +4608,19 @@
       "parameters": null,
       "release_date": "2026-03-27",
       "knowledge_cutoff": null,
-      "omniscience": -14.0166666666667
+      "omniscience": -14.0166666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "audio",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 131072
     },
     "url": "https://artificialanalysis.ai/models/mimo-v2-omni-0327",
     "vendor_links": {
@@ -3566,7 +4668,17 @@
     },
     "benchmarks": {
       "gpqa": 0.828282828282828,
-      "hle": 0.199258572752549
+      "hle": 0.199258572752549,
+      "scicode": 0.366898148148148,
+      "lcr": 0.666666666666667,
+      "critpt": 0.0114285714285714,
+      "ifbench": 0.535374149659864,
+      "tau2": 0.912280701754386,
+      "terminalbench_hard": 0.348484848484849,
+      "mmmu_pro": 0.698843930635838,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": null,
@@ -3578,11 +4690,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": false,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 256000,
@@ -3590,7 +4703,19 @@
       "parameters": null,
       "release_date": "2026-03-19",
       "knowledge_cutoff": null,
-      "omniscience": -17.4333333333333
+      "omniscience": -17.4333333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "audio",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 131072
     },
     "url": "https://artificialanalysis.ai/models/mimo-v2-omni",
     "vendor_links": {
@@ -3638,7 +4763,17 @@
     },
     "benchmarks": {
       "gpqa": 0.809090909090909,
-      "hle": 0.158480074142725
+      "hle": 0.158480074142725,
+      "scicode": 0.435185185185185,
+      "lcr": 0.61,
+      "critpt": 0.00571428571428571,
+      "ifbench": 0.610884353741497,
+      "tau2": 0.985380116959064,
+      "terminalbench_hard": 0.325757575757576,
+      "mmmu_pro": 0.727745664739884,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": null,
@@ -3650,11 +4785,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": false,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 200000,
@@ -3662,7 +4798,18 @@
       "parameters": null,
       "release_date": "2026-04-01",
       "knowledge_cutoff": null,
-      "omniscience": -18.9833333333333
+      "omniscience": -18.9833333333333,
+      "modalities": {
+        "input": [
+          "image",
+          "text",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 131072
     },
     "url": "https://artificialanalysis.ai/models/glm-5v-turbo",
     "vendor_links": {
@@ -3710,7 +4857,17 @@
     },
     "benchmarks": {
       "gpqa": 0.854545454545454,
-      "hle": 0.159870250231696
+      "hle": 0.159870250231696,
+      "scicode": 0.383101851851852,
+      "lcr": 0.66,
+      "critpt": 0,
+      "ifbench": 0.666666666666667,
+      "tau2": 0.894736842105263,
+      "terminalbench_hard": 0.492424242424242,
+      "mmmu_pro": null,
+      "gdpval": 905.99,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.3,
@@ -3726,7 +4883,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 256000,
@@ -3734,7 +4892,16 @@
       "parameters": null,
       "release_date": "2026-03-27",
       "knowledge_cutoff": null,
-      "omniscience": -21.6
+      "omniscience": -21.6,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 80000
     },
     "url": "https://artificialanalysis.ai/models/kat-coder-pro-v2",
     "vendor_links": {
@@ -3776,7 +4943,17 @@
     },
     "benchmarks": {
       "gpqa": 0.866666666666667,
-      "hle": 0.255329008341057
+      "hle": 0.255329008341057,
+      "scicode": 0.412037037037037,
+      "lcr": 0.546666666666667,
+      "critpt": 0.0457142857142857,
+      "ifbench": 0.631292517006803,
+      "tau2": 0.926900584795322,
+      "terminalbench_hard": 0.340909090909091,
+      "mmmu_pro": null,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.0645,
@@ -3792,7 +4969,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 256000,
@@ -3800,7 +4978,16 @@
       "parameters": 295,
       "release_date": "2026-04-23",
       "knowledge_cutoff": null,
-      "omniscience": -34.6333333333333
+      "omniscience": -34.6333333333333,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/hy3-preview",
     "vendor_links": {
@@ -3848,7 +5035,17 @@
     },
     "benchmarks": {
       "gpqa": 0.846464646464646,
-      "hle": 0.202965708989805
+      "hle": 0.202965708989805,
+      "scicode": 0.503472222222222,
+      "lcr": 0.556666666666667,
+      "critpt": 0.0257142857142857,
+      "ifbench": 0.714965986394558,
+      "tau2": 0.494152046783626,
+      "terminalbench_hard": 0.424242424242424,
+      "mmmu_pro": null,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 5,
@@ -3860,11 +5057,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 400000,
@@ -3872,7 +5070,18 @@
       "parameters": null,
       "release_date": "2026-05-05",
       "knowledge_cutoff": "2025-08-31",
-      "omniscience": 10.3333333333333
+      "omniscience": 10.3333333333333,
+      "modalities": {
+        "input": [
+          "file",
+          "image",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/gpt-5-5-instant-05-26",
     "vendor_links": {
@@ -3915,7 +5124,17 @@
     },
     "benchmarks": {
       "gpqa": 0.77979797979798,
-      "hle": 0.320667284522706
+      "hle": 0.320667284522706,
+      "scicode": 0.354166666666667,
+      "lcr": 0.58,
+      "critpt": 0.0257142857142857,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1026.51,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.75,
@@ -3931,7 +5150,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1000000,
@@ -3939,7 +5159,16 @@
       "parameters": 1600,
       "release_date": "2026-06-29",
       "knowledge_cutoff": null,
-      "omniscience": -22.6333333333333
+      "omniscience": -22.6333333333333,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 262144
     },
     "url": "https://artificialanalysis.ai/models/longcat-2-0",
     "vendor_links": {
@@ -3976,7 +5205,17 @@
     },
     "benchmarks": {
       "gpqa": 0.841414141414142,
-      "hle": 0.201575532900834
+      "hle": 0.201575532900834,
+      "scicode": 0.357638888888889,
+      "lcr": 0.636666666666667,
+      "critpt": 0.00285714285714286,
+      "ifbench": 0.643537414965986,
+      "tau2": 0.953216374269006,
+      "terminalbench_hard": 0.348484848484849,
+      "mmmu_pro": 0.75028901734104,
+      "gdpval": 1053.39,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.248,
@@ -3988,11 +5227,12 @@
       "frontier": false,
       "open_weights": true,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 262144,
@@ -4000,7 +5240,18 @@
       "parameters": 36,
       "release_date": "2026-04-16",
       "knowledge_cutoff": null,
-      "omniscience": -21.4333333333333
+      "omniscience": -21.4333333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 262144
     },
     "url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
     "vendor_links": {
@@ -4044,7 +5295,17 @@
     },
     "benchmarks": {
       "gpqa": 0.856565656565657,
-      "hle": 0.182576459684893
+      "hle": 0.182576459684893,
+      "scicode": 0.423611111111111,
+      "lcr": 0.643333333333333,
+      "critpt": 0.0371428571428571,
+      "ifbench": 0.445578231292517,
+      "tau2": 0.923976608187135,
+      "terminalbench_hard": 0.287878787878788,
+      "mmmu_pro": null,
+      "gdpval": 920.04,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.3,
@@ -4060,7 +5321,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 262144,
@@ -4068,7 +5330,16 @@
       "parameters": 1000,
       "release_date": "2026-05-08",
       "knowledge_cutoff": null,
-      "omniscience": -37.75
+      "omniscience": -37.75,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 65536
     },
     "url": "https://artificialanalysis.ai/models/ring-2-6-1t",
     "vendor_links": {
@@ -4109,7 +5380,17 @@
     },
     "benchmarks": {
       "gpqa": 0.809090909090909,
-      "hle": 0.199258572752549
+      "hle": 0.199258572752549,
+      "scicode": 0.400462962962963,
+      "lcr": 0.636666666666667,
+      "critpt": 0.0228571428571429,
+      "ifbench": 0.672789115646258,
+      "tau2": 0.985380116959064,
+      "terminalbench_hard": 0.356060606060606,
+      "mmmu_pro": 0.753179190751445,
+      "gdpval": 1016.79,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.2,
@@ -4121,11 +5402,12 @@
       "frontier": false,
       "open_weights": true,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 262144,
@@ -4133,7 +5415,18 @@
       "parameters": 198,
       "release_date": "2026-05-29",
       "knowledge_cutoff": null,
-      "omniscience": -37.55
+      "omniscience": -37.55,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 256000
     },
     "url": "https://artificialanalysis.ai/models/step-3-7-flash",
     "vendor_links": {
@@ -4175,7 +5468,17 @@
     },
     "benchmarks": {
       "gpqa": 0.751515151515151,
-      "hle": 0.082483781278962
+      "hle": 0.082483781278962,
+      "scicode": 0.37037037037037,
+      "lcr": 0.346666666666667,
+      "critpt": 0.00285714285714286,
+      "ifbench": 0.568707482993197,
+      "tau2": 0.89766081871345,
+      "terminalbench_hard": 0.310606060606061,
+      "mmmu_pro": null,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.3,
@@ -4191,7 +5494,8 @@
       "chinese_eval": true,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 262144,
@@ -4199,7 +5503,16 @@
       "parameters": 1026,
       "release_date": "2026-04-23",
       "knowledge_cutoff": null,
-      "omniscience": -51
+      "omniscience": -51,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 32768
     },
     "url": "https://artificialanalysis.ai/models/ling-2-6-1t",
     "vendor_links": {
@@ -4246,7 +5559,17 @@
     },
     "benchmarks": {
       "gpqa": 0.831313131313131,
-      "hle": 0.191380908248378
+      "hle": 0.191380908248378,
+      "scicode": 0.403747266639333,
+      "lcr": 0.43,
+      "critpt": 0.0246938775510204,
+      "ifbench": 0.645578231292517,
+      "tau2": 0.944444444444444,
+      "terminalbench_hard": 0.272727272727273,
+      "mmmu_pro": null,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.1,
@@ -4262,7 +5585,8 @@
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 256000,
@@ -4270,7 +5594,16 @@
       "parameters": 196,
       "release_date": "2026-02-02",
       "knowledge_cutoff": null,
-      "omniscience": -40.9
+      "omniscience": -40.9,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 65536
     },
     "url": "https://artificialanalysis.ai/models/step-3-5-flash-0202",
     "vendor_links": {
@@ -4318,7 +5651,17 @@
     },
     "benchmarks": {
       "gpqa": 0.760606060606061,
-      "hle": 0.113531047265987
+      "hle": 0.113531047265987,
+      "scicode": 0.378472222222222,
+      "lcr": 0.46,
+      "critpt": 0.00285714285714286,
+      "ifbench": 0.739455782312925,
+      "tau2": 0.807017543859649,
+      "terminalbench_hard": 0.25,
+      "mmmu_pro": 0.632369942196532,
+      "gdpval": 717.7,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0,
@@ -4334,7 +5677,8 @@
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": false
     },
     "meta": {
       "context_window": 192000,
@@ -4342,7 +5686,16 @@
       "parameters": 218,
       "release_date": "2026-05-20",
       "knowledge_cutoff": null,
-      "omniscience": -3.98333333333333
+      "omniscience": -3.98333333333333,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 8192
     },
     "url": "https://artificialanalysis.ai/models/command-a-plus",
     "vendor_links": {
@@ -4379,7 +5732,17 @@
     },
     "benchmarks": {
       "gpqa": 0.751515151515151,
-      "hle": 0.146895273401297
+      "hle": 0.146895273401297,
+      "scicode": 0.361111111111111,
+      "lcr": 0.33,
+      "critpt": 0.00857142857142857,
+      "ifbench": 0.562585034013605,
+      "tau2": 0.900584795321637,
+      "terminalbench_hard": 0.227272727272727,
+      "mmmu_pro": null,
+      "gdpval": 563.66,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 0.235,
@@ -4395,7 +5758,8 @@
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 512000,
@@ -4403,7 +5767,16 @@
       "parameters": 399,
       "release_date": "2026-04-01",
       "knowledge_cutoff": null,
-      "omniscience": -44.1833333333333
+      "omniscience": -44.1833333333333,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 262144
     },
     "url": "https://artificialanalysis.ai/models/trinity-large-thinking",
     "vendor_links": {
@@ -4446,7 +5819,17 @@
     },
     "benchmarks": {
       "gpqa": 0.631313131313131,
-      "hle": 0.0662650602409639
+      "hle": 0.0662650602409639,
+      "scicode": 0.207175925925926,
+      "lcr": 0.27,
+      "critpt": 0,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 533.56,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 2,
@@ -4462,7 +5845,8 @@
       "chinese_eval": false,
       "has_speed": true,
       "has_pricing": true,
-      "data_complete": true
+      "data_complete": true,
+      "tools_calling": null
     },
     "meta": {
       "context_window": 131072,
@@ -4470,7 +5854,9 @@
       "parameters": null,
       "release_date": "2026-07-24",
       "knowledge_cutoff": null,
-      "omniscience": -72.6
+      "omniscience": -72.6,
+      "modalities": null,
+      "max_output_tokens": null
     },
     "url": "https://artificialanalysis.ai/models/celeris-1",
     "vendor_links": {},
@@ -4501,7 +5887,17 @@
     },
     "benchmarks": {
       "gpqa": null,
-      "hle": null
+      "hle": null,
+      "scicode": null,
+      "lcr": null,
+      "critpt": 0.3,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": null,
+      "livecodebench": null,
+      "aime25": null
     },
     "pricing": {
       "input": 30,
@@ -4513,11 +5909,12 @@
       "frontier": false,
       "open_weights": false,
       "reasoning": false,
-      "image_input": false,
+      "image_input": true,
       "chinese_eval": false,
       "has_speed": false,
       "has_pricing": true,
-      "data_complete": false
+      "data_complete": false,
+      "tools_calling": true
     },
     "meta": {
       "context_window": 1050000,
@@ -4525,7 +5922,18 @@
       "parameters": null,
       "release_date": "2026-03-05",
       "knowledge_cutoff": "2025-08-31",
-      "omniscience": null
+      "omniscience": null,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
     },
     "url": "https://artificialanalysis.ai/models/gpt-5-4-pro",
     "vendor_links": {
