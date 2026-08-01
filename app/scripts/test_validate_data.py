@@ -186,6 +186,14 @@ class TestCheckScoreDistribution(unittest.TestCase):
 
 
 class TestCheckThresholds(unittest.TestCase):
+    def setUp(self):
+        # 关闭基于历史的动态阈值，避免测试结果依赖 data/5-history 快照内容
+        self._orig_history_enabled = V.HISTORY_THRESHOLDS_ENABLED
+        V.HISTORY_THRESHOLDS_ENABLED = False
+
+    def tearDown(self):
+        V.HISTORY_THRESHOLDS_ENABLED = self._orig_history_enabled
+
     def test_within_threshold(self):
         """阈值在范围内时无问题"""
         models = [
