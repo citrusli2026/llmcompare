@@ -7,12 +7,12 @@ import { useTranslation } from "@/lib/i18n";
 import metadataData from "@/data/metadata.json";
 import rankingMeta from "@/data/ranking-meta.json";
 import rawChangesData from "@/data/changes.json";
-import type { ChangesData } from "@/components/changes-card";
+import { formatDetail, type ChangesData } from "@/components/changes-card";
 
 const changesData = rawChangesData as ChangesData;
 
 export default function AboutPageClient() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   return (
     <div className="min-h-screen bg-surface-base">
@@ -52,7 +52,8 @@ export default function AboutPageClient() {
                   className="text-accent-violet hover:underline"
                 >
                   GitHub Issues
-                </a>。
+                </a>
+                {t("about.backgroundContributeSuffix")}
               </p>
             </section>
 
@@ -71,7 +72,7 @@ export default function AboutPageClient() {
                   </span>
                   <span className="inline-flex items-center gap-1 text-xs text-text-dim">
                     <Calendar className="h-3 w-3" />
-                    {t("about.lastUpdated")}: {new Date(metadataData.updated_at).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" })}
+                    {t("about.lastUpdated")}: {new Date(metadataData.updated_at).toLocaleString(locale === "en" ? "en-US" : "zh-CN", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" })}
                   </span>
                 </div>
                 <div className="rounded-lg bg-surface-hover p-4">
@@ -233,15 +234,18 @@ export default function AboutPageClient() {
               </p>
               {changesData.changes.length > 0 ? (
                 <ul className="space-y-2">
-                  {changesData.changes.map((change, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-text-secondary rounded-lg bg-surface-hover p-3">
-                      <span className="shrink-0">{change.icon}</span>
-                      <span>
-                        <span className="font-medium text-text-primary">{change.model}</span>
-                        {change.detail ? ` — ${change.detail}` : ""}
-                      </span>
-                    </li>
-                  ))}
+                  {changesData.changes.map((change, idx) => {
+                    const detail = formatDetail(change, t);
+                    return (
+                      <li key={idx} className="flex items-start gap-2 text-sm text-text-secondary rounded-lg bg-surface-hover p-3">
+                        <span className="shrink-0">{change.icon}</span>
+                        <span>
+                          <span className="font-medium text-text-primary">{change.model}</span>
+                          {detail ? ` — ${detail}` : ""}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
               ) : (
                 <p className="text-sm text-text-secondary rounded-lg bg-surface-hover p-3">{t("about.changelogEmpty")}</p>

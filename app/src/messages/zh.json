@@ -135,6 +135,7 @@
     "backgroundDesc": "模型图鉴是 AI 模型选型助手——展示 58 个全球主流 AI 模型的数据，帮你找到最适合的模型。",
     "backgroundMission": "提供「热度」和「智能」两个维度的场景推荐，详情页展示综合评分、定价和推荐标签，对比页支持多模型并排比较。",
     "backgroundContribute": "发现错误或想补充模型？欢迎提交",
+    "backgroundContributeSuffix": "。",
     "filterDesc": "从 Artificial Analysis 全球模型中按三档条件筛选：Large 尺寸、前沿标杆、或智能分≥30（补回高性价比中小模型），同系列旧代自动排除。活跃集默认保留 180 天内发布的模型。注入 Arena 排行榜与 OpenRouter 热度数据，按智能分统一排名。",
     "sourceTitle": "数据来源",
     "sourcePriceTitle": "模型官网",

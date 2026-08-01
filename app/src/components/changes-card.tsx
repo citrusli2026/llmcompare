@@ -5,7 +5,7 @@ import { useTranslation } from "@/lib/i18n";
 import { ArrowUp, ArrowDown, Sparkles, TrendingDown, DollarSign, Brain } from "lucide-react";
 import changesJson from "@/data/changes.json";
 
-interface Change {
+export interface Change {
   type: string;
   model: string;
   id: string;
@@ -25,8 +25,8 @@ interface Change {
   price_input?: number | null;
 }
 
-/** 按当前语言格式化 detail；结构化字段缺失时回退到管线预烘焙的中文 detail */
-function formatDetail(c: Change, t: (key: string, params?: Record<string, string | number>) => string): string {
+/** 按当前语言格式化 detail；结构化字段缺失时回退到管线预烘焙的中文 detail（About 页复用） */
+export function formatDetail(c: Change, t: (key: string, params?: Record<string, string | number>) => string): string {
   switch (c.type) {
     case "new": {
       if (c.intelligence == null && c.tps == null && c.price_input == null) return c.detail;

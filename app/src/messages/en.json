@@ -135,6 +135,7 @@
     "backgroundDesc": "LLM Compare is an AI model selection assistant — showcasing 58 global AI models to help you find the best fit.",
     "backgroundMission": "Provides scene-based recommendations by 'Hotness' and 'Intelligence'. Detail pages show comprehensive scores, pricing, and recommendation tags. The compare page supports side-by-side multi-model comparison.",
     "backgroundContribute": "Found an error or want to add a model? Submit via",
+    "backgroundContributeSuffix": ".",
     "filterDesc": "Filtered from Artificial Analysis global models using three criteria: Large size class, frontier status, or intelligence score ≥30 (to include high value smaller models). Outdated model versions are automatically excluded. Active set retains models published within 180 days. Arena rankings and OpenRouter popularity data are integrated, ranked by intelligence score.",
     "sourceTitle": "Data Sources",
     "sourcePriceTitle": "Official Sites",
