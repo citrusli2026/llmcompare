@@ -3,26 +3,24 @@ import { test, expect } from "@playwright/test";
 const isMobile = (projectName: string) => projectName === "Mobile Chrome";
 
 test.describe("Models Page — 筛选与搜索功能", () => {
-  test("desktop: 5 个功能标签全部可切换", async ({ page }, testInfo) => {
+  test("desktop: 首页 5 个场景标签全部可见且可切换", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
-    await page.goto("/models");
+    await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 找到功能标签组 — 每个是 button
-    const featureLabels = ["前沿", "推理", "图片输入", "中文能力", "开源权重"];
-    const enLabels = ["Frontier", "Reasoning", "Image", "Chinese", "Open Weights"];
+    // 首页场景卡：热度 / 智能 / 编程 / Agent / 性价比
+    const zhLabels = ["热度", "智能", "编程", "Agent", "性价比"];
+    const enLabels = ["Hotness", "Intelligence", "Coding", "Agent", "Value"];
 
     for (let i = 0; i < 5; i++) {
-      const btn = page.locator("button").filter({ hasText: new RegExp(`${featureLabels[i]}|${enLabels[i]}`) }).first();
-      if (await btn.isVisible().catch(() => false)) {
-        await btn.click();
-        await page.waitForTimeout(300);
-        // 切换后页面应仍正常
-        await expect(page.locator("body")).not.toHaveText(/Error/);
-        // 再点一次取消
-        await btn.click();
-        await page.waitForTimeout(300);
-      }
+      const btn = page.locator("button").filter({ hasText: new RegExp(`${zhLabels[i]}|${enLabels[i]}`) }).first();
+      await expect(btn).toBeVisible();
+      await btn.click();
+      await page.waitForTimeout(300);
+      // 切换后展开区应有模型推荐链接
+      await expect(page.locator(".animate-in a[href^='/models/']").first()).toBeVisible();
+      // 切换后页面应仍正常
+      await expect(page.locator("body")).not.toHaveText(/Error/);
     }
   });
 

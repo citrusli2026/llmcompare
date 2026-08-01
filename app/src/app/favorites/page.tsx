@@ -5,7 +5,8 @@ import { ModelsSkeleton } from "@/components/skeletons";
 
 export const metadata: Metadata = {
   title: "我的收藏",
-  description: "本地保存的 AI 模型收藏清单。在任何设备上访问 llmcompare.cc 都可以查看。",
+  description:
+    "保存在本机浏览器中的 AI 模型收藏清单，可生成链接分享给他人或导入到其他设备。Favorites are stored locally in your browser — share them via a link or import them on another device.",
   alternates: { canonical: "https://www.llmcompare.cc/favorites" },
   robots: { index: false },
 };

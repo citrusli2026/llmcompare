@@ -14,14 +14,20 @@
     "footer": "AI Model Finder — models ranked by intelligence and API call volume",
     "footerDisclaimer": "For reference only. Data based on publicly available information.",
     "sceneTitle": "Find Your Model",
-    "sceneDesc": "60+ global AI models — recommended by intelligence or hotness",
+    "sceneDesc": "60+ global AI models — recommended by scenario",
     "sceneBrowseAll": "More similar models",
     "topPicks": "Top Picks",
     "startSelection": "Start Selection →",
     "sceneIntelligence": "Intelligence",
     "sceneIntelligenceDesc": "Overall capability ranking",
     "sceneHotness": "Hotness",
-    "sceneHotnessDesc": "Real API call volume"
+    "sceneHotnessDesc": "Real API call volume",
+    "sceneCoding": "Coding",
+    "sceneCodingDesc": "Coding capability ranking",
+    "sceneAgentic": "Agent",
+    "sceneAgenticDesc": "Tool use & task execution",
+    "sceneValue": "Value",
+    "sceneValueDesc": "Intelligence per dollar"
   },
   "models": {
     "title": "Model Directory",
@@ -64,7 +70,13 @@
     "empty": "No favorite models yet",
     "emptyHint": "Click the ♡ on any model in the directory or detail page to add",
     "clear": "Clear all favorites",
-    "count": "{n} models saved"
+    "count": "{n} models saved",
+    "sharedTitle": "Shared Favorites",
+    "sharedHint": "{n} models shared via link — import to merge them into your favorites",
+    "import": "Import to My Favorites",
+    "backToMine": "Back to My Favorites",
+    "sharedEmpty": "No valid models in this shared link",
+    "sharedEmptyHint": "The link may be outdated, or its models are no longer listed"
   },
   "compare": {
     "title": "Model Comparison",

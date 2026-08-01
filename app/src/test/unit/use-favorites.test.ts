@@ -71,6 +71,20 @@ describe("useFavorites", () => {
     expect(result.current.favorites).toEqual(["a", "b"]);
   });
 
+  it("merges shared ids without duplicates", () => {
+    const { result } = renderHook(() => useFavorites());
+
+    act(() => {
+      result.current.toggleFavorite("a");
+    });
+    act(() => {
+      result.current.mergeFavorites(["b", "a", "c"]);
+    });
+
+    expect(result.current.favorites).toEqual(["a", "b", "c"]);
+    expect(JSON.parse(localStorage.getItem("llmcompare-favorites")!)).toEqual(["a", "b", "c"]);
+  });
+
   it("handles invalid localStorage data gracefully", () => {
     localStorage.setItem("llmcompare-favorites", "not-json");
 

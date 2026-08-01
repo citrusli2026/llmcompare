@@ -2,23 +2,24 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Brain, Flame, ArrowRight } from "lucide-react";
+import { Brain, Flame, Code2, Bot, Coins, ArrowRight } from "lucide-react";
 import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores, getAllModels } from "@/lib/scoring";
+import { rankByScore, pickTopN, valueScore, type SceneKey } from "@/lib/scene-recommendations";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { useTranslation } from "@/lib/i18n";
 import { ModelLogo } from "@/components/model-logo";
-
-type SceneKey = "intelligence" | "hotness";
 
 interface SceneDef {
   key: SceneKey;
   icon: React.ComponentType<{ className?: string }>;
   accentClass: string;
+  /** 展开区主分数的着色 */
+  scoreColorClass: string;
   labelKey: string;
   descKey: string;
-  sorter: (a: ModelWithScores, b: ModelWithScores) => number;
-  filter: (m: ModelWithScores) => boolean;
+  /** 排序指标；返回 null 的模型被排除 */
+  score: (m: ModelWithScores) => number | null;
   displayScore: (m: ModelWithScores) => string | null;
   secondaryPrice: (m: ModelWithScores) => number | null;
 }
@@ -28,10 +29,10 @@ const SCENES: SceneDef[] = [
     key: "hotness",
     icon: Flame,
     accentClass: "text-amber-500 border-amber-500/30 bg-amber-500/5",
+    scoreColorClass: "text-amber-500",
     labelKey: "home.sceneHotness",
     descKey: "home.sceneHotnessDesc",
-    filter: (m) => m.raw.openrouter_weekly_tokens != null,
-    sorter: (a, b) => (b.raw.openrouter_weekly_tokens ?? 0) - (a.raw.openrouter_weekly_tokens ?? 0),
+    score: (m) => m.raw.openrouter_weekly_tokens,
     displayScore: (m) => {
       const t = m.raw.openrouter_weekly_tokens;
       if (!t) return null;
@@ -44,34 +45,59 @@ const SCENES: SceneDef[] = [
     key: "intelligence",
     icon: Brain,
     accentClass: "text-accent-violet border-accent-violet/30 bg-accent-violet/5",
+    scoreColorClass: "text-accent-violet",
     labelKey: "home.sceneIntelligence",
     descKey: "home.sceneIntelligenceDesc",
-    filter: (m) => m.raw.intelligence != null,
-    sorter: (a, b) => (b.raw.intelligence ?? 0) - (a.raw.intelligence ?? 0),
+    score: (m) => m.raw.intelligence,
     displayScore: (m) => (m.raw.intelligence != null ? m.raw.intelligence.toFixed(1) : null),
+    secondaryPrice: (m) => m.raw.blended ?? null,
+  },
+  {
+    key: "coding",
+    icon: Code2,
+    accentClass: "text-accent-cyan border-accent-cyan/30 bg-accent-cyan/5",
+    scoreColorClass: "text-accent-cyan",
+    labelKey: "home.sceneCoding",
+    descKey: "home.sceneCodingDesc",
+    score: (m) => m.raw.coding,
+    displayScore: (m) => (m.raw.coding != null ? m.raw.coding.toFixed(1) : null),
+    secondaryPrice: (m) => m.raw.blended ?? null,
+  },
+  {
+    key: "agentic",
+    icon: Bot,
+    accentClass: "text-accent-blue border-accent-blue/30 bg-accent-blue/5",
+    scoreColorClass: "text-accent-blue",
+    labelKey: "home.sceneAgentic",
+    descKey: "home.sceneAgenticDesc",
+    score: (m) => m.raw.agentic,
+    displayScore: (m) => (m.raw.agentic != null ? m.raw.agentic.toFixed(1) : null),
+    secondaryPrice: (m) => m.raw.blended ?? null,
+  },
+  {
+    key: "value",
+    icon: Coins,
+    accentClass: "text-accent-emerald border-accent-emerald/30 bg-accent-emerald/5",
+    scoreColorClass: "text-accent-emerald",
+    labelKey: "home.sceneValue",
+    descKey: "home.sceneValueDesc",
+    score: valueScore,
+    displayScore: (m) => {
+      const v = valueScore(m);
+      return v == null ? null : v.toFixed(v >= 100 ? 0 : 1);
+    },
     secondaryPrice: (m) => m.raw.blended ?? null,
   },
 ];
 
 const TOP_N = 4;
 
-/** 反聚簇:排序后逐个加入,同 company 出现 ≥ 1 次时跳过,留给后面 */
-function pickTopN(items: ModelWithScores[], n: number): ModelWithScores[] {
-  const out: ModelWithScores[] = [];
-  const seenCo = new Map<string, number>();
-  for (const m of items) {
-    if (out.length >= n) break;
-    const c = m.company;
-    if ((seenCo.get(c) ?? 0) >= 1) continue;
-    out.push(m);
-    seenCo.set(c, 1);
-  }
-  return out;
-}
-
 const SCENE_SORT_MAP: Record<SceneKey, string> = {
-  intelligence: "intelligence",
   hotness: "tokens",
+  intelligence: "intelligence",
+  coding: "coding",
+  agentic: "agentic",
+  value: "cost",
 };
 
 interface SceneSelectorProps {
@@ -87,9 +113,7 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
   const sceneModels = useMemo(() => {
     const result: Record<SceneKey, ModelWithScores[]> = {} as Record<SceneKey, ModelWithScores[]>;
     for (const scene of SCENES) {
-      const filtered = allModels.filter(scene.filter);
-      const sorted = [...filtered].sort(scene.sorter);
-      result[scene.key] = pickTopN(sorted, TOP_N);
+      result[scene.key] = pickTopN(rankByScore(allModels, scene.score), TOP_N);
     }
     return result;
   }, [allModels]);
@@ -112,8 +136,8 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
           </div>
         )}
 
-        {/* Scene Cards Grid — 2 columns */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4">
+        {/* Scene Cards Grid — 移动端 2 列，桌面 5 列 */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
           {SCENES.map((scene) => {
             const Icon = scene.icon;
             const isActive = expanded === scene.key;
@@ -189,10 +213,7 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
 
                     {/* Score + secondary */}
                     <div className="text-right shrink-0">
-                      <div className={cn(
-                        "text-sm font-bold",
-                        scene.key === "intelligence" ? "text-accent-violet" : "text-amber-500"
-                      )}>
+                      <div className={cn("text-sm font-bold", scene.scoreColorClass)}>
                         {scene.displayScore(model)}
                       </div>
                       <div className="text-xs text-text-muted">

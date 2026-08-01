@@ -10,9 +10,12 @@ interface ShareButtonProps {
   size?: "sm" | "md";
   variant?: "outline" | "ghost";
   showLabel?: boolean;
+  /** 要分享的链接；缺省分享当前页面 URL */
+  url?: string;
+  disabled?: boolean;
 }
 
-export function ShareButton({ className, size = "md", variant = "outline", showLabel = true }: ShareButtonProps) {
+export function ShareButton({ className, size = "md", variant = "outline", showLabel = true, url, disabled }: ShareButtonProps) {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -34,12 +37,13 @@ export function ShareButton({ className, size = "md", variant = "outline", showL
   }, []);
 
   const handleShare = useCallback(async () => {
-    const url = typeof window !== "undefined" ? window.location.href : "";
-    if (!url) return;
+    if (disabled) return;
+    const shareUrl = url ?? (typeof window !== "undefined" ? window.location.href : "");
+    if (!shareUrl) return;
 
     if (typeof navigator !== "undefined" && navigator.share) {
       try {
-        await navigator.share({ url });
+        await navigator.share({ url: shareUrl });
         return;
       } catch {
         // user cancelled or not supported — fall through to clipboard
@@ -47,12 +51,12 @@ export function ShareButton({ className, size = "md", variant = "outline", showL
     }
 
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(shareUrl);
       flash("copied");
     } catch {
       flash("failed");
     }
-  }, [flash]);
+  }, [flash, url, disabled]);
 
   const label = failed
     ? t("models.shareFailed")
@@ -67,6 +71,7 @@ export function ShareButton({ className, size = "md", variant = "outline", showL
     <span className="relative inline-flex">
       <button
         onClick={handleShare}
+        disabled={disabled}
         data-cta="share"
         className={cn(
           "inline-flex items-center gap-1.5 rounded-lg font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base",
@@ -76,6 +81,7 @@ export function ShareButton({ className, size = "md", variant = "outline", showL
             : "text-text-secondary hover:bg-surface-hover hover:text-text-primary",
           copied && "border-accent-lime/30 bg-accent-lime/10 text-accent-lime",
           failed && "border-accent-fuchsia/30 bg-accent-fuchsia/10 text-accent-fuchsia",
+          disabled && "opacity-50 cursor-not-allowed hover:border-surface-border hover:bg-surface-card hover:text-text-primary",
           className,
         )}
         aria-label={label}

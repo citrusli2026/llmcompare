@@ -14,14 +14,20 @@
     "footer": "AI 模型选型助手 — 按智能排名和调用热度推荐模型",
     "footerDisclaimer": "数据仅供参考，基于公开信息整理",
     "sceneTitle": "选对模型，事半功倍",
-    "sceneDesc": "60+ 全球 AI 模型 — 按智能或热度为你推荐",
+    "sceneDesc": "60+ 全球 AI 模型 — 按场景为你推荐",
     "sceneBrowseAll": "查看更多同类模型",
     "topPicks": "热门推荐",
     "startSelection": "开始选型 →",
     "sceneIntelligence": "智能",
     "sceneIntelligenceDesc": "综合能力排名",
     "sceneHotness": "热度",
-    "sceneHotnessDesc": "真实调用量"
+    "sceneHotnessDesc": "真实调用量",
+    "sceneCoding": "编程",
+    "sceneCodingDesc": "代码能力排名",
+    "sceneAgentic": "Agent",
+    "sceneAgenticDesc": "工具调用与任务执行",
+    "sceneValue": "性价比",
+    "sceneValueDesc": "智能 ÷ 价格，越高越值"
   },
   "models": {
     "title": "模型目录",
@@ -64,7 +70,13 @@
     "empty": "还没有收藏任何模型",
     "emptyHint": "在模型目录或详情页点击 ♡ 即可加入收藏",
     "clear": "清空收藏",
-    "count": "已收藏 {n} 个模型"
+    "count": "已收藏 {n} 个模型",
+    "sharedTitle": "分享的收藏列表",
+    "sharedHint": "来自分享链接的 {n} 个模型，导入后合并到你的收藏",
+    "import": "导入到我的收藏",
+    "backToMine": "返回我的收藏",
+    "sharedEmpty": "分享链接中没有有效模型",
+    "sharedEmptyHint": "链接可能已过期，或其中的模型已不在榜单中"
   },
   "compare": {
     "title": "模型对比",

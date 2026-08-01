@@ -84,5 +84,18 @@ export function useFavorites() {
     window.dispatchEvent(new Event("llmcompare-favorites-change"));
   }, []);
 
-  return { favorites, isFavorite, toggleFavorite, clearFavorites };
+  /** 合并外部 id 列表（如分享的收藏链接导入），去重并追加在末尾 */
+  const mergeFavorites = useCallback(
+    (ids: string[]) => {
+      const next = [...favorites];
+      for (const id of ids) {
+        if (!next.includes(id)) next.push(id);
+      }
+      writeStorage(next);
+      window.dispatchEvent(new Event("llmcompare-favorites-change"));
+    },
+    [favorites],
+  );
+
+  return { favorites, isFavorite, toggleFavorite, clearFavorites, mergeFavorites };
 }
