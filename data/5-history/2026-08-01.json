@@ -3008,7 +3008,7 @@
       "output": 2,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 7560806140560,
+    "openrouter_weekly_tokens": 7560806143323,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -4006,7 +4006,7 @@
           "text"
         ]
       },
-      "max_output_tokens": 65536
+      "max_output_tokens": 16384
     },
     "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
     "vendor_links": {
@@ -4016,8 +4016,8 @@
     "license": "NVIDIA Open License",
     "openrouter_weekly_tokens": 2582783420849,
     "openrouter_pricing": {
-      "prompt": 0.6,
-      "completion": 3.6
+      "prompt": 0.5,
+      "completion": 2.2
     },
     "arena_rankings": {},
     "arena_votes": null,

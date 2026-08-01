@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-08-01T11:45:15.698849+00:00",
+  "generated_at": "2026-08-01T13:34:58.126880+00:00",
   "version": "1.0",
-  "partial_update": true,
+  "partial_update": false,
   "sources": {
     "artificial_analysis": {
       "ok": true,
-      "cached": true,
+      "cached": false,
       "degraded": false,
       "error": null,
       "coverage": 0.985
     },
     "openrouter": {
       "ok": true,
-      "cached": true,
+      "cached": false,
       "degraded": false,
       "error": null,
       "coverage": 0.642,
@@ -20,7 +20,7 @@
     },
     "arena": {
       "ok": true,
-      "cached": true,
+      "cached": false,
       "degraded": false,
       "error": null,
       "coverage": 0.582
