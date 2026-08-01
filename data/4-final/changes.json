@@ -1,67 +1,32 @@
 {
-  "generated_at": "2026-07-31",
-  "date": "2026-07-31",
-  "compare_with": "2026-07-30",
+  "generated_at": "2026-08-01",
+  "date": "2026-08-01",
+  "compare_with": "2026-07-31",
   "summary": {
-    "new_models": 1,
+    "new_models": 2,
     "dropped_models": 0,
-    "price_changes": 4,
+    "price_changes": 0,
     "ranking_changes": 0,
     "intel_changes": 0
   },
   "changes": [
     {
       "type": "new",
-      "model": "Inkling Small",
-      "id": "inkling-small",
-      "rank": 33,
-      "first_seen": "2026-07-31",
-      "detail": "智商 40 · 87 TPS · $0.3/M",
+      "model": "DeepSeek V4 Flash 0731",
+      "id": "deepseek-v4-flash-0731",
+      "rank": 17,
+      "first_seen": "2026-08-01",
+      "detail": "智商 50 · $0.14/M",
       "icon": "🆕"
     },
     {
-      "type": "price_drop",
-      "model": "GPT-5.6 Luna",
-      "id": "gpt-5-6-luna",
-      "field": "input",
-      "old": 1,
-      "new": 0.2,
-      "change_pct": -80.0,
-      "detail": "输入价 $1→$0.2 (-80%)",
-      "icon": "💰"
-    },
-    {
-      "type": "price_drop",
-      "model": "GPT-5.6 Luna",
-      "id": "gpt-5-6-luna",
-      "field": "output",
-      "old": 6,
-      "new": 1.2,
-      "change_pct": -80.0,
-      "detail": "输出价 $6→$1.2 (-80%)",
-      "icon": "💰"
-    },
-    {
-      "type": "price_drop",
-      "model": "GPT-5.6 Terra",
-      "id": "gpt-5-6-terra",
-      "field": "input",
-      "old": 2.5,
-      "new": 2,
-      "change_pct": -20.0,
-      "detail": "输入价 $2.5→$2 (-20%)",
-      "icon": "💰"
-    },
-    {
-      "type": "price_drop",
-      "model": "GPT-5.6 Terra",
-      "id": "gpt-5-6-terra",
-      "field": "output",
-      "old": 15,
-      "new": 12,
-      "change_pct": -20.0,
-      "detail": "输出价 $15→$12 (-20%)",
-      "icon": "💰"
+      "type": "new",
+      "model": "Celeris-1",
+      "id": "celeris-1",
+      "rank": 66,
+      "first_seen": "2026-08-01",
+      "detail": "智商 12 · 2038 TPS · $2/M",
+      "icon": "🆕"
     }
   ]
 }

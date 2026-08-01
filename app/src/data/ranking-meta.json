@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31T01:20:14.907596+00:00",
+  "generated_at": "2026-08-01T05:49:31.419037+00:00",
   "version": "1.0",
   "partial_update": true,
   "sources": {
@@ -13,20 +13,20 @@
       "ok": true,
       "cached": false,
       "error": null,
-      "coverage": 0.646,
-      "pricing_coverage": 0.954
+      "coverage": 0.642,
+      "pricing_coverage": 0.94
     },
     "arena": {
       "ok": false,
       "cached": true,
-      "error": "============================================================\nFetching Arena Leaderboard snapshots...\nLatest snapshot date: 2026-07-30\n  [text  ] 40 models, last updated Jul 27, 2026\n  [code  ] 104 models, last updated Jul 28, 2026\n  [vision] 20 models, last updated Jul 26, 2026\n\n[OK] Saved 164 total entries to /home/runner/work/llmcompare/llmcompare/data/2-raw/arena_leaderboards.json\n\n  [text] CN models (8):\n    #11 kimi-k3-max                              1486.0\n    #21 qwen3.7-max-preview     ",
-      "coverage": 0.585
+      "error": "============================================================\nFetching Arena Leaderboard snapshots...\nLatest snapshot date: 2026-08-01\n  [text  ] 20 models, last updated Jul 27, 2026\n  [code  ] 108 models, last updated Jul 31, 2026\n  [vision] 30 models, last updated Jul 26, 2026\n\n[OK] Saved 158 total entries to /home/runner/work/llmcompare/llmcompare/data/2-raw/arena_leaderboards.json\n\n  [text] CN models (1):\n    #11 kimi-k3-max                              1486.0\nTraceback (most recent call last",
+      "coverage": 0.582
     }
   },
   "stats": {
-    "total_models": 65,
-    "data_complete": 48,
-    "frontier": 33,
-    "open_weights": 26
+    "total_models": 67,
+    "data_complete": 49,
+    "frontier": 34,
+    "open_weights": 27
   }
 }
