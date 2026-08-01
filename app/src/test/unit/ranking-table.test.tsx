@@ -67,4 +67,37 @@ describe("RankingTable — E2E 难测的交互", () => {
     fireEvent.click(intelBtn);
     expect(intelBtn.closest("th")).toHaveAttribute("aria-sort", "ascending");
   });
+
+  it("性价比徽章在桌面表格价格列独占一行", () => {
+    // intelligence≥40 且价格低于全站中位数 → 性价比徽章（isValuePick 用全站数据）
+    const models: ModelWithScores[] = [
+      makeModel("cheap", { intelligence: 60, blended: 0.01 }),
+    ];
+
+    render(<RankingTable models={models} />);
+    // 桌面行与移动卡片都会渲染徽章，取桌面 td 内的那个
+    const badge = screen
+      .getAllByText("models.valuePickShort")
+      .find((el) => el.closest("td"));
+    expect(badge).toBeDefined();
+    const stack = badge!.parentElement;
+    expect(stack).toHaveClass("flex-col");
+    expect(stack!.firstElementChild!.textContent).toContain("$0.01");
+    expect(stack!.children).toHaveLength(2);
+  });
+
+  it("无性价比徽章时价格保持单行", () => {
+    const models: ModelWithScores[] = [
+      makeModel("pricey", { intelligence: 60, blended: 999 }),
+    ];
+
+    render(<RankingTable models={models} />);
+    const price = screen
+      .getAllByText("$999.00")
+      .find((el) => el.closest("td"));
+    expect(price).toBeDefined();
+    const stack = price!.closest("span.flex-col");
+    expect(stack).not.toBeNull();
+    expect(stack!.children).toHaveLength(1);
+  });
 });

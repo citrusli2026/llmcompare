@@ -128,11 +128,14 @@ export function RankingTable({ models, initialSortKey, initialSortDesc, compare 
         // Value indicator: smart model at low price
         const isValue = isValuePick(m);
         return (
-          <span className="inline-flex items-center gap-0.5">
-            <span className="tabular-nums">${blended.toFixed(2)}</span>
-            <span className="text-text-secondary text-[10px]">/M</span>
+          // 价格与徽章纵向两行排布，避免 1280px 下挤压相邻列
+          <span className="inline-flex flex-col gap-0.5">
+            <span className="inline-flex items-baseline gap-0.5 whitespace-nowrap">
+              <span className="tabular-nums">${blended.toFixed(2)}</span>
+              <span className="text-text-secondary text-[10px]">/M</span>
+            </span>
             {isValue && (
-              <Badge variant="secondary" className="text-[9px] py-0 px-1 h-[14px] leading-none bg-accent-lime/10 text-accent-lime border-accent-lime/20">
+              <Badge variant="secondary" className="w-fit text-[9px] py-0 px-1 h-[14px] leading-none bg-accent-lime/10 text-accent-lime border-accent-lime/20">
                 {t("models.valuePickShort")}
               </Badge>
             )}
