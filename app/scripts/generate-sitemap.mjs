@@ -16,7 +16,7 @@ const staticPages = [
   { loc: `${BASE}/models`, lastmod: today, priority: "0.9" },
   { loc: `${BASE}/compare`, lastmod: today, priority: "0.6" },
   { loc: `${BASE}/about`, lastmod: today, priority: "0.5" },
-  { loc: `${BASE}/favorites`, lastmod: today, priority: "0.3" },
+  // /favorites 是 robots noindex 的个人页，不收录进 sitemap
 ];
 
 const productPages = models.map((m) => ({

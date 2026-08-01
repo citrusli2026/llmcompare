@@ -122,16 +122,11 @@ test.describe("Models Page — 筛选与搜索功能", () => {
     await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    // 点"闭源" filter
+    // 点"闭源" filter，URL 应同步 filter 参数
     const closedFilter = page.locator("button").filter({ hasText: /^闭源$|^Closed Source$/ }).first();
-    if (await closedFilter.isVisible().catch(() => false)) {
-      await closedFilter.click();
-      await page.waitForTimeout(300);
-
-      // URL 应包含 filter=闭源 或 filter=Closed
-      const url = page.url();
-      expect(url).toMatch(/filter=/);
-    }
+    await expect(closedFilter).toBeVisible();
+    await closedFilter.click();
+    await expect(page).toHaveURL(/filter=/);
   });
 
   test("desktop: 排序切换 — 同列点两次改变方向", async ({ page }, testInfo) => {
@@ -182,13 +177,13 @@ test.describe("Models Page — 筛选与搜索功能", () => {
     await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    // 切换语言
-    const langBtn = page.locator("button[aria-label='切换语言'], button[aria-label='Switch language']");
-    if (await langBtn.isVisible().catch(() => false)) {
-      await langBtn.click();
-      await page.waitForTimeout(500);
-      // 切换后应能显示英文标签
-      await expect(page.locator("body")).not.toHaveText(/Error/);
-    }
+    // 切换语言（EN/中 文本按钮，取移动端可见的那个）
+    const langBtn = page.getByRole("button", { name: /^EN$|^中$/ }).locator("visible=true");
+    await expect(langBtn).toBeVisible();
+    await langBtn.click();
+
+    // 切换后：localStorage 记住 en，导航栏品牌变为英文
+    await expect.poll(() => page.evaluate(() => localStorage.getItem("llmcompare-locale"))).toBe("en");
+    await expect(page.locator("header")).toContainText("LLMCompare");
   });
 });

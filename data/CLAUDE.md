@@ -44,9 +44,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 pipeline.py             一键编排入口 (分支准备 → 抓取 → 处理 → 同步 → 验证 → PR → 清理)
 
 0-refer/  人工维护的参考表 (耐久, 不被管线覆写)
-  ├── model_reference.json     厂商链接 + 国内官价 (cn_pricing)
+  ├── model_reference.json     厂商链接 + 国内官价 (cn_pricing) + license + 变体合并(variant_groups) + 跨代去旧(excluded_patterns)
   ├── arena_name_mapping.json  AA 模型名 → Arena 模型名 显式映射
   ├── arena_variant_map.json   变体聚合表 (子模型 → 父模型, 用于 Arena 排名继承)
+  ├── validation_config.json   验证共享配置 (完整度权重 / 阈值默认 / 动态阈值 / 新鲜度阈值)
   ├── 01_国内大模型厂商官网与文档链接.md
   ├── 02_国内大模型API价格大全.md
   └── 03_模型-厂商链接-价格映射.md
@@ -145,11 +146,11 @@ Arena 上模型命名差异大（"deepseek-v3.2-exp" vs "DeepSeek V3.2"）：
 
 所有 Arena 榜单的覆盖统计会打印到终端，但**不会**从输出剔除（即便覆盖率为 0）。
 
-### 变体简化（VARIANT_GROUPS）
+### 变体简化（variant_groups）
 
-`enrich_models.py` 顶部的 `VARIANT_GROUPS` 定义了同系列同子组（DeepSeek V4 Pro Max/High、MiMo V2 Pro/Flash、GLM 5.x/4.x 等）的合并规则。**只在最终的 `ranking.json` 生效**，`ranking_all.json` 保留所有变体。
+`0-refer/model_reference.json` 的 `variant_groups` 键定义了同系列同子组（DeepSeek V4 Pro/Flash、MiMo V2 Pro/Flash、GLM 5.x/4.x 等）的合并规则，由 `enrich_models.py` 启动时读取（`resolve_variant_groups`，缺键时回退代码内置 `DEFAULT_VARIANT_GROUPS` 并告警）。**只在最终的 `ranking.json` 生效**，`ranking_all.json` 保留所有变体。
 
-新增模型变体会撞上重复展示问题，**先看这里**：在对应系列里加上模型名，重跑 Step 3 即可。
+新增模型变体会撞上重复展示问题，**先看这里**：在 `variant_groups` 对应系列里加上模型名，重跑 Step 3 即可。
 
 ### 尺寸+智商过滤（策略 C）
 
@@ -162,19 +163,19 @@ Arena 上模型命名差异大（"deepseek-v3.2-exp" vs "DeepSeek V3.2"）：
 
 历史背景：策略 A（纯 Large/frontier）= 51 个；策略 C（+intel≥30）= 73 个；策略 C + 去旧 = **60 个**（当前生产值）。
 
-### 同系列多代去旧（EXCLUDED_PATTERNS）
+### 同系列多代去旧（excluded_patterns）
 
-`build_frontend_models.py` 顶部定义 `EXCLUDED_PATTERNS` 黑名单（子串匹配 `short_name`），用于**跨代清理**：
+`0-refer/model_reference.json` 的 `excluded_patterns` 键定义跨代黑名单（子串匹配 `short_name`），由 `build_frontend_models.py` 启动时读取（`resolve_excluded_patterns`，缺键时回退代码内置 `DEFAULT_EXCLUDED_PATTERNS` 并告警）：
 
-```python
-EXCLUDED_PATTERNS = ['Qwen3.5', 'GLM-4']  # 同系列只保留最新代
+```json
+"excluded_patterns": ["Qwen3.5", "GLM-4"]  // 同系列只保留最新代
 ```
 
-与 `VARIANT_GROUPS` 的差异：
-- `VARIANT_GROUPS`（`enrich_models.py`）：处理**同代内的子变体**（Pro/Flash/Max/High），合并到父模型
-- `EXCLUDED_PATTERNS`（`build_frontend_models.py`）：处理**跨代版本**（Qwen3.5 vs 3.6），旧代整体黑名单
+与 `variant_groups` 的差异：
+- `variant_groups`（`enrich_models.py`）：处理**同代内的子变体**（Pro/Flash/Max/High），合并到父模型
+- `excluded_patterns`（`build_frontend_models.py`）：处理**跨代版本**（Qwen3.5 vs 3.6），旧代整体黑名单
 
-**新增多代系列时**，往 `EXCLUDED_PATTERNS` 加一行即可（如未来要清 Qwen3.4 → 加 `'Qwen3.4'`）。改完重跑 Step 2 + 后续。
+**新增多代系列时**，往 `excluded_patterns` 加一行即可（如未来要清 Qwen3.4 → 加 `"Qwen3.4"`）。改完重跑 Step 2 + 后续。
 
 ### `data_complete` 与数据完整度
 
@@ -193,7 +194,17 @@ EXCLUDED_PATTERNS = ['Qwen3.5', 'GLM-4']  # 同系列只保留最新代
 - 排名一致性、统计量动态阈值、分数分布
 - 与上次数据对比（模型数剧变、Top3 剧变、价格突降为 0、intelligence 单日剧变）
 - 数据源健康度（coverage）
+- **数据源新鲜度**：`2-raw/` 各快照与 `4-final/ranking.json` 的年龄，超过 `warn_days`（默认 3 天）告警、超过 `fail_days`（默认 10 天）判失败
+- 异常值检测：中位数 + MAD 的修正 z-score（阈值 3.5），避免合法极端分模型卡死每日管线
 - `vendor_links.homepage` 不得指向 HuggingFace/GitHub 等第三方聚合站（告警不阻断）
+
+阈值与新鲜度配置集中在 `0-refer/validation_config.json`（`threshold_defaults` / `history_based_thresholds` / `source_freshness` / `anomaly_detection` / `completeness_fields`），缺配置时脚本回退硬编码默认值。动态阈值基于 `5-history/` 快照计算（`enabled` 可关，测试环境建议关闭以免依赖历史快照）。
+
+### 抓取降级与数据血缘（exit code 3）
+
+三个 fetch 脚本在网络失败但 `2-raw/` 有可用缓存时，会打印降级信息并以 **exit code 3** 退出（区别于正常 0 与硬失败 1）。`pipeline.py` 识别 exit 3：复用缓存继续管线，同时把该数据源标记为 `degraded`。
+
+管线末尾写入 `app/src/data/ranking-meta.json` 数据血缘：每个数据源记录 `{fetched_at, cached, degraded}`，任一源非全新抓取（cached 或 degraded）时顶层 `degraded` 为 true。CI 的 workflow summary（`scripts/generate-workflow-summary.py`）读取该文件展示血缘状态。
 
 ### 国内模型识别规则
 
@@ -216,12 +227,12 @@ EXCLUDED_PATTERNS = ['Qwen3.5', 'GLM-4']  # 同系列只保留最新代
 - `2-raw/` 是只读缓存：手编辑会被下次 `1-fetch/` 抓取覆盖，**所有人工修正应当落到 `0-refer/`**。
 - `flagship_top3.json` 已废弃（见 2-raw/ 目录树注释），文件保留供历史参考；不要在管线里再读它。国际 Large 旗舰现在直接由 `build_frontend_models.py` 从 `aa_all_full.json` 提取。
 - 修改 About 页面"榜单筛选"文案时，需和 `app/CLAUDE.md` 数据管线段对齐：3 步处理 = 构建前端 → 富化+切活跃 → 报告。
-- 抓取脚本网络失败会非零退出，主管线（Step 1-3）每一步都默认 `2-raw/` 已就绪，**抓取和处理是解耦的**。`pipeline.py` 内置 6h 缓存策略自动判断是否重抓。
+- 抓取脚本网络失败会非零退出（exit 1 硬失败 / exit 3 降级复用缓存，见「抓取降级与数据血缘」），主管线（Step 1-3）每一步都默认 `2-raw/` 已就绪，**抓取和处理是解耦的**。`pipeline.py` 内置 6h 缓存策略自动判断是否重抓。
 
 ## 调试线索
 
 - AA 字段含义查不准：`1-fetch/aa_data_extraction.md`（AA 全字段定义 + 覆盖率统计）
 - OR / Arena 匹配不上：在 `enrich_models.py` 的 `match_or_value` / `match_arena_entries` 加 print，查看 `name_norm` vs `or_norm`/`arena_norm` 的具体形态；OR 子串匹配只接受 OR 名 ⊆ 模型名（防止反向匹配），多候选时选最长；Arena 多数情况补一个 `arena_name_mapping.json` 条目即可
-- 模型莫名消失：检查 `release_date` 是否超 180 天（被 `filter_by_date` 过滤），被 `VARIANT_GROUPS` 合并掉，或被 `EXCLUDED_PATTERNS` 黑名单（`build_frontend_models.py`）整代排除
+- 模型莫名消失：检查 `release_date` 是否超 180 天（被 `filter_by_date` 过滤），被 `variant_groups` 合并掉（`0-refer/model_reference.json`），或被 `excluded_patterns` 黑名单（同文件）整代排除
 - 富化后 `cn_pricing` 仍为 null：`model_reference.json` 的 `cn_pricing` 键必须**精确等于** AA `short_name`（区分大小写、空格），没有 fuzzy 匹配
 - `pipeline.py` 验证阶段失败：看 Phase 5 中哪个子步骤（test/build/lint/validate-data）先退出，针对性修

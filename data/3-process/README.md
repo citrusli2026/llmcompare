@@ -8,7 +8,7 @@
 │ Step 1: build_frontend_models.py│  构建前端数据模型
 │  构建: 字段翻译/格式统一/类型推断  │
 │  过滤: Large / frontier / intel≥30 │  (策略 C: 补回高智商中小模型)
-│  去旧: EXCLUDED_PATTERNS 黑名单   │  (Qwen3.5 / GLM-4 等跨代清理)
+│  去旧: excluded_patterns 黑名单   │  (Qwen3.5 / GLM-4 等跨代清理, 定义在 0-refer/model_reference.json)
 │  (评分/分层/归一化 → 前端 scoring.ts)│
 │  输入: ../2-raw/aa_all_full.json │
 │  输出: ../4-final/ranking_all.json│  (全量 Large + 前沿 Medium + 策略C中小模型)
@@ -23,7 +23,8 @@
 │       2-raw/arena_leaderboards.json│ (Arena 排名)
 │       0-refer/arena_name_mapping.json │ (显式映射)
 │       0-refer/arena_variant_map.json  │ (变体聚合)
-│  处理: 注入数据 → 覆盖率检查 → 日期筛选 → 变体简化
+│  处理: 注入数据 → 覆盖率检查 → 日期筛选 → 变体简化(variant_groups)
+│       + 0-refer 未命中报告(终端, 纯报告不删条目)│
 │  输入: ../4-final/ranking_all.json│
 │  输出: ../4-final/ranking_all.json│  (原地更新, 全量富化)
 │        ../4-final/ranking.json   │  (活跃模型, ≤180 天)
@@ -63,8 +64,8 @@ Python 管线只做字段翻译和格式统一，输出 AA 原始数据给前端
 
 同系列同子组（如 Pro/Flash）只保留智能分最高的版本，避免前端展示重复模型。
 
-当前定义的简化组 (`VARIANT_GROUPS`):
-- DeepSeek V4: Pro (Max/High) / Flash (Max/High)
+简化组定义在 `../0-refer/model_reference.json` 的 `variant_groups` 键（`enrich_models.py` 启动时读取，缺键回退代码内置默认值）:
+- DeepSeek V4: Pro / Flash
 - MiMo V2: Pro / Flash
 - GLM: 5.x / 4.x
 - MiniMax M2: M2
@@ -84,19 +85,19 @@ Python 管线只做字段翻译和格式统一，输出 AA 原始数据给前端
 
 第三档用于收录 Qwen3.6 27B、GLM-5-Turbo 这类高性价比中小旗舰。代价是 5 个左右模型缺速度/价格数据（`data_complete=false` 标记），前端用 `data_completeness_pct >= 60` 区分"有效数据"。
 
-**2. 同系列多代去旧（EXCLUDED_PATTERNS 黑名单）**：
+**2. 同系列多代去旧（excluded_patterns 黑名单）**：
 
-```python
-EXCLUDED_PATTERNS = ['Qwen3.5', 'GLM-4']
+```json
+"excluded_patterns": ["Qwen3.5", "GLM-4"]
 ```
 
-子串匹配 `short_name` 排除整代旧版，避免前端展示"Qwen3.5 27B + Qwen3.6 27B"这种跨代并存。
+定义在 `../0-refer/model_reference.json`（`build_frontend_models.py` 启动时读取，缺键回退代码内置默认值）。子串匹配 `short_name` 排除整代旧版，避免前端展示"Qwen3.5 27B + Qwen3.6 27B"这种跨代并存。
 
-与 `VARIANT_GROUPS` 的差异：
-- `EXCLUDED_PATTERNS`：**跨代**整体黑名单（按版本号前缀）
-- `VARIANT_GROUPS`：**同代内**子变体合并（按子型号 Pro/Flash）
+与 `variant_groups` 的差异：
+- `excluded_patterns`：**跨代**整体黑名单（按版本号前缀）
+- `variant_groups`：**同代内**子变体合并（按子型号 Pro/Flash）
 
-新增多代系列时，往 `EXCLUDED_PATTERNS` 追加一行（如未来清 Qwen3.4 → 加 `'Qwen3.4'`），重跑 Step 2 起。
+新增多代系列时，往 `excluded_patterns` 追加一行（如未来清 Qwen3.4 → 加 `"Qwen3.4"`），重跑 Step 2 起。
 
 ## 输出: ranking.json 字段说明
 

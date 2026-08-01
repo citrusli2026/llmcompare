@@ -43,4 +43,28 @@ describe("RankingTable — E2E 难测的交互", () => {
     // Empty string maps to "date" in handleMobileSortChange
     expect(screen.getByDisplayValue("table.date")).toBeInTheDocument();
   });
+
+  it("desktop sort headers are buttons with aria-sort", () => {
+    const models: ModelWithScores[] = [
+      makeModel("m1", { intelligence: 60 }),
+    ];
+
+    render(<RankingTable models={models} />);
+
+    // 排序表头是可键盘聚焦的 button，所在 th 带 aria-sort
+    const tokensBtn = screen.getByRole("button", { name: /models\.colTokens/ });
+    expect(tokensBtn.closest("th")).toHaveAttribute("aria-sort", "descending"); // 默认 tokens 降序
+
+    const intelBtn = screen.getByRole("button", { name: /models\.colIntelligence/ });
+    expect(intelBtn.closest("th")).toHaveAttribute("aria-sort", "none");
+
+    // 点击智能列 → 该列 aria-sort 变为 descending，tokens 列回到 none
+    fireEvent.click(intelBtn);
+    expect(intelBtn.closest("th")).toHaveAttribute("aria-sort", "descending");
+    expect(tokensBtn.closest("th")).toHaveAttribute("aria-sort", "none");
+
+    // 再点一次 → 切换为 ascending
+    fireEvent.click(intelBtn);
+    expect(intelBtn.closest("th")).toHaveAttribute("aria-sort", "ascending");
+  });
 });

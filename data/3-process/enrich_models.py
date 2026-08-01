@@ -194,7 +194,7 @@ def load_arena_data(arena_path: Path) -> tuple[dict[str, list[dict]], dict[str, 
     return result, votes_map
 
 
-def match_arena_entries(model_name: str, arena_models: list[dict], mapping: dict | None = None, variant_map: dict | None = None) -> dict | None:
+def match_arena_entries(model_name: str, arena_models: list[dict], mapping: dict | None = None, variant_map: dict | None = None, used_mapping_keys: set[str] | None = None) -> dict | None:
     """Find the best Arena entry for a model. Returns entry with best (lowest) rank.
 
     Matching priority:
@@ -205,6 +205,9 @@ def match_arena_entries(model_name: str, arena_models: list[dict], mapping: dict
     4. Normalized match (remove - and ., compare full string)
     5. Keyword match: last 2-3 significant words of Arena name must appear
        in the model name (prevents "glm 5" matching "glm 5 1")
+
+    used_mapping_keys: 可选的集合，命中显式映射时记录被使用的 mapping 键
+    （用于管线末尾的 0-refer 未命中报告）。
     """
     name_lower = model_name.lower().strip()
     name_norm = name_lower.replace("-", " ").replace(".", " ")
@@ -218,6 +221,8 @@ def match_arena_entries(model_name: str, arena_models: list[dict], mapping: dict
             if arena_name in mapped_names:
                 matches.append(entry)
         if matches:
+            if used_mapping_keys is not None:
+                used_mapping_keys.add(model_name)
             return min(matches, key=lambda e: e.get("rank", 9999))
 
     # 2. Variant aggregation: check if this model is a variant of a mapped parent
@@ -232,6 +237,8 @@ def match_arena_entries(model_name: str, arena_models: list[dict], mapping: dict
                 if arena_name in mapped_names:
                     matches.append(entry)
             if matches:
+                if used_mapping_keys is not None:
+                    used_mapping_keys.add(parent_name)
                 return min(matches, key=lambda e: e.get("rank", 9999))
         # Fallback: try matching parent by exact/normalized/keyword
         parent_entry = match_arena_entries(parent_name, arena_models, mapping, None)
@@ -367,8 +374,13 @@ def enrich(
     or_modalities: dict[str, dict] | None = None,
     or_tools: dict[str, bool] | None = None,
     or_max_completion: dict[str, int] | None = None,
+    usage: dict[str, set] | None = None,
 ) -> tuple[int, int, int]:
-    """Inject vendor_links + cn_pricing + license + OR data + Arena data + Arena votes, then update flags."""
+    """Inject vendor_links + cn_pricing + license + OR data + Arena data + Arena votes, then update flags.
+
+    usage: 可选 dict，传入时记录 0-refer 手工表各键的命中情况，
+    键为 "vendor_links" / "cn_pricing" / "license" / "arena_mapping"，值为命中键的集合。
+    """
     vendor_links = ref.get("vendor_links", {})
     cn_pricing = ref.get("cn_pricing", {})
     license_map = {k: v for k, v in ref.get("license", {}).items() if not k.startswith("_")}
@@ -402,6 +414,8 @@ def enrich(
 
         # 只保留官方官网（homepage）与模型控制台（console）两种静态信息
         raw_links = vendor_links.get(company, {})
+        if usage is not None and company in vendor_links:
+            usage["vendor_links"].add(company)
         m["vendor_links"] = {
             k: v for k, v in raw_links.items()
             if k in ("homepage", "console") and v
@@ -415,6 +429,8 @@ def enrich(
         # 如果按模型名未命中，再按厂商默认值兜底；闭源模型显示 "商业授权"。
         clean = clean_name(name)
         lic = license_map.get(clean)
+        if lic and usage is not None:
+            usage["license"].add(clean)
         if not lic and m.get("flags", {}).get("open_weights"):
             lic = company_license_defaults.get(company)
         if lic:
@@ -433,6 +449,8 @@ def enrich(
             # 国内模型：注入国内官价
             cp = cn_pricing.get(name)
             if cp:
+                if usage is not None:
+                    usage["cn_pricing"].add(name)
                 m["cn_pricing"] = {
                     "input": cp["input"],
                     "output": cp["output"],
@@ -482,7 +500,10 @@ def enrich(
         # Load variant aggregation map: variant -> parent model name
         variant_map = ref.get("arena_variant_map", {})
         for lb_name, lb_models in arena_data.items():
-            entry = match_arena_entries(name, lb_models, arena_mapping, variant_map)
+            entry = match_arena_entries(
+                name, lb_models, arena_mapping, variant_map,
+                usage["arena_mapping"] if usage is not None else None,
+            )
             if entry:
                 m["arena_rankings"][lb_name] = {
                     "rank": entry["rank"],
@@ -573,7 +594,8 @@ def filter_by_date(models: list, max_age_days: int, today: datetime):
 # ── 系列简化规则：同子组只保留智能分最高的版本 ──
 # 格式: {系列名: {子组名: [模型名列表]}}
 # Pro 和 Flash 属于不同子组，不互相合并
-VARIANT_GROUPS = {
+# 运行时优先读 0-refer/model_reference.json 的 variant_groups 键，缺键时回退到此默认值
+DEFAULT_VARIANT_GROUPS = {
     'DeepSeek V4': {
         'Pro': ['DeepSeek V4 Pro'],
         'Flash': ['DeepSeek V4 Flash'],
@@ -596,6 +618,52 @@ VARIANT_GROUPS = {
         'V3.2': ['DeepSeek V3.2', 'DeepSeek V3.2 Speciale'],
     },
 }
+
+
+def _load_model_reference() -> dict:
+    """加载 0-refer/model_reference.json，失败时返回空 dict（调用方回退默认值）。"""
+    path = PROJECT_ROOT / "0-refer" / "model_reference.json"
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"[WARN] 无法加载 {path}: {e}")
+        return {}
+
+
+def resolve_variant_groups(ref: dict) -> dict:
+    """从 model_reference.json 读 variant_groups；缺键/为空时回退代码内置默认值并告警。"""
+    groups = ref.get("variant_groups")
+    if isinstance(groups, dict) and groups:
+        return groups
+    print("[WARN] model_reference.json 缺少 variant_groups 键，回退到代码内置默认值")
+    return DEFAULT_VARIANT_GROUPS
+
+
+# 启动时读取手工表（deduplicate_variants 使用的实际配置）
+VARIANT_GROUPS = resolve_variant_groups(_load_model_reference())
+
+
+def report_unmatched_reference(ref: dict, usage: dict[str, set]) -> None:
+    """打印 0-refer 手工表本次富化未命中条目（纯报告，不删条目）。
+
+    覆盖四张表：model_reference.json 的 cn_pricing / vendor_links / license，
+    以及 arena_name_mapping.json。条目长期未命中通常意味着模型已下榜或改名，
+    供人工复核清理。
+    """
+    license_keys = {k for k in ref.get("license", {}) if not k.startswith("_")}
+    groups = [
+        ("cn_pricing (model_reference.json)", set(ref.get("cn_pricing", {})), usage.get("cn_pricing", set())),
+        ("vendor_links (model_reference.json)", set(ref.get("vendor_links", {})), usage.get("vendor_links", set())),
+        ("license (model_reference.json)", license_keys, usage.get("license", set())),
+        ("arena_name_mapping.json", set(ref.get("arena_name_mapping", {})), usage.get("arena_mapping", set())),
+    ]
+    print("[INFO] 0-refer 未命中报告：以下条目本次富化没有任何模型命中（仅供人工复核，不自动删除）")
+    for label, all_keys, hit_keys in groups:
+        unmatched = sorted(all_keys - hit_keys)
+        print(f"  {label}: {len(unmatched)}/{len(all_keys)} 未命中")
+        for key in unmatched:
+            print(f"    · {key}")
 
 
 def deduplicate_variants(active_models: list) -> list:
@@ -700,14 +768,18 @@ def main():
     ref["cn_pricing"] = cn_pricing_clean
 
     # Enrich + update flags (single pass)
+    usage: dict[str, set] = {"vendor_links": set(), "cn_pricing": set(), "license": set(), "arena_mapping": set()}
     enriched_count, flag_updates, arena_total = enrich(
         models, ref, or_tokens, or_pricing, arena_data, arena_votes, or_modalities,
-        or_tools, or_max_completion,
+        or_tools, or_max_completion, usage,
     )
 
     # Save full
     save(ranking_path, models)
     print(f"[OK] Enriched {enriched_count}/{len(models)} models, updated {flag_updates} data_complete → ranking_all.json")
+
+    # 0-refer 手工表未命中报告（纯报告，不删条目）
+    report_unmatched_reference(ref, usage)
 
     # Date filter
     today = datetime.now(timezone(timedelta(hours=8)))  # CST, 与 build_report.py 对齐

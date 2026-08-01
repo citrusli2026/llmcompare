@@ -24,6 +24,30 @@ PROJECT_DIR = os.path.dirname(SCRIPT_DIR)
 AA_INPUT = os.path.join(PROJECT_DIR, '2-raw', 'aa_all_full.json')
 OUTPUT = os.path.join(PROJECT_DIR, '4-final', 'ranking_all.json')
 
+# 同系列跨代去旧黑名单（子串匹配 short_name，同系列只保留最新代）。
+# 运行时优先读 0-refer/model_reference.json 的 excluded_patterns 键，缺键时回退到此默认值
+DEFAULT_EXCLUDED_PATTERNS = ['Qwen3.5', 'GLM-4']
+
+
+def load_model_reference() -> dict:
+    """加载 0-refer/model_reference.json，失败时返回空 dict（调用方回退默认值）。"""
+    path = os.path.join(PROJECT_DIR, '0-refer', 'model_reference.json')
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print(f'[WARN] 无法加载 {path}: {e}')
+        return {}
+
+
+def resolve_excluded_patterns(ref: dict) -> list:
+    """从 model_reference.json 读 excluded_patterns；缺键/为空时回退代码内置默认值并告警。"""
+    patterns = ref.get('excluded_patterns')
+    if isinstance(patterns, list) and patterns:
+        return [str(p) for p in patterns]
+    print('[WARN] model_reference.json 缺少 excluded_patterns 键，回退到代码内置默认值')
+    return DEFAULT_EXCLUDED_PATTERNS
+
 # 透传的单项 benchmark 字段（按覆盖率/重要性排序）。
 # 入选门槛：在筛选后模型中覆盖率 > 30%（2026-08-01 实跑统计，见 main() 摘要输出）。
 # 已废弃不上榜: humaneval / math_500 / aime / mmlu_pro（AA 上游不再提供或覆盖率 0%）。
@@ -167,11 +191,12 @@ def main():
 
     # ── 过滤: Large / frontier / 高智商中小模型 (策略 C: intel≥30) ──
     # 排除同系列旧代 (Qwen3.5→3.6, GLM-4→5), 避免多代并存显乱
-    EXCLUDED_PATTERNS = ['Qwen3.5', 'GLM-4']
+    # 黑名单外置在 0-refer/model_reference.json 的 excluded_patterns 键
+    excluded_patterns = resolve_excluded_patterns(load_model_reference())
     filtered = [m for m in all_models
                 if (m.get('size_class') == 'large'
                     or (m.get('intelligence_index') or 0) >= 30)
-                and not any(p in m.get('short_name', '') for p in EXCLUDED_PATTERNS)]
+                and not any(p in m.get('short_name', '') for p in excluded_patterns)]
     print(f'Large / 前沿模型: {len(filtered)} 个')
 
     # ── benchmark 字段覆盖率统计（>30% 才透传，门槛调整时看这里）──

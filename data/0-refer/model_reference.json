@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "description": "厂商链接 + 国内官价 + 开源协议映射表。管线重跑后用 enrich_models.py 合并回 ranking.json。",
-    "updated": "2026-07-17",
+    "description": "厂商链接 + 国内官价 + 开源协议映射 + 变体合并(variant_groups) + 跨代去旧(excluded_patterns)。管线重跑后用 enrich_models.py 合并回 ranking.json。",
+    "updated": "2026-08-01",
     "model_count": 60
   },
   "license": {
@@ -746,5 +746,56 @@
       "source": "OR (无国内官价, ¥按$×7折算)",
       "aa_only": true
     }
-  }
+  },
+  "variant_groups": {
+    "DeepSeek V4": {
+      "Pro": [
+        "DeepSeek V4 Pro"
+      ],
+      "Flash": [
+        "DeepSeek V4 Flash"
+      ]
+    },
+    "MiMo V2": {
+      "Pro": [
+        "MiMo-V2.5-Pro",
+        "MiMo-V2-Pro"
+      ],
+      "Flash": [
+        "MiMo-V2-Flash"
+      ]
+    },
+    "GLM": {
+      "5.x": [
+        "GLM-5.1",
+        "GLM-5"
+      ],
+      "4.x": [
+        "GLM-4.7"
+      ]
+    },
+    "MiniMax M2": {
+      "M2": [
+        "MiniMax-M2.7",
+        "MiniMax-M2.5",
+        "MiniMax-M2.1"
+      ]
+    },
+    "Qwen3.6": {
+      "3.6": [
+        "Qwen3.6 Max Preview",
+        "Qwen3.6 Plus"
+      ]
+    },
+    "DeepSeek V3.2": {
+      "V3.2": [
+        "DeepSeek V3.2",
+        "DeepSeek V3.2 Speciale"
+      ]
+    }
+  },
+  "excluded_patterns": [
+    "Qwen3.5",
+    "GLM-4"
+  ]
 }

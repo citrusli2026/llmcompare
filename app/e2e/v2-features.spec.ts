@@ -5,9 +5,9 @@ test.describe("V2 — Scene Cards on Homepage", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // Scene cards should exist — 智能 + 热度
-    await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ })).toBeVisible();
-    await expect(page.locator("button").filter({ hasText: /热度|Hotness/ })).toBeVisible();
+    // Scene cards should exist — 智能 + 热度（性价比卡文案含"智能"字样，取首个匹配）
+    await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ }).first()).toBeVisible();
+    await expect(page.locator("button").filter({ hasText: /热度|Hotness/ }).first()).toBeVisible();
   });
 
   test("expand hotness scene shows model recommendations", async ({ page }) => {
@@ -58,25 +58,14 @@ test.describe("V2 — Detail Page Recommendations", () => {
   });
 
   test("shows similar models section", async ({ page }) => {
-    // Go directly to a well-known model detail page
     await page.goto("/models/gpt-5-5");
-    await page.waitForLoadState("networkidle").catch(() => {});
-    // Fallback: use any product page
-    if (await page.locator("h1").count() === 0) {
-      await page.goto("/");
-      await page.waitForLoadState("networkidle");
-      const firstLink = page.locator("a[href^='/models/']").first();
-      const href = await firstLink.getAttribute("href");
-      await page.goto(href!);
-      await page.waitForLoadState("networkidle");
-    }
+    await page.waitForLoadState("networkidle");
 
-    // "你可能也喜欢" or "You Might Also Like" section
-    const similarSection = page.locator("text=/你可能也喜欢|You Might Also Like/");
-    const exists = await similarSection.count();
-    if (exists > 0) {
-      await expect(similarSection).toBeVisible();
-    }
+    // "你可能也喜欢" / "You Might Also Like" 区块始终渲染（67 个在榜模型必有候选）
+    const section = page.locator("section", { hasText: /你可能也喜欢|You Might Also Like/ });
+    await expect(section).toBeVisible();
+    // 区块内至少有 1 个推荐模型链接
+    await expect(section.locator("a[href^='/models/']").first()).toBeVisible();
   });
 });
 

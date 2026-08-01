@@ -21,12 +21,12 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排位全球 
 
 ## 技术栈
 
-- **Next.js 16.2.6**（App Router）—— 静态导出模式
+- **Next.js 16.2.10**（App Router）—— 静态导出模式
 - **React 19.2.4** + **TypeScript**
 - **Tailwind CSS v4**（无 `tailwind.config.js`；通过 CSS 中 `@theme inline` 配置）
 - **shadcn/ui** 使用 `@base-ui/react` 底层组件（`style: "base-nova"`）
 - **仅亮色主题**（`ThemeProvider` 强制 `light` class；不接 next-themes，不支持深色）
-- **Geist / Geist Mono** 字体，通过 `next/font/google` 加载
+- **Rubik / Geist Mono** 字体，通过 `next/font/google` 加载
 - **@vercel/analytics** 网站分析
 - **Vitest** + **@testing-library/react** + **jsdom** — 单元/集成测试
 - **Playwright** — E2E 测试（桌面端 + 移动端双配置）
@@ -42,15 +42,17 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排位全球 
 | 路由 | 文件 | 类型 |
 |-------|------|------|
 | `/` | `src/app/page.tsx` | 服务端组件 — 首页 Hero 区域 + 前6名模型卡片网格 |
-| `/models` | `src/app/models/page.tsx` | 服务端组件包装器 → `models-page-client.tsx` 客户端组件 — 完整的可排序/可筛选排名表格。国际模型固定置顶，国内模型参与排序 |
+| `/models` | `src/app/models/page.tsx` | 服务端组件包装器 → `models-page-client.tsx` 客户端组件 — 完整的可排序/可筛选/可搜索排名表格，全部模型统一排序 |
+| `/models/[id]` | `src/app/models/[id]/page.tsx` | 服务端组件 — 模型详情页，使用 `generateStaticParams()` 和 `generateMetadata()` |
+| `/compare` | `src/app/compare/page.tsx` | 服务端组件包装器 → `compare-client.tsx` 客户端组件 — 模型并排对比（最多 3 个，组合存 URL `?models=`） |
+| `/favorites` | `src/app/favorites/page.tsx` | 服务端组件包装器 → `favorites-page-client.tsx` 客户端组件 — 本地收藏清单 + `?ids=` 只读分享视图（robots noindex） |
 | `/about` | `src/app/about/page.tsx` | 服务端组件包装器 → `about-page-client.tsx` 客户端组件 — 关于页面 |
-| `/product/[id]` | `src/app/product/[id]/page.tsx` | 服务端组件 — 模型详情页，使用 `generateStaticParams()` 和 `generateMetadata()` |
 
 所有数据均来自静态 JSON 文件；没有 API 路由。
 
 **页面模式差异：**
-- `/models` 和 `/about` 使用「服务端组件包装器 + 客户端组件」模式，因为页面包含交互状态（筛选、排序、标签切换）
-- `/product/[id]` 是纯服务端组件，在 `generateStaticParams()` 中为所有模型预生成静态路径，并通过 `generateMetadata()` 动态生成 SEO 元数据
+- `/models`、`/compare`、`/favorites` 和 `/about` 使用「服务端组件包装器 + 客户端组件」模式，因为页面包含交互状态（筛选、排序、标签切换）
+- `/models/[id]` 是服务端组件（详情主体为 `product-detail` 客户端组合层），在 `generateStaticParams()` 中为所有模型预生成静态路径，并通过 `generateMetadata()` 动态生成 SEO 元数据
 
 ### 布局与 Hydration 策略
 
@@ -58,7 +60,7 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排位全球 
 - **主题**：直接给 `<html>` 加 `light` class（项目只支持亮色，无主题切换）
 - **语言**：读取 `localStorage` 的 `llmcompare-locale` 键，非中文用户 SSR 输出时先将 `<html>` 设为 `visibility: hidden`，hydration 完成后由 `i18n.tsx` 中的 `useEffect` 恢复可见，避免中文内容闪烁
 
-产品详情页（`/product/[id]`）还注入 JSON-LD 结构化数据（SoftwareApplication + BreadcrumbList）用于 SEO。
+产品详情页（`/models/[id]`）还注入 JSON-LD 结构化数据（SoftwareApplication + BreadcrumbList）用于 SEO。
 
 ### 数据层
 
@@ -70,7 +72,7 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排位全球 
 - 所有分数直接使用原始数据（如 intelligence 原始分、Arena ELO 分数）
 - 成本优先显示国内定价（¥/M），无国内价则显示 AA 混合价（$/M）
 - 缺失数据显示 `—`，不参与计算
-- 国际模型（GPT-5.5 / Claude / Gemini）固定置顶，不参与排序，作为对比标杆
+- 国际/国内模型统一参与排序，无固定置顶（见下文「国际模型呈现」）
 
 ### 数据管线（上游 `../data/` 目录）
 
@@ -96,6 +98,18 @@ LLMCompare（模型图鉴）是一个静态 Next.js 站点，用于排位全球 
 - 国际/国内共用一张可排序表格（`/models`），由 `useModelGroups` 单一 group（`key: "all"`）统一排序，不再分组
 - `isInternational` 标志在 `lib/scoring.ts` 中由 `!flags.chinese_eval` 推导；仅供条件染色/筛选使用
 - 国际模型不固定置顶，会随用户选择的排序键参与全局排序
+
+**搜索与筛选（`/models`）：**
+- 关键词搜索（`?q=`，匹配模型名/id/公司）、公司下拉筛选（`?company=`）、标签筛选（`?filter=`，开源/闭源等）
+- 筛选状态全部同步到 URL，可直接分享筛选结果链接
+
+**趋势图（详情页）：**
+- `product-detail/trend-section.tsx` 读取 `src/data/trends.json`（管线 `build_trends.py` 产出），渲染近 30 天智能分 / 混合价格 / 排名趋势
+
+**收藏与分享：**
+- `hooks/use-favorites.ts` 把收藏 id 存 localStorage（`llmcompare-favorites`），跨 tab 通过 `storage` 事件同步
+- `/favorites` 展示收藏清单；`favorites-share.ts` 负责 id 列表 ⇄ URL 序列化，`/favorites?ids=` 为只读分享视图，可一键导入合并
+- 对比选择由 `hooks/use-compare-ids.ts` 管理（URL `?compare=` + localStorage 镜像），桌面最多 3 个 / 移动端 2 个
 
 **评分职责边界：**
 - 管线（Python）只做数据清洗和格式转换，不做评分计算
@@ -151,9 +165,9 @@ data: 刷新模型排名数据（YYYY-MM-DD）
 ### 组件约定
 
 - `src/components/ui/*` — shadcn/ui 组件（Button、Badge、Input、Table、Tabs、Card）。使用 `npx shadcn add <组件名>` 添加新组件。
-- `src/components/*` — 应用专属组件：`Navbar`、`ProductCard`、`FilterBar`、`SearchInput`、`ThemeToggle`、`ThemeProvider`、`LanguageProvider`。
-  - `RankingTable/` — 已拆分为子模块：`index.tsx`（主组件）、`model-row.tsx`（桌面行）、`mobile-card.tsx`（移动端卡片）、`use-model-groups.ts`（分组逻辑）、`utils.tsx`（分位/颜色计算）、`types.ts`。国际模型固定置顶，国内模型分前沿/主力两组排序。
-  - `product-detail/` — 已拆分为子组件：`index.tsx`（组合层）、`model-header.tsx`、`quick-facts.tsx`、`benchmark-section.tsx`、`speed-section.tsx`、`pricing-section.tsx`、`arena-rankings.tsx`、`token-usage.tsx`、`vendor-links.tsx`。
+- `src/components/*` — 应用专属组件：`Navbar`、`FilterBar`、`FavoriteButton`、`ShareButton`、`CompareBar`、`ChangesCard`、`LanguageToggle`、`ThemeProvider`、`LanguageProvider`。
+  - `RankingTable/` — 已拆分为子模块：`index.tsx`（主组件）、`model-row.tsx`（桌面行）、`mobile-card.tsx`（移动端卡片）、`use-model-groups.ts`（分组逻辑：单一 group 统一排序）、`utils.tsx`（分位/颜色计算）、`types.ts`。桌面端排序表头为 `button` + `aria-sort`（可键盘操作）。
+  - `product-detail/` — 已拆分为子组件：`index.tsx`（组合层）、`model-header.tsx`、`cta-group.tsx`、`quick-facts.tsx`、`score-overview.tsx`、`trend-section.tsx`、`benchmark-section.tsx`、`speed-section.tsx`、`pricing-section.tsx`、`similar-models.tsx`、`data-completion-callout.tsx`。
 - 所有 UI 组件均为 `@base-ui/react` 底层组件的薄封装，使用 `cva` + `cn()` 进行样式处理。
 - `src/lib/utils.ts` 导出 `cn()`（clsx + tailwind-merge）和共享工具函数（`formatTokenCount`、`getTypeBadgeClasses` 等）。
 
@@ -168,7 +182,7 @@ data: 刷新模型排名数据（YYYY-MM-DD）
 ### 样式
 
 - Tailwind v4，在 `src/app/globals.css` 中通过 `@import "tailwindcss"` 引入。
-- 主题令牌使用 CSS 自定义属性。通过 `.dark` 类切换亮/暗模式。
+- 主题令牌使用 CSS 自定义属性。仅亮色主题，`<html>` 锁定 `light` class（无暗色切换）。
 - 自定义表面色（`--surface-base`、`--surface-card` 等）和强调色（`--accent-violet`、`--accent-cyan` 等）定义于 `globals.css` 中，并在整个应用中使用。
 - 无 `tailwind.config.js` — 配置通过 CSS 中的 `@theme inline` 内联完成。
 

@@ -105,20 +105,17 @@ test.describe("Interaction & Responsiveness", () => {
     await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    // 依次点击各个可排序列头
+    // 依次点击各个可排序列头（桌面端均可见）
     const sortableHeaders = ["智能", "编程", "Agent"];
     for (const label of sortableHeaders) {
       const header = page.locator("th").filter({ hasText: new RegExp(label) });
-      if (await header.isVisible().catch(() => false)) {
-        await header.click();
-        await page.waitForTimeout(300);
-      }
+      await expect(header).toBeVisible();
+      await header.click();
     }
 
     // 最终回到智能列
     const intelHeader = page.locator("th").filter({ hasText: /智能|Intelligence/ });
     await intelHeader.click();
-    await page.waitForTimeout(500);
 
     const bars = page.locator("tbody tr").first().locator("div.rounded-full.overflow-hidden");
     await expect(bars.first()).toBeAttached();
@@ -153,14 +150,13 @@ test.describe("Interaction & Responsiveness", () => {
     // 验证当前语言的关键文案
     await expect(page.locator("body")).toContainText("模型图鉴");
 
-    // 切换英文
-    const langBtn = page.locator("button[aria-label='切换语言'], button[aria-label='Switch language']");
-    if (await langBtn.isVisible().catch(() => false)) {
-      await langBtn.click();
-      await page.waitForTimeout(500);
-      // 验证英文文案
-      await expect(page.locator("body")).toContainText("Home");
-    }
+    // 切换英文（EN/中 文本按钮，取桌面端可见的那个）
+    const langBtn = page.getByRole("button", { name: /^EN$|^中$/ }).locator("visible=true");
+    await expect(langBtn).toBeVisible();
+    await langBtn.click();
+    // 验证英文文案（导航 Home）
+    await expect(page.locator("body")).toContainText("Home");
+    await expect.poll(() => page.evaluate(() => localStorage.getItem("llmcompare-locale"))).toBe("en");
 
     await page.screenshot({ path: `${SCREENSHOTS}/ui-lang-en.png`, fullPage: true });
   });

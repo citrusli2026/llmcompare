@@ -11,6 +11,7 @@ import { computePercentiles, formatScore } from "./utils";
 import { useModelGroups } from "./use-model-groups";
 import { ModelRow } from "./model-row";
 import { MobileCard } from "./mobile-card";
+import changesJson from "@/data/changes.json";
 
 interface ChangesData {
   generated_at: string;
@@ -62,26 +63,21 @@ export function RankingTable({ models, initialSortKey, initialSortDesc, compare 
 
   // Load daily changes to show rank trend and new-model badges in the ranking column.
   const { rankChangeMap, newModelSet } = useMemo(() => {
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const data = require("@/data/changes.json") as ChangesData;
-      const rankMap: Record<string, RankChangeInfo> = {};
-      const newSet = new Set<string>();
-      for (const c of data.changes) {
-        if (c.type === "new") {
-          newSet.add(c.id);
-        } else if ((c.type === "ranking_up" || c.type === "ranking_down") && c.change != null) {
-          rankMap[c.id] = {
-            oldRank: c.old_rank ?? 0,
-            newRank: c.new_rank ?? 0,
-            change: c.change,
-          };
-        }
+    const data = changesJson as ChangesData;
+    const rankMap: Record<string, RankChangeInfo> = {};
+    const newSet = new Set<string>();
+    for (const c of data.changes) {
+      if (c.type === "new") {
+        newSet.add(c.id);
+      } else if ((c.type === "ranking_up" || c.type === "ranking_down") && c.change != null) {
+        rankMap[c.id] = {
+          oldRank: c.old_rank ?? 0,
+          newRank: c.new_rank ?? 0,
+          change: c.change,
+        };
       }
-      return { rankChangeMap: rankMap, newModelSet: newSet };
-    } catch {
-      return { rankChangeMap: {}, newModelSet: new Set<string>() };
     }
+    return { rankChangeMap: rankMap, newModelSet: newSet };
   }, []);
 
   const handleSort = (key: SortKey) => {
@@ -211,41 +207,51 @@ export function RankingTable({ models, initialSortKey, initialSortDesc, compare 
                   {t("table.company")}
                 </th>
                 <th
-                  className={cn(
-                    "h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap cursor-pointer text-text-muted hover:text-text-primary hidden lg:table-cell",
-                    sortKey === "date" && "font-semibold text-text-primary"
-                  )}
-                  onClick={() => handleSort("date")}
+                  className="h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap text-text-muted hidden lg:table-cell"
+                  aria-sort={sortKey === "date" ? (sortDesc ? "descending" : "ascending") : "none"}
                 >
-                  <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => handleSort("date")}
+                    className={cn(
+                      "flex items-center gap-1 cursor-pointer hover:text-text-primary",
+                      sortKey === "date" && "font-semibold text-text-primary"
+                    )}
+                  >
                     <Calendar className="h-3 w-3" />
                     {t("table.date")}
                     {sortKey === "date"
                       ? (sortDesc ? <ArrowDown className="h-3 w-3" /> : <ArrowUp className="h-3 w-3" />)
                       : <ArrowUpDown className="h-3 w-3" />
                     }
-                  </div>
+                  </button>
                 </th>
                 {headers.map((h) => (
                   <th
                     key={h.key}
                     className={cn(
-                      "h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap cursor-pointer",
-                      sortKey === h.key
-                        ? "text-text-primary font-semibold"
-                        : "text-text-muted hover:text-text-primary",
+                      "h-10 px-2 text-left align-middle font-medium sm:whitespace-nowrap",
                       colVisibilityClass(h)
                     )}
-                    onClick={() => handleSort(h.key)}
+                    aria-sort={sortKey === h.key ? (sortDesc ? "descending" : "ascending") : "none"}
                   >
-                    <div className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      onClick={() => handleSort(h.key)}
+                      className={cn(
+                        "flex items-center gap-1 cursor-pointer",
+                        sortKey === h.key
+                          ? "text-text-primary font-semibold"
+                          : "text-text-muted hover:text-text-primary",
+                      )}
+                    >
                       <h.icon className="h-3 w-3" />
                       {t(h.labelKey)}
                       {sortKey === h.key
                         ? (sortDesc ? <ArrowDown className="h-3 w-3" /> : <ArrowUp className="h-3 w-3" />)
                         : <ArrowUpDown className="h-3 w-3" />
                       }
-                    </div>
+                    </button>
                   </th>
                 ))}
               </tr>

@@ -8,14 +8,10 @@ test.describe("Detail Page — 核心数据区块验证", () => {
     await page.goto("/models/gpt-5-5");
     await page.waitForLoadState("networkidle");
 
-    // ScoreOverview 区域 — 包含智能/编程/Agent/速度四项指标分数
-    const scoreLabels = ["智能", "编程", "Agent", "速度"];
-    for (const label of scoreLabels) {
-      const el = page.locator(`text=${label}`).or(page.locator(`text=${label === "速度" ? "Speed" : label}`));
-      const count = await el.count();
-      if (count > 0) {
-        await expect(el.first()).toBeAttached();
-      }
+    // ScoreOverview 标题 + 四项指标标签
+    await expect(page.getByRole("heading", { name: /分数概览|Score Overview/ })).toBeVisible();
+    for (const label of [/综合智能|Intelligence/, /编程|Coding/, /Agent能力|Agent/, /速度 \(TPS\)|Speed \(TPS\)/]) {
+      await expect(page.locator(`text=${label}`).first()).toBeVisible();
     }
   });
 
@@ -35,12 +31,9 @@ test.describe("Detail Page — 核心数据区块验证", () => {
     await page.goto("/models/gpt-5-5");
     await page.waitForLoadState("networkidle");
 
-    // 价格区域 — 包含价格信息或"定价"标签
-    const pricingSection = page.locator("text=/价格|Pricing|Cost|Input|Output|\\$|\\//");
-    const exists = await pricingSection.count();
-    if (exists > 0) {
-      await expect(pricingSection.first()).toBeAttached();
-    }
+    // 价格区块标题 + AA 美元定价（gpt-5-5 无国内官价，必有 AA $ 价）
+    await expect(page.getByRole("heading", { name: /价格|Pricing/ })).toBeVisible();
+    await expect(page.locator("text=/\\$5/").first()).toBeVisible();
   });
 
   test("desktop: Speed TPS 数据显示", async ({ page }, testInfo) => {
@@ -48,16 +41,10 @@ test.describe("Detail Page — 核心数据区块验证", () => {
     await page.goto("/models/gpt-5-5");
     await page.waitForLoadState("networkidle");
 
-    // 速度/TPS 信息
-    const speedLabels = ["速度", "Speed", "TPS"];
-    for (const label of speedLabels) {
-      const el = page.locator(`text=${label}`);
-      const count = await el.count();
-      if (count > 0) {
-        await expect(el.first()).toBeAttached();
-        break; // 找到一个即可
-      }
-    }
+    // 速度区块标题 + 中位 TPS / TTFT 标签
+    await expect(page.getByRole("heading", { name: /速度性能|Speed Performance/ })).toBeVisible();
+    await expect(page.locator("text=/中位 TPS|Median TPS/").first()).toBeVisible();
+    await expect(page.locator("text=/首 Token 延迟|Time to First Token/").first()).toBeVisible();
   });
 
   test("desktop: Context Window 上下文长度显示", async ({ page }, testInfo) => {
@@ -65,46 +52,30 @@ test.describe("Detail Page — 核心数据区块验证", () => {
     await page.goto("/models/gpt-5-5");
     await page.waitForLoadState("networkidle");
 
-    // 上下文相关信息
-    const contextLabels = ["上下文", "Context", "窗口"];
-    for (const label of contextLabels) {
-      const el = page.locator(`text=${label}`);
-      const count = await el.count();
-      if (count > 0) {
-        await expect(el.first()).toBeAttached();
-        break;
-      }
-    }
+    // QuickFacts 中的上下文窗口标签 + 数值（gpt-5-5 为 922K）
+    await expect(page.locator("text=/上下文窗口|Context Window/").first()).toBeVisible();
+    await expect(page.locator("text=/922K|922,000/").first()).toBeVisible();
   });
 
-  test("desktop: Benchmark 表格（MMLU-Pro、全知指数）", async ({ page }, testInfo) => {
+  test("desktop: Benchmark 表格（GPQA 等单项基准）", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models/gpt-5-5");
     await page.waitForLoadState("networkidle");
 
-    // Benchmark 区域
-    const benchLabels = ["MMLU", "全知指数", "基准测试", "Benchmark", "Humanity", "GPQA"];
-    for (const label of benchLabels) {
-      const el = page.locator(`text=${label}`);
-      const count = await el.count();
-      if (count > 0) {
-        await expect(el.first()).toBeAttached();
-        break;
-      }
-    }
+    // Benchmark 区块标题 + 单项基准名称（gpt-5-5 有 GPQA 分数）
+    await expect(page.getByRole("heading", { name: /基准测试|Benchmarks/ })).toBeVisible();
+    await expect(page.locator("text=GPQA").first()).toBeVisible();
   });
 
-  test("desktop: Vendor Links（API docs 等）", async ({ page }, testInfo) => {
+  test("desktop: Vendor Links（官网/控制台外链）", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models/gpt-5-5");
     await page.waitForLoadState("networkidle");
 
-    // 外部链接 — API 文档或厂商链接
-    const vendorLinks = page.locator("a[href^='http'], a[target='_blank']");
-    const exists = await vendorLinks.count();
-    if (exists > 0) {
-      await expect(vendorLinks.first()).toBeVisible();
-    }
+    // CTA 组：gpt-5-5 有官网 + 控制台外链
+    const externalLinks = page.locator("main a[target='_blank'], div.mx-auto a[target='_blank']");
+    await expect(externalLinks.first()).toBeVisible();
+    await expect(page.locator("a[href='https://openai.com']")).toBeVisible();
   });
 
   test("desktop: '← 返回模型库' 链接跳转", async ({ page }, testInfo) => {

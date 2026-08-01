@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
 import Link from "next/link";
 import { useTranslation } from "@/lib/i18n";
 import { ArrowUp, ArrowDown, Sparkles, TrendingDown, DollarSign, Brain } from "lucide-react";
+import changesJson from "@/data/changes.json";
 
 interface Change {
   type: string;
@@ -35,18 +35,8 @@ export interface ChangesData {
   changes: Change[];
 }
 
-// Lazy-load the static JSON
-let _cache: ChangesData | null = null;
-function loadChanges(): ChangesData | null {
-  if (_cache) return _cache;
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    _cache = require("@/data/changes.json") as ChangesData;
-    return _cache;
-  } catch {
-    return null;
-  }
-}
+// 静态引入每日变化数据（构建期内联，文件由数据管线保证存在）
+const changesData = changesJson as ChangesData;
 const TYPE_COLORS: Record<string, string> = {
   new: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
   dropped: "bg-red-500/10 text-red-600 dark:text-red-400",
@@ -69,9 +59,9 @@ const TYPE_ICONS: Record<string, React.ReactNode> = {
 
 export function ChangesCard() {
   const { t } = useTranslation();
-  const data = useMemo(() => loadChanges(), []);
+  const data = changesData;
 
-  if (!data || data.changes.length === 0) return null;
+  if (data.changes.length === 0) return null;
 
   const { summary, changes } = data;
 

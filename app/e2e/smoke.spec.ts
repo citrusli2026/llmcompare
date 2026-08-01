@@ -12,8 +12,8 @@ test.describe("Home Page", () => {
     // 核心元素可见 — 场景卡片取代了原有表格
     await expect(page.locator("header")).toBeVisible();
     await expect(page.locator("header a[href='/'] span").filter({ hasText: "模型图鉴" })).toBeVisible();
-    // 场景选择按钮可见（智能+热度）
-    await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ })).toBeVisible();
+    // 场景选择按钮可见（智能+热度；性价比卡文案含"智能"字样，取首个匹配）
+    await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ }).first()).toBeVisible();
     // Top Picks 推荐卡片可见
     await expect(page.locator("a[href^='/models/']").first()).toBeVisible();
 
@@ -131,9 +131,9 @@ test.describe("Home Page", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 移动端显示场景卡片（智能+热度）
-    await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ })).toBeVisible();
-    await expect(page.locator("button").filter({ hasText: /热度|Hotness/ })).toBeVisible();
+    // 移动端显示场景卡片（智能+热度；性价比卡文案含"智能"字样，取首个匹配）
+    await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ }).first()).toBeVisible();
+    await expect(page.locator("button").filter({ hasText: /热度|Hotness/ }).first()).toBeVisible();
 
     await page.screenshot({ path: `${SCREENSHOTS}/home-mobile.png`, fullPage: true });
   });
@@ -210,35 +210,6 @@ test.describe("Other Pages", () => {
     await page.screenshot({ path: `${SCREENSHOTS}/models.png`, fullPage: true });
   });
 
-  test("models page filter works", async ({ page }) => {
-    await page.goto("/models");
-    await page.waitForLoadState("networkidle");
-
-    // 检查页面有交互元素
-    await expect(page.locator("body")).not.toHaveText(/404|Error/);
-
-    // 获取所有按钮/筛选器
-    const buttons = page.locator("button, [role='tab']");
-    const count = await buttons.count();
-    expect(count).toBeGreaterThan(0);
-
-    // 找到第一个可见的按钮并点击
-    let clicked = false;
-    for (let i = 0; i < count; i++) {
-      const btn = buttons.nth(i);
-      if (await btn.isVisible().catch(() => false)) {
-        await btn.click();
-        await page.waitForTimeout(300);
-        clicked = true;
-        break;
-      }
-    }
-    expect(clicked).toBe(true);
-
-    // 验证页面仍有内容
-    await expect(page.locator("body")).not.toHaveText(/404|Error/);
-  });
-
   test("about page renders mission statement", async ({ page }) => {
     await page.goto("/about");
     await page.waitForLoadState("networkidle");
@@ -264,14 +235,14 @@ test.describe("Other Pages", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 检查中英文切换按钮
-    const langBtn = page.locator("button[aria-label='切换语言'], button[aria-label='Switch language']");
-    if (await langBtn.isVisible().catch(() => false)) {
-      await langBtn.click();
-      await page.waitForTimeout(300);
-      // 验证语言切换后的内容
-      await expect(page.locator("header")).toBeVisible();
-    }
+    // 语言切换按钮（EN/中 文本，桌面/移动导航各一份，取可见的那个）
+    const langBtn = page.getByRole("button", { name: /^EN$|^中$/ }).locator("visible=true");
+    await expect(langBtn).toBeVisible();
+    await langBtn.click();
+
+    // 切换后：localStorage 记住 en，导航栏品牌变为英文
+    await expect.poll(() => page.evaluate(() => localStorage.getItem("llmcompare-locale"))).toBe("en");
+    await expect(page.locator("header")).toContainText("LLMCompare");
   });
 });
 

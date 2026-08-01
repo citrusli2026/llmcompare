@@ -1,6 +1,6 @@
 # 模型图鉴 (LLMField)
 
-国内大语言模型公开数据汇总站，整理国内主流厂商发布的大模型在智能、速度、价格三个维度的公开数据。
+全球大语言模型公开数据汇总站，国内外模型同榜，整理各主流厂商发布的大模型在智能、速度、价格三个维度的公开数据。
 
 ## 数据维度
 
@@ -14,7 +14,7 @@
 - [首页](https://www.llmcompare.cc/) — 综合榜单 + 前沿模型卡片
 - [模型目录](https://www.llmcompare.cc/models) — 全量可排序筛选的模型表
 - [关于本站](https://www.llmcompare.cc/about) — 数据来源与方法论
-- [模型详情](https://www.llmcompare.cc/product/{id}) — 单个模型的完整指标
+- [模型详情](https://www.llmcompare.cc/models/{id}) — 单个模型的完整指标
 
 ## 数据来源
 
@@ -24,7 +24,7 @@
 
 ## 收录范围
 
-国内厂商的大参数量模型（Large 级别），包括 Alibaba (Qwen)、DeepSeek、Z AI (GLM)、Kimi/Moonshot、ByteDance Seed、Baidu (ERNIE)、Tencent、Xiaomi、MiniMax、StepFun、InclusionAI 等 19 家。默认展示发布日期 180 天内的活跃模型。
+全球头部厂商的大参数量模型（Large 级别）及高智能分中小模型，国内（Alibaba/Qwen、DeepSeek、Z AI/GLM、Kimi/Moonshot、ByteDance Seed、MiniMax 等）与国际（OpenAI、Anthropic、Google、Meta、xAI、Mistral 等）模型同榜展示。默认展示发布日期 180 天内的活跃模型。
 
 ## License
 
