@@ -259,17 +259,27 @@ export function ComparePageClient() {
               <h1 className="text-xl sm:text-2xl font-bold text-text-primary">{t("compare.title")}</h1>
             </div>
             <div className="flex items-center gap-2">
-              {/* 添加模型：下拉搜索，超上限禁用 */}
+              {/* 添加模型：下拉搜索，超上限禁用（Tooltip 挂在包裹 span 上，disabled 按钮才能提示原因） */}
               <div className="relative">
-                <button
-                  onClick={() => { setPickerOpen((v) => !v); setPickerQuery(""); }}
-                  disabled={isAtMax}
-                  title={isAtMax ? t("compare.maxReached", { n: String(maxCompare) }) : undefined}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-accent-violet/30 bg-accent-violet/10 text-accent-violet px-3 py-1.5 text-xs font-medium hover:bg-accent-violet/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <Plus className="h-3.5 w-3.5" />
-                  {t("compare.addModel")}
-                </button>
+                {(() => {
+                  const addBtn = (
+                    <button
+                      onClick={() => { setPickerOpen((v) => !v); setPickerQuery(""); }}
+                      disabled={isAtMax}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-accent-violet/30 bg-accent-violet/10 text-accent-violet px-3 py-1.5 text-xs font-medium hover:bg-accent-violet/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                      {t("compare.addModel")}
+                    </button>
+                  );
+                  return isAtMax ? (
+                    <Tooltip content={t("compare.maxReached", { n: String(maxCompare) })}>
+                      {addBtn}
+                    </Tooltip>
+                  ) : (
+                    addBtn
+                  );
+                })()}
                 {pickerOpen && !isAtMax && (
                   <>
                     <div className="fixed inset-0 z-40" onClick={() => setPickerOpen(false)} />
