@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { Activity, Minus, TrendingDown, TrendingUp } from "lucide-react";
 import trendsJson from "@/data/trends.json";
+import { findChangePoints } from "@/lib/trend-analysis";
 import { type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -22,6 +23,9 @@ const trendsById = new Map<string, ModelTrend>(
   (trendsJson.models as ModelTrend[]).map((m) => [m.id, m])
 );
 
+// 全局日期轴（ISO 日期），变化点 tooltip 用它标注时间
+const TREND_DATES = trendsJson.dates as string[];
+
 type TrendKey = "intelligence" | "blended" | "rank";
 
 interface TrendPoint {
@@ -38,12 +42,30 @@ function toPoints(values: (number | null)[]): TrendPoint[] {
   return pts;
 }
 
-// ── Sparkline：纯 SVG 折线 + 端点，viewBox 拉伸、描边不缩放 ──
+// ── Sparkline：纯 SVG 折线 + 端点 + 变化点，viewBox 拉伸、描边不缩放 ──
 const VIEW_W = 100;
 const VIEW_H = 40;
 const PAD = 3;
 
-function Sparkline({ values, className }: { values: (number | null)[]; className?: string }) {
+interface SparkMarker {
+  i: number;
+  v: number;
+  title: string;
+}
+
+function Sparkline({
+  values,
+  markers = [],
+  flat = false,
+  className,
+}: {
+  values: (number | null)[];
+  /** 值发生变化的点（含 tooltip 文案） */
+  markers?: SparkMarker[];
+  /** 全程无变化：虚线弱化，如实表达“稳定”而非伪装成趋势 */
+  flat?: boolean;
+  className?: string;
+}) {
   const pts = toPoints(values);
   const n = values.length;
   const vs = pts.map((p) => p.v);
@@ -74,9 +96,16 @@ function Sparkline({ values, className }: { values: (number | null)[]; className
         vectorEffect="non-scaling-stroke"
         strokeLinecap="round"
         strokeLinejoin="round"
+        strokeDasharray={flat ? "3 3" : undefined}
+        opacity={flat ? 0.5 : 1}
       />
       <circle cx={x(first.i)} cy={y(first.v)} r={1.6} fill="currentColor" opacity={0.45} />
       <circle cx={x(last.i)} cy={y(last.v)} r={2.2} fill="currentColor" />
+      {markers.map((m) => (
+        <circle key={m.i} cx={x(m.i)} cy={y(m.v)} r={2.2} fill="currentColor">
+          <title>{m.title}</title>
+        </circle>
+      ))}
     </svg>
   );
 }
@@ -134,6 +163,13 @@ function TrendSeries({ def, values }: { def: SeriesDef; values: (number | null)[
       ? "text-accent-lime"
       : "text-accent-coral";
 
+  // 变化点标记：ISO 日期 + 前后值，原生 tooltip 双语通用
+  const markers: SparkMarker[] = findChangePoints(values).map((p) => ({
+    i: p.i,
+    v: p.v,
+    title: `${TREND_DATES[p.i] ?? ""}: ${def.format(p.prev)} → ${def.format(p.v)}`,
+  }));
+
   return (
     <div className="min-w-0">
       <div className="mb-1 flex items-center justify-between gap-2">
@@ -143,7 +179,7 @@ function TrendSeries({ def, values }: { def: SeriesDef; values: (number | null)[
           {flat ? "—" : `${delta > 0 ? "+" : "-"}${def.formatDelta(Math.abs(delta))}`}
         </span>
       </div>
-      <Sparkline values={values} className={def.lineClass} />
+      <Sparkline values={values} markers={markers} flat={flat} className={def.lineClass} />
       <div className="mt-1 flex items-center justify-between text-xs tabular-nums">
         <span className="text-text-muted">{def.format(first)}</span>
         <span className="font-semibold text-text-primary">{def.format(last)}</span>
