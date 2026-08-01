@@ -28,6 +28,10 @@
     "filterAll": "All",
     "filterOpen": "Open",
     "filterClosed": "Closed",
+    "searchPlaceholder": "Search models or companies…",
+    "searchAriaLabel": "Search models",
+    "companyAll": "All companies",
+    "companyAriaLabel": "Filter by company",
     "emptyState": "No matching models found",
     "emptySuggestion": "Try reducing your filters, or check out these recommendations:",
     "emptyClear": "Clear all filters",
@@ -191,7 +195,11 @@
     "oneLinerReasoning": "Built for complex reasoning",
     "oneLinerDefault": "Balanced all-rounder",
     "similarModels": "You Might Also Like",
-    "similarModelsDesc": "Similar models to consider"
+    "similarModelsDesc": "Similar models to consider",
+    "trendTitle": "30-Day Trend",
+    "trendIntelligence": "Intelligence",
+    "trendBlended": "Blended Price",
+    "trendRank": "Intelligence Rank"
   },
   "table": {
     "model": "Model",

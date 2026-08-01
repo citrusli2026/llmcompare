@@ -62,36 +62,48 @@ def build_trends(snapshots: list[tuple[str, list[dict]]]) -> dict:
         ranks = {mid: i + 1 for i, (mid, _) in enumerate(scored)}
         daily_ranks.append(ranks)
 
-    # 聚合每个模型的时序
-    model_trends: dict[str, dict] = {}
+    # 聚合每个模型的时序：先按 (model, day) 索引，再与全局 dates 对齐。
+    # 中途上架/下架的模型在缺失日期补 None，保证四条序列长度 == 全局 dates 长度
+    model_meta: dict[str, dict] = {}
+    model_daily: dict[str, dict[str, tuple]] = {}
     for idx, (day, models) in enumerate(snapshots):
         ranks = daily_ranks[idx]
         for m in models:
             mid = m.get("id")
             if not mid:
                 continue
-            if mid not in model_trends:
-                model_trends[mid] = {
+            if mid not in model_meta:
+                model_meta[mid] = {
                     "id": mid,
                     "name": m.get("name", mid),
                     "company": m.get("company", ""),
-                    "dates": dates,
-                    "intelligence": [],
-                    "blended": [],
-                    "tokens": [],
-                    "rank": [],
                 }
-            mt = model_trends[mid]
-            mt["intelligence"].append(m.get("scores", {}).get("intelligence"))
-            mt["blended"].append(m.get("pricing", {}).get("blended"))
-            mt["tokens"].append(m.get("openrouter_weekly_tokens"))
-            mt["rank"].append(ranks.get(mid))
+                model_daily[mid] = {}
+            model_daily[mid][day] = (
+                m.get("scores", {}).get("intelligence"),
+                m.get("pricing", {}).get("blended"),
+                m.get("openrouter_weekly_tokens"),
+                ranks.get(mid),
+            )
+
+    model_trends: list[dict] = []
+    for mid, meta in model_meta.items():
+        daily = model_daily[mid]
+        series = [daily.get(day, (None, None, None, None)) for day in dates]
+        model_trends.append({
+            **meta,
+            "dates": dates,
+            "intelligence": [s[0] for s in series],
+            "blended": [s[1] for s in series],
+            "tokens": [s[2] for s in series],
+            "rank": [s[3] for s in series],
+        })
 
     return {
         "generated_at": date.today().isoformat(),
         "max_days": MAX_DAYS,
         "dates": dates,
-        "models": list(model_trends.values()),
+        "models": model_trends,
     }
 
 

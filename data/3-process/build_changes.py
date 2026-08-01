@@ -55,7 +55,7 @@ def pct_change(old: float, new: float) -> float | None:
     return round((new - old) / abs(old) * 100, 1)
 
 
-def build_changes(today_models: list[dict], yesterday_models: list[dict], first_seen_map: dict[str, str] | None = None) -> dict:
+def build_changes(today_models: list[dict], yesterday_models: list[dict], first_seen_map: dict[str, str] | None = None, compare_date: date | None = None) -> dict:
     today_map = build_model_map(today_models)
     yesterday_map = build_model_map(yesterday_models)
 
@@ -181,7 +181,9 @@ def build_changes(today_models: list[dict], yesterday_models: list[dict], first_
     return {
         "generated_at": date.today().isoformat(),
         "date": TODAY.isoformat(),
-        "compare_with": (TODAY - timedelta(days=1)).isoformat(),
+        # compare_with 必须反映实际使用的对比快照日期（可能是 2-7 天前），
+        # 未显式传入时回退为昨天
+        "compare_with": (compare_date or TODAY - timedelta(days=1)).isoformat(),
         "summary": summary,
         "changes": changes[:30],  # cap at 30
     }
@@ -207,7 +209,7 @@ def main():
 
     yesterday_models = load_ranking(yesterday)
     first_seen_map = load_all_first_seen()
-    result = build_changes(today_models, yesterday_models, first_seen_map)
+    result = build_changes(today_models, yesterday_models, first_seen_map, compare_date=yesterday)
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2))

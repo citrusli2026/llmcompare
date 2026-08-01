@@ -14,6 +14,7 @@ import { BenchmarkSection } from "./benchmark-section";
 import { SpeedSection } from "./speed-section";
 import { PricingSection } from "./pricing-section";
 import { ScoreOverview } from "./score-overview";
+import { TrendSection } from "./trend-section";
 import { SimilarModels } from "./similar-models";
 
 interface ProductDetailClientProps {
@@ -47,6 +48,10 @@ export function ProductDetailClient({ model }: ProductDetailClientProps) {
 
           <div className="mt-6">
             <ScoreOverview model={model} />
+          </div>
+
+          <div className="mt-6">
+            <TrendSection model={model} />
           </div>
 
           <div className="mt-6">

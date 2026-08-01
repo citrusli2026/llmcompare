@@ -26,28 +26,77 @@ test.describe("Models Page — 筛选与搜索功能", () => {
     }
   });
 
-  test("desktop: 组合筛选 — 开源 + 公司 + 搜索", async ({ page }, testInfo) => {
+  test("desktop: 搜索框输入 → 表格行数收窄，清空后恢复", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");
     await page.waitForLoadState("networkidle");
 
-    // 选"开源" filter
-    const openFilter = page.locator("button").filter({ hasText: /^开源$|^Open Source$/ }).first();
-    if (await openFilter.isVisible().catch(() => false)) {
-      await openFilter.click();
-      await page.waitForTimeout(300);
-    }
+    const rows = page.locator("tbody tr");
+    await expect(rows.first()).toBeVisible();
+    const total = await rows.count();
+    expect(total).toBeGreaterThan(1);
 
-    // 选公司（如果有 OpenAI 选项）
-    const companySelect = page.locator("select").first();
-    const options = await companySelect.locator("option").allTextContents();
-    if (options.some((o) => o.includes("OpenAI"))) {
-      await companySelect.selectOption("OpenAI");
-      await page.waitForTimeout(300);
-    }
+    // 用第一行模型的完整 id 作搜索词：必命中自身（id 参与匹配），且不可能匹配全部
+    const firstId = await rows.first().getAttribute("data-model-id");
+    expect(firstId).toBeTruthy();
 
-    // 验证结果可见（可能为空，空状态也接受）
-    await expect(page.locator("body")).not.toHaveText(/Error/);
+    const search = page.getByLabel(/搜索模型|Search models/);
+    await expect(search).toBeVisible();
+    await search.fill(firstId!);
+
+    // URL 同步 ?q=
+    await expect(page).toHaveURL(/[?&]q=/);
+    // 行数收窄但不为 0
+    await expect.poll(async () => rows.count()).toBeLessThan(total);
+    expect(await rows.count()).toBeGreaterThan(0);
+    // 剩余行包含命中行自身
+    await expect(page.locator(`tbody tr[data-model-id="${firstId}"]`)).toBeVisible();
+
+    // 清空搜索 → 恢复全量
+    await search.fill("");
+    await expect.poll(async () => rows.count()).toBe(total);
+  });
+
+  test("desktop: 公司下拉选择 → 表格行均为该公司", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用");
+    await page.goto("/models");
+    await page.waitForLoadState("networkidle");
+
+    const rows = page.locator("tbody tr");
+    await expect(rows.first()).toBeVisible();
+
+    // 取第一行所属公司（当前类型筛选下必有结果），保证选择后非空
+    const firstCompany = (await rows.first().locator("td").nth(2).textContent())?.trim();
+    expect(firstCompany).toBeTruthy();
+
+    const companySelect = page.getByLabel(/按公司筛选|Filter by company/);
+    await expect(companySelect).toBeVisible();
+    await companySelect.selectOption(firstCompany!);
+
+    // URL 同步 ?company=
+    await expect(page).toHaveURL(/[?&]company=/);
+
+    // 行数 > 0 且每一行公司列都是所选公司
+    await expect.poll(async () => rows.count()).toBeGreaterThan(0);
+    const companyCells = page.locator("tbody tr td:nth-child(3)");
+    const texts = (await companyCells.allTextContents()).map((t) => t.trim());
+    expect(texts.length).toBeGreaterThan(0);
+    for (const text of texts) {
+      expect(text).toBe(firstCompany);
+    }
+  });
+
+  test("desktop: 搜索无结果 → 显示空状态", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo.project.name), "桌面端专用");
+    await page.goto("/models");
+    await page.waitForLoadState("networkidle");
+
+    const search = page.getByLabel(/搜索模型|Search models/);
+    await search.fill("no-such-model-exists-zzz");
+
+    // 表格消失，空状态文案出现
+    await expect(page.locator("tbody tr")).toHaveCount(0);
+    await expect(page.getByText(/未找到匹配的模型|No matching models found/)).toBeVisible();
   });
 
   test("desktop: 切换筛选恢复模型列表", async ({ page }, testInfo) => {

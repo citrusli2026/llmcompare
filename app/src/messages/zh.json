@@ -28,6 +28,10 @@
     "filterAll": "全部",
     "filterOpen": "开源",
     "filterClosed": "闭源",
+    "searchPlaceholder": "搜索模型、公司…",
+    "searchAriaLabel": "搜索模型",
+    "companyAll": "全部公司",
+    "companyAriaLabel": "按公司筛选",
     "emptyState": "未找到匹配的模型",
     "emptySuggestion": "试试减少筛选条件，或查看以下推荐：",
     "emptyClear": "清除所有筛选",
@@ -191,7 +195,11 @@
     "oneLinerReasoning": "专注推理任务的模型",
     "oneLinerDefault": "综合能力均衡的模型",
     "similarModels": "你可能也喜欢",
-    "similarModelsDesc": "同类模型推荐"
+    "similarModelsDesc": "同类模型推荐",
+    "trendTitle": "近 30 天趋势",
+    "trendIntelligence": "智能分",
+    "trendBlended": "混合价格",
+    "trendRank": "智能排名"
   },
   "table": {
     "model": "模型",

@@ -8,9 +8,10 @@ import { getAllModels, ModelType } from "@/lib/scoring";
 import { RankingTable } from "@/components/ranking-table";
 import type { SortKey } from "@/components/ranking-table/types";
 import { FilterBar, type FilterOption } from "@/components/filter-bar";
+import { filterModels, hasActiveFilters, listCompanies } from "@/lib/filter-models";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import { Bot, SearchX, X, Sparkles, ArrowLeftRight } from "lucide-react";
+import { Bot, Search, SearchX, X, Sparkles, ArrowLeftRight, ChevronDown } from "lucide-react";
 import { ShareButton } from "@/components/share-button";
 import { ModelLogo } from "@/components/model-logo";
 import { useCompareIds } from "@/hooks/use-compare-ids";
@@ -39,8 +40,12 @@ export default function ModelsPageClient() {
   const initialFilterRaw = searchParams.get("filter") ?? "open";
   const initialFilter: FilterKey = isFilterKey(initialFilterRaw) ? initialFilterRaw : "open";
   const initialSort = searchParams.get("sort") as SortKey | null;
+  const initialQuery = searchParams.get("q") ?? "";
+  const initialCompany = searchParams.get("company") ?? "";
 
   const [activeFilter, setActiveFilter] = useState<FilterKey>(initialFilter);
+  const [query, setQuery] = useState(initialQuery);
+  const [company, setCompany] = useState(initialCompany);
 
   // 开源默认按用量（tokens），闭源默认按智能（intelligence）
   const defaultSortKey: SortKey = activeFilter === "open" ? "tokens" : "intelligence";
@@ -59,11 +64,21 @@ export default function ModelsPageClient() {
     });
   }, [clearCompare]);
 
+  // URL 同步：filter 始终写入；q / company 为空时删除参数，保持 URL 干净
   const updateUrl = useCallback(
-    (filter: FilterKey) => {
+    (updates: { filter?: FilterKey; q?: string; company?: string }) => {
       const params = new URLSearchParams(searchParams.toString());
-      params.set("filter", filter);
-      router.replace(`?${params.toString()}`, { scroll: false });
+      if (updates.filter !== undefined) params.set("filter", updates.filter);
+      if (updates.q !== undefined) {
+        if (updates.q) params.set("q", updates.q);
+        else params.delete("q");
+      }
+      if (updates.company !== undefined) {
+        if (updates.company) params.set("company", updates.company);
+        else params.delete("company");
+      }
+      const qs = params.toString();
+      router.replace(qs ? `?${qs}` : "/models", { scroll: false });
     },
     [router, searchParams]
   );
@@ -72,7 +87,25 @@ export default function ModelsPageClient() {
     (key: string) => {
       if (!isFilterKey(key)) return;
       setActiveFilter(key);
-      updateUrl(key);
+      updateUrl({ filter: key });
+    },
+    [updateUrl]
+  );
+
+  const handleQueryChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const q = e.target.value;
+      setQuery(q);
+      updateUrl({ q });
+    },
+    [updateUrl]
+  );
+
+  const handleCompanyChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const c = e.target.value;
+      setCompany(c);
+      updateUrl({ company: c });
     },
     [updateUrl]
   );
@@ -84,14 +117,24 @@ export default function ModelsPageClient() {
 
   const allModels = useMemo(() => getAllModels(), []);
 
-  const filteredModels = useMemo(() => {
-    const filterMatchValue = matchValueFor(activeFilter);
-    return allModels.filter((m) => m.type === filterMatchValue);
-  }, [allModels, activeFilter]);
+  // 公司下拉选项：全量模型去重，按模型数降序
+  const companyOptions = useMemo(() => listCompanies(allModels), [allModels]);
+
+  const filteredModels = useMemo(
+    () =>
+      filterModels(allModels, {
+        type: matchValueFor(activeFilter),
+        query,
+        company,
+      }),
+    [allModels, activeFilter, query, company]
+  );
 
   // Clear all filters
   const handleClearAll = useCallback(() => {
     setActiveFilter("open");
+    setQuery("");
+    setCompany("");
     router.replace("/models", { scroll: false });
   }, [router]);
 
@@ -103,8 +146,11 @@ export default function ModelsPageClient() {
       .slice(0, 8);
   }, [allModels]);
 
-  // Detect if any filter is active
-  const hasActiveFilters = true;
+  // 由实际筛选状态推导（默认：开源 + 无搜索词 + 全部公司）
+  const filtersActive = hasActiveFilters(
+    { type: matchValueFor(activeFilter), query, company },
+    ModelType.Open
+  );
 
   const isEmpty = filteredModels.length === 0;
 
@@ -127,8 +173,35 @@ export default function ModelsPageClient() {
             <ShareButton size="sm" variant="ghost" className="shrink-0 mt-1" />
           </div>
 
-          {/* 筛选条件 — 全部/开源/闭源 + 对比模式 */}
+          {/* 筛选条件 — 搜索 + 公司 + 开源/闭源 + 对比模式 */}
           <div className="mb-4 sm:mb-6 flex flex-wrap items-center gap-2">
+            <div className="relative w-full sm:w-60">
+              <Search className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+              <input
+                type="search"
+                value={query}
+                onChange={handleQueryChange}
+                placeholder={t("models.searchPlaceholder")}
+                aria-label={t("models.searchAriaLabel")}
+                className="w-full rounded-lg border border-surface-border bg-surface-card py-2 pl-8 pr-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent-violet/30"
+              />
+            </div>
+            <div className="relative">
+              <select
+                value={company}
+                onChange={handleCompanyChange}
+                aria-label={t("models.companyAriaLabel")}
+                className="appearance-none rounded-lg border border-surface-border bg-surface-card py-2 pl-3 pr-8 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-violet/30"
+              >
+                <option value="">{t("models.companyAll")}</option>
+                {companyOptions.map((c) => (
+                  <option key={c.name} value={c.name}>
+                    {c.name} ({c.count})
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+            </div>
             <FilterBar
               options={filterOptions}
               activeKey={activeFilter}
@@ -157,7 +230,7 @@ export default function ModelsPageClient() {
               <h3 className="text-lg font-semibold text-text-primary mb-1">{t("models.emptyState")}</h3>
               <p className="text-sm text-text-secondary max-w-sm mb-6">{t("models.emptySuggestion")}</p>
 
-              {hasActiveFilters && (
+              {filtersActive && (
                 <button
                   onClick={handleClearAll}
                   className="inline-flex items-center gap-1.5 rounded-lg border border-surface-border bg-surface-card px-4 py-2 text-sm font-medium text-text-primary hover:border-accent-violet/30 hover:text-accent-violet hover:bg-accent-violet/5 transition-all mb-10"
