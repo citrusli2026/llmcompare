@@ -85,15 +85,16 @@ def _calculate_completeness(model: dict) -> float:
     return round(actual / total * 100, 1) if total > 0 else 0.0
 
 
-def load_or_data(or_models_path: Path) -> tuple[dict[str, int], dict[str, dict], dict[str, dict]]:
+def load_or_data(or_models_path: Path) -> tuple[dict[str, int], dict[str, dict], dict[str, dict], dict[str, bool], dict[str, int]]:
     """Load OR models+analytics.
 
     Returns ({name: weekly_tokens}, {name: {prompt, completion}},
-             {name: {"input": [...], "output": [...]}}).
+             {name: {"input": [...], "output": [...]}},
+             {name: supports_tools}, {name: max_completion_tokens}).
     """
     if not or_models_path.exists():
         print(f"[WARN] OR models not found: {or_models_path}, skipping")
-        return {}, {}, {}
+        return {}, {}, {}, {}, {}
     with open(or_models_path) as f:
         data = json.load(f)
 
@@ -151,8 +152,23 @@ def load_or_data(or_models_path: Path) -> tuple[dict[str, int], dict[str, dict],
         if name and (input_mods or output_mods):
             modalities_map[name] = {"input": input_mods, "output": output_mods}
 
-    print(f"[OK] Loaded {len(token_map)} OR token volumes, {len(price_map)} OR prices, {len(modalities_map)} OR modalities")
-    return token_map, price_map, modalities_map
+    # Extract tool calling support (supported_parameters 含 "tools") 与
+    # 最大输出 tokens (top_provider.max_completion_tokens)。
+    # tools_map 对匹配的模型记录 True/False，匹配不到 OR 的模型最终为 None。
+    tools_map = {}
+    max_completion_map = {}
+    for m in models:
+        name = m.get("name", "").lower().strip()
+        if not name:
+            continue
+        tools_map[name] = "tools" in (m.get("supported_parameters") or [])
+        max_completion = (m.get("top_provider") or {}).get("max_completion_tokens")
+        if isinstance(max_completion, int) and max_completion > 0:
+            max_completion_map[name] = max_completion
+
+    print(f"[OK] Loaded {len(token_map)} OR token volumes, {len(price_map)} OR prices, {len(modalities_map)} OR modalities, "
+          f"{len(tools_map)} OR tools support, {len(max_completion_map)} OR max completion tokens")
+    return token_map, price_map, modalities_map, tools_map, max_completion_map
 
 
 def load_arena_data(arena_path: Path) -> tuple[dict[str, list[dict]], dict[str, int]]:
@@ -349,6 +365,8 @@ def enrich(
     arena_data: dict[str, list[dict]] | None = None,
     arena_votes: dict[str, int] | None = None,
     or_modalities: dict[str, dict] | None = None,
+    or_tools: dict[str, bool] | None = None,
+    or_max_completion: dict[str, int] | None = None,
 ) -> tuple[int, int, int]:
     """Inject vendor_links + cn_pricing + license + OR data + Arena data + Arena votes, then update flags."""
     vendor_links = ref.get("vendor_links", {})
@@ -358,6 +376,8 @@ def enrich(
     or_tokens = or_tokens or {}
     or_pricing = or_pricing or {}
     or_modalities = or_modalities or {}
+    or_tools = or_tools or {}
+    or_max_completion = or_max_completion or {}
     arena_data = arena_data or {}
     arena_votes = arena_votes or {}
 
@@ -365,6 +385,8 @@ def enrich(
     flag_updates = 0
     or_matched = 0
     image_input_matched = 0
+    tools_matched = 0
+    max_completion_matched = 0
     arena_matched = {k: 0 for k in arena_data.keys()}
     intl_count = 0
     license_matched = 0
@@ -442,6 +464,17 @@ def enrich(
                 image_input_matched += 1
             m["flags"]["image_input"] = True
 
+        # 工具调用 + 最大输出 tokens：与 modalities 同一套 OR 名称匹配，
+        # 匹配不上 OR 的模型保持 None（前端按无数据处理）
+        tools = match_or_value(name, or_tools)
+        m.setdefault("flags", {})["tools_calling"] = tools
+        if tools is not None:
+            tools_matched += 1
+        max_completion = match_or_value(name, or_max_completion)
+        m.setdefault("meta", {})["max_output_tokens"] = max_completion
+        if max_completion is not None:
+            max_completion_matched += 1
+
         # Inject Arena leaderboard data (国内外都尝试)
         m["arena_rankings"] = {}
         # Load explicit mapping if available
@@ -489,6 +522,12 @@ def enrich(
 
     if image_input_matched:
         print(f"[OK] Backfilled image_input=true for {image_input_matched} models from OR modalities")
+
+    if tools_matched:
+        print(f"[OK] Matched OR tools_calling for {tools_matched}/{len(models)} models")
+
+    if max_completion_matched:
+        print(f"[OK] Matched OR max_output_tokens for {max_completion_matched}/{len(models)} models")
     
     # Report Arena coverage
     total_models = len(models)
@@ -611,8 +650,8 @@ def main():
     with open(ranking_path) as f:
         models = json.load(f)
 
-    # Load OR tokens + pricing + modalities (both come from or_models_full.json, identical to or_models.json's pricing)
-    or_tokens, or_pricing, or_modalities = load_or_data(PROJECT_ROOT / "2-raw" / "or_models_full.json")
+    # Load OR tokens + pricing + modalities + tools/max_completion (both come from or_models_full.json, identical to or_models.json's pricing)
+    or_tokens, or_pricing, or_modalities, or_tools, or_max_completion = load_or_data(PROJECT_ROOT / "2-raw" / "or_models_full.json")
 
     # Load Arena leaderboard data
     arena_data, arena_votes = load_arena_data(PROJECT_ROOT / "2-raw" / "arena_leaderboards.json")
@@ -661,7 +700,10 @@ def main():
     ref["cn_pricing"] = cn_pricing_clean
 
     # Enrich + update flags (single pass)
-    enriched_count, flag_updates, arena_total = enrich(models, ref, or_tokens, or_pricing, arena_data, arena_votes, or_modalities)
+    enriched_count, flag_updates, arena_total = enrich(
+        models, ref, or_tokens, or_pricing, arena_data, arena_votes, or_modalities,
+        or_tools, or_max_completion,
+    )
 
     # Save full
     save(ranking_path, models)

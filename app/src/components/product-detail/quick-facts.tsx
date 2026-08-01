@@ -1,10 +1,10 @@
 "use client";
 
-import { Calendar, Building2, Cpu, BookOpen, Scale } from "lucide-react";
+import { Calendar, Building2, Cpu, BookOpen, Scale, Layers, Wrench } from "lucide-react";
 import { type ModelWithScores, ModelType } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 import { FieldTip } from "@/components/field-tip";
-import { formatParameters } from "@/lib/utils";
+import { formatParameters, formatTokenLimit } from "@/lib/utils";
 
 interface QuickFactsProps {
   model: ModelWithScores;
@@ -43,6 +43,26 @@ export function QuickFacts({ model }: QuickFactsProps) {
           </p>
         </div>
       </div>
+      {r.max_output_tokens != null && (
+        <div className="flex items-center gap-3">
+          <Layers className="h-4 w-4 text-text-muted shrink-0" />
+          <div className="min-w-0">
+            <p className="text-[10px] uppercase tracking-wider text-text-muted"><FieldTip tip={t("tip.maxOutput")}>{t("product.maxOutput")}</FieldTip></p>
+            <p className="text-sm font-medium text-text-primary truncate">{formatTokenLimit(r.max_output_tokens)}</p>
+          </div>
+        </div>
+      )}
+      {model.flags.tools_calling != null && (
+        <div className="flex items-center gap-3">
+          <Wrench className="h-4 w-4 text-text-muted shrink-0" />
+          <div className="min-w-0">
+            <p className="text-[10px] uppercase tracking-wider text-text-muted"><FieldTip tip={t("tip.toolsCalling")}>{t("product.toolsCalling")}</FieldTip></p>
+            <p className="text-sm font-medium text-text-primary truncate">
+              {model.flags.tools_calling ? t("common.supported") : t("common.unsupported")}
+            </p>
+          </div>
+        </div>
+      )}
       <div className="flex items-center gap-3">
         <BookOpen className="h-4 w-4 text-text-muted shrink-0" />
         <div className="min-w-0">

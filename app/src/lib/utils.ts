@@ -14,6 +14,16 @@ export function formatTokenCount(val: number): { value: string; unit: "T" | "B" 
 }
 
 /**
+ * Format a token limit (context window / max output) for display.
+ * 128000 → "128K", 1048576 → "1M"
+ */
+export function formatTokenLimit(v: number): string {
+  if (v >= 1_000_000) return `${(v / 1_000_000).toFixed(v % 1_000_000 === 0 ? 0 : 1)}M`;
+  if (v >= 1_000) return `${(v / 1_000).toFixed(0)}K`;
+  return String(v);
+}
+
+/**
  * Format a model parameter count (in billions) for display.
  * 7B → "7B", 1000B → "1T", 1600B → "1.6T"
  */

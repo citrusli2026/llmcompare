@@ -14,13 +14,10 @@ function getMaxCompare(): number {
 }
 
 /**
- * Manages model compare selection via URL ?compare=id1,id2&id3 + localStorage fallback.
- * Responsive limit: 2 mobile / 3 desktop.
+ * Responsive compare limit (2 mobile / 3 desktop), kept in sync on resize.
+ * Shared by useCompareIds and the /compare page add-model control.
  */
-export function useCompareIds() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
+export function useMaxCompare(): number {
   const [maxCompare, setMaxCompare] = useState<number>(MAX_COMPARE_DESKTOP);
 
   useEffect(() => {
@@ -29,6 +26,19 @@ export function useCompareIds() {
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, []);
+
+  return maxCompare;
+}
+
+/**
+ * Manages model compare selection via URL ?compare=id1,id2&id3 + localStorage fallback.
+ * Responsive limit: 2 mobile / 3 desktop.
+ */
+export function useCompareIds() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const maxCompare = useMaxCompare();
 
   const compareIds = useMemo(
     () => searchParams.get("compare")?.split(",").filter(Boolean) ?? [],

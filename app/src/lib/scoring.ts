@@ -14,6 +14,8 @@ interface ModelFlags {
   chinese_eval: boolean;
   has_speed: boolean;
   data_complete: boolean;
+  /** OR supported_parameters 含 "tools"；匹配不到 OR 的模型为 null */
+  tools_calling: boolean | null;
 }
 
 interface ArenaRanking {
@@ -46,6 +48,16 @@ interface RawPricing {
 interface RawBenchmarks {
   gpqa: number | null;
   hle: number | null;
+  scicode: number | null;
+  lcr: number | null;
+  critpt: number | null;
+  ifbench: number | null;
+  tau2: number | null;
+  terminalbench_hard: number | null;
+  mmmu_pro: number | null;
+  gdpval: number | null;
+  livecodebench: number | null;
+  aime25: number | null;
 }
 
 interface RawMeta {
@@ -54,6 +66,7 @@ interface RawMeta {
   release_date: string | null;
   knowledge_cutoff: string | null;
   omniscience: number | null;
+  max_output_tokens: number | null;
 }
 
 // ── RawModel (from JSON) ──
@@ -121,6 +134,7 @@ export interface ModelWithScores {
     release_date: string | null;
     knowledge_cutoff: string | null;
     omniscience: number | null;
+    max_output_tokens: number | null;
     arena_votes: number | null;
     openrouter_weekly_tokens: number | null;
     openrouter_pricing: { prompt: number; completion: number } | null;
@@ -128,10 +142,7 @@ export interface ModelWithScores {
     arena_code: number | null;
     data_completeness_pct: number;
     license: string | null;
-    benchmarks: {
-      gpqa: number | null;
-      hle: number | null;
-    };
+    benchmarks: RawBenchmarks;
   };
 
   flags: ModelFlags;
@@ -180,6 +191,7 @@ function initCache(): void {
         release_date: m.meta?.release_date ?? null,
         knowledge_cutoff: m.meta?.knowledge_cutoff ?? null,
         omniscience: m.meta?.omniscience ?? null,
+        max_output_tokens: m.meta?.max_output_tokens ?? null,
         arena_votes: m.arena_votes ?? null,
         openrouter_weekly_tokens: m.openrouter_weekly_tokens ?? null,
         openrouter_pricing: m.openrouter_pricing ?? null,
@@ -190,6 +202,16 @@ function initCache(): void {
         benchmarks: {
           gpqa: (m.benchmarks?.gpqa ?? null) as number | null,
           hle: (m.benchmarks?.hle ?? null) as number | null,
+          scicode: (m.benchmarks?.scicode ?? null) as number | null,
+          lcr: (m.benchmarks?.lcr ?? null) as number | null,
+          critpt: (m.benchmarks?.critpt ?? null) as number | null,
+          ifbench: (m.benchmarks?.ifbench ?? null) as number | null,
+          tau2: (m.benchmarks?.tau2 ?? null) as number | null,
+          terminalbench_hard: (m.benchmarks?.terminalbench_hard ?? null) as number | null,
+          mmmu_pro: (m.benchmarks?.mmmu_pro ?? null) as number | null,
+          gdpval: (m.benchmarks?.gdpval ?? null) as number | null,
+          livecodebench: (m.benchmarks?.livecodebench ?? null) as number | null,
+          aime25: (m.benchmarks?.aime25 ?? null) as number | null,
         },
       },
       flags: m.flags,

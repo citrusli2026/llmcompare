@@ -24,6 +24,26 @@ PROJECT_DIR = os.path.dirname(SCRIPT_DIR)
 AA_INPUT = os.path.join(PROJECT_DIR, '2-raw', 'aa_all_full.json')
 OUTPUT = os.path.join(PROJECT_DIR, '4-final', 'ranking_all.json')
 
+# 透传的单项 benchmark 字段（按覆盖率/重要性排序）。
+# 入选门槛：在筛选后模型中覆盖率 > 30%（2026-08-01 实跑统计，见 main() 摘要输出）。
+# 已废弃不上榜: humaneval / math_500 / aime / mmlu_pro（AA 上游不再提供或覆盖率 0%）。
+# 注意各 benchmark 数值尺度不同：大多是 0-1 小数，gdpval 为绝对分值（约 5~1900），
+# 管线保持原样透传，展示层（前端 lib/benchmarks.ts）负责格式化。
+BENCHMARK_FIELDS = [
+    'gpqa',                # 93.1%
+    'hle',                 # 93.1%
+    'scicode',             # 93.1%
+    'lcr',                 # 87.5%
+    'critpt',              # 86.7%
+    'ifbench',             # 74.6%
+    'tau2',                # 74.2%
+    'terminalbench_hard',  # 73.8%
+    'mmmu_pro',            # 49.2%
+    'gdpval',              # 44.8%（绝对分值，非 0-1）
+    'livecodebench',       # 41.5%
+    'aime25',              # 35.5%
+]
+
 
 def make_id(name: str) -> str:
     return re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
@@ -97,11 +117,8 @@ def build_model(m: dict) -> dict:
             'p95_tps': m.get('speed_p95_tps'),
         },
 
-        # 单个 benchmark 分数
-        'benchmarks': {
-            'gpqa': m.get('gpqa'),
-            'hle': m.get('hle'),
-        },
+        # 单个 benchmark 分数（字段清单见 BENCHMARK_FIELDS，原样透传）
+        'benchmarks': {k: m.get(k) for k in BENCHMARK_FIELDS},
 
         # ── AA 原始定价 (美元) ──
         'pricing': {
@@ -156,6 +173,12 @@ def main():
                     or (m.get('intelligence_index') or 0) >= 30)
                 and not any(p in m.get('short_name', '') for p in EXCLUDED_PATTERNS)]
     print(f'Large / 前沿模型: {len(filtered)} 个')
+
+    # ── benchmark 字段覆盖率统计（>30% 才透传，门槛调整时看这里）──
+    print('benchmark 覆盖率（筛选后模型）:')
+    for k in BENCHMARK_FIELDS:
+        n = sum(1 for m in filtered if m.get(k) is not None)
+        print(f'  {k:<20} {n:>3}/{len(filtered)} ({n / len(filtered) * 100:.1f}%)')
 
     # ── 统一转换 ──
     models = [build_model(m) for m in filtered]

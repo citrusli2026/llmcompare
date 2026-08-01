@@ -99,6 +99,7 @@ describe("lib/utils", () => {
         release_date: null,
         knowledge_cutoff: null,
         omniscience: null,
+        max_output_tokens: null,
         arena_votes: null,
         openrouter_weekly_tokens: null,
         openrouter_pricing: null,
@@ -106,7 +107,7 @@ describe("lib/utils", () => {
         arena_code: null,
         data_completeness_pct: 100,
         license: null,
-        benchmarks: { gpqa: null, hle: null },
+        benchmarks: { gpqa: null, hle: null, scicode: null, lcr: null, critpt: null, ifbench: null, tau2: null, terminalbench_hard: null, mmmu_pro: null, gdpval: null, livecodebench: null, aime25: null },
       },
       flags: {
         frontier: false,
@@ -116,6 +117,7 @@ describe("lib/utils", () => {
         chinese_eval: false,
         has_speed: false,
         data_complete: true,
+        tools_calling: null,
       },
     });
 

@@ -115,9 +115,19 @@ interface Model {
     agentic: number|null;  // AA Agentic Index
   };
 
-  benchmarks: {            // 单项 benchmark 分数
-    gpqa: number|null;     // 研究生级别科学问答
-    hle: number|null;      // Humanity's Last Exam
+  benchmarks: {            // 单项 benchmark 分数 (覆盖率 >30% 门槛, 保持 AA 原始尺度)
+    gpqa: number|null;     // 研究生级别科学问答 (0-1)
+    hle: number|null;      // Humanity's Last Exam (0-1)
+    scicode: number|null;  // 科学计算代码 (0-1)
+    lcr: number|null;      // 长上下文检索 (0-1)
+    critpt: number|null;   // 物理研究推理 (0-1)
+    ifbench: number|null;  // 指令遵循 (0-1)
+    tau2: number|null;     // 工具-Agent 协作 (0-1)
+    terminalbench_hard: number|null; // 终端任务困难集 (0-1)
+    mmmu_pro: number|null; // 多模态理解增强版 (0-1)
+    gdpval: number|null;   // 经济价值任务 (绝对分值, 非 0-1)
+    livecodebench: number|null; // 实时代码 (0-1)
+    aime25: number|null;   // AIME 2025 数学竞赛 (0-1)
   };
 
   speed: {                 // AA 原始速度数据 (前端需自行归一化)
@@ -172,6 +182,7 @@ interface Model {
     has_speed: boolean;
     has_pricing: boolean;
     data_complete: boolean; // intelligence + coding + agentic + speed(>0) + pricing 五者齐全
+    tools_calling: boolean|null; // OR supported_parameters 含 tools; 匹配不到 OR 为 null
   };
 
   meta: {
@@ -181,6 +192,7 @@ interface Model {
     size_class: string;
     release_date: string;
     omniscience: number|null;    // AA 幻觉控制分 (越低越好, -10≈极少幻觉, -89≈严重幻觉)
+    max_output_tokens: number|null; // 单次响应最大输出 tokens (OR top_provider), 匹配不到为 null
   };
 
   license: string|null;    // 开源模型 License; 闭源显示 "商业授权"

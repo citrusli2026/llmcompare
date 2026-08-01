@@ -101,7 +101,9 @@ scripts/   辅助脚本 (被 pipeline.py 调用)
 - `meta.parameters`：优先取总参数量，缺失时用 `active_params_billions` 回填
 - `meta.knowledge_cutoff`：新增字段，模型训练知识截止日期（字符串，如 `"2026-01"`）
 - `meta.output_tokens`：已移除，详情页不再展示
-- `benchmarks`：仅保留 `gpqa`、`hle`，`mmlu_pro` 已移除
+- `meta.max_output_tokens`：单次响应最大输出 tokens（OR `top_provider.max_completion_tokens`，匹配不到 OR 为 null）
+- `flags.tools_calling`：是否支持工具调用（OR `supported_parameters` 含 `tools`；匹配不到 OR 为 null）
+- `benchmarks`：透传 `gpqa`/`hle`/`scicode`/`lcr`/`critpt`/`ifbench`/`tau2`/`terminalbench_hard`/`mmmu_pro`/`gdpval`/`livecodebench`/`aime25`（覆盖率 >30% 门槛，`humaneval`/`math_500`/`aime`/`mmlu_pro` 已废弃）；数值保持 AA 原始尺度（多数 0-1 小数，`gdpval` 为绝对分值），格式化在前端展示层处理
 - `vendor_links`：仅保留 `homepage`（官方自有官网）和 `console`（模型控制台）。不得放入 HuggingFace/GitHub/试用链接/定价文档链接；官网必须是厂商/模型官方自有域名，不能是第三方聚合站
 - `license`：开源模型显示具体 License，闭源模型显示 `"商业授权"`
 

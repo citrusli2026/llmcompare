@@ -45,7 +45,17 @@
         "type": ["object", "null"],
         "properties": {
           "gpqa": {"type": ["number", "null"]},
-          "hle": {"type": ["number", "null"]}
+          "hle": {"type": ["number", "null"]},
+          "scicode": {"type": ["number", "null"]},
+          "lcr": {"type": ["number", "null"]},
+          "critpt": {"type": ["number", "null"]},
+          "ifbench": {"type": ["number", "null"]},
+          "tau2": {"type": ["number", "null"]},
+          "terminalbench_hard": {"type": ["number", "null"]},
+          "mmmu_pro": {"type": ["number", "null"]},
+          "gdpval": {"type": ["number", "null"]},
+          "livecodebench": {"type": ["number", "null"]},
+          "aime25": {"type": ["number", "null"]}
         }
       },
       "vendor_links": {
@@ -65,7 +75,7 @@
       },
       "flags": {
         "type": "object",
-        "required": ["frontier", "open_weights", "reasoning", "image_input", "chinese_eval", "has_speed", "has_pricing", "data_complete"],
+        "required": ["frontier", "open_weights", "reasoning", "image_input", "chinese_eval", "has_speed", "has_pricing", "data_complete", "tools_calling"],
         "properties": {
           "frontier": {"type": "boolean"},
           "open_weights": {"type": "boolean"},
@@ -74,7 +84,8 @@
           "chinese_eval": {"type": "boolean"},
           "has_speed": {"type": "boolean"},
           "has_pricing": {"type": "boolean"},
-          "data_complete": {"type": "boolean"}
+          "data_complete": {"type": "boolean"},
+          "tools_calling": {"type": ["boolean", "null"]}
         }
       },
       "arena_votes": {"type": ["integer", "null"]},
@@ -102,7 +113,8 @@
               "input": {"type": "array", "items": {"type": "string"}},
               "output": {"type": "array", "items": {"type": "string"}}
             }
-          }
+          },
+          "max_output_tokens": {"type": ["integer", "null"]}
         }
       },
       "license": {"type": ["string", "null"]}

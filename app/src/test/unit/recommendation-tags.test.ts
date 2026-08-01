@@ -57,6 +57,7 @@ function makeModel(overrides: {
       knowledge_cutoff: null,
       release_date: null,
       omniscience: null,
+      max_output_tokens: null,
       arena_votes: null,
       openrouter_weekly_tokens: null,
       openrouter_pricing: null,
@@ -64,7 +65,7 @@ function makeModel(overrides: {
       arena_code: null,
       data_completeness_pct: 100,
       license: null,
-      benchmarks: { gpqa: null, hle: null },
+      benchmarks: { gpqa: null, hle: null, scicode: null, lcr: null, critpt: null, ifbench: null, tau2: null, terminalbench_hard: null, mmmu_pro: null, gdpval: null, livecodebench: null, aime25: null },
     },
     flags: {
       frontier: false,
@@ -74,6 +75,7 @@ function makeModel(overrides: {
       chinese_eval: true,
       has_speed: true,
       data_complete: true,
+      tools_calling: null,
       ...overrides.flags,
     },
   };

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useEffect, useRef } from "react";
+import { useMemo, useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Navbar } from "@/components/navbar";
@@ -10,11 +10,15 @@ import { ShareButton } from "@/components/share-button";
 import {
   ArrowLeft, Brain, Code, Bot, Zap, DollarSign, Layers, Calendar,
   Trophy, Check, X, TrendingUp, MessageSquare, Eye, Star, Weight,
+  Target, Wrench, Plus, Search,
 } from "lucide-react";
-import { getModelById, type ModelWithScores } from "@/lib/scoring";
+import { getModelById, getAllModels, type ModelWithScores } from "@/lib/scoring";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
+import { matchesQuery } from "@/lib/filter-models";
+import { BENCHMARK_DEFS, formatBenchmarkValue } from "@/lib/benchmarks";
+import { useMaxCompare } from "@/hooks/use-compare-ids";
 import { useTranslation } from "@/lib/i18n";
-import { cn, formatTokenCount, getTypeBadgeClasses, formatParameters } from "@/lib/utils";
+import { cn, formatTokenCount, formatTokenLimit, getTypeBadgeClasses, formatParameters } from "@/lib/utils";
 import { Tooltip } from "@/components/tooltip";
 
 // ── Helpers ──
@@ -70,6 +74,54 @@ export function ComparePageClient() {
   const models = useMemo(
     () => modelIds.map((id) => getModelById(id)).filter((m): m is ModelWithScores => m != null),
     [modelIds],
+  );
+
+  // ── 页内增删：?models= URL 参数 + localStorage 镜像（与 use-compare-ids 同一 key）──
+  const maxCompare = useMaxCompare();
+  const isAtMax = modelIds.length >= maxCompare;
+
+  const updateModels = useCallback(
+    (ids: string[]) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (ids.length > 0) {
+        params.set("models", ids.join(","));
+      } else {
+        params.delete("models");
+      }
+      router.replace(`/compare?${params.toString()}`, { scroll: false });
+      try {
+        if (ids.length > 0) {
+          window.localStorage.setItem("llmcompare-compare", ids.join(","));
+        } else {
+          window.localStorage.removeItem("llmcompare-compare");
+        }
+      } catch {}
+    },
+    [searchParams, router],
+  );
+
+  const removeModel = useCallback(
+    (id: string) => updateModels(modelIds.filter((mid) => mid !== id)),
+    [modelIds, updateModels],
+  );
+
+  // ── 添加模型选择器（搜索 + 下拉，排除已在对比中的模型）──
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [pickerQuery, setPickerQuery] = useState("");
+  const allModels = useMemo(() => getAllModels(), []);
+  const pickerCandidates = useMemo(() => {
+    const inCompare = new Set(modelIds);
+    return allModels.filter((m) => !inCompare.has(m.id) && matchesQuery(m, pickerQuery));
+  }, [allModels, modelIds, pickerQuery]);
+
+  const addModel = useCallback(
+    (id: string) => {
+      if (isAtMax) return;
+      updateModels([...modelIds, id]);
+      setPickerOpen(false);
+      setPickerQuery("");
+    },
+    [isAtMax, modelIds, updateModels],
   );
 
   // ── Comparison rows ──
@@ -140,14 +192,26 @@ export function ComparePageClient() {
     { labelKey: "compare.arenaVotes", icon: Trophy,
       getValue: (m) => m.raw.arena_votes != null ? m.raw.arena_votes.toLocaleString() : "—",
       getNumeric: (m) => m.raw.arena_votes, higherIsBetter: true, tipKey: "tip.arenaVotes" },
-    { labelKey: "compare.benchmarkGpqa", icon: Brain,
-      getValue: (m) => fmt(m.raw.benchmarks.gpqa), getNumeric: (m) => m.raw.benchmarks.gpqa, higherIsBetter: true, tipKey: "tip.gpqa" },
-    { labelKey: "compare.benchmarkHle", icon: Brain,
-      getValue: (m) => fmt(m.raw.benchmarks.hle), getNumeric: (m) => m.raw.benchmarks.hle, higherIsBetter: true, tipKey: "tip.hle" },
+    { labelKey: "compare.maxOutput", icon: Layers,
+      getValue: (m) => m.raw.max_output_tokens != null ? formatTokenLimit(m.raw.max_output_tokens) : "—",
+      getNumeric: (m) => m.raw.max_output_tokens, higherIsBetter: true, tipKey: "tip.maxOutput" },
+    // 单项 benchmark 明细（与详情页共用 BENCHMARK_DEFS，0-1 值显示为百分比）
+    ...BENCHMARK_DEFS.map((def): CompareRow => ({
+      labelKey: def.labelKey,
+      icon: Target,
+      getValue: (m) => formatBenchmarkValue(m.raw.benchmarks[def.key]),
+      getNumeric: (m) => m.raw.benchmarks[def.key],
+      higherIsBetter: true,
+      tipKey: def.tipKey,
+    })),
     { labelKey: "compare.releaseDate", icon: Calendar,
       getValue: (m) => m.raw.release_date ?? "—" },
     { labelKey: "common.reasoning", icon: MessageSquare,
       getValue: (m) => m.flags.reasoning ? <Check className="h-4 w-4 text-accent-lime" /> : <X className="h-4 w-4 text-text-muted" /> },
+    { labelKey: "compare.toolsCalling", icon: Wrench,
+      getValue: (m) => m.flags.tools_calling == null ? "—"
+        : m.flags.tools_calling ? <Check className="h-4 w-4 text-accent-lime" /> : <X className="h-4 w-4 text-text-muted" />,
+      tipKey: "tip.toolsCalling" },
     { labelKey: "common.imageInput", icon: Eye,
       getValue: (m) => m.flags.image_input ? <Check className="h-4 w-4 text-accent-lime" /> : <X className="h-4 w-4 text-text-muted" /> },
     { labelKey: "common.openWeights", icon: Star,
@@ -194,7 +258,61 @@ export function ComparePageClient() {
               </button>
               <h1 className="text-xl sm:text-2xl font-bold text-text-primary">{t("compare.title")}</h1>
             </div>
-            <ShareButton size="sm" variant="ghost" />
+            <div className="flex items-center gap-2">
+              {/* 添加模型：下拉搜索，超上限禁用 */}
+              <div className="relative">
+                <button
+                  onClick={() => { setPickerOpen((v) => !v); setPickerQuery(""); }}
+                  disabled={isAtMax}
+                  title={isAtMax ? t("compare.maxReached", { n: String(maxCompare) }) : undefined}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-accent-violet/30 bg-accent-violet/10 text-accent-violet px-3 py-1.5 text-xs font-medium hover:bg-accent-violet/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Plus className="h-3.5 w-3.5" />
+                  {t("compare.addModel")}
+                </button>
+                {pickerOpen && !isAtMax && (
+                  <>
+                    <div className="fixed inset-0 z-40" onClick={() => setPickerOpen(false)} />
+                    <div className="absolute right-0 z-50 mt-1 w-64 rounded-xl border border-surface-border bg-surface-card shadow-xl">
+                      <div className="p-2 border-b border-surface-border">
+                        <div className="relative">
+                          <Search className="pointer-events-none absolute left-2 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-text-muted" />
+                          <input
+                            autoFocus
+                            type="search"
+                            value={pickerQuery}
+                            onChange={(e) => setPickerQuery(e.target.value)}
+                            placeholder={t("compare.searchModel")}
+                            aria-label={t("compare.searchModel")}
+                            className="w-full rounded-lg border border-surface-border bg-surface-base py-1.5 pl-7 pr-2 text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent-violet/30"
+                          />
+                        </div>
+                      </div>
+                      <div className="max-h-64 overflow-y-auto p-1">
+                        {pickerCandidates.length === 0 ? (
+                          <p className="px-3 py-2 text-xs text-text-muted">{t("compare.noMatch")}</p>
+                        ) : (
+                          pickerCandidates.map((m) => (
+                            <button
+                              key={m.id}
+                              onClick={() => addModel(m.id)}
+                              className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left hover:bg-surface-hover transition-colors"
+                            >
+                              <ModelLogo src={m.logo} name={m.name} size="xs" />
+                              <span className="min-w-0 flex-1">
+                                <span className="block truncate text-xs font-medium text-text-primary">{m.name}</span>
+                                <span className="block truncate text-[10px] text-text-muted">{m.company}</span>
+                              </span>
+                            </button>
+                          ))
+                        )}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+              <ShareButton size="sm" variant="ghost" />
+            </div>
           </div>
 
           {/* Model cards header */}
@@ -226,6 +344,15 @@ export function ComparePageClient() {
                     >
                       {t(model.type === "开源" ? "common.open" : "common.closed")}
                     </Badge>
+                    <button
+                      onClick={() => removeModel(model.id)}
+                      disabled={models.length <= 2}
+                      aria-label={t("compare.remove")}
+                      title={models.length <= 2 ? t("compare.needTwo") : t("compare.remove")}
+                      className="shrink-0 rounded p-0.5 text-text-muted hover:text-text-primary hover:bg-surface-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      <X className="h-3.5 w-3.5" />
+                    </button>
                   </div>
                   {tags.length > 0 && (
                     <div className="flex flex-wrap gap-1">

@@ -18,6 +18,7 @@ describe("ranking-table utils extended", () => {
       chinese_eval: true,
       has_speed: false,
       data_complete: true,
+      tools_calling: null,
     },
     raw: {
       intelligence: 80,
@@ -41,6 +42,7 @@ describe("ranking-table utils extended", () => {
       knowledge_cutoff: null,
       release_date: "2024-01-01",
       omniscience: null,
+      max_output_tokens: null,
       arena_votes: 1000,
       openrouter_weekly_tokens: null,
       openrouter_pricing: { prompt: 1, completion: 2 },
@@ -48,7 +50,7 @@ describe("ranking-table utils extended", () => {
       arena_code: 1200,
       data_completeness_pct: 80,
       license: null,
-      benchmarks: { gpqa: null, hle: null },
+      benchmarks: { gpqa: null, hle: null, scicode: null, lcr: null, critpt: null, ifbench: null, tau2: null, terminalbench_hard: null, mmmu_pro: null, gdpval: null, livecodebench: null, aime25: null },
       ...overrides,
     },
   });
