@@ -12,7 +12,7 @@ test.describe("Home Page", () => {
     // 核心元素可见 — 场景卡片取代了原有表格
     await expect(page.locator("header")).toBeVisible();
     await expect(page.locator("header a[href='/'] span").filter({ hasText: "模型图鉴" })).toBeVisible();
-    // 场景选择按钮可见（智能+热度；性价比卡文案含"智能"字样，取首个匹配）
+    // 场景选择按钮可见（智能+热度）
     await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ }).first()).toBeVisible();
     // Top Picks 推荐卡片可见
     await expect(page.locator("a[href^='/models/']").first()).toBeVisible();
@@ -131,7 +131,7 @@ test.describe("Home Page", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 移动端显示场景卡片（智能+热度；性价比卡文案含"智能"字样，取首个匹配）
+    // 移动端显示场景卡片（智能+热度）
     await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ }).first()).toBeVisible();
     await expect(page.locator("button").filter({ hasText: /热度|Hotness/ }).first()).toBeVisible();
 

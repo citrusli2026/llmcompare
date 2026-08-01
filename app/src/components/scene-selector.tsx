@@ -2,10 +2,10 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Brain, Flame, Code2, Bot, Coins, ArrowRight } from "lucide-react";
+import { Brain, Flame, Code2, Bot, ArrowRight } from "lucide-react";
 import { cn, formatTokenCount } from "@/lib/utils";
 import { type ModelWithScores, getAllModels } from "@/lib/scoring";
-import { rankByScore, pickTopN, valueScore, type SceneKey } from "@/lib/scene-recommendations";
+import { rankByScore, pickTopN, type SceneKey } from "@/lib/scene-recommendations";
 import { getRecommendationTags } from "@/lib/recommendation-tags";
 import { useTranslation } from "@/lib/i18n";
 import { ModelLogo } from "@/components/model-logo";
@@ -74,20 +74,6 @@ const SCENES: SceneDef[] = [
     displayScore: (m) => (m.raw.agentic != null ? m.raw.agentic.toFixed(1) : null),
     secondaryPrice: (m) => m.raw.blended ?? null,
   },
-  {
-    key: "value",
-    icon: Coins,
-    accentClass: "text-accent-emerald border-accent-emerald/30 bg-accent-emerald/5",
-    scoreColorClass: "text-accent-emerald",
-    labelKey: "home.sceneValue",
-    descKey: "home.sceneValueDesc",
-    score: valueScore,
-    displayScore: (m) => {
-      const v = valueScore(m);
-      return v == null ? null : v.toFixed(v >= 100 ? 0 : 1);
-    },
-    secondaryPrice: (m) => m.raw.blended ?? null,
-  },
 ];
 
 const TOP_N = 4;
@@ -97,7 +83,6 @@ const SCENE_SORT_MAP: Record<SceneKey, string> = {
   intelligence: "intelligence",
   coding: "coding",
   agentic: "agentic",
-  value: "cost",
 };
 
 interface SceneSelectorProps {
@@ -136,8 +121,8 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
           </div>
         )}
 
-        {/* Scene Cards Grid — 移动端 2 列，桌面 5 列 */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+        {/* Scene Cards Grid — 移动端 2 列，桌面 4 列 */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           {SCENES.map((scene) => {
             const Icon = scene.icon;
             const isActive = expanded === scene.key;

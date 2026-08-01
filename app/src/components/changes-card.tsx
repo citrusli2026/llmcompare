@@ -19,6 +19,41 @@ interface Change {
   new?: number;
   change_pct?: number;
   first_seen?: string;
+  field?: string;
+  intelligence?: number | null;
+  tps?: number | null;
+  price_input?: number | null;
+}
+
+/** 按当前语言格式化 detail；结构化字段缺失时回退到管线预烘焙的中文 detail */
+function formatDetail(c: Change, t: (key: string, params?: Record<string, string | number>) => string): string {
+  switch (c.type) {
+    case "new": {
+      if (c.intelligence == null && c.tps == null && c.price_input == null) return c.detail;
+      const parts: string[] = [];
+      if (c.intelligence != null) parts.push(`${t("changes.intelShort")} ${Math.round(c.intelligence)}`);
+      if (c.tps != null) parts.push(`${c.tps} TPS`);
+      if (c.price_input != null) parts.push(`$${c.price_input}/M`);
+      return parts.join(" · ");
+    }
+    case "ranking_up":
+    case "ranking_down":
+      return `#${c.old_rank} → #${c.new_rank}`;
+    case "price_drop":
+    case "price_up": {
+      if (c.old == null || c.new == null || c.change_pct == null) return c.detail;
+      const scope = t(c.field === "output" ? "changes.scopeOutput" : "changes.scopeInput");
+      const pct = `${c.change_pct > 0 ? "+" : ""}${Math.round(c.change_pct)}%`;
+      return `${scope} $${c.old}→$${c.new} (${pct})`;
+    }
+    case "intel_change": {
+      if (c.old == null || c.new == null || c.change == null) return c.detail;
+      const diff = `${c.change > 0 ? "+" : ""}${c.change}`;
+      return `${t("changes.intelShort")} ${Math.round(c.old)}→${Math.round(c.new)} (${diff})`;
+    }
+    default:
+      return c.detail;
+  }
 }
 
 export interface ChangesData {
@@ -118,9 +153,9 @@ export function ChangesCard() {
                 >
                   {c.model}
                 </Link>
-                <span className="text-xs text-text-muted ml-2">{c.detail}</span>
+                <span className="text-xs text-text-muted ml-2">{formatDetail(c, t)}</span>
                 {c.type === "new" && c.first_seen && c.first_seen !== data.date && (
-                  <span className="text-xs text-amber-500 ml-2">首次出现 {c.first_seen}</span>
+                  <span className="text-xs text-amber-500 ml-2">{t("changes.firstSeen", { date: c.first_seen })}</span>
                 )}
               </div>
             </div>

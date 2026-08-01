@@ -327,12 +327,12 @@ export function ComparePageClient() {
                   key={model.id}
                   className="rounded-xl border border-surface-border bg-surface-card p-3 sm:p-4"
                 >
-                  <div className="flex items-start gap-2 mb-2">
+                  <div className="flex flex-wrap items-start gap-2 mb-2">
                     <ModelLogo src={model.logo} name={model.name} size="sm" />
-                    <div className="min-w-0 flex-1">
+                    <div className="min-w-0 w-full order-3 sm:order-none sm:w-auto sm:flex-1">
                       <Link
                         href={`/models/${model.id}`}
-                        className="text-sm sm:text-base font-semibold text-text-primary hover:text-accent-violet transition-colors truncate block"
+                        className="text-sm sm:text-base font-semibold text-text-primary hover:text-accent-violet transition-colors break-words leading-snug line-clamp-2 block"
                       >
                         {model.name}
                       </Link>

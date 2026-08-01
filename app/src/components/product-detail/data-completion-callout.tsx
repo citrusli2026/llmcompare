@@ -1,7 +1,7 @@
 "use client";
 
 import { AlertCircle, ExternalLink } from "lucide-react";
-import { type ModelWithScores } from "@/lib/scoring";
+import { ModelType, type ModelWithScores } from "@/lib/scoring";
 import { useTranslation } from "@/lib/i18n";
 
 interface DataCompletionCalloutProps {
@@ -25,10 +25,12 @@ function buildIssueUrl(model: ModelWithScores, missingLabels: string[]): string 
 }
 
 export function DataCompletionCallout({ model }: DataCompletionCalloutProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const r = model.raw;
 
   const missing = COMPLETABLE_FIELDS.filter((f) => {
+    // license:闭源模型在 quick-facts 有"商业授权"兜底展示,不再提示补全
+    if (f.key === "license" && model.type === ModelType.Closed) return false;
     const value = r[f.key as keyof typeof r];
     return value == null || value === "";
   });
@@ -47,7 +49,7 @@ export function DataCompletionCallout({ model }: DataCompletionCalloutProps) {
             {t("product.dataCompletionTitle")}
           </p>
           <p className="text-xs text-text-secondary mt-1">
-            {t("product.dataCompletionDesc", { fields: missingLabels.join("、") })}
+            {t("product.dataCompletionDesc", { fields: missingLabels.join(locale === "zh" ? "、" : ", ") })}
           </p>
           <a
             href={issueUrl}

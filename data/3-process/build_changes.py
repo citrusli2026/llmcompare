@@ -91,6 +91,10 @@ def build_changes(today_models: list[dict], yesterday_models: list[dict], first_
             "id": mid,
             "rank": today_ranks.get(mid),
             "first_seen": first_seen,
+            # 结构化字段：前端按语言自行格式化 detail（detail 字段保留用于向后兼容）
+            "intelligence": round(intel, 1) if intel else None,
+            "tps": round(speed) if speed else None,
+            "price_input": price_in,
             "detail": " · ".join(parts) if parts else "",
             "icon": "🆕",
         })

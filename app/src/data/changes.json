@@ -16,6 +16,9 @@
       "id": "deepseek-v4-flash-0731",
       "rank": 17,
       "first_seen": "2026-08-01",
+      "intelligence": 49.9,
+      "tps": null,
+      "price_input": 0.14,
       "detail": "智商 50 · $0.14/M",
       "icon": "🆕"
     },
@@ -25,6 +28,9 @@
       "id": "celeris-1",
       "rank": 66,
       "first_seen": "2026-08-01",
+      "intelligence": 11.8,
+      "tps": 2038,
+      "price_input": 2,
       "detail": "智商 12 · 2038 TPS · $2/M",
       "icon": "🆕"
     }

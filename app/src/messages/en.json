@@ -25,9 +25,7 @@
     "sceneCoding": "Coding",
     "sceneCodingDesc": "Coding capability ranking",
     "sceneAgentic": "Agent",
-    "sceneAgenticDesc": "Tool use & task execution",
-    "sceneValue": "Value",
-    "sceneValueDesc": "Intelligence per dollar"
+    "sceneAgenticDesc": "Tool use & task execution"
   },
   "models": {
     "title": "Model Directory",
@@ -290,6 +288,10 @@
     "new": "new",
     "dropped": "dropped",
     "price": "price changes",
-    "ranking": "ranking moves"
+    "ranking": "ranking moves",
+    "intelShort": "Intel",
+    "scopeInput": "Input",
+    "scopeOutput": "Output",
+    "firstSeen": "First seen {date}"
   }
 }

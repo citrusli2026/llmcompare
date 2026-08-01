@@ -123,6 +123,22 @@ class TestCheckIntelligenceRange(unittest.TestCase):
         self.assertEqual(V.check_intelligence_range([m]), [])
 
 
+class TestCheckLogoFiles(unittest.TestCase):
+    def test_existing_logo_ok(self):
+        # make_model 的默认 url 是外链，logo 为空字符串时不检查
+        m = make_model(logo="")
+        self.assertEqual(V.check_logo_files([m]), [])
+
+    def test_missing_logo_flagged(self):
+        m = make_model(logo="/logos/definitely-not-exist-xyz.svg")
+        issues = V.check_logo_files([m])
+        self.assertTrue(any("logo 文件缺失" in i for i in issues))
+
+    def test_external_logo_skipped(self):
+        m = make_model(logo="https://example.com/logo.svg")
+        self.assertEqual(V.check_logo_files([m]), [])
+
+
 class TestCheckTypeValid(unittest.TestCase):
     def test_valid_types(self):
         m1 = make_model(type="开源")

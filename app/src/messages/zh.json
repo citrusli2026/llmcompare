@@ -25,9 +25,7 @@
     "sceneCoding": "编程",
     "sceneCodingDesc": "代码能力排名",
     "sceneAgentic": "Agent",
-    "sceneAgenticDesc": "工具调用与任务执行",
-    "sceneValue": "性价比",
-    "sceneValueDesc": "智能 ÷ 价格，越高越值"
+    "sceneAgenticDesc": "工具调用与任务执行"
   },
   "models": {
     "title": "模型目录",
@@ -290,6 +288,10 @@
     "new": "新上榜",
     "dropped": "下榜",
     "price": "价格变动",
-    "ranking": "排名变动"
+    "ranking": "排名变动",
+    "intelShort": "智商",
+    "scopeInput": "输入价",
+    "scopeOutput": "输出价",
+    "firstSeen": "首次出现 {date}"
   }
 }

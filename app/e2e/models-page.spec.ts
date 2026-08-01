@@ -3,16 +3,16 @@ import { test, expect } from "@playwright/test";
 const isMobile = (projectName: string) => projectName === "Mobile Chrome";
 
 test.describe("Models Page — 筛选与搜索功能", () => {
-  test("desktop: 首页 5 个场景标签全部可见且可切换", async ({ page }, testInfo) => {
+  test("desktop: 首页 4 个场景标签全部可见且可切换", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // 首页场景卡：热度 / 智能 / 编程 / Agent / 性价比
-    const zhLabels = ["热度", "智能", "编程", "Agent", "性价比"];
-    const enLabels = ["Hotness", "Intelligence", "Coding", "Agent", "Value"];
+    // 首页场景卡：热度 / 智能 / 编程 / Agent
+    const zhLabels = ["热度", "智能", "编程", "Agent"];
+    const enLabels = ["Hotness", "Intelligence", "Coding", "Agent"];
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
       const btn = page.locator("button").filter({ hasText: new RegExp(`${zhLabels[i]}|${enLabels[i]}`) }).first();
       await expect(btn).toBeVisible();
       await btn.click();

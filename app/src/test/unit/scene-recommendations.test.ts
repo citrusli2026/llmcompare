@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { rankByScore, pickTopN, valueScore } from "@/lib/scene-recommendations";
+import { rankByScore, pickTopN } from "@/lib/scene-recommendations";
 import { getAllModels } from "@/lib/scoring";
 
 describe("rankByScore", () => {
@@ -42,40 +42,7 @@ describe("pickTopN", () => {
   });
 });
 
-describe("valueScore", () => {
-  const m = (intelligence: number | null, blended: number | null) => ({
-    raw: { intelligence, blended },
-  });
-
-  it("性价比 = 智能 / blended 美元价", () => {
-    expect(valueScore(m(45, 0.5))).toBe(90);
-  });
-
-  it("无价格 → null", () => {
-    expect(valueScore(m(45, null))).toBeNull();
-  });
-
-  it("免费（0）→ null（避免除零）", () => {
-    expect(valueScore(m(45, 0))).toBeNull();
-  });
-
-  it("无智能分 → null", () => {
-    expect(valueScore(m(null, 1))).toBeNull();
-  });
-});
-
 describe("真实数据冒烟（ranking.json）", () => {
-  it("性价比场景能推荐 4 个不同公司的模型", () => {
-    const models = getAllModels();
-    const top = pickTopN(rankByScore(models, valueScore), 4);
-    expect(top.length).toBe(4);
-    expect(new Set(top.map((m) => m.company)).size).toBe(4);
-    // 所有入选模型必须有正价格
-    for (const m of top) {
-      expect(m.raw.blended).toBeGreaterThan(0);
-    }
-  });
-
   it("编程 / Agent 场景按分数降序且同公司不重复", () => {
     const models = getAllModels();
     for (const score of [(m: (typeof models)[0]) => m.raw.coding, (m: (typeof models)[0]) => m.raw.agentic] as const) {

@@ -5,7 +5,7 @@ test.describe("V2 — Scene Cards on Homepage", () => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
-    // Scene cards should exist — 智能 + 热度（性价比卡文案含"智能"字样，取首个匹配）
+    // Scene cards should exist — 智能 + 热度
     await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ }).first()).toBeVisible();
     await expect(page.locator("button").filter({ hasText: /热度|Hotness/ }).first()).toBeVisible();
   });

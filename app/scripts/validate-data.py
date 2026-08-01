@@ -445,6 +445,28 @@ def check_intelligence_range(models):
     return issues
 
 
+LOGOS_DIR = Path(__file__).parent.parent / "public" / "logos"
+
+
+def check_logo_files(models):
+    """logo 引用的 /logos/*.svg 文件必须存在（缺失会导致浏览器控制台 404）"""
+    issues = []
+    if not LOGOS_DIR.exists():
+        return issues
+    checked = set()
+    for m in models:
+        logo = m.get("logo") or ""
+        if not logo.startswith("/") or logo in checked:
+            continue
+        checked.add(logo)
+        if not (LOGOS_DIR.parent / logo.lstrip("/")).exists():
+            issues.append(
+                f"{m.get('id', '???')}: logo 文件缺失 app/public{logo}"
+                "（按现有模板补一个字母标 svg 即可消除 404）"
+            )
+    return issues
+
+
 def check_type_valid(models):
     """type 必须是 开源/闭源"""
     issues = []
@@ -723,6 +745,12 @@ def main():
     # 2. intelligence 范围
     print("[2/8] intelligence 范围 [0, 100]...")
     issues = check_intelligence_range(models)
+    all_issues.extend(issues)
+    print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
+
+    # 2b. logo 文件存在性
+    print("[2b/11] logo 文件存在性...")
+    issues = check_logo_files(models)
     all_issues.extend(issues)
     print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
 
