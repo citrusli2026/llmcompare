@@ -112,6 +112,22 @@ def main():
             sys.exit(3)
         sys.exit(1)
 
+    # Arena 镜像曾出现只返回各榜 Top 20 的 truncated 数据（total_models 从 ~160
+    # 骤降到 60），导致覆盖率暴跌、管线验证失败。若新数据量明显少于缓存，
+    # 降级使用更完整的缓存数据，并标记 degraded。
+    cached = load_previous_raw(OUTPUT_PATH.name, OUTPUT_DIR)
+    cached_total = cached.get("total_models", 0) if cached else 0
+    if cached_total > 0 and total_models < cached_total * 0.6:
+        print(
+            f"[WARN] Arena 数据量异常减少: 新数据 {total_models} 条，"
+            f"缓存 {cached_total} 条。降级使用缓存。"
+        )
+        cached["partial"] = True
+        cached["fallback_reason"] = f"new snapshot too small ({total_models} < 60% of {cached_total})"
+        write_json(OUTPUT_PATH, cached)
+        # exit 3 = 降级使用缓存，让管线感知 degraded 状态
+        sys.exit(3)
+
     write_json(OUTPUT_PATH, result)
     print(f"\n[OK] Saved {total_models} total entries to {OUTPUT_PATH}")
 
