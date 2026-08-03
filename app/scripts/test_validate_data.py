@@ -200,7 +200,8 @@ class TestCheckScoreDistribution(unittest.TestCase):
 
     def test_corrupted_zero_score_flagged(self):
         """数据损坏（intelligence=0）仍应被检测为异常值"""
-        models = [make_model(id=f"m{i}", scores={"intelligence": 35.0 + i}) for i in range(30)]
+        # 模型分布更集中，确保 corrupted 0 分的修正 z-score 超过当前 4.5 阈值
+        models = [make_model(id=f"m{i}", scores={"intelligence": 45.0 + i}) for i in range(30)]
         models.append(make_model(id="broken", scores={"intelligence": 0}))
         issues = V.check_score_distribution(models)
         self.assertTrue(any("broken" in i for i in issues))

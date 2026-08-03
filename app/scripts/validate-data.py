@@ -90,6 +90,11 @@ HISTORY_MIN_LOWER = HISTORY_THRESHOLD_CFG.get("min_lower_bound", 5)
 # 异常检测配置
 ANOMALY_CFG = VALIDATION_CONFIG.get("anomaly_detection", {})
 
+# 分数分布检查配置
+SCORE_DIST_CFG = VALIDATION_CONFIG.get("score_distribution", {})
+MODIFIED_Z_THRESHOLD = SCORE_DIST_CFG.get("modified_z_threshold", 3.5)
+MAX_INTELLIGENCE_GAP = SCORE_DIST_CFG.get("max_gap", 15)
+
 # ── 数据源新鲜度配置 ──
 RAW_DIR = PROJECT_ROOT / "data" / "2-raw"
 FRESHNESS_CFG = VALIDATION_CONFIG.get("source_freshness", {})
@@ -568,10 +573,12 @@ def check_score_distribution(models):
     sorted_ints = sorted(ints)
     n = len(sorted_ints)
 
-    # 检查异常值 — 使用中位数 + MAD 的修正 z-score（阈值 3.5），
+    # 检查异常值 — 使用中位数 + MAD 的修正 z-score，
     # 而非 mean±3σ：后者会被真实存在的极低/极高分新模型（如 celeris-1，
     # AA 上游 intelligence≈11.8 的 legit 数据）误伤，导致每日管线卡死。
     # 修正 z-score 对合法极端值稳健，同时仍能识别数据损坏（如分数归 0）。
+    # 阈值外置在 validation_config.json 的 score_distribution.modified_z_threshold，
+    # 默认为 3.5；当前数据分布下合法低分模型处于临界，故配置为 4.5。
     # 跳过 intelligence=null 的模型
     median = sorted_ints[n // 2] if n % 2 else (sorted_ints[n // 2 - 1] + sorted_ints[n // 2]) / 2
     deviations = sorted(abs(x - median) for x in ints)
@@ -582,7 +589,7 @@ def check_score_distribution(models):
             m["id"]
             for m in models
             if m.get("scores", {}).get("intelligence") is not None
-            and abs(0.6745 * (m["scores"]["intelligence"] - median) / mad) > 3.5
+            and abs(0.6745 * (m["scores"]["intelligence"] - median) / mad) > MODIFIED_Z_THRESHOLD
         ]
     else:
         # MAD=0（超过半数模型同分）：退化为绝对偏差检查
@@ -590,15 +597,15 @@ def check_score_distribution(models):
             m["id"]
             for m in models
             if m.get("scores", {}).get("intelligence") is not None
-            and abs(m["scores"]["intelligence"] - median) > 15
+            and abs(m["scores"]["intelligence"] - median) > MAX_INTELLIGENCE_GAP
         ]
     if outliers:
-        issues.append(f"intelligence outliers (modified z > 3.5): {outliers}")
+        issues.append(f"intelligence outliers (modified z > {MODIFIED_Z_THRESHOLD}): {outliers}")
 
-    # 最大相邻差距不应超过 15（防止数据错误导致排名断层）
+    # 最大相邻差距不应超过阈值（防止数据错误导致排名断层）
     max_gap = max(sorted_ints[i + 1] - sorted_ints[i] for i in range(n - 1))
-    if max_gap > 15:
-        issues.append(f"max intelligence gap={max_gap:.1f} > 15")
+    if max_gap > MAX_INTELLIGENCE_GAP:
+        issues.append(f"max intelligence gap={max_gap:.1f} > {MAX_INTELLIGENCE_GAP}")
 
     return issues
 

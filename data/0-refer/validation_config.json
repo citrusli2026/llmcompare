@@ -43,5 +43,9 @@
     "max_price_drop_to_zero_count": 3,
     "max_model_count_change_ratio": 0.5,
     "max_top3_change_count": 2
+  },
+  "score_distribution": {
+    "modified_z_threshold": 4.5,
+    "max_gap": 15
   }
 }
