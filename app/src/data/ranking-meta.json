@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-01T13:34:58.126880+00:00",
+  "generated_at": "2026-08-03T14:13:25.809044+00:00",
   "version": "1.0",
-  "partial_update": false,
+  "partial_update": true,
   "sources": {
     "artificial_analysis": {
       "ok": true,
@@ -15,20 +15,20 @@
       "cached": false,
       "degraded": false,
       "error": null,
-      "coverage": 0.642,
-      "pricing_coverage": 0.94
+      "coverage": 0.388,
+      "pricing_coverage": 0.925
     },
     "arena": {
       "ok": true,
-      "cached": false,
+      "cached": true,
       "degraded": false,
       "error": null,
-      "coverage": 0.582
+      "coverage": 0.567
     }
   },
   "stats": {
     "total_models": 67,
-    "data_complete": 49,
+    "data_complete": 48,
     "frontier": 34,
     "open_weights": 27
   }

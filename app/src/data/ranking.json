@@ -11,9 +11,9 @@
       "agentic": 55.2554261168385
     },
     "speed": {
-      "median_tps": 53.6211749903178,
-      "ttft_seconds": 92.01960734,
-      "e2e_seconds": 101.34428178233146,
+      "median_tps": 53.9019515813558,
+      "ttft_seconds": 83.141700987,
+      "e2e_seconds": 92.41780297090192,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -110,9 +110,9 @@
       "agentic": 52.8147079037801
     },
     "speed": {
-      "median_tps": 66.1765318572228,
-      "ttft_seconds": 89.0201793010001,
-      "e2e_seconds": 96.57572786130785,
+      "median_tps": 75.0647541430495,
+      "ttft_seconds": 131.420753106,
+      "e2e_seconds": 138.08166881415193,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -126,7 +126,7 @@
       "tau2": 0.985380116959064,
       "terminalbench_hard": 0.628787878787879,
       "mmmu_pro": null,
-      "gdpval": 1746.06,
+      "gdpval": 1744.07,
       "livecodebench": null,
       "aime25": null
     },
@@ -209,9 +209,9 @@
       "agentic": 54.0035635738832
     },
     "speed": {
-      "median_tps": 63.4585117821464,
-      "ttft_seconds": 133.0420437765,
-      "e2e_seconds": 140.92120743726318,
+      "median_tps": 67.6588432138478,
+      "ttft_seconds": 125.589685912,
+      "e2e_seconds": 132.97970288908104,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -271,14 +271,14 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 447372440113,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
     },
     "arena_rankings": {},
     "arena_votes": 8359,
-    "data_completeness_pct": 77.4
+    "data_completeness_pct": 75.2
   },
   {
     "id": "kimi-k3",
@@ -292,9 +292,9 @@
       "agentic": 50.0700206185567
     },
     "speed": {
-      "median_tps": 34.9063312616332,
-      "ttft_seconds": 61.23149350904162,
-      "e2e_seconds": 75.55554252617704,
+      "median_tps": 34.8770806153433,
+      "ttft_seconds": 60.1223261536457,
+      "e2e_seconds": 74.45838843805713,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -379,9 +379,9 @@
       "agentic": 47.1756219931271
     },
     "speed": {
-      "median_tps": 53.4926236950101,
-      "ttft_seconds": 9.84438380399979,
-      "e2e_seconds": 19.19146692429626,
+      "median_tps": 57.0936248279757,
+      "ttft_seconds": 27.648796075,
+      "e2e_seconds": 36.40634127389936,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -478,9 +478,9 @@
       "agentic": 47.3835257731959
     },
     "speed": {
-      "median_tps": 125.635093406406,
-      "ttft_seconds": 164.359839432,
-      "e2e_seconds": 168.33961917700003,
+      "median_tps": 142.559287823733,
+      "ttft_seconds": 158.231255201,
+      "e2e_seconds": 161.73856789618003,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -540,14 +540,14 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 380837798357,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 1.0,
       "completion": 6.0
     },
     "arena_rankings": {},
     "arena_votes": 3056,
-    "data_completeness_pct": 77.4
+    "data_completeness_pct": 75.2
   },
   {
     "id": "grok-4-5",
@@ -561,9 +561,9 @@
       "agentic": 45.6901065292096
     },
     "speed": {
-      "median_tps": 56.4606609930306,
-      "ttft_seconds": 8.01232249500009,
-      "e2e_seconds": 16.868045952820026,
+      "median_tps": 56.0871937682286,
+      "ttft_seconds": 9.15720144200004,
+      "e2e_seconds": 18.071892415240214,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -577,7 +577,7 @@
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.804046242774566,
-      "gdpval": 1527.88,
+      "gdpval": 1526.71,
       "livecodebench": null,
       "aime25": null
     },
@@ -655,9 +655,9 @@
       "agentic": 44.3863264604811
     },
     "speed": {
-      "median_tps": 46.719202635332,
-      "ttft_seconds": 14.28195177,
-      "e2e_seconds": 24.98418921833069,
+      "median_tps": 46.7038466523835,
+      "ttft_seconds": 22.195958648,
+      "e2e_seconds": 32.90171493658791,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -754,9 +754,9 @@
       "agentic": 46.6941408934708
     },
     "speed": {
-      "median_tps": 74.1686235690061,
-      "ttft_seconds": 188.06020132,
-      "e2e_seconds": 194.80159648064773,
+      "median_tps": 74.8776352811111,
+      "ttft_seconds": 200.5903079175,
+      "e2e_seconds": 207.26786922299348,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -770,7 +770,7 @@
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.772832369942197,
-      "gdpval": 1601.22,
+      "gdpval": 1599.92,
       "livecodebench": null,
       "aime25": null
     },
@@ -848,9 +848,9 @@
       "agentic": 43.4581786941581
     },
     "speed": {
-      "median_tps": 61.7077338233617,
-      "ttft_seconds": 32.974647568,
-      "e2e_seconds": 41.07735964346285,
+      "median_tps": 72.5065337535349,
+      "ttft_seconds": 22.4588822065,
+      "e2e_seconds": 29.354812464311056,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -864,7 +864,7 @@
       "tau2": 0.929824561403509,
       "terminalbench_hard": 0.598484848484849,
       "mmmu_pro": 0.810982658959538,
-      "gdpval": 1465.46,
+      "gdpval": 1466.46,
       "livecodebench": null,
       "aime25": null
     },
@@ -910,7 +910,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 185323071456,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -928,7 +928,7 @@
       }
     },
     "arena_votes": 48792,
-    "data_completeness_pct": 85.0
+    "data_completeness_pct": 82.7
   },
   {
     "id": "gpt-5-4",
@@ -942,9 +942,9 @@
       "agentic": 41.0770927835052
     },
     "speed": {
-      "median_tps": 116.555950082121,
-      "ttft_seconds": 131.890279761,
-      "e2e_seconds": 136.18006504993392,
+      "median_tps": 141.211302643977,
+      "ttft_seconds": 123.9457235765,
+      "e2e_seconds": 127.48651663370028,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1004,7 +1004,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 307642887863,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 2.5,
       "completion": 15.0
@@ -1022,7 +1022,7 @@
       }
     },
     "arena_votes": 19583,
-    "data_completeness_pct": 88.7
+    "data_completeness_pct": 86.5
   },
   {
     "id": "gpt-5-6-luna",
@@ -1036,9 +1036,9 @@
       "agentic": 45.5974982817869
     },
     "speed": {
-      "median_tps": 172.100723049146,
-      "ttft_seconds": 121.8911695175,
-      "e2e_seconds": 124.79644493494969,
+      "median_tps": 176.024369528861,
+      "ttft_seconds": 128.257816709,
+      "e2e_seconds": 131.09833249291262,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1052,7 +1052,7 @@
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.785549132947977,
-      "gdpval": 1581.94,
+      "gdpval": 1579.17,
       "livecodebench": null,
       "aime25": null
     },
@@ -1098,14 +1098,14 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 834874002028,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.1,
       "completion": 0.6
     },
     "arena_rankings": {},
     "arena_votes": 3116,
-    "data_completeness_pct": 77.4
+    "data_completeness_pct": 75.2
   },
   {
     "id": "glm-5-2",
@@ -1119,9 +1119,9 @@
       "agentic": 43.0557079037801
     },
     "speed": {
-      "median_tps": 107.417430411767,
-      "ttft_seconds": 20.14469615674147,
-      "e2e_seconds": 24.799434201426887,
+      "median_tps": 181.72741640968,
+      "ttft_seconds": 12.53516928089762,
+      "e2e_seconds": 15.286542793372025,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1171,7 +1171,7 @@
           "text"
         ]
       },
-      "max_output_tokens": 128000
+      "max_output_tokens": 131072
     },
     "url": "https://artificialanalysis.ai/models/glm-5-2",
     "vendor_links": {
@@ -1184,14 +1184,14 @@
       "output": 28.0,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 3057052084845,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.76,
-      "completion": 2.39
+      "prompt": 0.7,
+      "completion": 2.2
     },
     "arena_rankings": {},
     "arena_votes": 6294,
-    "data_completeness_pct": 88.7
+    "data_completeness_pct": 86.5
   },
   {
     "id": "muse-spark-1-1",
@@ -1205,9 +1205,9 @@
       "agentic": 37.5402130584192
     },
     "speed": {
-      "median_tps": 104.886961221842,
-      "ttft_seconds": 21.767819209038556,
-      "e2e_seconds": 26.53485597104819,
+      "median_tps": 158.370744054065,
+      "ttft_seconds": 15.381966281196057,
+      "e2e_seconds": 18.53911505249506,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1305,9 +1305,9 @@
       "agentic": 37.4466082474227
     },
     "speed": {
-      "median_tps": 171.115318662291,
-      "ttft_seconds": 24.3299415164999,
-      "e2e_seconds": 27.251947587661697,
+      "median_tps": 180.30956665232,
+      "ttft_seconds": 16.1553152645,
+      "e2e_seconds": 18.928323981026505,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1369,7 +1369,7 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 236182763261,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 1.5,
       "completion": 9.0
@@ -1382,7 +1382,7 @@
       }
     },
     "arena_votes": 2312,
-    "data_completeness_pct": 85.0
+    "data_completeness_pct": 82.7
   },
   {
     "id": "gemini-3-6-flash",
@@ -1396,9 +1396,9 @@
       "agentic": 38.7246941580756
     },
     "speed": {
-      "median_tps": 219.606062216748,
-      "ttft_seconds": 15.109330143,
-      "e2e_seconds": 17.38613432114016,
+      "median_tps": 213.498865999189,
+      "ttft_seconds": 15.5192732865,
+      "e2e_seconds": 17.86120610033471,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1497,9 +1497,9 @@
       "agentic": 45.6650068728522
     },
     "speed": {
-      "median_tps": null,
-      "ttft_seconds": null,
-      "e2e_seconds": null,
+      "median_tps": 113.480548523405,
+      "ttft_seconds": 19.18598840866018,
+      "e2e_seconds": 23.59202985370022,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1513,7 +1513,7 @@
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": null,
-      "gdpval": 1558.61,
+      "gdpval": 1558.66,
       "livecodebench": null,
       "aime25": null
     },
@@ -1529,9 +1529,9 @@
       "reasoning": false,
       "image_input": false,
       "chinese_eval": true,
-      "has_speed": false,
+      "has_speed": true,
       "has_pricing": true,
-      "data_complete": false,
+      "data_complete": true,
       "tools_calling": true
     },
     "meta": {
@@ -1549,7 +1549,7 @@
           "text"
         ]
       },
-      "max_output_tokens": 384000
+      "max_output_tokens": 65536
     },
     "url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
     "vendor_links": {
@@ -1560,12 +1560,12 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": 117062075349,
     "openrouter_pricing": {
-      "prompt": 0.14,
-      "completion": 0.28
+      "prompt": 0.09,
+      "completion": 0.18
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 66.2
+    "data_completeness_pct": 81.2
   },
   {
     "id": "claude-sonnet-4-6",
@@ -1579,9 +1579,9 @@
       "agentic": 40.7694879725086
     },
     "speed": {
-      "median_tps": 50.9314850447962,
-      "ttft_seconds": 104.0283321955,
-      "e2e_seconds": 113.84544236929978,
+      "median_tps": 51.6493743100973,
+      "ttft_seconds": 95.0290558565,
+      "e2e_seconds": 104.70971523870381,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1673,9 +1673,9 @@
       "agentic": 21.3959484536082
     },
     "speed": {
-      "median_tps": 122.405973039248,
-      "ttft_seconds": 24.7909773505,
-      "e2e_seconds": 28.875745336778586,
+      "median_tps": 124.288559372376,
+      "ttft_seconds": 29.555772016,
+      "e2e_seconds": 33.57866843160628,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1737,7 +1737,7 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 188831073729,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 12.0
@@ -1760,7 +1760,7 @@
       }
     },
     "arena_votes": 86683,
-    "data_completeness_pct": 85.0
+    "data_completeness_pct": 82.7
   },
   {
     "id": "qwen3-7-max",
@@ -1774,9 +1774,9 @@
       "agentic": 30.5882783505155
     },
     "speed": {
-      "median_tps": 199.038398060134,
-      "ttft_seconds": 14.551339108306825,
-      "e2e_seconds": 17.063417204157147,
+      "median_tps": 206.394106307811,
+      "ttft_seconds": 14.049853644556206,
+      "e2e_seconds": 16.47240343991864,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1866,9 +1866,9 @@
       "agentic": 35.3635635738832
     },
     "speed": {
-      "median_tps": 70.1815708719978,
-      "ttft_seconds": 29.814132875220416,
-      "e2e_seconds": 36.93851031202553,
+      "median_tps": 84.6138484498614,
+      "ttft_seconds": 24.953415882853992,
+      "e2e_seconds": 30.8626140715675,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1933,7 +1933,7 @@
       "output": 16.8,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": 2026856954997,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
@@ -1946,7 +1946,7 @@
       }
     },
     "arena_votes": 8069,
-    "data_completeness_pct": 96.2
+    "data_completeness_pct": 94.0
   },
   {
     "id": "deepseek-v4-pro",
@@ -1960,9 +1960,9 @@
       "agentic": 36.3637319587629
     },
     "speed": {
-      "median_tps": 62.0155537578613,
-      "ttft_seconds": 72.33346151248321,
-      "e2e_seconds": 80.39595502745271,
+      "median_tps": 55.8981953414775,
+      "ttft_seconds": 79.77915053994295,
+      "e2e_seconds": 88.72398314045071,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2052,9 +2052,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 113.670591028161,
-      "ttft_seconds": 75.3322751559999,
-      "e2e_seconds": 79.73095027044641,
+      "median_tps": 124.669579502285,
+      "ttft_seconds": 59.1986432255,
+      "e2e_seconds": 63.20924470499593,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2135,9 +2135,9 @@
       "agentic": 30.2685189003436
     },
     "speed": {
-      "median_tps": 38.8489915480439,
-      "ttft_seconds": 117.66130517818127,
-      "e2e_seconds": 130.53165213124586,
+      "median_tps": 36.7453925547033,
+      "ttft_seconds": 124.00549794135114,
+      "e2e_seconds": 137.6126460825948,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2301,9 +2301,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 43.8770484514473,
-      "ttft_seconds": 15.4072643075,
-      "e2e_seconds": 26.802743667358975,
+      "median_tps": 42.011269704894,
+      "ttft_seconds": 19.5793460165,
+      "e2e_seconds": 31.480914417365394,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2500,9 +2500,9 @@
       "agentic": 29.1125979381443
     },
     "speed": {
-      "median_tps": 49.4161529911701,
-      "ttft_seconds": 43.41057262825566,
-      "e2e_seconds": 53.5287216490696,
+      "median_tps": 38.8523010098903,
+      "ttft_seconds": 54.01595217337201,
+      "e2e_seconds": 66.885202822715,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2565,7 +2565,7 @@
       "output": 21.0,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": 634622786192,
+    "openrouter_weekly_tokens": 8093457855675,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
@@ -2592,9 +2592,9 @@
       "agentic": 29.5911099656357
     },
     "speed": {
-      "median_tps": 49.8271169238882,
-      "ttft_seconds": 47.55397386366103,
-      "e2e_seconds": 57.58867044792776,
+      "median_tps": 38.1321274074377,
+      "ttft_seconds": 61.52804582247167,
+      "e2e_seconds": 74.64034859691573,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2608,7 +2608,7 @@
       "tau2": 0.900584795321637,
       "terminalbench_hard": 0.446969696969697,
       "mmmu_pro": null,
-      "gdpval": 1185.77,
+      "gdpval": 1189.01,
       "livecodebench": null,
       "aime25": null
     },
@@ -2686,9 +2686,9 @@
       "agentic": 30.7299140893471
     },
     "speed": {
-      "median_tps": 69.0709706514632,
-      "ttft_seconds": 31.690151261531906,
-      "e2e_seconds": 38.929082396914865,
+      "median_tps": 70.5885429725834,
+      "ttft_seconds": 31.082441082154144,
+      "e2e_seconds": 38.16574354094268,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2774,9 +2774,9 @@
       "agentic": 31.0280721649485
     },
     "speed": {
-      "median_tps": 127.00989794532,
-      "ttft_seconds": 17.38054820703647,
-      "e2e_seconds": 21.317249268045575,
+      "median_tps": 131.038343739968,
+      "ttft_seconds": 16.65884333018026,
+      "e2e_seconds": 20.4745203734753,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2855,9 +2855,9 @@
       "agentic": 32.3414467353952
     },
     "speed": {
-      "median_tps": 85.7036627511752,
-      "ttft_seconds": 25.205547018897065,
-      "e2e_seconds": 31.03960339349634,
+      "median_tps": 87.0673681165148,
+      "ttft_seconds": 24.847161730337934,
+      "e2e_seconds": 30.589841345172424,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2871,7 +2871,7 @@
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.734682080924856,
-      "gdpval": 1236.75,
+      "gdpval": 1238.46,
       "livecodebench": null,
       "aime25": null
     },
@@ -2943,9 +2943,9 @@
       "agentic": 31.0645326460481
     },
     "speed": {
-      "median_tps": 115.391361610501,
-      "ttft_seconds": 50.116594560444554,
-      "e2e_seconds": 54.449674550329156,
+      "median_tps": null,
+      "ttft_seconds": null,
+      "e2e_seconds": null,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2964,9 +2964,9 @@
       "aime25": null
     },
     "pricing": {
-      "input": 0.14,
+      "input": 0.135,
       "output": 0.28,
-      "blended": 0.175,
+      "blended": 0.1713,
       "display": "¥1/¥2"
     },
     "flags": {
@@ -2975,9 +2975,9 @@
       "reasoning": false,
       "image_input": false,
       "chinese_eval": true,
-      "has_speed": true,
+      "has_speed": false,
       "has_pricing": true,
-      "data_complete": true,
+      "data_complete": false,
       "tools_calling": true
     },
     "meta": {
@@ -3008,14 +3008,14 @@
       "output": 2,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 7560806143323,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
     },
     "arena_rankings": {},
     "arena_votes": 921,
-    "data_completeness_pct": 88.7
+    "data_completeness_pct": 71.4
   },
   {
     "id": "inkling-small",
@@ -3029,9 +3029,9 @@
       "agentic": 30.7816391752577
     },
     "speed": {
-      "median_tps": 95.0796015667885,
-      "ttft_seconds": 22.70514407911731,
-      "e2e_seconds": 27.963895606896653,
+      "median_tps": 119.725575969294,
+      "ttft_seconds": 18.473791638334156,
+      "e2e_seconds": 22.650008757792698,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3111,9 +3111,9 @@
       "agentic": 29.8734639175258
     },
     "speed": {
-      "median_tps": 67.2557491136227,
-      "ttft_seconds": 58.10624617317458,
-      "e2e_seconds": 65.54055486186816,
+      "median_tps": 66.6608020932859,
+      "ttft_seconds": 58.49911340056637,
+      "e2e_seconds": 65.99977322311537,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3176,7 +3176,7 @@
       "output": 24,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 113610391085,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.97,
       "completion": 3.04
@@ -3189,7 +3189,7 @@
       }
     },
     "arena_votes": 7290,
-    "data_completeness_pct": 96.2
+    "data_completeness_pct": 94.0
   },
   {
     "id": "qwen3-6-max-preview",
@@ -3203,9 +3203,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 52.4038682376145,
-      "ttft_seconds": 41.570454429323085,
-      "e2e_seconds": 51.111734812153856,
+      "median_tps": 53.3144191330658,
+      "ttft_seconds": 40.90887055862712,
+      "e2e_seconds": 50.287196499908895,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3295,9 +3295,9 @@
       "agentic": 30.1670996563574
     },
     "speed": {
-      "median_tps": 177.720747020763,
-      "ttft_seconds": 8.97529197099993,
-      "e2e_seconds": 11.7886945049291,
+      "median_tps": 189.099500191025,
+      "ttft_seconds": 7.76287330550002,
+      "e2e_seconds": 10.406983942994612,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3378,9 +3378,9 @@
       "agentic": 28.0356116838488
     },
     "speed": {
-      "median_tps": 106.935130405098,
-      "ttft_seconds": 19.2320938555771,
-      "e2e_seconds": 23.90782575122141,
+      "median_tps": 85.0198966796532,
+      "ttft_seconds": 24.05020937525425,
+      "e2e_seconds": 29.93118570581781,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3394,7 +3394,7 @@
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.765317919075144,
-      "gdpval": 1213.62,
+      "gdpval": 1213.5,
       "livecodebench": null,
       "aime25": null
     },
@@ -3461,9 +3461,9 @@
       "agentic": 20.8054719358534
     },
     "speed": {
-      "median_tps": 53.3744431857066,
-      "ttft_seconds": 40.084022894425814,
-      "e2e_seconds": 49.45180211903227,
+      "median_tps": 53.0022138215235,
+      "ttft_seconds": 40.534838666320965,
+      "e2e_seconds": 49.96840688827619,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3626,8 +3626,8 @@
     },
     "speed": {
       "median_tps": 126.461947909174,
-      "ttft_seconds": 18.230690359426223,
-      "e2e_seconds": 22.184448847782768,
+      "ttft_seconds": 18.159912807426352,
+      "e2e_seconds": 22.1136712957829,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3641,7 +3641,7 @@
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": null,
-      "gdpval": 1171.22,
+      "gdpval": 1173.04,
       "livecodebench": null,
       "aime25": null
     },
@@ -3693,9 +3693,9 @@
       "agentic": 27.5439759450172
     },
     "speed": {
-      "median_tps": 163.706423624624,
-      "ttft_seconds": 4.28882519700016,
-      "e2e_seconds": 7.343073093505989,
+      "median_tps": 169.85841101183,
+      "ttft_seconds": 4.80591839150009,
+      "e2e_seconds": 7.7495465405069535,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3776,9 +3776,9 @@
       "agentic": 25.5759931271478
     },
     "speed": {
-      "median_tps": 61.5652079854406,
-      "ttft_seconds": 41.7143173424951,
-      "e2e_seconds": 49.83578750983773,
+      "median_tps": 110.066701370188,
+      "ttft_seconds": 23.530445983991015,
+      "e2e_seconds": 28.073145944793392,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3841,7 +3841,7 @@
       "output": 8.4,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": 91761333394,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.25,
       "completion": 1.0
@@ -3854,7 +3854,7 @@
       }
     },
     "arena_votes": 11849,
-    "data_completeness_pct": 96.2
+    "data_completeness_pct": 94.0
   },
   {
     "id": "glm-5-turbo",
@@ -3933,14 +3933,14 @@
       "output": 22.0,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 113610391085,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 1.2,
       "completion": 4.0
     },
     "arena_rankings": {},
     "arena_votes": 6969,
-    "data_completeness_pct": 39.8
+    "data_completeness_pct": 37.6
   },
   {
     "id": "nemotron-3-ultra",
@@ -3954,9 +3954,9 @@
       "agentic": 27.3604776632302
     },
     "speed": {
-      "median_tps": 199.429844518755,
-      "ttft_seconds": 12.66847353963557,
-      "e2e_seconds": 15.175620858566456,
+      "median_tps": 141.647464768676,
+      "ttft_seconds": 17.770819574538052,
+      "e2e_seconds": 21.300709790480486,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4006,7 +4006,7 @@
           "text"
         ]
       },
-      "max_output_tokens": 16384
+      "max_output_tokens": 65536
     },
     "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
     "vendor_links": {
@@ -4016,8 +4016,8 @@
     "license": "NVIDIA Open License",
     "openrouter_weekly_tokens": 2582783420849,
     "openrouter_pricing": {
-      "prompt": 0.5,
-      "completion": 2.2
+      "prompt": 0.6,
+      "completion": 3.6
     },
     "arena_rankings": {},
     "arena_votes": null,
@@ -4035,9 +4035,9 @@
       "agentic": 24.0959828178694
     },
     "speed": {
-      "median_tps": 135.796433012737,
-      "ttft_seconds": 18.8787484300001,
-      "e2e_seconds": 22.56073026786695,
+      "median_tps": 138.449197504823,
+      "ttft_seconds": 16.4994854604999,
+      "e2e_seconds": 20.110918455498535,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4124,9 +4124,9 @@
       "agentic": 23.7079793814433
     },
     "speed": {
-      "median_tps": 74.3579870722129,
-      "ttft_seconds": 29.928022169092753,
-      "e2e_seconds": 36.652249379740944,
+      "median_tps": 71.9518281179726,
+      "ttft_seconds": 30.691759216885654,
+      "e2e_seconds": 37.64085297973206,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4140,7 +4140,7 @@
       "tau2": 0.906432748538012,
       "terminalbench_hard": 0.416666666666667,
       "mmmu_pro": 0.754335260115607,
-      "gdpval": 1144.67,
+      "gdpval": 1148.02,
       "livecodebench": null,
       "aime25": null
     },
@@ -4192,7 +4192,7 @@
       "output": 2,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 8093457855675,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -4205,7 +4205,7 @@
       }
     },
     "arena_votes": 11271,
-    "data_completeness_pct": 96.2
+    "data_completeness_pct": 94.0
   },
   {
     "id": "qwen3-6-27b",
@@ -4219,9 +4219,9 @@
       "agentic": 27.0255773195876
     },
     "speed": {
-      "median_tps": 55.4263910099967,
-      "ttft_seconds": 106.25103656997271,
-      "e2e_seconds": 115.27200998875114,
+      "median_tps": 57.4186442354334,
+      "ttft_seconds": 102.51515683123372,
+      "e2e_seconds": 111.22312976681633,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4273,7 +4273,7 @@
           "text"
         ]
       },
-      "max_output_tokens": 65536
+      "max_output_tokens": 131072
     },
     "url": "https://artificialanalysis.ai/models/qwen3-6-27b",
     "vendor_links": {
@@ -4284,8 +4284,8 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.3,
-      "completion": 2.0
+      "prompt": 0.29,
+      "completion": 2.4
     },
     "arena_rankings": {},
     "arena_votes": null,
@@ -4303,9 +4303,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 181.115921605878,
-      "ttft_seconds": 13.4497529939999,
-      "e2e_seconds": 16.21041586431363,
+      "median_tps": 169.016534885911,
+      "ttft_seconds": 14.0243289915,
+      "e2e_seconds": 16.982619435316685,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4469,9 +4469,9 @@
       "agentic": 26.8192817869416
     },
     "speed": {
-      "median_tps": 360.024802852788,
-      "ttft_seconds": 8.06706220049998,
-      "e2e_seconds": 9.455855405962678,
+      "median_tps": 367.32199542007,
+      "ttft_seconds": 7.95879509499996,
+      "e2e_seconds": 9.319998633677788,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4533,7 +4533,7 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 241422430010,
+    "openrouter_weekly_tokens": 236182763261,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 2.5
@@ -4633,7 +4633,7 @@
       "output": 14.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 8093457855675,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -4646,7 +4646,7 @@
       }
     },
     "arena_votes": null,
-    "data_completeness_pct": 47.4
+    "data_completeness_pct": 45.1
   },
   {
     "id": "mimo-v2-omni",
@@ -4728,7 +4728,7 @@
       "output": 14.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 8093457855675,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -4741,7 +4741,7 @@
       }
     },
     "arena_votes": null,
-    "data_completeness_pct": 47.4
+    "data_completeness_pct": 45.1
   },
   {
     "id": "glm-5v-turbo",
@@ -4849,9 +4849,9 @@
       "agentic": 15.5303986254295
     },
     "speed": {
-      "median_tps": 103.679153397886,
-      "ttft_seconds": 1.56804167450002,
-      "e2e_seconds": 6.390611917537854,
+      "median_tps": 105.715773360644,
+      "ttft_seconds": 1.47997959200003,
+      "e2e_seconds": 6.209642764346841,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4935,9 +4935,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 115.36959777831,
-      "ttft_seconds": 20.62249911768457,
-      "e2e_seconds": 24.95639651898072,
+      "median_tps": null,
+      "ttft_seconds": null,
+      "e2e_seconds": null,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4967,7 +4967,7 @@
       "reasoning": false,
       "image_input": false,
       "chinese_eval": true,
-      "has_speed": true,
+      "has_speed": false,
       "has_pricing": true,
       "data_complete": false,
       "tools_calling": true
@@ -5013,7 +5013,7 @@
       }
     },
     "arena_votes": 13412,
-    "data_completeness_pct": 81.2
+    "data_completeness_pct": 66.2
   },
   {
     "id": "gpt-5-5-instant",
@@ -5089,7 +5089,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 185323071456,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -5102,7 +5102,7 @@
       }
     },
     "arena_votes": 7234,
-    "data_completeness_pct": 58.6
+    "data_completeness_pct": 56.4
   },
   {
     "id": "longcat-2-0",
@@ -5116,9 +5116,9 @@
       "agentic": 21.8205017182131
     },
     "speed": {
-      "median_tps": 42.6504020557081,
-      "ttft_seconds": 49.58309280151175,
-      "e2e_seconds": 61.306311713889684,
+      "median_tps": 41.991923832358,
+      "ttft_seconds": 50.32757627677165,
+      "e2e_seconds": 62.23462778496456,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -5197,9 +5197,9 @@
       "agentic": 21.413264604811
     },
     "speed": {
-      "median_tps": 142.618251871179,
-      "ttft_seconds": 40.081660251636315,
-      "e2e_seconds": 43.58752288450346,
+      "median_tps": 152.155088929237,
+      "ttft_seconds": 37.718655608727325,
+      "e2e_seconds": 41.00477639192726,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -5276,6 +5276,74 @@
     "data_completeness_pct": 86.5
   },
   {
+    "id": "g9v3-39a5b",
+    "name": "G9v3-39A5B",
+    "company": "AI9Stars",
+    "type": "开源",
+    "logo": "/logos/ai9stars.svg",
+    "scores": {
+      "intelligence": 30.9350557853601,
+      "coding": 31.7077611319184,
+      "agentic": 28.7170721649485
+    },
+    "speed": {
+      "median_tps": null,
+      "ttft_seconds": null,
+      "e2e_seconds": null,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.755555555555556,
+      "hle": 0.117238183503244,
+      "scicode": 0.381944444444444,
+      "lcr": 0.56,
+      "critpt": 0,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1191.84,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 0,
+      "output": 0,
+      "blended": 0.0,
+      "display": "$?/$? (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": false,
+      "tools_calling": null
+    },
+    "meta": {
+      "context_window": 131072,
+      "size_class": "small",
+      "parameters": 39,
+      "release_date": "2026-08-03",
+      "knowledge_cutoff": null,
+      "omniscience": 4.25,
+      "modalities": null,
+      "max_output_tokens": null
+    },
+    "url": "https://artificialanalysis.ai/models/g9v3-39a5b",
+    "vendor_links": {},
+    "license": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": null,
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 56.4
+  },
+  {
     "id": "ring-2-6-1t",
     "name": "Ring-2.6-1T",
     "company": "InclusionAI",
@@ -5287,9 +5355,9 @@
       "agentic": 18.8602680412371
     },
     "speed": {
-      "median_tps": 125.517035541727,
-      "ttft_seconds": 19.26037691011956,
-      "e2e_seconds": 23.243899926274445,
+      "median_tps": null,
+      "ttft_seconds": null,
+      "e2e_seconds": null,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -5319,9 +5387,9 @@
       "reasoning": false,
       "image_input": false,
       "chinese_eval": true,
-      "has_speed": true,
+      "has_speed": false,
       "has_pricing": true,
-      "data_complete": true,
+      "data_complete": false,
       "tools_calling": true
     },
     "meta": {
@@ -5358,7 +5426,7 @@
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 86.5
+    "data_completeness_pct": 71.4
   },
   {
     "id": "step-3-7-flash",
@@ -5372,9 +5440,9 @@
       "agentic": 21.5294020618557
     },
     "speed": {
-      "median_tps": 393.141618401253,
-      "ttft_seconds": 6.008128835505661,
-      "e2e_seconds": 7.279935168382085,
+      "median_tps": 369.046326174757,
+      "ttft_seconds": 6.495310350230596,
+      "e2e_seconds": 7.850153806288283,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -5540,98 +5608,6 @@
     "data_completeness_pct": 63.9
   },
   {
-    "id": "step-3-5-flash",
-    "name": "Step 3.5 Flash",
-    "company": "StepFun",
-    "type": "开源",
-    "logo": "/logos/stepfun.svg",
-    "scores": {
-      "intelligence": 25.5,
-      "coding": null,
-      "agentic": null
-    },
-    "speed": {
-      "median_tps": 249.630203089944,
-      "ttft_seconds": 9.102777734520432,
-      "e2e_seconds": 11.105740492275531,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.831313131313131,
-      "hle": 0.191380908248378,
-      "scicode": 0.403747266639333,
-      "lcr": 0.43,
-      "critpt": 0.0246938775510204,
-      "ifbench": 0.645578231292517,
-      "tau2": 0.944444444444444,
-      "terminalbench_hard": 0.272727272727273,
-      "mmmu_pro": null,
-      "gdpval": null,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 0.1,
-      "output": 0.3,
-      "blended": 0.15,
-      "display": "¥0.7/¥2.1"
-    },
-    "flags": {
-      "frontier": false,
-      "open_weights": true,
-      "reasoning": false,
-      "image_input": false,
-      "chinese_eval": true,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": false,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 256000,
-      "size_class": "large",
-      "parameters": 196,
-      "release_date": "2026-02-02",
-      "knowledge_cutoff": null,
-      "omniscience": -40.9,
-      "modalities": {
-        "input": [
-          "text"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 65536
-    },
-    "url": "https://artificialanalysis.ai/models/step-3-5-flash-0202",
-    "vendor_links": {
-      "homepage": "https://www.stepfun.com",
-      "console": "https://platform.stepfun.com"
-    },
-    "license": "StepFun License",
-    "cn_pricing": {
-      "input": 0.7,
-      "output": 2.1,
-      "source": "platform.stepfun.com/docs"
-    },
-    "openrouter_weekly_tokens": null,
-    "openrouter_pricing": {
-      "prompt": 0.1,
-      "completion": 0.3
-    },
-    "arena_rankings": {
-      "code": {
-        "rank": 38,
-        "score": 1458.0,
-        "votes": 13412
-      }
-    },
-    "arena_votes": 13412,
-    "data_completeness_pct": 78.9
-  },
-  {
     "id": "command-a",
     "name": "Command A+",
     "company": "Cohere",
@@ -5643,9 +5619,9 @@
       "agentic": 9.15806529209622
     },
     "speed": {
-      "median_tps": 195.972028521741,
-      "ttft_seconds": 10.588672445064109,
-      "e2e_seconds": 13.140056965455141,
+      "median_tps": 203.887596773596,
+      "ttft_seconds": 10.22465195381428,
+      "e2e_seconds": 12.676983571392851,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -5724,9 +5700,9 @@
       "agentic": 3.65033676975945
     },
     "speed": {
-      "median_tps": 203.129597809476,
-      "ttft_seconds": 10.97569171586578,
-      "e2e_seconds": 13.437174460832232,
+      "median_tps": 198.842918077636,
+      "ttft_seconds": 11.050660715462575,
+      "e2e_seconds": 13.565208403828224,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -5811,9 +5787,9 @@
       "agentic": 2.76815120274914
     },
     "speed": {
-      "median_tps": 2038.22783231924,
-      "ttft_seconds": 0.653616460040212,
-      "e2e_seconds": 0.8989276034127685,
+      "median_tps": 2157.94343252744,
+      "ttft_seconds": 0.648727296000004,
+      "e2e_seconds": 0.8804293844159116,
       "p05_tps": null,
       "p95_tps": null
     },
