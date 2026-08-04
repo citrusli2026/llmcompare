@@ -1,34 +1,81 @@
 {
-  "generated_at": "2026-08-03",
-  "date": "2026-08-03",
-  "compare_with": "2026-08-01",
+  "generated_at": "2026-08-04",
+  "date": "2026-08-04",
+  "compare_with": "2026-08-03",
   "summary": {
     "new_models": 1,
-    "dropped_models": 1,
-    "price_changes": 0,
+    "dropped_models": 0,
+    "price_changes": 5,
     "ranking_changes": 0,
     "intel_changes": 0
   },
   "changes": [
     {
       "type": "new",
-      "model": "G9v3-39A5B",
-      "id": "g9v3-39a5b",
-      "rank": 60,
-      "first_seen": "2026-08-03",
-      "intelligence": 30.9,
-      "tps": null,
-      "price_input": 0,
-      "detail": "智商 31 · $0/M",
+      "model": "Qwen3.8 Max",
+      "id": "qwen3-8-max",
+      "rank": 9,
+      "first_seen": "2026-08-04",
+      "intelligence": 53.4,
+      "tps": 46,
+      "price_input": 2,
+      "detail": "智商 53 · 46 TPS · $2/M",
       "icon": "🆕"
     },
     {
-      "type": "dropped",
-      "model": "Step 3.5 Flash",
-      "id": "step-3-5-flash",
-      "old_rank": 63,
-      "detail": "",
-      "icon": "📉"
+      "type": "price_drop",
+      "model": "Hy3-preview",
+      "id": "hy3-preview",
+      "field": "output",
+      "old": 0.235,
+      "new": 0.21,
+      "change_pct": -10.6,
+      "detail": "输出价 $0.235→$0.21 (-11%)",
+      "icon": "💰"
+    },
+    {
+      "type": "price_drop",
+      "model": "Grok 4.20 0309 v2",
+      "id": "grok-4-20-0309-v2",
+      "field": "input",
+      "old": 2,
+      "new": 1.25,
+      "change_pct": -37.5,
+      "detail": "输入价 $2→$1.25 (-38%)",
+      "icon": "💰"
+    },
+    {
+      "type": "price_drop",
+      "model": "Grok 4.20 0309 v2",
+      "id": "grok-4-20-0309-v2",
+      "field": "output",
+      "old": 6,
+      "new": 2.5,
+      "change_pct": -58.3,
+      "detail": "输出价 $6→$2.5 (-58%)",
+      "icon": "💰"
+    },
+    {
+      "type": "price_drop",
+      "model": "Inkling",
+      "id": "inkling",
+      "field": "input",
+      "old": 1.87,
+      "new": 1,
+      "change_pct": -46.5,
+      "detail": "输入价 $1.87→$1 (-46%)",
+      "icon": "💰"
+    },
+    {
+      "type": "price_drop",
+      "model": "Inkling",
+      "id": "inkling",
+      "field": "output",
+      "old": 4.68,
+      "new": 4.05,
+      "change_pct": -13.5,
+      "detail": "输出价 $4.68→$4.05 (-14%)",
+      "icon": "💰"
     }
   ]
 }
