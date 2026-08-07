@@ -112,7 +112,7 @@ interface Model {
 
   scores: {
     intelligence: number;  // AA Intelligence Index (0-60+)
-    coding: number|null;   // AA Coding Index
+    coding: number|null;   // 编程分（AA 已下线 Coding Index，2026-08 起缺失时取 Terminal-Bench v2.1 原始得分 ×100，见 1-fetch/fetch_aa_data.py）
     agentic: number|null;  // AA Agentic Index
   };
 

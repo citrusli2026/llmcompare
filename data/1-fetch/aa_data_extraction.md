@@ -97,7 +97,7 @@ def safe_dict(val):
 | 字段 | 类型 | 范围 | 说明 |
 |------|------|------|------|
 | intelligence_index | float | 0-100 | AA 综合智能指数 |
-| coding_index | float | 0-100 | 编程能力指数 |
+| coding_index | float | 0-100 | 编程能力指数（**2026-08 AA 已移除 codingIndex 字段**，缺失时取 Terminal-Bench v2.1 原始得分 ×100，带 `coding_index_estimated=True` 标记）|
 | agentic_index | float | 0-100 | Agent 能力指数 |
 | math_index | float | 0-100 | 数学能力指数（仅部分模型，**当前管线不提取该字段**）|
 | omniscience | float | -100~100 | 幻觉率评分，越高越好（负数表示幻觉严重）|

@@ -37,8 +37,8 @@ Options:
 
 ## Fields Extracted (72 total)
 
-**Indices**: intelligence_index, coding_index, agentic_index, omniscience  
-**Benchmarks**: gpqa, aime, aime25, hle, mmlu_pro, livecodebench, math_500, mmmu_pro, scicode, ifbench, humaneval, critpt, lcr, tau2, terminalbench_hard, gdpval  
+**Indices**: intelligence_index, coding_index (2026-08 起 AA 移除 codingIndex，缺失时取 terminalbench_v21 原始得分 ×100), agentic_index, omniscience  
+**Benchmarks**: gpqa, aime, aime25, hle, mmlu_pro, livecodebench, math_500, mmmu_pro, scicode, ifbench, humaneval, critpt, lcr, tau2, terminalbench_hard, terminalbench_v21, gdpval（注：AA 已下线 aime/mmlu_pro/math_500/humaneval，解析结果为 null）  
 **Speed**: speed_median_tps, speed_p05/p95, speed_short/medium/long  
 **Latency**: ttft_seconds, e2e_total/answer/reasoning_seconds  
 **Pricing**: price_input, price_output, price_blended ($/M tokens)  

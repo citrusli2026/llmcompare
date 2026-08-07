@@ -6,6 +6,10 @@ Artificial Analysis 数据抓取脚本
 输出 aa_all_full.json 和 aa_top64_full.json。
 
 2026-07-09: 适配 AA 新 RSC 格式 (initialModels 数组, camelCase 字段)
+2026-08-07: AA 从 payload 中移除了 codingIndex 字段（官网同步下线 Coding Index，
+编程评测并入 Intelligence Index v4.1.1 的 Terminal-Bench v2.1 / SciCode）。
+coding_index 缺失时直接用 Terminal-Bench v2.1 原始得分（×100 转百分制）补齐，
+并带 coding_index_estimated=True 标记；tbV21 也缺失则保持 None，不编造数据。
 
 用法:
     python3 fetch_aa_data.py                          # 下载+解析，输出到当前目录
@@ -41,6 +45,27 @@ RSC_HEADERS = [
     "-H", "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
 ]
 CURL_TIMEOUT = 120  # 秒
+
+
+def fill_coding_from_terminalbench(models: List[dict]) -> int:
+    """AA 已移除 Coding Index：直接用 Terminal-Bench v2.1 原始得分（×100 转百分制）补齐。
+
+    Terminal-Bench 是 AA 现役的编程智能体评测（已并入 Intelligence Index v4.1.1），
+    与旧 Coding Index 排序一致性 0.99。tbV21 也缺失的模型保持 None，不编造数据。
+    若 AA 恢复 codingIndex 字段（解析到非 None 值），本函数自动跳过。
+    直接修改 models 列表，返回补齐的模型数量。
+    """
+    filled = 0
+    for m in models:
+        if m.get('coding_index') is not None:
+            continue
+        tb = m.get('terminalbench_v21')
+        if tb is None:
+            continue
+        m['coding_index'] = round(tb * 100, 1)
+        m['coding_index_estimated'] = True
+        filled += 1
+    return filled
 
 # ── JSON 对象提取 ─────────────────────────────────────
 
@@ -140,6 +165,7 @@ def parse_models_new(content: str) -> List[dict]:
             # Main Indices
             'intelligence_index': obj.get('intelligenceIndex'),
             'coding_index': obj.get('codingIndex'),
+            'coding_index_estimated': False,  # codingIndex 缺失时用 Terminal-Bench v2.1 补齐并置 True
             'agentic_index': obj.get('agenticIndex'),
             'omniscience': obj.get('omniscience'),
 
@@ -159,6 +185,7 @@ def parse_models_new(content: str) -> List[dict]:
             'lcr': obj.get('lcr'),
             'tau2': obj.get('tau2'),
             'terminalbench_hard': obj.get('terminalbenchHard'),
+            'terminalbench_v21': obj.get('terminalbenchV21'),
             'gdpval': obj.get('gdpval'),
 
             # Pricing ($/M tokens)
@@ -297,18 +324,24 @@ def parse_models(content: str) -> List[dict]:
     """解析 RSC 载荷，优先尝试新格式，回退到旧格式"""
     # 尝试新格式 (initialModels)
     models = parse_models_new(content)
-    if models:
+    if not models:
+        # 回退旧格式 (additional_text)
+        models = parse_models_old(content)
+        if models:
+            print(f"  ✅ 使用旧格式 (additional_text): {len(models)} 模型")
+    else:
         print(f"  ✅ 使用 models 数组 (详情页全量): {len(models)} 模型")
-        return models
 
-    # 回退旧格式 (additional_text)
-    models = parse_models_old(content)
-    if models:
-        print(f"  ✅ 使用旧格式 (additional_text): {len(models)} 模型")
-        return models
+    if not models:
+        print("  ⚠️ 新旧格式均未匹配到模型数据")
+        return []
 
-    print("  ⚠️ 新旧格式均未匹配到模型数据")
-    return []
+    # AA 已移除 codingIndex：用 Terminal-Bench v2.1 原始得分补齐（×100 转百分制）
+    filled = fill_coding_from_terminalbench(models)
+    if filled:
+        print(f"  ℹ️ codingIndex 字段缺失，已用 Terminal-Bench v2.1 补齐 coding_index: {filled}/{len(models)} 模型")
+
+    return models
 
 
 # ── RSC 下载 ──────────────────────────────────────────
