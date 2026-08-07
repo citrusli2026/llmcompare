@@ -6,28 +6,28 @@
     "type": "闭源",
     "logo": "/logos/anthropic.svg",
     "scores": {
-      "intelligence": 60.6918740157091,
-      "coding": 77.9828166181162,
-      "agentic": 55.2554261168385
+      "intelligence": 63.0532452071291,
+      "coding": 89.1,
+      "agentic": 59.1729518900344
     },
     "speed": {
-      "median_tps": 55.6599279122983,
-      "ttft_seconds": 63.4328579025,
-      "e2e_seconds": 72.41598128684636,
+      "median_tps": 54.5137363590029,
+      "ttft_seconds": 51.4718377165,
+      "e2e_seconds": 60.6438379020537,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.932323232323232,
-      "hle": 0.525949953660797,
+      "hle": 0.548656163113994,
       "scicode": 0.556712962962963,
-      "lcr": 0.7,
+      "lcr": 0.756666666666667,
       "critpt": 0.291428571428571,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.847398843930636,
-      "gdpval": 1851.99,
+      "gdpval": 1846.23,
       "livecodebench": null,
       "aime25": null
     },
@@ -54,7 +54,7 @@
       "parameters": null,
       "release_date": "2026-07-24",
       "knowledge_cutoff": null,
-      "omniscience": 31.2666666666667,
+      "omniscience": 37.0666666666667,
       "modalities": {
         "input": [
           "text",
@@ -73,7 +73,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 1050994881351,
+    "openrouter_weekly_tokens": 1130003807108,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 25.0
@@ -82,20 +82,20 @@
       "text": {
         "rank": 4,
         "score": 1497.0,
-        "votes": 70970
+        "votes": 73158
       },
       "code": {
         "rank": 10,
-        "score": 1561.0,
-        "votes": 11755
+        "score": 1560.0,
+        "votes": 12398
       },
       "vision": {
         "rank": 5,
-        "score": 1298.0,
-        "votes": 20368
+        "score": 1299.0,
+        "votes": 20857
       }
     },
-    "arena_votes": 10704,
+    "arena_votes": 14902,
     "data_completeness_pct": 85.0
   },
   {
@@ -105,28 +105,28 @@
     "type": "闭源",
     "logo": "/logos/anthropic.svg",
     "scores": {
-      "intelligence": 59.8606463217303,
-      "coding": 76.4911915660979,
-      "agentic": 52.8147079037801
+      "intelligence": 62.0726622017462,
+      "coding": 84.6,
+      "agentic": 56.5947766323024
     },
     "speed": {
-      "median_tps": 73.8440409220612,
-      "ttft_seconds": 107.3625724745,
-      "e2e_seconds": 114.13359954393849,
+      "median_tps": 66.5982315345663,
+      "ttft_seconds": 94.094795557,
+      "e2e_seconds": 101.60250242066479,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.926262626262626,
-      "hle": 0.53336422613531,
+      "hle": 0.554680259499537,
       "scicode": 0.601851851851852,
-      "lcr": 0.7,
+      "lcr": 0.766666666666667,
       "critpt": 0.2857142857,
       "ifbench": 0.63469387755102,
       "tau2": 0.985380116959064,
       "terminalbench_hard": 0.628787878787879,
       "mmmu_pro": null,
-      "gdpval": 1742.65,
+      "gdpval": 1742.43,
       "livecodebench": null,
       "aime25": null
     },
@@ -153,7 +153,7 @@
       "parameters": null,
       "release_date": "2026-06-09",
       "knowledge_cutoff": null,
-      "omniscience": 40.15,
+      "omniscience": 43.3,
       "modalities": {
         "input": [
           "text",
@@ -172,7 +172,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 220298789365,
+    "openrouter_weekly_tokens": 225282113496,
     "openrouter_pricing": {
       "prompt": 10.0,
       "completion": 50.0
@@ -180,21 +180,21 @@
     "arena_rankings": {
       "text": {
         "rank": 1,
-        "score": 1509.0,
-        "votes": 17799
+        "score": 1507.0,
+        "votes": 19390
       },
       "code": {
         "rank": 5,
         "score": 1630.0,
-        "votes": 6310
+        "votes": 6816
       },
       "vision": {
         "rank": 1,
-        "score": 1318.0,
-        "votes": 7946
+        "score": 1315.0,
+        "votes": 8333
       }
     },
-    "arena_votes": 17799,
+    "arena_votes": 19390,
     "data_completeness_pct": 85.0
   },
   {
@@ -204,28 +204,28 @@
     "type": "闭源",
     "logo": "/logos/openai.svg",
     "scores": {
-      "intelligence": 58.889831189723,
-      "coding": 77.3880739353586,
-      "agentic": 54.0035635738832
+      "intelligence": 60.9298701329203,
+      "coding": 88.0,
+      "agentic": 57.7836323024055
     },
     "speed": {
-      "median_tps": 70.5961573508973,
-      "ttft_seconds": 131.3915681645,
-      "e2e_seconds": 138.47410663064846,
+      "median_tps": 62.8882259831157,
+      "ttft_seconds": 140.6977382665,
+      "e2e_seconds": 148.64835210849708,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.941414141414141,
-      "hle": 0.471733086190918,
+      "hle": 0.494902687673772,
       "scicode": 0.561342592592593,
-      "lcr": 0.736666666666667,
+      "lcr": 0.776666666666667,
       "critpt": 0.322857142857143,
       "ifbench": 0.726530612244898,
       "tau2": 0.850877192982456,
       "terminalbench_hard": 0.659090909090909,
       "mmmu_pro": 0.834104046242775,
-      "gdpval": 1729.89,
+      "gdpval": 1729.33,
       "livecodebench": null,
       "aime25": null
     },
@@ -252,7 +252,7 @@
       "parameters": null,
       "release_date": "2026-07-09",
       "knowledge_cutoff": null,
-      "omniscience": 21.7,
+      "omniscience": 21.9666666666667,
       "modalities": {
         "input": [
           "file",
@@ -271,13 +271,13 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 453930200590,
+    "openrouter_weekly_tokens": 545117938120,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
     },
     "arena_rankings": {},
-    "arena_votes": 10716,
+    "arena_votes": 12839,
     "data_completeness_pct": 77.4
   },
   {
@@ -287,28 +287,28 @@
     "type": "开源",
     "logo": "/logos/kimi.svg",
     "scores": {
-      "intelligence": 57.1123394372091,
-      "coding": 76.2393362463587,
-      "agentic": 50.0700206185567
+      "intelligence": 59.6994671342592,
+      "coding": 85.0,
+      "agentic": 54.2624604810997
     },
     "speed": {
-      "median_tps": 35.9697301167622,
-      "ttft_seconds": 58.41850012789679,
-      "e2e_seconds": 72.31907704012097,
+      "median_tps": 38.6471174887958,
+      "ttft_seconds": 54.90916929484294,
+      "e2e_seconds": 67.84674478530366,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.935353535353535,
-      "hle": 0.443466172381835,
+      "hle": 0.468952734012975,
       "scicode": 0.586805555555556,
-      "lcr": 0.746666666666667,
+      "lcr": 0.826666666666667,
       "critpt": 0.234285714285714,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.805202312138728,
-      "gdpval": 1684.73,
+      "gdpval": 1681.45,
       "livecodebench": null,
       "aime25": null
     },
@@ -335,7 +335,7 @@
       "parameters": 2800,
       "release_date": "2026-07-16",
       "knowledge_cutoff": null,
-      "omniscience": 18.4166666666667,
+      "omniscience": 19.7,
       "modalities": {
         "input": [
           "text",
@@ -358,14 +358,114 @@
       "output": 100.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_tokens": 1390707283950,
+    "openrouter_weekly_tokens": 1391412784150,
     "openrouter_pricing": {
       "prompt": 3.0,
       "completion": 15.0
     },
     "arena_rankings": {},
-    "arena_votes": 4366,
+    "arena_votes": 9861,
     "data_completeness_pct": 88.7
+  },
+  {
+    "id": "qwen3-8-max",
+    "name": "Qwen3.8 Max",
+    "company": "Alibaba",
+    "type": "闭源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 58.0774404479668,
+      "coding": 81.3,
+      "agentic": 58.4030687285223
+    },
+    "speed": {
+      "median_tps": 69.1558211229363,
+      "ttft_seconds": 31.535667430530783,
+      "e2e_seconds": 38.765716786913444,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.927272727272727,
+      "hle": 0.430491195551437,
+      "scicode": 0.528935185185185,
+      "lcr": 0.743333333333333,
+      "critpt": 0.2,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.823121387283237,
+      "gdpval": 1739.23,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 2,
+      "output": 6,
+      "blended": 3.0,
+      "display": "$2/$6 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "large",
+      "parameters": null,
+      "release_date": "2026-08-03",
+      "knowledge_cutoff": null,
+      "omniscience": 3.4,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 131072
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-8-max",
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "console": "https://bailian.aliyun.com"
+    },
+    "license": null,
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 121155892321,
+    "openrouter_pricing": {
+      "prompt": 2.0,
+      "completion": 6.0
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 5,
+        "score": 1497.0,
+        "votes": 4662
+      },
+      "code": {
+        "rank": 4,
+        "score": 1667.0,
+        "votes": 1980
+      },
+      "vision": {
+        "rank": 2,
+        "score": 1301.0,
+        "votes": 5344
+      }
+    },
+    "arena_votes": 5344,
+    "data_completeness_pct": 85.0
   },
   {
     "id": "claude-opus-4-8",
@@ -374,28 +474,28 @@
     "type": "闭源",
     "logo": "/logos/anthropic.svg",
     "scores": {
-      "intelligence": 55.6920406995495,
-      "coding": 74.2535372451103,
-      "agentic": 47.1756219931271
+      "intelligence": 57.3304158758428,
+      "coding": 84.6,
+      "agentic": 49.3749347079038
     },
     "speed": {
-      "median_tps": 57.7725088229516,
-      "ttft_seconds": 22.677003991,
-      "e2e_seconds": 31.33163939089737,
+      "median_tps": 58.6886833360801,
+      "ttft_seconds": 20.7563912110001,
+      "e2e_seconds": 29.275921239246866,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.92020202020202,
-      "hle": 0.457367933271548,
+      "hle": 0.486561631139944,
       "scicode": 0.534722222222222,
-      "lcr": 0.676666666666667,
+      "lcr": 0.73,
       "critpt": 0.208571428571429,
       "ifbench": 0.622448979591837,
       "tau2": 0.944444444444445,
       "terminalbench_hard": 0.583333333333333,
       "mmmu_pro": null,
-      "gdpval": 1588.05,
+      "gdpval": 1588.06,
       "livecodebench": null,
       "aime25": null
     },
@@ -422,7 +522,7 @@
       "parameters": null,
       "release_date": "2026-05-28",
       "knowledge_cutoff": null,
-      "omniscience": 27.4333333333333,
+      "omniscience": 28.75,
       "modalities": {
         "input": [
           "text",
@@ -441,7 +541,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 541935467946,
+    "openrouter_weekly_tokens": 510717925247,
     "openrouter_pricing": {
       "prompt": 10.0,
       "completion": 50.0
@@ -450,21 +550,121 @@
       "text": {
         "rank": 4,
         "score": 1497.0,
-        "votes": 70970
+        "votes": 73158
       },
       "code": {
         "rank": 10,
-        "score": 1561.0,
-        "votes": 11755
+        "score": 1560.0,
+        "votes": 12398
       },
       "vision": {
         "rank": 5,
-        "score": 1298.0,
-        "votes": 20368
+        "score": 1299.0,
+        "votes": 20857
       }
     },
-    "arena_votes": 35877,
+    "arena_votes": 8565,
     "data_completeness_pct": 85.0
+  },
+  {
+    "id": "muse-spark-1-2",
+    "name": "Muse Spark 1.2",
+    "company": "Meta",
+    "type": "闭源",
+    "logo": "/logos/meta.svg",
+    "scores": {
+      "intelligence": 56.7615911905642,
+      "coding": 80.1,
+      "agentic": 49.3114536082474
+    },
+    "speed": {
+      "median_tps": null,
+      "ttft_seconds": null,
+      "e2e_seconds": null,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.904040404040404,
+      "hle": 0.454587581093605,
+      "scicode": 0.563657407407407,
+      "lcr": 0.833333333333333,
+      "critpt": 0.177142857142857,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1630.89,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 1.25,
+      "output": 4.25,
+      "blended": 2.0,
+      "display": "$1.25/$4.25 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": false,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 1048576,
+      "size_class": "large",
+      "parameters": null,
+      "release_date": "2026-08-05",
+      "knowledge_cutoff": null,
+      "omniscience": 27.2,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video",
+          "file",
+          "audio"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
+    },
+    "url": "https://artificialanalysis.ai/models/muse-spark-1-2",
+    "vendor_links": {
+      "homepage": "https://ai.meta.com"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 22575848852,
+    "openrouter_pricing": {
+      "prompt": 1.25,
+      "completion": 4.25
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 9,
+        "score": 1488.0,
+        "votes": 13476
+      },
+      "code": {
+        "rank": 19,
+        "score": 1536.0,
+        "votes": 4491
+      },
+      "vision": {
+        "rank": 8,
+        "score": 1294.0,
+        "votes": 5576
+      }
+    },
+    "arena_votes": 1317,
+    "data_completeness_pct": 69.9
   },
   {
     "id": "gpt-5-6-terra",
@@ -473,28 +673,28 @@
     "type": "闭源",
     "logo": "/logos/openai.svg",
     "scores": {
-      "intelligence": 54.9528567569231,
-      "coding": 76.6550492440005,
-      "agentic": 47.3835257731959
+      "intelligence": 56.5755675890213,
+      "coding": 88.0,
+      "agentic": 50.2013951890034
     },
     "speed": {
-      "median_tps": 145.774082995173,
-      "ttft_seconds": 162.166091154,
-      "e2e_seconds": 165.59605613629768,
+      "median_tps": 124.204239581706,
+      "ttft_seconds": 166.267810499,
+      "e2e_seconds": 170.29343797905943,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.925252525252525,
-      "hle": 0.417979610750695,
+      "hle": 0.429101019462465,
       "scicode": 0.539351851851852,
-      "lcr": 0.74,
+      "lcr": 0.796666666666667,
       "critpt": 0.3,
       "ifbench": 0.712244897959184,
       "tau2": 0.862573099415205,
       "terminalbench_hard": 0.575757575757576,
       "mmmu_pro": 0.806936416184971,
-      "gdpval": 1577.12,
+      "gdpval": 1578.41,
       "livecodebench": null,
       "aime25": null
     },
@@ -521,7 +721,7 @@
       "parameters": null,
       "release_date": "2026-07-09",
       "knowledge_cutoff": null,
-      "omniscience": -0.216666666666667,
+      "omniscience": 0.05,
       "modalities": {
         "input": [
           "file",
@@ -540,13 +740,13 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 571406603828,
+    "openrouter_weekly_tokens": 757895884117,
     "openrouter_pricing": {
       "prompt": 1.0,
       "completion": 6.0
     },
     "arena_rankings": {},
-    "arena_votes": 2692,
+    "arena_votes": 3806,
     "data_completeness_pct": 77.4
   },
   {
@@ -556,28 +756,28 @@
     "type": "闭源",
     "logo": "/logos/spacexai.svg",
     "scores": {
-      "intelligence": 53.8265951657731,
-      "coding": 72.4489353585796,
-      "agentic": 45.6901065292096
+      "intelligence": 55.7588993916902,
+      "coding": 81.6,
+      "agentic": 48.851618556701
     },
     "speed": {
-      "median_tps": 61.262400499798,
-      "ttft_seconds": 10.3785654584999,
-      "e2e_seconds": 18.540178387814493,
+      "median_tps": 56.7589092280902,
+      "ttft_seconds": 7.86206997400001,
+      "e2e_seconds": 16.671259699452804,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.931313131313131,
-      "hle": 0.402687673772011,
+      "hle": 0.42678405931418,
       "scicode": 0.540509259259259,
-      "lcr": 0.676666666666667,
+      "lcr": 0.74,
       "critpt": 0.154285714285714,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.804046242774566,
-      "gdpval": 1526.3,
+      "gdpval": 1526.04,
       "livecodebench": null,
       "aime25": null
     },
@@ -604,7 +804,7 @@
       "parameters": null,
       "release_date": "2026-07-08",
       "knowledge_cutoff": null,
-      "omniscience": 26.3833333333333,
+      "omniscience": 25.3166666666667,
       "modalities": {
         "input": [
           "text",
@@ -623,7 +823,7 @@
       "console": "https://console.x.ai"
     },
     "license": null,
-    "openrouter_weekly_tokens": 342546302826,
+    "openrouter_weekly_tokens": 316933025363,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 6.0
@@ -631,116 +831,17 @@
     "arena_rankings": {
       "code": {
         "rank": 12,
-        "score": 1549.0,
-        "votes": 3992
+        "score": 1552.0,
+        "votes": 4605
       },
       "vision": {
-        "rank": 17,
-        "score": 1282.0,
-        "votes": 3276
+        "rank": 13,
+        "score": 1285.0,
+        "votes": 3871
       }
     },
-    "arena_votes": 3992,
+    "arena_votes": 4605,
     "data_completeness_pct": 85.0
-  },
-  {
-    "id": "claude-opus-4-7",
-    "name": "Claude Opus 4.7",
-    "company": "Anthropic",
-    "type": "闭源",
-    "logo": "/logos/anthropic.svg",
-    "scores": {
-      "intelligence": 53.5296569524586,
-      "coding": 73.6020079067832,
-      "agentic": 44.3863264604811
-    },
-    "speed": {
-      "median_tps": 52.2137441175728,
-      "ttft_seconds": 22.8198677135001,
-      "e2e_seconds": 32.39589043414852,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.914141414141414,
-      "hle": 0.396200185356812,
-      "scicode": 0.545138888888889,
-      "lcr": 0.703333333333333,
-      "critpt": 0.12,
-      "ifbench": 0.586394557823129,
-      "tau2": 0.885964912280702,
-      "terminalbench_hard": 0.515151515151515,
-      "mmmu_pro": 0.788439306358382,
-      "gdpval": 1490.23,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 5,
-      "output": 25,
-      "blended": 10.0,
-      "display": "$5/$25 (USD/百万token)"
-    },
-    "flags": {
-      "frontier": true,
-      "open_weights": false,
-      "reasoning": false,
-      "image_input": true,
-      "chinese_eval": false,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 1000000,
-      "size_class": "large",
-      "parameters": null,
-      "release_date": "2026-04-16",
-      "knowledge_cutoff": "2026-01-01",
-      "omniscience": 26.1666666666667,
-      "modalities": {
-        "input": [
-          "text",
-          "image",
-          "file"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 128000
-    },
-    "url": "https://artificialanalysis.ai/models/claude-opus-4-7",
-    "vendor_links": {
-      "homepage": "https://www.anthropic.com",
-      "console": "https://console.anthropic.com"
-    },
-    "license": null,
-    "openrouter_weekly_tokens": 176815700475,
-    "openrouter_pricing": {
-      "prompt": 30.0,
-      "completion": 150.0
-    },
-    "arena_rankings": {
-      "text": {
-        "rank": 4,
-        "score": 1497.0,
-        "votes": 70970
-      },
-      "code": {
-        "rank": 10,
-        "score": 1561.0,
-        "votes": 11755
-      },
-      "vision": {
-        "rank": 5,
-        "score": 1298.0,
-        "votes": 20368
-      }
-    },
-    "arena_votes": 55992,
-    "data_completeness_pct": 88.7
   },
   {
     "id": "claude-sonnet-5",
@@ -749,28 +850,28 @@
     "type": "闭源",
     "logo": "/logos/anthropic.svg",
     "scores": {
-      "intelligence": 53.3500026989169,
-      "coding": 71.5455507005132,
-      "agentic": 46.6941408934708
+      "intelligence": 55.261211717405,
+      "coding": 80.5,
+      "agentic": 49.7181958762887
     },
     "speed": {
-      "median_tps": 80.9102003910173,
-      "ttft_seconds": 200.5903079175,
-      "e2e_seconds": 206.76999845816897,
+      "median_tps": 66.8235698921934,
+      "ttft_seconds": 197.112252221,
+      "e2e_seconds": 204.59464205450712,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
-      "hle": 0.395736793327155,
+      "hle": 0.412882298424467,
       "scicode": 0.53587962962963,
-      "lcr": 0.706666666666667,
+      "lcr": 0.77,
       "critpt": 0.168571428571429,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.772832369942197,
-      "gdpval": 1600.33,
+      "gdpval": 1600.97,
       "livecodebench": null,
       "aime25": null
     },
@@ -797,7 +898,7 @@
       "parameters": null,
       "release_date": "2026-06-30",
       "knowledge_cutoff": null,
-      "omniscience": 15.3166666666667,
+      "omniscience": 16.45,
       "modalities": {
         "input": [
           "text",
@@ -816,20 +917,119 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 1021612205850,
+    "openrouter_weekly_tokens": 1037546583161,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 10.0
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 27,
-        "score": 1275.0,
-        "votes": 24509
+      "code": {
+        "rank": 23,
+        "score": 1522.0,
+        "votes": 18073
       }
     },
-    "arena_votes": 5643,
+    "arena_votes": 5357,
     "data_completeness_pct": 85.0
+  },
+  {
+    "id": "claude-opus-4-7",
+    "name": "Claude Opus 4.7",
+    "company": "Anthropic",
+    "type": "闭源",
+    "logo": "/logos/anthropic.svg",
+    "scores": {
+      "intelligence": 54.9641493964167,
+      "coding": 83.1,
+      "agentic": 46.3107250859107
+    },
+    "speed": {
+      "median_tps": 49.3997485757893,
+      "ttft_seconds": 19.0888112470001,
+      "e2e_seconds": 29.210320250895087,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.914141414141414,
+      "hle": 0.423076923076923,
+      "scicode": 0.545138888888889,
+      "lcr": 0.753333333333333,
+      "critpt": 0.12,
+      "ifbench": 0.586394557823129,
+      "tau2": 0.885964912280702,
+      "terminalbench_hard": 0.515151515151515,
+      "mmmu_pro": 0.788439306358382,
+      "gdpval": 1490.92,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 5,
+      "output": 25,
+      "blended": 10.0,
+      "display": "$5/$25 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "large",
+      "parameters": null,
+      "release_date": "2026-04-16",
+      "knowledge_cutoff": "2026-01-01",
+      "omniscience": 27.2666666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
+    },
+    "url": "https://artificialanalysis.ai/models/claude-opus-4-7",
+    "vendor_links": {
+      "homepage": "https://www.anthropic.com",
+      "console": "https://console.anthropic.com"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 182978729932,
+    "openrouter_pricing": {
+      "prompt": 30.0,
+      "completion": 150.0
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 4,
+        "score": 1497.0,
+        "votes": 73158
+      },
+      "code": {
+        "rank": 10,
+        "score": 1560.0,
+        "votes": 12398
+      },
+      "vision": {
+        "rank": 5,
+        "score": 1299.0,
+        "votes": 20857
+      }
+    },
+    "arena_votes": 58135,
+    "data_completeness_pct": 88.7
   },
   {
     "id": "gpt-5-5",
@@ -838,28 +1038,28 @@
     "type": "闭源",
     "logo": "/logos/openai.svg",
     "scores": {
-      "intelligence": 53.1275095349873,
-      "coding": 71.5680919683729,
-      "agentic": 43.4581786941581
+      "intelligence": 54.6668082793663,
+      "coding": 79.4,
+      "agentic": 45.863676975945
     },
     "speed": {
-      "median_tps": 79.3619754134399,
-      "ttft_seconds": 27.254171211,
-      "e2e_seconds": 33.55441761231784,
+      "median_tps": 63.853843521605,
+      "ttft_seconds": 21.5362822020002,
+      "e2e_seconds": 29.36666440649232,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.932323232323232,
-      "hle": 0.430027803521779,
+      "hle": 0.450417052826691,
       "scicode": 0.559027777777778,
-      "lcr": 0.733333333333333,
+      "lcr": 0.79,
       "critpt": 0.254285714285714,
       "ifbench": 0.716326530612245,
       "tau2": 0.929824561403509,
       "terminalbench_hard": 0.598484848484849,
       "mmmu_pro": 0.810982658959538,
-      "gdpval": 1466.06,
+      "gdpval": 1467.5,
       "livecodebench": null,
       "aime25": null
     },
@@ -886,7 +1086,7 @@
       "parameters": null,
       "release_date": "2026-04-23",
       "knowledge_cutoff": null,
-      "omniscience": 18.3666666666667,
+      "omniscience": 18.75,
       "modalities": {
         "input": [
           "file",
@@ -905,283 +1105,25 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 159819330023,
+    "openrouter_weekly_tokens": 93335001904,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
     },
     "arena_rankings": {
       "text": {
-        "rank": 20,
-        "score": 1476.0,
-        "votes": 51172
+        "rank": 19,
+        "score": 1477.0,
+        "votes": 53407
       },
       "vision": {
         "rank": 12,
-        "score": 1287.0,
-        "votes": 18180
+        "score": 1286.0,
+        "votes": 18722
       }
     },
-    "arena_votes": 51172,
+    "arena_votes": 53407,
     "data_completeness_pct": 85.0
-  },
-  {
-    "id": "gpt-5-4",
-    "name": "GPT-5.4",
-    "company": "OpenAI",
-    "type": "闭源",
-    "logo": "/logos/openai.svg",
-    "scores": {
-      "intelligence": 51.4012420630147,
-      "coding": 71.0505097794423,
-      "agentic": 41.0770927835052
-    },
-    "speed": {
-      "median_tps": 141.211302643977,
-      "ttft_seconds": 130.498859047,
-      "e2e_seconds": 134.03965210420026,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.92020202020202,
-      "hle": 0.416126042632067,
-      "scicode": 0.565972222222222,
-      "lcr": 0.74,
-      "critpt": 0.2342857143,
-      "ifbench": 0.739455782312925,
-      "tau2": 0.871345029239766,
-      "terminalbench_hard": 0.575757575757576,
-      "mmmu_pro": 0.784393063583815,
-      "gdpval": 1392.59,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 2.5,
-      "output": 15,
-      "blended": 5.625,
-      "display": "$2.5/$15 (USD/百万token)"
-    },
-    "flags": {
-      "frontier": true,
-      "open_weights": false,
-      "reasoning": false,
-      "image_input": true,
-      "chinese_eval": false,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 1050000,
-      "size_class": "large",
-      "parameters": null,
-      "release_date": "2026-03-05",
-      "knowledge_cutoff": "2025-08-31",
-      "omniscience": 5.65,
-      "modalities": {
-        "input": [
-          "text",
-          "image",
-          "file"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 128000
-    },
-    "url": "https://artificialanalysis.ai/models/gpt-5-4",
-    "vendor_links": {
-      "homepage": "https://openai.com",
-      "console": "https://platform.openai.com"
-    },
-    "license": null,
-    "openrouter_weekly_tokens": 214966191794,
-    "openrouter_pricing": {
-      "prompt": 2.5,
-      "completion": 15.0
-    },
-    "arena_rankings": {
-      "vision": {
-        "rank": 20,
-        "score": 1280.0,
-        "votes": 19989
-      }
-    },
-    "arena_votes": 19989,
-    "data_completeness_pct": 88.7
-  },
-  {
-    "id": "gpt-5-6-luna",
-    "name": "GPT-5.6 Luna",
-    "company": "OpenAI",
-    "type": "闭源",
-    "logo": "/logos/openai.svg",
-    "scores": {
-      "intelligence": 51.2359331798034,
-      "coding": 71.4480163684284,
-      "agentic": 45.5974982817869
-    },
-    "speed": {
-      "median_tps": 180.511838749437,
-      "ttft_seconds": 132.752475693,
-      "e2e_seconds": 135.52237712142673,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.911111111111111,
-      "hle": 0.372103799814643,
-      "scicode": 0.525462962962963,
-      "lcr": 0.74,
-      "critpt": 0.205714285714286,
-      "ifbench": null,
-      "tau2": null,
-      "terminalbench_hard": null,
-      "mmmu_pro": 0.785549132947977,
-      "gdpval": 1578.35,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 0.2,
-      "output": 1.2,
-      "blended": 0.45,
-      "display": "$0.2/$1.2 (USD/百万token)"
-    },
-    "flags": {
-      "frontier": false,
-      "open_weights": false,
-      "reasoning": false,
-      "image_input": true,
-      "chinese_eval": false,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 1000000,
-      "size_class": "medium",
-      "parameters": null,
-      "release_date": "2026-07-09",
-      "knowledge_cutoff": null,
-      "omniscience": -11.2333333333333,
-      "modalities": {
-        "input": [
-          "file",
-          "image",
-          "text"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 128000
-    },
-    "url": "https://artificialanalysis.ai/models/gpt-5-6-luna",
-    "vendor_links": {
-      "homepage": "https://openai.com",
-      "console": "https://platform.openai.com"
-    },
-    "license": null,
-    "openrouter_weekly_tokens": 2453642227406,
-    "openrouter_pricing": {
-      "prompt": 0.1,
-      "completion": 0.6
-    },
-    "arena_rankings": {},
-    "arena_votes": 3212,
-    "data_completeness_pct": 77.4
-  },
-  {
-    "id": "glm-5-2",
-    "name": "GLM-5.2",
-    "company": "Z AI",
-    "type": "开源",
-    "logo": "/logos/z-ai.svg",
-    "scores": {
-      "intelligence": 51.0858347714416,
-      "coding": 68.7560688028853,
-      "agentic": 43.0557079037801
-    },
-    "speed": {
-      "median_tps": 186.764561948477,
-      "ttft_seconds": 12.227347766168627,
-      "e2e_seconds": 14.904515183710803,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.894949494949495,
-      "hle": 0.40129749768304,
-      "scicode": 0.50462962962963,
-      "lcr": 0.713333333333333,
-      "critpt": 0.208571428571429,
-      "ifbench": 0.733333333333333,
-      "tau2": 0.991228070175439,
-      "terminalbench_hard": 0.507575757575758,
-      "mmmu_pro": null,
-      "gdpval": 1507.94,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 1.351,
-      "output": 4.29,
-      "blended": 2.0857,
-      "display": "¥8.0/¥28.0 (<32K)"
-    },
-    "flags": {
-      "frontier": true,
-      "open_weights": true,
-      "reasoning": false,
-      "image_input": false,
-      "chinese_eval": true,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 1000000,
-      "size_class": "large",
-      "parameters": 753,
-      "release_date": "2026-06-16",
-      "knowledge_cutoff": null,
-      "omniscience": 3.96666666666667,
-      "modalities": {
-        "input": [
-          "text"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 262144
-    },
-    "url": "https://artificialanalysis.ai/models/glm-5-2",
-    "vendor_links": {
-      "homepage": "https://z.ai",
-      "console": "https://open.bigmodel.cn"
-    },
-    "license": null,
-    "cn_pricing": {
-      "input": 8.0,
-      "output": 28.0,
-      "source": "open.bigmodel.cn/pricing"
-    },
-    "openrouter_weekly_tokens": 2868055828599,
-    "openrouter_pricing": {
-      "prompt": 0.76,
-      "completion": 2.42
-    },
-    "arena_rankings": {},
-    "arena_votes": 6361,
-    "data_completeness_pct": 88.7
   },
   {
     "id": "muse-spark-1-1",
@@ -1190,28 +1132,28 @@
     "type": "闭源",
     "logo": "/logos/meta.svg",
     "scores": {
-      "intelligence": 50.6229899483333,
-      "coding": 71.3409453460951,
-      "agentic": 37.5402130584192
+      "intelligence": 53.1989553356511,
+      "coding": 77.9,
+      "agentic": 39.7395257731959
     },
     "speed": {
-      "median_tps": 211.927329369857,
-      "ttft_seconds": 12.305856893148757,
-      "e2e_seconds": 14.665156193935946,
+      "median_tps": 213.469809318471,
+      "ttft_seconds": 11.742473245506197,
+      "e2e_seconds": 14.084724834132768,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.897979797979798,
-      "hle": 0.450880444856348,
+      "hle": 0.462001853568119,
       "scicode": 0.582175925925926,
-      "lcr": 0.633333333333333,
+      "lcr": 0.813333333333333,
       "critpt": 0.151428571428571,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": null,
-      "gdpval": 1370.6,
+      "gdpval": 1374.46,
       "livecodebench": null,
       "aime25": null
     },
@@ -1238,7 +1180,7 @@
       "parameters": null,
       "release_date": "2026-07-09",
       "knowledge_cutoff": null,
-      "omniscience": 18,
+      "omniscience": 28.0833333333333,
       "modalities": {
         "input": [
           "text",
@@ -1258,7 +1200,7 @@
       "homepage": "https://ai.meta.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 22575848852,
     "openrouter_pricing": {
       "prompt": 1.25,
       "completion": 4.25
@@ -1266,22 +1208,285 @@
     "arena_rankings": {
       "text": {
         "rank": 9,
-        "score": 1490.0,
-        "votes": 12086
+        "score": 1488.0,
+        "votes": 13476
       },
       "code": {
-        "rank": 17,
+        "rank": 19,
         "score": 1536.0,
-        "votes": 3874
+        "votes": 4491
       },
       "vision": {
-        "rank": 7,
+        "rank": 8,
         "score": 1294.0,
-        "votes": 5583
+        "votes": 5576
       }
     },
-    "arena_votes": 12086,
-    "data_completeness_pct": 82.7
+    "arena_votes": 14227,
+    "data_completeness_pct": 85.0
+  },
+  {
+    "id": "gpt-5-4",
+    "name": "GPT-5.4",
+    "company": "OpenAI",
+    "type": "闭源",
+    "logo": "/logos/openai.svg",
+    "scores": {
+      "intelligence": 53.1231377466063,
+      "coding": 78.3,
+      "agentic": 44.1698762886598
+    },
+    "speed": {
+      "median_tps": 124.256470445418,
+      "ttft_seconds": 121.615998548,
+      "e2e_seconds": 125.63993386668132,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.92020202020202,
+      "hle": 0.437442075996293,
+      "scicode": 0.565972222222222,
+      "lcr": 0.776666666666667,
+      "critpt": 0.2342857143,
+      "ifbench": 0.739455782312925,
+      "tau2": 0.871345029239766,
+      "terminalbench_hard": 0.575757575757576,
+      "mmmu_pro": 0.784393063583815,
+      "gdpval": 1394.26,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 2.5,
+      "output": 15,
+      "blended": 5.625,
+      "display": "$2.5/$15 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 1050000,
+      "size_class": "large",
+      "parameters": null,
+      "release_date": "2026-03-05",
+      "knowledge_cutoff": "2025-08-31",
+      "omniscience": 5.78333333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
+    },
+    "url": "https://artificialanalysis.ai/models/gpt-5-4",
+    "vendor_links": {
+      "homepage": "https://openai.com",
+      "console": "https://platform.openai.com"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 147172487940,
+    "openrouter_pricing": {
+      "prompt": 2.5,
+      "completion": 15.0
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 64,
+        "score": 1393.0,
+        "votes": 1461
+      },
+      "vision": {
+        "rank": 20,
+        "score": 1280.0,
+        "votes": 20516
+      }
+    },
+    "arena_votes": 20516,
+    "data_completeness_pct": 88.7
+  },
+  {
+    "id": "glm-5-2",
+    "name": "GLM-5.2",
+    "company": "Z AI",
+    "type": "开源",
+    "logo": "/logos/z-ai.svg",
+    "scores": {
+      "intelligence": 52.6409563457385,
+      "coding": 77.9,
+      "agentic": 45.6673917525773
+    },
+    "speed": {
+      "median_tps": 111.435147312725,
+      "ttft_seconds": 19.442873963391364,
+      "e2e_seconds": 23.929788658239207,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.894949494949495,
+      "hle": 0.411492122335496,
+      "scicode": 0.50462962962963,
+      "lcr": 0.766666666666667,
+      "critpt": 0.208571428571429,
+      "ifbench": 0.733333333333333,
+      "tau2": 0.991228070175439,
+      "terminalbench_hard": 0.507575757575758,
+      "mmmu_pro": null,
+      "gdpval": 1508,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 1.351,
+      "output": 4.29,
+      "blended": 2.0857,
+      "display": "¥8.0/¥28.0 (<32K)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "large",
+      "parameters": 753,
+      "release_date": "2026-06-16",
+      "knowledge_cutoff": null,
+      "omniscience": 4.43333333333333,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 262144
+    },
+    "url": "https://artificialanalysis.ai/models/glm-5-2",
+    "vendor_links": {
+      "homepage": "https://z.ai",
+      "console": "https://open.bigmodel.cn"
+    },
+    "license": null,
+    "cn_pricing": {
+      "input": 8.0,
+      "output": 28.0,
+      "source": "open.bigmodel.cn/pricing"
+    },
+    "openrouter_weekly_tokens": 2985560035743,
+    "openrouter_pricing": {
+      "prompt": 0.76,
+      "completion": 2.42
+    },
+    "arena_rankings": {},
+    "arena_votes": 6924,
+    "data_completeness_pct": 88.7
+  },
+  {
+    "id": "gpt-5-6-luna",
+    "name": "GPT-5.6 Luna",
+    "company": "OpenAI",
+    "type": "闭源",
+    "logo": "/logos/openai.svg",
+    "scores": {
+      "intelligence": 52.3180827840984,
+      "coding": 80.9,
+      "agentic": 46.9033402061856
+    },
+    "speed": {
+      "median_tps": 190.373439543905,
+      "ttft_seconds": 91.933223178,
+      "e2e_seconds": 94.55963997856786,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.911111111111111,
+      "hle": 0.394810009267841,
+      "scicode": 0.525462962962963,
+      "lcr": 0.783333333333333,
+      "critpt": 0.205714285714286,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.785549132947977,
+      "gdpval": 1581.23,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 0.2,
+      "output": 1.2,
+      "blended": 0.45,
+      "display": "$0.2/$1.2 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "medium",
+      "parameters": null,
+      "release_date": "2026-07-09",
+      "knowledge_cutoff": null,
+      "omniscience": -10.2833333333333,
+      "modalities": {
+        "input": [
+          "file",
+          "image",
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
+    },
+    "url": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+    "vendor_links": {
+      "homepage": "https://openai.com",
+      "console": "https://platform.openai.com"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 4149337215329,
+    "openrouter_pricing": {
+      "prompt": 0.1,
+      "completion": 0.6
+    },
+    "arena_rankings": {},
+    "arena_votes": 3874,
+    "data_completeness_pct": 77.4
   },
   {
     "id": "gemini-3-5-flash",
@@ -1290,28 +1495,28 @@
     "type": "闭源",
     "logo": "/logos/google.svg",
     "scores": {
-      "intelligence": 50.2034858842254,
-      "coding": 70.1427902621723,
-      "agentic": 37.4466082474227
+      "intelligence": 51.96360747017,
+      "coding": 78.7,
+      "agentic": 39.7146494845361
     },
     "speed": {
-      "median_tps": 187.999131577137,
-      "ttft_seconds": 18.242493041,
-      "e2e_seconds": 20.902079794435867,
+      "median_tps": 168.290627171755,
+      "ttft_seconds": 19.301951828,
+      "e2e_seconds": 22.273002613197367,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.922222222222222,
-      "hle": 0.409638554216867,
+      "hle": 0.42678405931418,
       "scicode": 0.53125,
-      "lcr": 0.693333333333333,
+      "lcr": 0.81,
       "critpt": 0.131428571428571,
       "ifbench": 0.763265306122449,
       "tau2": 0.953216374269006,
       "terminalbench_hard": 0.409090909090909,
       "mmmu_pro": 0.842774566473988,
-      "gdpval": 1343.23,
+      "gdpval": 1344.6,
       "livecodebench": null,
       "aime25": null
     },
@@ -1338,7 +1543,7 @@
       "parameters": null,
       "release_date": "2026-05-19",
       "knowledge_cutoff": null,
-      "omniscience": 22.6833333333333,
+      "omniscience": 21.1833333333333,
       "modalities": {
         "input": [
           "text",
@@ -1359,114 +1564,19 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 222820083474,
+    "openrouter_weekly_tokens": 196628605685,
     "openrouter_pricing": {
       "prompt": 1.5,
       "completion": 9.0
     },
-    "arena_rankings": {},
-    "arena_votes": 10472,
-    "data_completeness_pct": 77.4
-  },
-  {
-    "id": "gemini-3-6-flash",
-    "name": "Gemini 3.6 Flash",
-    "company": "Google",
-    "type": "闭源",
-    "logo": "/logos/google.svg",
-    "scores": {
-      "intelligence": 50.0675324362393,
-      "coding": 69.239405604106,
-      "agentic": 38.7246941580756
-    },
-    "speed": {
-      "median_tps": 215.2766257379,
-      "ttft_seconds": 16.0877976919999,
-      "e2e_seconds": 18.410390766311423,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.928282828282828,
-      "hle": 0.382761816496756,
-      "scicode": 0.52662037037037,
-      "lcr": 0.696666666666667,
-      "critpt": 0.105714285714286,
-      "ifbench": null,
-      "tau2": null,
-      "terminalbench_hard": null,
-      "mmmu_pro": 0.832369942196532,
-      "gdpval": 1422.6,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 1.5,
-      "output": 7.5,
-      "blended": 3.0,
-      "display": "$1.5/$7.5 (USD/百万token)"
-    },
-    "flags": {
-      "frontier": true,
-      "open_weights": false,
-      "reasoning": false,
-      "image_input": true,
-      "chinese_eval": false,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 1000000,
-      "size_class": "large",
-      "parameters": null,
-      "release_date": "2026-07-21",
-      "knowledge_cutoff": null,
-      "omniscience": 23.5333333333333,
-      "modalities": {
-        "input": [
-          "text",
-          "image",
-          "video",
-          "file",
-          "audio"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 65536
-    },
-    "url": "https://artificialanalysis.ai/models/gemini-3-6-flash",
-    "vendor_links": {
-      "homepage": "https://gemini.google.com",
-      "console": "https://aistudio.google.com"
-    },
-    "license": null,
-    "openrouter_weekly_tokens": 435014443648,
-    "openrouter_pricing": {
-      "prompt": 1.5,
-      "completion": 7.5
-    },
     "arena_rankings": {
-      "text": {
-        "rank": 16,
-        "score": 1483.0,
-        "votes": 8575
-      },
       "code": {
-        "rank": 18,
-        "score": 1533.0,
-        "votes": 3314
-      },
-      "vision": {
-        "rank": 10,
-        "score": 1290.0,
-        "votes": 707
+        "rank": 31,
+        "score": 1493.0,
+        "votes": 2308
       }
     },
-    "arena_votes": 8575,
+    "arena_votes": 2308,
     "data_completeness_pct": 85.0
   },
   {
@@ -1476,28 +1586,28 @@
     "type": "开源",
     "logo": "/logos/deepseek.svg",
     "scores": {
-      "intelligence": 49.9276679335021,
-      "coding": 69.062543348592,
-      "agentic": 45.6650068728522
+      "intelligence": 51.7665776089032,
+      "coding": 78.7,
+      "agentic": 48.414147766323
     },
     "speed": {
-      "median_tps": 122.691560555279,
-      "ttft_seconds": 17.610953660347896,
-      "e2e_seconds": 21.686213586434857,
+      "median_tps": 105.933199014043,
+      "ttft_seconds": 20.116071749352145,
+      "e2e_seconds": 24.836027387940174,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.908080808080808,
-      "hle": 0.368396663577386,
+      "hle": 0.385542168674699,
       "scicode": 0.498842592592593,
-      "lcr": 0.656666666666667,
+      "lcr": 0.743333333333333,
       "critpt": 0.165714285714286,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": null,
-      "gdpval": 1557.92,
+      "gdpval": 1558.43,
       "livecodebench": null,
       "aime25": null
     },
@@ -1524,7 +1634,7 @@
       "parameters": 284,
       "release_date": "2026-07-31",
       "knowledge_cutoff": null,
-      "omniscience": -15.7166666666667,
+      "omniscience": -14.2833333333333,
       "modalities": {
         "input": [
           "text"
@@ -1542,7 +1652,7 @@
     },
     "license": "DeepSeek License",
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 2332333791103,
+    "openrouter_weekly_tokens": 6151333017190,
     "openrouter_pricing": {
       "prompt": 0.09,
       "completion": 0.18
@@ -1552,34 +1662,135 @@
     "data_completeness_pct": 81.2
   },
   {
+    "id": "gemini-3-6-flash",
+    "name": "Gemini 3.6 Flash",
+    "company": "Google",
+    "type": "闭源",
+    "logo": "/logos/google.svg",
+    "scores": {
+      "intelligence": 51.5819376989529,
+      "coding": 77.5,
+      "agentic": 40.5116357388316
+    },
+    "speed": {
+      "median_tps": 213.193765194304,
+      "ttft_seconds": 17.274068599,
+      "e2e_seconds": 19.619352944179145,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.928282828282828,
+      "hle": 0.408248378127896,
+      "scicode": 0.52662037037037,
+      "lcr": 0.79,
+      "critpt": 0.105714285714286,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.832369942196532,
+      "gdpval": 1423.3,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 1.5,
+      "output": 7.5,
+      "blended": 3.0,
+      "display": "$1.5/$7.5 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "large",
+      "parameters": null,
+      "release_date": "2026-07-21",
+      "knowledge_cutoff": null,
+      "omniscience": 22.1333333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video",
+          "file",
+          "audio"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 65536
+    },
+    "url": "https://artificialanalysis.ai/models/gemini-3-6-flash",
+    "vendor_links": {
+      "homepage": "https://gemini.google.com",
+      "console": "https://aistudio.google.com"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 1998425041233,
+    "openrouter_pricing": {
+      "prompt": 1.5,
+      "completion": 7.5
+    },
+    "arena_rankings": {
+      "text": {
+        "rank": 14,
+        "score": 1485.0,
+        "votes": 10968
+      },
+      "code": {
+        "rank": 18,
+        "score": 1536.0,
+        "votes": 3983
+      },
+      "vision": {
+        "rank": 7,
+        "score": 1295.0,
+        "votes": 1205
+      }
+    },
+    "arena_votes": 10968,
+    "data_completeness_pct": 85.0
+  },
+  {
     "id": "claude-sonnet-4-6",
     "name": "Claude Sonnet 4.6",
     "company": "Anthropic",
     "type": "闭源",
     "logo": "/logos/anthropic.svg",
     "scores": {
-      "intelligence": 47.2100024360452,
-      "coding": 63.0271188791788,
-      "agentic": 40.7694879725086
+      "intelligence": 48.3663341204845,
+      "coding": 71.2,
+      "agentic": 42.0753298969072
     },
     "speed": {
-      "median_tps": 56.4449019652684,
-      "ttft_seconds": 89.066422795,
-      "e2e_seconds": 97.92461870979952,
+      "median_tps": 60.12622940947,
+      "ttft_seconds": 105.420066774,
+      "e2e_seconds": 113.73590505141657,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.874747474747475,
-      "hle": 0.299814643188137,
+      "hle": 0.33595922150139,
       "scicode": 0.467592592592593,
-      "lcr": 0.706666666666667,
+      "lcr": 0.74,
       "critpt": 0.0314285714285714,
       "ifbench": 0.565986394557823,
       "tau2": 0.757309941520468,
       "terminalbench_hard": 0.53030303030303,
       "mmmu_pro": 0.732947976878613,
-      "gdpval": 1375.42,
+      "gdpval": 1376.51,
       "livecodebench": null,
       "aime25": null
     },
@@ -1606,7 +1817,7 @@
       "parameters": null,
       "release_date": "2026-02-17",
       "knowledge_cutoff": null,
-      "omniscience": 12.3666666666667,
+      "omniscience": 12.2166666666667,
       "modalities": {
         "input": [
           "text",
@@ -1625,19 +1836,19 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 1001709238172,
+    "openrouter_weekly_tokens": 865852083659,
     "openrouter_pricing": {
       "prompt": 3.0,
       "completion": 15.0
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 27,
-        "score": 1275.0,
-        "votes": 24509
+      "code": {
+        "rank": 23,
+        "score": 1522.0,
+        "votes": 18073
       }
     },
-    "arena_votes": 24509,
+    "arena_votes": 18073,
     "data_completeness_pct": 85.0
   },
   {
@@ -1647,28 +1858,28 @@
     "type": "闭源",
     "logo": "/logos/google.svg",
     "scores": {
-      "intelligence": 46.4594206066426,
-      "coding": 68.825860036066,
-      "agentic": 21.3959484536082
+      "intelligence": 47.7383260259131,
+      "coding": 73.8,
+      "agentic": 23.0454329896907
     },
     "speed": {
-      "median_tps": 131.412129654972,
-      "ttft_seconds": 31.5342316200001,
-      "e2e_seconds": 35.33905543126296,
+      "median_tps": 129.943167964474,
+      "ttft_seconds": 27.92085803,
+      "e2e_seconds": 31.768694032710805,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.941414141414141,
-      "hle": 0.447173308619092,
+      "hle": 0.470342910101946,
       "scicode": 0.58912037037037,
-      "lcr": 0.726666666666667,
+      "lcr": 0.79,
       "critpt": 0.177142857142857,
       "ifbench": 0.771428571428571,
       "tau2": 0.956140350877193,
       "terminalbench_hard": 0.537878787878788,
       "mmmu_pro": 0.824277456647399,
-      "gdpval": 963.24,
+      "gdpval": 965.18,
       "livecodebench": null,
       "aime25": null
     },
@@ -1695,7 +1906,7 @@
       "parameters": null,
       "release_date": "2026-02-19",
       "knowledge_cutoff": null,
-      "omniscience": 32.9333333333333,
+      "omniscience": 31.8833333333333,
       "modalities": {
         "input": [
           "audio",
@@ -1716,29 +1927,24 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 168558226469,
+    "openrouter_weekly_tokens": 148666125278,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 12.0
     },
     "arena_rankings": {
       "text": {
-        "rank": 12,
-        "score": 1485.0,
-        "votes": 89133
+        "rank": 11,
+        "score": 1487.0,
+        "votes": 91328
       },
       "code": {
-        "rank": 19,
-        "score": 1527.0,
-        "votes": 5513
-      },
-      "vision": {
-        "rank": 23,
-        "score": 1278.0,
-        "votes": 36384
+        "rank": 21,
+        "score": 1524.0,
+        "votes": 6069
       }
     },
-    "arena_votes": 89133,
+    "arena_votes": 91328,
     "data_completeness_pct": 85.0
   },
   {
@@ -1748,28 +1954,28 @@
     "type": "闭源",
     "logo": "/logos/alibaba.svg",
     "scores": {
-      "intelligence": 45.9937184770221,
-      "coding": 65.9687543348592,
-      "agentic": 30.5882783505155
+      "intelligence": 46.71222295444,
+      "coding": 74.5,
+      "agentic": 30.8631924398625
     },
     "speed": {
-      "median_tps": 206.00001865745,
-      "ttft_seconds": 14.000851854638569,
-      "e2e_seconds": 16.428036100827555,
+      "median_tps": 202.063807711734,
+      "ttft_seconds": 14.230097991117725,
+      "e2e_seconds": 16.704563882175783,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.923232323232323,
-      "hle": 0.380908248378128,
+      "hle": 0.405004633920297,
       "scicode": 0.488425925925926,
-      "lcr": 0.69,
+      "lcr": 0.746666666666667,
       "critpt": 0.134285714285714,
       "ifbench": 0.805442176870748,
       "tau2": 0.947368421052632,
       "terminalbench_hard": 0.507575757575758,
       "mmmu_pro": null,
-      "gdpval": 1270.95,
+      "gdpval": 1271.58,
       "livecodebench": null,
       "aime25": null
     },
@@ -1796,7 +2002,7 @@
       "parameters": null,
       "release_date": "2026-05-19",
       "knowledge_cutoff": null,
-      "omniscience": 14.0833333333333,
+      "omniscience": 13.4833333333333,
       "modalities": {
         "input": [
           "text"
@@ -1824,13 +2030,13 @@
       "completion": 4.42
     },
     "arena_rankings": {
-      "text": {
-        "rank": 23,
-        "score": 1475.0,
-        "votes": 3695
+      "code": {
+        "rank": 35,
+        "score": 1478.0,
+        "votes": 2547
       }
     },
-    "arena_votes": 3695,
+    "arena_votes": 8044,
     "data_completeness_pct": 90.2
   },
   {
@@ -1840,28 +2046,28 @@
     "type": "开源",
     "logo": "/logos/minimax.svg",
     "scores": {
-      "intelligence": 44.4372686326056,
-      "coding": 58.5691496740186,
-      "agentic": 35.3635635738832
+      "intelligence": 45.3968506399702,
+      "coding": 65.2,
+      "agentic": 36.1195773195876
     },
     "speed": {
-      "median_tps": 84.3054680483285,
-      "ttft_seconds": 25.200845771749176,
-      "e2e_seconds": 31.131659176561453,
+      "median_tps": 102.686003646258,
+      "ttft_seconds": 20.859320340081375,
+      "e2e_seconds": 25.72853310760172,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.929292929292929,
-      "hle": 0.371177015755329,
+      "hle": 0.389712696941613,
       "scicode": 0.453703703703704,
-      "lcr": 0.74,
+      "lcr": 0.803333333333333,
       "critpt": 0.0371428571428571,
       "ifbench": 0.828571428571429,
       "tau2": 0.888888888888889,
       "terminalbench_hard": 0.424242424242424,
       "mmmu_pro": 0.785549132947977,
-      "gdpval": 1388.77,
+      "gdpval": 1389.83,
       "livecodebench": null,
       "aime25": null
     },
@@ -1888,7 +2094,7 @@
       "parameters": 428,
       "release_date": "2026-06-01",
       "knowledge_cutoff": null,
-      "omniscience": 1.36666666666667,
+      "omniscience": 1.35,
       "modalities": {
         "input": [
           "text",
@@ -1912,19 +2118,19 @@
       "output": 16.8,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": 1908561277039,
+    "openrouter_weekly_tokens": 1763155530713,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 48,
-        "score": 1239.0,
-        "votes": 10476
+      "code": {
+        "rank": 32,
+        "score": 1491.0,
+        "votes": 8752
       }
     },
-    "arena_votes": 10476,
+    "arena_votes": 8752,
     "data_completeness_pct": 96.2
   },
   {
@@ -1934,28 +2140,28 @@
     "type": "开源",
     "logo": "/logos/deepseek.svg",
     "scores": {
-      "intelligence": 44.2735554261611,
-      "coding": 59.3632958801498,
-      "agentic": 36.3637319587629
+      "intelligence": 45.2683460762151,
+      "coding": 64.0,
+      "agentic": 37.8070309278351
     },
     "speed": {
-      "median_tps": 66.4645024329181,
-      "ttft_seconds": 67.3782120098498,
-      "e2e_seconds": 74.90102466468981,
+      "median_tps": 63.0003056566869,
+      "ttft_seconds": 71.1212637784234,
+      "e2e_seconds": 79.05773320961464,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.887878787878788,
-      "hle": 0.358665430954588,
+      "hle": 0.375347544022243,
       "scicode": 0.5,
-      "lcr": 0.663333333333333,
+      "lcr": 0.7,
       "critpt": 0.128571428571429,
       "ifbench": 0.764625850340136,
       "tau2": 0.961988304093567,
       "terminalbench_hard": 0.462121212121212,
       "mmmu_pro": null,
-      "gdpval": 1304,
+      "gdpval": 1305.74,
       "livecodebench": null,
       "aime25": null
     },
@@ -1982,7 +2188,7 @@
       "parameters": 1600,
       "release_date": "2026-04-24",
       "knowledge_cutoff": null,
-      "omniscience": -10.0166666666667,
+      "omniscience": -10.7333333333333,
       "modalities": {
         "input": [
           "text"
@@ -2004,97 +2210,20 @@
       "output": 24,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 3107055665504,
+    "openrouter_weekly_tokens": 2640327175968,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
     },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 88.7
-  },
-  {
-    "id": "gpt-5-3-codex",
-    "name": "GPT-5.3 Codex",
-    "company": "OpenAI",
-    "type": "闭源",
-    "logo": "/logos/openai.svg",
-    "scores": {
-      "intelligence": 44.2682925707506,
-      "coding": null,
-      "agentic": null
+    "arena_rankings": {
+      "code": {
+        "rank": 44,
+        "score": 1446.0,
+        "votes": 11908
+      }
     },
-    "speed": {
-      "median_tps": 136.054782834362,
-      "ttft_seconds": 64.1311055675,
-      "e2e_seconds": 67.80609581469122,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.915151515151515,
-      "hle": 0.398980537534754,
-      "scicode": 0.532407407407407,
-      "lcr": 0.74,
-      "critpt": 0.168571428571429,
-      "ifbench": 0.753741496598639,
-      "tau2": 0.859649122807018,
-      "terminalbench_hard": 0.53030303030303,
-      "mmmu_pro": 0.784971098265896,
-      "gdpval": null,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 1.75,
-      "output": 14,
-      "blended": 4.8125,
-      "display": "$1.75/$14 (USD/百万token)"
-    },
-    "flags": {
-      "frontier": true,
-      "open_weights": false,
-      "reasoning": false,
-      "image_input": true,
-      "chinese_eval": false,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": false,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 400000,
-      "size_class": "large",
-      "parameters": null,
-      "release_date": "2026-02-05",
-      "knowledge_cutoff": "2025-08-31",
-      "omniscience": 9.88333333333333,
-      "modalities": {
-        "input": [
-          "text",
-          "image",
-          "file"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 128000
-    },
-    "url": "https://artificialanalysis.ai/models/gpt-5-3-codex",
-    "vendor_links": {
-      "homepage": "https://openai.com",
-      "console": "https://platform.openai.com"
-    },
-    "license": null,
-    "openrouter_weekly_tokens": null,
-    "openrouter_pricing": {
-      "prompt": 1.75,
-      "completion": 14.0
-    },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 63.9
+    "arena_votes": 11908,
+    "data_completeness_pct": 96.2
   },
   {
     "id": "kimi-k2-6",
@@ -2103,28 +2232,28 @@
     "type": "开源",
     "logo": "/logos/kimi.svg",
     "scores": {
-      "intelligence": 44.2196682298639,
-      "coding": 61.7691427382439,
-      "agentic": 30.2685189003436
+      "intelligence": 45.1382483763163,
+      "coding": 65.9,
+      "agentic": 31.1619896907216
     },
     "speed": {
-      "median_tps": 37.7177527663103,
-      "ttft_seconds": 120.80057514529076,
-      "e2e_seconds": 134.0569322537822,
+      "median_tps": 42.4036865222377,
+      "ttft_seconds": 107.67549755716085,
+      "e2e_seconds": 119.46692516659255,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
-      "hle": 0.359128822984245,
+      "hle": 0.374884151992586,
       "scicode": 0.534722222222222,
-      "lcr": 0.696666666666667,
+      "lcr": 0.766666666666667,
       "critpt": 0.08,
       "ifbench": 0.759863945578231,
       "tau2": 0.95906432748538,
       "terminalbench_hard": 0.439393939393939,
       "mmmu_pro": 0.79364161849711,
-      "gdpval": 1188.7,
+      "gdpval": 1190.69,
       "livecodebench": null,
       "aime25": null
     },
@@ -2151,7 +2280,7 @@
       "parameters": 1000,
       "release_date": "2026-04-20",
       "knowledge_cutoff": null,
-      "omniscience": 6.41666666666667,
+      "omniscience": 5.3,
       "modalities": {
         "input": [
           "text",
@@ -2174,19 +2303,19 @@
       "output": 27.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_tokens": 74239478790,
+    "openrouter_weekly_tokens": 132548742638,
     "openrouter_pricing": {
       "prompt": 0.59,
       "completion": 2.48
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 30,
-        "score": 1264.0,
-        "votes": 15404
+      "code": {
+        "rank": 27,
+        "score": 1510.0,
+        "votes": 9261
       }
     },
-    "arena_votes": 15404,
+    "arena_votes": 9261,
     "data_completeness_pct": 96.2
   },
   {
@@ -2196,8 +2325,8 @@
     "type": "闭源",
     "logo": "/logos/motif-technologies.svg",
     "scores": {
-      "intelligence": 44.0803810396244,
-      "coding": 61.9672458038563,
+      "intelligence": 44.8771766927089,
+      "coding": 70.8,
       "agentic": 34.9256597938144
     },
     "speed": {
@@ -2209,15 +2338,15 @@
     },
     "benchmarks": {
       "gpqa": 0.868686868686869,
-      "hle": 0.381835032437442,
+      "hle": 0.403614457831325,
       "scicode": 0.443287037037037,
-      "lcr": 0.613333333333333,
+      "lcr": 0.706666666666667,
       "critpt": 0.06,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": null,
-      "gdpval": 1256.69,
+      "gdpval": 1258.39,
       "livecodebench": null,
       "aime25": null
     },
@@ -2244,7 +2373,7 @@
       "parameters": 314,
       "release_date": "2026-07-14",
       "knowledge_cutoff": null,
-      "omniscience": -17.2833333333333,
+      "omniscience": -17.7666666666667,
       "modalities": null,
       "max_output_tokens": null
     },
@@ -2258,113 +2387,14 @@
     "data_completeness_pct": 41.4
   },
   {
-    "id": "claude-opus-4-6",
-    "name": "Claude Opus 4.6",
-    "company": "Anthropic",
-    "type": "闭源",
-    "logo": "/logos/anthropic.svg",
-    "scores": {
-      "intelligence": 43.7100998174865,
-      "coding": null,
-      "agentic": null
-    },
-    "speed": {
-      "median_tps": 44.0645727264232,
-      "ttft_seconds": 18.123737268,
-      "e2e_seconds": 29.470721229566394,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.895959595959596,
-      "hle": 0.367365967365967,
-      "scicode": 0.518518518518518,
-      "lcr": 0.706666666666667,
-      "critpt": 0.125714285714286,
-      "ifbench": 0.531292517006803,
-      "tau2": 0.921052631578947,
-      "terminalbench_hard": 0.462121212121212,
-      "mmmu_pro": 0.754335260115607,
-      "gdpval": null,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 5,
-      "output": 25,
-      "blended": 10.0,
-      "display": "$5/$25 (USD/百万token)"
-    },
-    "flags": {
-      "frontier": true,
-      "open_weights": false,
-      "reasoning": false,
-      "image_input": true,
-      "chinese_eval": false,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": false,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 1000000,
-      "size_class": "large",
-      "parameters": null,
-      "release_date": "2026-02-05",
-      "knowledge_cutoff": null,
-      "omniscience": 13.5,
-      "modalities": {
-        "input": [
-          "text",
-          "image",
-          "file"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 128000
-    },
-    "url": "https://artificialanalysis.ai/models/claude-opus-4-6-adaptive",
-    "vendor_links": {
-      "homepage": "https://www.anthropic.com",
-      "console": "https://console.anthropic.com"
-    },
-    "license": null,
-    "openrouter_weekly_tokens": 167906576639,
-    "openrouter_pricing": {
-      "prompt": 5.0,
-      "completion": 25.0
-    },
-    "arena_rankings": {
-      "text": {
-        "rank": 4,
-        "score": 1497.0,
-        "votes": 70970
-      },
-      "code": {
-        "rank": 10,
-        "score": 1561.0,
-        "votes": 11755
-      },
-      "vision": {
-        "rank": 5,
-        "score": 1298.0,
-        "votes": 20368
-      }
-    },
-    "arena_votes": 70970,
-    "data_completeness_pct": 69.9
-  },
-  {
     "id": "muse-spark",
     "name": "Muse Spark",
     "company": "Meta",
     "type": "闭源",
     "logo": "/logos/meta.svg",
     "scores": {
-      "intelligence": 43.0555563074727,
-      "coding": 58.6163996393397,
+      "intelligence": 43.5429445491451,
+      "coding": 62.2,
       "agentic": 28.6868762886598
     },
     "speed": {
@@ -2376,15 +2406,15 @@
     },
     "benchmarks": {
       "gpqa": 0.883838383838384,
-      "hle": 0.399443929564411,
+      "hle": 0.406858202038925,
       "scicode": 0.515046296296296,
-      "lcr": 0.696666666666667,
+      "lcr": 0.77,
       "critpt": 0.11330612244898,
       "ifbench": 0.759183673469388,
       "tau2": 0.915204678362573,
       "terminalbench_hard": 0.454545454545455,
       "mmmu_pro": 0.805202312138728,
-      "gdpval": 1144.35,
+      "gdpval": 1147.06,
       "livecodebench": null,
       "aime25": null
     },
@@ -2411,7 +2441,7 @@
       "parameters": null,
       "release_date": "2026-04-08",
       "knowledge_cutoff": null,
-      "omniscience": 4.08333333333333,
+      "omniscience": 7.16666666666667,
       "modalities": {
         "input": [
           "text",
@@ -2431,7 +2461,7 @@
       "homepage": "https://ai.meta.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": null,
+    "openrouter_weekly_tokens": 22575848852,
     "openrouter_pricing": {
       "prompt": 1.25,
       "completion": 4.25
@@ -2439,114 +2469,22 @@
     "arena_rankings": {
       "text": {
         "rank": 9,
-        "score": 1490.0,
-        "votes": 12086
+        "score": 1488.0,
+        "votes": 13476
       },
       "code": {
-        "rank": 17,
+        "rank": 19,
         "score": 1536.0,
-        "votes": 3874
+        "votes": 4491
       },
       "vision": {
-        "rank": 7,
+        "rank": 8,
         "score": 1294.0,
-        "votes": 5583
+        "votes": 5576
       }
     },
-    "arena_votes": 13486,
-    "data_completeness_pct": 52.6
-  },
-  {
-    "id": "mimo-v2-5-pro",
-    "name": "MiMo-V2.5-Pro",
-    "company": "Xiaomi",
-    "type": "开源",
-    "logo": "/logos/xiaomi.svg",
-    "scores": {
-      "intelligence": 42.2394366693508,
-      "coding": 60.189520044389,
-      "agentic": 29.1125979381443
-    },
-    "speed": {
-      "median_tps": 47.0085010169691,
-      "ttft_seconds": 45.32221148953395,
-      "e2e_seconds": 55.95858553216743,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.865656565656566,
-      "hle": 0.337812789620019,
-      "scicode": 0.502314814814815,
-      "lcr": 0.733333333333333,
-      "critpt": 0.04,
-      "ifbench": 0.798639455782313,
-      "tau2": 0.941520467836257,
-      "terminalbench_hard": 0.431818181818182,
-      "mmmu_pro": null,
-      "gdpval": 1264.31,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 0.435,
-      "output": 0.87,
-      "blended": 0.5437,
-      "display": "¥7.0/¥21.0 (≤256K)"
-    },
-    "flags": {
-      "frontier": true,
-      "open_weights": true,
-      "reasoning": false,
-      "image_input": false,
-      "chinese_eval": true,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 1000000,
-      "size_class": "large",
-      "parameters": 1023,
-      "release_date": "2026-04-22",
-      "knowledge_cutoff": null,
-      "omniscience": 3.6,
-      "modalities": {
-        "input": [
-          "text"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 131072
-    },
-    "url": "https://artificialanalysis.ai/models/mimo-v2-5-pro",
-    "vendor_links": {
-      "homepage": "https://mimo.mi.com",
-      "console": "https://platform.xiaomimimo.com"
-    },
-    "license": "XiaomiMiMo License",
-    "cn_pricing": {
-      "input": 7.0,
-      "output": 21.0,
-      "source": "小米开放平台控制台"
-    },
-    "openrouter_weekly_tokens": 561676998692,
-    "openrouter_pricing": {
-      "prompt": 0.43,
-      "completion": 0.87
-    },
-    "arena_rankings": {
-      "vision": {
-        "rank": 47,
-        "score": 1240.0,
-        "votes": 20321
-      }
-    },
-    "arena_votes": 20321,
-    "data_completeness_pct": 96.2
+    "arena_votes": 13476,
+    "data_completeness_pct": 54.9
   },
   {
     "id": "kimi-k2-7-code",
@@ -2555,28 +2493,28 @@
     "type": "开源",
     "logo": "/logos/kimi.svg",
     "scores": {
-      "intelligence": 41.9493685067994,
-      "coding": 60.761721459287,
-      "agentic": 29.5911099656357
+      "intelligence": 43.0244715223736,
+      "coding": 67.4,
+      "agentic": 30.2783951890034
     },
     "speed": {
-      "median_tps": 38.1321274074377,
-      "ttft_seconds": 61.47735480147183,
-      "e2e_seconds": 74.5896575759159,
+      "median_tps": 42.6967029760994,
+      "ttft_seconds": 55.10772429377622,
+      "e2e_seconds": 66.81823037851743,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.895959595959596,
-      "hle": 0.327618164967563,
+      "hle": 0.35032437442076,
       "scicode": 0.474537037037037,
-      "lcr": 0.663333333333333,
+      "lcr": 0.75,
       "critpt": 0.1,
       "ifbench": 0.631292517006803,
       "tau2": 0.900584795321637,
       "terminalbench_hard": 0.446969696969697,
       "mmmu_pro": null,
-      "gdpval": 1187.61,
+      "gdpval": 1190.47,
       "livecodebench": null,
       "aime25": null
     },
@@ -2603,7 +2541,7 @@
       "parameters": 1000,
       "release_date": "2026-06-12",
       "knowledge_cutoff": null,
-      "omniscience": -10.7,
+      "omniscience": -10.2166666666667,
       "modalities": {
         "input": [
           "text",
@@ -2622,58 +2560,58 @@
     },
     "license": "MIT",
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 144541278325,
+    "openrouter_weekly_tokens": 81917206212,
     "openrouter_pricing": {
-      "prompt": 0.73,
+      "prompt": 0.7,
       "completion": 3.5
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 30,
-        "score": 1264.0,
-        "votes": 15404
+      "code": {
+        "rank": 27,
+        "score": 1510.0,
+        "votes": 9261
       }
     },
-    "arena_votes": null,
+    "arena_votes": 4542,
     "data_completeness_pct": 88.7
   },
   {
-    "id": "hy3",
-    "name": "Hy3",
-    "company": "Tencent",
+    "id": "mimo-v2-5-pro",
+    "name": "MiMo-V2.5-Pro",
+    "company": "Xiaomi",
     "type": "开源",
-    "logo": "/logos/tencent.svg",
+    "logo": "/logos/xiaomi.svg",
     "scores": {
-      "intelligence": 41.2305746727135,
-      "coding": 58.8027985851019,
-      "agentic": 30.7299140893471
+      "intelligence": 42.8796821546836,
+      "coding": 65.2,
+      "agentic": 29.5249690721649
     },
     "speed": {
-      "median_tps": 69.6030704306836,
-      "ttft_seconds": 31.473970805399443,
-      "e2e_seconds": 38.65756194449928,
+      "median_tps": 71.9089647022621,
+      "ttft_seconds": 30.612778767214145,
+      "e2e_seconds": 37.5660147381427,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
-      "gpqa": 0.896969696969697,
-      "hle": 0.316033364226135,
-      "scicode": 0.475694444444444,
-      "lcr": 0.666666666666667,
-      "critpt": 0.0485714285714286,
-      "ifbench": null,
-      "tau2": null,
-      "terminalbench_hard": null,
+      "gpqa": 0.865656565656566,
+      "hle": 0.356811862835959,
+      "scicode": 0.502314814814815,
+      "lcr": 0.776666666666667,
+      "critpt": 0.04,
+      "ifbench": 0.798639455782313,
+      "tau2": 0.941520467836257,
+      "terminalbench_hard": 0.431818181818182,
       "mmmu_pro": null,
-      "gdpval": 1215.25,
+      "gdpval": 1266.1,
       "livecodebench": null,
       "aime25": null
     },
     "pricing": {
-      "input": 0.136,
-      "output": 0.5568,
-      "blended": 0.2412,
-      "display": "$0.136/$0.5568 (USD/百万token)"
+      "input": 0.435,
+      "output": 0.87,
+      "blended": 0.5437,
+      "display": "¥7.0/¥21.0 (≤256K)"
     },
     "flags": {
       "frontier": true,
@@ -2687,12 +2625,12 @@
       "tools_calling": true
     },
     "meta": {
-      "context_window": 256000,
+      "context_window": 1000000,
       "size_class": "large",
-      "parameters": 299,
-      "release_date": "2026-07-06",
+      "parameters": 1023,
+      "release_date": "2026-04-22",
       "knowledge_cutoff": null,
-      "omniscience": -18.5,
+      "omniscience": 3.25,
       "modalities": {
         "input": [
           "text"
@@ -2701,104 +2639,33 @@
           "text"
         ]
       },
-      "max_output_tokens": 128000
+      "max_output_tokens": 131072
     },
-    "url": "https://artificialanalysis.ai/models/hy3",
+    "url": "https://artificialanalysis.ai/models/mimo-v2-5-pro",
     "vendor_links": {
-      "homepage": "https://cloud.tencent.com",
-      "console": "https://console.cloud.tencent.com"
+      "homepage": "https://mimo.mi.com",
+      "console": "https://platform.xiaomimimo.com"
     },
-    "license": "Tencent License",
-    "cn_pricing": null,
-    "openrouter_weekly_tokens": 4885017293981,
+    "license": "XiaomiMiMo License",
+    "cn_pricing": {
+      "input": 7.0,
+      "output": 21.0,
+      "source": "小米开放平台控制台"
+    },
+    "openrouter_weekly_tokens": 511818896221,
     "openrouter_pricing": {
-      "prompt": 0.13,
-      "completion": 0.53
+      "prompt": 0.43,
+      "completion": 0.87
     },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 81.2
-  },
-  {
-    "id": "nex-n2-pro",
-    "name": "Nex-N2-Pro",
-    "company": "Nex AGI",
-    "type": "开源",
-    "logo": "/logos/nex-agi.svg",
-    "scores": {
-      "intelligence": 40.9569739949604,
-      "coding": 59.1209772506589,
-      "agentic": 31.0280721649485
+    "arena_rankings": {
+      "code": {
+        "rank": 36,
+        "score": 1474.0,
+        "votes": 11953
+      }
     },
-    "speed": {
-      "median_tps": 130.439425060075,
-      "ttft_seconds": 16.729142792806023,
-      "e2e_seconds": 20.56233969450749,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.891919191919192,
-      "hle": 0.323911028730306,
-      "scicode": 0.417824074074074,
-      "lcr": 0.676666666666667,
-      "critpt": 0.0857142857142857,
-      "ifbench": 0.661904761904762,
-      "tau2": 0.815789473684211,
-      "terminalbench_hard": null,
-      "mmmu_pro": null,
-      "gdpval": 1249.2,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 0.5,
-      "output": 2.5,
-      "blended": 1.0,
-      "display": "$0.5/$2.5 (USD/百万token)"
-    },
-    "flags": {
-      "frontier": true,
-      "open_weights": true,
-      "reasoning": false,
-      "image_input": true,
-      "chinese_eval": false,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 262000,
-      "size_class": "large",
-      "parameters": 397,
-      "release_date": "2026-06-02",
-      "knowledge_cutoff": null,
-      "omniscience": -27.6166666666667,
-      "modalities": {
-        "input": [
-          "text",
-          "image"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 262144
-    },
-    "url": "https://artificialanalysis.ai/models/nex-n2-pro",
-    "vendor_links": {
-      "homepage": "https://nex-agi.com"
-    },
-    "license": "Apache 2.0",
-    "openrouter_weekly_tokens": null,
-    "openrouter_pricing": {
-      "prompt": 0.25,
-      "completion": 1.0
-    },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 78.9
+    "arena_votes": 11953,
+    "data_completeness_pct": 96.2
   },
   {
     "id": "inkling",
@@ -2807,28 +2674,28 @@
     "type": "开源",
     "logo": "/logos/thinking-machines.svg",
     "scores": {
-      "intelligence": 40.736927521956,
-      "coding": 52.0590581217922,
-      "agentic": 32.3414467353952
+      "intelligence": 42.2947721285326,
+      "coding": 55.1,
+      "agentic": 34.1283883161512
     },
     "speed": {
-      "median_tps": 84.788021417895,
-      "ttft_seconds": 25.413032698867177,
-      "e2e_seconds": 31.31009211408396,
+      "median_tps": 80.6080747673118,
+      "ttft_seconds": 26.62442675724947,
+      "e2e_seconds": 32.827279280936835,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.871717171717172,
-      "hle": 0.297034291010195,
+      "hle": 0.318813716404078,
       "scicode": 0.460648148148148,
-      "lcr": 0.633333333333333,
+      "lcr": 0.733333333333333,
       "critpt": 0.0542857142857143,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.734682080924856,
-      "gdpval": 1237.02,
+      "gdpval": 1239.64,
       "livecodebench": null,
       "aime25": null
     },
@@ -2855,7 +2722,7 @@
       "parameters": 975,
       "release_date": "2026-07-15",
       "knowledge_cutoff": null,
-      "omniscience": 2.05,
+      "omniscience": 2,
       "modalities": {
         "input": [
           "text",
@@ -2878,9 +2745,103 @@
       "prompt": 1.0,
       "completion": 4.05
     },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 78.9
+    "arena_rankings": {
+      "code": {
+        "rank": 57,
+        "score": 1410.0,
+        "votes": 5314
+      }
+    },
+    "arena_votes": 5314,
+    "data_completeness_pct": 86.5
+  },
+  {
+    "id": "hy3",
+    "name": "Hy3",
+    "company": "Tencent",
+    "type": "开源",
+    "logo": "/logos/tencent.svg",
+    "scores": {
+      "intelligence": 42.2134908724756,
+      "coding": 64.4,
+      "agentic": 31.4171993127148
+    },
+    "speed": {
+      "median_tps": 67.1778214670446,
+      "ttft_seconds": 32.56935884516752,
+      "e2e_seconds": 40.012291483959395,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.896969696969697,
+      "hle": 0.334569045412419,
+      "scicode": 0.475694444444444,
+      "lcr": 0.746666666666667,
+      "critpt": 0.0485714285714286,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1215.45,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 0.136,
+      "output": 0.5568,
+      "blended": 0.2412,
+      "display": "$0.136/$0.5568 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "large",
+      "parameters": 299,
+      "release_date": "2026-07-06",
+      "knowledge_cutoff": null,
+      "omniscience": -18.4666666666667,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 128000
+    },
+    "url": "https://artificialanalysis.ai/models/hy3",
+    "vendor_links": {
+      "homepage": "https://cloud.tencent.com",
+      "console": "https://console.cloud.tencent.com"
+    },
+    "license": "Tencent License",
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 5693263308696,
+    "openrouter_pricing": {
+      "prompt": 0.13,
+      "completion": 0.53
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 24,
+        "score": 1522.0,
+        "votes": 1729
+      }
+    },
+    "arena_votes": 1729,
+    "data_completeness_pct": 88.7
   },
   {
     "id": "deepseek-v4-flash",
@@ -2889,9 +2850,9 @@
     "type": "开源",
     "logo": "/logos/deepseek.svg",
     "scores": {
-      "intelligence": 40.2825017625236,
-      "coding": 56.1676376751283,
-      "agentic": 31.0645326460481
+      "intelligence": 42.1161800751304,
+      "coding": 61.8,
+      "agentic": 33.7449450171821
     },
     "speed": {
       "median_tps": null,
@@ -2902,22 +2863,22 @@
     },
     "benchmarks": {
       "gpqa": 0.893939393939394,
-      "hle": 0.320667284522706,
+      "hle": 0.348470806302132,
       "scicode": 0.449074074074074,
-      "lcr": 0.63,
+      "lcr": 0.7,
       "critpt": 0.0714285714285714,
       "ifbench": 0.791836734693877,
       "tau2": 0.950292397660819,
       "terminalbench_hard": 0.356060606060606,
       "mmmu_pro": null,
-      "gdpval": 1190.13,
+      "gdpval": 1190.73,
       "livecodebench": null,
       "aime25": null
     },
     "pricing": {
-      "input": 0.135,
+      "input": 0.13,
       "output": 0.28,
-      "blended": 0.1713,
+      "blended": 0.1675,
       "display": "¥1/¥2"
     },
     "flags": {
@@ -2937,7 +2898,7 @@
       "parameters": 284,
       "release_date": "2026-04-24",
       "knowledge_cutoff": null,
-      "omniscience": -22.9,
+      "omniscience": -23.9,
       "modalities": null,
       "max_output_tokens": null
     },
@@ -2955,8 +2916,89 @@
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": null,
     "arena_rankings": {},
-    "arena_votes": 1319,
+    "arena_votes": 1931,
     "data_completeness_pct": 67.7
+  },
+  {
+    "id": "nex-n2-pro",
+    "name": "Nex-N2-Pro",
+    "company": "Nex AGI",
+    "type": "开源",
+    "logo": "/logos/nex-agi.svg",
+    "scores": {
+      "intelligence": 41.6566003289877,
+      "coding": 67.8,
+      "agentic": 31.0280721649485
+    },
+    "speed": {
+      "median_tps": 128.159577475671,
+      "ttft_seconds": 17.26722463822673,
+      "e2e_seconds": 21.1686107839084,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.891919191919192,
+      "hle": 0.337349397590361,
+      "scicode": 0.417824074074074,
+      "lcr": 0.763333333333333,
+      "critpt": 0.0857142857142857,
+      "ifbench": 0.661904761904762,
+      "tau2": 0.815789473684211,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1249.43,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 0.5,
+      "output": 2.5,
+      "blended": 1.0,
+      "display": "$0.5/$2.5 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": false,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 262000,
+      "size_class": "large",
+      "parameters": 397,
+      "release_date": "2026-06-02",
+      "knowledge_cutoff": null,
+      "omniscience": -27.05,
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 262144
+    },
+    "url": "https://artificialanalysis.ai/models/nex-n2-pro",
+    "vendor_links": {
+      "homepage": "https://nex-agi.com"
+    },
+    "license": "Apache 2.0",
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.25,
+      "completion": 1.0
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 78.9
   },
   {
     "id": "inkling-small",
@@ -2965,28 +3007,28 @@
     "type": "开源",
     "logo": "/logos/thinking-machines.svg",
     "scores": {
-      "intelligence": 40.1676200611155,
-      "coding": 52.9464038008046,
-      "agentic": 30.7816391752577
+      "intelligence": 41.1806598798293,
+      "coding": 55.1,
+      "agentic": 31.881295532646
     },
     "speed": {
-      "median_tps": 131.088983033673,
-      "ttft_seconds": 16.90281458430763,
-      "e2e_seconds": 20.71701764263454,
+      "median_tps": 143.04429395145,
+      "ttft_seconds": 15.571225759836715,
+      "e2e_seconds": 19.066646557045885,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.894949494949495,
-      "hle": 0.316033364226135,
+      "hle": 0.333178869323448,
       "scicode": 0.487268518518519,
-      "lcr": 0.63,
+      "lcr": 0.693333333333333,
       "critpt": 0.0828571428571429,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.740462427745665,
-      "gdpval": 1268.07,
+      "gdpval": 1269.13,
       "livecodebench": null,
       "aime25": null
     },
@@ -3013,7 +3055,7 @@
       "parameters": 266,
       "release_date": "2026-07-30",
       "knowledge_cutoff": null,
-      "omniscience": -8.96666666666667,
+      "omniscience": -8.93333333333333,
       "modalities": {
         "input": [
           "text",
@@ -3024,7 +3066,7 @@
           "text"
         ]
       },
-      "max_output_tokens": null
+      "max_output_tokens": 262144
     },
     "url": "https://artificialanalysis.ai/models/inkling-small",
     "vendor_links": {
@@ -3033,98 +3075,12 @@
     "license": null,
     "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.5,
+      "prompt": 0.45,
       "completion": 1.2
     },
     "arena_rankings": {},
-    "arena_votes": null,
+    "arena_votes": 5314,
     "data_completeness_pct": 78.9
-  },
-  {
-    "id": "glm-5-1",
-    "name": "GLM-5.1",
-    "company": "Z AI",
-    "type": "开源",
-    "logo": "/logos/z-ai.svg",
-    "scores": {
-      "intelligence": 40.1570857627689,
-      "coding": 55.7818352059925,
-      "agentic": 29.8734639175258
-    },
-    "speed": {
-      "median_tps": 72.919613421655,
-      "ttft_seconds": 53.715683968979526,
-      "e2e_seconds": 60.57254972207627,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.867676767676768,
-      "hle": 0.280352177942539,
-      "scicode": 0.4375,
-      "lcr": 0.623333333333333,
-      "critpt": 0.0457142857142857,
-      "ifbench": 0.762585034013605,
-      "tau2": 0.976608187134503,
-      "terminalbench_hard": 0.431818181818182,
-      "mmmu_pro": null,
-      "gdpval": 1256.68,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 1.38,
-      "output": 4.4,
-      "blended": 2.135,
-      "display": "¥6/¥24 (<32K)"
-    },
-    "flags": {
-      "frontier": true,
-      "open_weights": true,
-      "reasoning": false,
-      "image_input": false,
-      "chinese_eval": true,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 200000,
-      "size_class": "large",
-      "parameters": 744,
-      "release_date": "2026-04-07",
-      "knowledge_cutoff": null,
-      "omniscience": 1.93333333333333,
-      "modalities": {
-        "input": [
-          "text"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 128000
-    },
-    "url": "https://artificialanalysis.ai/models/glm-5-1",
-    "vendor_links": {
-      "homepage": "https://z.ai",
-      "console": "https://open.bigmodel.cn"
-    },
-    "license": "MIT",
-    "cn_pricing": {
-      "input": 6,
-      "output": 24,
-      "source": "open.bigmodel.cn/pricing"
-    },
-    "openrouter_weekly_tokens": 65446768159,
-    "openrouter_pricing": {
-      "prompt": 0.97,
-      "completion": 3.04
-    },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 88.7
   },
   {
     "id": "qwen3-6-max-preview",
@@ -3133,22 +3089,22 @@
     "type": "闭源",
     "logo": "/logos/alibaba.svg",
     "scores": {
-      "intelligence": 40,
+      "intelligence": 41.074,
       "coding": null,
       "agentic": null
     },
     "speed": {
-      "median_tps": 52.0010231018815,
-      "ttft_seconds": 41.92929738226607,
-      "e2e_seconds": 51.54449281833258,
+      "median_tps": 51.7824221189081,
+      "ttft_seconds": 42.106589086092676,
+      "e2e_seconds": 51.76237534599085,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.887878787878788,
-      "hle": 0.288693234476367,
+      "hle": 0.308155699721965,
       "scicode": 0.46875,
-      "lcr": 0.696666666666667,
+      "lcr": 0.72,
       "critpt": 0.0370612244897959,
       "ifbench": 0.765986394557823,
       "tau2": 0.95906432748538,
@@ -3181,7 +3137,7 @@
       "parameters": null,
       "release_date": "2026-04-20",
       "knowledge_cutoff": null,
-      "omniscience": 10.2,
+      "omniscience": 9.16666666666667,
       "modalities": {
         "input": [
           "text"
@@ -3209,14 +3165,106 @@
       "completion": 6.16
     },
     "arena_rankings": {
-      "text": {
-        "rank": 23,
-        "score": 1475.0,
-        "votes": 3695
+      "code": {
+        "rank": 35,
+        "score": 1478.0,
+        "votes": 2547
       }
     },
-    "arena_votes": null,
+    "arena_votes": 2547,
     "data_completeness_pct": 75.2
+  },
+  {
+    "id": "glm-5-1",
+    "name": "GLM-5.1",
+    "company": "Z AI",
+    "type": "开源",
+    "logo": "/logos/z-ai.svg",
+    "scores": {
+      "intelligence": 40.9675355215124,
+      "coding": 61.8,
+      "agentic": 30.5607491408935
+    },
+    "speed": {
+      "median_tps": 75.8567626830441,
+      "ttft_seconds": 51.32170568389425,
+      "e2e_seconds": 57.91307581775,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.867676767676768,
+      "hle": 0.300741427247451,
+      "scicode": 0.4375,
+      "lcr": 0.68,
+      "critpt": 0.0457142857142857,
+      "ifbench": 0.762585034013605,
+      "tau2": 0.976608187134503,
+      "terminalbench_hard": 0.431818181818182,
+      "mmmu_pro": null,
+      "gdpval": 1258.53,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 1.38,
+      "output": 4.4,
+      "blended": 2.135,
+      "display": "¥6/¥24 (<32K)"
+    },
+    "flags": {
+      "frontier": true,
+      "open_weights": true,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 200000,
+      "size_class": "large",
+      "parameters": 744,
+      "release_date": "2026-04-07",
+      "knowledge_cutoff": null,
+      "omniscience": 0.85,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 131072
+    },
+    "url": "https://artificialanalysis.ai/models/glm-5-1",
+    "vendor_links": {
+      "homepage": "https://z.ai",
+      "console": "https://open.bigmodel.cn"
+    },
+    "license": "MIT",
+    "cn_pricing": {
+      "input": 6,
+      "output": 24,
+      "source": "open.bigmodel.cn/pricing"
+    },
+    "openrouter_weekly_tokens": 23092784040,
+    "openrouter_pricing": {
+      "prompt": 0.95,
+      "completion": 2.99
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 26,
+        "score": 1515.0,
+        "votes": 7853
+      }
+    },
+    "arena_votes": 7853,
+    "data_completeness_pct": 96.2
   },
   {
     "id": "gpt-5-4-mini",
@@ -3225,28 +3273,28 @@
     "type": "闭源",
     "logo": "/logos/openai.svg",
     "scores": {
-      "intelligence": 39.9783061419024,
-      "coding": 56.0787730614509,
-      "agentic": 30.1670996563574
+      "intelligence": 40.9386428957853,
+      "coding": 59.2,
+      "agentic": 31.5416701030928
     },
     "speed": {
-      "median_tps": 189.570698048136,
-      "ttft_seconds": 8.52708251149999,
-      "e2e_seconds": 11.1646209346219,
+      "median_tps": 168.60211551674,
+      "ttft_seconds": 8.56558115800004,
+      "e2e_seconds": 11.531142998476213,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.874747474747475,
-      "hle": 0.266450417052827,
+      "hle": 0.281278962001854,
       "scicode": 0.498842592592593,
-      "lcr": 0.693333333333333,
+      "lcr": 0.73,
       "critpt": 0.1,
       "ifbench": 0.73265306122449,
       "tau2": 0.833333333333333,
       "terminalbench_hard": 0.522727272727273,
       "mmmu_pro": 0.732947976878613,
-      "gdpval": 1169.31,
+      "gdpval": 1171.52,
       "livecodebench": null,
       "aime25": null
     },
@@ -3257,7 +3305,7 @@
       "display": "$0.75/$4.5 (USD/百万token)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": true,
       "open_weights": false,
       "reasoning": false,
       "image_input": true,
@@ -3273,7 +3321,7 @@
       "parameters": null,
       "release_date": "2026-03-17",
       "knowledge_cutoff": "2025-08-31",
-      "omniscience": -18.6833333333333,
+      "omniscience": -18.9166666666667,
       "modalities": {
         "input": [
           "file",
@@ -3292,13 +3340,13 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 73707624002,
+    "openrouter_weekly_tokens": 62348741663,
     "openrouter_pricing": {
       "prompt": 0.75,
       "completion": 4.5
     },
     "arena_rankings": {},
-    "arena_votes": 22962,
+    "arena_votes": 10921,
     "data_completeness_pct": 81.2
   },
   {
@@ -3308,28 +3356,28 @@
     "type": "闭源",
     "logo": "/logos/spacexai.svg",
     "scores": {
-      "intelligence": 39.8026227264218,
-      "coding": 51.4504438895825,
-      "agentic": 28.0356116838488
+      "intelligence": 40.650047316875,
+      "coding": 52.1,
+      "agentic": 28.86035395189
     },
     "speed": {
-      "median_tps": 93.8414460324119,
-      "ttft_seconds": 21.839386250001592,
-      "e2e_seconds": 27.16752238962699,
+      "median_tps": 96.4259000763773,
+      "ttft_seconds": 21.27996191606686,
+      "e2e_seconds": 26.465290749958566,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.894949494949495,
-      "hle": 0.359592215013902,
+      "hle": 0.382761816496756,
       "scicode": 0.502314814814815,
-      "lcr": 0.646666666666667,
+      "lcr": 0.7,
       "critpt": 0.0914285714285714,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.765317919075144,
-      "gdpval": 1213.15,
+      "gdpval": 1215.64,
       "livecodebench": null,
       "aime25": null
     },
@@ -3340,7 +3388,7 @@
       "display": "$1/$2 (USD/百万token)"
     },
     "flags": {
-      "frontier": false,
+      "frontier": true,
       "open_weights": false,
       "reasoning": false,
       "image_input": true,
@@ -3356,7 +3404,7 @@
       "parameters": null,
       "release_date": "2026-06-16",
       "knowledge_cutoff": null,
-      "omniscience": 7.43333333333333,
+      "omniscience": 6.36666666666667,
       "modalities": {
         "input": [
           "text",
@@ -3385,107 +3433,14 @@
     "data_completeness_pct": 75.2
   },
   {
-    "id": "qwen3-7-plus",
-    "name": "Qwen3.7 Plus",
-    "company": "Alibaba",
-    "type": "闭源",
-    "logo": "/logos/alibaba.svg",
-    "scores": {
-      "intelligence": 38.9772279786141,
-      "coding": 55.8611631294216,
-      "agentic": 20.8054719358534
-    },
-    "speed": {
-      "median_tps": 53.2111630841155,
-      "ttft_seconds": 40.02180337991038,
-      "e2e_seconds": 49.41832792513798,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.9,
-      "hle": 0.334105653382762,
-      "scicode": 0.454861111111111,
-      "lcr": 0.65,
-      "critpt": 0.0914285714285714,
-      "ifbench": 0.779591836734694,
-      "tau2": 0.929824561403509,
-      "terminalbench_hard": 0.46969696969697,
-      "mmmu_pro": 0.804624277456647,
-      "gdpval": 942.94,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 0.4,
-      "output": 1.6,
-      "blended": 0.7,
-      "display": "¥1.6/¥6.4"
-    },
-    "flags": {
-      "frontier": false,
-      "open_weights": false,
-      "reasoning": false,
-      "image_input": true,
-      "chinese_eval": true,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 1000000,
-      "size_class": "medium",
-      "parameters": null,
-      "release_date": "2026-06-01",
-      "knowledge_cutoff": null,
-      "omniscience": 2.36666666666667,
-      "modalities": {
-        "input": [
-          "text",
-          "image"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 131072
-    },
-    "url": "https://artificialanalysis.ai/models/qwen3-7-plus",
-    "vendor_links": {
-      "homepage": "https://tongyi.aliyun.com",
-      "console": "https://bailian.aliyun.com"
-    },
-    "license": null,
-    "cn_pricing": {
-      "input": 1.6,
-      "output": 6.4,
-      "source": "bailian.console.aliyun.com (限时8折)"
-    },
-    "openrouter_weekly_tokens": 23852242826,
-    "openrouter_pricing": {
-      "prompt": 0.32,
-      "completion": 1.28
-    },
-    "arena_rankings": {
-      "vision": {
-        "rank": 31,
-        "score": 1262.0,
-        "votes": 6812
-      }
-    },
-    "arena_votes": 6812,
-    "data_completeness_pct": 92.5
-  },
-  {
     "id": "jt-4-1-flash-236b-a21b",
     "name": "JT-4.1 Flash 236B A21B",
     "company": "China Mobile",
     "type": "闭源",
     "logo": "/logos/china-mobile.svg",
     "scores": {
-      "intelligence": 38.8259688304808,
-      "coding": 52.4318560133167,
+      "intelligence": 39.8015597449408,
+      "coding": 59.6,
       "agentic": 34.9080790378007
     },
     "speed": {
@@ -3497,15 +3452,15 @@
     },
     "benchmarks": {
       "gpqa": 0.845454545454545,
-      "hle": 0.161260426320667,
+      "hle": 0.177942539388323,
       "scicode": 0.381944444444444,
-      "lcr": 0.586666666666667,
+      "lcr": 0.703333333333333,
       "critpt": 0,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": 0.641040462427746,
-      "gdpval": 1263.32,
+      "gdpval": 1264.01,
       "livecodebench": null,
       "aime25": null
     },
@@ -3532,7 +3487,7 @@
       "parameters": 236,
       "release_date": "2026-07-09",
       "knowledge_cutoff": null,
-      "omniscience": -10.1166666666667,
+      "omniscience": -8.78333333333333,
       "modalities": null,
       "max_output_tokens": null
     },
@@ -3549,102 +3504,34 @@
     "data_completeness_pct": 45.1
   },
   {
-    "id": "agnes-2-5-pro-alpha",
-    "name": "Agnes 2.5 Pro Alpha",
-    "company": "Sapiens AI",
-    "type": "闭源",
-    "logo": "/logos/sapiens-ai.svg",
-    "scores": {
-      "intelligence": 38.78954684695,
-      "coding": 58.7759224580386,
-      "agentic": 25.1684639175258
-    },
-    "speed": {
-      "median_tps": 141.895435532923,
-      "ttft_seconds": 316.65719548228253,
-      "e2e_seconds": 320.1809170038532,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.875757575757576,
-      "hle": 0.318813716404078,
-      "scicode": 0.422453703703704,
-      "lcr": 0.636666666666667,
-      "critpt": 0.108571428571429,
-      "ifbench": null,
-      "tau2": null,
-      "terminalbench_hard": null,
-      "mmmu_pro": null,
-      "gdpval": 1171.55,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 0.45,
-      "output": 0.9,
-      "blended": 0.5625,
-      "display": "$0.45/$0.9 (USD/百万token)"
-    },
-    "flags": {
-      "frontier": false,
-      "open_weights": false,
-      "reasoning": false,
-      "image_input": false,
-      "chinese_eval": false,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": null
-    },
-    "meta": {
-      "context_window": 1000000,
-      "size_class": "medium",
-      "parameters": null,
-      "release_date": "2026-07-24",
-      "knowledge_cutoff": null,
-      "omniscience": -26.3333333333333,
-      "modalities": null,
-      "max_output_tokens": null
-    },
-    "url": "https://artificialanalysis.ai/models/agnes-2-5-pro-alpha",
-    "vendor_links": {},
-    "license": null,
-    "openrouter_weekly_tokens": null,
-    "openrouter_pricing": null,
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 67.7
-  },
-  {
     "id": "gpt-5-4-nano",
     "name": "GPT-5.4 nano",
     "company": "OpenAI",
     "type": "闭源",
     "logo": "/logos/openai.svg",
     "scores": {
-      "intelligence": 38.2417263132715,
-      "coding": 56.0744382022472,
-      "agentic": 27.5439759450172
+      "intelligence": 39.7139012496964,
+      "coding": 60.7,
+      "agentic": 29.674560137457
     },
     "speed": {
-      "median_tps": 167.067381781294,
-      "ttft_seconds": 4.68147791650006,
-      "e2e_seconds": 7.674282344683081,
+      "median_tps": 154.391681796913,
+      "ttft_seconds": 4.80849022099994,
+      "e2e_seconds": 8.047006662952432,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.817171717171717,
-      "hle": 0.264596848934198,
+      "hle": 0.282669138090825,
       "scicode": 0.46875,
-      "lcr": 0.66,
+      "lcr": 0.72,
       "critpt": 0.0925306122448979,
       "ifbench": 0.759183673469388,
       "tau2": 0.760233918128655,
       "terminalbench_hard": 0.424242424242424,
       "mmmu_pro": 0.653757225433526,
-      "gdpval": 1101.57,
+      "gdpval": 1104.64,
       "livecodebench": null,
       "aime25": null
     },
@@ -3671,7 +3558,7 @@
       "parameters": null,
       "release_date": "2026-03-17",
       "knowledge_cutoff": "2025-08-31",
-      "omniscience": -29.55,
+      "omniscience": -29.4666666666667,
       "modalities": {
         "input": [
           "file",
@@ -3690,58 +3577,126 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 163164844445,
+    "openrouter_weekly_tokens": 80563265406,
     "openrouter_pricing": {
       "prompt": 0.2,
       "completion": 1.25
     },
     "arena_rankings": {},
-    "arena_votes": 19989,
+    "arena_votes": 20516,
     "data_completeness_pct": 81.2
   },
   {
-    "id": "minimax-m2-7",
-    "name": "MiniMax-M2.7",
-    "company": "MiniMax",
-    "type": "开源",
-    "logo": "/logos/minimax.svg",
+    "id": "agnes-2-5-pro-alpha",
+    "name": "Agnes 2.5 Pro Alpha",
+    "company": "Sapiens AI",
+    "type": "闭源",
+    "logo": "/logos/sapiens-ai.svg",
     "scores": {
-      "intelligence": 38.1344947250387,
-      "coding": 52.6173879872382,
-      "agentic": 25.5759931271478
+      "intelligence": 39.7073049186574,
+      "coding": 67.0,
+      "agentic": 25.4433780068729
     },
     "speed": {
-      "median_tps": 111.512072463371,
-      "ttft_seconds": 23.82796524386347,
-      "e2e_seconds": 28.311784699055085,
+      "median_tps": 130.818951002359,
+      "ttft_seconds": 17.920612100445936,
+      "e2e_seconds": 21.742688307057495,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
-      "gpqa": 0.873737373737374,
-      "hle": 0.280815569972196,
-      "scicode": 0.469907407407407,
-      "lcr": 0.686666666666667,
-      "critpt": 0.00571428571428571,
-      "ifbench": 0.757142857142857,
-      "tau2": 0.847953216374269,
-      "terminalbench_hard": 0.393939393939394,
+      "gpqa": 0.875757575757576,
+      "hle": 0.33595922150139,
+      "scicode": 0.422453703703704,
+      "lcr": 0.73,
+      "critpt": 0.108571428571429,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
       "mmmu_pro": null,
-      "gdpval": 1157.5,
+      "gdpval": 1175.54,
       "livecodebench": null,
       "aime25": null
     },
     "pricing": {
-      "input": 0.3,
-      "output": 1.2,
-      "blended": 0.525,
-      "display": "¥2.1/¥8.4"
+      "input": 0.45,
+      "output": 0.9,
+      "blended": 0.5625,
+      "display": "$0.45/$0.9 (USD/百万token)"
     },
     "flags": {
       "frontier": false,
-      "open_weights": true,
+      "open_weights": false,
       "reasoning": false,
       "image_input": false,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": null
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "medium",
+      "parameters": null,
+      "release_date": "2026-07-24",
+      "knowledge_cutoff": null,
+      "omniscience": -25.1,
+      "modalities": null,
+      "max_output_tokens": null
+    },
+    "url": "https://artificialanalysis.ai/models/agnes-2-5-pro-alpha",
+    "vendor_links": {},
+    "license": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": null,
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 67.7
+  },
+  {
+    "id": "qwen3-7-plus",
+    "name": "Qwen3.7 Plus",
+    "company": "Alibaba",
+    "type": "闭源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 39.3745992994168,
+      "coding": 61.0,
+      "agentic": 20.6909243986254
+    },
+    "speed": {
+      "median_tps": 56.5461683798102,
+      "ttft_seconds": 37.74559065137404,
+      "e2e_seconds": 46.58792275496755,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.9,
+      "hle": 0.356348470806302,
+      "scicode": 0.454861111111111,
+      "lcr": 0.69,
+      "critpt": 0.0914285714285714,
+      "ifbench": 0.779591836734694,
+      "tau2": 0.929824561403509,
+      "terminalbench_hard": 0.46969696969697,
+      "mmmu_pro": 0.804624277456647,
+      "gdpval": 944.76,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 0.4,
+      "output": 1.6,
+      "blended": 0.7,
+      "display": "¥1.6/¥6.4"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": true,
       "chinese_eval": true,
       "has_speed": true,
       "has_pricing": true,
@@ -3749,15 +3704,16 @@
       "tools_calling": true
     },
     "meta": {
-      "context_window": 204800,
-      "size_class": "large",
-      "parameters": 230,
-      "release_date": "2026-03-18",
+      "context_window": 1000000,
+      "size_class": "medium",
+      "parameters": null,
+      "release_date": "2026-06-01",
       "knowledge_cutoff": null,
-      "omniscience": 0.683333333333333,
+      "omniscience": 1.08333333333333,
       "modalities": {
         "input": [
-          "text"
+          "text",
+          "image"
         ],
         "output": [
           "text"
@@ -3765,25 +3721,25 @@
       },
       "max_output_tokens": 131072
     },
-    "url": "https://artificialanalysis.ai/models/minimax-m2-7",
+    "url": "https://artificialanalysis.ai/models/qwen3-7-plus",
     "vendor_links": {
-      "homepage": "https://www.minimaxi.com",
-      "console": "https://platform.minimaxi.com"
+      "homepage": "https://tongyi.aliyun.com",
+      "console": "https://bailian.aliyun.com"
     },
     "license": null,
     "cn_pricing": {
-      "input": 2.1,
-      "output": 8.4,
-      "source": "platform.minimaxi.com"
+      "input": 1.6,
+      "output": 6.4,
+      "source": "bailian.console.aliyun.com (限时8折)"
     },
-    "openrouter_weekly_tokens": 148467891602,
+    "openrouter_weekly_tokens": null,
     "openrouter_pricing": {
-      "prompt": 0.25,
-      "completion": 1.0
+      "prompt": 0.32,
+      "completion": 1.28
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 88.7
+    "data_completeness_pct": 82.7
   },
   {
     "id": "glm-5-turbo",
@@ -3792,7 +3748,7 @@
     "type": "闭源",
     "logo": "/logos/z-ai.svg",
     "scores": {
-      "intelligence": 38.0574061409517,
+      "intelligence": 39.05428516474749,
       "coding": null,
       "agentic": null
     },
@@ -3805,9 +3761,9 @@
     },
     "benchmarks": {
       "gpqa": 0.847474747474747,
-      "hle": 0.253938832252085,
+      "hle": 0.277571825764597,
       "scicode": 0.436342592592593,
-      "lcr": 0.606666666666667,
+      "lcr": 0.666666666666667,
       "critpt": 0.00285714285714286,
       "ifbench": 0.731972789115646,
       "tau2": 0.985380116959064,
@@ -3840,7 +3796,7 @@
       "parameters": null,
       "release_date": "2026-03-15",
       "knowledge_cutoff": null,
-      "omniscience": -15.0833333333333,
+      "omniscience": -16.3666666666667,
       "modalities": {
         "input": [
           "text"
@@ -3862,14 +3818,106 @@
       "output": 22.0,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 65446768159,
+    "openrouter_weekly_tokens": 23092784040,
     "openrouter_pricing": {
       "prompt": 1.2,
       "completion": 4.0
     },
     "arena_rankings": {},
-    "arena_votes": null,
+    "arena_votes": 6969,
     "data_completeness_pct": 39.8
+  },
+  {
+    "id": "minimax-m2-7",
+    "name": "MiniMax-M2.7",
+    "company": "MiniMax",
+    "type": "开源",
+    "logo": "/logos/minimax.svg",
+    "scores": {
+      "intelligence": 38.8713536464198,
+      "coding": 55.4,
+      "agentic": 25.9196357388316
+    },
+    "speed": {
+      "median_tps": 60.095545767733,
+      "ttft_seconds": 42.6972284995887,
+      "e2e_seconds": 51.01731268573589,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.873737373737374,
+      "hle": 0.29610750695088,
+      "scicode": 0.469907407407407,
+      "lcr": 0.753333333333333,
+      "critpt": 0.00571428571428571,
+      "ifbench": 0.757142857142857,
+      "tau2": 0.847953216374269,
+      "terminalbench_hard": 0.393939393939394,
+      "mmmu_pro": null,
+      "gdpval": 1160.5,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 1.2,
+      "blended": 0.525,
+      "display": "¥2.1/¥8.4"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 204800,
+      "size_class": "large",
+      "parameters": 230,
+      "release_date": "2026-03-18",
+      "knowledge_cutoff": null,
+      "omniscience": 0.766666666666667,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 131072
+    },
+    "url": "https://artificialanalysis.ai/models/minimax-m2-7",
+    "vendor_links": {
+      "homepage": "https://www.minimaxi.com",
+      "console": "https://platform.minimaxi.com"
+    },
+    "license": null,
+    "cn_pricing": {
+      "input": 2.1,
+      "output": 8.4,
+      "source": "platform.minimaxi.com"
+    },
+    "openrouter_weekly_tokens": 181680769213,
+    "openrouter_pricing": {
+      "prompt": 0.27,
+      "completion": 1.08
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 63,
+        "score": 1398.0,
+        "votes": 12473
+      }
+    },
+    "arena_votes": 12473,
+    "data_completeness_pct": 96.2
   },
   {
     "id": "nemotron-3-ultra",
@@ -3878,28 +3926,28 @@
     "type": "开源",
     "logo": "/logos/nvidia.svg",
     "scores": {
-      "intelligence": 37.7619546243905,
-      "coding": 49.2652413649605,
-      "agentic": 27.3604776632302
+      "intelligence": 38.3185469149774,
+      "coding": 53.9,
+      "agentic": 27.4979347079038
     },
     "speed": {
-      "median_tps": 131.62810511497,
-      "ttft_seconds": 18.981006329842273,
-      "e2e_seconds": 22.77958718431311,
+      "median_tps": 144.450525670209,
+      "ttft_seconds": 17.928664467413697,
+      "e2e_seconds": 21.390057201570556,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.866666666666667,
-      "hle": 0.265523632993513,
+      "hle": 0.284059314179796,
       "scicode": 0.399305555555556,
-      "lcr": 0.67,
+      "lcr": 0.71,
       "critpt": 0.0314285714285714,
       "ifbench": 0.813605442176871,
       "tau2": 0.833333333333333,
       "terminalbench_hard": 0.363636363636364,
       "mmmu_pro": null,
-      "gdpval": 1161.53,
+      "gdpval": 1163.37,
       "livecodebench": null,
       "aime25": null
     },
@@ -3926,7 +3974,7 @@
       "parameters": 550,
       "release_date": "2026-06-04",
       "knowledge_cutoff": null,
-      "omniscience": -0.833333333333333,
+      "omniscience": -0.4,
       "modalities": {
         "input": [
           "text"
@@ -3943,7 +3991,7 @@
       "console": "https://build.nvidia.com"
     },
     "license": "NVIDIA Open License",
-    "openrouter_weekly_tokens": 2354204569851,
+    "openrouter_weekly_tokens": 2332440139923,
     "openrouter_pricing": {
       "prompt": 0.6,
       "completion": 3.6
@@ -3953,123 +4001,34 @@
     "data_completeness_pct": 81.2
   },
   {
-    "id": "grok-4-3",
-    "name": "Grok 4.3",
-    "company": "SpaceXAI",
-    "type": "闭源",
-    "logo": "/logos/spacexai.svg",
-    "scores": {
-      "intelligence": 37.5766393431307,
-      "coding": 42.2462373422111,
-      "agentic": 24.0959828178694
-    },
-    "speed": {
-      "median_tps": 140.801956394912,
-      "ttft_seconds": 19.8057965264999,
-      "e2e_seconds": 23.356883548313952,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.901010101010101,
-      "hle": 0.35032437442076,
-      "scicode": 0.47337962962963,
-      "lcr": 0.643333333333333,
-      "critpt": 0.08,
-      "ifbench": 0.812925170068027,
-      "tau2": 0.976608187134503,
-      "terminalbench_hard": 0.378787878787879,
-      "mmmu_pro": 0.78092485549133,
-      "gdpval": 1084.82,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 1.25,
-      "output": 2.5,
-      "blended": 1.5625,
-      "display": "$1.25/$2.5 (USD/百万token)"
-    },
-    "flags": {
-      "frontier": false,
-      "open_weights": false,
-      "reasoning": false,
-      "image_input": true,
-      "chinese_eval": false,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 1000000,
-      "size_class": "large",
-      "parameters": null,
-      "release_date": "2026-04-30",
-      "knowledge_cutoff": null,
-      "omniscience": 18.3166666666667,
-      "modalities": {
-        "input": [
-          "text",
-          "image",
-          "file"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": null
-    },
-    "url": "https://artificialanalysis.ai/models/grok-4-3",
-    "vendor_links": {
-      "homepage": "https://x.ai",
-      "console": "https://console.x.ai"
-    },
-    "license": null,
-    "openrouter_weekly_tokens": null,
-    "openrouter_pricing": {
-      "prompt": 1.25,
-      "completion": 2.5
-    },
-    "arena_rankings": {
-      "vision": {
-        "rank": 45,
-        "score": 1244.0,
-        "votes": 17601
-      }
-    },
-    "arena_votes": 17601,
-    "data_completeness_pct": 82.7
-  },
-  {
     "id": "mimo-v2-5",
     "name": "MiMo-V2.5",
     "company": "Xiaomi",
     "type": "开源",
     "logo": "/logos/xiaomi.svg",
     "scores": {
-      "intelligence": 37.2025847113282,
-      "coding": 56.7987931751977,
-      "agentic": 23.7079793814433
+      "intelligence": 38.0433645155222,
+      "coding": 63.7,
+      "agentic": 24.395264604811
     },
     "speed": {
-      "median_tps": 80.3684445340578,
-      "ttft_seconds": 27.76173388138146,
-      "e2e_seconds": 33.983081114101815,
+      "median_tps": 92.8080614249376,
+      "ttft_seconds": 24.537790550067452,
+      "e2e_seconds": 29.9252535820843,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.84949494949495,
-      "hle": 0.2516218721038,
+      "hle": 0.272011121408712,
       "scicode": 0.430555555555556,
-      "lcr": 0.626666666666667,
+      "lcr": 0.683333333333333,
       "critpt": 0.0371428571428571,
       "ifbench": 0.671428571428571,
       "tau2": 0.906432748538012,
       "terminalbench_hard": 0.416666666666667,
       "mmmu_pro": 0.754335260115607,
-      "gdpval": 1148.31,
+      "gdpval": 1151.31,
       "livecodebench": null,
       "aime25": null
     },
@@ -4096,7 +4055,7 @@
       "parameters": 310,
       "release_date": "2026-04-22",
       "knowledge_cutoff": null,
-      "omniscience": -9.33333333333333,
+      "omniscience": -9.83333333333333,
       "modalities": {
         "input": [
           "text",
@@ -4121,104 +4080,20 @@
       "output": 2,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 5411755012012,
+    "openrouter_weekly_tokens": 5304870672038,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 47,
-        "score": 1240.0,
-        "votes": 20321
+      "code": {
+        "rank": 36,
+        "score": 1474.0,
+        "votes": 11953
       }
     },
-    "arena_votes": 20321,
+    "arena_votes": 11953,
     "data_completeness_pct": 96.2
-  },
-  {
-    "id": "qwen3-6-27b",
-    "name": "Qwen3.6 27B",
-    "company": "Alibaba",
-    "type": "开源",
-    "logo": "/logos/alibaba.svg",
-    "scores": {
-      "intelligence": 37.0516798775037,
-      "coding": 53.7210431405188,
-      "agentic": 27.0255773195876
-    },
-    "speed": {
-      "median_tps": 58.8888703831754,
-      "ttft_seconds": 100.13259176264731,
-      "e2e_seconds": 108.6231604685271,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.842424242424242,
-      "hle": 0.215940685820204,
-      "scicode": 0.398148148148148,
-      "lcr": 0.686666666666667,
-      "critpt": 0.0114285714285714,
-      "ifbench": 0.675510204081633,
-      "tau2": 0.941520467836257,
-      "terminalbench_hard": 0.348484848484849,
-      "mmmu_pro": 0.746242774566474,
-      "gdpval": 1139.63,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 0.6,
-      "output": 3.6,
-      "blended": 1.35,
-      "display": "$0.6/$3.6 (USD/百万token)"
-    },
-    "flags": {
-      "frontier": false,
-      "open_weights": true,
-      "reasoning": false,
-      "image_input": true,
-      "chinese_eval": true,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 262144,
-      "size_class": "small",
-      "parameters": 27.8,
-      "release_date": "2026-04-22",
-      "knowledge_cutoff": null,
-      "omniscience": -19.7833333333333,
-      "modalities": {
-        "input": [
-          "text",
-          "image",
-          "video"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 131072
-    },
-    "url": "https://artificialanalysis.ai/models/qwen3-6-27b",
-    "vendor_links": {
-      "homepage": "https://tongyi.aliyun.com",
-      "console": "https://bailian.aliyun.com"
-    },
-    "license": "Apache 2.0",
-    "cn_pricing": null,
-    "openrouter_weekly_tokens": null,
-    "openrouter_pricing": {
-      "prompt": 0.29,
-      "completion": 2.4
-    },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 78.9
   },
   {
     "id": "grok-4-20-0309-v2",
@@ -4227,22 +4102,22 @@
     "type": "闭源",
     "logo": "/logos/spacexai.svg",
     "scores": {
-      "intelligence": 37,
+      "intelligence": 37.9549,
       "coding": null,
       "agentic": null
     },
     "speed": {
-      "median_tps": 180.750972691693,
-      "ttft_seconds": 14.0243289915,
-      "e2e_seconds": 16.79056583412463,
+      "median_tps": 152.639207013772,
+      "ttft_seconds": 16.123993006,
+      "e2e_seconds": 19.399691365431906,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.911111111111111,
-      "hle": 0.322057460611678,
+      "hle": 0.345227062094532,
       "scicode": 0.456018518518519,
-      "lcr": 0.58,
+      "lcr": 0.623333333333333,
       "critpt": 0.0657142857142857,
       "ifbench": 0.812244897959184,
       "tau2": 0.929824561403509,
@@ -4275,7 +4150,7 @@
       "parameters": null,
       "release_date": "2026-04-07",
       "knowledge_cutoff": null,
-      "omniscience": 15.35,
+      "omniscience": 14.8333333333333,
       "modalities": {
         "input": [
           "text",
@@ -4304,13 +4179,358 @@
     "data_completeness_pct": 60.2
   },
   {
+    "id": "grok-4-3",
+    "name": "Grok 4.3",
+    "company": "SpaceXAI",
+    "type": "闭源",
+    "logo": "/logos/spacexai.svg",
+    "scores": {
+      "intelligence": 37.9469171465042,
+      "coding": 39.7,
+      "agentic": 24.1647113402062
+    },
+    "speed": {
+      "median_tps": 118.845679372127,
+      "ttft_seconds": 19.064603321,
+      "e2e_seconds": 23.27173985841177,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.901010101010101,
+      "hle": 0.372103799814643,
+      "scicode": 0.47337962962963,
+      "lcr": 0.66,
+      "critpt": 0.08,
+      "ifbench": 0.812925170068027,
+      "tau2": 0.976608187134503,
+      "terminalbench_hard": 0.378787878787879,
+      "mmmu_pro": 0.78092485549133,
+      "gdpval": 1087.7,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 1.25,
+      "output": 2.5,
+      "blended": 1.5625,
+      "display": "$1.25/$2.5 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "large",
+      "parameters": null,
+      "release_date": "2026-04-30",
+      "knowledge_cutoff": null,
+      "omniscience": 17.9833333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
+    },
+    "url": "https://artificialanalysis.ai/models/grok-4-3",
+    "vendor_links": {
+      "homepage": "https://x.ai",
+      "console": "https://console.x.ai"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 1.25,
+      "completion": 2.5
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 80,
+        "score": 1357.0,
+        "votes": 10856
+      }
+    },
+    "arena_votes": 10856,
+    "data_completeness_pct": 82.7
+  },
+  {
+    "id": "ling-3-0-flash",
+    "name": "Ling-3.0-flash",
+    "company": "InclusionAI",
+    "type": "闭源",
+    "logo": "/logos/inclusionai.svg",
+    "scores": {
+      "intelligence": 37.820825176113,
+      "coding": 55.4,
+      "agentic": 29.3111649484536
+    },
+    "speed": {
+      "median_tps": 334.365636707984,
+      "ttft_seconds": 7.9600637807083405,
+      "e2e_seconds": 9.455432757385426,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.854545454545454,
+      "hle": 0.236793327154773,
+      "scicode": 0.41087962962963,
+      "lcr": 0.67,
+      "critpt": 0.0171428571428571,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1107.63,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 0.075,
+      "output": 0.22,
+      "blended": 0.1112,
+      "display": "$0.075/$0.22 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": "medium",
+      "parameters": 124,
+      "release_date": "2026-08-04",
+      "knowledge_cutoff": null,
+      "omniscience": -17.8833333333333,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 32768
+    },
+    "url": "https://artificialanalysis.ai/models/ling-3-0-flash",
+    "vendor_links": {
+      "homepage": "https://www.inclusion-ai.org"
+    },
+    "license": null,
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 1135465464081,
+    "openrouter_pricing": {
+      "prompt": 0.02,
+      "completion": 0.06
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 81.2
+  },
+  {
+    "id": "qwen3-6-27b",
+    "name": "Qwen3.6 27B",
+    "company": "Alibaba",
+    "type": "开源",
+    "logo": "/logos/alibaba.svg",
+    "scores": {
+      "intelligence": 37.7024638948414,
+      "coding": 60.7,
+      "agentic": 27.506676975945
+    },
+    "speed": {
+      "median_tps": 52.7897610334029,
+      "ttft_seconds": 111.26791524816633,
+      "e2e_seconds": 120.7394489359893,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.842424242424242,
+      "hle": 0.230769230769231,
+      "scicode": 0.398148148148148,
+      "lcr": 0.733333333333333,
+      "critpt": 0.0114285714285714,
+      "ifbench": 0.675510204081633,
+      "tau2": 0.941520467836257,
+      "terminalbench_hard": 0.348484848484849,
+      "mmmu_pro": 0.746242774566474,
+      "gdpval": 1141.17,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 0.6,
+      "output": 3.6,
+      "blended": 1.35,
+      "display": "$0.6/$3.6 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": false,
+      "image_input": true,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 262144,
+      "size_class": "small",
+      "parameters": 27.8,
+      "release_date": "2026-04-22",
+      "knowledge_cutoff": null,
+      "omniscience": -20.0166666666667,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 262144
+    },
+    "url": "https://artificialanalysis.ai/models/qwen3-6-27b",
+    "vendor_links": {
+      "homepage": "https://tongyi.aliyun.com",
+      "console": "https://bailian.aliyun.com"
+    },
+    "license": "Apache 2.0",
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.6,
+      "completion": 3.6
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 78.9
+  },
+  {
+    "id": "gemini-3-5-flash-lite",
+    "name": "Gemini 3.5 Flash-Lite",
+    "company": "Google",
+    "type": "闭源",
+    "logo": "/logos/google.svg",
+    "scores": {
+      "intelligence": 37.4387063722681,
+      "coding": 53.6,
+      "agentic": 27.1629243986254
+    },
+    "speed": {
+      "median_tps": 388.831510474832,
+      "ttft_seconds": 10.4176566884999,
+      "e2e_seconds": 11.703560702270316,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.838383838383838,
+      "hle": 0.188137164040778,
+      "scicode": 0.408564814814815,
+      "lcr": 0.746666666666667,
+      "critpt": 0,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": 0.790173410404624,
+      "gdpval": 1141.07,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 2.5,
+      "blended": 0.85,
+      "display": "$0.3/$2.5 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "medium",
+      "parameters": null,
+      "release_date": "2026-07-21",
+      "knowledge_cutoff": null,
+      "omniscience": 5.23333333333333,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video",
+          "file",
+          "audio"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 65536
+    },
+    "url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
+    "vendor_links": {
+      "homepage": "https://gemini.google.com",
+      "console": "https://aistudio.google.com"
+    },
+    "license": null,
+    "openrouter_weekly_tokens": 165620115830,
+    "openrouter_pricing": {
+      "prompt": 0.3,
+      "completion": 2.5
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 43,
+        "score": 1453.0,
+        "votes": 215
+      }
+    },
+    "arena_votes": 215,
+    "data_completeness_pct": 85.0
+  },
+  {
     "id": "grok-4-20-0309",
     "name": "Grok 4.20 0309",
     "company": "SpaceXAI",
     "type": "闭源",
     "logo": "/logos/spacexai.svg",
     "scores": {
-      "intelligence": 36.5,
+      "intelligence": 37.43505,
       "coding": null,
       "agentic": null
     },
@@ -4323,9 +4543,9 @@
     },
     "benchmarks": {
       "gpqa": 0.884848484848485,
-      "hle": 0.300278035217794,
+      "hle": 0.323911028730306,
       "scicode": 0.446759259259259,
-      "lcr": 0.59,
+      "lcr": 0.606666666666667,
       "critpt": 0.06,
       "ifbench": 0.829251700680272,
       "tau2": 0.964912280701754,
@@ -4358,7 +4578,7 @@
       "parameters": null,
       "release_date": "2026-03-10",
       "knowledge_cutoff": null,
-      "omniscience": 13.3666666666667,
+      "omniscience": 12.95,
       "modalities": {
         "input": [
           "text",
@@ -4387,104 +4607,13 @@
     "data_completeness_pct": 45.1
   },
   {
-    "id": "gemini-3-5-flash-lite",
-    "name": "Gemini 3.5 Flash-Lite",
-    "company": "Google",
-    "type": "闭源",
-    "logo": "/logos/google.svg",
-    "scores": {
-      "intelligence": 36.4776366072529,
-      "coding": 49.3241954501318,
-      "agentic": 26.8192817869416
-    },
-    "speed": {
-      "median_tps": 391.462611984209,
-      "ttft_seconds": 9.28170765799998,
-      "e2e_seconds": 10.558968843852819,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.838383838383838,
-      "hle": 0.17516218721038,
-      "scicode": 0.408564814814815,
-      "lcr": 0.62,
-      "critpt": 0,
-      "ifbench": null,
-      "tau2": null,
-      "terminalbench_hard": null,
-      "mmmu_pro": 0.790173410404624,
-      "gdpval": 1136.97,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 0.3,
-      "output": 2.5,
-      "blended": 0.85,
-      "display": "$0.3/$2.5 (USD/百万token)"
-    },
-    "flags": {
-      "frontier": false,
-      "open_weights": false,
-      "reasoning": false,
-      "image_input": true,
-      "chinese_eval": false,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 1000000,
-      "size_class": "medium",
-      "parameters": null,
-      "release_date": "2026-07-21",
-      "knowledge_cutoff": null,
-      "omniscience": 6.91666666666667,
-      "modalities": {
-        "input": [
-          "text",
-          "image",
-          "video",
-          "file",
-          "audio"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 65536
-    },
-    "url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
-    "vendor_links": {
-      "homepage": "https://gemini.google.com",
-      "console": "https://aistudio.google.com"
-    },
-    "license": null,
-    "openrouter_weekly_tokens": 107072084669,
-    "openrouter_pricing": {
-      "prompt": 0.3,
-      "completion": 2.5
-    },
-    "arena_rankings": {
-      "vision": {
-        "rank": 35,
-        "score": 1257.0,
-        "votes": 680
-      }
-    },
-    "arena_votes": 680,
-    "data_completeness_pct": 85.0
-  },
-  {
     "id": "mimo-v2-omni-0327",
     "name": "MiMo-V2-Omni-0327",
     "company": "Xiaomi",
     "type": "闭源",
     "logo": "/logos/xiaomi.svg",
     "scores": {
-      "intelligence": 36.390250149454,
+      "intelligence": 37.32094308038736,
       "coding": null,
       "agentic": null
     },
@@ -4497,9 +4626,9 @@
     },
     "benchmarks": {
       "gpqa": 0.854545454545455,
-      "hle": 0.204355885078777,
+      "hle": 0.225671918443003,
       "scicode": 0.394675925925926,
-      "lcr": 0.636666666666667,
+      "lcr": 0.696666666666667,
       "critpt": 0.00857142857142857,
       "ifbench": 0.673469387755102,
       "tau2": 0.880116959064328,
@@ -4532,7 +4661,7 @@
       "parameters": null,
       "release_date": "2026-03-27",
       "knowledge_cutoff": null,
-      "omniscience": -14.0166666666667,
+      "omniscience": -15.1,
       "modalities": {
         "input": [
           "text",
@@ -4557,16 +4686,16 @@
       "output": 14.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 5411755012012,
+    "openrouter_weekly_tokens": 5304870672038,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 47,
-        "score": 1240.0,
-        "votes": 20321
+      "code": {
+        "rank": 49,
+        "score": 1437.0,
+        "votes": 10952
       }
     },
     "arena_votes": null,
@@ -4579,7 +4708,7 @@
     "type": "闭源",
     "logo": "/logos/xiaomi.svg",
     "scores": {
-      "intelligence": 34.9910417939545,
+      "intelligence": 35.86618615317448,
       "coding": null,
       "agentic": null
     },
@@ -4592,9 +4721,9 @@
     },
     "benchmarks": {
       "gpqa": 0.828282828282828,
-      "hle": 0.199258572752549,
+      "hle": 0.221037998146432,
       "scicode": 0.366898148148148,
-      "lcr": 0.666666666666667,
+      "lcr": 0.716666666666667,
       "critpt": 0.0114285714285714,
       "ifbench": 0.535374149659864,
       "tau2": 0.912280701754386,
@@ -4627,7 +4756,7 @@
       "parameters": null,
       "release_date": "2026-03-19",
       "knowledge_cutoff": null,
-      "omniscience": -17.4333333333333,
+      "omniscience": -20.1333333333333,
       "modalities": {
         "input": [
           "text",
@@ -4652,16 +4781,16 @@
       "output": 14.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 5411755012012,
+    "openrouter_weekly_tokens": 5304870672038,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
     },
     "arena_rankings": {
-      "vision": {
-        "rank": 47,
-        "score": 1240.0,
-        "votes": 20321
+      "code": {
+        "rank": 49,
+        "score": 1437.0,
+        "votes": 10952
       }
     },
     "arena_votes": null,
@@ -4674,7 +4803,7 @@
     "type": "闭源",
     "logo": "/logos/z-ai.svg",
     "scores": {
-      "intelligence": 34.4926006493217,
+      "intelligence": 35.34795689509973,
       "coding": null,
       "agentic": null
     },
@@ -4687,9 +4816,9 @@
     },
     "benchmarks": {
       "gpqa": 0.809090909090909,
-      "hle": 0.158480074142725,
+      "hle": 0.171455050973123,
       "scicode": 0.435185185185185,
-      "lcr": 0.61,
+      "lcr": 0.656666666666667,
       "critpt": 0.00571428571428571,
       "ifbench": 0.610884353741497,
       "tau2": 0.985380116959064,
@@ -4722,7 +4851,7 @@
       "parameters": null,
       "release_date": "2026-04-01",
       "knowledge_cutoff": null,
-      "omniscience": -18.9833333333333,
+      "omniscience": -19.2833333333333,
       "modalities": {
         "input": [
           "image",
@@ -4746,100 +4875,20 @@
       "output": 28.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 65446768159,
+    "openrouter_weekly_tokens": 23092784040,
     "openrouter_pricing": {
       "prompt": 1.2,
       "completion": 4.0
     },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 39.8
-  },
-  {
-    "id": "kat-coder-pro-v2",
-    "name": "KAT-Coder-Pro V2",
-    "company": "KwaiKAT",
-    "type": "闭源",
-    "logo": "/logos/kwaikat.svg",
-    "scores": {
-      "intelligence": 33.6906701494162,
-      "coding": 59.4616971840755,
-      "agentic": 15.5303986254295
+    "arena_rankings": {
+      "code": {
+        "rank": 61,
+        "score": 1399.0,
+        "votes": 2091
+      }
     },
-    "speed": {
-      "median_tps": 106.591290772011,
-      "ttft_seconds": 1.56295335150002,
-      "e2e_seconds": 6.253768111117241,
-      "p05_tps": null,
-      "p95_tps": null
-    },
-    "benchmarks": {
-      "gpqa": 0.854545454545454,
-      "hle": 0.159870250231696,
-      "scicode": 0.383101851851852,
-      "lcr": 0.66,
-      "critpt": 0,
-      "ifbench": 0.666666666666667,
-      "tau2": 0.894736842105263,
-      "terminalbench_hard": 0.492424242424242,
-      "mmmu_pro": null,
-      "gdpval": 902.38,
-      "livecodebench": null,
-      "aime25": null
-    },
-    "pricing": {
-      "input": 0.3,
-      "output": 1.2,
-      "blended": 0.525,
-      "display": "¥2.1/¥8.4"
-    },
-    "flags": {
-      "frontier": false,
-      "open_weights": false,
-      "reasoning": false,
-      "image_input": false,
-      "chinese_eval": true,
-      "has_speed": true,
-      "has_pricing": true,
-      "data_complete": true,
-      "tools_calling": true
-    },
-    "meta": {
-      "context_window": 256000,
-      "size_class": "medium",
-      "parameters": null,
-      "release_date": "2026-03-27",
-      "knowledge_cutoff": null,
-      "omniscience": -21.6,
-      "modalities": {
-        "input": [
-          "text"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "max_output_tokens": 80000
-    },
-    "url": "https://artificialanalysis.ai/models/kat-coder-pro-v2",
-    "vendor_links": {
-      "homepage": "https://www.streamlake.com",
-      "console": "https://console.streamlake.com"
-    },
-    "license": null,
-    "cn_pricing": {
-      "input": 2.1,
-      "output": 8.4,
-      "source": "console.streamlake.com"
-    },
-    "openrouter_weekly_tokens": null,
-    "openrouter_pricing": {
-      "prompt": 0.3,
-      "completion": 1.2
-    },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 82.7
+    "arena_votes": 2091,
+    "data_completeness_pct": 47.4
   },
   {
     "id": "hy3-preview",
@@ -4848,7 +4897,7 @@
     "type": "开源",
     "logo": "/logos/tencent.svg",
     "scores": {
-      "intelligence": 33.578853562193,
+      "intelligence": 34.39793404861205,
       "coding": null,
       "agentic": null
     },
@@ -4861,9 +4910,9 @@
     },
     "benchmarks": {
       "gpqa": 0.866666666666667,
-      "hle": 0.255329008341057,
+      "hle": 0.277571825764597,
       "scicode": 0.412037037037037,
-      "lcr": 0.546666666666667,
+      "lcr": 0.603333333333333,
       "critpt": 0.0457142857142857,
       "ifbench": 0.631292517006803,
       "tau2": 0.926900584795322,
@@ -4896,7 +4945,7 @@
       "parameters": 295,
       "release_date": "2026-04-23",
       "knowledge_cutoff": null,
-      "omniscience": -34.6333333333333,
+      "omniscience": -35.05,
       "modalities": {
         "input": [
           "text"
@@ -4918,14 +4967,20 @@
       "output": 15.9,
       "source": "cloud.tencent.com/doc/1729/97731"
     },
-    "openrouter_weekly_tokens": 4885017293981,
+    "openrouter_weekly_tokens": 5693263308696,
     "openrouter_pricing": {
       "prompt": 0.06,
       "completion": 0.21
     },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 58.6
+    "arena_rankings": {
+      "code": {
+        "rank": 41,
+        "score": 1458.0,
+        "votes": 14124
+      }
+    },
+    "arena_votes": 14124,
+    "data_completeness_pct": 66.2
   },
   {
     "id": "gpt-5-5-instant",
@@ -4934,7 +4989,7 @@
     "type": "闭源",
     "logo": "/logos/openai.svg",
     "scores": {
-      "intelligence": 33.5183896507769,
+      "intelligence": 34.335069719912724,
       "coding": null,
       "agentic": null
     },
@@ -4947,9 +5002,9 @@
     },
     "benchmarks": {
       "gpqa": 0.846464646464646,
-      "hle": 0.202965708989805,
+      "hle": 0.215940685820204,
       "scicode": 0.503472222222222,
-      "lcr": 0.556666666666667,
+      "lcr": 0.64,
       "critpt": 0.0257142857142857,
       "ifbench": 0.714965986394558,
       "tau2": 0.494152046783626,
@@ -4982,7 +5037,7 @@
       "parameters": null,
       "release_date": "2026-05-05",
       "knowledge_cutoff": "2025-08-31",
-      "omniscience": 10.3333333333333,
+      "omniscience": 11.15,
       "modalities": {
         "input": [
           "file",
@@ -5001,25 +5056,14 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 159819330023,
+    "openrouter_weekly_tokens": 93335001904,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
     },
-    "arena_rankings": {
-      "text": {
-        "rank": 27,
-        "score": 1473.0,
-        "votes": 25680
-      },
-      "vision": {
-        "rank": 24,
-        "score": 1277.0,
-        "votes": 7227
-      }
-    },
-    "arena_votes": 25680,
-    "data_completeness_pct": 58.6
+    "arena_rankings": {},
+    "arena_votes": 53407,
+    "data_completeness_pct": 51.1
   },
   {
     "id": "longcat-2-0",
@@ -5028,28 +5072,28 @@
     "type": "开源",
     "logo": "/logos/longcat.svg",
     "scores": {
-      "intelligence": 33.4782132881577,
-      "coding": 45.2637328339576,
+      "intelligence": 33.9115265265627,
+      "coding": 50.2,
       "agentic": 21.8205017182131
     },
     "speed": {
-      "median_tps": 42.7623235767819,
-      "ttft_seconds": 49.44854306728958,
-      "e2e_seconds": 61.141078883361985,
+      "median_tps": 41.5585669383591,
+      "ttft_seconds": 51.1802954930139,
+      "e2e_seconds": 63.211509195392395,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.77979797979798,
-      "hle": 0.320667284522706,
+      "hle": 0.336886005560704,
       "scicode": 0.354166666666667,
-      "lcr": 0.58,
+      "lcr": 0.626666666666667,
       "critpt": 0.0257142857142857,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": null,
-      "gdpval": 1028.6,
+      "gdpval": 1031.41,
       "livecodebench": null,
       "aime25": null
     },
@@ -5076,7 +5120,7 @@
       "parameters": 1600,
       "release_date": "2026-06-29",
       "knowledge_cutoff": null,
-      "omniscience": -22.6333333333333,
+      "omniscience": -23.4166666666667,
       "modalities": {
         "input": [
           "text"
@@ -5103,34 +5147,120 @@
     "data_completeness_pct": 78.9
   },
   {
+    "id": "kat-coder-pro-v2",
+    "name": "KAT-Coder-Pro V2",
+    "company": "KwaiKAT",
+    "type": "闭源",
+    "logo": "/logos/kwaikat.svg",
+    "scores": {
+      "intelligence": 33.9029041855358,
+      "coding": 70.0,
+      "agentic": 15.5303986254295
+    },
+    "speed": {
+      "median_tps": 107.218851820485,
+      "ttft_seconds": 1.83058978200018,
+      "e2e_seconds": 6.4939488043215805,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.854545454545454,
+      "hle": 0.161260426320667,
+      "scicode": 0.383101851851852,
+      "lcr": 0.7,
+      "critpt": 0,
+      "ifbench": 0.666666666666667,
+      "tau2": 0.894736842105263,
+      "terminalbench_hard": 0.492424242424242,
+      "mmmu_pro": null,
+      "gdpval": 905.91,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 0.3,
+      "output": 1.2,
+      "blended": 0.525,
+      "display": "¥2.1/¥8.4"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "medium",
+      "parameters": null,
+      "release_date": "2026-03-27",
+      "knowledge_cutoff": null,
+      "omniscience": -22.4666666666667,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 80000
+    },
+    "url": "https://artificialanalysis.ai/models/kat-coder-pro-v2",
+    "vendor_links": {
+      "homepage": "https://www.streamlake.com",
+      "console": "https://console.streamlake.com"
+    },
+    "license": null,
+    "cn_pricing": {
+      "input": 2.1,
+      "output": 8.4,
+      "source": "console.streamlake.com"
+    },
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 0.3,
+      "completion": 1.2
+    },
+    "arena_rankings": {},
+    "arena_votes": null,
+    "data_completeness_pct": 82.7
+  },
+  {
     "id": "qwen3-6-35b-a3b",
     "name": "Qwen3.6 35B A3B",
     "company": "Alibaba",
     "type": "开源",
     "logo": "/logos/alibaba.svg",
     "scores": {
-      "intelligence": 31.649611240178,
-      "coding": 41.8838431127757,
-      "agentic": 21.413264604811
+      "intelligence": 32.1290714769579,
+      "coding": 44.9,
+      "agentic": 21.6194501718213
     },
     "speed": {
-      "median_tps": 158.709372732088,
-      "ttft_seconds": 36.25436379576495,
-      "e2e_seconds": 39.40477634792111,
+      "median_tps": 118.648827158855,
+      "ttft_seconds": 47.9870927803709,
+      "e2e_seconds": 52.20120944694837,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.841414141414142,
-      "hle": 0.201575532900834,
+      "hle": 0.222428174235403,
       "scicode": 0.357638888888889,
-      "lcr": 0.636666666666667,
+      "lcr": 0.666666666666667,
       "critpt": 0.00285714285714286,
       "ifbench": 0.643537414965986,
       "tau2": 0.953216374269006,
       "terminalbench_hard": 0.348484848484849,
       "mmmu_pro": 0.75028901734104,
-      "gdpval": 1053.49,
+      "gdpval": 1055.56,
       "livecodebench": null,
       "aime25": null
     },
@@ -5157,7 +5287,7 @@
       "parameters": 36,
       "release_date": "2026-04-16",
       "knowledge_cutoff": null,
-      "omniscience": -21.4333333333333,
+      "omniscience": -22.1833333333333,
       "modalities": {
         "input": [
           "text",
@@ -5182,9 +5312,15 @@
       "prompt": 0.14,
       "completion": 1.0
     },
-    "arena_rankings": {},
+    "arena_rankings": {
+      "code": {
+        "rank": 98,
+        "score": 1250.0,
+        "votes": 1521
+      }
+    },
     "arena_votes": null,
-    "data_completeness_pct": 78.9
+    "data_completeness_pct": 86.5
   },
   {
     "id": "g9v3-39a5b",
@@ -5193,8 +5329,8 @@
     "type": "开源",
     "logo": "/logos/ai9stars.svg",
     "scores": {
-      "intelligence": 30.9350557853601,
-      "coding": 31.7077611319184,
+      "intelligence": 31.3911067523848,
+      "coding": 28.5,
       "agentic": 28.7170721649485
     },
     "speed": {
@@ -5206,15 +5342,15 @@
     },
     "benchmarks": {
       "gpqa": 0.755555555555556,
-      "hle": 0.117238183503244,
+      "hle": 0.133920296570899,
       "scicode": 0.381944444444444,
-      "lcr": 0.56,
+      "lcr": 0.603333333333333,
       "critpt": 0,
       "ifbench": null,
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": null,
-      "gdpval": 1193.69,
+      "gdpval": 1195.63,
       "livecodebench": null,
       "aime25": null
     },
@@ -5241,7 +5377,7 @@
       "parameters": 39,
       "release_date": "2026-08-03",
       "knowledge_cutoff": null,
-      "omniscience": 4.25,
+      "omniscience": 3.96666666666667,
       "modalities": null,
       "max_output_tokens": null
     },
@@ -5261,8 +5397,8 @@
     "type": "开源",
     "logo": "/logos/inclusionai.svg",
     "scores": {
-      "intelligence": 30.5727263188268,
-      "coding": 42.8344777361631,
+      "intelligence": 31.1437767748944,
+      "coding": 43.1,
       "agentic": 18.8602680412371
     },
     "speed": {
@@ -5274,15 +5410,15 @@
     },
     "benchmarks": {
       "gpqa": 0.856565656565657,
-      "hle": 0.182576459684893,
+      "hle": 0.215940685820204,
       "scicode": 0.423611111111111,
-      "lcr": 0.643333333333333,
+      "lcr": 0.673333333333333,
       "critpt": 0.0371428571428571,
       "ifbench": 0.445578231292517,
       "tau2": 0.923976608187135,
       "terminalbench_hard": 0.287878787878788,
       "mmmu_pro": null,
-      "gdpval": 921.23,
+      "gdpval": 923.48,
       "livecodebench": null,
       "aime25": null
     },
@@ -5309,7 +5445,7 @@
       "parameters": 1000,
       "release_date": "2026-05-08",
       "knowledge_cutoff": null,
-      "omniscience": -37.75,
+      "omniscience": -37.7,
       "modalities": {
         "input": [
           "text"
@@ -5346,28 +5482,28 @@
     "type": "开源",
     "logo": "/logos/stepfun.svg",
     "scores": {
-      "intelligence": 30.2677234652192,
-      "coding": 39.5659938965182,
-      "agentic": 21.5294020618557
+      "intelligence": 30.8992089144321,
+      "coding": 39.3,
+      "agentic": 21.735587628866
     },
     "speed": {
-      "median_tps": null,
-      "ttft_seconds": null,
-      "e2e_seconds": null,
+      "median_tps": 367.835174197915,
+      "ttft_seconds": 6.377647700946822,
+      "e2e_seconds": 7.736952180433532,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.809090909090909,
-      "hle": 0.199258572752549,
+      "hle": 0.214087117701576,
       "scicode": 0.400462962962963,
-      "lcr": 0.636666666666667,
+      "lcr": 0.696666666666667,
       "critpt": 0.0228571428571429,
       "ifbench": 0.672789115646258,
       "tau2": 0.985380116959064,
       "terminalbench_hard": 0.356060606060606,
       "mmmu_pro": 0.753179190751445,
-      "gdpval": 1016.25,
+      "gdpval": 1017.68,
       "livecodebench": null,
       "aime25": null
     },
@@ -5383,9 +5519,9 @@
       "reasoning": false,
       "image_input": true,
       "chinese_eval": true,
-      "has_speed": false,
+      "has_speed": true,
       "has_pricing": true,
-      "data_complete": false,
+      "data_complete": true,
       "tools_calling": true
     },
     "meta": {
@@ -5394,7 +5530,7 @@
       "parameters": 198,
       "release_date": "2026-05-29",
       "knowledge_cutoff": null,
-      "omniscience": -37.55,
+      "omniscience": -37.2833333333333,
       "modalities": {
         "input": [
           "text",
@@ -5418,14 +5554,103 @@
       "output": 8,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 1624291267065,
+    "openrouter_weekly_tokens": 1321368170228,
     "openrouter_pricing": {
       "prompt": 0.2,
       "completion": 1.15
     },
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 73.7
+    "data_completeness_pct": 88.7
+  },
+  {
+    "id": "mistral-medium-3-5",
+    "name": "Mistral Medium 3.5",
+    "company": "Mistral",
+    "type": "开源",
+    "logo": "/logos/mistral.svg",
+    "scores": {
+      "intelligence": 30.3922256057425,
+      "coding": 50.6,
+      "agentic": 19.2051821305842
+    },
+    "speed": {
+      "median_tps": 147.176420112529,
+      "ttft_seconds": 15.289101711577466,
+      "e2e_seconds": 18.68638505097183,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.748484848484849,
+      "hle": 0.137627432808156,
+      "scicode": 0.395833333333333,
+      "lcr": 0.653333333333333,
+      "critpt": 0,
+      "ifbench": 0.687755102040816,
+      "tau2": 0.941520467836257,
+      "terminalbench_hard": 0.333333333333333,
+      "mmmu_pro": 0.648554913294798,
+      "gdpval": 933,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 1.5,
+      "output": 7.5,
+      "blended": 3.0,
+      "display": "$1.5/$7.5 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": true,
+      "reasoning": false,
+      "image_input": true,
+      "chinese_eval": false,
+      "has_speed": true,
+      "has_pricing": true,
+      "data_complete": true,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 256000,
+      "size_class": "medium",
+      "parameters": 128,
+      "release_date": "2026-04-29",
+      "knowledge_cutoff": null,
+      "omniscience": -36.8,
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": null
+    },
+    "url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+    "vendor_links": {
+      "homepage": "https://mistral.ai",
+      "console": "https://console.mistral.ai"
+    },
+    "license": "MRL (Mistral Research License)",
+    "openrouter_weekly_tokens": null,
+    "openrouter_pricing": {
+      "prompt": 1.5,
+      "completion": 7.5
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 95,
+        "score": 1267.0,
+        "votes": 2076
+      }
+    },
+    "arena_votes": 2076,
+    "data_completeness_pct": 86.5
   },
   {
     "id": "ling-2-6-1t",
@@ -5434,7 +5659,7 @@
     "type": "开源",
     "logo": "/logos/inclusionai.svg",
     "scores": {
-      "intelligence": 26.0516751710776,
+      "intelligence": 26.57192667536943,
       "coding": null,
       "agentic": null
     },
@@ -5447,9 +5672,9 @@
     },
     "benchmarks": {
       "gpqa": 0.751515151515151,
-      "hle": 0.082483781278962,
+      "hle": 0.0871177015755329,
       "scicode": 0.37037037037037,
-      "lcr": 0.346666666666667,
+      "lcr": 0.38,
       "critpt": 0.00285714285714286,
       "ifbench": 0.568707482993197,
       "tau2": 0.89766081871345,
@@ -5482,7 +5707,7 @@
       "parameters": 1026,
       "release_date": "2026-04-23",
       "knowledge_cutoff": null,
-      "omniscience": -51,
+      "omniscience": -50.6,
       "modalities": {
         "input": [
           "text"
@@ -5508,9 +5733,15 @@
       "prompt": 0.07,
       "completion": 0.62
     },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 56.4
+    "arena_rankings": {
+      "code": {
+        "rank": 41,
+        "score": 1458.0,
+        "votes": 14124
+      }
+    },
+    "arena_votes": 14124,
+    "data_completeness_pct": 63.9
   },
   {
     "id": "command-a",
@@ -5519,28 +5750,28 @@
     "type": "开源",
     "logo": "/logos/cohere.svg",
     "scores": {
-      "intelligence": 22.5095334451485,
-      "coding": 27.8467020391177,
-      "agentic": 9.15806529209622
+      "intelligence": 22.7702225702102,
+      "coding": 22.8,
+      "agentic": 9.22679381443299
     },
     "speed": {
-      "median_tps": 205.134305170053,
-      "ttft_seconds": 10.181257489007873,
-      "e2e_seconds": 12.618685005509844,
+      "median_tps": 196.982899761822,
+      "ttft_seconds": 10.61942948162368,
+      "e2e_seconds": 13.157720879529615,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.760606060606061,
-      "hle": 0.113531047265987,
+      "hle": 0.119555143651529,
       "scicode": 0.378472222222222,
-      "lcr": 0.46,
+      "lcr": 0.486666666666667,
       "critpt": 0.00285714285714286,
       "ifbench": 0.739455782312925,
       "tau2": 0.807017543859649,
       "terminalbench_hard": 0.25,
       "mmmu_pro": 0.632369942196532,
-      "gdpval": 712.94,
+      "gdpval": 717.78,
       "livecodebench": null,
       "aime25": null
     },
@@ -5567,7 +5798,7 @@
       "parameters": 218,
       "release_date": "2026-05-20",
       "knowledge_cutoff": null,
-      "omniscience": -3.98333333333333,
+      "omniscience": -4.01666666666667,
       "modalities": {
         "input": [
           "text"
@@ -5600,28 +5831,28 @@
     "type": "开源",
     "logo": "/logos/arcee-ai.svg",
     "scores": {
-      "intelligence": 18.1600095755902,
-      "coding": 25.7698709945901,
+      "intelligence": 18.6291319275016,
+      "coding": 20.6,
       "agentic": 3.65033676975945
     },
     "speed": {
-      "median_tps": 195.162736870442,
-      "ttft_seconds": 11.213363550524976,
-      "e2e_seconds": 13.775328032156134,
+      "median_tps": 205.906183554404,
+      "ttft_seconds": 10.810707377547224,
+      "e2e_seconds": 13.238997734684029,
       "p05_tps": null,
       "p95_tps": null
     },
     "benchmarks": {
       "gpqa": 0.751515151515151,
-      "hle": 0.146895273401297,
+      "hle": 0.158480074142725,
       "scicode": 0.361111111111111,
-      "lcr": 0.33,
+      "lcr": 0.383333333333333,
       "critpt": 0.00857142857142857,
       "ifbench": 0.562585034013605,
       "tau2": 0.900584795321637,
       "terminalbench_hard": 0.227272727272727,
       "mmmu_pro": null,
-      "gdpval": 560.35,
+      "gdpval": 562.55,
       "livecodebench": null,
       "aime25": null
     },
@@ -5648,7 +5879,7 @@
       "parameters": 399,
       "release_date": "2026-04-01",
       "knowledge_cutoff": null,
-      "omniscience": -44.1833333333333,
+      "omniscience": -44.0666666666667,
       "modalities": {
         "input": [
           "text"
@@ -5670,9 +5901,15 @@
       "prompt": 0.22,
       "completion": 0.85
     },
-    "arena_rankings": {},
-    "arena_votes": null,
-    "data_completeness_pct": 78.9
+    "arena_rankings": {
+      "code": {
+        "rank": 101,
+        "score": 1239.0,
+        "votes": 1274
+      }
+    },
+    "arena_votes": 1274,
+    "data_completeness_pct": 86.5
   },
   {
     "id": "gpt-5-4-pro",
@@ -5748,13 +5985,13 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 214966191794,
+    "openrouter_weekly_tokens": 147172487940,
     "openrouter_pricing": {
       "prompt": 30.0,
       "completion": 180.0
     },
     "arena_rankings": {},
-    "arena_votes": 19989,
+    "arena_votes": 20516,
     "data_completeness_pct": 43.6
   }
 ]
