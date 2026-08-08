@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T00:36:55.112907+00:00",
+  "generated_at": "2026-08-08T12:55:02.541422+00:00",
   "version": "1.0",
   "partial_update": false,
   "sources": {
@@ -23,12 +23,12 @@
       "cached": false,
       "degraded": false,
       "error": null,
-      "coverage": 0.559
+      "coverage": 0.471
     }
   },
   "stats": {
     "total_models": 68,
-    "data_complete": 50,
+    "data_complete": 51,
     "frontier": 36,
     "open_weights": 29
   }
