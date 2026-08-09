@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-09T00:38:49.256232+00:00",
+  "generated_at": "2026-08-09T12:57:40.995997+00:00",
   "version": "1.0",
-  "partial_update": false,
+  "partial_update": true,
   "sources": {
     "artificial_analysis": {
       "ok": true,
@@ -19,11 +19,11 @@
       "pricing_coverage": 0.926
     },
     "arena": {
-      "ok": true,
-      "cached": false,
-      "degraded": false,
-      "error": null,
-      "coverage": 0.471
+      "ok": false,
+      "cached": true,
+      "degraded": true,
+      "error": "============================================================\nFetching Arena Leaderboard snapshots...\nLatest snapshot date: 2026-08-09\n  [text  ] 20 models, last updated Aug 6, 2026\n  [code  ] 50 models, last updated Aug 6, 2026\n  [vision] 20 models, last updated Aug 6, 2026\n[WARN] Arena 数据量异常减少: 新数据 90 条，缓存 158 条。降级使用缓存。",
+      "coverage": 0.574
     }
   },
   "stats": {
