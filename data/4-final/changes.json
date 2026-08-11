@@ -1,13 +1,48 @@
 {
-  "generated_at": "2026-08-10",
-  "date": "2026-08-10",
-  "compare_with": "2026-08-09",
+  "generated_at": "2026-08-11",
+  "date": "2026-08-11",
+  "compare_with": "2026-08-10",
   "summary": {
-    "new_models": 0,
+    "new_models": 1,
     "dropped_models": 0,
-    "price_changes": 0,
+    "price_changes": 2,
     "ranking_changes": 0,
     "intel_changes": 0
   },
-  "changes": []
+  "changes": [
+    {
+      "type": "new",
+      "model": "Muse Glimmer",
+      "id": "muse-glimmer",
+      "rank": 56,
+      "first_seen": "2026-08-11",
+      "intelligence": 35.1,
+      "tps": null,
+      "price_input": null,
+      "detail": "智商 35",
+      "icon": "🆕"
+    },
+    {
+      "type": "price_up",
+      "model": "Qwen3.6 35B A3B",
+      "id": "qwen3-6-35b-a3b",
+      "field": "input",
+      "old": 0.248,
+      "new": 0.375,
+      "change_pct": 51.2,
+      "detail": "输入价 $0.248→$0.375 (+51%)",
+      "icon": "💸"
+    },
+    {
+      "type": "price_up",
+      "model": "Qwen3.6 35B A3B",
+      "id": "qwen3-6-35b-a3b",
+      "field": "output",
+      "old": 1.485,
+      "new": 2.25,
+      "change_pct": 51.5,
+      "detail": "输出价 $1.485→$2.25 (+52%)",
+      "icon": "💸"
+    }
+  ]
 }
