@@ -3,10 +3,10 @@
   "date": "2026-08-13",
   "compare_with": "2026-08-11",
   "summary": {
-    "new_models": 5,
+    "new_models": 6,
     "dropped_models": 0,
     "price_changes": 0,
-    "ranking_changes": 17,
+    "ranking_changes": 38,
     "intel_changes": 0
   },
   "changes": [
@@ -24,9 +24,21 @@
     },
     {
       "type": "new",
+      "model": "DeepSeek V4 Pro 0813",
+      "id": "deepseek-v4-pro-0813",
+      "rank": 16,
+      "first_seen": "2026-08-13",
+      "intelligence": 53.0,
+      "tps": null,
+      "price_input": 0.435,
+      "detail": "智商 53 · $0.435/M",
+      "icon": "🆕"
+    },
+    {
+      "type": "new",
       "model": "Solar Pro 4",
       "id": "solar-pro-4",
-      "rank": 35,
+      "rank": 36,
       "first_seen": "2026-08-13",
       "intelligence": 41.6,
       "tps": 62,
@@ -38,7 +50,7 @@
       "type": "new",
       "model": "Solar Open2 250B",
       "id": "solar-open2-250b",
-      "rank": 55,
+      "rank": 56,
       "first_seen": "2026-08-13",
       "intelligence": 37.4,
       "tps": null,
@@ -50,7 +62,7 @@
       "type": "new",
       "model": "A.X-K2",
       "id": "a-x-k2",
-      "rank": 60,
+      "rank": 61,
       "first_seen": "2026-08-13",
       "intelligence": 35.0,
       "tps": null,
@@ -62,7 +74,7 @@
       "type": "new",
       "model": "K-EXAONE 2.0 0803",
       "id": "k-exaone-2-0-0803",
-      "rank": 68,
+      "rank": 69,
       "first_seen": "2026-08-13",
       "intelligence": 31.0,
       "tps": null,
@@ -72,22 +84,12 @@
     },
     {
       "type": "ranking_down",
-      "model": "Ling-2.6-1T",
-      "id": "ling-2-6-1t",
-      "old_rank": 66,
-      "new_rank": 71,
-      "change": -5,
-      "detail": "#66 → #71",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
       "model": "GPT-5.4 Pro",
       "id": "gpt-5-4-pro",
       "old_rank": 69,
-      "new_rank": 74,
-      "change": -5,
-      "detail": "#69 → #74",
+      "new_rank": 75,
+      "change": -6,
+      "detail": "#69 → #75",
       "icon": "🔻"
     },
     {
@@ -95,9 +97,9 @@
       "model": "Mistral Medium 3.5",
       "id": "mistral-medium-3-5",
       "old_rank": 65,
-      "new_rank": 70,
-      "change": -5,
-      "detail": "#65 → #70",
+      "new_rank": 71,
+      "change": -6,
+      "detail": "#65 → #71",
       "icon": "🔻"
     },
     {
@@ -105,9 +107,9 @@
       "model": "Step 3.7 Flash",
       "id": "step-3-7-flash",
       "old_rank": 64,
-      "new_rank": 69,
-      "change": -5,
-      "detail": "#64 → #69",
+      "new_rank": 70,
+      "change": -6,
+      "detail": "#64 → #70",
       "icon": "🔻"
     },
     {
@@ -115,9 +117,9 @@
       "model": "Trinity Large Thinking",
       "id": "trinity-large-thinking",
       "old_rank": 68,
-      "new_rank": 73,
-      "change": -5,
-      "detail": "#68 → #73",
+      "new_rank": 74,
+      "change": -6,
+      "detail": "#68 → #74",
       "icon": "🔻"
     },
     {
@@ -125,69 +127,19 @@
       "model": "Command A+",
       "id": "command-a",
       "old_rank": 67,
+      "new_rank": 73,
+      "change": -6,
+      "detail": "#67 → #73",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "Ling-2.6-1T",
+      "id": "ling-2-6-1t",
+      "old_rank": 66,
       "new_rank": 72,
-      "change": -5,
-      "detail": "#67 → #72",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Ring-2.6-1T",
-      "id": "ring-2-6-1t",
-      "old_rank": 63,
-      "new_rank": 67,
-      "change": -4,
-      "detail": "#63 → #67",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "GPT-5.5 Instant",
-      "id": "gpt-5-5-instant",
-      "old_rank": 59,
-      "new_rank": 63,
-      "change": -4,
-      "detail": "#59 → #63",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "LongCat 2.0",
-      "id": "longcat-2-0",
-      "old_rank": 60,
-      "new_rank": 64,
-      "change": -4,
-      "detail": "#60 → #64",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "KAT-Coder-Pro V2",
-      "id": "kat-coder-pro-v2",
-      "old_rank": 57,
-      "new_rank": 61,
-      "change": -4,
-      "detail": "#57 → #61",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Qwen3.6 35B A3B",
-      "id": "qwen3-6-35b-a3b",
-      "old_rank": 61,
-      "new_rank": 65,
-      "change": -4,
-      "detail": "#61 → #65",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "G9v3-39A5B",
-      "id": "g9v3-39a5b",
-      "old_rank": 62,
-      "new_rank": 66,
-      "change": -4,
-      "detail": "#62 → #66",
+      "change": -6,
+      "detail": "#66 → #72",
       "icon": "🔻"
     },
     {
@@ -195,39 +147,69 @@
       "model": "Hy3-preview",
       "id": "hy3-preview",
       "old_rank": 58,
+      "new_rank": 63,
+      "change": -5,
+      "detail": "#58 → #63",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "G9v3-39A5B",
+      "id": "g9v3-39a5b",
+      "old_rank": 62,
+      "new_rank": 67,
+      "change": -5,
+      "detail": "#62 → #67",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "KAT-Coder-Pro V2",
+      "id": "kat-coder-pro-v2",
+      "old_rank": 57,
       "new_rank": 62,
-      "change": -4,
-      "detail": "#58 → #62",
+      "change": -5,
+      "detail": "#57 → #62",
       "icon": "🔻"
     },
     {
       "type": "ranking_down",
-      "model": "Muse Glimmer",
-      "id": "muse-glimmer",
-      "old_rank": 56,
-      "new_rank": 59,
-      "change": -3,
-      "detail": "#56 → #59",
+      "model": "Qwen3.6 35B A3B",
+      "id": "qwen3-6-35b-a3b",
+      "old_rank": 61,
+      "new_rank": 66,
+      "change": -5,
+      "detail": "#61 → #66",
       "icon": "🔻"
     },
     {
       "type": "ranking_down",
-      "model": "MiMo-V2-Omni",
-      "id": "mimo-v2-omni",
-      "old_rank": 54,
-      "new_rank": 57,
-      "change": -3,
-      "detail": "#54 → #57",
+      "model": "Ring-2.6-1T",
+      "id": "ring-2-6-1t",
+      "old_rank": 63,
+      "new_rank": 68,
+      "change": -5,
+      "detail": "#63 → #68",
       "icon": "🔻"
     },
     {
       "type": "ranking_down",
-      "model": "MiMo-V2-Omni-0327",
-      "id": "mimo-v2-omni-0327",
-      "old_rank": 53,
-      "new_rank": 56,
-      "change": -3,
-      "detail": "#53 → #56",
+      "model": "LongCat 2.0",
+      "id": "longcat-2-0",
+      "old_rank": 60,
+      "new_rank": 65,
+      "change": -5,
+      "detail": "#60 → #65",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "GPT-5.5 Instant",
+      "id": "gpt-5-5-instant",
+      "old_rank": 59,
+      "new_rank": 64,
+      "change": -5,
+      "detail": "#59 → #64",
       "icon": "🔻"
     },
     {
@@ -235,9 +217,109 @@
       "model": "GLM 5V Turbo",
       "id": "glm-5v-turbo",
       "old_rank": 55,
+      "new_rank": 59,
+      "change": -4,
+      "detail": "#55 → #59",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "MiMo-V2-Omni-0327",
+      "id": "mimo-v2-omni-0327",
+      "old_rank": 53,
+      "new_rank": 57,
+      "change": -4,
+      "detail": "#53 → #57",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "Muse Glimmer",
+      "id": "muse-glimmer",
+      "old_rank": 56,
+      "new_rank": 60,
+      "change": -4,
+      "detail": "#56 → #60",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "MiMo-V2-Omni",
+      "id": "mimo-v2-omni",
+      "old_rank": 54,
       "new_rank": 58,
+      "change": -4,
+      "detail": "#54 → #58",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "GPT-5.4 mini",
+      "id": "gpt-5-4-mini",
+      "old_rank": 37,
+      "new_rank": 40,
       "change": -3,
-      "detail": "#55 → #58",
+      "detail": "#37 → #40",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "Grok 4.3",
+      "id": "grok-4-3",
+      "old_rank": 48,
+      "new_rank": 51,
+      "change": -3,
+      "detail": "#48 → #51",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "Qwen3.7 Plus",
+      "id": "qwen3-7-plus",
+      "old_rank": 42,
+      "new_rank": 45,
+      "change": -3,
+      "detail": "#42 → #45",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "Qwen3.6 Max Preview",
+      "id": "qwen3-6-max-preview",
+      "old_rank": 35,
+      "new_rank": 38,
+      "change": -3,
+      "detail": "#35 → #38",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "GPT-5.4 nano",
+      "id": "gpt-5-4-nano",
+      "old_rank": 40,
+      "new_rank": 43,
+      "change": -3,
+      "detail": "#40 → #43",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "Grok Build 0.1 0616",
+      "id": "grok-build-0-1-0616",
+      "old_rank": 38,
+      "new_rank": 41,
+      "change": -3,
+      "detail": "#38 → #41",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "MiMo-V2.5",
+      "id": "mimo-v2-5",
+      "old_rank": 46,
+      "new_rank": 49,
+      "change": -3,
+      "detail": "#46 → #49",
       "icon": "🔻"
     }
   ]

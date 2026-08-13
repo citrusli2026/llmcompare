@@ -308,7 +308,7 @@
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": null,
-      "gdpval": 1749.18,
+      "gdpval": 1749.2,
       "livecodebench": null,
       "aime25": null
     },
@@ -1399,6 +1399,94 @@
     "data_completeness_pct": 88.7
   },
   {
+    "id": "deepseek-v4-pro-0813",
+    "name": "DeepSeek V4 Pro 0813",
+    "company": "DeepSeek",
+    "type": "闭源",
+    "logo": "/logos/deepseek.svg",
+    "scores": {
+      "intelligence": 52.9974995729696,
+      "coding": 78.7,
+      "agentic": 49.5628762886598
+    },
+    "speed": {
+      "median_tps": null,
+      "ttft_seconds": null,
+      "e2e_seconds": null,
+      "p05_tps": null,
+      "p95_tps": null
+    },
+    "benchmarks": {
+      "gpqa": 0.928282828282828,
+      "hle": 0.393419833178869,
+      "scicode": 0.491898148148148,
+      "lcr": 0.753333333333333,
+      "critpt": 0.18,
+      "ifbench": null,
+      "tau2": null,
+      "terminalbench_hard": null,
+      "mmmu_pro": null,
+      "gdpval": 1590.27,
+      "livecodebench": null,
+      "aime25": null
+    },
+    "pricing": {
+      "input": 0.435,
+      "output": 0.87,
+      "blended": 0.5437,
+      "display": "$0.435/$0.87 (USD/百万token)"
+    },
+    "flags": {
+      "frontier": false,
+      "open_weights": false,
+      "reasoning": false,
+      "image_input": false,
+      "chinese_eval": true,
+      "has_speed": false,
+      "has_pricing": true,
+      "data_complete": false,
+      "tools_calling": true
+    },
+    "meta": {
+      "context_window": 1000000,
+      "size_class": "medium",
+      "parameters": null,
+      "release_date": "2026-08-13",
+      "knowledge_cutoff": null,
+      "omniscience": 0.833333333333333,
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "max_output_tokens": 384000
+    },
+    "url": "https://artificialanalysis.ai/models/deepseek-v4-pro-0813",
+    "vendor_links": {
+      "homepage": "https://www.deepseek.com",
+      "console": "https://platform.deepseek.com"
+    },
+    "license": null,
+    "cn_pricing": null,
+    "openrouter_weekly_tokens": 2663884283168,
+    "openrouter_pricing": {
+      "prompt": 0.43,
+      "completion": 0.87
+    },
+    "arena_rankings": {
+      "code": {
+        "rank": 45,
+        "score": 1445.0,
+        "votes": 13068
+      }
+    },
+    "arena_votes": 13068,
+    "data_completeness_pct": 69.9
+  },
+  {
     "id": "glm-5-2",
     "name": "GLM-5.2",
     "company": "Z AI",
@@ -1475,7 +1563,7 @@
       "output": 28.0,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 3652598646049,
+    "openrouter_weekly_tokens": 3652601421457,
     "openrouter_pricing": {
       "prompt": 0.5,
       "completion": 3.15
@@ -1731,7 +1819,7 @@
     },
     "license": "DeepSeek License",
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 10496269603375,
+    "openrouter_weekly_tokens": 10496272169678,
     "openrouter_pricing": {
       "prompt": 0.08,
       "completion": 0.18
@@ -2265,7 +2353,7 @@
       "output": 16.8,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": 1607763661098,
+    "openrouter_weekly_tokens": 1607763768367,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
@@ -2357,7 +2445,7 @@
       "output": 24,
       "source": "bailian.console.aliyun.com (百炼)"
     },
-    "openrouter_weekly_tokens": 2663884235010,
+    "openrouter_weekly_tokens": 2663884283168,
     "openrouter_pricing": {
       "prompt": 1.17,
       "completion": 2.34
@@ -4136,7 +4224,7 @@
       "console": "https://build.nvidia.com"
     },
     "license": "NVIDIA Open License",
-    "openrouter_weekly_tokens": 2159911529234,
+    "openrouter_weekly_tokens": 2159911609743,
     "openrouter_pricing": {
       "prompt": 0.6,
       "completion": 3.6
