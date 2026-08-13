@@ -257,19 +257,33 @@ def main():
         ranking_path = data_dir / "ranking.json"
 
         import subprocess
-        try:
+
+        def read_ref(ref):
             result = subprocess.run(
-                ["git", "show", "HEAD~1:app/src/data/ranking.json"],
+                ["git", "show", f"{ref}:app/src/data/ranking.json"],
                 capture_output=True, text=True, cwd=data_dir.parent
             )
-            if result.returncode == 0:
-                prev_path = "/tmp/ranking_prev_auto.json"
-                with open(prev_path, "w") as f:
-                    f.write(result.stdout)
-                curr_path = str(ranking_path)
-            else:
+            return result.stdout if result.returncode == 0 else None
+
+        try:
+            # 自适应基线: HEAD 与当前 4-final 一致 → 已提交 → 用 HEAD~1;
+            # 否则(管线提交前调用) HEAD 即上次数据
+            head_content = read_ref("HEAD")
+            current_content = ranking_path.read_text(encoding="utf-8") if ranking_path.exists() else None
+            prev_ref = (
+                "HEAD~1"
+                if head_content is not None and current_content is not None
+                and head_content.strip() == current_content.strip()
+                else "HEAD"
+            )
+            prev_content = read_ref(prev_ref)
+            if prev_content is None:
                 print("无法获取上次数据，请提供两个文件路径", file=sys.stderr)
                 sys.exit(1)
+            prev_path = "/tmp/ranking_prev_auto.json"
+            with open(prev_path, "w") as f:
+                f.write(prev_content)
+            curr_path = str(ranking_path)
         except Exception:
             print("无法获取上次数据，请提供两个文件路径", file=sys.stderr)
             sys.exit(1)

@@ -182,22 +182,40 @@ def load_data():
         return json.load(f)
 
 
+def pick_previous_ref(head_data, current_data) -> str:
+    """自适应选择对比基线 ref。
+
+    - 提交前运行（pipeline Phase 5，工作区含新数据）: HEAD 即上次数据 → "HEAD"
+    - 提交后运行（CI push / 手动）: HEAD 是本次数据 → "HEAD~1"
+    判定依据: HEAD 内容与磁盘当前文件一致 → 已提交 → 用 HEAD~1。
+    """
+    return "HEAD~1" if head_data == current_data else "HEAD"
+
+
 def load_previous_data():
-    """尝试读取 git HEAD~1 版本的 ranking.json 用于对比"""
+    """读取上次提交的 ranking.json 用于对比（上下文自适应基线）。"""
     import subprocess
 
-    try:
+    def read_ref(ref: str):
         result = subprocess.run(
-            ["git", "show", "HEAD~1:app/src/data/ranking.json"],
+            ["git", "show", f"{ref}:app/src/data/ranking.json"],
             capture_output=True,
             text=True,
             cwd=Path(__file__).parent.parent.parent,
         )
-        if result.returncode == 0:
-            return json.loads(result.stdout)
+        if result.returncode != 0:
+            return None
+        return json.loads(result.stdout)
+
+    try:
+        head_data = read_ref("HEAD")
+        if head_data is None:
+            return None
+        current = load_data()
+        ref = pick_previous_ref(head_data, current)
+        return head_data if ref == "HEAD" else read_ref(ref)
     except Exception:
-        pass
-    return None
+        return None
 
 
 def load_history_stats() -> dict[str, list]:

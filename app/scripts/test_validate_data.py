@@ -403,5 +403,24 @@ class TestComputeCompleteness(unittest.TestCase):
         self.assertLess(pct, 60.0)
 
 
+class TestPickPreviousRef(unittest.TestCase):
+    """对比基线选择: 提交前用 HEAD, 提交后用 HEAD~1 (修复 off-by-one)。"""
+
+    def test_uncommitted_uses_head(self):
+        # 工作区有新数据(与 HEAD 不同) → HEAD 即上次数据
+        self.assertEqual(V.pick_previous_ref({"v": 1}, {"v": 2}), "HEAD")
+
+    def test_committed_uses_head_1(self):
+        # HEAD 内容与当前文件一致 → 已提交 → 回退 HEAD~1
+        self.assertEqual(V.pick_previous_ref({"v": 2}, {"v": 2}), "HEAD~1")
+
+    def test_equality_ignores_structure_order(self):
+        # 内容一致即视为已提交, 与键序/格式无关
+        self.assertEqual(V.pick_previous_ref({"a": [1, 2]}, {"a": [1, 2]}), "HEAD~1")
+
+    def test_different_content_uses_head(self):
+        self.assertEqual(V.pick_previous_ref([], [1]), "HEAD")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
