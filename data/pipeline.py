@@ -417,6 +417,16 @@ if rc != 0:
 else:
     ok("数据质量验证通过")
 
+# 5e. 数据管线 Python 单测（3-process，曾长期无人调用）
+print("  Test: python3.11 -m unittest discover -s data/3-process")
+out, rc = run("python3.11 -m unittest discover -s data/3-process -p 'test_*.py'", cwd=str(DATA), exit_on_error=False)
+if rc != 0:
+    fail(f"数据管线单测失败 ({rc})")
+    print(out[-2000:])
+    all_passed = False
+else:
+    ok("数据管线单测通过")
+
 if not all_passed:
     fail("验证阶段存在失败项，停止并输出异常报告")
     print(f"\n⚠️ LLMCompare 数据刷新异常（{TODAY}）")
@@ -524,6 +534,7 @@ print("✅ 测试: 通过")
 print("✅ 构建: 成功")
 print("✅ Lint: 0 errors")
 print("✅ 数据质量: 通过")
+print("✅ 数据管线单测: 通过")
 print()
 print("🤖 Hermes Agent · 每日 12:00")
 

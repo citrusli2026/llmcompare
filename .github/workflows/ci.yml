@@ -62,6 +62,10 @@ jobs:
           cd app
           python3 scripts/test_validate_data.py
 
+      - name: Data Pipeline Unit Tests
+        run: |
+          python3 -m unittest discover -s data/3-process -p "test_*.py"
+
       - name: Build
         run: |
           cd app
