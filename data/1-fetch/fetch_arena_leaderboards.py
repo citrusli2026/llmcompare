@@ -29,6 +29,10 @@ from datetime import date, datetime, timezone
 
 from fetch_utils import fetch_json, write_json, load_previous_raw
 
+# 国内厂商关键词单一来源: cn_classifier (曾三处重复维护导致 z ai/z.ai 式漂移)
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "3-process"))
+from cn_classifier import CN_COMPANIES
+
 BASE_URL = (
     "https://raw.githubusercontent.com/oolong-tea-2026/arena-ai-leaderboards"
     "/main/data"
@@ -155,12 +159,9 @@ def main():
     print(f"\n[OK] Saved {total_models} total entries to {OUTPUT_PATH}")
 
     # Print CN model summary
-    cn_vendors = {
-        "baidu", "alibaba", "tencent", "deepseek", "moonshot",
-        "z.ai", "z ai", "xiaomi", "minimax", "stepfun",
-        "bytedance", "kwai", "kuaishou", "inclusionai", "longcat",
-        "01.ai", "01ai",
-    }
+    # 权威表在 cn_classifier.CN_COMPANIES; z.ai/01ai 为旧列表变体写法
+    # (仅影响本摘要打印), 确认后并入 cn_classifier 即可删除
+    cn_vendors = set(CN_COMPANIES) | {"z.ai", "01ai"}
     for lb in LEADERBOARDS:
         models = result["leaderboards"].get(lb, [])
         cn = [m for m in models if (m.get("vendor") or "").lower() in cn_vendors]

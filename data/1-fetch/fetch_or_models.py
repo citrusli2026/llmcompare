@@ -28,6 +28,10 @@ from pathlib import Path
 
 from fetch_utils import fetch_json as _fetch_json, write_json, load_previous_raw
 
+# 国内模型关键词单一来源: cn_classifier (曾三处重复维护导致 z ai/z.ai 式漂移)
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "3-process"))
+from cn_classifier import CN_MODEL_NAMES
+
 API_URL = "https://openrouter.ai/api/v1/models"
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "2-raw"
 FULL_PATH = OUTPUT_DIR / "or_models_full.json"
@@ -274,11 +278,9 @@ def main():
     )
     print(f"With pricing: {with_pricing}")
 
-    cn_names = {
-        "deepseek", "qwen", "kimi", "glm", "minimax",
-        "baichuan", "stepfun", "moonshot", "ernie", "doubao",
-        "hunyuan", "spark", "yi", "mimo", "megrez", "ring", "ling", "hy",
-    }
+    # 权威表在 cn_classifier.CN_MODEL_NAMES; 以下 extras 为旧报告口径遗留
+    # (仅影响本摘要打印, 与分类无关), 确认后并入 cn_classifier 即可删除
+    cn_names = set(CN_MODEL_NAMES) | {"spark", "yi", "megrez", "ring", "hy"}
     cn_models = [
         m for m in models
         if any(c in (m.get("name", "") + m.get("id", "")).lower() for c in cn_names)
