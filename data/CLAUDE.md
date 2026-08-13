@@ -36,7 +36,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 完整处理管线：`build_frontend_models.py → enrich_models.py → build_report.py`，必须按顺序执行（每一步依赖上一步的输出）。`filter_cn_models.py` 已从主管线移除，仅保留为独立诊断工具。
 
-抓取脚本是按需独立运行的，**不是**每次重跑管线都需要抓 —— `2-raw/` 通常作为缓存，只在需要刷新时跑 `1-fetch/`。`pipeline.py` 默认带 12h 缓存自动判断是否重抓。
+抓取脚本是按需独立运行的，**不是**每次重跑管线都需要抓 —— `2-raw/` 通常作为缓存，只在需要刷新时跑 `1-fetch/`。`pipeline.py` 默认带 6h 缓存自动判断是否重抓（`--cache-hours N` 可调，`0` 强制重抓）。
 
 ## 目录与数据流
 
@@ -214,7 +214,7 @@ Arena 抓取器另有数据量守卫：新快照总量 < 缓存 60% 时降级用
 
 `cn_classifier.py` 顶部的 `CN_COMPANIES` + `CN_MODEL_NAMES`，只要厂商名或模型名命中任一关键词即归类国内。新增国内厂商需要更新这两个列表。
 
-`flags.chinese_eval` 标记**不**等于"国内模型"，它仅表示该模型在 AA 上跑过中文评测。
+`flags.chinese_eval` 由 `cn_classifier.py` 的国内厂商/模型名关键词匹配得到（近似"国内模型"）。前端 `scoring.ts` 用 `!flags.chinese_eval` 推导 `isInternational`，仅用于条件染色/筛选，不参与排序。
 
 ### `ranking.json` 字段契约
 

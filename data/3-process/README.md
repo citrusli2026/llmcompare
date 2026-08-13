@@ -108,7 +108,7 @@ interface Model {
   company: string;         // 厂商
   type: "开源" | "闭源";    // 推断自 open_weights
   logo: string;            // logo 路径
-  rank: number;            // 按 AA intelligence 降序排列
+  // 注意: 输出不含 rank 字段, 排序由前端负责 (scoring.ts)
 
   scores: {
     intelligence: number;  // AA Intelligence Index (0-60+)
@@ -140,9 +140,8 @@ interface Model {
   pricing: {
     input: number|null;    // $/M tokens (AA 原始)
     output: number|null;
-    blended: number|null;  // 混合价
-    display: string;       // 前端展示, 优先使用 ¥ 官价, 如 "¥6.5/¥27.0 (缓存命中¥1.1)"
-    cn_source?: string;    // 官价来源, 如 "platform.kimi.com"
+    blended: number|null;  // 混合价 (输入 75% + 输出 25%)
+    display: string;       // "$x/$y (USD/百万token)"; 0 价显示 $0 而非 '?'
   };
 
   // === enrich_models.py 注入 (Step 3) ===
@@ -154,11 +153,8 @@ interface Model {
   cn_pricing?: {            // 国内官价 (来自 0-refer/model_reference.json)
     input: number;          // ¥/百万 tokens
     output: number;
-    cache_hit?: number;     // 缓存命中价
-    currency?: string;      // 默认 "¥"
-    condition?: string;     // 如 "≤32K"
     source: string;         // 定价来源
-  } | null;
+  } | null;                 // 仅写入 input/output/source 三键
 
   openrouter_weekly_tokens?: number;  // OpenRouter 周调用量 (tokens)
   openrouter_pricing?: {             // OpenRouter 平台定价
@@ -177,9 +173,9 @@ interface Model {
   flags: {
     frontier: boolean;
     open_weights: boolean;
-    reasoning: boolean;
+    reasoning: boolean;     // AA reasoning_model 字段透传
     image_input: boolean;
-    chinese_eval: boolean;
+    chinese_eval: boolean;  // cn_classifier 国内厂商/模型名关键词匹配 (近似"国内模型")
     has_speed: boolean;
     has_pricing: boolean;
     data_complete: boolean; // intelligence + coding + agentic + speed(>0) + pricing 五者齐全
@@ -196,7 +192,7 @@ interface Model {
     max_output_tokens: number|null; // 单次响应最大输出 tokens (OR top_provider), 匹配不到为 null
   };
 
-  license: string|null;    // 开源模型 License; 闭源显示 "商业授权"
+  license: string|null;    // 开源模型为具体 License; 闭源为 null (前端渲染"商业授权")
   url: string;             // 模型详情页, 默认取 vendor_links.homepage
   data_completeness_pct: number; // 18 个核心字段的加权完整度
 }
