@@ -73,13 +73,13 @@ export interface ChangesData {
 // 静态引入每日变化数据（构建期内联，文件由数据管线保证存在）
 const changesData = changesJson as ChangesData;
 const TYPE_COLORS: Record<string, string> = {
-  new: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-  dropped: "bg-red-500/10 text-red-600 dark:text-red-400",
-  ranking_up: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
-  ranking_down: "bg-orange-500/10 text-orange-600 dark:text-orange-400",
-  price_drop: "bg-lime-500/10 text-lime-600 dark:text-lime-400",
-  price_up: "bg-rose-500/10 text-rose-600 dark:text-rose-400",
-  intel_change: "bg-violet-500/10 text-violet-600 dark:text-violet-400",
+  new: "bg-emerald-500/10 text-emerald-600",
+  dropped: "bg-red-500/10 text-red-600",
+  ranking_up: "bg-blue-500/10 text-blue-600",
+  ranking_down: "bg-orange-500/10 text-orange-600",
+  price_drop: "bg-lime-500/10 text-lime-600",
+  price_up: "bg-rose-500/10 text-rose-600",
+  intel_change: "bg-violet-500/10 text-violet-600",
 };
 
 const TYPE_ICONS: Record<string, React.ReactNode> = {

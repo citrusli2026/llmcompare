@@ -11,24 +11,8 @@ import { computePercentiles, formatScore } from "./utils";
 import { useModelGroups } from "./use-model-groups";
 import { ModelRow } from "./model-row";
 import { MobileCard } from "./mobile-card";
+import type { ChangesData } from "@/components/changes-card";
 import changesJson from "@/data/changes.json";
-
-interface ChangesData {
-  generated_at: string;
-  date: string;
-  compare_with: string;
-  summary: {
-    new_models: number;
-    dropped_models: number;
-    price_changes: number;
-    ranking_changes: number;
-    intel_changes: number;
-  };
-  changes: Array<
-    | { type: "new"; id: string; rank?: number; first_seen?: string }
-    | { type: "ranking_up" | "ranking_down"; id: string; old_rank?: number; new_rank?: number; change?: number }
-  >;
-}
 
 interface RankingTableProps {
   models: ModelWithScores[];
