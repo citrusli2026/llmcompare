@@ -91,6 +91,9 @@ export function Navbar() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="flex items-center justify-center h-9 w-9 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-card transition-colors"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-menu"
+            aria-haspopup="true"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -99,7 +102,13 @@ export function Navbar() {
 
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="sm:hidden border-t border-surface-border bg-surface-base">
+        <div
+          id="mobile-nav-menu"
+          className="sm:hidden border-t border-surface-border bg-surface-base"
+          onKeyDown={(e) => {
+            if (e.key === "Escape") setMobileMenuOpen(false);
+          }}
+        >
           <nav className="flex flex-col p-2">
             {navItems.map((item) => {
               const Icon = item.icon;

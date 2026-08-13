@@ -162,10 +162,48 @@ describe("Tooltip", () => {
     expect(target.parentElement).not.toHaveAttribute("aria-describedby");
 
     fireEvent.mouseEnter(target);
-    const trigger = target.parentElement;
-    expect(trigger).toHaveAttribute("aria-describedby", "tooltip-content");
-
+    const trigger = target.parentElement!;
+    // id 由 useId 生成(唯一), aria-describedby 必须指向 tooltip 自身的 id
+    const describedBy = trigger.getAttribute("aria-describedby");
+    expect(describedBy).toBeTruthy();
     const tooltip = screen.getByRole("tooltip");
+    expect(tooltip.id).toBe(describedBy);
     expect(tooltip).toHaveTextContent("accessible info");
+  });
+
+  it("multiple tooltips get unique ids (no duplicate id attr)", () => {
+    render(
+      <>
+        <Tooltip content="tip one">
+          <span>one</span>
+        </Tooltip>
+        <Tooltip content="tip two">
+          <span>two</span>
+        </Tooltip>
+      </>
+    );
+
+    fireEvent.mouseEnter(screen.getByText("one"));
+    fireEvent.mouseEnter(screen.getByText("two"));
+
+    const ids = screen.getAllByRole("tooltip").map((el) => el.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it("opens on keyboard focus and closes on Escape", () => {
+    render(
+      <Tooltip content="keyboard info">
+        <button>focus me</button>
+      </Tooltip>
+    );
+
+    const btn = screen.getByText("focus me");
+    expect(screen.queryByText("keyboard info")).not.toBeInTheDocument();
+
+    fireEvent.focus(btn);
+    expect(screen.getByText("keyboard info")).toBeInTheDocument();
+
+    fireEvent.keyDown(btn, { key: "Escape" });
+    expect(screen.queryByText("keyboard info")).not.toBeInTheDocument();
   });
 });

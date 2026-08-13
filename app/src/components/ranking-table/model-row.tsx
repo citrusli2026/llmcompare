@@ -47,8 +47,17 @@ export function ModelRow({ model, group, idx, sortKey, headers, renderers, colVi
     <TableRow
       data-model-id={model.id}
       onClick={handleRowClick}
+      onKeyDown={(e) => {
+        // 键盘可访问: 与 mobile-card 行为对齐 (Enter/Space 触发行动作)
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleRowClick();
+        }
+      }}
+      tabIndex={0}
+      aria-label={model.name}
       className={cn(
-        "border-surface-border hover:bg-surface-hover transition-colors even:bg-surface-elevated/40 cursor-pointer",
+        "border-surface-border hover:bg-surface-hover transition-colors even:bg-surface-elevated/40 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-violet/40",
         group.borderClass,
         isSelected && "ring-2 ring-accent-violet bg-accent-violet/10 border-l-4 border-l-accent-violet",
         compare?.active && !isSelected && compare.isAtMax && "opacity-50",

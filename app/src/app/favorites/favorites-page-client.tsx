@@ -221,20 +221,21 @@ export default function FavoritesPageClient() {
             </div>
           ) : (
             <>
-              {/* Quick chips */}
+              {/* Quick chips — 收藏按钮与链接并列, 避免 button 嵌套在 anchor 内 (非法 HTML) */}
               <div className="mb-4 sm:mb-6 flex flex-wrap gap-2">
                 {favoritedModels.map((m) => (
-                  <Link
+                  <span
                     key={m.id}
-                    href={`/models/${m.id}`}
                     className="group inline-flex items-center gap-1.5 rounded-full border border-surface-border bg-surface-card pl-1.5 pr-2 py-1 text-xs transition-all hover:border-accent-fuchsia/30 hover:bg-accent-fuchsia/5"
                   >
-                    {m.logo && (
-                      <ModelLogo src={m.logo} name={m.name} size="xs" />
-                    )}
-                    <span className="font-medium text-text-primary group-hover:text-accent-fuchsia">{m.name}</span>
+                    <Link href={`/models/${m.id}`} className="inline-flex items-center gap-1.5">
+                      {m.logo && (
+                        <ModelLogo src={m.logo} name={m.name} size="xs" />
+                      )}
+                      <span className="font-medium text-text-primary group-hover:text-accent-fuchsia">{m.name}</span>
+                    </Link>
                     <FavoriteButton modelId={m.id} size="sm" className="h-5 w-5 border-0 bg-transparent hover:bg-transparent" />
-                  </Link>
+                  </span>
                 ))}
               </div>
 

@@ -131,6 +131,8 @@ export function SceneSelector({ hideHeader }: SceneSelectorProps) {
               <button
                 key={scene.key}
                 onClick={() => toggle(scene.key)}
+                aria-pressed={isActive}
+                aria-expanded={isActive}
                 className={cn(
                   "w-full rounded-xl border p-3 sm:p-4 text-left transition-all duration-200",
                   "hover:shadow-md",

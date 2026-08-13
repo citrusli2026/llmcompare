@@ -1,6 +1,6 @@
 "use client";
 
-import { useReducer, useRef, useLayoutEffect, useEffect, useCallback } from "react";
+import { useReducer, useRef, useLayoutEffect, useEffect, useCallback, useId } from "react";
 
 interface TooltipProps {
   children: React.ReactNode;
@@ -40,6 +40,9 @@ export function Tooltip({ children, content }: TooltipProps) {
   const timer = useRef(0);
   const ref = useRef<HTMLSpanElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
+  // 每个 Tooltip 唯一 id: 修复多 tip 同屏时固定 id="tooltip-content" 重复 (HTML 非法,
+  // aria-describedby 会错报内容)
+  const tooltipId = useId();
 
   // Position tooltip via ref (no setState → no re-render → no flicker)
   const positionTooltip = useCallback(() => {
@@ -136,13 +139,18 @@ export function Tooltip({ children, content }: TooltipProps) {
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
       onClick={handleClick}
-      aria-describedby={show ? "tooltip-content" : undefined}
+      onFocus={handleEnter}
+      onBlur={handleLeave}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") dispatch({ type: "close" });
+      }}
+      aria-describedby={show ? tooltipId : undefined}
     >
       {children}
       {show && (
         <div
           ref={innerRef}
-          id="tooltip-content"
+          id={tooltipId}
           role="tooltip"
           style={{
             position: "fixed",
