@@ -122,7 +122,9 @@ def main():
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
-        json.dump(trends, f, indent=2, ensure_ascii=False)
+        # minified: trends.json (~200K) 整包内联进 /models/[id] 路由 chunk,
+        # 无缩进输出省 ~60% 传输 (纯机器消费, 无需可读性)
+        json.dump(trends, f, ensure_ascii=False, separators=(",", ":"))
     print(f"  → {OUTPUT_PATH}")
 
     # 同步到前端
