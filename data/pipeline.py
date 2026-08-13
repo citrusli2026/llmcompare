@@ -190,24 +190,37 @@ for subdir, script in pipeline_scripts:
 # ══════════════════════════════════════════════
 step("Phase 3: 保存快照并生成变化摘要")
 
-# 保存当日 ranking 快照到 5-history/（用于变化对比）
-import shutil
-HISTORY_DIR = DATA / "5-history"
-HISTORY_DIR.mkdir(exist_ok=True)
-snapshot_path = HISTORY_DIR / f"{TODAY}.json"
-src_count, _ = run('python3.11 -c "import json;print(len(json.load(open(\'4-final/ranking.json\'))))"', cwd=str(DATA))
-shutil.copy(DATA / "4-final" / "ranking.json", snapshot_path)
-ok(f"快照: {snapshot_path.name} ({src_count} 模型)")
-# 清理 30 天前的快照
-from datetime import timedelta
-cutoff = date.today() - timedelta(days=30)
-for old in sorted(HISTORY_DIR.glob("*.json")):
+# 原生 Python 读取模型数（替代 shell python3.11 -c，dry-run 下也能得到真实值）
+def count_models(path: Path) -> str:
     try:
-        old_date = date.fromisoformat(old.stem)
-        if old_date < cutoff:
-            old.unlink()
-    except ValueError:
-        pass
+        with open(path, "r", encoding="utf-8") as f:
+            return str(len(json.load(f)))
+    except Exception as e:
+        warn(f"读取 {path} 失败: {e}")
+        return "0"
+
+
+import shutil
+from datetime import timedelta
+
+HISTORY_DIR = DATA / "5-history"
+snapshot_path = HISTORY_DIR / f"{TODAY}.json"
+src_count = count_models(DATA / "4-final" / "ranking.json")
+if DRY_RUN:
+    warn(f"DRY RUN: 跳过写入 5-history/{snapshot_path.name} 与 30 天快照清理")
+else:
+    HISTORY_DIR.mkdir(exist_ok=True)
+    shutil.copy(DATA / "4-final" / "ranking.json", snapshot_path)
+    ok(f"快照: {snapshot_path.name} ({src_count} 模型)")
+    # 清理 30 天前的快照
+    cutoff = date.today() - timedelta(days=30)
+    for old in sorted(HISTORY_DIR.glob("*.json")):
+        try:
+            old_date = date.fromisoformat(old.stem)
+            if old_date < cutoff:
+                old.unlink()
+        except ValueError:
+            pass
 
 # 生成变化对比 changes.json
 print("  Step 1/3: build_changes.py")
@@ -241,12 +254,12 @@ step("Phase 4: 同步到前端")
 run("cp 4-final/ranking.json ../app/src/data/ranking.json", cwd=str(DATA))
 
 # 验证 cp
-src_count, _ = run('python3.11 -c "import json;print(len(json.load(open(\'4-final/ranking.json\'))))"', cwd=str(DATA))
-dst_count, _ = run('python3.11 -c "import json;print(len(json.load(open(\'src/data/ranking.json\'))))"', cwd=str(APP / "app"))
+src_count = count_models(DATA / "4-final" / "ranking.json")
+dst_count = count_models(APP / "app" / "src" / "data" / "ranking.json")
 if src_count != dst_count:
     warn(f"cp 不完整! data/={src_count} app/={dst_count}，重试...")
     run("cp 4-final/ranking.json ../app/src/data/ranking.json", cwd=str(DATA))
-    dst_count, _ = run('python3.11 -c "import json;print(len(json.load(open(\'src/data/ranking.json\'))))"', cwd=str(APP / "app"))
+    dst_count = count_models(APP / "app" / "src" / "data" / "ranking.json")
 ok(f"ranking.json: {src_count} 模型 → app/({dst_count})")
 
 # 注入数据血缘元数据到独立文件 ranking-meta.json
@@ -303,22 +316,24 @@ def write_ranking_meta():
     except Exception as e:
         warn(f"写入 ranking-meta.json 失败: {e}")
 
-write_ranking_meta()
+if DRY_RUN:
+    warn("DRY RUN: 跳过 ranking-meta.json / metadata.json / changes / trends / 日期文案写入")
+else:
+    write_ranking_meta()
 
-# metadata.json — 写入更新时间戳，前端关于页读取
-metadata = {"updated_at": datetime.now(timezone.utc).isoformat()}
-metadata_path = APP / "app" / "src" / "data" / "metadata.json"
-metadata_path.write_text(json.dumps(metadata, indent=2))
-ok(f"metadata.json: updated_at={metadata['updated_at']}")
+    # metadata.json — 写入更新时间戳，前端关于页读取
+    metadata = {"updated_at": datetime.now(timezone.utc).isoformat()}
+    metadata_path = APP / "app" / "src" / "data" / "metadata.json"
+    metadata_path.write_text(json.dumps(metadata, indent=2))
+    ok(f"metadata.json: updated_at={metadata['updated_at']}")
 
-# 同步 changes.json / trends.json 到前端
-for filename in ["changes.json", "trends.json"]:
-    src = DATA / "4-final" / filename
-    dst = APP / "app" / "src" / "data" / filename
-    if src.exists():
-        import shutil
-        shutil.copy(src, dst)
-        ok(f"{filename} 已同步到前端")
+    # 同步 changes.json / trends.json 到前端
+    for filename in ["changes.json", "trends.json"]:
+        src = DATA / "4-final" / filename
+        dst = APP / "app" / "src" / "data" / filename
+        if src.exists():
+            shutil.copy(src, dst)
+            ok(f"{filename} 已同步到前端")
 
 # 日期文案 - 使用 JSON 操作避免正则误匹配
 def update_i18n_dates():
@@ -349,8 +364,11 @@ def update_i18n_dates():
         except Exception as e:
             warn(f"更新 {path.name} 日期文案失败: {e}")
 
-update_i18n_dates()
-ok("日期文案已更新")
+if not DRY_RUN:
+    update_i18n_dates()
+    ok("日期文案已更新")
+else:
+    warn("DRY RUN: 跳过日期文案更新")
 
 # ══════════════════════════════════════════════
 # Phase 5: 验证
