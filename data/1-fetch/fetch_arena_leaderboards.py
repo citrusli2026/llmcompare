@@ -25,7 +25,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 
 from fetch_utils import fetch_json, write_json, load_previous_raw
 
@@ -36,6 +36,20 @@ BASE_URL = (
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "2-raw"
 OUTPUT_PATH = OUTPUT_DIR / "arena_leaderboards.json"
 LEADERBOARDS = ["text", "code", "vision"]
+
+# 数据量骤降时降级用缓存的最长天数。超过该天数的缓存价值已低于新的
+# （较小的）上游快照——2026-08 镜像长期只返回 ~90 条（Arena 官方缩减榜单），
+# 相对缓存比例的降级守卫把缓存永久冻结在 2026-08-01，新鲜度校验最终硬失败。
+MAX_CACHE_FALLBACK_DAYS = 7
+
+
+def snapshot_age_days(snapshot: dict) -> int | None:
+    """Return age in days of a snapshot's `date` field, None if unparseable."""
+    try:
+        snap_date = date.fromisoformat(str(snapshot.get("date", ""))[:10])
+    except ValueError:
+        return None
+    return (datetime.now(timezone.utc).date() - snap_date).days
 
 
 def get_latest_date() -> str | None:
@@ -114,19 +128,28 @@ def main():
 
     # Arena 镜像曾出现只返回各榜 Top 20 的 truncated 数据（total_models 从 ~160
     # 骤降到 60），导致覆盖率暴跌、管线验证失败。若新数据量明显少于缓存，
-    # 降级使用更完整的缓存数据，并标记 degraded。
+    # 降级使用更完整的缓存数据，并标记 degraded——但仅以缓存仍新鲜为限：
+    # 若上游长期缩减（而非临时故障），降级守卫会把缓存永久冻结，最终触发
+    # 新鲜度校验硬失败（2026-08-12 实际发生）。缓存过老时接受新快照。
     cached = load_previous_raw(OUTPUT_PATH.name, OUTPUT_DIR)
     cached_total = cached.get("total_models", 0) if cached else 0
     if cached_total > 0 and total_models < cached_total * 0.6:
+        cache_age = snapshot_age_days(cached)
+        if cache_age is not None and cache_age <= MAX_CACHE_FALLBACK_DAYS:
+            print(
+                f"[WARN] Arena 数据量异常减少: 新数据 {total_models} 条，"
+                f"缓存 {cached_total} 条。降级使用缓存。"
+            )
+            cached["partial"] = True
+            cached["fallback_reason"] = f"new snapshot too small ({total_models} < 60% of {cached_total})"
+            write_json(OUTPUT_PATH, cached)
+            # exit 3 = 降级使用缓存，让管线感知 degraded 状态
+            sys.exit(3)
         print(
-            f"[WARN] Arena 数据量异常减少: 新数据 {total_models} 条，"
-            f"缓存 {cached_total} 条。降级使用缓存。"
+            f"[WARN] Arena 新数据量低于缓存 ({total_models} < 60% of {cached_total})，"
+            f"但缓存快照已 {cache_age if cache_age is not None else '?'} 天"
+            f"（上限 {MAX_CACHE_FALLBACK_DAYS} 天），接受较小的上游快照以防缓存冻结"
         )
-        cached["partial"] = True
-        cached["fallback_reason"] = f"new snapshot too small ({total_models} < 60% of {cached_total})"
-        write_json(OUTPUT_PATH, cached)
-        # exit 3 = 降级使用缓存，让管线感知 degraded 状态
-        sys.exit(3)
 
     write_json(OUTPUT_PATH, result)
     print(f"\n[OK] Saved {total_models} total entries to {OUTPUT_PATH}")

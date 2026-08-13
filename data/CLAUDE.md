@@ -192,17 +192,21 @@ Arena 上模型命名差异大（"deepseek-v3.2-exp" vs "DeepSeek V3.2"）：
 - 必需字段、intelligence 范围、type 有效性、重复 ID
 - 发布日期不能是未来
 - 排名一致性、统计量动态阈值、分数分布
-- 与上次数据对比（模型数剧变、Top3 剧变、价格突降为 0、intelligence 单日剧变）
-- 数据源健康度（coverage）
-- **数据源新鲜度**：`2-raw/` 各快照与 `4-final/ranking.json` 的年龄，超过 `warn_days`（默认 3 天）告警、超过 `fail_days`（默认 10 天）判失败
-- 异常值检测：中位数 + MAD 的修正 z-score（阈值 3.5），避免合法极端分模型卡死每日管线
+- 与上次数据对比（仅模型数剧变阻断；Top3 剧变、价格突降为 0、intelligence 单日剧变仅告警）
+- 数据源健康度（coverage < 15% 才阻断，< 35% 告警）
+- **数据源新鲜度**：`2-raw/` 各快照与 `4-final/ranking.json` 的年龄，超过 `warn_days`（默认 7 天）告警、超过 `fail_days`（默认 21 天）判失败
+- 异常值检测：中位数 + MAD 的修正 z-score（配置阈值 4.5），避免合法极端分模型卡死每日管线
 - `vendor_links.homepage` 不得指向 HuggingFace/GitHub 等第三方聚合站（告警不阻断）
+
+验证原则：**只有"特别异常"（数据损坏级别）才阻断管线**，上游改版/缩减/评分方法变化等正常波动一律降级为告警——每日刷新不应因可容忍波动中断。结构损坏类检查（schema、必需字段、重复 ID、intelligence 范围等）保持阻断。
 
 阈值与新鲜度配置集中在 `0-refer/validation_config.json`（`threshold_defaults` / `history_based_thresholds` / `source_freshness` / `anomaly_detection` / `completeness_fields`），缺配置时脚本回退硬编码默认值。动态阈值基于 `5-history/` 快照计算（`enabled` 可关，测试环境建议关闭以免依赖历史快照）。
 
 ### 抓取降级与数据血缘（exit code 3）
 
 三个 fetch 脚本在网络失败但 `2-raw/` 有可用缓存时，会打印降级信息并以 **exit code 3** 退出（区别于正常 0 与硬失败 1）。`pipeline.py` 识别 exit 3：复用缓存继续管线，同时把该数据源标记为 `degraded`。
+
+Arena 抓取器另有数据量守卫：新快照总量 < 缓存 60% 时降级用缓存（防镜像 truncated）；但缓存快照超过 `MAX_CACHE_FALLBACK_DAYS`（7 天）则改为接受较小的上游快照——上游长期缩减时降级守卫会把缓存永久冻结，最终触发新鲜度校验硬失败（2026-08 实例）。
 
 管线末尾写入 `app/src/data/ranking-meta.json` 数据血缘：每个数据源记录 `{fetched_at, cached, degraded}`，任一源非全新抓取（cached 或 degraded）时顶层 `degraded` 为 true。CI 的 workflow summary（`scripts/generate-workflow-summary.py`）读取该文件展示血缘状态。
 

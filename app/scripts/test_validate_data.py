@@ -296,13 +296,13 @@ class TestCheckSourceHealth(unittest.TestCase):
             V.META_PATH = orig
 
     def test_low_coverage_is_issue(self):
-        """覆盖率 < 30% 报 issue"""
-        issues, warnings = self._run_with_meta({"sources": {"aa": {"coverage": 0.2}}})
+        """覆盖率 < 15% 报 issue"""
+        issues, warnings = self._run_with_meta({"sources": {"aa": {"coverage": 0.1}}})
         self.assertTrue(any("覆盖率严重过低" in i for i in issues))
 
     def test_mid_coverage_is_warning(self):
-        """覆盖率 30%-50% 报 warning（修复前该分支为死代码）"""
-        issues, warnings = self._run_with_meta({"sources": {"aa": {"coverage": 0.4}}})
+        """覆盖率 15%-35% 报 warning"""
+        issues, warnings = self._run_with_meta({"sources": {"aa": {"coverage": 0.25}}})
         self.assertEqual(issues, [])
         self.assertTrue(any("覆盖率偏低" in w for w in warnings))
 

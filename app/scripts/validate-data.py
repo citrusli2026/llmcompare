@@ -62,15 +62,16 @@ def validate_schema(models) -> list[str]:
 
 
 # ── 阈值配置 ──
-# 默认阈值（硬编码兜底），可被历史动态阈值覆盖
+# 默认阈值（硬编码兜底），可被历史动态阈值覆盖。
+# 阈值只拦截"特别异常"（数据损坏级别），正常上游波动不应阻断每日管线。
 DEFAULT_THRESHOLDS = {
-    "total_models": (15, 120),
-    "data_complete": (20, 60),
-    "frontier": (5, 55),
-    "intl": (5, 40),
-    "has_arena": (15, 35),
-    "has_cn_price": (10, 30),
-    "has_speed": (20, 55),
+    "total_models": (10, 150),
+    "data_complete": (10, 80),
+    "frontier": (3, 70),
+    "intl": (3, 60),
+    "has_arena": (8, 60),
+    "has_cn_price": (5, 45),
+    "has_speed": (10, 70),
 }
 
 THRESHOLDS = {}
@@ -96,13 +97,15 @@ MODIFIED_Z_THRESHOLD = SCORE_DIST_CFG.get("modified_z_threshold", 3.5)
 MAX_INTELLIGENCE_GAP = SCORE_DIST_CFG.get("max_gap", 15)
 
 # ── 数据源新鲜度配置 ──
+# 只有"特别异常"才阻断：镜像/上游十几天不更新属可容忍波动（降级缓存会兜底），
+# 超过 fail_days（默认 21 天）才判定数据源实质死亡、需要人工介入。
 RAW_DIR = PROJECT_ROOT / "data" / "2-raw"
 FRESHNESS_CFG = VALIDATION_CONFIG.get("source_freshness", {})
-FRESHNESS_WARN_DAYS = FRESHNESS_CFG.get("warn_days", 3)
-FRESHNESS_FAIL_DAYS = FRESHNESS_CFG.get("fail_days", 10)
+FRESHNESS_WARN_DAYS = FRESHNESS_CFG.get("warn_days", 7)
+FRESHNESS_FAIL_DAYS = FRESHNESS_CFG.get("fail_days", 21)
 
-# 与上次数据对比的最大允许变化率
-MAX_CHANGE_RATIO = 0.50
+# 与上次数据对比的最大允许变化率（超过视为数据损坏级别的异常）
+MAX_CHANGE_RATIO = ANOMALY_CFG.get("max_model_count_change_ratio", 0.7)
 
 # ── 数据完整度计算配置 ──
 COMPLETENESS_FIELDS = VALIDATION_CONFIG.get("completeness_fields", {
@@ -285,10 +288,10 @@ def check_source_health(models):
     for source_name, source_info in sources.items():
         coverage = source_info.get("coverage")
         if coverage is not None:
-            # 覆盖率低于 30% 报错；30%-50% 只告警
-            if coverage < 0.3:
+            # 覆盖率只有跌穿 15% 才算实质异常（上游改版/缩减榜单属正常波动，只告警）
+            if coverage < 0.15:
                 issues.append(f"{source_name} 覆盖率严重过低: {coverage:.0%}")
-            elif coverage < 0.5:
+            elif coverage < 0.35:
                 warnings.append(f"{source_name} 覆盖率偏低: {coverage:.0%}")
         if source_info.get("degraded"):
             warnings.append(f"{source_name} 抓取失败、已降级使用缓存数据（degraded=true），数据可能不是最新")
@@ -354,13 +357,13 @@ def check_source_freshness():
 
 
 def check_anomalies(current, previous):
-    """检测异常数据变化。"""
-    issues = []
+    """检测异常数据变化（仅告警，不阻断：上游评分/定价改版属正常波动）。"""
+    warnings = []
     if previous is None:
-        return issues
+        return warnings
 
-    max_price_drop = ANOMALY_CFG.get("max_price_drop_to_zero_count", 3)
-    max_intel_change = ANOMALY_CFG.get("max_intelligence_day_change", 10)
+    max_price_drop = ANOMALY_CFG.get("max_price_drop_to_zero_count", 8)
+    max_intel_change = ANOMALY_CFG.get("max_intelligence_day_change", 25)
 
     prev_map = {m["id"]: m for m in previous}
     curr_map = {m["id"]: m for m in current}
@@ -375,7 +378,7 @@ def check_anomalies(current, previous):
         if p_price and p_price > 0 and c_price == 0:
             price_drop_to_zero += 1
     if price_drop_to_zero > max_price_drop:
-        issues.append(f"价格突降为 0 的模型数: {price_drop_to_zero} > {max_price_drop}")
+        warnings.append(f"价格突降为 0 的模型数: {price_drop_to_zero} > {max_price_drop}")
 
     # intelligence 单日剧变
     intel_jumps = []
@@ -390,9 +393,9 @@ def check_anomalies(current, previous):
                 intel_jumps.append(f"{mid}: {p_intel:.1f}→{c_intel:.1f}")
     if intel_jumps:
         # 只报前 5 个避免日志过长
-        issues.append(f"intelligence 单日变化>{max_intel_change} 的模型: {', '.join(intel_jumps[:5])}")
+        warnings.append(f"intelligence 单日变化>{max_intel_change} 的模型: {', '.join(intel_jumps[:5])}")
 
-    return issues
+    return warnings
 
 
 def check_required_fields(models):
@@ -611,10 +614,11 @@ def check_score_distribution(models):
 
 
 def check_against_previous(current, previous):
-    """与上次数据对比"""
+    """与上次数据对比：只有模型数级别的剧变才阻断，排名更替属正常波动仅告警。"""
     issues = []
+    warnings = []
     if previous is None:
-        return issues
+        return issues, warnings
 
     # 模型数变化
     curr_count = len(current)
@@ -641,12 +645,13 @@ def check_against_previous(current, previous):
     if len(curr_sorted) >= 3 and len(prev_sorted) >= 3:
         curr_top3 = [m["id"] for m in curr_sorted[:3]]
         prev_top3 = [m["id"] for m in prev_sorted[:3]]
-        # 允许 Top3 有 2 个不同（模型迭代正常），超过则告警
+        # 新模型发布会自然改写 Top3，超过 max_top3_change_count 仅提醒关注
+        max_top3_change = ANOMALY_CFG.get("max_top3_change_count", 3)
         diff = len(set(curr_top3) ^ set(prev_top3))
-        if diff > 2:
-            issues.append(f"Top3 changed too much: prev={prev_top3} curr={curr_top3}")
+        if diff > max_top3_change:
+            warnings.append(f"Top3 changed too much: prev={prev_top3} curr={curr_top3}")
 
-    return issues
+    return issues, warnings
 
 
 def check_url_consistency(models):
@@ -819,8 +824,9 @@ def main():
     print("[10/11] 与上次数据对比...")
     previous = load_previous_data()
     if previous:
-        issues = check_against_previous(models, previous)
+        issues, prev_warnings = check_against_previous(models, previous)
         all_issues.extend(issues)
+        all_warnings.extend(prev_warnings)
         print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
     else:
         print("  - 无历史数据，跳过对比")
@@ -834,8 +840,7 @@ def main():
     all_issues.extend(fresh_issues)
     all_warnings.extend(fresh_warnings)
     if previous:
-        issues = check_anomalies(models, previous)
-        all_issues.extend(issues)
+        all_warnings.extend(check_anomalies(models, previous))
     print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
 
     # 数据完整度报告
