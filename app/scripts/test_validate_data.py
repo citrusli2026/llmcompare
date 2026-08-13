@@ -40,6 +40,7 @@ def make_model(**overrides) -> dict:
             "has_speed": False,
             "has_pricing": False,
             "data_complete": False,
+            "tools_calling": None,
         },
         "scores": {
             "intelligence": 70.0,
@@ -420,6 +421,67 @@ class TestPickPreviousRef(unittest.TestCase):
 
     def test_different_content_uses_head(self):
         self.assertEqual(V.pick_previous_ref([], [1]), "HEAD")
+
+
+class TestHistoryStatsExcludesToday(unittest.TestCase):
+    """动态阈值不得包含当日快照(自我参照), 且渐进退化要有历史峰值地板。"""
+
+    def setUp(self):
+        self._orig_dir = V.HISTORY_DIR
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.hist_dir = Path(self._tmp.name)
+        V.HISTORY_DIR = self.hist_dir
+        today = date.today().isoformat()
+        model = make_model()
+        # 今天 5 个模型(应被排除) / 2-4 天前各 10 个模型(构成历史)
+        (self.hist_dir / f"{today}.json").write_text(json.dumps([model] * 5))
+        for i in (2, 3, 4):
+            day = (date.today() - timedelta(days=i)).isoformat()
+            (self.hist_dir / f"{day}.json").write_text(json.dumps([model] * 10))
+
+    def tearDown(self):
+        V.HISTORY_DIR = self._orig_dir
+
+    def test_today_snapshot_excluded_from_history(self):
+        stats = V.load_history_stats()
+        # 只有历史快照计入, 不含今天的 5
+        self.assertEqual(stats["total_models"], [10, 10, 10])
+
+    def test_gradual_decline_detects_drop(self):
+        # 当前 6 个 vs 峰值 10 → 下滑 40% > 20% 地板 → 阻断
+        stats = {"total_models": 6, "data_complete": 10, "has_speed": 10, "frontier": 10}
+        issues = V.check_gradual_decline(stats)
+        self.assertTrue(any("total_models" in i for i in issues))
+
+    def test_gradual_decline_ok_within_floor(self):
+        # 当前 9 个 vs 峰值 10 → 下滑 10% < 20% 地板 → 通过
+        stats = {"total_models": 9, "data_complete": 10, "has_speed": 10, "frontier": 10}
+        self.assertEqual(V.check_gradual_decline(stats), [])
+
+    def test_gradual_decline_requires_history_depth(self):
+        # 历史不足 3 天时不触发: 删掉 2 个历史快照, 只剩 1 个
+        for f in sorted(self.hist_dir.glob("*.json")):
+            if f.stem != date.today().isoformat():
+                f.unlink()
+                break
+        stats = {"total_models": 1, "data_complete": 1, "has_speed": 1, "frontier": 1}
+        self.assertEqual(V.check_gradual_decline(stats), [])
+
+
+class TestRequiredFlagsToolsCalling(unittest.TestCase):
+    """tools_calling 是契约字段, 缺失必须报错 (V4)。"""
+
+    def test_missing_tools_calling_flagged(self):
+        m = make_model()
+        del m["flags"]["tools_calling"]
+        issues = V.check_required_fields([m])
+        self.assertTrue(any("tools_calling" in i for i in issues))
+
+    def test_tools_calling_present_ok(self):
+        m = make_model()
+        issues = V.check_required_fields([m])
+        self.assertFalse(any("tools_calling" in i for i in issues))
 
 
 if __name__ == "__main__":

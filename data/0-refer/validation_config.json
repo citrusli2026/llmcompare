@@ -36,7 +36,9 @@
     "enabled": true,
     "lookback_days": 7,
     "tolerance": 0.6,
-    "min_lower_bound": 3
+    "min_lower_bound": 3,
+    "decline_floor_ratio": 0.8,
+    "decline_floor_keys": ["total_models", "data_complete", "has_speed", "frontier"]
   },
   "anomaly_detection": {
     "max_intelligence_day_change": 25,

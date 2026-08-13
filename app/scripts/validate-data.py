@@ -56,6 +56,8 @@ def validate_schema(models) -> list[str]:
         jsonschema.validate(instance=models, schema=schema)
         return []
     except ImportError:
+        # 不静默跳过: 未安装 jsonschema 时明确告警, 避免本地与 CI 行为不一致
+        print("[WARN] jsonschema 未安装, JSON Schema 校验跳过 (CI 已安装)")
         return []
     except jsonschema.ValidationError as e:
         return [f"Schema validation failed: {e.message} (path: {list(e.path)}))"]
@@ -87,6 +89,10 @@ HISTORY_THRESHOLDS_ENABLED = HISTORY_THRESHOLD_CFG.get("enabled", True)
 HISTORY_LOOKBACK_DAYS = HISTORY_THRESHOLD_CFG.get("lookback_days", 7)
 HISTORY_TOLERANCE = HISTORY_THRESHOLD_CFG.get("tolerance", 0.4)
 HISTORY_MIN_LOWER = HISTORY_THRESHOLD_CFG.get("min_lower_bound", 5)
+# 渐进退化地板: 关键指标低于历史峰值该比例即阻断(动态阈值均值会跟着缓慢下滑漂移,
+# 必须与历史峰值做绝对对比才能发现"温水煮青蛙"式退化)
+DECLINE_FLOOR_RATIO = HISTORY_THRESHOLD_CFG.get("decline_floor_ratio", 0.8)
+DECLINE_FLOOR_KEYS = tuple(HISTORY_THRESHOLD_CFG.get("decline_floor_keys", ["total_models", "data_complete", "has_speed", "frontier"]))
 
 # 异常检测配置
 ANOMALY_CFG = VALIDATION_CONFIG.get("anomaly_detection", {})
@@ -233,10 +239,15 @@ def load_history_stats() -> dict[str, list]:
         return stats_history
 
     cutoff = date.today() - timedelta(days=HISTORY_LOOKBACK_DAYS)
+    today_str = date.today().isoformat()
     for f in sorted(HISTORY_DIR.glob("*.json")):
         try:
             day = date.fromisoformat(f.stem)
             if day < cutoff:
+                continue
+            # 排除当日快照: 管线 Phase 3 先写入今日快照、Phase 5 才校验,
+            # 若计入则动态阈值与自身对比(自我参照), 掩盖系统性退化
+            if f.stem == today_str:
                 continue
             with open(f, "r", encoding="utf-8") as fh:
                 models = json.load(fh)
@@ -289,6 +300,32 @@ def compute_dynamic_thresholds() -> dict[str, tuple]:
         else:
             dynamic[key] = (default_low, default_high)
     return dynamic
+
+
+def check_gradual_decline(stats: dict) -> list[str]:
+    """防"温水煮青蛙": 与历史峰值做绝对对比, 低于峰值 DECLINE_FLOOR_RATIO 即阻断。
+
+    动态阈值(均值±60%)会跟随缓慢下滑的均值漂移, 无法发现逐日小幅退化;
+    历史峰值锚点提供不随均值漂移的绝对下限。
+    """
+    if not HISTORY_THRESHOLDS_ENABLED:
+        return []
+    issues = []
+    history = load_history_stats()
+    for key in DECLINE_FLOOR_KEYS:
+        values = [v for v in history.get(key, []) if v is not None]
+        if len(values) < 3:
+            continue
+        peak = max(values)
+        current = stats.get(key)
+        if current is None or peak <= 0:
+            continue
+        if current < peak * DECLINE_FLOOR_RATIO:
+            issues.append(
+                f"{key}={current} 相对历史峰值 {peak} 下滑 {1 - current / peak:.0%}, "
+                f"低于 {DECLINE_FLOOR_RATIO:.0%} 地板阈值, 疑似系统性退化"
+            )
+    return issues
 
 
 def check_source_health(models):
@@ -450,6 +487,7 @@ def check_required_fields(models):
                 "has_speed",
                 "has_pricing",
                 "data_complete",
+                "tools_calling",
             ]
             for f in required_flags:
                 if f not in m["flags"]:
@@ -580,6 +618,8 @@ def check_thresholds(models):
         low, high = dynamic_thresholds[key]
         if not (low <= val <= high):
             issues.append(f"{key}={val} out of threshold [{low}, {high}]")
+
+    issues.extend(check_gradual_decline(stats))
 
     return issues, stats, dynamic_thresholds
 
