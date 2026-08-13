@@ -37,7 +37,7 @@ TODAY = date.today().strftime("%Y-%m-%d")
 BRANCH = f"app-rank/{TODAY}"
 
 BASE = Path(__file__).resolve().parent.parent
-APP = BASE  # app/ is the repo root
+APP = BASE  # git 操作在整个仓库根做 (app/ 与 data/ 共用一个 git repo)
 DATA = BASE / "data"
 
 RED = "\033[31m"
@@ -93,6 +93,20 @@ print(f"  LLMCompare 数据管线 — {TODAY}")
 print(f"  Mode: {'DRY RUN' if DRY_RUN else 'LIVE'}")
 print(f"{'='*60}")
 
+# 并发防护: 同一仓库同时跑两个 pipeline 会在 git checkout/push 上互相踩。
+# flock 在进程退出/被杀时自动释放, 不会留下死锁。
+import fcntl
+import tempfile
+
+_lock_path = Path(tempfile.gettempdir()) / "llmcompare-pipeline.lock"
+_lock_file = open(_lock_path, "w")
+try:
+    fcntl.flock(_lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+except OSError:
+    fail(f"另一个 pipeline 实例正在运行 ({_lock_path})，中止")
+    sys.exit(2)
+ok(f"已获取运行锁 {_lock_path}")
+
 # ══════════════════════════════════════════════
 # Phase 1: 分支准备
 # ══════════════════════════════════════════════
@@ -105,7 +119,14 @@ if rc != 0:
     run(f"git checkout -b {BRANCH}", cwd=str(APP))
     ok(f"创建分支 app/{BRANCH}")
 else:
-    run(f"git checkout {BRANCH} && git merge main --no-edit", cwd=str(APP), exit_on_error=False)
+    # 复用分支: 先切分支再合并 main, merge 冲突必须中止而不是带冲突继续
+    run(f"git checkout {BRANCH}", cwd=str(APP))
+    merge_out, merge_rc = run("git merge main --no-edit", cwd=str(APP), exit_on_error=False)
+    if merge_rc != 0:
+        fail(f"合并 main 到 {BRANCH} 失败 (exit={merge_rc}), 可能存在冲突, 中止管线")
+        print(merge_out[-500:])
+        run("git checkout main", cwd=str(APP), exit_on_error=False)
+        sys.exit(2)
     ok(f"复用分支 app/{BRANCH}")
 
 # 验证分支切换（跳过 dry-run）
@@ -481,6 +502,7 @@ if os.environ.get("CI"):
     run("git push origin --delete " + BRANCH, cwd=str(APP), exit_on_error=False)
     run("git branch -d " + BRANCH, cwd=str(APP), exit_on_error=False)
 else:
+    pr_failed = False
     # Local: push branch and create PR
     run("git push origin " + BRANCH + " --force", cwd=str(APP))
     ok("分支已推送")
@@ -495,16 +517,24 @@ else:
 
 ---
 🤖 Hermes Agent 自动创建"""
-        pr_out, _ = run(
+        pr_out, pr_rc = run(
             f'gh pr create --base main --head {BRANCH} --title "data: 刷新模型排名数据（{TODAY}）" --body "{pr_body}"',
             cwd=str(APP), exit_on_error=False
         )
-        ok("PR 已创建: " + (pr_out.strip() if pr_out else ""))
+        if pr_rc != 0 or not pr_out.strip():
+            fail(f"PR 创建失败 (exit={pr_rc}): {pr_out.strip()[:300] or '(空输出, 可能已存在同名分支的 PR)'}")
+            pr_failed = True
+        else:
+            ok("PR 已创建: " + pr_out.strip())
     else:
         warn("gh CLI 未安装，请手动创建 PR")
 
     run("git checkout main", cwd=str(APP))
     run("git branch -d " + BRANCH, cwd=str(APP), exit_on_error=False)
+
+    if pr_failed:
+        fail("PR 创建失败，分支已推送但未建 PR，请手动处理")
+        sys.exit(2)
 
 # 从 diff 中提取关键指标（已提前到 PR 创建前）
 
