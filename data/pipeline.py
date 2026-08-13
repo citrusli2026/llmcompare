@@ -566,6 +566,6 @@ print("✅ Lint: 0 errors")
 print("✅ 数据质量: 通过")
 print("✅ 数据管线单测: 通过")
 print()
-print("🤖 Hermes Agent · 每日 12:00")
+print("🤖 Hermes Agent · 每日 UTC 18:00 / 20:00 自动运行（北京 02:00 / 04:00）")
 
 sys.exit(0)
