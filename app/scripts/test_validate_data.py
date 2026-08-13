@@ -130,9 +130,10 @@ class TestCheckLogoFiles(unittest.TestCase):
         self.assertEqual(V.check_logo_files([m]), [])
 
     def test_missing_logo_flagged(self):
+        """缺失 logo 仅告警，不阻断（新模型随上游进入榜单是常态）"""
         m = make_model(logo="/logos/definitely-not-exist-xyz.svg")
-        issues = V.check_logo_files([m])
-        self.assertTrue(any("logo 文件缺失" in i for i in issues))
+        warnings = V.check_logo_files([m])
+        self.assertTrue(any("logo 文件缺失" in w for w in warnings))
 
     def test_external_logo_skipped(self):
         m = make_model(logo="https://example.com/logo.svg")

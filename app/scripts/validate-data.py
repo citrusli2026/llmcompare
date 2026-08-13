@@ -457,10 +457,14 @@ LOGOS_DIR = Path(__file__).parent.parent / "public" / "logos"
 
 
 def check_logo_files(models):
-    """logo 引用的 /logos/*.svg 文件必须存在（缺失会导致浏览器控制台 404）"""
-    issues = []
+    """logo 引用的 /logos/*.svg 应存在（缺失会导致浏览器控制台 404）。
+
+    仅告警不阻断：新模型随上游抓取进入榜单是常态，缺 logo 只是轻微视觉
+    缺陷，按字母标模板补 svg 即可，不应因此中断每日刷新。
+    """
+    warnings = []
     if not LOGOS_DIR.exists():
-        return issues
+        return warnings
     checked = set()
     for m in models:
         logo = m.get("logo") or ""
@@ -468,11 +472,11 @@ def check_logo_files(models):
             continue
         checked.add(logo)
         if not (LOGOS_DIR.parent / logo.lstrip("/")).exists():
-            issues.append(
+            warnings.append(
                 f"{m.get('id', '???')}: logo 文件缺失 app/public{logo}"
                 "（按现有模板补一个字母标 svg 即可消除 404）"
             )
-    return issues
+    return warnings
 
 
 def check_type_valid(models):
@@ -760,11 +764,11 @@ def main():
     all_issues.extend(issues)
     print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
 
-    # 2b. logo 文件存在性
+    # 2b. logo 文件存在性（仅告警）
     print("[2b/11] logo 文件存在性...")
-    issues = check_logo_files(models)
-    all_issues.extend(issues)
-    print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
+    warnings = check_logo_files(models)
+    all_warnings.extend(warnings)
+    print(f"  {'✓' if not warnings else '△'} {len(warnings)} warnings")
 
     # 3. type 有效性
     print("[3/8] type 字段有效性...")
