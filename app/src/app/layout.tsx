@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import "@fontsource-variable/rubik";
 import "@fontsource-variable/geist-mono";
-import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { BackToTop } from "@/components/back-to-top";
 import { TrackCtaClicks } from "@/components/track-cta-clicks";
+import { safeJsonLd } from "@/lib/utils";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -62,7 +62,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: safeJsonLd({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "模型图鉴",
@@ -74,7 +74,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: safeJsonLd({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "模型图鉴",
@@ -84,13 +84,11 @@ export default function RootLayout({
           }}
         />
         <LanguageProvider>
-          <ThemeProvider>
-            {children}
-            <BackToTop />
-            <TrackCtaClicks />
-            <Analytics />
-            <SpeedInsights />
-          </ThemeProvider>
+          {children}
+          <BackToTop />
+          <TrackCtaClicks />
+          <Analytics />
+          <SpeedInsights />
         </LanguageProvider>
       </body>
     </html>

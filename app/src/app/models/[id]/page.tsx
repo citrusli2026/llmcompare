@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { DetailSkeleton } from "@/components/skeletons";
 import { ProductDetailClient } from "@/components/product-detail";
 import { getModelById, getAllModels, ModelType } from "@/lib/scoring";
+import { safeJsonLd } from "@/lib/utils";
 
 const BASE_URL = "https://www.llmcompare.cc";
 
@@ -114,11 +115,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(softwareSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbSchema) }}
       />
       <Suspense fallback={<DetailSkeleton />}>
         <ProductDetailClient model={model} />

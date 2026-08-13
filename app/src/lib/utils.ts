@@ -6,6 +6,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+/** JSON.stringify 后转义 `<`: 防止数据(模型名/公司等来自爬虫)中的 `</script>` 逃逸出 script 标签 */
+export function safeJsonLd(data: unknown): string {
+  return JSON.stringify(data).replace(/</g, "\\u003c")
+}
+
 export function formatTokenCount(val: number): { value: string; unit: "T" | "B" | "M" | "" } {
   if (val >= 1e12) return { value: (val / 1e12).toFixed(2), unit: "T" };
   if (val >= 1e9) return { value: (val / 1e9).toFixed(1), unit: "B" };

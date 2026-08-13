@@ -9,8 +9,9 @@ import { ChangesCard } from "@/components/changes-card";
 import { useTranslation } from "@/lib/i18n";
 import metadataData from "@/data/metadata.json";
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleString("zh-CN", {
+function formatDate(iso: string, locale: string) {
+  // 按当前语言格式化: EN 用户不应看到中文日期格式
+  return new Date(iso).toLocaleString(locale === "en" ? "en-US" : "zh-CN", {
     timeZone: "Asia/Shanghai",
     month: "2-digit",
     day: "2-digit",
@@ -18,8 +19,8 @@ function formatDate(iso: string) {
 }
 
 export default function HomeClient() {
-  const { t } = useTranslation();
-  const updatedDate = formatDate(metadataData.updated_at);
+  const { t, locale } = useTranslation();
+  const updatedDate = formatDate(metadataData.updated_at, locale);
 
   return (
     <div className="min-h-screen bg-surface-base">

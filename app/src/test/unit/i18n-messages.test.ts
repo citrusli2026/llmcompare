@@ -18,18 +18,15 @@ function getParams(value: string): string[] {
 }
 
 describe("i18n message data integrity — 无渲染测试", () => {
-  it("所有 zh 翻译 key 在 en 中都有对应", () => {
+  it("所有 zh 翻译 key 在 en 中都有对应 (100%)", () => {
     const zhKeys = new Set(traverseKeys(zh));
     const enKeys = new Set(traverseKeys(en));
 
     const missing = [...zhKeys].filter((k) => !enKeys.has(k));
-    // Some keys are intentionally zh-only (specific to Chinese content)
-    if (missing.length > 0) {
-      console.warn("⚠️ zh-only keys (likely intentional):", missing.slice(0, 10));
-    }
-    // The en.json should have at least 90% of zh keys
+    // 双语文档必须完全对齐: 缺键会回退显示原始 key, 用户看到 "home.badge" 这类裸键
+    expect(missing).toEqual([]);
     expect(zhKeys.size).toBeGreaterThan(0);
-    expect(enKeys.size).toBeGreaterThan(zhKeys.size * 0.85);
+    expect(enKeys.size).toBe(zhKeys.size);
   });
 
   it("模板参数在 zh↔en 之间保持一致", () => {
@@ -49,24 +46,9 @@ describe("i18n message data integrity — 无渲染测试", () => {
     }
   });
 
-  it("locale 切换状态机正确（无需渲染验证）", () => {
-    // The i18n state machine is: zh → en → zh ...
-    // Test that localStorage roundtrip works conceptually
-    const locales = ["zh", "en"];
-    expect(locales).toContain("zh");
-    expect(locales).toContain("en");
-  });
-
   it("zh.json keys 数量合理（>= 150 条）", () => {
     const keys = traverseKeys(zh);
     expect(keys.length).toBeGreaterThanOrEqual(150);
-  });
-
-  it("en.json 与 zh.json key 覆盖率 >= 85%", () => {
-    const zhKeys = new Set(traverseKeys(zh));
-    const enKeys = new Set(traverseKeys(en));
-    const overlap = [...zhKeys].filter((k) => enKeys.has(k));
-    expect(overlap.length / zhKeys.size).toBeGreaterThanOrEqual(0.85);
   });
 });
 

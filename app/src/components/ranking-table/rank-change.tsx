@@ -2,6 +2,7 @@
 
 import { ArrowUp, ArrowDown, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/lib/i18n";
 
 interface RankChangeProps {
   rank: number;
@@ -11,6 +12,7 @@ interface RankChangeProps {
 }
 
 export function RankChange({ rank, change, isNew, size = "md" }: RankChangeProps) {
+  const { t } = useTranslation();
   const isSignificant = change != null && Math.abs(change) >= 3;
 
   return (
@@ -26,7 +28,7 @@ export function RankChange({ rank, change, isNew, size = "md" }: RankChangeProps
           )}
         >
           <Sparkles className={cn("mr-0.5", size === "sm" ? "h-2 w-2" : "h-2.5 w-2.5")} />
-          新
+          {t("common.newBadge")}
         </span>
       ) : isSignificant ? (
         <span
