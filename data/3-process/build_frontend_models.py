@@ -98,11 +98,11 @@ def build_model(m: dict) -> dict:
     intel = m.get('intelligence_index')
     cn = is_cn_model(m)
 
-    # 美元定价显示
+    # 美元定价显示（显式 None 判断, 避免 0 价被 falsy 误判为缺失）
     p_in = m.get('price_input')
     p_out = m.get('price_output')
     if p_in is not None or p_out is not None:
-        display = f"${p_in or '?'}/${p_out or '?'} (USD/百万token)"
+        display = f"${p_in if p_in is not None else '?'}/${p_out if p_out is not None else '?'} (USD/百万token)"
     else:
         display = None
 
@@ -156,7 +156,8 @@ def build_model(m: dict) -> dict:
         'flags': {
             'frontier': is_frontier,
             'open_weights': open_w,
-            'reasoning': m.get('reasoning', False),
+            # AA 原始字段名是 reasoning_model（新/旧格式一致）；保留旧键 reasoning 兼容
+            'reasoning': m.get('reasoning_model', m.get('reasoning', False)),
             'image_input': m.get('input_image', False),
             'chinese_eval': cn,
             'has_speed': m.get('speed_median_tps') is not None and (m.get('speed_median_tps') or 0) > 0,
