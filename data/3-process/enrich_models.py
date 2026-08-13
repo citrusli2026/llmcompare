@@ -133,8 +133,13 @@ def load_or_data(or_models_path: Path) -> tuple[dict[str, int], dict[str, dict],
         name = m.get("name", "").lower().strip()
         pricing = m.get("pricing", {})
         if name and pricing:
-            prompt = float(pricing.get("prompt", 0))
-            completion = float(pricing.get("completion", 0))
+            # 防御: OR API 可能返回 null/非数字 (float(None) 曾使整条管线崩溃)
+            try:
+                prompt = float(pricing.get("prompt") or 0)
+                completion = float(pricing.get("completion") or 0)
+            except (TypeError, ValueError):
+                print(f"[WARN] OR 定价格式异常, 跳过 {name}: {pricing}")
+                continue
             if prompt > 0 or completion > 0:
                 price_map[name] = {
                     "prompt": round(prompt * 1e6, 2),
@@ -444,23 +449,31 @@ def enrich(
             p_in = m["pricing"].get("input")
             p_out = m["pricing"].get("output")
             if p_in is not None or p_out is not None:
-                m["pricing"]["display"] = f"${p_in or '?'}/${p_out or '?'} (USD/百万token)"
+                # 显式 None 判断: 0 价(免费模型)不能显示为 '?'
+                m["pricing"]["display"] = (
+                    f"${p_in if p_in is not None else '?'}/${p_out if p_out is not None else '?'} (USD/百万token)"
+                )
         else:
             # 国内模型：注入国内官价
             cp = cn_pricing.get(name)
             if cp:
-                if usage is not None:
-                    usage["cn_pricing"].add(name)
-                m["cn_pricing"] = {
-                    "input": cp["input"],
-                    "output": cp["output"],
-                    "source": cp["source"],
-                }
-                currency = cp.get("currency", "¥")
-                cond = f" ({cp['condition']})" if cp.get("condition") else ""
-                estimate = " (估算)" if cp.get("aa_only") else ""
-                m["pricing"]["display"] = f"{currency}{cp['input']}/{currency}{cp['output']}{cond}{estimate}"
-                enriched += 1
+                # 防御: 手维护表条目缺键会让整条管线 KeyError 崩溃
+                if not isinstance(cp, dict) or "input" not in cp or "output" not in cp:
+                    print(f"[WARN] model_reference.json cn_pricing 条目缺 input/output 键, 跳过: {name}")
+                    m["cn_pricing"] = None
+                else:
+                    if usage is not None:
+                        usage["cn_pricing"].add(name)
+                    m["cn_pricing"] = {
+                        "input": cp["input"],
+                        "output": cp["output"],
+                        "source": cp.get("source", ""),
+                    }
+                    currency = cp.get("currency", "¥")
+                    cond = f" ({cp['condition']})" if cp.get("condition") else ""
+                    estimate = " (估算)" if cp.get("aa_only") else ""
+                    m["pricing"]["display"] = f"{currency}{cp['input']}/{currency}{cp['output']}{cond}{estimate}"
+                    enriched += 1
             else:
                 m["cn_pricing"] = None
 
