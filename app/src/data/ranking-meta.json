@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-11T13:13:13.869685+00:00",
+  "generated_at": "2026-08-13T00:30:07.028735+00:00",
   "version": "1.0",
-  "partial_update": true,
+  "partial_update": false,
   "sources": {
     "artificial_analysis": {
       "ok": true,
@@ -15,21 +15,21 @@
       "cached": false,
       "degraded": false,
       "error": null,
-      "coverage": 0.652,
-      "pricing_coverage": 0.913
+      "coverage": 0.622,
+      "pricing_coverage": 0.878
     },
     "arena": {
-      "ok": false,
-      "cached": true,
-      "degraded": true,
-      "error": "============================================================\nFetching Arena Leaderboard snapshots...\nLatest snapshot date: 2026-08-11\n  [text  ] 20 models, last updated Aug 10, 2026\n  [code  ] 50 models, last updated Aug 10, 2026\n  [vision] 20 models, last updated Aug 6, 2026\n[WARN] Arena 数据量异常减少: 新数据 90 条，缓存 158 条。降级使用缓存。",
-      "coverage": 0.565
+      "ok": true,
+      "cached": false,
+      "degraded": false,
+      "error": null,
+      "coverage": 0.419
     }
   },
   "stats": {
-    "total_models": 69,
-    "data_complete": 46,
+    "total_models": 74,
+    "data_complete": 49,
     "frontier": 36,
-    "open_weights": 30
+    "open_weights": 32
   }
 }
