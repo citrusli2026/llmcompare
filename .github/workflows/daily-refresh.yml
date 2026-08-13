@@ -80,27 +80,27 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           DEGRADED_INFO=$(python3.11 -c "
-import json, sys
-try:
-    meta = json.load(open('app/src/data/ranking-meta.json'))
-except Exception:
-    sys.exit(0)
-parts = []
-for k, v in meta.get('sources', {}).items():
-    if v.get('degraded'):
-        parts.append(f\"{k} 降级: {str(v.get('error'))[:150]}\")
-    elif v.get('cached') and not v.get('ok'):
-        parts.append(f\"{k} 使用缓存\")
-if meta.get('partial_update'):
-    parts.append('部分更新 partial_update=true')
-print('; '.join(parts))
-" || true)
+          import json, sys
+          try:
+              meta = json.load(open('app/src/data/ranking-meta.json'))
+          except Exception:
+              sys.exit(0)
+          parts = []
+          for k, v in meta.get('sources', {}).items():
+              if v.get('degraded'):
+                  parts.append(f\"{k} 降级: {str(v.get('error'))[:150]}\")
+              elif v.get('cached') and not v.get('ok'):
+                  parts.append(f\"{k} 使用缓存\")
+          if meta.get('partial_update'):
+              parts.append('部分更新 partial_update=true')
+          print('; '.join(parts))
+          " || true)
           if [ -n "$DEGRADED_INFO" ]; then
             TITLE="⚠️ 数据刷新降级告警 $(date -u +%Y-%m-%d)"
             RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             BODY="本次刷新存在数据源降级：**$DEGRADED_INFO**
 
-降级期间站点可能展示缓存或缺失数据，详情见 [Actions 日志]($RUN_URL)。"
+            降级期间站点可能展示缓存或缺失数据，详情见 [Actions 日志]($RUN_URL)。"
             ISSUE_NUMBER=$(gh issue list --state open --search "$TITLE" --json number,title \
               --jq '.[] | select(.title == "'"$TITLE"'") | .number' | head -n 1)
             if [ -n "$ISSUE_NUMBER" ]; then
@@ -116,19 +116,19 @@ print('; '.join(parts))
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           DEGRADED_INFO=$(python3.11 -c "
-import json, sys
-try:
-    meta = json.load(open('app/src/data/ranking-meta.json'))
-except Exception:
-    sys.exit(0)
-parts = []
-for k, v in meta.get('sources', {}).items():
-    if v.get('degraded'):
-        parts.append(k)
-if meta.get('partial_update'):
-    parts.append('partial_update')
-print('; '.join(parts))
-" || true)
+          import json, sys
+          try:
+              meta = json.load(open('app/src/data/ranking-meta.json'))
+          except Exception:
+              sys.exit(0)
+          parts = []
+          for k, v in meta.get('sources', {}).items():
+              if v.get('degraded'):
+                  parts.append(k)
+          if meta.get('partial_update'):
+              parts.append('partial_update')
+          print('; '.join(parts))
+          " || true)
           if [ -z "$DEGRADED_INFO" ]; then
             ISSUES=$(gh issue list --state open --search "数据刷新降级告警" --json number,title \
               --jq '.[] | select(.title | contains("数据刷新降级告警")) | .number')
