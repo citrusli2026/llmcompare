@@ -33,7 +33,12 @@ jobs:
           cd app
           npm run lint
 
-      - name: Security audit
+      - name: Security audit (production deps, blocking)
+        run: |
+          cd app
+          npm audit --omit=dev --audit-level=high
+
+      - name: Security audit (full tree, advisory only)
         run: |
           cd app
           npm audit --audit-level=high || true
