@@ -7,6 +7,10 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: "list",
+  timeout: 60 * 1000, // dev server 首次编译可能较慢, 放宽默认 30s
+  expect: {
+    timeout: 10 * 1000,
+  },
   use: {
     baseURL: "http://localhost:3003",
     trace: "on-first-retry",

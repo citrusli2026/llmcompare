@@ -9,7 +9,6 @@ test.describe("ScoreBar — 表格分数可视化", () => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     // 首页已改为场景卡片，ScoreBar 在 /models 页面
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 智能列头点击排序
     const intelHeader = page.locator("th").filter({ hasText: /智能|Intelligence/ });
@@ -42,7 +41,6 @@ test.describe("ScoreBar — 表格分数可视化", () => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     // /models 页默认显示开源模型，部分模型可能无 intelligence 数据
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 找所有行，检查智能列是否显示 — 或数字
     // td(0)=checkbox td(1)=name td(2)=company td(3)=date
@@ -61,7 +59,6 @@ test.describe("Full-Page Visual Review", () => {
   test("desktop: 首页全页截图 (含 StatsStrip + ScoreBar)", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForTimeout(300);
@@ -72,7 +69,6 @@ test.describe("Full-Page Visual Review", () => {
   test("mobile: 首页全页截图", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用");
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForTimeout(300);
@@ -83,7 +79,6 @@ test.describe("Full-Page Visual Review", () => {
   test("desktop: 模型详情页截图", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models/deepseek-v3");
-    await page.waitForLoadState("networkidle");
 
     await page.screenshot({ path: `${SCREENSHOTS}/full-detail-desktop.png`, fullPage: true });
   });
@@ -91,7 +86,6 @@ test.describe("Full-Page Visual Review", () => {
   test("desktop: /models 页面截图", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     await page.screenshot({ path: `${SCREENSHOTS}/full-models-desktop.png`, fullPage: true });
   });
@@ -103,7 +97,6 @@ test.describe("Interaction & Responsiveness", () => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     // 首页已改为场景卡片，表格排序在 /models 页面
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 依次点击各个可排序列头（桌面端均可见）
     const sortableHeaders = ["智能", "编程", "Agent"];
@@ -126,7 +119,6 @@ test.describe("Interaction & Responsiveness", () => {
   test("mobile: 收藏按钮在移动卡片可见且可切换", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 移动卡片的首张应有收藏心形按钮
     const firstCard = page.locator("[data-testid='mobile-model-card']").first();
@@ -145,7 +137,6 @@ test.describe("Interaction & Responsiveness", () => {
   test("desktop: 语言切换后核心中文文案存在", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     // 验证当前语言的关键文案
     await expect(page.locator("body")).toContainText("模型图鉴");
@@ -171,15 +162,12 @@ test.describe("Accessibility & Performance", () => {
     page.on("pageerror", (err) => errors.push(err.message));
 
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
     await page.waitForTimeout(1000);
 
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
     await page.waitForTimeout(500);
 
     await page.goto("/about");
-    await page.waitForLoadState("networkidle");
     await page.waitForTimeout(500);
 
     expect(errors).toEqual([]);
@@ -188,7 +176,6 @@ test.describe("Accessibility & Performance", () => {
   test("desktop: 收藏按钮颜色遵循设计系统 (玫红)", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 第一行的心形按钮:未收藏态用 accent-fuchsia 描边/图标
     const favBtn = page.locator("tr[data-model-id]").first().locator("button[data-cta='favorite']");

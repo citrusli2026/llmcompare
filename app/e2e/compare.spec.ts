@@ -7,7 +7,6 @@ test.describe("Compare Feature", () => {
   test("desktop: compare mode toggle activates selection", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // No per-row compare buttons visible
     const checkboxes = page.locator('button[aria-label="加入对比"]');
@@ -46,7 +45,6 @@ test.describe("Compare Feature", () => {
   test("desktop: compare page renders with model data", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/compare?models=deepseek-v4-flash,claude-sonnet-4-6");
-    await page.waitForLoadState("networkidle");
 
     // Title visible
     await expect(page.locator("h1").filter({ hasText: /对比|Compare/ })).toBeVisible();
@@ -66,7 +64,6 @@ test.describe("Compare Feature", () => {
   test("desktop: compare page empty state", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/compare");
-    await page.waitForLoadState("networkidle");
 
     // Should show empty state with back button
     await expect(page.locator("a[href='/models'].bg-accent-violet")).toBeVisible();
@@ -75,7 +72,6 @@ test.describe("Compare Feature", () => {
   test("mobile: compare mode toggle and selection", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // Click compare mode toggle
     const toggleBtn = page.locator("button").filter({ hasText: /对比|Compare/ }).first();
@@ -105,7 +101,6 @@ test.describe("Compare Feature", () => {
   test("mobile: compare page renders", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用");
     await page.goto("/compare?models=deepseek-v4-flash,claude-sonnet-4-6");
-    await page.waitForLoadState("networkidle");
 
     // Title visible
     await expect(page.locator("h1").filter({ hasText: /对比|Compare/ })).toBeVisible();

@@ -7,7 +7,6 @@ test.describe("Home Page", () => {
   test("desktop view renders correctly", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     // 核心元素可见 — 场景卡片取代了原有表格
     await expect(page.locator("header")).toBeVisible();
@@ -24,7 +23,6 @@ test.describe("Home Page", () => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
     // 首页已改为场景卡片，排序功能在 /models 页面
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 找到"智能"列头并点击
     const intelHeader = page.locator("th").filter({ hasText: /智能|Intelligence/ });
@@ -43,7 +41,6 @@ test.describe("Home Page", () => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
     // 首页已改为场景卡片，排序功能在 /models 页面
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 找到智能/Intelligence 列头并点击
     const votesHeader = page.locator("th").filter({ hasText: /智能|Intelligence/ });
@@ -58,7 +55,6 @@ test.describe("Home Page", () => {
   test("desktop: hero badge (TrendingUp) visible", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     // Hero badge with trending-up icon and badge text
     const badge = page.locator("header + section a[href='/models']").first();
@@ -69,10 +65,10 @@ test.describe("Home Page", () => {
   test("scene cards: 展开后有 5 个 model 链接", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     // 默认展开热度场景,验证 model 链接
     const cards = page.locator(".animate-in a[href^='/models/']");
+    await expect(cards.first()).toBeVisible();
     const count = await cards.count();
     expect(count).toBeGreaterThanOrEqual(3);
 
@@ -86,7 +82,6 @@ test.describe("Home Page", () => {
   test("hero CTA navigates to /models", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     // 点击 Hero 区主按钮 "开始选型"
     const startBtn = page.locator("a").filter({ hasText: /开始选型|Start Selection/ });
@@ -99,7 +94,6 @@ test.describe("Home Page", () => {
   test("scene card: 展开后点击 model 链接跳转详情页", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     // 默认展开的热度场景卡的第一项
     const firstCard = page.locator(".animate-in a[href^='/models/']").first();
@@ -113,7 +107,6 @@ test.describe("Home Page", () => {
   test("feature tag filters work", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用测试");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 点击"开源"标签筛选（不含"开源权重"）
     const openBtn = page.locator("button").filter({ hasText: /^开源$|^Open Source$/ });
@@ -129,7 +122,6 @@ test.describe("Home Page", () => {
   test("mobile view renders correctly", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用测试");
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     // 移动端显示场景卡片（智能+热度）
     await expect(page.locator("button").filter({ hasText: /智能|Intelligence/ }).first()).toBeVisible();
@@ -141,7 +133,6 @@ test.describe("Home Page", () => {
   test("mobile scene card 切换展开后显示 model 链接", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用测试");
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     // 点击热度场景卡(默认收起)展开
     const hotnessButton = page.locator("button").filter({ hasText: /热度|Hotness/ }).first();
@@ -158,12 +149,10 @@ test.describe("Home Page", () => {
 test.describe("Product Detail", () => {
   test("first product page loads with data", async ({ page }) => {
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     const firstLink = page.locator("a[href^='/models/']").first();
     const href = await firstLink.getAttribute("href");
     await page.goto(href!);
-    await page.waitForLoadState("networkidle");
 
     // 详情页核心元素：检查页面标题或模型名称
     await expect(page.locator("h1, h2").first()).toBeVisible();
@@ -176,7 +165,6 @@ test.describe("Product Detail", () => {
   test("product with arena votes shows votes card", async ({ page }) => {
     // 找一个有 arena_votes 的模型（如 Gemini）
     await page.goto("/models/gemini-3-1-pro-preview");
-    await page.waitForLoadState("networkidle");
 
     // 检查页面加载成功（有模型名称）
     await expect(page.locator("h1, h2").first()).toBeVisible();
@@ -189,7 +177,6 @@ test.describe("Product Detail", () => {
   test("product without arena votes hides votes card", async ({ page }) => {
     // 找一个没有 arena_votes 的模型
     await page.goto("/models/qwen3-7-max");
-    await page.waitForLoadState("networkidle");
 
     // 检查没有 Arena 投票数卡片
     const votesElements = page.locator("*").filter({ hasText: /Arena投票|Arena Votes/ });
@@ -201,7 +188,6 @@ test.describe("Other Pages", () => {
   // about page tests consolidated below (mission statement + content check)
   test("models page renders with filter", async ({ page }) => {
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 检查页面加载成功
     await expect(page.locator("h1, h2").first()).toBeVisible();
@@ -212,7 +198,6 @@ test.describe("Other Pages", () => {
 
   test("about page renders mission statement", async ({ page }) => {
     await page.goto("/about");
-    await page.waitForLoadState("networkidle");
 
     // Mission statement
     await expect(page.locator("text=/选型助手|selection assistant|Our Mission/")).toBeVisible();
@@ -222,7 +207,6 @@ test.describe("Other Pages", () => {
 
   test("404 page renders for invalid route", async ({ page }) => {
     await page.goto("/nonexistent-page");
-    await page.waitForLoadState("networkidle");
 
     // 404 title visible
     await expect(page.locator("text=404")).toBeVisible();
@@ -233,7 +217,6 @@ test.describe("Other Pages", () => {
 
   test("language switch works", async ({ page }) => {
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     // 语言切换按钮（EN/中 文本，桌面/移动导航各一份，取可见的那个）
     const langBtn = page.getByRole("button", { name: /^EN$|^中$/ }).locator("visible=true");
@@ -249,7 +232,7 @@ test.describe("Other Pages", () => {
 test.describe("Data Quality", () => {
   test("all product pages render without error", async ({ page }) => {
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
+    await expect(page.locator("a[href^='/models/']").first()).toBeVisible();
 
     // 获取所有产品链接
     const links = await page.locator("a[href^='/models/']").all();
@@ -258,7 +241,6 @@ test.describe("Data Quality", () => {
 
     for (const href of hrefs) {
       await page.goto(href!);
-      await page.waitForLoadState("networkidle");
 
       // 检查没有 404 或错误
       await expect(page.locator("text=404")).toHaveCount(0);

@@ -6,7 +6,6 @@ test.describe("Models Page — 筛选与搜索功能", () => {
   test("desktop: 首页 4 个场景标签全部可见且可切换", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/");
-    await page.waitForLoadState("networkidle");
 
     // 首页场景卡：热度 / 智能 / 编程 / Agent
     const zhLabels = ["热度", "智能", "编程", "Agent"];
@@ -27,7 +26,6 @@ test.describe("Models Page — 筛选与搜索功能", () => {
   test("desktop: 搜索框输入 → 表格行数收窄，清空后恢复", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     const rows = page.locator("tbody tr");
     await expect(rows.first()).toBeVisible();
@@ -58,7 +56,6 @@ test.describe("Models Page — 筛选与搜索功能", () => {
   test("desktop: 公司下拉选择 → 表格行均为该公司", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     const rows = page.locator("tbody tr");
     await expect(rows.first()).toBeVisible();
@@ -87,7 +84,6 @@ test.describe("Models Page — 筛选与搜索功能", () => {
   test("desktop: 搜索无结果 → 显示空状态", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     const search = page.getByLabel(/搜索模型|Search models/);
     await search.fill("no-such-model-exists-zzz");
@@ -100,7 +96,6 @@ test.describe("Models Page — 筛选与搜索功能", () => {
   test("desktop: 切换筛选恢复模型列表", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 先筛选：选"开源"
     const openFilter = page.locator("button").filter({ hasText: /^开源$|^Open$/ }).first();
@@ -120,7 +115,6 @@ test.describe("Models Page — 筛选与搜索功能", () => {
   test("desktop: URL 参数与筛选同步", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 点"闭源" filter，URL 应同步 filter 参数
     const closedFilter = page.locator("button").filter({ hasText: /^闭源$|^Closed Source$/ }).first();
@@ -132,7 +126,6 @@ test.describe("Models Page — 筛选与搜索功能", () => {
   test("desktop: 排序切换 — 同列点两次改变方向", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 找到智能列头
     const intelHeader = page.locator("th").filter({ hasText: /智能|Intelligence/ });
@@ -163,7 +156,6 @@ test.describe("Models Page — 筛选与搜索功能", () => {
 
     // 先访问首页，通过场景展开拿到模型链接，再切到 /models
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 移动端显示卡片结构
     const mobileCard = page.locator("[data-testid='mobile-model-card']").first();
@@ -175,7 +167,6 @@ test.describe("Models Page — 筛选与搜索功能", () => {
   test("mobile: /models 页面语言切换", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用");
     await page.goto("/models");
-    await page.waitForLoadState("networkidle");
 
     // 切换语言（EN/中 文本按钮，取移动端可见的那个）
     const langBtn = page.getByRole("button", { name: /^EN$|^中$/ }).locator("visible=true");
