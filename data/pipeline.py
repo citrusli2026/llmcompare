@@ -418,8 +418,8 @@ else:
     ok("数据质量验证通过")
 
 # 5e. 数据管线 Python 单测（3-process，曾长期无人调用）
-print("  Test: python3.11 -m unittest discover -s data/3-process")
-out, rc = run("python3.11 -m unittest discover -s data/3-process -p 'test_*.py'", cwd=str(DATA), exit_on_error=False)
+print("  Test: python3.11 -m unittest discover -s 3-process")
+out, rc = run("python3.11 -m unittest discover -s 3-process -p 'test_*.py'", cwd=str(DATA), exit_on_error=False)
 if rc != 0:
     fail(f"数据管线单测失败 ({rc})")
     print(out[-2000:])
