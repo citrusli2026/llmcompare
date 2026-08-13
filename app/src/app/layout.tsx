@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Rubik, Geist_Mono } from "next/font/google";
+import "@fontsource-variable/rubik";
+import "@fontsource-variable/geist-mono";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
 import { Analytics } from "@vercel/analytics/next";
@@ -7,17 +8,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { BackToTop } from "@/components/back-to-top";
 import { TrackCtaClicks } from "@/components/track-cta-clicks";
 import "./globals.css";
-
-const rubik = Rubik({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.llmcompare.cc"),
@@ -62,7 +52,7 @@ export default function RootLayout({
   return (
     <html
       lang="zh-CN"
-      className={`${rubik.variable} ${geistMono.variable} h-full antialiased`}
+      className="h-full antialiased"
       suppressHydrationWarning
     >
       <head>

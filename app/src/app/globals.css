@@ -2,6 +2,15 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* 自托管字体变量（fontsource，替代 next/font/google — 移除构建期对 Google Fonts 的网络依赖）。
+   之前由 next/font 在 <html> 上注入同名变量，现在改为 :root 直接定义。 */
+:root {
+  --font-sans: "Rubik Variable", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --font-geist-mono: "Geist Mono Variable", ui-monospace, "SF Mono", Menlo,
+    Consolas, monospace;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
