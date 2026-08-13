@@ -17,9 +17,9 @@
       "rank": 4,
       "first_seen": "2026-08-13",
       "intelligence": 60.9,
-      "tps": 69,
+      "tps": 66,
       "price_input": 2,
-      "detail": "智商 61 · 69 TPS · $2/M",
+      "detail": "智商 61 · 66 TPS · $2/M",
       "icon": "🆕"
     },
     {
@@ -29,9 +29,9 @@
       "rank": 16,
       "first_seen": "2026-08-13",
       "intelligence": 53.0,
-      "tps": null,
+      "tps": 83,
       "price_input": 0.435,
-      "detail": "智商 53 · $0.435/M",
+      "detail": "智商 53 · 83 TPS · $0.435/M",
       "icon": "🆕"
     },
     {
@@ -41,9 +41,9 @@
       "rank": 36,
       "first_seen": "2026-08-13",
       "intelligence": 41.6,
-      "tps": 62,
+      "tps": 68,
       "price_input": 0.3,
-      "detail": "智商 42 · 62 TPS · $0.3/M",
+      "detail": "智商 42 · 68 TPS · $0.3/M",
       "icon": "🆕"
     },
     {
@@ -84,12 +84,12 @@
     },
     {
       "type": "ranking_down",
-      "model": "GPT-5.4 Pro",
-      "id": "gpt-5-4-pro",
-      "old_rank": 69,
-      "new_rank": 75,
+      "model": "Step 3.7 Flash",
+      "id": "step-3-7-flash",
+      "old_rank": 64,
+      "new_rank": 70,
       "change": -6,
-      "detail": "#69 → #75",
+      "detail": "#64 → #70",
       "icon": "🔻"
     },
     {
@@ -104,12 +104,12 @@
     },
     {
       "type": "ranking_down",
-      "model": "Step 3.7 Flash",
-      "id": "step-3-7-flash",
-      "old_rank": 64,
-      "new_rank": 70,
+      "model": "Ling-2.6-1T",
+      "id": "ling-2-6-1t",
+      "old_rank": 66,
+      "new_rank": 72,
       "change": -6,
-      "detail": "#64 → #70",
+      "detail": "#66 → #72",
       "icon": "🔻"
     },
     {
@@ -124,62 +124,22 @@
     },
     {
       "type": "ranking_down",
+      "model": "GPT-5.4 Pro",
+      "id": "gpt-5-4-pro",
+      "old_rank": 69,
+      "new_rank": 75,
+      "change": -6,
+      "detail": "#69 → #75",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
       "model": "Command A+",
       "id": "command-a",
       "old_rank": 67,
       "new_rank": 73,
       "change": -6,
       "detail": "#67 → #73",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Ling-2.6-1T",
-      "id": "ling-2-6-1t",
-      "old_rank": 66,
-      "new_rank": 72,
-      "change": -6,
-      "detail": "#66 → #72",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Hy3-preview",
-      "id": "hy3-preview",
-      "old_rank": 58,
-      "new_rank": 63,
-      "change": -5,
-      "detail": "#58 → #63",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "G9v3-39A5B",
-      "id": "g9v3-39a5b",
-      "old_rank": 62,
-      "new_rank": 67,
-      "change": -5,
-      "detail": "#62 → #67",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "KAT-Coder-Pro V2",
-      "id": "kat-coder-pro-v2",
-      "old_rank": 57,
-      "new_rank": 62,
-      "change": -5,
-      "detail": "#57 → #62",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "Qwen3.6 35B A3B",
-      "id": "qwen3-6-35b-a3b",
-      "old_rank": 61,
-      "new_rank": 66,
-      "change": -5,
-      "detail": "#61 → #66",
       "icon": "🔻"
     },
     {
@@ -204,12 +164,52 @@
     },
     {
       "type": "ranking_down",
+      "model": "Hy3-preview",
+      "id": "hy3-preview",
+      "old_rank": 58,
+      "new_rank": 63,
+      "change": -5,
+      "detail": "#58 → #63",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
       "model": "GPT-5.5 Instant",
       "id": "gpt-5-5-instant",
       "old_rank": 59,
       "new_rank": 64,
       "change": -5,
       "detail": "#59 → #64",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "Qwen3.6 35B A3B",
+      "id": "qwen3-6-35b-a3b",
+      "old_rank": 61,
+      "new_rank": 66,
+      "change": -5,
+      "detail": "#61 → #66",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "G9v3-39A5B",
+      "id": "g9v3-39a5b",
+      "old_rank": 62,
+      "new_rank": 67,
+      "change": -5,
+      "detail": "#62 → #67",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "KAT-Coder-Pro V2",
+      "id": "kat-coder-pro-v2",
+      "old_rank": 57,
+      "new_rank": 62,
+      "change": -5,
+      "detail": "#57 → #62",
       "icon": "🔻"
     },
     {
@@ -224,22 +224,22 @@
     },
     {
       "type": "ranking_down",
-      "model": "MiMo-V2-Omni-0327",
-      "id": "mimo-v2-omni-0327",
-      "old_rank": 53,
-      "new_rank": 57,
-      "change": -4,
-      "detail": "#53 → #57",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
       "model": "Muse Glimmer",
       "id": "muse-glimmer",
       "old_rank": 56,
       "new_rank": 60,
       "change": -4,
       "detail": "#56 → #60",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "MiMo-V2-Omni-0327",
+      "id": "mimo-v2-omni-0327",
+      "old_rank": 53,
+      "new_rank": 57,
+      "change": -4,
+      "detail": "#53 → #57",
       "icon": "🔻"
     },
     {
@@ -264,12 +264,22 @@
     },
     {
       "type": "ranking_down",
-      "model": "Grok 4.3",
-      "id": "grok-4-3",
-      "old_rank": 48,
-      "new_rank": 51,
+      "model": "Inkling Small",
+      "id": "inkling-small",
+      "old_rank": 34,
+      "new_rank": 37,
       "change": -3,
-      "detail": "#48 → #51",
+      "detail": "#34 → #37",
+      "icon": "🔻"
+    },
+    {
+      "type": "ranking_down",
+      "model": "JT-4.1 Flash 236B A21B",
+      "id": "jt-4-1-flash-236b-a21b",
+      "old_rank": 39,
+      "new_rank": 42,
+      "change": -3,
+      "detail": "#39 → #42",
       "icon": "🔻"
     },
     {
@@ -294,12 +304,12 @@
     },
     {
       "type": "ranking_down",
-      "model": "GPT-5.4 nano",
-      "id": "gpt-5-4-nano",
-      "old_rank": 40,
-      "new_rank": 43,
+      "model": "Ling 3.0 Flash",
+      "id": "ling-3-0-flash",
+      "old_rank": 49,
+      "new_rank": 52,
       "change": -3,
-      "detail": "#40 → #43",
+      "detail": "#49 → #52",
       "icon": "🔻"
     },
     {
@@ -310,16 +320,6 @@
       "new_rank": 41,
       "change": -3,
       "detail": "#38 → #41",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "MiMo-V2.5",
-      "id": "mimo-v2-5",
-      "old_rank": 46,
-      "new_rank": 49,
-      "change": -3,
-      "detail": "#46 → #49",
       "icon": "🔻"
     }
   ]
