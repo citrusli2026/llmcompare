@@ -495,6 +495,14 @@ if os.environ.get("CI"):
     # GitHub Actions: rebase onto latest main, merge branch, then push
     run("git fetch origin", cwd=str(APP))
     run("git checkout main", cwd=str(APP))
+    # 诊断：打印当前工作树状态，帮助排查未暂存变更来源
+    status_out, _ = run("git status --short", cwd=str(APP), exit_on_error=False)
+    if status_out.strip():
+        warn(f"切换至 main 后存在未暂存变更:\n{status_out[:500]}")
+    # 清理构建/测试遗留的未跟踪或未暂存文件，避免 rebase/pull 失败
+    # （CI 环境下所有有效变更已提交到 feature 分支，此处安全）
+    run("git reset --hard HEAD", cwd=str(APP))
+    run("git clean -fd", cwd=str(APP), exit_on_error=False)
     run("git pull origin main --rebase", cwd=str(APP))
     run("git merge " + BRANCH + " --no-edit", cwd=str(APP))
     run("git push origin main", cwd=str(APP))
