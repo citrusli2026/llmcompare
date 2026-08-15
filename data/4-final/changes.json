@@ -86,28 +86,6 @@
     },
     {
       "type": "price_up",
-      "model": "DeepSeek V4 Flash 0731",
-      "id": "deepseek-v4-flash-0731",
-      "field": "input",
-      "old": 0.14,
-      "new": 0.44,
-      "change_pct": 214.3,
-      "detail": "输入价 $0.14→$0.44 (+214%)",
-      "icon": "💸"
-    },
-    {
-      "type": "price_up",
-      "model": "DeepSeek V4 Flash 0731",
-      "id": "deepseek-v4-flash-0731",
-      "field": "output",
-      "old": 0.28,
-      "new": 1.32,
-      "change_pct": 371.4,
-      "detail": "输出价 $0.28→$1.32 (+371%)",
-      "icon": "💸"
-    },
-    {
-      "type": "price_up",
       "model": "DeepSeek V4 Pro 0813",
       "id": "deepseek-v4-pro-0813",
       "field": "input",
@@ -126,6 +104,28 @@
       "new": 3.96,
       "change_pct": 355.2,
       "detail": "输出价 $0.87→$3.96 (+355%)",
+      "icon": "💸"
+    },
+    {
+      "type": "price_up",
+      "model": "DeepSeek V4 Flash 0731",
+      "id": "deepseek-v4-flash-0731",
+      "field": "input",
+      "old": 0.14,
+      "new": 0.44,
+      "change_pct": 214.3,
+      "detail": "输入价 $0.14→$0.44 (+214%)",
+      "icon": "💸"
+    },
+    {
+      "type": "price_up",
+      "model": "DeepSeek V4 Flash 0731",
+      "id": "deepseek-v4-flash-0731",
+      "field": "output",
+      "old": 0.28,
+      "new": 1.32,
+      "change_pct": 371.4,
+      "detail": "输出价 $0.28→$1.32 (+371%)",
       "icon": "💸"
     }
   ]
