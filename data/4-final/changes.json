@@ -1,132 +1,22 @@
 {
-  "generated_at": "2026-08-15",
-  "date": "2026-08-15",
-  "compare_with": "2026-08-13",
+  "generated_at": "2026-08-16",
+  "date": "2026-08-16",
+  "compare_with": "2026-08-15",
   "summary": {
-    "new_models": 3,
+    "new_models": 0,
     "dropped_models": 1,
-    "price_changes": 4,
-    "ranking_changes": 3,
+    "price_changes": 0,
+    "ranking_changes": 0,
     "intel_changes": 0
   },
   "changes": [
     {
-      "type": "new",
-      "model": "Qwen3.8 2.4T A95B",
-      "id": "qwen3-8-2-4t-a95b",
-      "rank": 7,
-      "first_seen": "2026-08-15",
-      "intelligence": 57.7,
-      "tps": 49,
-      "price_input": 2,
-      "detail": "智商 58 · 49 TPS · $2/M",
-      "icon": "🆕"
-    },
-    {
-      "type": "new",
-      "model": "Gemini 3.7 Flash",
-      "id": "gemini-3-7-flash",
-      "rank": 11,
-      "first_seen": "2026-08-15",
-      "intelligence": 56.0,
-      "tps": 340,
-      "price_input": 0.75,
-      "detail": "智商 56 · 340 TPS · $0.75/M",
-      "icon": "🆕"
-    },
-    {
-      "type": "new",
-      "model": "K-EXAONE 2.0",
-      "id": "k-exaone-2-0",
-      "rank": 71,
-      "first_seen": "2026-08-15",
-      "intelligence": 31.0,
-      "tps": null,
-      "price_input": null,
-      "detail": "智商 31",
-      "icon": "🆕"
-    },
-    {
       "type": "dropped",
-      "model": "K-EXAONE 2.0 0803",
-      "id": "k-exaone-2-0-0803",
-      "old_rank": 69,
+      "model": "Claude Sonnet 4.6",
+      "id": "claude-sonnet-4-6",
+      "old_rank": 24,
       "detail": "",
       "icon": "📉"
-    },
-    {
-      "type": "ranking_down",
-      "model": "KAT-Coder-Pro V2",
-      "id": "kat-coder-pro-v2",
-      "old_rank": 62,
-      "new_rank": 67,
-      "change": -5,
-      "detail": "#62 → #67",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "GPT-5.4",
-      "id": "gpt-5-4",
-      "old_rank": 15,
-      "new_rank": 18,
-      "change": -3,
-      "detail": "#15 → #18",
-      "icon": "🔻"
-    },
-    {
-      "type": "ranking_down",
-      "model": "G9v3-39A5B",
-      "id": "g9v3-39a5b",
-      "old_rank": 67,
-      "new_rank": 70,
-      "change": -3,
-      "detail": "#67 → #70",
-      "icon": "🔻"
-    },
-    {
-      "type": "price_up",
-      "model": "DeepSeek V4 Flash 0731",
-      "id": "deepseek-v4-flash-0731",
-      "field": "input",
-      "old": 0.14,
-      "new": 0.44,
-      "change_pct": 214.3,
-      "detail": "输入价 $0.14→$0.44 (+214%)",
-      "icon": "💸"
-    },
-    {
-      "type": "price_up",
-      "model": "DeepSeek V4 Flash 0731",
-      "id": "deepseek-v4-flash-0731",
-      "field": "output",
-      "old": 0.28,
-      "new": 1.32,
-      "change_pct": 371.4,
-      "detail": "输出价 $0.28→$1.32 (+371%)",
-      "icon": "💸"
-    },
-    {
-      "type": "price_up",
-      "model": "DeepSeek V4 Pro 0813",
-      "id": "deepseek-v4-pro-0813",
-      "field": "input",
-      "old": 0.435,
-      "new": 1.32,
-      "change_pct": 203.4,
-      "detail": "输入价 $0.435→$1.32 (+203%)",
-      "icon": "💸"
-    },
-    {
-      "type": "price_up",
-      "model": "DeepSeek V4 Pro 0813",
-      "id": "deepseek-v4-pro-0813",
-      "field": "output",
-      "old": 0.87,
-      "new": 3.96,
-      "change_pct": 355.2,
-      "detail": "输出价 $0.87→$3.96 (+355%)",
-      "icon": "💸"
     }
   ]
 }
