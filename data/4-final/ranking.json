@@ -225,7 +225,7 @@
       "tau2": 0.850877192982456,
       "terminalbench_hard": 0.659090909090909,
       "mmmu_pro": 0.834104046242775,
-      "gdpval": 1725.18,
+      "gdpval": 1722.96,
       "livecodebench": null,
       "aime25": null
     },
@@ -1737,8 +1737,8 @@
     },
     "openrouter_weekly_tokens": 4328860989331,
     "openrouter_pricing": {
-      "prompt": 0.49,
-      "completion": 1.54
+      "prompt": 0.48,
+      "completion": 1.5
     },
     "arena_rankings": {},
     "arena_votes": 8142,
@@ -3612,9 +3612,9 @@
       "aime25": null
     },
     "pricing": {
-      "input": 1.38,
+      "input": 1.39,
       "output": 4.4,
-      "blended": 2.135,
+      "blended": 2.1425,
       "display": "¥6/¥24 (<32K)"
     },
     "flags": {
