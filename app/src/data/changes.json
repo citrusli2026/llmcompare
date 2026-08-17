@@ -1,22 +1,26 @@
 {
-  "generated_at": "2026-08-16",
-  "date": "2026-08-16",
-  "compare_with": "2026-08-15",
+  "generated_at": "2026-08-17",
+  "date": "2026-08-17",
+  "compare_with": "2026-08-16",
   "summary": {
-    "new_models": 0,
-    "dropped_models": 1,
+    "new_models": 1,
+    "dropped_models": 0,
     "price_changes": 0,
     "ranking_changes": 0,
     "intel_changes": 0
   },
   "changes": [
     {
-      "type": "dropped",
-      "model": "Claude Sonnet 4.6",
-      "id": "claude-sonnet-4-6",
-      "old_rank": 24,
-      "detail": "",
-      "icon": "📉"
+      "type": "new",
+      "model": "Qwen3.8 27B",
+      "id": "qwen3-8-27b",
+      "rank": 21,
+      "first_seen": "2026-08-17",
+      "intelligence": 52.0,
+      "tps": null,
+      "price_input": null,
+      "detail": "智商 52",
+      "icon": "🆕"
     }
   ]
 }
