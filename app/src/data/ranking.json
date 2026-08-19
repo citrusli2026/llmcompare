@@ -12,8 +12,8 @@
     },
     "speed": {
       "median_tps": 56.9315381478323,
-      "ttft_seconds": 79.0797021265,
-      "e2e_seconds": 87.86218045514916,
+      "ttft_seconds": 65.2908615385,
+      "e2e_seconds": 74.07333986714916,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -293,8 +293,8 @@
     },
     "speed": {
       "median_tps": 59.8605136615427,
-      "ttft_seconds": 45.146107134,
-      "e2e_seconds": 53.49885871289639,
+      "ttft_seconds": 46.5695938814999,
+      "e2e_seconds": 54.92234546039629,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -375,9 +375,9 @@
       "agentic": 54.2624604810997
     },
     "speed": {
-      "median_tps": 38.2800669728422,
-      "ttft_seconds": 55.01868769176283,
-      "e2e_seconds": 68.08031583245352,
+      "median_tps": 38.0689595606816,
+      "ttft_seconds": 55.38075222077755,
+      "e2e_seconds": 68.51481224684694,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -463,9 +463,9 @@
       "agentic": 59.1017594501718
     },
     "speed": {
-      "median_tps": 74.0167800748331,
-      "ttft_seconds": 28.915685678092267,
-      "e2e_seconds": 35.670910635115334,
+      "median_tps": 82.639533180221,
+      "ttft_seconds": 26.118180970646478,
+      "e2e_seconds": 32.16855396718308,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -546,8 +546,8 @@
     },
     "speed": {
       "median_tps": 44.3689011969945,
-      "ttft_seconds": 47.71643551202915,
-      "e2e_seconds": 58.98558995378642,
+      "ttft_seconds": 47.70588886102913,
+      "e2e_seconds": 58.9750433027864,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -727,9 +727,9 @@
       "agentic": 49.3749347079038
     },
     "speed": {
-      "median_tps": 60.3357367621975,
+      "median_tps": 60.5709799741991,
       "ttft_seconds": 28.724425495,
-      "e2e_seconds": 37.01138819457986,
+      "e2e_seconds": 36.97920361173149,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -926,9 +926,9 @@
       "agentic": 50.2013951890034
     },
     "speed": {
-      "median_tps": 119.233814120093,
+      "median_tps": 113.543390226959,
       "ttft_seconds": 217.004445282,
-      "e2e_seconds": 221.19788657790954,
+      "e2e_seconds": 221.40804816016458,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1009,9 +1009,9 @@
       "agentic": 45.1045017182131
     },
     "speed": {
-      "median_tps": 372.443319236585,
-      "ttft_seconds": 13.7432856964999,
-      "e2e_seconds": 15.085771852580976,
+      "median_tps": 364.138012995259,
+      "ttft_seconds": 12.3344536669999,
+      "e2e_seconds": 13.707559418545015,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1188,9 +1188,9 @@
       "agentic": 49.7181958762887
     },
     "speed": {
-      "median_tps": 79.3584702388588,
-      "ttft_seconds": 184.4755454955,
-      "e2e_seconds": 190.7760701716318,
+      "median_tps": 80.7103091726266,
+      "ttft_seconds": 184.038143112,
+      "e2e_seconds": 190.23313858563372,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1465,9 +1465,9 @@
       "agentic": 39.7395257731959
     },
     "speed": {
-      "median_tps": 201.979461631701,
-      "ttft_seconds": 11.44257874294027,
-      "e2e_seconds": 13.91807796430033,
+      "median_tps": 202.681161634988,
+      "ttft_seconds": 11.34452348604261,
+      "e2e_seconds": 13.81145231142826,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1828,9 +1828,9 @@
       "agentic": 46.9033402061856
     },
     "speed": {
-      "median_tps": 154.428755752537,
+      "median_tps": 153.70795024617,
       "ttft_seconds": 168.7476438845,
-      "e2e_seconds": 171.98538285068852,
+      "e2e_seconds": 172.00056606060883,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1932,10 +1932,10 @@
       "aime25": null
     },
     "pricing": {
-      "input": 0.45,
-      "output": 3.2,
-      "blended": 1.1375,
-      "display": "$0.45/$3.2 (USD/百万token)"
+      "input": 0.42500000000000004,
+      "output": 3.1,
+      "blended": 1.0938,
+      "display": "$0.42500000000000004/$3.1 (USD/百万token)"
     },
     "flags": {
       "frontier": false,
@@ -1996,8 +1996,8 @@
     },
     "speed": {
       "median_tps": 184.551445563854,
-      "ttft_seconds": 31.974808125,
-      "e2e_seconds": 34.684079778074114,
+      "ttft_seconds": 30.653547554,
+      "e2e_seconds": 33.36281920707411,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2080,9 +2080,9 @@
       "agentic": 48.414147766323
     },
     "speed": {
-      "median_tps": 107.16574352223,
-      "ttft_seconds": 19.878665133327214,
-      "e2e_seconds": 24.544335183909023,
+      "median_tps": 107.767574795251,
+      "ttft_seconds": 19.796948458644568,
+      "e2e_seconds": 24.436562934055715,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2162,9 +2162,9 @@
       "agentic": 40.5116357388316
     },
     "speed": {
-      "median_tps": 203.086868926501,
-      "ttft_seconds": 20.056901726,
-      "e2e_seconds": 22.51890235973351,
+      "median_tps": 200.91772891519,
+      "ttft_seconds": 17.7851411865,
+      "e2e_seconds": 20.273721973768684,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2315,9 +2315,9 @@
       "agentic": 30.8631924398625
     },
     "speed": {
-      "median_tps": 202.823260022371,
-      "ttft_seconds": 14.145956774044548,
-      "e2e_seconds": 16.61115726409116,
+      "median_tps": 201.874498301469,
+      "ttft_seconds": 14.197119528193193,
+      "e2e_seconds": 16.673905869246166,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2407,9 +2407,9 @@
       "agentic": 36.1195773195876
     },
     "speed": {
-      "median_tps": 87.9364650950768,
-      "ttft_seconds": 24.11919172387718,
-      "e2e_seconds": 29.805115071596475,
+      "median_tps": 88.9821526023836,
+      "ttft_seconds": 23.795896439817078,
+      "e2e_seconds": 29.41500078127135,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2502,8 +2502,8 @@
     },
     "speed": {
       "median_tps": 74.2177187158751,
-      "ttft_seconds": 60.80890072620923,
-      "e2e_seconds": 67.54583644251886,
+      "ttft_seconds": 60.791485341709226,
+      "e2e_seconds": 67.52842105801885,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2583,9 +2583,9 @@
       "agentic": 31.1619896907216
     },
     "speed": {
-      "median_tps": 48.7322656733819,
-      "ttft_seconds": 94.04799988358074,
-      "e2e_seconds": 104.30814258556691,
+      "median_tps": 53.9510812914342,
+      "ttft_seconds": 85.23536437780454,
+      "e2e_seconds": 94.50301922422159,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2651,8 +2651,8 @@
     },
     "openrouter_weekly_tokens": 84463875102,
     "openrouter_pricing": {
-      "prompt": 0.56,
-      "completion": 2.36
+      "prompt": 0.54,
+      "completion": 2.28
     },
     "arena_rankings": {
       "code": {
@@ -2776,9 +2776,9 @@
       "agentic": 30.2783951890034
     },
     "speed": {
-      "median_tps": 37.2468806378538,
-      "ttft_seconds": 62.82340403157238,
-      "e2e_seconds": 76.24734696148992,
+      "median_tps": 37.5644151640179,
+      "ttft_seconds": 62.31753920495954,
+      "e2e_seconds": 75.6280086430393,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2958,8 +2958,8 @@
     },
     "speed": {
       "median_tps": 74.5295448578264,
-      "ttft_seconds": 28.608032762235265,
-      "e2e_seconds": 35.31678163429409,
+      "ttft_seconds": 28.614987511235256,
+      "e2e_seconds": 35.323736383294076,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3039,9 +3039,9 @@
       "agentic": 31.4171993127148
     },
     "speed": {
-      "median_tps": 70.0104991225656,
-      "ttft_seconds": 31.42603866193253,
-      "e2e_seconds": 38.56782462641569,
+      "median_tps": 71.1351606385821,
+      "ttft_seconds": 30.986941063759907,
+      "e2e_seconds": 38.01581392369988,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3284,9 +3284,9 @@
       "agentic": 33.625323024055
     },
     "speed": {
-      "median_tps": 42.6134010891142,
-      "ttft_seconds": 49.351677433803054,
-      "e2e_seconds": 61.085075548503816,
+      "median_tps": 37.0249347931045,
+      "ttft_seconds": 56.71396914475225,
+      "e2e_seconds": 70.21838185456531,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3444,9 +3444,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 61.8106319492354,
-      "ttft_seconds": 36.523335062841994,
-      "e2e_seconds": 44.6125582956775,
+      "median_tps": 61.4006082284004,
+      "ttft_seconds": 37.213377012966426,
+      "e2e_seconds": 45.35661882158305,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3536,9 +3536,9 @@
       "agentic": 30.5607491408935
     },
     "speed": {
-      "median_tps": 89.2234411656542,
-      "ttft_seconds": 44.0177244484737,
-      "e2e_seconds": 49.62163294457944,
+      "median_tps": 82.7075263388118,
+      "ttft_seconds": 47.38153764508057,
+      "e2e_seconds": 53.42693668109753,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3712,8 +3712,8 @@
     },
     "speed": {
       "median_tps": 54.8191388468907,
-      "ttft_seconds": 37.00071590355287,
-      "e2e_seconds": 46.12161802856609,
+      "ttft_seconds": 37.00345663055293,
+      "e2e_seconds": 46.12435875556615,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3865,9 +3865,9 @@
       "agentic": 29.674560137457
     },
     "speed": {
-      "median_tps": 175.998828336294,
+      "median_tps": 169.716505547797,
       "ttft_seconds": 5.73718933799996,
-      "e2e_seconds": 8.578117341478556,
+      "e2e_seconds": 8.683278749787819,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3949,8 +3949,8 @@
     },
     "speed": {
       "median_tps": 131.62516923816,
-      "ttft_seconds": 17.28933224965951,
-      "e2e_seconds": 21.08799783082438,
+      "ttft_seconds": 17.306898160159538,
+      "e2e_seconds": 21.105563741324413,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4016,9 +4016,9 @@
       "agentic": 20.6909243986254
     },
     "speed": {
-      "median_tps": 56.4849272351612,
-      "ttft_seconds": 37.636988113547496,
-      "e2e_seconds": 46.48890710280939,
+      "median_tps": 56.6249634545134,
+      "ttft_seconds": 37.549423252140464,
+      "e2e_seconds": 46.3794510260506,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4190,8 +4190,8 @@
     },
     "speed": {
       "median_tps": 61.9275843489804,
-      "ttft_seconds": 41.46036032728602,
-      "e2e_seconds": 49.53430678032948,
+      "ttft_seconds": 41.43586169678605,
+      "e2e_seconds": 49.50980814982951,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4275,9 +4275,9 @@
       "agentic": 27.4979347079038
     },
     "speed": {
-      "median_tps": 128.673057894553,
-      "ttft_seconds": 19.698694061147954,
-      "e2e_seconds": 23.584511404587076,
+      "median_tps": 126.429804427966,
+      "ttft_seconds": 20.012399942119863,
+      "e2e_seconds": 23.967163633025336,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4357,8 +4357,8 @@
     },
     "speed": {
       "median_tps": 58.4225490992055,
-      "ttft_seconds": 37.2265706525413,
-      "e2e_seconds": 45.78490998742663,
+      "ttft_seconds": 37.00907435204136,
+      "e2e_seconds": 45.56741368692669,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4451,9 +4451,9 @@
       "agentic": null
     },
     "speed": {
-      "median_tps": 101.518767346642,
+      "median_tps": 102.304908410026,
       "ttft_seconds": 23.1829609005,
-      "e2e_seconds": 28.108158605991434,
+      "e2e_seconds": 28.07031193546754,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4534,9 +4534,9 @@
       "agentic": 24.1647113402062
     },
     "speed": {
-      "median_tps": 122.821071054882,
-      "ttft_seconds": 20.530614571,
-      "e2e_seconds": 24.60157727882867,
+      "median_tps": 123.853092675453,
+      "ttft_seconds": 20.6495795305,
+      "e2e_seconds": 24.686620424668135,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4698,9 +4698,9 @@
       "agentic": 27.506676975945
     },
     "speed": {
-      "median_tps": 55.0296863082629,
-      "ttft_seconds": 106.85044779633908,
-      "e2e_seconds": 115.93645270647289,
+      "median_tps": 54.9389498988556,
+      "ttft_seconds": 107.05579916822212,
+      "e2e_seconds": 116.1568103983333,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4782,9 +4782,9 @@
       "agentic": 27.1629243986254
     },
     "speed": {
-      "median_tps": 375.177047411916,
+      "median_tps": 351.418144077399,
       "ttft_seconds": 9.60880838750001,
-      "e2e_seconds": 10.941512515988547,
+      "e2e_seconds": 11.031614831693958,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -5302,9 +5302,9 @@
       "agentic": 22.9350515463918
     },
     "speed": {
-      "median_tps": 110.897258566363,
-      "ttft_seconds": 18.834916671415176,
-      "e2e_seconds": 23.34359440126898,
+      "median_tps": 110.55042566008,
+      "ttft_seconds": 18.896042615502193,
+      "e2e_seconds": 23.41886554462775,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -5616,8 +5616,8 @@
     },
     "speed": {
       "median_tps": 42.1574265788014,
-      "ttft_seconds": 50.06528171385203,
-      "e2e_seconds": 61.925588202565024,
+      "ttft_seconds": 50.090540937851934,
+      "e2e_seconds": 61.950847426564934,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -5697,8 +5697,8 @@
     },
     "speed": {
       "median_tps": 105.971859054516,
-      "ttft_seconds": 1.3785957,
-      "e2e_seconds": 6.096829431681359,
+      "ttft_seconds": 1.44867927449997,
+      "e2e_seconds": 6.166913006181328,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -5783,8 +5783,8 @@
     },
     "speed": {
       "median_tps": 120.628937762781,
-      "ttft_seconds": 46.808135155845235,
-      "e2e_seconds": 50.953077565793826,
+      "ttft_seconds": 46.79052473784524,
+      "e2e_seconds": 50.93546714779383,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -6090,8 +6090,8 @@
     },
     "speed": {
       "median_tps": 111.499128500079,
-      "ttft_seconds": 20.726821580908222,
-      "e2e_seconds": 25.21116156388527,
+      "ttft_seconds": 20.746098785908202,
+      "e2e_seconds": 25.23043876888525,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -6177,9 +6177,9 @@
       "agentic": 19.2051821305842
     },
     "speed": {
-      "median_tps": 131.921401809584,
-      "ttft_seconds": 17.452972706038125,
-      "e2e_seconds": 21.243108295422648,
+      "median_tps": 135.931862771869,
+      "ttft_seconds": 17.00568417447423,
+      "e2e_seconds": 20.683997630967777,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -6351,9 +6351,9 @@
       "agentic": 9.22679381443299
     },
     "speed": {
-      "median_tps": 221.193825467212,
-      "ttft_seconds": 9.420788465298653,
-      "e2e_seconds": 11.68124939337332,
+      "median_tps": 215.977727379065,
+      "ttft_seconds": 9.636496318346307,
+      "e2e_seconds": 11.951549847557883,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -6433,8 +6433,8 @@
     },
     "speed": {
       "median_tps": 202.700276790414,
-      "ttft_seconds": 11.262050930708169,
-      "e2e_seconds": 13.728747118385233,
+      "ttft_seconds": 11.2483656417082,
+      "e2e_seconds": 13.715061829385263,
       "p05_tps": null,
       "p95_tps": null
     },
