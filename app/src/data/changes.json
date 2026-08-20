@@ -1,26 +1,24 @@
 {
-  "generated_at": "2026-08-19",
-  "date": "2026-08-19",
-  "compare_with": "2026-08-18",
+  "generated_at": "2026-08-20",
+  "date": "2026-08-20",
+  "compare_with": "2026-08-19",
   "summary": {
-    "new_models": 1,
+    "new_models": 0,
     "dropped_models": 0,
     "price_changes": 0,
-    "ranking_changes": 0,
+    "ranking_changes": 1,
     "intel_changes": 0
   },
   "changes": [
     {
-      "type": "new",
-      "model": "GLM-5.3",
-      "id": "glm-5-3",
-      "rank": 6,
-      "first_seen": "2026-08-19",
-      "intelligence": 59.5,
-      "tps": 83,
-      "price_input": 1.4,
-      "detail": "智商 60 · 83 TPS · $1.4/M",
-      "icon": "🆕"
+      "type": "ranking_up",
+      "model": "G9v3-39A5B",
+      "id": "g9v3-39a5b",
+      "old_rank": 70,
+      "new_rank": 66,
+      "change": 4,
+      "detail": "#70 → #66",
+      "icon": "🔺"
     }
   ]
 }
