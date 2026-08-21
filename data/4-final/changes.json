@@ -1,24 +1,25 @@
 {
-  "generated_at": "2026-08-20",
-  "date": "2026-08-20",
-  "compare_with": "2026-08-19",
+  "generated_at": "2026-08-21",
+  "date": "2026-08-21",
+  "compare_with": "2026-08-20",
   "summary": {
     "new_models": 0,
     "dropped_models": 0,
-    "price_changes": 0,
-    "ranking_changes": 1,
+    "price_changes": 1,
+    "ranking_changes": 0,
     "intel_changes": 0
   },
   "changes": [
     {
-      "type": "ranking_up",
-      "model": "G9v3-39A5B",
-      "id": "g9v3-39a5b",
-      "old_rank": 70,
-      "new_rank": 66,
-      "change": 4,
-      "detail": "#70 → #66",
-      "icon": "🔺"
+      "type": "price_up",
+      "model": "Qwen3.8 27B",
+      "id": "qwen3-8-27b",
+      "field": "input",
+      "old": 0.42500000000000004,
+      "new": 0.5,
+      "change_pct": 17.6,
+      "detail": "输入价 $0.42500000000000004→$0.5 (+18%)",
+      "icon": "💸"
     }
   ]
 }
