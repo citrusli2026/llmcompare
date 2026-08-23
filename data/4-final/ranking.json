@@ -429,7 +429,7 @@
           "text"
         ]
       },
-      "max_output_tokens": null
+      "max_output_tokens": 1048576
     },
     "url": "https://artificialanalysis.ai/models/kimi-k3",
     "vendor_links": {
@@ -2667,8 +2667,8 @@
     },
     "openrouter_weekly_tokens": 112615549082,
     "openrouter_pricing": {
-      "prompt": 0.95,
-      "completion": 4.0
+      "prompt": 0.54,
+      "completion": 2.28
     },
     "arena_rankings": {
       "code": {
