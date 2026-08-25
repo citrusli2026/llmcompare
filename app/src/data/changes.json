@@ -1,13 +1,48 @@
 {
-  "generated_at": "2026-08-24",
-  "date": "2026-08-24",
-  "compare_with": "2026-08-23",
+  "generated_at": "2026-08-25",
+  "date": "2026-08-25",
+  "compare_with": "2026-08-24",
   "summary": {
-    "new_models": 0,
+    "new_models": 1,
     "dropped_models": 0,
-    "price_changes": 0,
+    "price_changes": 2,
     "ranking_changes": 0,
     "intel_changes": 0
   },
-  "changes": []
+  "changes": [
+    {
+      "type": "new",
+      "model": "DeepSeek V4 Flash Vision",
+      "id": "deepseek-v4-flash-vision",
+      "rank": 26,
+      "first_seen": "2026-08-25",
+      "intelligence": 51.5,
+      "tps": 120,
+      "price_input": 0.44,
+      "detail": "智商 51 · 120 TPS · $0.44/M",
+      "icon": "🆕"
+    },
+    {
+      "type": "price_drop",
+      "model": "GPT-5.6 Sol",
+      "id": "gpt-5-6-sol",
+      "field": "input",
+      "old": 5,
+      "new": 4,
+      "change_pct": -20.0,
+      "detail": "输入价 $5→$4 (-20%)",
+      "icon": "💰"
+    },
+    {
+      "type": "price_drop",
+      "model": "GPT-5.6 Sol",
+      "id": "gpt-5-6-sol",
+      "field": "output",
+      "old": 30,
+      "new": 20,
+      "change_pct": -33.3,
+      "detail": "输出价 $30→$20 (-33%)",
+      "icon": "💰"
+    }
+  ]
 }
