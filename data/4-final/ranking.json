@@ -73,7 +73,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 1524331569530,
+    "openrouter_weekly_tokens": 1524331587003,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 25.0
@@ -172,7 +172,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 253215945577,
+    "openrouter_weekly_tokens": 253215951630,
     "openrouter_pricing": {
       "prompt": 10.0,
       "completion": 50.0
@@ -271,7 +271,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 1508742784138,
+    "openrouter_weekly_tokens": 1508742964944,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 10.0
@@ -308,7 +308,7 @@
       "tau2": null,
       "terminalbench_hard": null,
       "mmmu_pro": null,
-      "gdpval": 1736.11,
+      "gdpval": 1735.79,
       "livecodebench": null,
       "aime25": null
     },
@@ -354,7 +354,7 @@
       "console": "https://console.x.ai"
     },
     "license": null,
-    "openrouter_weekly_tokens": 494990863129,
+    "openrouter_weekly_tokens": 494991113897,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 6.0
@@ -442,7 +442,7 @@
       "output": 100.0,
       "source": "platform.kimi.com"
     },
-    "openrouter_weekly_tokens": 1423268766590,
+    "openrouter_weekly_tokens": 1423268996134,
     "openrouter_pricing": {
       "prompt": 3.0,
       "completion": 15.0
@@ -524,7 +524,7 @@
     },
     "license": null,
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 803490587085,
+    "openrouter_weekly_tokens": 803491175466,
     "openrouter_pricing": {
       "prompt": 1.4,
       "completion": 4.4
@@ -608,7 +608,7 @@
     },
     "license": null,
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 339466614582,
+    "openrouter_weekly_tokens": 339466920273,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 6.0
@@ -790,7 +790,7 @@
     },
     "license": null,
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 803490587085,
+    "openrouter_weekly_tokens": 803491175466,
     "openrouter_pricing": {
       "prompt": 0.07,
       "completion": 0.25
@@ -873,7 +873,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 433450443237,
+    "openrouter_weekly_tokens": 433450444906,
     "openrouter_pricing": {
       "prompt": 10.0,
       "completion": 50.0
@@ -1072,7 +1072,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 646622907173,
+    "openrouter_weekly_tokens": 646633368653,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 12.0
@@ -1157,7 +1157,7 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 2577249694788,
+    "openrouter_weekly_tokens": 2577250193182,
     "openrouter_pricing": {
       "prompt": 0.38,
       "completion": 1.88
@@ -1339,7 +1339,7 @@
       "console": "https://console.anthropic.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 1116497903395,
+    "openrouter_weekly_tokens": 1116498066313,
     "openrouter_pricing": {
       "prompt": 2.0,
       "completion": 10.0
@@ -1537,7 +1537,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 317541166135,
+    "openrouter_weekly_tokens": 317541166553,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -1730,7 +1730,7 @@
     },
     "license": "DeepSeek License",
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 1009231642218,
+    "openrouter_weekly_tokens": 1009233773719,
     "openrouter_pricing": {
       "prompt": 1.12,
       "completion": 3.37
@@ -1916,7 +1916,7 @@
       "output": 28.0,
       "source": "open.bigmodel.cn/pricing"
     },
-    "openrouter_weekly_tokens": 3223003712931,
+    "openrouter_weekly_tokens": 3223003906469,
     "openrouter_pricing": {
       "prompt": 1.19,
       "completion": 3.74
@@ -1999,7 +1999,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 4157162120354,
+    "openrouter_weekly_tokens": 4157178308948,
     "openrouter_pricing": {
       "prompt": 0.2,
       "completion": 1.2
@@ -2261,7 +2261,7 @@
     },
     "license": "DeepSeek License",
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 11624437016611,
+    "openrouter_weekly_tokens": 11624454258682,
     "openrouter_pricing": {
       "prompt": 0.06,
       "completion": 0.12
@@ -2346,7 +2346,7 @@
       "console": "https://aistudio.google.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 624046090746,
+    "openrouter_weekly_tokens": 624046379037,
     "openrouter_pricing": {
       "prompt": 0.75,
       "completion": 3.75
@@ -3147,7 +3147,7 @@
       "output": 21.0,
       "source": "小米开放平台控制台"
     },
-    "openrouter_weekly_tokens": 543939257883,
+    "openrouter_weekly_tokens": 543939302398,
     "openrouter_pricing": {
       "prompt": 0.43,
       "completion": 0.87
@@ -3322,7 +3322,7 @@
     },
     "license": "Tencent License",
     "cn_pricing": null,
-    "openrouter_weekly_tokens": 7156840224496,
+    "openrouter_weekly_tokens": 7156841600144,
     "openrouter_pricing": {
       "prompt": 0.08,
       "completion": 0.33
@@ -3563,7 +3563,7 @@
     "url": "https://artificialanalysis.ai/models/solar-pro4",
     "vendor_links": {},
     "license": null,
-    "openrouter_weekly_tokens": 573181411479,
+    "openrouter_weekly_tokens": 573181468756,
     "openrouter_pricing": {
       "prompt": 0.03,
       "completion": 0.12
@@ -4492,7 +4492,7 @@
       "output": 8.4,
       "source": "platform.minimaxi.com"
     },
-    "openrouter_weekly_tokens": 189615518127,
+    "openrouter_weekly_tokens": 189615618603,
     "openrouter_pricing": {
       "prompt": 0.3,
       "completion": 1.2
@@ -4573,7 +4573,7 @@
       "console": "https://build.nvidia.com"
     },
     "license": "NVIDIA Open License",
-    "openrouter_weekly_tokens": 5398454067406,
+    "openrouter_weekly_tokens": 5398460764526,
     "openrouter_pricing": {
       "prompt": 0.6,
       "completion": 3.6
@@ -4662,7 +4662,7 @@
       "output": 2,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 9915143274245,
+    "openrouter_weekly_tokens": 9915143486212,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -5346,7 +5346,7 @@
       "output": 14.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 9915143274245,
+    "openrouter_weekly_tokens": 9915143486212,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -5435,7 +5435,7 @@
       "output": 14.0,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 9915143274245,
+    "openrouter_weekly_tokens": 9915143486212,
     "openrouter_pricing": {
       "prompt": 0.14,
       "completion": 0.28
@@ -5747,7 +5747,7 @@
       "output": 15.9,
       "source": "cloud.tencent.com/doc/1729/97731"
     },
-    "openrouter_weekly_tokens": 7156840224496,
+    "openrouter_weekly_tokens": 7156841600144,
     "openrouter_pricing": {
       "prompt": 0.18,
       "completion": 0.6
@@ -5836,7 +5836,7 @@
       "console": "https://platform.openai.com"
     },
     "license": null,
-    "openrouter_weekly_tokens": 317541166135,
+    "openrouter_weekly_tokens": 317541166553,
     "openrouter_pricing": {
       "prompt": 5.0,
       "completion": 30.0
@@ -6399,7 +6399,7 @@
       "output": 8,
       "source": "OR (无国内官价, ¥按$×7折算)"
     },
-    "openrouter_weekly_tokens": 445238042026,
+    "openrouter_weekly_tokens": 445238051812,
     "openrouter_pricing": {
       "prompt": 0.2,
       "completion": 1.15
