@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-26",
-  "date": "2026-08-26",
-  "compare_with": "2026-08-25",
+  "generated_at": "2026-08-28",
+  "date": "2026-08-28",
+  "compare_with": "2026-08-26",
   "summary": {
-    "new_models": 1,
+    "new_models": 2,
     "dropped_models": 0,
     "price_changes": 0,
     "ranking_changes": 0,
@@ -12,14 +12,26 @@
   "changes": [
     {
       "type": "new",
-      "model": "GLM-5.3-Flash",
-      "id": "glm-5-3-flash",
-      "rank": 9,
-      "first_seen": "2026-08-26",
-      "intelligence": 57.5,
-      "tps": 49,
+      "model": "Qwen3.8-Flash-Next",
+      "id": "qwen3-8-flash-next",
+      "rank": 14,
+      "first_seen": "2026-08-28",
+      "intelligence": 55.8,
+      "tps": 73,
       "price_input": 0.15,
-      "detail": "智商 57 · 49 TPS · $0.15/M",
+      "detail": "智商 56 · 73 TPS · $0.15/M",
+      "icon": "🆕"
+    },
+    {
+      "type": "new",
+      "model": "Agnes 2.5 Pro Beta",
+      "id": "agnes-2-5-pro-beta",
+      "rank": 29,
+      "first_seen": "2026-08-28",
+      "intelligence": 49.1,
+      "tps": 159,
+      "price_input": 0.1,
+      "detail": "智商 49 · 159 TPS · $0.1/M",
       "icon": "🆕"
     }
   ]
