@@ -2347,8 +2347,8 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": 12278023420701,
     "openrouter_pricing": {
-      "prompt": 0.05,
-      "completion": 0.1
+      "prompt": 0.07,
+      "completion": 0.18
     },
     "arena_rankings": {},
     "arena_votes": null,
