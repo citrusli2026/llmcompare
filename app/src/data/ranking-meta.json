@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28T04:00:09.690973+00:00",
+  "generated_at": "2026-08-29T01:34:56.766662+00:00",
   "version": "1.0",
   "partial_update": false,
   "sources": {
@@ -30,6 +30,6 @@
     "total_models": 81,
     "data_complete": 61,
     "frontier": 42,
-    "open_weights": 40
+    "open_weights": 41
   }
 }
