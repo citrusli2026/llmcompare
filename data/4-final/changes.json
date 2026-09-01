@@ -1,37 +1,54 @@
 {
-  "generated_at": "2026-08-31",
-  "date": "2026-08-31",
-  "compare_with": "2026-08-30",
+  "generated_at": "2026-09-01",
+  "date": "2026-09-01",
+  "compare_with": "2026-08-31",
   "summary": {
-    "new_models": 1,
-    "dropped_models": 0,
-    "price_changes": 1,
+    "new_models": 2,
+    "dropped_models": 2,
+    "price_changes": 0,
     "ranking_changes": 0,
     "intel_changes": 0
   },
   "changes": [
     {
       "type": "new",
-      "model": "Apodex 1.1",
-      "id": "apodex-1-1",
-      "rank": 36,
-      "first_seen": "2026-08-31",
-      "intelligence": 44.0,
-      "tps": null,
-      "price_input": 0.3,
-      "detail": "智商 44 · $0.3/M",
+      "model": "Claude Fable 5.1",
+      "id": "claude-fable-5-1",
+      "rank": 1,
+      "first_seen": "2026-09-01",
+      "intelligence": 65.7,
+      "tps": 66,
+      "price_input": 10,
+      "detail": "智商 66 · 66 TPS · $10/M",
       "icon": "🆕"
     },
     {
-      "type": "price_up",
-      "model": "Nemotron 3 Ultra",
-      "id": "nemotron-3-ultra",
-      "field": "input",
-      "old": 0.6,
-      "new": 0.675,
-      "change_pct": 12.5,
-      "detail": "输入价 $0.6→$0.675 (+12%)",
-      "icon": "💸"
+      "type": "new",
+      "model": "Quasar 438B",
+      "id": "quasar-438b",
+      "rank": 38,
+      "first_seen": "2026-09-01",
+      "intelligence": 43.0,
+      "tps": 180,
+      "price_input": 0.6,
+      "detail": "智商 43 · 180 TPS · $0.6/M",
+      "icon": "🆕"
+    },
+    {
+      "type": "dropped",
+      "model": "GPT-5.4",
+      "id": "gpt-5-4",
+      "old_rank": 21,
+      "detail": "",
+      "icon": "📉"
+    },
+    {
+      "type": "dropped",
+      "model": "GPT-5.4 Pro",
+      "id": "gpt-5-4-pro",
+      "old_rank": 82,
+      "detail": "",
+      "icon": "📉"
     }
   ]
 }
