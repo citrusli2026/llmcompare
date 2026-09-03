@@ -110,9 +110,9 @@
       "agentic": 59.1729518900344
     },
     "speed": {
-      "median_tps": 58.654591959265,
-      "ttft_seconds": 77.2512160494999,
-      "e2e_seconds": 85.77569782148538,
+      "median_tps": 57.1354902632307,
+      "ttft_seconds": 81.7275776049999,
+      "e2e_seconds": 90.47870580389053,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -440,7 +440,7 @@
       "size_class": "large",
       "parameters": null,
       "release_date": "2026-09-03",
-      "knowledge_cutoff": null,
+      "knowledge_cutoff": "2026-04-30",
       "omniscience": 43.4,
       "modalities": null,
       "max_output_tokens": null
@@ -455,7 +455,7 @@
     "openrouter_pricing": null,
     "arena_rankings": {},
     "arena_votes": null,
-    "data_completeness_pct": 56.4
+    "data_completeness_pct": 60.2
   },
   {
     "id": "gpt-5-6-sol",
@@ -552,9 +552,9 @@
       "agentic": 58.6762164948454
     },
     "speed": {
-      "median_tps": 61.2692066322419,
-      "ttft_seconds": 47.234650319,
-      "e2e_seconds": 55.39535660986429,
+      "median_tps": 58.8057395601358,
+      "ttft_seconds": 47.578286899,
+      "e2e_seconds": 56.080858310225786,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -1429,9 +1429,9 @@
       "agentic": 45.1045017182131
     },
     "speed": {
-      "median_tps": 310.461294403287,
-      "ttft_seconds": 12.0071946875,
-      "e2e_seconds": 13.617701404483869,
+      "median_tps": 309.759732304758,
+      "ttft_seconds": 11.8155136639999,
+      "e2e_seconds": 13.429667951517406,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -2395,9 +2395,9 @@
       "agentic": 39.7146494845361
     },
     "speed": {
-      "median_tps": 204.550758453013,
-      "ttft_seconds": 15.2559123635,
-      "e2e_seconds": 17.700293424618646,
+      "median_tps": 202.693780504792,
+      "ttft_seconds": 15.539852865,
+      "e2e_seconds": 18.006628109680875,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -3009,9 +3009,9 @@
       "agentic": 36.1195773195876
     },
     "speed": {
-      "median_tps": 89.4209160549162,
-      "ttft_seconds": 23.739421655298013,
-      "e2e_seconds": 29.330954621622517,
+      "median_tps": 88.0199659386639,
+      "ttft_seconds": 24.172364040018028,
+      "e2e_seconds": 29.85289339114754,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4227,9 +4227,9 @@
       "agentic": 30.5607491408935
     },
     "speed": {
-      "median_tps": 50.517281210219,
-      "ttft_seconds": 76.86186885680223,
-      "e2e_seconds": 86.75947197442322,
+      "median_tps": 50.4594892934366,
+      "ttft_seconds": 76.94720685016989,
+      "e2e_seconds": 86.85614582282487,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4313,9 +4313,9 @@
       "agentic": 31.5416701030928
     },
     "speed": {
-      "median_tps": 200.275693770289,
-      "ttft_seconds": 7.94156639200006,
-      "e2e_seconds": 10.438124963773063,
+      "median_tps": 195.610533014722,
+      "ttft_seconds": 7.0662495900001,
+      "e2e_seconds": 9.622349163443669,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -4396,9 +4396,9 @@
       "agentic": 28.86035395189
     },
     "speed": {
-      "median_tps": 66.4027798281116,
-      "ttft_seconds": 30.62404508010229,
-      "e2e_seconds": 38.153850327627865,
+      "median_tps": 63.9074665345042,
+      "ttft_seconds": 31.794598550036802,
+      "e2e_seconds": 39.61841049429602,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -5296,9 +5296,9 @@
       "agentic": 29.3111649484536
     },
     "speed": {
-      "median_tps": 346.178207267487,
-      "ttft_seconds": 8.357834683822713,
-      "e2e_seconds": 9.802177480403369,
+      "median_tps": 335.34474589099,
+      "ttft_seconds": 8.58315313070243,
+      "e2e_seconds": 10.074156064628028,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -5963,9 +5963,9 @@
       "agentic": 22.9350515463918
     },
     "speed": {
-      "median_tps": 109.389218925687,
-      "ttft_seconds": 19.077443984481185,
-      "e2e_seconds": 23.64827834010148,
+      "median_tps": 109.847122493081,
+      "ttft_seconds": 19.001799710858112,
+      "e2e_seconds": 23.553580300572637,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -6505,9 +6505,9 @@
       "agentic": 21.6194501718213
     },
     "speed": {
-      "median_tps": 122.218852252983,
-      "ttft_seconds": 46.18333620310641,
-      "e2e_seconds": 50.274358093616726,
+      "median_tps": 124.243544853468,
+      "ttft_seconds": 45.45031438768035,
+      "e2e_seconds": 49.47466833371189,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -6734,9 +6734,9 @@
       "agentic": 21.735587628866
     },
     "speed": {
-      "median_tps": 105.661358703633,
-      "ttft_seconds": 21.65841173172814,
-      "e2e_seconds": 26.390510638410174,
+      "median_tps": 104.19501796023,
+      "ttft_seconds": 21.912409211477566,
+      "e2e_seconds": 26.711103139346978,
       "p05_tps": null,
       "p95_tps": null
     },
@@ -6980,9 +6980,9 @@
       "agentic": 9.22679381443299
     },
     "speed": {
-      "median_tps": 247.742356252592,
-      "ttft_seconds": 8.458272161523944,
-      "e2e_seconds": 10.476497900404913,
+      "median_tps": 248.485230477931,
+      "ttft_seconds": 8.438577658520478,
+      "e2e_seconds": 10.450769687150553,
       "p05_tps": null,
       "p95_tps": null
     },
