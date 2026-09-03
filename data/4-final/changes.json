@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-02",
-  "date": "2026-09-02",
-  "compare_with": "2026-09-01",
+  "generated_at": "2026-09-03",
+  "date": "2026-09-03",
+  "compare_with": "2026-09-02",
   "summary": {
     "new_models": 2,
     "dropped_models": 0,
@@ -12,26 +12,26 @@
   "changes": [
     {
       "type": "new",
-      "model": "Muse Spark 1.3",
-      "id": "muse-spark-1-3",
-      "rank": 3,
-      "first_seen": "2026-09-02",
-      "intelligence": 62.1,
+      "model": "GPT-6 Astra",
+      "id": "gpt-6-astra",
+      "rank": 5,
+      "first_seen": "2026-09-03",
+      "intelligence": 61.2,
       "tps": null,
-      "price_input": null,
-      "detail": "智商 62",
+      "price_input": 10,
+      "detail": "智商 61 · $10/M",
       "icon": "🆕"
     },
     {
       "type": "new",
-      "model": "Gemini 3.8 Flash",
-      "id": "gemini-3-8-flash",
-      "rank": 9,
-      "first_seen": "2026-09-02",
-      "intelligence": 58.7,
-      "tps": 302,
-      "price_input": 0.75,
-      "detail": "智商 59 · 302 TPS · $0.75/M",
+      "model": "K2 Horizon 375B A23B",
+      "id": "k2-horizon-375b-a23b",
+      "rank": 34,
+      "first_seen": "2026-09-03",
+      "intelligence": 47.3,
+      "tps": null,
+      "price_input": null,
+      "detail": "智商 47",
       "icon": "🆕"
     }
   ]
