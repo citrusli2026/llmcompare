@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { modelWithArena, modelWithoutArena } from "./test-data";
 
 const SCREENSHOTS = "e2e/screenshots";
 const isMobile = (projectName: string) => projectName === "Mobile Chrome";
@@ -163,8 +164,8 @@ test.describe("Product Detail", () => {
   });
 
   test("product with arena votes shows votes card", async ({ page }) => {
-    // 找一个有 arena_votes 的模型（如 Gemini）
-    await page.goto("/models/gemini-3-1-pro-preview");
+    // 从榜单数据里取一个有 Arena 排名/投票的模型（不硬编码 id）
+    await page.goto(`/models/${modelWithArena().id}`);
 
     // 检查页面加载成功（有模型名称）
     await expect(page.locator("h1, h2").first()).toBeVisible();
@@ -175,8 +176,8 @@ test.describe("Product Detail", () => {
   });
 
   test("product without arena votes hides votes card", async ({ page }) => {
-    // 找一个没有 arena_votes 的模型
-    await page.goto("/models/qwen3-7-max");
+    // 从榜单数据里取一个没有 Arena 排名/投票的模型
+    await page.goto(`/models/${modelWithoutArena().id}`);
 
     // 检查没有 Arena 投票数卡片
     const votesElements = page.locator("*").filter({ hasText: /Arena投票|Arena Votes/ });

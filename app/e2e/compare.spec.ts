@@ -1,6 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { compareModelIds } from "./test-data";
 
 const SCREENSHOTS = "e2e/screenshots";
+// 对比页模型来自数据（不同厂商），不硬编码 id —— 数据刷新会轮换榜单
+const [CMP_A, CMP_B] = compareModelIds(2);
 const isMobile = (projectName: string) => projectName === "Mobile Chrome";
 
 test.describe("Compare Feature", () => {
@@ -44,14 +47,14 @@ test.describe("Compare Feature", () => {
 
   test("desktop: compare page renders with model data", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
-    await page.goto("/compare?models=deepseek-v4-flash,claude-sonnet-4-6");
+    await page.goto(`/compare?models=${CMP_A},${CMP_B}`);
 
     // Title visible
     await expect(page.locator("h1").filter({ hasText: /对比|Compare/ })).toBeVisible();
 
     // Model names in header cards
-    await expect(page.locator("a[href='/models/deepseek-v4-flash']")).toBeVisible();
-    await expect(page.locator("a[href='/models/claude-sonnet-4-6']")).toBeVisible();
+    await expect(page.locator(`a[href='/models/${CMP_A}']`)).toBeVisible();
+    await expect(page.locator(`a[href='/models/${CMP_B}']`)).toBeVisible();
 
     // Table has rows
     const rows = page.locator("tbody tr");
@@ -100,7 +103,7 @@ test.describe("Compare Feature", () => {
 
   test("mobile: compare page renders", async ({ page }, testInfo) => {
     test.skip(!isMobile(testInfo.project.name), "移动端专用");
-    await page.goto("/compare?models=deepseek-v4-flash,claude-sonnet-4-6");
+    await page.goto(`/compare?models=${CMP_A},${CMP_B}`);
 
     // Title visible
     await expect(page.locator("h1").filter({ hasText: /对比|Compare/ })).toBeVisible();

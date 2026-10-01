@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { topModel } from "./test-data";
 
 test.describe("V2 — Scene Cards on Homepage", () => {
   test("shows 4 scene cards on load", async ({ page }) => {
@@ -53,7 +54,7 @@ test.describe("V2 — Detail Page Recommendations", () => {
   });
 
   test("shows similar models section", async ({ page }) => {
-    await page.goto("/models/gpt-5-5");
+    await page.goto(`/models/${topModel().id}`);
 
     // "你可能也喜欢" / "You Might Also Like" 区块始终渲染（67 个在榜模型必有候选）
     const section = page.locator("section", { hasText: /你可能也喜欢|You Might Also Like/ });

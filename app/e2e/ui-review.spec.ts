@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { topModel } from "./test-data";
 
 const SCREENSHOTS = "e2e/screenshots";
 const isMobile = (projectName: string) => projectName === "Mobile Chrome";
@@ -78,7 +79,7 @@ test.describe("Full-Page Visual Review", () => {
 
   test("desktop: 模型详情页截图", async ({ page }, testInfo) => {
     test.skip(isMobile(testInfo.project.name), "桌面端专用");
-    await page.goto("/models/deepseek-v3");
+    await page.goto(`/models/${topModel().id}`);
 
     await page.screenshot({ path: `${SCREENSHOTS}/full-detail-desktop.png`, fullPage: true });
   });

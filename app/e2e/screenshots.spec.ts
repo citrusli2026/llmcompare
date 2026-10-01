@@ -1,12 +1,17 @@
 import { test, expect } from "@playwright/test";
+import { topModel, compareModelIds } from "./test-data";
 
 const isMobile = (projectName: string) => projectName === "Mobile Chrome";
+
+// 详情/对比页取榜单数据里的真实模型，不硬编码 id（数据刷新会轮换榜单）
+const DETAIL_ID = topModel().id;
+const [CMP_A, CMP_B] = compareModelIds(2);
 
 const PAGES = [
   { url: "/", name: "home" },
   { url: "/models", name: "models" },
-  { url: "/models/gpt-5-5", name: "detail" },
-  { url: "/compare?models=claude-opus-4-8,gpt-5-5", name: "compare" },
+  { url: `/models/${DETAIL_ID}`, name: "detail" },
+  { url: `/compare?models=${CMP_A},${CMP_B}`, name: "compare" },
   { url: "/about", name: "about" },
 ] as const;
 
