@@ -296,8 +296,12 @@ def write_ranking_meta():
         meta = {
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "version": "1.0",
+            # partial_update 只表示「真的降级」：抓取失败回退到旧缓存 (degraded=True)
+            # 或该源完全没抓到 (ok=False)。
+            # ⚠️ 不要并入裸 cached=True：--cache-hours 内主动跳过抓取是设计行为
+            # （每日两跑共用一个快照），否则每次第二跑都会误报降级告警 issue。
             "partial_update": any(
-                not s["ok"] or s["cached"] or s.get("degraded", False)
+                not s["ok"] or s.get("degraded", False)
                 for s in fetch_status.values()
             ),
             "sources": {

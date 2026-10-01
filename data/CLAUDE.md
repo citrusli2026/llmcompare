@@ -209,7 +209,7 @@ Arena 上模型命名差异大（"deepseek-v3.2-exp" vs "DeepSeek V3.2"）：
 
 Arena 抓取器另有数据量守卫：新快照总量 < 缓存 60% 时降级用缓存（防镜像 truncated）；但缓存快照超过 `MAX_CACHE_FALLBACK_DAYS`（7 天）则改为接受较小的上游快照——上游长期缩减时降级守卫会把缓存永久冻结，最终触发新鲜度校验硬失败（2026-08 实例）。
 
-管线末尾写入 `app/src/data/ranking-meta.json` 数据血缘：每个数据源记录 `{fetched_at, cached, degraded}`，任一源非全新抓取（cached 或 degraded）时顶层 `degraded` 为 true。CI 的 workflow summary（`scripts/generate-workflow-summary.py`）读取该文件展示血缘状态。
+管线末尾写入 `app/src/data/ranking-meta.json` 数据血缘：每个数据源记录 `{fetched_at, cached, degraded}`。顶层 `partial_update` 只标记**真降级**（`degraded=true`，抓取失败回退旧缓存）或该源完全没抓到（`ok=false`）；`--cache-hours` 内主动跳过抓取（`ok=true, cached=true`）是设计行为、**不算**降级——否则每日第二跑会误报降级告警 issue。CI 的 workflow summary（`scripts/generate-workflow-summary.py`）读取该文件展示血缘状态。
 
 ### 国内模型识别规则
 
