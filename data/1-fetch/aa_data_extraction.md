@@ -97,10 +97,34 @@ def safe_dict(val):
 | 字段 | 类型 | 范围 | 说明 |
 |------|------|------|------|
 | intelligence_index | float | 0-100 | AA 综合智能指数 |
-| coding_index | float | 0-100 | 编程能力指数（**2026-08 AA 已移除 codingIndex 字段**，缺失时取 Terminal-Bench v2.1 原始得分 ×100，带 `coding_index_estimated=True` 标记）|
-| agentic_index | float | 0-100 | Agent 能力指数 |
+| coding_index | float | 0-100 | 编程能力指数（**2026-08 AA 已移除 codingIndex**：缺失时取 Terminal-Bench 原始得分 ×100 估算）|
+| agentic_index | float | 0-100 | Agent 能力指数（**2026-09 AA 已移除 agenticIndex**：缺失时取 τ²-Bench 原始得分 ×100 估算）|
 | math_index | float | 0-100 | 数学能力指数（仅部分模型，**当前管线不提取该字段**）|
 | omniscience | float | -100~100 | 幻觉率评分，越高越好（负数表示幻觉严重）|
+
+**指数估算与上游改名（2026-10-01 定稿）**
+
+AA 会不定期改键名/下线指数且不保留旧键，上游键名一律走
+`fetch_aa_data.py` 的 `AA_FIELD_ALIASES` 别名表，再按优先级取第一个非 null 值：
+
+| 内部字段 | 上游候选键（按优先级） | 估算替代来源（0-1 → ×100） |
+|----------|------------------------|------------------------------|
+| coding_index | `codingIndex` | `terminalBench21` → `terminalBench40` → `terminalbenchHard` |
+| agentic_index | `agenticIndex` | `tau2` → `tauBanking` → `itBenchSre` → `analystAgent` → `apexAgents` |
+| terminalbench_v21 | `terminalBench21`, `terminalbenchV21` | — |
+| terminalbench_v40 | `terminalBench40`, `terminalbenchV40` | — |
+| terminalbench_hard | `terminalbenchHard`, `terminalBenchHard` | — |
+| tau2 / tau_banking | `tau2` / `tauBanking` | — |
+| apex_agents / analyst_agent / itbench_sre | `apexAgents` / `analystAgent` / `itBenchSre` | — |
+| input_image | `inputModalityImage` | — |
+
+- 估算**按整批统一口径**：先选覆盖率 ≥25% 且优先级最高的来源，同批模型不混用不同评测；
+  来源全缺则该模型保持 `None`，**不编造数据**（原则同 2026-08 的 codingIndex 处理）。
+- 写盘时带 `*_estimated=True` / `*_source=<评测名>` 标记便于溯源。
+- 解析后会打印「上游字段漂移」报告：别名表未命中的键会显式列出，便于第一时间补键名。
+- 若 `coding_index` 与 `agentic_index` **双双全量缺失**，fetch 脚本会以 exit 3 降级复用
+  `2-raw/` 缓存（不把残缺数据写进快照），由管线标记 degraded 并开告警 issue。
+- 回归测试：`data/1-fetch/test_fetch_aa_parsing.py`（CI 与 pipeline Phase 5 均会运行）。
 
 ### 基准测试 (Benchmarks) — 14项
 | 字段 | 范围 | 说明 |

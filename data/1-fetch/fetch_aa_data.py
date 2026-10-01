@@ -10,6 +10,15 @@ Artificial Analysis 数据抓取脚本
 编程评测并入 Intelligence Index v4.1.1 的 Terminal-Bench v2.1 / SciCode）。
 coding_index 缺失时直接用 Terminal-Bench v2.1 原始得分（×100 转百分制）补齐，
 并带 coding_index_estimated=True 标记；tbV21 也缺失则保持 None，不编造数据。
+2026-10-01: AA 再次改版 —— 同时下线 agenticIndex，并把 terminalbenchV21 改名为
+terminalBench21（另有 terminalBench40 / terminalBenchScience / tauBanking /
+apexAgents / analystAgent / itBenchSre 等新评测）。原代码只认旧键名，导致
+coding_index / agentic_index 全量变 None，前端「编程/Agent」场景与 data_complete
+校验全面失败（2026-09-04 起 CI 连续失败 28 天）。
+现改为：上游键名集中在 AA_FIELD_ALIASES 别名表，索引缺失时按「优先级 + 覆盖率门槛」
+选取现役同类评测估算（terminalbench_v21/v40/hard 补 coding；tau2/tau_banking/... 补
+agentic），并保留 *_estimated / *_source 标记便于溯源。上游改名时只需在别名表里
+加一个键，其余逻辑无需改动。
 
 用法:
     python3 fetch_aa_data.py                          # 下载+解析，输出到当前目录
@@ -47,25 +56,120 @@ RSC_HEADERS = [
 CURL_TIMEOUT = 120  # 秒
 
 
-def fill_coding_from_terminalbench(models: List[dict]) -> int:
-    """AA 已移除 Coding Index：直接用 Terminal-Bench v2.1 原始得分（×100 转百分制）补齐。
+# ── 上游字段别名表 ────────────────────────────────────
+# AA 会不定期重命名/下线 RSC 载荷里的 camelCase 键，既不通知也不保留旧键
+# （2026-08 删 codingIndex，2026-09 删 agenticIndex + terminalbenchV21→terminalBench21）。
+# 每个内部字段按优先级列出候选上游键，解析时取第一个非 None 值。
+# ⚠️ 上游再次改名时只需往元组里加一个键名，其余代码不用动。
+AA_FIELD_ALIASES = {
+    # 主指数
+    'intelligence_index': ('intelligenceIndex',),
+    'coding_index': ('codingIndex',),
+    'agentic_index': ('agenticIndex',),
+    # 终端 / 编程类评测（coding_index 缺失时的估算来源）
+    'terminalbench_v21': ('terminalBench21', 'terminalbenchV21'),
+    'terminalbench_v40': ('terminalBench40', 'terminalbenchV40'),
+    'terminalbench_science': ('terminalBenchScience',),
+    'terminalbench_hard': ('terminalbenchHard', 'terminalBenchHard'),
+    # Agent 类评测（agentic_index 缺失时的估算来源）
+    'tau2': ('tau2',),
+    'tau_banking': ('tauBanking',),
+    'apex_agents': ('apexAgents',),
+    'analyst_agent': ('analystAgent',),
+    'itbench_sre': ('itBenchSre', 'itbenchSre'),
+    # 多模态输入（compare/detail 页「图像输入」徽章依赖）
+    'input_image': ('inputModalityImage',),
+}
 
-    Terminal-Bench 是 AA 现役的编程智能体评测（已并入 Intelligence Index v4.1.1），
-    与旧 Coding Index 排序一致性 0.99。tbV21 也缺失的模型保持 None，不编造数据。
-    若 AA 恢复 codingIndex 字段（解析到非 None 值），本函数自动跳过。
-    直接修改 models 列表，返回补齐的模型数量。
+# 估算来源优先级（0-1 小数，×100 转百分制）；按优先级取第一个覆盖率达标者，
+# 保证同批模型口径一致；与旧指数口径最接近的评测排最前
+CODING_INDEX_FALLBACKS = ('terminalbench_v21', 'terminalbench_v40', 'terminalbench_hard')
+AGENTIC_INDEX_FALLBACKS = ('tau2', 'tau_banking', 'itbench_sre', 'analyst_agent', 'apex_agents')
+MIN_FALLBACK_COVERAGE = 0.25  # 覆盖不足 25% 的评测不选作整批口径
+
+# AA 已正式下线、只能靠估算的指数（字段漂移报告里不算异常）
+KNOWN_REMOVED_INDICES = ('coding_index', 'agentic_index')
+
+
+def pick_field(obj: dict, field: str):
+    """按别名表取上游字段，返回第一个非 None 的值（全缺失返回 None）。"""
+    for key in AA_FIELD_ALIASES.get(field, (field,)):
+        val = obj.get(key)
+        if val is not None:
+            return val
+    return None
+
+
+def pick_index_source(models: List[dict], candidates) -> Optional[str]:
+    """按优先级挑选估算来源：取第一个覆盖率达标者；全不达标则取覆盖最高的。
+
+    优先级即 CODING_INDEX_FALLBACKS / AGENTIC_INDEX_FALLBACKS 的书写顺序
+    （与旧指数口径最接近的评测排在最前），避免纯粹按覆盖率把口径换掉。
     """
-    filled = 0
-    for m in models:
-        if m.get('coding_index') is not None:
+    if not models:
+        return None
+    floor = max(1, int(len(models) * MIN_FALLBACK_COVERAGE))
+    coverage = [(f, sum(1 for m in models if m.get(f) is not None)) for f in candidates]
+    for field, n in coverage:
+        if n >= floor:
+            return field
+    best_field, best_n = max(coverage, key=lambda kv: kv[1], default=(None, 0))
+    return best_field if best_n > 0 else None
+
+
+def derive_missing_indices(models: List[dict]) -> dict:
+    """AA 下线 Coding / Agentic Index 后，用现役同类评测估算缺失指数。
+
+    估算规则（不编造数据：来源全缺则保持 None）：
+      · coding_index  ← terminalbench_v21 / v40 / hard 择优（×100 转百分制）
+      · agentic_index ← tau2 / tau_banking / itbench_sre / analyst_agent / apex_agents 择优
+    每个指数只选**一个**覆盖率达标的来源（优先级见常量顺序），避免同批模型混口径。
+    写入 *_estimated / *_source 标记便于溯源。返回统计信息。
+    """
+    stats = {}
+    for index_key, fallbacks in (('coding_index', CODING_INDEX_FALLBACKS),
+                                 ('agentic_index', AGENTIC_INDEX_FALLBACKS)):
+        missing = [m for m in models if m.get(index_key) is None]
+        stats[index_key] = {'native': len(models) - len(missing), 'estimated': 0, 'source': None}
+        if not missing:
+            continue  # AA 恢复了原生字段，直接跳过估算
+        source = pick_index_source(missing, fallbacks)
+        if source is None:
             continue
-        tb = m.get('terminalbench_v21')
-        if tb is None:
+        for m in missing:
+            raw = m.get(source)
+            if raw is None:
+                m.setdefault(index_key, None)  # 该来源没覆盖到的模型保持 None，不跨源补值
+                continue
+            m[index_key] = round(raw * 100, 1)
+            m[index_key + '_estimated'] = True
+            m[index_key + '_source'] = source
+            stats[index_key]['estimated'] += 1
+        stats[index_key]['source'] = source
+    return stats
+
+
+def report_field_drift() -> None:
+    """比对别名表期望键与上游实际键，改名/下线时在日志里明确指出。
+
+    上游键集合由 parse_models_new 记录到 UPSTREAM_KEYS；未抓到载荷时跳过。
+    已被 AA 正式下线、且有估算替代来源的指数（coding/agentic）不算漂移告警。
+    """
+    if not UPSTREAM_KEYS:
+        return
+    drift, retired = [], []
+    for field, aliases in AA_FIELD_ALIASES.items():
+        if any(k in UPSTREAM_KEYS for k in aliases):
             continue
-        m['coding_index'] = round(tb * 100, 1)
-        m['coding_index_estimated'] = True
-        filled += 1
-    return filled
+        (retired if field in KNOWN_REMOVED_INDICES else drift).append(
+            f"{field} ← {'/'.join(aliases)}")
+    if retired:
+        print(f"  ℹ️ 上游已下线指数（走估算来源）: {', '.join(retired)}")
+    if drift:
+        print(f"  ⚠️ 上游字段漂移（别名表未命中 {len(drift)} 项）: {', '.join(drift)}")
+        print("     若为 AA 改名，请在 fetch_aa_data.py 的 AA_FIELD_ALIASES 补新键名")
+    elif not retired:
+        print(f"  ✅ 字段别名表全部命中上游载荷 ({len(AA_FIELD_ALIASES)} 项)")
 
 # ── JSON 对象提取 ─────────────────────────────────────
 
@@ -99,6 +203,10 @@ def extract_json_array(text: str, start: int) -> Optional[str]:
 def safe_dict(val) -> dict:
     """将 '$undefined' 字符串安全转为空 dict"""
     return val if isinstance(val, dict) else {}
+
+
+# 最近一次解析到的上游原始键集合（供 report_field_drift 做漂移比对）
+UPSTREAM_KEYS: set = set()
 
 
 # ── 模型解析 (新格式 2026-07) ────────────────────────
@@ -139,6 +247,11 @@ def parse_models_new(content: str) -> List[dict]:
         print("  ⚠️ 未找到含 intelligenceIndex 的 models 数组")
         return []
 
+    # 记录上游原始键，供字段漂移比对（别名表未命中即代表 AA 改名/下线）
+    UPSTREAM_KEYS.clear()
+    for obj in best_models:
+        UPSTREAM_KEYS.update(obj.keys())
+
     models = []
     for obj in best_models:
         creator = safe_dict(obj.get('creator'))
@@ -162,11 +275,12 @@ def parse_models_new(content: str) -> List[dict]:
             'color': creator.get('color', ''),
             'release_date': obj.get('releaseDate'),
 
-            # Main Indices
-            'intelligence_index': obj.get('intelligenceIndex'),
-            'coding_index': obj.get('codingIndex'),
-            'coding_index_estimated': False,  # codingIndex 缺失时用 Terminal-Bench v2.1 补齐并置 True
-            'agentic_index': obj.get('agenticIndex'),
+            # Main Indices（上游键名走别名表，AA 改名时在 AA_FIELD_ALIASES 一处维护）
+            'intelligence_index': pick_field(obj, 'intelligence_index'),
+            'coding_index': pick_field(obj, 'coding_index'),
+            'coding_index_estimated': False,  # 原生缺失时由 derive_missing_indices 估算并置 True
+            'agentic_index': pick_field(obj, 'agentic_index'),
+            'agentic_index_estimated': False,
             'omniscience': obj.get('omniscience'),
 
             # Benchmarks (14)
@@ -183,9 +297,15 @@ def parse_models_new(content: str) -> List[dict]:
             'humaneval': obj.get('humaneval'),
             'critpt': obj.get('critpt'),
             'lcr': obj.get('lcr'),
-            'tau2': obj.get('tau2'),
-            'terminalbench_hard': obj.get('terminalbenchHard'),
-            'terminalbench_v21': obj.get('terminalbenchV21'),
+            'tau2': pick_field(obj, 'tau2'),
+            'tau_banking': pick_field(obj, 'tau_banking'),
+            'apex_agents': pick_field(obj, 'apex_agents'),
+            'analyst_agent': pick_field(obj, 'analyst_agent'),
+            'itbench_sre': pick_field(obj, 'itbench_sre'),
+            'terminalbench_hard': pick_field(obj, 'terminalbench_hard'),
+            'terminalbench_v21': pick_field(obj, 'terminalbench_v21'),
+            'terminalbench_v40': pick_field(obj, 'terminalbench_v40'),
+            'terminalbench_science': pick_field(obj, 'terminalbench_science'),
             'gdpval': obj.get('gdpval'),
 
             # Pricing ($/M tokens)
@@ -220,6 +340,7 @@ def parse_models_new(content: str) -> List[dict]:
             'open_weights': obj.get('isOpenWeights', False),
             'reasoning_model': obj.get('isReasoning', False),
             'frontier_model': None,  # 新格式中已移除，需推导
+            'input_image': pick_field(obj, 'input_image') or False,
 
             # Meta
             'knowledge_cutoff': obj.get('knowledgeCutoffDate'),
@@ -336,10 +457,15 @@ def parse_models(content: str) -> List[dict]:
         print("  ⚠️ 新旧格式均未匹配到模型数据")
         return []
 
-    # AA 已移除 codingIndex：用 Terminal-Bench v2.1 原始得分补齐（×100 转百分制）
-    filled = fill_coding_from_terminalbench(models)
-    if filled:
-        print(f"  ℹ️ codingIndex 字段缺失，已用 Terminal-Bench v2.1 补齐 coding_index: {filled}/{len(models)} 模型")
+    # AA 已下线 codingIndex / agenticIndex：用现役同类评测估算（来源全缺则留 None）
+    report_field_drift()
+    stats = derive_missing_indices(models)
+    for index_key, info in stats.items():
+        if info['estimated']:
+            print(f"  ℹ️ {index_key} 原生缺失，已用 {info['source']} 估算 "
+                  f"{info['estimated']}/{len(models)} 模型（原生 {info['native']}）")
+        elif info['native'] == 0:
+            print(f"  ⚠️ {index_key} 全量缺失且无可用的替代评测来源")
 
     return models
 
@@ -414,6 +540,21 @@ def main():
         sys.exit(1)
 
     models.sort(key=lambda m: m['intelligence_index'] or 0, reverse=True)
+
+    # ── 核心指数守卫：coding / agentic 双双归零 = 上游改版未被识别 ──
+    # 此时绝不能把残缺数据写进 2-raw（会让前端编程/Agent 场景与 data_complete 校验全挂），
+    # 而是降级复用上一份缓存 (exit 3)，由 pipeline 标记 degraded 并开告警 issue。
+    if models:
+        coding_n = sum(1 for m in models if m.get('coding_index') is not None)
+        agentic_n = sum(1 for m in models if m.get('agentic_index') is not None)
+        print(f"  指数覆盖率: coding={coding_n}/{len(models)}, agentic={agentic_n}/{len(models)}")
+        if coding_n == 0 and agentic_n == 0:
+            print("  ❌ coding_index 与 agentic_index 全量缺失 —— 疑似 AA 字段改名/下线")
+            print("     请检查上方「上游字段漂移」提示，更新 AA_FIELD_ALIASES 或估算来源")
+            if os.path.exists(all_path) and os.path.getsize(all_path) > 0:
+                print(f"  ⚠️ 降级使用缓存数据: {all_path}")
+                sys.exit(3)
+            sys.exit(1)
 
     print(f"  ✅ Parsed {len(models)} models")
     print(f"  Fields per model: {len(models[0]) if models else 0}")

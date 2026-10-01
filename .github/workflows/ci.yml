@@ -71,6 +71,10 @@ jobs:
         run: |
           python3 -m unittest discover -s data/3-process -p "test_*.py"
 
+      - name: Data Fetch Unit Tests
+        run: |
+          python3 -m unittest discover -s data/1-fetch -p "test_*.py"
+
       - name: Build
         run: |
           cd app

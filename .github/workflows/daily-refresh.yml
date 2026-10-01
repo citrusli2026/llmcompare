@@ -47,11 +47,14 @@ jobs:
         run: |
           pip install jsonschema
 
+      # 缓存键必须每次运行唯一：actions/cache 的键不可变，固定键（旧的 raw-data-v2）
+      # 永远命中首次写入的那份快照、再也不会更新，缓存等于永久冻结。
+      # 这里用 run_id 建新条目 + 前缀 restore 拿最近一份，既保留降级兜底又保持新鲜。
       - name: Cache raw data
         uses: actions/cache@v5
         with:
           path: data/2-raw
-          key: raw-data-v2
+          key: raw-data-${{ github.run_id }}
           restore-keys: |
             raw-data-
 
@@ -70,7 +73,9 @@ jobs:
           git config --global user.name "llmcompare-bot"
           git config --global user.email "bot@llmcompare.cc"
           cd data
-          python3.11 pipeline.py --cache-hours 6
+          # 同时落盘日志，失败时把关键错误行附到 issue 里（排障不用翻 20 分钟日志）
+          set -o pipefail
+          python3.11 pipeline.py --cache-hours 6 2>&1 | tee "$RUNNER_TEMP/pipeline.log"
 
       - name: Summary
         if: always()
@@ -155,16 +160,30 @@ jobs:
         run: |
           TITLE="🚨 数据刷新失败 $(date -u +%Y-%m-%d)"
           RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          # 去重：已有同标题 open issue 则改为评论追加，避免连开重复 issue
-          ISSUE_NUMBER=$(gh issue list --state open --search "$TITLE" --json number,title \
-            --jq '.[] | select(.title == "'"$TITLE"'") | .number' | head -n 1)
+          # 失败摘要：从管线日志里抓出关键错误行，排障不必再翻完整日志
+          # （含 AA 字段漂移/降级提示 —— 上游改版是最常见根因）
+          EXCERPT=$(grep -aE "❌|✗|⚠️|Traceback|AssertionError|error:|Error:|FAIL |exit=" "$RUNNER_TEMP/pipeline.log" 2>/dev/null | tail -n 20 || true)
+          BODY="自动数据刷新失败，请查看 [Actions 日志]($RUN_URL)。"
+          if [ -n "$EXCERPT" ]; then
+            BODY="$BODY
+
+          \`\`\`
+          $EXCERPT
+          \`\`\`"
+          fi
+          # 去重：标题带日期会让精确匹配永远落空（曾一天开一个 issue，堆了 20+ 个）。
+          # 改为匹配标题前缀，找到最近一条 open issue 追加评论。
+          ISSUE_NUMBER=$(gh issue list --state open --search '数据刷新失败 in:title' --limit 100 \
+            --json number,title --jq '.[] | select(.title | startswith("🚨 数据刷新失败")) | .number' | sort -n | tail -n 1)
           if [ -n "$ISSUE_NUMBER" ]; then
             gh issue comment "$ISSUE_NUMBER" \
-              --body "再次失败，请查看 [Actions 日志]($RUN_URL)。" || true
+              --body "再次失败（$(date -u +%Y-%m-%d)），请查看 [Actions 日志]($RUN_URL)。
+
+          $BODY" || true
           else
             gh issue create \
               --title "$TITLE" \
-              --body "自动数据刷新失败，请查看 [Actions 日志]($RUN_URL)。" \
+              --body "$BODY" \
               --label "bug" || true
           fi
 

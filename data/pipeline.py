@@ -448,6 +448,16 @@ if rc != 0:
 else:
     ok("数据管线单测通过")
 
+# 5f. 抓取层单测（1-fetch）：锁死 AA 字段别名/指数估算，防止上游改版静默回归
+print("  Test: python3.11 -m unittest discover -s 1-fetch")
+out, rc = run("python3.11 -m unittest discover -s 1-fetch -p 'test_*.py'", cwd=str(DATA), exit_on_error=False)
+if rc != 0:
+    fail(f"抓取层单测失败 ({rc})")
+    print(out[-2000:])
+    all_passed = False
+else:
+    ok("抓取层单测通过")
+
 if not all_passed:
     fail("验证阶段存在失败项，停止并输出异常报告")
     print(f"\n⚠️ LLMCompare 数据刷新异常（{TODAY}）")
@@ -573,6 +583,7 @@ print("✅ 构建: 成功")
 print("✅ Lint: 0 errors")
 print("✅ 数据质量: 通过")
 print("✅ 数据管线单测: 通过")
+print("✅ 抓取层单测: 通过")
 print()
 print("🤖 Hermes Agent · 每日 UTC 18:00 / 20:00 自动运行（北京 02:00 / 04:00）")
 

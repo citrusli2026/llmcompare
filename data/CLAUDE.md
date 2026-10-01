@@ -53,9 +53,10 @@ pipeline.py             一键编排入口 (分支准备 → 抓取 → 处理 �
   └── 03_模型-厂商链接-价格映射.md
 
 1-fetch/  抓取脚本 + 字段文档
-  ├── fetch_aa_data.py            AA RSC header trick (Next.js 序列化载荷)
+  ├── fetch_aa_data.py            AA RSC header trick (Next.js 序列化载荷) + 字段别名表 (AA_FIELD_ALIASES)
   ├── fetch_or_models.py          OpenRouter /api/v1/models + RSC rankings/analytics
   ├── fetch_arena_leaderboards.py oolong-tea-2026/arena-ai-leaderboards 镜像
+  ├── test_fetch_aa_parsing.py    别名解析/指数估算回归测试 (CI + pipeline Phase 5 都会跑)
   ├── aa_data_extraction.md       AA 字段完整定义 + 覆盖率
   ├── README.md                   本目录使用说明
   └── SKILL.md                    Claude Code skill 定义
@@ -236,6 +237,10 @@ Arena 抓取器另有数据量守卫：新快照总量 < 缓存 60% 时降级用
 ## 调试线索
 
 - AA 字段含义查不准：`1-fetch/aa_data_extraction.md`（AA 全字段定义 + 覆盖率统计）
+- **coding/agentic 全量变 null、`data_complete` 归零**（2026-09 CI 连续失败 28 天的根因）：AA 改了上游键名。
+  先看 fetch 日志里的「⚠️ 上游字段漂移」行，把新键名补进 `fetch_aa_data.py` 的 `AA_FIELD_ALIASES`；
+  指数类字段还要检查 `CODING_INDEX_FALLBACKS` / `AGENTIC_INDEX_FALLBACKS` 里的估算来源是否还在上游存在。
+  回归测试：`data/1-fetch/test_fetch_aa_parsing.py`
 - OR / Arena 匹配不上：在 `enrich_models.py` 的 `match_or_value` / `match_arena_entries` 加 print，查看 `name_norm` vs `or_norm`/`arena_norm` 的具体形态；OR 子串匹配只接受 OR 名 ⊆ 模型名（防止反向匹配），多候选时选最长；Arena 多数情况补一个 `arena_name_mapping.json` 条目即可
 - 模型莫名消失：检查 `release_date` 是否超 180 天（被 `filter_by_date` 过滤），被 `variant_groups` 合并掉（`0-refer/model_reference.json`），或被 `excluded_patterns` 黑名单（同文件）整代排除
 - 富化后 `cn_pricing` 仍为 null：`model_reference.json` 的 `cn_pricing` 键必须**精确等于** AA `short_name`（区分大小写、空格），没有 fuzzy 匹配
