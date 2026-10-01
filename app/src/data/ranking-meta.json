@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-01T10:36:19.707252+00:00",
+  "generated_at": "2026-10-01T10:40:19.847347+00:00",
   "version": "1.0",
-  "partial_update": true,
+  "partial_update": false,
   "sources": {
     "artificial_analysis": {
       "ok": true,
