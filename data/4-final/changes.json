@@ -1,26 +1,30 @@
 {
-  "generated_at": "2026-10-03",
-  "date": "2026-10-03",
-  "compare_with": "2026-10-02",
+  "generated_at": "2026-10-04",
+  "date": "2026-10-04",
+  "compare_with": "2026-10-03",
   "summary": {
-    "new_models": 1,
-    "dropped_models": 0,
+    "new_models": 0,
+    "dropped_models": 2,
     "price_changes": 0,
     "ranking_changes": 0,
     "intel_changes": 0
   },
   "changes": [
     {
-      "type": "new",
-      "model": "Ling 3.1 Flash",
-      "id": "ling-3-1-flash",
-      "rank": 22,
-      "first_seen": "2026-10-03",
-      "intelligence": 41.1,
-      "tps": 207,
-      "price_input": 0.3,
-      "detail": "智商 41 · 207 TPS · $0.3/M",
-      "icon": "🆕"
+      "type": "dropped",
+      "model": "GLM-5.1",
+      "id": "glm-5-1",
+      "old_rank": 56,
+      "detail": "",
+      "icon": "📉"
+    },
+    {
+      "type": "dropped",
+      "model": "Grok 4.20 0309 v2",
+      "id": "grok-4-20-0309-v2",
+      "old_rank": 61,
+      "detail": "",
+      "icon": "📉"
     }
   ]
 }
