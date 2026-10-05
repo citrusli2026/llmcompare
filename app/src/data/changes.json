@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-10-04",
-  "date": "2026-10-04",
-  "compare_with": "2026-10-03",
+  "generated_at": "2026-10-05",
+  "date": "2026-10-05",
+  "compare_with": "2026-10-04",
   "summary": {
     "new_models": 0,
-    "dropped_models": 2,
+    "dropped_models": 1,
     "price_changes": 0,
     "ranking_changes": 0,
     "intel_changes": 0
@@ -12,17 +12,9 @@
   "changes": [
     {
       "type": "dropped",
-      "model": "GLM-5.1",
-      "id": "glm-5-1",
-      "old_rank": 56,
-      "detail": "",
-      "icon": "📉"
-    },
-    {
-      "type": "dropped",
-      "model": "Grok 4.20 0309 v2",
-      "id": "grok-4-20-0309-v2",
-      "old_rank": 61,
+      "model": "Muse Spark",
+      "id": "muse-spark",
+      "old_rank": 46,
       "detail": "",
       "icon": "📉"
     }
