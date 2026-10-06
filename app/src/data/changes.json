@@ -3,11 +3,24 @@
   "date": "2026-10-06",
   "compare_with": "2026-10-05",
   "summary": {
-    "new_models": 0,
+    "new_models": 1,
     "dropped_models": 0,
     "price_changes": 0,
     "ranking_changes": 0,
     "intel_changes": 0
   },
-  "changes": []
+  "changes": [
+    {
+      "type": "new",
+      "model": "Mistral Large 4 Preview",
+      "id": "mistral-large-4-preview",
+      "rank": 31,
+      "first_seen": "2026-10-06",
+      "intelligence": 38.4,
+      "tps": 116,
+      "price_input": 1.36,
+      "detail": "智商 38 · 116 TPS · $1.36/M",
+      "icon": "🆕"
+    }
+  ]
 }
