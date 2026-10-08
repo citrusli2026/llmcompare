@@ -1,48 +1,13 @@
 {
-  "generated_at": "2026-10-07",
-  "date": "2026-10-07",
-  "compare_with": "2026-10-06",
+  "generated_at": "2026-10-08",
+  "date": "2026-10-08",
+  "compare_with": "2026-10-07",
   "summary": {
-    "new_models": 1,
+    "new_models": 0,
     "dropped_models": 0,
-    "price_changes": 2,
+    "price_changes": 0,
     "ranking_changes": 0,
     "intel_changes": 0
   },
-  "changes": [
-    {
-      "type": "new",
-      "model": "Claude Haiku 5.5",
-      "id": "claude-haiku-5-5",
-      "rank": 19,
-      "first_seen": "2026-10-07",
-      "intelligence": 43.4,
-      "tps": 243,
-      "price_input": 0.1,
-      "detail": "智商 43 · 243 TPS · $0.1/M",
-      "icon": "🆕"
-    },
-    {
-      "type": "price_up",
-      "model": "DeepSeek V4 Flash",
-      "id": "deepseek-v4-flash",
-      "field": "input",
-      "old": 0.1119,
-      "new": 0.13,
-      "change_pct": 16.2,
-      "detail": "输入价 $0.1119→$0.13 (+16%)",
-      "icon": "💸"
-    },
-    {
-      "type": "price_up",
-      "model": "DeepSeek V4 Flash",
-      "id": "deepseek-v4-flash",
-      "field": "output",
-      "old": 0.23750000000000002,
-      "new": 0.28,
-      "change_pct": 17.9,
-      "detail": "输出价 $0.23750000000000002→$0.28 (+18%)",
-      "icon": "💸"
-    }
-  ]
+  "changes": []
 }
