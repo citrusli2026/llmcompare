@@ -5,9 +5,32 @@
   "summary": {
     "new_models": 0,
     "dropped_models": 0,
-    "price_changes": 0,
+    "price_changes": 2,
     "ranking_changes": 0,
     "intel_changes": 0
   },
-  "changes": []
+  "changes": [
+    {
+      "type": "price_up",
+      "model": "LongCat 2.0",
+      "id": "longcat-2-0",
+      "field": "input",
+      "old": 0.3,
+      "new": 0.75,
+      "change_pct": 150.0,
+      "detail": "输入价 $0.3→$0.75 (+150%)",
+      "icon": "💸"
+    },
+    {
+      "type": "price_up",
+      "model": "LongCat 2.0",
+      "id": "longcat-2-0",
+      "field": "output",
+      "old": 1.2,
+      "new": 2.95,
+      "change_pct": 145.8,
+      "detail": "输出价 $1.2→$2.95 (+146%)",
+      "icon": "💸"
+    }
+  ]
 }
