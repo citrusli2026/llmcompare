@@ -1,13 +1,68 @@
 {
-  "generated_at": "2026-10-11",
-  "date": "2026-10-11",
-  "compare_with": "2026-10-10",
+  "generated_at": "2026-10-13",
+  "date": "2026-10-13",
+  "compare_with": "2026-10-11",
   "summary": {
-    "new_models": 0,
-    "dropped_models": 0,
-    "price_changes": 0,
+    "new_models": 2,
+    "dropped_models": 1,
+    "price_changes": 2,
     "ranking_changes": 0,
     "intel_changes": 0
   },
-  "changes": []
+  "changes": [
+    {
+      "type": "new",
+      "model": "Muse Wonder Full",
+      "id": "muse-wonder-full",
+      "rank": 3,
+      "first_seen": "2026-10-13",
+      "intelligence": 55.8,
+      "tps": null,
+      "price_input": null,
+      "detail": "智商 56",
+      "icon": "🆕"
+    },
+    {
+      "type": "new",
+      "model": "Muse Wonder",
+      "id": "muse-wonder",
+      "rank": 7,
+      "first_seen": "2026-10-13",
+      "intelligence": 52.4,
+      "tps": 85,
+      "price_input": 4,
+      "detail": "智商 52 · 85 TPS · $4/M",
+      "icon": "🆕"
+    },
+    {
+      "type": "dropped",
+      "model": "Qwen3.6 Max Preview",
+      "id": "qwen3-6-max-preview",
+      "old_rank": 52,
+      "detail": "",
+      "icon": "📉"
+    },
+    {
+      "type": "price_drop",
+      "model": "DeepSeek V4 Flash",
+      "id": "deepseek-v4-flash",
+      "field": "input",
+      "old": 0.13,
+      "new": 0.1119,
+      "change_pct": -13.9,
+      "detail": "输入价 $0.13→$0.1119 (-14%)",
+      "icon": "💰"
+    },
+    {
+      "type": "price_drop",
+      "model": "DeepSeek V4 Flash",
+      "id": "deepseek-v4-flash",
+      "field": "output",
+      "old": 0.28,
+      "new": 0.2338,
+      "change_pct": -16.5,
+      "detail": "输出价 $0.28→$0.2338 (-16%)",
+      "icon": "💰"
+    }
+  ]
 }
