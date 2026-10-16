@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-10-16T20:45:21.899890+00:00",
+  "generated_at": "2026-10-16T22:27:45.431152+00:00",
   "version": "1.0",
   "partial_update": true,
   "sources": {
     "artificial_analysis": {
       "ok": true,
-      "cached": false,
+      "cached": true,
       "degraded": false,
       "error": null,
       "coverage": 1.0
     },
     "openrouter": {
       "ok": true,
-      "cached": false,
+      "cached": true,
       "degraded": false,
       "error": null,
       "coverage": 0.603,
