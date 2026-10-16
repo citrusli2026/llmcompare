@@ -1,56 +1,26 @@
 {
-  "generated_at": "2026-10-15",
-  "date": "2026-10-15",
-  "compare_with": "2026-10-13",
+  "generated_at": "2026-10-16",
+  "date": "2026-10-16",
+  "compare_with": "2026-10-15",
   "summary": {
-    "new_models": 2,
-    "dropped_models": 1,
+    "new_models": 1,
+    "dropped_models": 0,
     "price_changes": 0,
-    "ranking_changes": 1,
+    "ranking_changes": 0,
     "intel_changes": 0
   },
   "changes": [
     {
       "type": "new",
-      "model": "Muse Spark Open",
-      "id": "muse-spark-open",
-      "rank": 32,
-      "first_seen": "2026-10-15",
-      "intelligence": 38.9,
+      "model": "Beam 1.0",
+      "id": "beam-1-0",
+      "rank": 53,
+      "first_seen": "2026-10-16",
+      "intelligence": 30.3,
       "tps": null,
       "price_input": null,
-      "detail": "智商 39",
+      "detail": "智商 30",
       "icon": "🆕"
-    },
-    {
-      "type": "new",
-      "model": "Agnes 2.5 Pro Beta",
-      "id": "agnes-2-5-pro-beta",
-      "rank": 41,
-      "first_seen": "2026-10-15",
-      "intelligence": 35.2,
-      "tps": 119,
-      "price_input": 0.1,
-      "detail": "智商 35 · 119 TPS · $0.1/M",
-      "icon": "🆕"
-    },
-    {
-      "type": "dropped",
-      "model": "Claude Opus 4.7",
-      "id": "claude-opus-4-7",
-      "old_rank": 27,
-      "detail": "",
-      "icon": "📉"
-    },
-    {
-      "type": "ranking_down",
-      "model": "MiMo-V2.5",
-      "id": "mimo-v2-5",
-      "old_rank": 63,
-      "new_rank": 70,
-      "change": -7,
-      "detail": "#63 → #70",
-      "icon": "🔻"
     }
   ]
 }
