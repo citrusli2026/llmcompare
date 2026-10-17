@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-10-16T22:27:45.431152+00:00",
+  "generated_at": "2026-10-17T20:22:27.634853+00:00",
   "version": "1.0",
   "partial_update": true,
   "sources": {
     "artificial_analysis": {
       "ok": true,
-      "cached": true,
+      "cached": false,
       "degraded": false,
       "error": null,
       "coverage": 1.0
     },
     "openrouter": {
       "ok": true,
-      "cached": true,
+      "cached": false,
       "degraded": false,
       "error": null,
-      "coverage": 0.603,
-      "pricing_coverage": 0.846
+      "coverage": 0.61,
+      "pricing_coverage": 0.844
     },
     "arena": {
       "ok": false,
       "cached": true,
       "degraded": true,
       "error": "============================================================\nFetching Arena Leaderboard snapshots...\nLatest snapshot date: 2026-10-15\n  [WARN] Fetch attempt 1/3 failed for https://raw.githubusercontent.com/oolong-tea-2026/arena-ai-leaderboards/main/data/2026-10-15/text.json: HTTP Error 404: Not Found. Retrying in 2s...\n  [WARN] Fetch attempt 2/3 failed for https://raw.githubusercontent.com/oolong-tea-2026/arena-ai-leaderboards/main/data/2026-10-15/text.json: HTTP Error 404: Not Found. Retrying i",
-      "coverage": 0.154
+      "coverage": 0.156
     }
   },
   "stats": {
-    "total_models": 78,
-    "data_complete": 19,
+    "total_models": 77,
+    "data_complete": 18,
     "frontier": 24,
-    "open_weights": 39
+    "open_weights": 38
   }
 }

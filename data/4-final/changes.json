@@ -1,26 +1,22 @@
 {
-  "generated_at": "2026-10-16",
-  "date": "2026-10-16",
-  "compare_with": "2026-10-15",
+  "generated_at": "2026-10-17",
+  "date": "2026-10-17",
+  "compare_with": "2026-10-16",
   "summary": {
-    "new_models": 1,
-    "dropped_models": 0,
+    "new_models": 0,
+    "dropped_models": 1,
     "price_changes": 0,
     "ranking_changes": 0,
     "intel_changes": 0
   },
   "changes": [
     {
-      "type": "new",
-      "model": "Beam 1.0",
-      "id": "beam-1-0",
-      "rank": 53,
-      "first_seen": "2026-10-16",
-      "intelligence": 30.3,
-      "tps": null,
-      "price_input": null,
-      "detail": "智商 30",
-      "icon": "🆕"
+      "type": "dropped",
+      "model": "Kimi K2.6",
+      "id": "kimi-k2-6",
+      "old_rank": 58,
+      "detail": "",
+      "icon": "📉"
     }
   ]
 }
