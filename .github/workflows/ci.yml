@@ -88,7 +88,8 @@ jobs:
           retention-days: 1
 
   e2e:
-    runs-on: ubuntu-latest
+    # Playwright 尚不支持 ubuntu-26.04（2026-11），钉到 24.04
+    runs-on: ubuntu-24.04
     needs: test
     steps:
       - uses: actions/checkout@v4
