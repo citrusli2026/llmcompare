@@ -232,13 +232,13 @@ class TestCheckThresholds(unittest.TestCase):
             )
             for i in range(50)
         ]
-        issues, stats, _ = V.check_thresholds(models)
+        issues, _warnings, stats, _ = V.check_thresholds(models)
         self.assertEqual(issues, [])
 
     def test_outside_threshold(self):
         """超出阈值时报错"""
         models = [make_model(id=f"m{i}") for i in range(200)]
-        issues, stats, _ = V.check_thresholds(models)
+        issues, _warnings, stats, _ = V.check_thresholds(models)
         self.assertTrue(any("total_models" in i for i in issues))
 
 
@@ -364,20 +364,32 @@ class TestCheckSourceFreshness(unittest.TestCase):
         self.assertEqual(issues, [])
         self.assertTrue(any("Arena" in w for w in warnings))
 
-    def test_very_stale_arena_snapshot_is_issue(self):
-        """快照日期超 fail 阈值报 issue（曾发生镜像落后 14 天无人发现）"""
+    def test_very_stale_arena_is_warning_when_others_fresh(self):
+        """单个源超过 fail 阈值，但其他源新鲜 → 降级告警，不阻断（2026-10 镜像停更）"""
         self._write_arena((date.today() - timedelta(days=14)).isoformat())
         issues, warnings = V.check_source_freshness()
-        self.assertTrue(any("Arena" in i for i in issues))
+        self.assertEqual(issues, [])
+        self.assertTrue(any("Arena" in w for w in warnings))
+        self.assertTrue(any("部分数据源已停更" in w for w in warnings))
 
-    def test_stale_mtime_is_issue(self):
-        """AA/OR 用文件 mtime 兜底"""
+    def test_stale_mtime_is_warning_when_others_fresh(self):
+        """AA/OR 用文件 mtime 兜底；单源过期同样降级为告警"""
         self._write_arena(date.today().isoformat())
         old = time.time() - 20 * 86400
         p = self.raw_dir / "aa_all_full.json"
         os.utime(p, (old, old))
         issues, warnings = V.check_source_freshness()
-        self.assertTrue(any("AA" in i for i in issues))
+        self.assertEqual(issues, [])
+        self.assertTrue(any("AA" in w for w in warnings))
+
+    def test_all_sources_stale_is_issue(self):
+        """所有源都过期 → 仍然硬失败（数据整体不可信）"""
+        self._write_arena((date.today() - timedelta(days=14)).isoformat())
+        old = time.time() - 20 * 86400
+        for name in ("aa_all_full.json", "or_models_full.json"):
+            os.utime(self.raw_dir / name, (old, old))
+        issues, warnings = V.check_source_freshness()
+        self.assertTrue(issues)
 
     def test_missing_raw_files_is_warning(self):
         """原始数据缺失只告警不阻断"""
