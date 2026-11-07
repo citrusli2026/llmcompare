@@ -1,35 +1,35 @@
 {
-  "generated_at": "2026-10-18T22:11:56.169157+00:00",
+  "generated_at": "2026-11-07T10:09:06.204634+00:00",
   "version": "1.0",
   "partial_update": true,
   "sources": {
     "artificial_analysis": {
       "ok": true,
-      "cached": true,
+      "cached": false,
       "degraded": false,
       "error": null,
-      "coverage": 1.0
+      "coverage": 0.589
     },
     "openrouter": {
       "ok": true,
-      "cached": true,
+      "cached": false,
       "degraded": false,
       "error": null,
-      "coverage": 0.61,
-      "pricing_coverage": 0.844
+      "coverage": 0.493,
+      "pricing_coverage": 0.877
     },
     "arena": {
       "ok": false,
       "cached": true,
       "degraded": true,
-      "error": "============================================================\nFetching Arena Leaderboard snapshots...\nLatest snapshot date: 2026-10-15\n  [WARN] Fetch attempt 1/3 failed for https://raw.githubusercontent.com/oolong-tea-2026/arena-ai-leaderboards/main/data/2026-10-15/text.json: HTTP Error 404: Not Found. Retrying in 2s...\n  [WARN] Fetch attempt 2/3 failed for https://raw.githubusercontent.com/oolong-tea-2026/arena-ai-leaderboards/main/data/2026-10-15/text.json: HTTP Error 404: Not Found. Retrying i",
-      "coverage": 0.156
+      "error": "============================================================\nFetching Arena Leaderboard snapshots...\nLatest announced snapshot date: 2026-11-07\n  [SKIP] 2026-11-07: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-06: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-05: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-04: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-03: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-02: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-01: 上游无榜单数据（空快照）\n  [SKIP] 2026-10-31: 上游无榜单数据（空快照）\n[OK] 使用缓存 Arena 数据（上游没有可用快照（镜像自 2026-10 起持续为空））",
+      "coverage": 0.151
     }
   },
   "stats": {
-    "total_models": 77,
-    "data_complete": 18,
-    "frontier": 24,
-    "open_weights": 38
+    "total_models": 73,
+    "data_complete": 4,
+    "frontier": 12,
+    "open_weights": 34
   }
 }
