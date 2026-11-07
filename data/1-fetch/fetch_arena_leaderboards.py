@@ -5,6 +5,15 @@ Fetch LMSYS Arena (arena.ai) leaderboard snapshots from the community mirror.
 Uses oolong-tea-2026/arena-ai-leaderboards GitHub repo which provides
 daily auto-updated JSON snapshots of Arena leaderboards.
 
+The mirror is not always healthy: since 2026-10 it has been publishing
+`_index.json` placeholders with an empty `leaderboards` map and no per-board
+files. So we never trust `latest.json` alone:
+
+  1. try the latest date, then walk back up to 7 days
+  2. skip dates whose `_index.json` has no leaderboards (cheap probe, no 404 storm)
+  3. use the newest complete snapshot we can actually read
+  4. if nothing works, fall back to the cached raw file (exit 3 = degraded)
+
 Output: 2-raw/arena_leaderboards.json
   {
     "date": "2026-05-04",
@@ -13,7 +22,9 @@ Output: 2-raw/arena_leaderboards.json
       "text":   [{"rank":1,"model":"...","vendor":"...","score":1503,"ci":7,"votes":7615}, ...],
       "code":   [...],
       "vision": [...]
-    }
+    },
+    "stale_days": 3,          # 快照距今几天（0 = 今天）
+    "partial": false          # 是否有榜单抓取失败
   }
 
 Usage:
@@ -25,7 +36,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 
 from fetch_utils import fetch_json, write_json, load_previous_raw
 
@@ -40,6 +51,9 @@ BASE_URL = (
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "2-raw"
 OUTPUT_PATH = OUTPUT_DIR / "arena_leaderboards.json"
 LEADERBOARDS = ["text", "code", "vision"]
+
+# 从 latest 开始最多回退几天找完整快照
+LOOKBACK_DAYS = 7
 
 # 数据量骤降时降级用缓存的最长天数。超过该天数的缓存价值已低于新的
 # （较小的）上游快照——2026-08 镜像长期只返回 ~90 条（Arena 官方缩减榜单），
@@ -57,17 +71,43 @@ def snapshot_age_days(snapshot: dict) -> int | None:
 
 
 def get_latest_date() -> str | None:
-    """Get the latest available snapshot date from the repo."""
+    """Get the latest announced snapshot date from the repo."""
     latest = fetch_json(f"{BASE_URL}/latest.json", timeout=90, retries=3)
     if latest and "date" in latest:
-        return latest["date"]
+        return str(latest["date"])[:10]
     return None
 
 
-def fetch_leaderboards(date: str) -> dict:
+def candidates(latest: str | None) -> list[str]:
+    """latest first, then previous LOOKBACK_DAYS days (deduped, newest first)."""
+    today = datetime.now(timezone.utc).date()
+    start = today
+    if latest:
+        try:
+            start = date.fromisoformat(latest)
+        except ValueError:
+            pass
+    out: list[str] = []
+    for i in range(0, LOOKBACK_DAYS + 1):
+        d = (start - timedelta(days=i)).isoformat()
+        if d not in out:
+            out.append(d)
+    return out
+
+
+def index_has_data(day: str) -> bool:
+    """Cheap probe: does this day's _index.json advertise any leaderboard?"""
+    idx = fetch_json(f"{BASE_URL}/{day}/_index.json", timeout=30, retries=1)
+    if not idx:
+        return False
+    boards = idx.get("leaderboards")
+    return isinstance(boards, dict) and len(boards) > 0
+
+
+def fetch_leaderboards(day: str) -> dict:
     """Fetch all leaderboard snapshots for the given date."""
     result = {
-        "date": date,
+        "date": day,
         "fetched_at": datetime.now(timezone.utc).isoformat(),
         "leaderboards": {},
         "partial": False,
@@ -76,8 +116,8 @@ def fetch_leaderboards(date: str) -> dict:
     total_models = 0
     failed_boards = []
     for lb in LEADERBOARDS:
-        url = f"{BASE_URL}/{date}/{lb}.json"
-        data = fetch_json(url, timeout=90, retries=3)
+        url = f"{BASE_URL}/{day}/{lb}.json"
+        data = fetch_json(url, timeout=90, retries=2)
         if not data:
             failed_boards.append(lb)
             continue
@@ -101,40 +141,50 @@ def fetch_leaderboards(date: str) -> dict:
     return result
 
 
+def use_cache(reason: str, code: int) -> None:
+    cached = load_previous_raw(OUTPUT_PATH.name, OUTPUT_DIR)
+    if cached:
+        print(f"[OK] 使用缓存 Arena 数据（{reason}）")
+        # exit 3 = 降级使用缓存，让管线感知 degraded 状态
+        sys.exit(3)
+    print(f"[ERROR] {reason}，且没有可用缓存")
+    sys.exit(code)
+
+
 def main():
     print("=" * 60)
     print("Fetching Arena Leaderboard snapshots...")
 
-    snapshot_date = get_latest_date()
-    if not snapshot_date:
-        print("[ERROR] Could not determine latest snapshot date")
-        # 尝试使用缓存
-        cached = load_previous_raw(OUTPUT_PATH.name, OUTPUT_DIR)
-        if cached:
-            print(f"[OK] 使用缓存 Arena 数据（{OUTPUT_PATH}）")
-            # exit 3 = 降级使用缓存，让管线感知 degraded 状态
-            sys.exit(3)
-        sys.exit(1)
+    latest = get_latest_date()
+    if latest:
+        print(f"Latest announced snapshot date: {latest}")
+    else:
+        print("[WARN] latest.json 不可读，按今天往前找")
 
-    print(f"Latest snapshot date: {snapshot_date}")
+    picked: dict | None = None
+    picked_day: str | None = None
+    for day in candidates(latest):
+        if not index_has_data(day):
+            print(f"  [SKIP] {day}: 上游无榜单数据（空快照）")
+            continue
+        data = fetch_leaderboards(day)
+        if data.get("total_models", 0) > 0:
+            picked, picked_day = data, day
+            break
+        print(f"  [SKIP] {day}: 榜单文件不可读")
 
-    result = fetch_leaderboards(snapshot_date)
-    total_models = result.get("total_models", 0)
+    if picked is None or picked_day is None:
+        use_cache("上游没有可用快照（镜像自 2026-10 起持续为空）", 1)
 
-    if total_models == 0:
-        print("[ERROR] No leaderboard data fetched")
-        cached = load_previous_raw(OUTPUT_PATH.name, OUTPUT_DIR)
-        if cached:
-            print(f"[OK] 使用缓存 Arena 数据（{OUTPUT_PATH}）")
-            # exit 3 = 降级使用缓存，让管线感知 degraded 状态
-            sys.exit(3)
-        sys.exit(1)
+    total_models = picked["total_models"]
+    stale_days = (datetime.now(timezone.utc).date() - date.fromisoformat(picked_day)).days
+    picked["stale_days"] = stale_days
+    if stale_days > 0:
+        print(f"  [WARN] 使用 {picked_day} 的快照（距今 {stale_days} 天）")
 
     # Arena 镜像曾出现只返回各榜 Top 20 的 truncated 数据（total_models 从 ~160
     # 骤降到 60），导致覆盖率暴跌、管线验证失败。若新数据量明显少于缓存，
-    # 降级使用更完整的缓存数据，并标记 degraded——但仅以缓存仍新鲜为限：
-    # 若上游长期缩减（而非临时故障），降级守卫会把缓存永久冻结，最终触发
-    # 新鲜度校验硬失败（2026-08-12 实际发生）。缓存过老时接受新快照。
+    # 降级使用更完整的缓存数据，并标记 degraded——但仅以缓存仍新鲜为限。
     cached = load_previous_raw(OUTPUT_PATH.name, OUTPUT_DIR)
     cached_total = cached.get("total_models", 0) if cached else 0
     if cached_total > 0 and total_models < cached_total * 0.6:
@@ -147,7 +197,6 @@ def main():
             cached["partial"] = True
             cached["fallback_reason"] = f"new snapshot too small ({total_models} < 60% of {cached_total})"
             write_json(OUTPUT_PATH, cached)
-            # exit 3 = 降级使用缓存，让管线感知 degraded 状态
             sys.exit(3)
         print(
             f"[WARN] Arena 新数据量低于缓存 ({total_models} < 60% of {cached_total})，"
@@ -155,7 +204,7 @@ def main():
             f"（上限 {MAX_CACHE_FALLBACK_DAYS} 天），接受较小的上游快照以防缓存冻结"
         )
 
-    write_json(OUTPUT_PATH, result)
+    write_json(OUTPUT_PATH, picked)
     print(f"\n[OK] Saved {total_models} total entries to {OUTPUT_PATH}")
 
     # Print CN model summary
@@ -163,7 +212,7 @@ def main():
     # (仅影响本摘要打印), 确认后并入 cn_classifier 即可删除
     cn_vendors = set(CN_COMPANIES) | {"z.ai", "01ai"}
     for lb in LEADERBOARDS:
-        models = result["leaderboards"].get(lb, [])
+        models = picked["leaderboards"].get(lb, [])
         cn = [m for m in models if (m.get("vendor") or "").lower() in cn_vendors]
         if cn:
             print(f"\n  [{lb}] CN models ({len(cn)}):")

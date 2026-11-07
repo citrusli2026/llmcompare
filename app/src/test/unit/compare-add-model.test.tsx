@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { ComparePageClient } from "@/app/compare/compare-client";
 
 // Mock i18n：回显 key，断言不依赖具体文案
@@ -17,12 +17,15 @@ vi.mock("next/navigation", () => ({
 }));
 
 describe("对比页添加上限提示", () => {
-  it("达到上限时添加按钮禁用,悬停显示原因 tooltip", () => {
+  it("达到上限时添加按钮禁用,悬停显示原因 tooltip", async () => {
     render(<ComparePageClient />);
-    const addBtn = screen.getByRole("button", { name: /compare\.addModel/ });
+    // 客户端组件首次渲染后再补数据，CI 机器慢时同步 getByRole 会偶发找不到
+    const addBtn = await screen.findByRole("button", { name: /compare\.addModel/ });
     expect(addBtn).toBeDisabled();
     // disabled 按钮自身不触发 hover,tooltip 必须挂在外层包裹元素上
     fireEvent.mouseOver(addBtn);
-    expect(screen.getByRole("tooltip")).toHaveTextContent("compare.maxReached");
+    await waitFor(() =>
+      expect(screen.getByRole("tooltip")).toHaveTextContent("compare.maxReached")
+    );
   });
 });

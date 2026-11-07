@@ -359,14 +359,6 @@ def check_source_health(models):
     return issues, warnings
 
 
-def _classify_freshness(source_label, age_days, issues, warnings):
-    """按新鲜度阈值分级：超过 fail 报 issue，超过 warn 报 warning。"""
-    if age_days > FRESHNESS_FAIL_DAYS:
-        issues.append(f"{source_label} 数据严重过期: 快照距今 {age_days} 天 (fail 阈值 {FRESHNESS_FAIL_DAYS} 天)")
-    elif age_days > FRESHNESS_WARN_DAYS:
-        warnings.append(f"{source_label} 数据偏旧: 快照距今 {age_days} 天 (warn 阈值 {FRESHNESS_WARN_DAYS} 天)")
-
-
 def check_source_freshness():
     """
     数据源新鲜度检查：
@@ -374,11 +366,18 @@ def check_source_freshness():
       （第三方镜像曾落后 14 天无人发现，文件 mtime 看不出内容过期）
     - AA / OpenRouter：用原始文件 mtime（CI 检出/重抓后 mtime 为当下不会误报，
       本地则反映上次抓取时间）
-    超过 warn_days 报 warning，超过 fail_days 报 issue。
+
+    分级策略（2026-11 调整，对齐「只有数据损坏级别才阻断」原则）：
+    - 单个源超过 fail_days：若还有别的源是新鲜的（<= warn_days），降级为告警，
+      站点以「部分更新」继续刷新；只有所有源都死了才判失败。
+      上游镜像停更不应让整条每日刷新管线卡死（2026-10 Arena 镜像实例）。
+    - 超过 warn_days：告警。
     """
     issues = []
     warnings = []
     today = date.today()
+
+    entries: list[tuple[str, int]] = []
 
     arena_path = RAW_DIR / "arena_leaderboards.json"
     if arena_path.exists():
@@ -396,7 +395,7 @@ def check_source_freshness():
         else:
             # 内容日期缺失时退化为 mtime
             age_days = (today - datetime.fromtimestamp(arena_path.stat().st_mtime).date()).days
-        _classify_freshness("Arena", age_days, issues, warnings)
+        entries.append(("Arena", age_days))
     else:
         warnings.append("Arena 原始数据缺失: 2-raw/arena_leaderboards.json")
 
@@ -406,7 +405,34 @@ def check_source_freshness():
             warnings.append(f"{label} 原始数据缺失: 2-raw/{filename}")
             continue
         mtime_date = datetime.fromtimestamp(path.stat().st_mtime).date()
-        _classify_freshness(label, (today - mtime_date).days, issues, warnings)
+        entries.append((label, (today - mtime_date).days))
+
+    has_fresh = any(age <= FRESHNESS_WARN_DAYS for _, age in entries)
+    dead: list[str] = []
+
+    for label, age_days in entries:
+        if age_days > FRESHNESS_FAIL_DAYS:
+            if has_fresh:
+                dead.append(f"{label}({age_days}天)")
+                warnings.append(
+                    f"{label} 数据严重过期: 快照距今 {age_days} 天"
+                    f" (fail 阈值 {FRESHNESS_FAIL_DAYS} 天)，其他数据源仍新鲜，降级为告警"
+                )
+            else:
+                issues.append(
+                    f"{label} 数据严重过期: 快照距今 {age_days} 天"
+                    f" (fail 阈值 {FRESHNESS_FAIL_DAYS} 天)"
+                )
+        elif age_days > FRESHNESS_WARN_DAYS:
+            warnings.append(
+                f"{label} 数据偏旧: 快照距今 {age_days} 天"
+                f" (warn 阈值 {FRESHNESS_WARN_DAYS} 天)"
+            )
+
+    if dead:
+        warnings.append(
+            "部分数据源已停更: " + "、".join(dead) + "；本次按部分更新处理，站点其余数据继续刷新"
+        )
 
     return issues, warnings
 
