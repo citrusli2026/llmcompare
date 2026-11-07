@@ -640,14 +640,39 @@ def check_thresholds(models):
     }
 
     dynamic_thresholds = compute_dynamic_thresholds()
+
+    # 上游覆盖塌方检测：AA 会周期性把 intelligenceIndex 置 null（2026-09、2026-11 各一次）。
+    # 这种情况下 intelligence 派生指标（data_complete/has_speed）必然掉到阈值外，
+    # 属于上游降级而非本站数据损坏 —— 按仓库原则降级为告警，站点继续更新。
+    n = max(1, len(models))
+    intel_cov = sum(
+        1 for m in models if m.get("scores", {}).get("intelligence") is not None
+    ) / n
+    upstream_degraded = intel_cov < 0.8
+    soft_keys = {"data_complete", "has_speed", "frontier"}
+    warnings = []
+    if upstream_degraded:
+        warnings.append(
+            f"上游 intelligence 覆盖仅 {intel_cov:.0%}（AA 将多数模型指数置空），"
+            "派生指标阈值降级为告警"
+        )
+
     for key, val in stats.items():
         low, high = dynamic_thresholds[key]
         if not (low <= val <= high):
-            issues.append(f"{key}={val} out of threshold [{low}, {high}]")
+            msg = f"{key}={val} out of threshold [{low}, {high}]"
+            if upstream_degraded and key in soft_keys:
+                warnings.append(msg + "（上游覆盖不足，不阻断）")
+            else:
+                issues.append(msg)
 
-    issues.extend(check_gradual_decline(stats))
+    decline = check_gradual_decline(stats)
+    if upstream_degraded:
+        warnings.extend(x + "（上游覆盖不足，不阻断）" for x in decline)
+    else:
+        issues.extend(decline)
 
-    return issues, stats, dynamic_thresholds
+    return issues, warnings, stats, dynamic_thresholds
 
 
 def check_score_distribution(models):
@@ -881,8 +906,9 @@ def main():
 
     # 7. 统计量阈值（动态）
     print("[7/11] 统计量阈值检查...")
-    issues, stats, dynamic_thresholds = check_thresholds(models)
+    issues, stats_warnings, stats, dynamic_thresholds = check_thresholds(models)
     all_issues.extend(issues)
+    all_warnings.extend(stats_warnings)
     print(f"  {'✓' if not issues else '✗'} {len(issues)} issues")
     for key, val in stats.items():
         low, high = dynamic_thresholds[key]

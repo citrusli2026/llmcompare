@@ -91,6 +91,25 @@ MIN_FALLBACK_COVERAGE = 0.25  # 覆盖不足 25% 的评测不选作整批口径
 KNOWN_REMOVED_INDICES = ('coding_index', 'agentic_index')
 
 
+def deep_find(obj, key: str, depth: int = 4):
+    """在嵌套 dict/list 里找第一个非空的 key（AA 把性能数据挪进 headline 等子对象时兜底）。"""
+    if depth < 0:
+        return None
+    if isinstance(obj, dict):
+        if obj.get(key) is not None:
+            return obj[key]
+        for v in obj.values():
+            found = deep_find(v, key, depth - 1)
+            if found is not None:
+                return found
+    elif isinstance(obj, list):
+        for v in obj:
+            found = deep_find(v, key, depth - 1)
+            if found is not None:
+                return found
+    return None
+
+
 def pick_field(obj: dict, field: str):
     """按别名表取上游字段，返回第一个非 None 的值（全缺失返回 None）。"""
     for key in AA_FIELD_ALIASES.get(field, (field,)):
@@ -315,7 +334,7 @@ def parse_models_new(content: str) -> List[dict]:
             'index_tokens_total': obj.get('canonicalIntelligenceIndexTokenCount'),
 
             # Speed (tokens/s)
-            'speed_median_tps': ts.get('medianOutputSpeed'),
+            'speed_median_tps': ts.get('medianOutputSpeed') or deep_find(obj, 'outputSpeed'),
             'speed_p05_tps': None,  # 新格式中未提供
             'speed_p95_tps': None,  # 新格式中未提供
             'speed_short_tps': short_perf.get('medianOutputSpeed') if short_perf else None,
