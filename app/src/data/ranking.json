@@ -2278,8 +2278,8 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": 5672435132628,
     "openrouter_pricing": {
-      "prompt": 0.15,
-      "completion": 0.6
+      "prompt": 0.07,
+      "completion": 0.3
     },
     "arena_rankings": {},
     "arena_votes": null,
@@ -2878,8 +2878,8 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": 782374736322,
     "openrouter_pricing": {
-      "prompt": 0.12,
-      "completion": 4.66
+      "prompt": 0.11,
+      "completion": 4.44
     },
     "arena_rankings": {},
     "arena_votes": null,
@@ -5557,8 +5557,8 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": 2764831385156,
     "openrouter_pricing": {
-      "prompt": 0.13,
-      "completion": 0.53
+      "prompt": 0.08,
+      "completion": 0.33
     },
     "arena_rankings": {},
     "arena_votes": null,
@@ -6053,7 +6053,7 @@
     "cn_pricing": null,
     "openrouter_weekly_tokens": 3560989712375,
     "openrouter_pricing": {
-      "prompt": 0.05,
+      "prompt": 0.04,
       "completion": 0.3
     },
     "arena_rankings": {},
