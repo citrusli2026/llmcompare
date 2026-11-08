@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-11-07T23:22:52.062552+00:00",
+  "generated_at": "2026-11-08T21:51:55.984699+00:00",
   "version": "1.0",
   "partial_update": true,
   "sources": {
     "artificial_analysis": {
       "ok": true,
-      "cached": true,
+      "cached": false,
       "degraded": false,
       "error": null,
       "coverage": 0.589
     },
     "openrouter": {
       "ok": true,
-      "cached": true,
+      "cached": false,
       "degraded": false,
       "error": null,
       "coverage": 0.493,
@@ -22,7 +22,7 @@
       "ok": false,
       "cached": true,
       "degraded": true,
-      "error": "============================================================\nFetching Arena Leaderboard snapshots...\nLatest announced snapshot date: 2026-11-07\n  [SKIP] 2026-11-07: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-06: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-05: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-04: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-03: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-02: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-01: 上游无榜单数据（空快照）\n  [SKIP] 2026-10-31: 上游无榜单数据（空快照）\n[OK] 使用缓存 Arena 数据（上游没有可用快照（镜像自 2026-10 起持续为空））",
+      "error": "============================================================\nFetching Arena Leaderboard snapshots...\nLatest announced snapshot date: 2026-11-08\n  [SKIP] 2026-11-08: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-07: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-06: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-05: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-04: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-03: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-02: 上游无榜单数据（空快照）\n  [SKIP] 2026-11-01: 上游无榜单数据（空快照）\n[OK] 使用缓存 Arena 数据（上游没有可用快照（镜像自 2026-10 起持续为空））",
       "coverage": 0.151
     }
   },
